@@ -35,7 +35,6 @@ shadow_enabled = true
 [node name="Player" parent="." node_paths=PackedStringArray("enemy") instance=ExtResource("2_thr8q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 7.57123)
 enemy = NodePath("../Enemy")
-metadata/_edit_group_ = true
 
 [node name="Box" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.00014, 0.90213, 6.74538)
