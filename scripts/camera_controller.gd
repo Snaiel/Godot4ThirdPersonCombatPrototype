@@ -12,7 +12,8 @@ extends SpringArm3D
 @export var lock_on_min_distance = 1
 @export var lock_on_max_distance = 10
 
-var _locked_on_enemy: Enemy = null
+var _lock_on_enemy: Enemy = null
+
 var _looking_direction
 var _target_look
 
@@ -31,12 +32,12 @@ func _process(_delta):
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().quit()
 		
-	if _locked_on_enemy:
-		_looking_direction = -global_position.direction_to(_locked_on_enemy.position)
+	if _lock_on_enemy:
+		_looking_direction = -global_position.direction_to(_lock_on_enemy.position)
 		_target_look = atan2(_looking_direction.x, _looking_direction.z)
 		var desired_rotation_y = lerp_angle(rotation.y, _target_look, 0.05)
 
-		var clamped_distance = clamp(position.distance_to(_locked_on_enemy.position), lock_on_min_distance, lock_on_max_distance)
+		var clamped_distance = clamp(position.distance_to(_lock_on_enemy.position), lock_on_min_distance, lock_on_max_distance)
 		var normalized_distance = (clamped_distance - lock_on_min_distance) / (lock_on_max_distance - lock_on_min_distance)
 		normalized_distance = smoothstep(0.0, 1.0, normalized_distance)
 		var angle = lerp(lock_on_max_angle, lock_on_min_angle, normalized_distance)
@@ -46,7 +47,7 @@ func _process(_delta):
 		rotation.x = lerp(rotation.x, desired_rotation_x, 0.05)
 		
 func _unhandled_input(event):
-	if event is InputEventMouseMotion and not _locked_on_enemy:
+	if event is InputEventMouseMotion and not _lock_on_enemy:
 		rotation.x -= event.relative.y * mouse_sensitivity
 		rotation_degrees.x = clamp(rotation_degrees.x, -90.0, 30.0)
 		
@@ -57,5 +58,5 @@ func get_lock_on_position(enemy: Enemy) -> Vector2:
 	var pos = _cam.unproject_position(enemy.global_position)
 	return pos
 
-func _on_player_lock_on(enemy: Enemy):
-	_locked_on_enemy = enemy
+func lock_on(enemy: Enemy):
+	_lock_on_enemy = enemy

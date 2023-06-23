@@ -21,4 +21,4 @@ func _physics_process(delta):
 
 func get_hit():
 	var player = Globals.player
-	velocity = (position - player.position).normalized() * 2
+	velocity = (position - player.position).normalized() * 4

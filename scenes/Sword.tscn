@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bkiap6xulr21q"]
 
-[ext_resource type="Script" path="res://Sword.gd" id="1_t6xjv"]
+[ext_resource type="Script" path="res://scripts/sword.gd" id="1_5whxk"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_k3nak"]
 size = Vector3(0.1, 2, 0.1)
@@ -135,7 +135,7 @@ size = Vector3(0.1, 2, 0.1)
 [node name="Sword" type="Area3D"]
 collision_layer = 4
 collision_mask = 8
-script = ExtResource("1_t6xjv")
+script = ExtResource("1_5whxk")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.766044, 0.642787, 0, -0.642787, 0.766044, 0, 0.507535, -0.426912)

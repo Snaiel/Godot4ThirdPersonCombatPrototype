@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://dujukbu10vbmm"]
 
-[ext_resource type="Script" path="res://Player.gd" id="1_shj3y"]
-[ext_resource type="PackedScene" uid="uid://bkiap6xulr21q" path="res://Sword.tscn" id="2_fdsl5"]
-[ext_resource type="Script" path="res://CameraController.gd" id="2_kkeet"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_lgfyt"]
+[ext_resource type="PackedScene" uid="uid://bkiap6xulr21q" path="res://scenes/Sword.tscn" id="2_7svmq"]
+[ext_resource type="Script" path="res://scripts/camera_controller.gd" id="3_fixly"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lnhvg"]
 margin = 0.08
@@ -16,7 +16,7 @@ material = SubResource("StandardMaterial3D_4kp5v")
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
 collision_mask = 9
-script = ExtResource("1_shj3y")
+script = ExtResource("1_lgfyt")
 
 [node name="CapsuleCollider" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_lnhvg")
@@ -24,16 +24,14 @@ shape = SubResource("CapsuleShape3D_lnhvg")
 [node name="Model" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_32q2g")
 
-[node name="Sword" parent="Model" instance=ExtResource("2_fdsl5")]
+[node name="Sword" parent="Model" instance=ExtResource("2_7svmq")]
 
 [node name="CameraController" type="SpringArm3D" parent="."]
 spring_length = 3.5
 margin = 0.2
-script = ExtResource("2_kkeet")
+script = ExtResource("3_fixly")
 mouse_sensitivity = 5
 camera_angle = 15
 
 [node name="Camera3D" type="Camera3D" parent="CameraController"]
 transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0)
-
-[connection signal="lock_on" from="." to="CameraController" method="_on_player_lock_on"]

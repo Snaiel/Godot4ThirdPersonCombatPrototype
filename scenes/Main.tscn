@@ -1,0 +1,77 @@
+[gd_scene load_steps=12 format=3 uid="uid://cfip2n0nvr8n3"]
+
+[ext_resource type="PackedScene" uid="uid://cv8knl5vavfyy" path="res://scenes/Enemy.tscn" id="2_oia4d"]
+[ext_resource type="PackedScene" uid="uid://dujukbu10vbmm" path="res://scenes/Player.tscn" id="2_thr8q"]
+[ext_resource type="PackedScene" uid="uid://b075d85nmca7s" path="res://scenes/UserInterface.tscn" id="3_hlhuw"]
+[ext_resource type="Script" path="res://scripts/lock_on_system.gd" id="4_qiriw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kuabg"]
+size = Vector3(30, 1, 30)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v2xbe"]
+albedo_color = Color(0.501961, 0.501961, 0.501961, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5pinl"]
+material = SubResource("StandardMaterial3D_v2xbe")
+size = Vector3(30, 1, 30)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lc8bw"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_i8f3h"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0po3u"]
+size = Vector3(1, 5, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2up1i"]
+size = Vector3(1, 5, 10)
+
+[node name="Main" type="Node3D"]
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="Ground" type="StaticBody3D" parent="World"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Ground"]
+shape = SubResource("BoxShape3D_kuabg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Ground"]
+mesh = SubResource("BoxMesh_5pinl")
+
+[node name="Box" type="StaticBody3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.00014, 0.90213, 6.74538)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Box"]
+shape = SubResource("BoxShape3D_lc8bw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Box"]
+mesh = SubResource("BoxMesh_i8f3h")
+
+[node name="Wall" type="StaticBody3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.71779, 0.90213, 3.49402)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_0po3u")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+mesh = SubResource("BoxMesh_2up1i")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 32.9971, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("2_thr8q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 7.57123)
+
+[node name="Enemy" parent="." instance=ExtResource("2_oia4d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.908356, 2, 4.21994)
+
+[node name="UserInterface" parent="." instance=ExtResource("3_hlhuw")]
+
+[node name="LockOnSystem" type="Node3D" parent="." node_paths=PackedStringArray("potential_target")]
+script = ExtResource("4_qiriw")
+potential_target = NodePath("../Enemy")
+
+[connection signal="lock_on" from="LockOnSystem" to="Player" method="_on_lock_on_system_lock_on"]
+[connection signal="lock_on" from="LockOnSystem" to="UserInterface" method="_on_lock_on_system_lock_on"]

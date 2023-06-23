@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="Third Person Combat Prototype"
-run/main_scene="res://Main.tscn"
+run/main_scene="res://scenes/Main.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Globals="*res://Globals.gd"
+Globals="*res://scripts/globals.gd"
 
 [input]
 
