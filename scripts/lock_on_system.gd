@@ -66,6 +66,28 @@ func _on_body_exited(body):
 func _on_change_target_timer_timeout():
 	can_change_target = true
 	
+func _can_see_enemy(enemy: Enemy) -> bool:
+	var can_see: bool = true
+	var cam = get_viewport().get_camera_3d()	
+	
+	var space_state = get_world_3d().direct_space_state
+	var query = PhysicsRayQueryParameters3D.create(cam.global_position, enemy.position, 1)
+	var result = space_state.intersect_ray(query)
+	
+	can_see = result.size() == 0
+	
+	return can_see
+	
+func _get_enemies_in_front() -> Array[Enemy]:
+	var enemies: Array[Enemy] = []
+	var cam = get_viewport().get_camera_3d()
+	
+	for e in _enemies_nearby:
+		if not cam.is_position_behind(e.position) and _can_see_enemy(e):
+			enemies.append(e)
+			
+	return enemies
+	
 func _get_enemies_in_frustum() -> Array[Enemy]:
 	var enemies: Array[Enemy] = []
 	var cam = get_viewport().get_camera_3d()
@@ -101,7 +123,7 @@ func _choose_lock_on_enemy():
 func _change_target_right():
 	var cam = get_viewport().get_camera_3d()
 	var viewport_center = Vector2(get_viewport().size / 2)	
-	var enemies_in_frustum = _get_enemies_in_frustum()
+	var enemies_in_frustum = _get_enemies_in_front()
 			
 	if enemies_in_frustum.size() == 0:
 		enemy = null
@@ -136,7 +158,7 @@ func _change_target_right():
 func _change_target_left():
 	var cam = get_viewport().get_camera_3d()
 	var viewport_center = Vector2(get_viewport().size / 2)	
-	var enemies_in_frustum = _get_enemies_in_frustum()
+	var enemies_in_frustum = _get_enemies_in_front()
 			
 	if enemies_in_frustum.size() == 0:
 		enemy = null
@@ -167,14 +189,3 @@ func _change_target_left():
 			
 	enemy = target_enemy if target_enemy else enemy
 	
-
-func _can_see_enemy(enemy: Enemy) -> bool:
-	var can_see: bool = true
-	
-	var space_state = get_world_3d().direct_space_state
-	var query = PhysicsRayQueryParameters3D.create(player.position, enemy.position, 1)
-	var result = space_state.intersect_ray(query)
-	
-	can_see = result.size() == 0
-	
-	return can_see

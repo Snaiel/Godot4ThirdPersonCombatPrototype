@@ -75,7 +75,7 @@ collision_mask = 8
 script = ExtResource("4_qiriw")
 player = NodePath("../Player")
 potential_target = NodePath("../Enemies/Enemy")
-change_target_mouse_threshold = 80
+change_target_mouse_threshold = 60
 change_target_wait_time = 0.5
 
 [node name="EnemyDetectionSphere" type="CollisionShape3D" parent="LockOnSystem"]
