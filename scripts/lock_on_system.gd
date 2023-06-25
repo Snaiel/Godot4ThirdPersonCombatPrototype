@@ -36,7 +36,8 @@ func _process(_delta):
 			enemy = null
 		else:
 			_choose_lock_on_enemy()
-		lock_on.emit(enemy)
+		
+		lock_on.emit(enemy)					
 		print(enemy)
 		
 func _input(event):
@@ -56,15 +57,22 @@ func _input(event):
 			can_change_target = false
 			_change_target_timer.start()
 
-func _on_body_entered(body):
+func _on_body_entered(body: Enemy):
 	if body not in _enemies_nearby:
 		_enemies_nearby.append(body)
+		body.death.connect(_enemy_death)
 	
-func _on_body_exited(body):
+func _on_body_exited(body: Enemy):
 	_enemies_nearby.erase(body)
+	body.death.disconnect(_enemy_death)
 	
 func _on_change_target_timer_timeout():
 	can_change_target = true
+	
+func _enemy_death(e):
+	_enemies_nearby.erase(e)
+	_choose_lock_on_enemy()
+	lock_on.emit(enemy)		
 	
 func _can_see_enemy(e: Enemy) -> bool:
 	var can_see: bool = true
@@ -93,7 +101,7 @@ func _get_enemies_in_frustum() -> Array[Enemy]:
 	var cam = get_viewport().get_camera_3d()
 	
 	for e in _enemies_nearby:
-		if cam.is_position_in_frustum(e.position) and _can_see_enemy(e):
+		if e != enemy and cam.is_position_in_frustum(e.position) and _can_see_enemy(e):
 			enemies.append(e)
 			
 	return enemies
@@ -110,14 +118,14 @@ func _choose_lock_on_enemy():
 		enemy = null
 		return
 	
-	print(enemies_in_frustum)
 	for e in enemies_in_frustum:
+		print("CHOOSING?? ", e)
 		var dist = viewport_center.distance_to(cam.unproject_position(e.position))
 		
 		if closest_enemy == null or dist < closest_dist:
 			closest_dist = dist
 			closest_enemy = e
-			
+	
 	enemy = closest_enemy
 
 func _change_target_right():
@@ -186,4 +194,3 @@ func _change_target_left():
 				target_enemy = e
 			
 	enemy = target_enemy if target_enemy else enemy
-	

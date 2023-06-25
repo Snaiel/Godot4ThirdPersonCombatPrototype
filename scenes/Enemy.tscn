@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cv8knl5vavfyy"]
+[gd_scene load_steps=7 format=3 uid="uid://cv8knl5vavfyy"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_nrck3"]
-[ext_resource type="PackedScene" uid="uid://cko2lhqdu4n44" path="res://scenes/EntityHitbox.tscn" id="2_h2tgk"]
+[ext_resource type="PackedScene" uid="uid://cko2lhqdu4n44" path="res://scenes/HitboxComponent.tscn" id="2_h2tgk"]
+[ext_resource type="PackedScene" uid="uid://cq3fjofav3npm" path="res://scenes/HealthComponent.tscn" id="3_c0k3s"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t3wl8"]
 albedo_color = Color(0.898039, 0.278431, 0.137255, 1)
@@ -16,12 +17,17 @@ collision_layer = 8
 collision_mask = 3
 script = ExtResource("1_nrck3")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Model" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_gkoum")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="Collider" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_lwy87")
 
-[node name="EntityHitbox" parent="." instance=ExtResource("2_h2tgk")]
+[node name="HitboxComponent" parent="." instance=ExtResource("2_h2tgk")]
 
-[connection signal="weapon_hit" from="EntityHitbox" to="." method="_on_entity_hitbox_weapon_hit"]
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("hitbox") instance=ExtResource("3_c0k3s")]
+hitbox = NodePath("../HitboxComponent")
+health = 20
+
+[connection signal="weapon_hit" from="HitboxComponent" to="." method="_on_entity_hitbox_weapon_hit"]
+[connection signal="zero_health" from="HealthComponent" to="." method="_on_health_component_zero_health"]

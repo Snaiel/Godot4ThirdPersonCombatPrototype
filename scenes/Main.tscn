@@ -44,6 +44,8 @@ radius = 10.0
 
 [node name="Main" type="Node3D"]
 
+[node name="UserInterface" parent="." instance=ExtResource("3_hlhuw")]
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_32f71")
 
@@ -79,30 +81,12 @@ shape = SubResource("BoxShape3D_0po3u")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 mesh = SubResource("BoxMesh_2up1i")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
 transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 32.9971, 0)
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("2_thr8q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 7.57123)
-
-[node name="LockOnSystem" type="Area3D" parent="Player" node_paths=PackedStringArray("player", "potential_target")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, -7.57123)
-collision_layer = 0
-collision_mask = 8
-script = ExtResource("4_qiriw")
-player = NodePath("..")
-potential_target = NodePath("../../Enemies/Enemy")
-change_target_mouse_threshold = 60
-change_target_wait_time = 0.5
-
-[node name="EnemyDetectionSphere" type="CollisionShape3D" parent="Player/LockOnSystem"]
-shape = SubResource("SphereShape3D_bb732")
-
-[node name="ChangeTargetTimer" type="Timer" parent="Player/LockOnSystem"]
-wait_time = 0.5
-
-[node name="UserInterface" parent="." instance=ExtResource("3_hlhuw")]
 
 [node name="Enemies" type="Node3D" parent="."]
 
@@ -124,7 +108,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.737, 2, -10.9117)
 [node name="Enemy6" parent="Enemies" instance=ExtResource("2_oia4d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0914, 2, 1.43307)
 
-[connection signal="body_entered" from="Player/LockOnSystem" to="Player/LockOnSystem" method="_on_body_entered"]
-[connection signal="lock_on" from="Player/LockOnSystem" to="Player" method="_on_lock_on_system_lock_on"]
-[connection signal="lock_on" from="Player/LockOnSystem" to="UserInterface" method="_on_lock_on_system_lock_on"]
-[connection signal="timeout" from="Player/LockOnSystem/ChangeTargetTimer" to="Player/LockOnSystem" method="_on_change_target_timer_timeout"]
+[node name="LockOnSystem" type="Area3D" parent="." node_paths=PackedStringArray("player", "potential_target")]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("4_qiriw")
+player = NodePath("../Player")
+potential_target = NodePath("../Enemies/Enemy")
+change_target_mouse_threshold = 60
+change_target_wait_time = 0.5
+
+[node name="EnemyDetectionSphere" type="CollisionShape3D" parent="LockOnSystem"]
+shape = SubResource("SphereShape3D_bb732")
+
+[node name="ChangeTargetTimer" type="Timer" parent="LockOnSystem"]
+wait_time = 0.5
+
+[connection signal="body_entered" from="LockOnSystem" to="LockOnSystem" method="_on_body_entered"]
+[connection signal="lock_on" from="LockOnSystem" to="UserInterface" method="_on_lock_on_system_lock_on"]
+[connection signal="lock_on" from="LockOnSystem" to="Player" method="_on_lock_on_system_lock_on"]
+[connection signal="timeout" from="LockOnSystem/ChangeTargetTimer" to="LockOnSystem" method="_on_change_target_timer_timeout"]

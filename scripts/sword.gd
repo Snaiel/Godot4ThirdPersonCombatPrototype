@@ -11,4 +11,4 @@ func _process(_delta):
 		_animation_player.play("Strike")
 
 func register_weapon_impact():
-	weapon_impact.emit(10, 5)
+	weapon_impact.emit(10, 2)

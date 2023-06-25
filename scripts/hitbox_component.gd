@@ -1,3 +1,4 @@
+class_name HitboxComponent
 extends Area3D
 
 signal weapon_hit(damage: int, knockback: float)

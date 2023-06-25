@@ -1,6 +1,8 @@
 class_name Enemy
 extends CharacterBody3D
 
+signal death(enemy)
+
 @export var friction = 0.05
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -24,3 +26,8 @@ func get_hit(knockback):
 
 func _on_entity_hitbox_weapon_hit(_damage, knockback):
 	get_hit(knockback)
+
+
+func _on_health_component_zero_health():
+	death.emit(self)
+	queue_free()
