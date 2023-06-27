@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dujukbu10vbmm"]
+[gd_scene load_steps=8 format=3 uid="uid://dujukbu10vbmm"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_lgfyt"]
 [ext_resource type="PackedScene" uid="uid://bkiap6xulr21q" path="res://scenes/Sword.tscn" id="2_7svmq"]
@@ -12,6 +12,9 @@ albedo_color = Color(0.0666667, 0.607843, 0.870588, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_32q2g"]
 material = SubResource("StandardMaterial3D_4kp5v")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_iy1st"]
+radius = 0.1
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
@@ -27,6 +30,7 @@ mesh = SubResource("CapsuleMesh_32q2g")
 [node name="Sword" parent="Model" instance=ExtResource("2_7svmq")]
 
 [node name="CameraController" type="SpringArm3D" parent="."]
+shape = SubResource("SphereShape3D_iy1st")
 spring_length = 3.5
 margin = 0.2
 script = ExtResource("3_fixly")
