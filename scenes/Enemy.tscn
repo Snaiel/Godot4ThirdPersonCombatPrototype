@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_nrck3"]
 [ext_resource type="PackedScene" uid="uid://cko2lhqdu4n44" path="res://scenes/HitboxComponent.tscn" id="2_h2tgk"]
 [ext_resource type="PackedScene" uid="uid://cq3fjofav3npm" path="res://scenes/HealthComponent.tscn" id="3_c0k3s"]
+[ext_resource type="Material" uid="uid://ddlvel7t33vc8" path="res://materials/blood.tres" id="4_conbd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t3wl8"]
 albedo_color = Color(0.898039, 0.278431, 0.137255, 1)
@@ -27,11 +28,8 @@ initial_velocity_min = 3.0
 initial_velocity_max = 8.0
 scale_curve = SubResource("CurveTexture_fj218")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rkp5u"]
-albedo_color = Color(0.458824, 0, 0, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_4mwni"]
-material = SubResource("StandardMaterial3D_rkp5u")
+[sub_resource type="BoxMesh" id="BoxMesh_ijk3c"]
+material = ExtResource("4_conbd")
 size = Vector3(0.1, 0.1, 0.1)
 
 [node name="Enemy" type="CharacterBody3D" groups=["enemy"]]
@@ -60,7 +58,7 @@ one_shot = true
 explosiveness = 0.8
 randomness = 0.5
 process_material = SubResource("ParticleProcessMaterial_ju3bf")
-draw_pass_1 = SubResource("BoxMesh_4mwni")
+draw_pass_1 = SubResource("BoxMesh_ijk3c")
 
 [connection signal="weapon_hit" from="HitboxComponent" to="." method="_on_entity_hitbox_weapon_hit"]
 [connection signal="zero_health" from="HealthComponent" to="." method="_on_health_component_zero_health"]
