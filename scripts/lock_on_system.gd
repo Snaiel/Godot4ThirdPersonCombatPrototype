@@ -36,9 +36,7 @@ func _process(_delta):
 			enemy = null
 		else:
 			_choose_lock_on_enemy()
-		
-		lock_on.emit(enemy)					
-		print(enemy)
+		lock_on.emit(enemy)
 		
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -119,9 +117,7 @@ func _choose_lock_on_enemy():
 		return
 	
 	for e in enemies_in_frustum:
-		print("CHOOSING?? ", e)
 		var dist = viewport_center.distance_to(cam.unproject_position(e.position))
-		
 		if closest_enemy == null or dist < closest_dist:
 			closest_dist = dist
 			closest_enemy = e

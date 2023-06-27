@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cv8knl5vavfyy"]
+[gd_scene load_steps=12 format=3 uid="uid://cv8knl5vavfyy"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_nrck3"]
 [ext_resource type="PackedScene" uid="uid://cko2lhqdu4n44" path="res://scenes/HitboxComponent.tscn" id="2_h2tgk"]
@@ -11,6 +11,28 @@ albedo_color = Color(0.898039, 0.278431, 0.137255, 1)
 material = SubResource("StandardMaterial3D_t3wl8")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lwy87"]
+
+[sub_resource type="Curve" id="Curve_ngpsf"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.829457, 0.6), -1.80419, -1.80419, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_fj218"]
+curve = SubResource("Curve_ngpsf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ju3bf"]
+direction = Vector3(0, 0, 1)
+spread = 70.0
+flatness = 0.6
+initial_velocity_min = 3.0
+initial_velocity_max = 8.0
+scale_curve = SubResource("CurveTexture_fj218")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rkp5u"]
+albedo_color = Color(0.458824, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4mwni"]
+material = SubResource("StandardMaterial3D_rkp5u")
+size = Vector3(0.1, 0.1, 0.1)
 
 [node name="Enemy" type="CharacterBody3D" groups=["enemy"]]
 collision_layer = 8
@@ -25,9 +47,20 @@ shape = SubResource("CapsuleShape3D_lwy87")
 
 [node name="HitboxComponent" parent="." instance=ExtResource("2_h2tgk")]
 
-[node name="HealthComponent" parent="." node_paths=PackedStringArray("hitbox") instance=ExtResource("3_c0k3s")]
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("hitbox", "blood") instance=ExtResource("3_c0k3s")]
 hitbox = NodePath("../HitboxComponent")
-health = 20
+health = 30
+blood = NodePath("Blood")
+
+[node name="Blood" type="GPUParticles3D" parent="HealthComponent"]
+emitting = false
+amount = 20
+lifetime = 0.3
+one_shot = true
+explosiveness = 0.8
+randomness = 0.5
+process_material = SubResource("ParticleProcessMaterial_ju3bf")
+draw_pass_1 = SubResource("BoxMesh_4mwni")
 
 [connection signal="weapon_hit" from="HitboxComponent" to="." method="_on_entity_hitbox_weapon_hit"]
 [connection signal="zero_health" from="HealthComponent" to="." method="_on_health_component_zero_health"]

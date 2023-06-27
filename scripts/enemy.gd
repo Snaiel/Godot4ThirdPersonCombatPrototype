@@ -23,9 +23,8 @@ func get_hit(knockback):
 	var player = Globals.player
 	velocity = player.position.direction_to(position) * knockback
 
-
-func _on_entity_hitbox_weapon_hit(_damage, knockback):
-	get_hit(knockback)
+func _on_entity_hitbox_weapon_hit(weapon: Sword):
+	get_hit(weapon.knockback)
 
 
 func _on_health_component_zero_health():
