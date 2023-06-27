@@ -20,14 +20,14 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kuabg"]
-size = Vector3(30, 1, 30)
+size = Vector3(40, 1, 40)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v2xbe"]
 albedo_color = Color(0.501961, 0.501961, 0.501961, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_5pinl"]
 material = SubResource("StandardMaterial3D_v2xbe")
-size = Vector3(30, 1, 30)
+size = Vector3(40, 1, 40)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lc8bw"]
 

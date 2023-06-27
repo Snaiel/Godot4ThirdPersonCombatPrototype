@@ -2,6 +2,7 @@ class_name CameraController
 extends SpringArm3D
 
 @export_category("Camera Settings")
+@export var autonomous_speed = 5
 @export var mouse_sensitivity = 10
 @export var camera_angle = 10
 @export var camera_fov = 75
@@ -13,9 +14,7 @@ extends SpringArm3D
 @export var lock_on_max_distance = 10
 
 var _lock_on_enemy: Enemy = null
-
-var _looking_direction
-var _target_look
+var _player_looking_around = false
 
 @onready var _cam = $Camera3D
 
@@ -28,13 +27,13 @@ func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	mouse_sensitivity = mouse_sensitivity * pow(10, -3)
 	
-func _process(_delta):
+func _physics_process(_delta):
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().quit()
 		
 	if _lock_on_enemy:
-		_looking_direction = -global_position.direction_to(_lock_on_enemy.position)
-		_target_look = atan2(_looking_direction.x, _looking_direction.z)
+		var _looking_direction = -global_position.direction_to(_lock_on_enemy.position)
+		var _target_look = atan2(_looking_direction.x, _looking_direction.z)
 		var desired_rotation_y = lerp_angle(rotation.y, _target_look, 0.05)
 
 		var clamped_distance = clamp(position.distance_to(_lock_on_enemy.position), lock_on_min_distance, lock_on_max_distance)
@@ -48,12 +47,22 @@ func _process(_delta):
 		
 func _unhandled_input(event):
 	if event is InputEventMouseMotion and not _lock_on_enemy:
-		rotation.x -= event.relative.y * mouse_sensitivity
+		_player_looking_around = true
+		var new_rotation_x = rotation.x - event.relative.y * mouse_sensitivity
+		rotation.x = lerp(rotation.x, new_rotation_x, 0.8)
 		rotation_degrees.x = clamp(rotation_degrees.x, -90.0, 30.0)
 		
-		rotation.y -= event.relative.x * mouse_sensitivity
+		var new_rotation_y = rotation.y - event.relative.x * mouse_sensitivity
+		rotation.y = lerp(rotation.y, new_rotation_y, 0.8)
 		rotation_degrees.y = wrapf(rotation_degrees.y, 0.0, 360.0)
+	else:
+		_player_looking_around = false
 		
+func player_moving(move_direction: Vector3, delta):
+	if not _player_looking_around:
+		var new_rotation = rotation.y - sign(move_direction.x) * delta * autonomous_speed
+		rotation.y = lerp(rotation.y, new_rotation, 0.2)
+
 func get_lock_on_position(enemy: Enemy) -> Vector2:
 	var pos = _cam.unproject_position(enemy.global_position)
 	return pos
