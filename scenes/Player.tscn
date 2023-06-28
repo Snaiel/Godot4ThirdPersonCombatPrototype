@@ -1,21 +1,18 @@
-[gd_scene load_steps=11 format=3 uid="uid://dujukbu10vbmm"]
+[gd_scene load_steps=15 format=3 uid="uid://dujukbu10vbmm"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_lgfyt"]
-[ext_resource type="Shader" path="res://materials/player.gdshader" id="2_0km7i"]
+[ext_resource type="Shader" path="res://materials/transparent.gdshader" id="2_5yhhf"]
 [ext_resource type="PackedScene" uid="uid://bkiap6xulr21q" path="res://scenes/Sword.tscn" id="2_7svmq"]
+[ext_resource type="Material" uid="uid://b4q186xjxc08v" path="res://materials/player.tres" id="2_fik2x"]
 [ext_resource type="Script" path="res://scripts/camera_controller.gd" id="3_fixly"]
+[ext_resource type="Script" path="res://scripts/player_renderer_cam.gd" id="5_wev00"]
+[ext_resource type="Script" path="res://scripts/player_renderer_plane.gd" id="7_fiinf"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lnhvg"]
 margin = 0.08
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ulq7f"]
-render_priority = 0
-shader = ExtResource("2_0km7i")
-shader_parameter/dist = null
-shader_parameter/fade_distance = 2.5
-
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_cd64d"]
-material = SubResource("ShaderMaterial_ulq7f")
+material = ExtResource("2_fik2x")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sxqrp"]
 albedo_color = Color(0.0666667, 0.607843, 0.870588, 1)
@@ -27,6 +24,15 @@ material = SubResource("StandardMaterial3D_sxqrp")
 [sub_resource type="SphereShape3D" id="SphereShape3D_iy1st"]
 radius = 0.1
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q04f7"]
+render_priority = 0
+shader = ExtResource("2_5yhhf")
+shader_parameter/alpha = 0.5
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_mt6kj"]
+material = SubResource("ShaderMaterial_q04f7")
+size = Vector2(5, 5)
+
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
 collision_mask = 9
@@ -36,6 +42,7 @@ script = ExtResource("1_lgfyt")
 shape = SubResource("CapsuleShape3D_lnhvg")
 
 [node name="Model" type="MeshInstance3D" parent="."]
+layers = 2
 mesh = SubResource("CapsuleMesh_cd64d")
 
 [node name="Sword" parent="Model" instance=ExtResource("2_7svmq")]
@@ -55,3 +62,21 @@ camera_angle = 15
 
 [node name="Camera3D" type="Camera3D" parent="CameraController"]
 transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0)
+cull_mask = 1048573
+
+[node name="PlayerViewport" type="SubViewport" parent="CameraController/Camera3D"]
+transparent_bg = true
+size = Vector2i(1152, 648)
+
+[node name="Camera3D" type="Camera3D" parent="CameraController/Camera3D/PlayerViewport" node_paths=PackedStringArray("cam")]
+cull_mask = 1048574
+script = ExtResource("5_wev00")
+cam = NodePath("../..")
+
+[node name="PlayerRenderer" type="MeshInstance3D" parent="CameraController/Camera3D" node_paths=PackedStringArray("viewport", "cam", "player")]
+transform = Transform3D(1, 0, 0, 0, 0.2544, -0.9671, 0, 0.9671, 0.2544, 0, -0.35794, -1.33585)
+mesh = SubResource("PlaneMesh_mt6kj")
+script = ExtResource("7_fiinf")
+viewport = NodePath("../PlayerViewport")
+cam = NodePath("..")
+player = NodePath("../../..")
