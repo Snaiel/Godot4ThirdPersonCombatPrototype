@@ -6,7 +6,7 @@ extends CharacterBody3D
 @export var gravity = 20
 
 @onready var _camera_controller: CameraController = $CameraController
-@onready var _model = $Model
+@onready var _model: MeshInstance3D = $Model
 
 var _move_direction = Vector3.ZERO
 var _velocity = Vector3.ZERO
@@ -71,6 +71,13 @@ func _physics_process(delta):
 	move_and_slide()
 	_last_physics_pos = global_position
 	
+
+func _process(_delta):
+	var dist = position.distance_to(_camera_controller.cam.global_position)
+#	print(position, ' ', _camera_controller.cam.global_position)
+#	print(position.distance_to(_camera_controller.cam.global_position))
+	var shader_mat = _model.get_active_material(0)
+	shader_mat.set_shader_parameter("dist", dist)
 
 func _on_lock_on_system_lock_on(enemy):
 	_lock_on_enemy = enemy

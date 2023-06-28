@@ -16,13 +16,13 @@ extends SpringArm3D
 var _lock_on_enemy: Enemy = null
 var _player_looking_around = false
 
-@onready var _cam = $Camera3D
+@onready var cam = $Camera3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Globals.camera_controller = self
-	_cam.rotation_degrees.x = camera_angle
-	_cam.fov = camera_fov
+	cam.rotation_degrees.x = camera_angle
+	cam.fov = camera_fov
 	top_level = true
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	mouse_sensitivity = mouse_sensitivity * pow(10, -3)
@@ -64,7 +64,7 @@ func player_moving(move_direction: Vector3, delta):
 		rotation.y = lerp(rotation.y, new_rotation, 0.2)
 
 func get_lock_on_position(enemy: Enemy) -> Vector2:
-	var pos = _cam.unproject_position(enemy.global_position)
+	var pos = cam.unproject_position(enemy.global_position)
 	return pos
 
 func lock_on(enemy: Enemy):

@@ -1,17 +1,28 @@
-[gd_scene load_steps=8 format=3 uid="uid://dujukbu10vbmm"]
+[gd_scene load_steps=11 format=3 uid="uid://dujukbu10vbmm"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_lgfyt"]
+[ext_resource type="Shader" path="res://materials/player.gdshader" id="2_0km7i"]
 [ext_resource type="PackedScene" uid="uid://bkiap6xulr21q" path="res://scenes/Sword.tscn" id="2_7svmq"]
 [ext_resource type="Script" path="res://scripts/camera_controller.gd" id="3_fixly"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lnhvg"]
 margin = 0.08
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4kp5v"]
-albedo_color = Color(0.0666667, 0.607843, 0.870588, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ulq7f"]
+render_priority = 0
+shader = ExtResource("2_0km7i")
+shader_parameter/dist = null
+shader_parameter/fade_distance = 2.5
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_32q2g"]
-material = SubResource("StandardMaterial3D_4kp5v")
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_cd64d"]
+material = SubResource("ShaderMaterial_ulq7f")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sxqrp"]
+albedo_color = Color(0.0666667, 0.607843, 0.870588, 1)
+distance_fade_max_distance = 1.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_rtdcp"]
+material = SubResource("StandardMaterial3D_sxqrp")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_iy1st"]
 radius = 0.1
@@ -25,9 +36,14 @@ script = ExtResource("1_lgfyt")
 shape = SubResource("CapsuleShape3D_lnhvg")
 
 [node name="Model" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_32q2g")
+mesh = SubResource("CapsuleMesh_cd64d")
 
 [node name="Sword" parent="Model" instance=ExtResource("2_7svmq")]
+
+[node name="Shadow" type="MeshInstance3D" parent="Model"]
+cast_shadow = 3
+mesh = SubResource("CapsuleMesh_rtdcp")
+skeleton = NodePath("../..")
 
 [node name="CameraController" type="SpringArm3D" parent="."]
 shape = SubResource("SphereShape3D_iy1st")

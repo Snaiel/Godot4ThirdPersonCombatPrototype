@@ -142,6 +142,12 @@ script = ExtResource("1_5whxk")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.766044, 0.642787, 0, -0.642787, 0.766044, 0, 0.507535, -0.426912)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_k3nak")
+
+[node name="Shadow" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, 0, 0)
+cast_shadow = 3
 mesh = SubResource("BoxMesh_k3nak")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
