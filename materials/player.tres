@@ -2,4 +2,5 @@
 
 [resource]
 albedo_color = Color(0.0666667, 0.607843, 0.870588, 1)
+albedo_texture_force_srgb = true
 distance_fade_max_distance = 1.0
