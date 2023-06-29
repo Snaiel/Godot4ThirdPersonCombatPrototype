@@ -5,10 +5,15 @@ extends CharacterBody3D
 @export var jump_strength = 10
 @export var gravity = 20
 
+@export var character: PlayerAnimations
+
 @onready var _camera_controller: CameraController = $CameraController
+
+var input_direction = Vector3.ZERO
 
 var _move_direction = Vector3.ZERO
 var _velocity = Vector3.ZERO
+var _can_jump = false
 
 var _turning = false
 var _looking_direction
@@ -24,6 +29,8 @@ func _ready():
 	_target_look = _camera_controller.rotation.y
 	_looking_direction = Vector3.FORWARD
 	_last_physics_pos = global_position
+	
+	character.jumped.connect(_jump)
 
 func _physics_process(delta):
 	rotation_degrees.y = wrapf(rotation_degrees.y, -180, 180.0)
@@ -34,6 +41,8 @@ func _physics_process(delta):
 	# player inputs
 	_move_direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
 	_move_direction.z = Input.get_action_strength("backward") - Input.get_action_strength("forward")
+	
+	input_direction = _move_direction
 	
 	if _lock_on_enemy:
 		# get the angle towards the lock on target and
@@ -72,17 +81,28 @@ func _physics_process(delta):
 		rotation.y = lerp_angle(rotation.y, _target_look, 0.2)
 	
 	if Input.is_action_just_pressed("jump"):
+		character.start_jump()
+		
+	if _can_jump:
 		_velocity.y = jump_strength
+		_can_jump = false
 	
 	_velocity.x = _move_direction.x * speed
 	_velocity.z = _move_direction.z * speed
 	_velocity.y -= 0 if is_on_floor() else gravity * delta
 		
-	velocity = _velocity
+	velocity = lerp(velocity, _velocity, 0.1)
 	move_and_slide()
 	_last_physics_pos = global_position
 	
-
+	
+func _process(_delta):
+	character.update_anim_parameters(input_direction, _lock_on_enemy != null)
+	
+	
 func _on_lock_on_system_lock_on(enemy):
 	_lock_on_enemy = enemy
 	_camera_controller.lock_on(enemy)
+
+func _jump():
+	_can_jump = true

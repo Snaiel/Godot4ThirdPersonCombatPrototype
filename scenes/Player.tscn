@@ -1,24 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://dujukbu10vbmm"]
+[gd_scene load_steps=10 format=3 uid="uid://dujukbu10vbmm"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_lgfyt"]
 [ext_resource type="Shader" path="res://materials/transparent.gdshader" id="2_5yhhf"]
-[ext_resource type="PackedScene" uid="uid://bkiap6xulr21q" path="res://scenes/Sword.tscn" id="2_7svmq"]
-[ext_resource type="Material" uid="uid://b4q186xjxc08v" path="res://materials/player.tres" id="2_fik2x"]
 [ext_resource type="Script" path="res://scripts/camera_controller.gd" id="3_fixly"]
+[ext_resource type="PackedScene" uid="uid://x0oxbha36o2h" path="res://scenes/YBot.tscn" id="5_gusos"]
 [ext_resource type="Script" path="res://scripts/player_fade.gd" id="8_cjvhr"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lnhvg"]
 margin = 0.08
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_cd64d"]
-material = ExtResource("2_fik2x")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sxqrp"]
-albedo_color = Color(0.0666667, 0.607843, 0.870588, 1)
-distance_fade_max_distance = 1.0
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_rtdcp"]
-material = SubResource("StandardMaterial3D_sxqrp")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_iy1st"]
 radius = 0.1
@@ -32,26 +21,19 @@ shader_parameter/alpha = 0.5
 material = SubResource("ShaderMaterial_dtymn")
 size = Vector2(5, 5)
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("character")]
 collision_layer = 2
 collision_mask = 9
 script = ExtResource("1_lgfyt")
+speed = 3.0
+character = NodePath("YBot")
 
 [node name="CapsuleCollider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00554, 0)
 shape = SubResource("CapsuleShape3D_lnhvg")
 
-[node name="Model" type="MeshInstance3D" parent="."]
-layers = 2
-mesh = SubResource("CapsuleMesh_cd64d")
-
-[node name="Sword" parent="Model" instance=ExtResource("2_7svmq")]
-
-[node name="Shadow" type="MeshInstance3D" parent="Model"]
-cast_shadow = 3
-mesh = SubResource("CapsuleMesh_rtdcp")
-skeleton = NodePath("../..")
-
 [node name="CameraController" type="SpringArm3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00554, 0)
 shape = SubResource("SphereShape3D_iy1st")
 spring_length = 3.5
 margin = 0.2
@@ -80,3 +62,6 @@ cam_fade = NodePath("../Camera3D/PlayerViewport/Camera3D")
 player = NodePath("../..")
 fade_viewport = NodePath("../Camera3D/PlayerViewport")
 fade_plane = NodePath("../Camera3D/PlayerRenderer")
+
+[node name="YBot" parent="." instance=ExtResource("5_gusos")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
