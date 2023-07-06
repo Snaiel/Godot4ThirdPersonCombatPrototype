@@ -1,25 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dujukbu10vbmm"]
+[gd_scene load_steps=4 format=3 uid="uid://dujukbu10vbmm"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_lgfyt"]
-[ext_resource type="Shader" path="res://materials/transparent.gdshader" id="2_5yhhf"]
-[ext_resource type="Script" path="res://scripts/camera_controller.gd" id="3_fixly"]
 [ext_resource type="PackedScene" uid="uid://x0oxbha36o2h" path="res://scenes/YBot.tscn" id="5_gusos"]
-[ext_resource type="Script" path="res://scripts/player_fade.gd" id="8_cjvhr"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lnhvg"]
-margin = 0.08
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_iy1st"]
-radius = 0.1
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dtymn"]
-render_priority = 0
-shader = ExtResource("2_5yhhf")
-shader_parameter/alpha = 0.5
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_mt6kj"]
-material = SubResource("ShaderMaterial_dtymn")
-size = Vector2(5, 5)
+radius = 0.3
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("character")]
 collision_layer = 2
@@ -29,39 +14,8 @@ speed = 3.0
 character = NodePath("YBot")
 
 [node name="CapsuleCollider" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00554, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.135378, 0)
 shape = SubResource("CapsuleShape3D_lnhvg")
 
-[node name="CameraController" type="SpringArm3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00554, 0)
-shape = SubResource("SphereShape3D_iy1st")
-spring_length = 3.5
-margin = 0.2
-script = ExtResource("3_fixly")
-mouse_sensitivity = 5
-camera_angle = 15
-
-[node name="Camera3D" type="Camera3D" parent="CameraController"]
-transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0)
-
-[node name="PlayerViewport" type="SubViewport" parent="CameraController/Camera3D"]
-transparent_bg = true
-size = Vector2i(1152, 648)
-
-[node name="Camera3D" type="Camera3D" parent="CameraController/Camera3D/PlayerViewport"]
-cull_mask = 1048574
-
-[node name="PlayerRenderer" type="MeshInstance3D" parent="CameraController/Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 0.2544, -0.9671, 0, 0.9671, 0.2544, 0, -0.35794, -1.33585)
-mesh = SubResource("PlaneMesh_mt6kj")
-
-[node name="PlayerFade" type="Node3D" parent="CameraController" node_paths=PackedStringArray("cam_normal", "cam_fade", "player", "fade_viewport", "fade_plane")]
-script = ExtResource("8_cjvhr")
-cam_normal = NodePath("../Camera3D")
-cam_fade = NodePath("../Camera3D/PlayerViewport/Camera3D")
-player = NodePath("../..")
-fade_viewport = NodePath("../Camera3D/PlayerViewport")
-fade_plane = NodePath("../Camera3D/PlayerRenderer")
-
 [node name="YBot" parent="." instance=ExtResource("5_gusos")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1.14092, 0)

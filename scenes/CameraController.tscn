@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cy5wvw01aul4m"]
+
+[ext_resource type="Script" path="res://scripts/camera_controller.gd" id="1_embid"]
+[ext_resource type="PackedScene" uid="uid://bn5ok476e7nx6" path="res://scenes/PlayerFade.tscn" id="2_w6wbh"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_gxheq"]
+margin = 0.2
+radius = 0.1
+
+[node name="CameraController" type="SpringArm3D"]
+shape = SubResource("SphereShape3D_gxheq")
+margin = 0.2
+script = ExtResource("1_embid")
+mouse_sensitivity = 5
+
+[node name="NormalCam" type="Camera3D" parent="."]
+
+[node name="PlayerFade" parent="." node_paths=PackedStringArray("cam_controller", "cam_normal") instance=ExtResource("2_w6wbh")]
+cam_controller = NodePath("..")
+cam_normal = NodePath("../NormalCam")

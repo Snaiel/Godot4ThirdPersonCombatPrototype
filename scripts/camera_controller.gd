@@ -1,25 +1,37 @@
 class_name CameraController
 extends SpringArm3D
 
+@export var player: Player
+
 @export_category("Camera Settings")
-@export var autonomous_speed = 5
+@export var camera_distance = 2
+@export var vertical_offset = 0.5
+@export var autonomous_speed = 3
 @export var mouse_sensitivity = 10
-@export var camera_angle = 10
+@export var camera_angle = 0
 @export var camera_fov = 75
 
 @export_category("Lock On Settings")
-@export var lock_on_min_angle = 35
-@export var lock_on_max_angle = 50
+@export var lock_on_min_angle = 20.0
+@export var lock_on_max_angle = 35.0
 @export var lock_on_min_distance = 1
 @export var lock_on_max_distance = 10
 
 var _lock_on_enemy: Enemy = null
 var _player_looking_around = false
+var _temp_angle
 
-@onready var cam = $Camera3D
+var locked_on: bool
+
+@onready var cam = $NormalCam
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	position = player.position + Vector3(0, vertical_offset, 0)
+	spring_length = camera_distance
+	
 	Globals.camera_controller = self
 	cam.rotation_degrees.x = camera_angle
 	cam.fov = camera_fov
@@ -27,9 +39,23 @@ func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	mouse_sensitivity = mouse_sensitivity * pow(10, -3)
 	
+	_temp_angle = lock_on_max_angle
+	
 func _physics_process(_delta):
+	locked_on = _lock_on_enemy != null
+	position = position.lerp(player.position + Vector3(0, vertical_offset, 0), 0.1)
+	
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().quit()
+		
+	var dist = cam.global_position.distance_to(player.global_position)
+		
+	if dist < 1.5 or (locked_on and dist < 1.5):
+		lock_on_max_angle = lerp(lock_on_max_angle, 10.0, 0.1)
+		lock_on_min_angle = lerp(lock_on_min_angle, 10.0, 0.1)		
+	else:
+		lock_on_max_angle = lerp(lock_on_max_angle, _temp_angle, 0.1)
+		lock_on_min_angle = lerp(lock_on_min_angle, _temp_angle, 0.1)				
 		
 	if _lock_on_enemy:
 		var _looking_direction = -global_position.direction_to(_lock_on_enemy.position)

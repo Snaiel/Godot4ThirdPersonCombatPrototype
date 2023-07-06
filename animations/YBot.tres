@@ -88,4 +88,4 @@ nodes/Transition/position = Vector2(780, 40)
 "nodes/Walk Forward/node" = SubResource("AnimationNodeAnimation_2ehxu")
 "nodes/Walk Forward/position" = Vector2(-120, 480)
 nodes/output/position = Vector2(1220, 160)
-node_connections = [&"output", 0, &"Jump", &"Lock On Movement", 0, &"Lock On Idle", &"Lock On Movement", 1, &"Lock On Walk", &"Transition", 0, &"Lock On Movement", &"Transition", 1, &"Free Movement", &"Free Movement", 0, &"Free Idle", &"Free Movement", 1, &"Walk Forward", &"Jump", 0, &"Transition", &"Jump", 1, &"Jump Animation"]
+node_connections = [&"output", 0, &"Jump", &"Free Movement", 0, &"Free Idle", &"Free Movement", 1, &"Walk Forward", &"Jump", 0, &"Transition", &"Jump", 1, &"Jump Animation", &"Lock On Movement", 0, &"Lock On Idle", &"Lock On Movement", 1, &"Lock On Walk", &"Transition", 0, &"Lock On Movement", &"Transition", 1, &"Free Movement"]

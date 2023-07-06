@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bn5ok476e7nx6"]
+
+[ext_resource type="Script" path="res://scripts/player_fade.gd" id="1_1mob3"]
+[ext_resource type="Material" uid="uid://dp5o22jl53pqh" path="res://materials/player_shader_mat.tres" id="2_7j0q8"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_u53v0"]
+material = ExtResource("2_7j0q8")
+
+[node name="PlayerFade" type="Node3D" node_paths=PackedStringArray("cam_fade", "fade_viewport", "fade_plane")]
+script = ExtResource("1_1mob3")
+cam_fade = NodePath("PlayerViewport/PlayerCam")
+fade_viewport = NodePath("PlayerViewport")
+fade_plane = NodePath("PlayerViewport/PlayerCam/PlayerRenderer")
+
+[node name="PlayerViewport" type="SubViewport" parent="."]
+transparent_bg = true
+positional_shadow_atlas_size = 4096
+size = Vector2i(1152, 648)
+
+[node name="PlayerCam" type="Camera3D" parent="PlayerViewport"]
+cull_mask = 1048574
+
+[node name="PlayerRenderer" type="MeshInstance3D" parent="PlayerViewport/PlayerCam"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.5)
+mesh = SubResource("PlaneMesh_u53v0")
+skeleton = NodePath("../../..")

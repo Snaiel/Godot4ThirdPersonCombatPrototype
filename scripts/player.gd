@@ -7,7 +7,7 @@ extends CharacterBody3D
 
 @export var character: PlayerAnimations
 
-@onready var _camera_controller: CameraController = $CameraController
+@export var camera_controller: CameraController
 
 var input_direction = Vector3.ZERO
 
@@ -26,7 +26,7 @@ var angle = 0.0
 
 func _ready():
 	Globals.player = self
-	_target_look = _camera_controller.rotation.y
+	_target_look = camera_controller.rotation.y
 	_looking_direction = Vector3.FORWARD
 	_last_physics_pos = global_position
 	
@@ -34,9 +34,6 @@ func _ready():
 
 func _physics_process(delta):
 	rotation_degrees.y = wrapf(rotation_degrees.y, -180, 180.0)
-	
-	# smoothly move the camera controller to the player's position
-	_camera_controller.position = _camera_controller.position.slerp(position, 0.1)	
 	
 	# player inputs
 	_move_direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
@@ -67,11 +64,11 @@ func _physics_process(delta):
 		# it tries to position itself back behind the player
 		# (needs playtesting idk if it's actually good behaviour)
 		if delta:
-			_camera_controller.player_moving(_move_direction, delta)
+			camera_controller.player_moving(_move_direction, delta)
 		
 		# change move direction so it is relative to where
 		# the camera is facing
-		_move_direction = _move_direction.rotated(Vector3.UP, _camera_controller.rotation.y).normalized()		
+		_move_direction = _move_direction.rotated(Vector3.UP, camera_controller.rotation.y).normalized()		
 	
 	# Makes sure the player is rotated fully to the desired direction
 	# even if pressed for a short period of time
@@ -99,10 +96,9 @@ func _physics_process(delta):
 func _process(_delta):
 	character.update_anim_parameters(input_direction, _lock_on_enemy != null)
 	
-	
 func _on_lock_on_system_lock_on(enemy):
 	_lock_on_enemy = enemy
-	_camera_controller.lock_on(enemy)
+	camera_controller.lock_on(enemy)
 
 func _jump():
 	_can_jump = true
