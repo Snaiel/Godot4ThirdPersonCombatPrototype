@@ -22,6 +22,10 @@ var _would_be_alpha: float
 func _ready():
 	_mat = fade_plane.get_active_material(0) 
 	_mat.set_shader_parameter("texture_albedo", fade_viewport.get_texture())
+	
+	cam_normal.cull_mask = 1
+	cam_fade.cull_mask = 2
+	_player_transparent = true
 
 func _physics_process(_delta):
 	cam_fade.global_transform = cam_normal.global_transform
