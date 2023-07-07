@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://cfip2n0nvr8n3"]
+[gd_scene load_steps=11 format=3 uid="uid://cfip2n0nvr8n3"]
 
-[ext_resource type="PackedScene" uid="uid://cv8knl5vavfyy" path="res://scenes/Enemy.tscn" id="2_oia4d"]
-[ext_resource type="PackedScene" uid="uid://cy5wvw01aul4m" path="res://scenes/CameraController.tscn" id="2_s2v7n"]
-[ext_resource type="PackedScene" uid="uid://dujukbu10vbmm" path="res://scenes/Player.tscn" id="2_thr8q"]
-[ext_resource type="PackedScene" uid="uid://b075d85nmca7s" path="res://scenes/UserInterface.tscn" id="3_hlhuw"]
-[ext_resource type="Script" path="res://scripts/lock_on_system.gd" id="4_qiriw"]
+[ext_resource type="Material" uid="uid://qml1qedtuxl6" path="res://materials/grid.tres" id="2_5uhq1"]
+[ext_resource type="PackedScene" uid="uid://cv8knl5vavfyy" path="res://scenes/entities/Enemy.tscn" id="2_oia4d"]
+[ext_resource type="PackedScene" uid="uid://cy5wvw01aul4m" path="res://scenes/utilities/CameraController.tscn" id="2_s2v7n"]
+[ext_resource type="PackedScene" uid="uid://dujukbu10vbmm" path="res://scenes/entities/Player.tscn" id="2_thr8q"]
+[ext_resource type="PackedScene" uid="uid://b075d85nmca7s" path="res://scenes/utilities/UserInterface.tscn" id="3_hlhuw"]
+[ext_resource type="Script" path="res://scripts/utilities/lock_on_system.gd" id="6_tdxnb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_co0qk"]
 sky_top_color = Color(0.384314, 0.454902, 0.54902, 1)
@@ -20,26 +21,6 @@ sky = SubResource("Sky_qudfu")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_kuabg"]
-size = Vector3(40, 1, 40)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v2xbe"]
-albedo_color = Color(0.501961, 0.501961, 0.501961, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_5pinl"]
-material = SubResource("StandardMaterial3D_v2xbe")
-size = Vector3(40, 1, 40)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_lc8bw"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_i8f3h"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_0po3u"]
-size = Vector3(1, 5, 10)
-
-[sub_resource type="BoxMesh" id="BoxMesh_2up1i"]
-size = Vector3(1, 5, 10)
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_bb732"]
 radius = 10.0
 
@@ -54,36 +35,20 @@ environment = SubResource("Environment_32f71")
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="Ground" type="StaticBody3D" parent="World"]
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="World"]
+use_collision = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Ground"]
-shape = SubResource("BoxShape3D_kuabg")
+[node name="Ground" type="CSGBox3D" parent="World/CSGCombiner3D"]
+size = Vector3(50, 1, 50)
+material = ExtResource("2_5uhq1")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Ground"]
-mesh = SubResource("BoxMesh_5pinl")
-
-[node name="Box" type="StaticBody3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.00014, 0.90213, 6.74538)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Box"]
-shape = SubResource("BoxShape3D_lc8bw")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Box"]
-mesh = SubResource("BoxMesh_i8f3h")
-
-[node name="Wall" type="StaticBody3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.71779, 0.90213, 3.49402)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Wall"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-shape = SubResource("BoxShape3D_0po3u")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Wall"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-mesh = SubResource("BoxMesh_2up1i")
+[node name="Ground2" type="CSGBox3D" parent="World/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 3, 6)
+size = Vector3(1, 6, 10)
+material = ExtResource("2_5uhq1")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 32.9971, 0)
+transform = Transform3D(0.90815, 0.108353, 0.404379, -0.418644, 0.235047, 0.877206, -6.56417e-10, -0.965926, 0.258819, 0, 32.9971, 0)
 shadow_enabled = true
 
 [node name="CameraController" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_s2v7n")]
@@ -116,7 +81,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0914, 2, 1.43307)
 [node name="LockOnSystem" type="Area3D" parent="." node_paths=PackedStringArray("player", "potential_target")]
 collision_layer = 0
 collision_mask = 8
-script = ExtResource("4_qiriw")
+script = ExtResource("6_tdxnb")
 player = NodePath("../Player")
 potential_target = NodePath("../Enemies/Enemy")
 change_target_mouse_threshold = 60

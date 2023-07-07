@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://x0oxbha36o2h"]
 
 [ext_resource type="PackedScene" uid="uid://b2og8yg2m6wv5" path="res://models/ybot.blend" id="1_ml8ck"]
-[ext_resource type="Script" path="res://scenes/player_animations.gd" id="2_2lbit"]
+[ext_resource type="Script" path="res://scripts/entities/player_animations.gd" id="2_2lbit"]
 [ext_resource type="AnimationLibrary" uid="uid://co71smyho10eh" path="res://animations/character_animations.blend" id="3_q6bfl"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://cm3sogson3826" path="res://animations/YBot.tres" id="4_w0sfw"]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b075d85nmca7s"]
 
-[ext_resource type="Script" path="res://scripts/user_interface.gd" id="1_2nhxu"]
+[ext_resource type="Script" path="res://scripts/utilities/user_interface.gd" id="1_2nhxu"]
 [ext_resource type="Texture2D" uid="uid://dishehhur7io2" path="res://assets/white_dot.png" id="1_v2w42"]
 
 [node name="UserInterface" type="Control"]

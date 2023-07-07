@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://cv8knl5vavfyy"]
 
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_nrck3"]
-[ext_resource type="PackedScene" uid="uid://cko2lhqdu4n44" path="res://scenes/HitboxComponent.tscn" id="2_h2tgk"]
-[ext_resource type="PackedScene" uid="uid://cq3fjofav3npm" path="res://scenes/HealthComponent.tscn" id="3_c0k3s"]
+[ext_resource type="Script" path="res://scripts/entities/enemy.gd" id="1_nrck3"]
+[ext_resource type="PackedScene" uid="uid://cko2lhqdu4n44" path="res://scenes/components/HitboxComponent.tscn" id="2_h2tgk"]
+[ext_resource type="PackedScene" uid="uid://cq3fjofav3npm" path="res://scenes/components/HealthComponent.tscn" id="3_c0k3s"]
 [ext_resource type="Material" uid="uid://ddlvel7t33vc8" path="res://materials/blood.tres" id="4_conbd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t3wl8"]

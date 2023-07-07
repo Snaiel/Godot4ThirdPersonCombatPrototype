@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cy5wvw01aul4m"]
 
-[ext_resource type="Script" path="res://scripts/camera_controller.gd" id="1_embid"]
-[ext_resource type="PackedScene" uid="uid://bn5ok476e7nx6" path="res://scenes/PlayerFade.tscn" id="2_w6wbh"]
+[ext_resource type="Script" path="res://scripts/utilities/camera_controller.gd" id="1_embid"]
+[ext_resource type="PackedScene" uid="uid://bn5ok476e7nx6" path="res://scenes/utilities/PlayerFade.tscn" id="2_w6wbh"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_gxheq"]
 margin = 0.2

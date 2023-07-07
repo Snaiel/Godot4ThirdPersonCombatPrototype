@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dujukbu10vbmm"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_lgfyt"]
-[ext_resource type="PackedScene" uid="uid://x0oxbha36o2h" path="res://scenes/YBot.tscn" id="5_gusos"]
+[ext_resource type="Script" path="res://scripts/entities/player.gd" id="1_lgfyt"]
+[ext_resource type="PackedScene" uid="uid://x0oxbha36o2h" path="res://scenes/entities/YBot.tscn" id="5_gusos"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lnhvg"]
 radius = 0.3
