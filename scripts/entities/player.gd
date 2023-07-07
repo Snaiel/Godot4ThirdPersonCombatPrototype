@@ -84,11 +84,11 @@ func _physics_process(delta):
 		_velocity.y = jump_strength
 		_can_jump = false
 	
-	_velocity.x = _move_direction.x * speed
-	_velocity.z = _move_direction.z * speed
+	_velocity.x = lerp(_velocity.x, _move_direction.x * speed, 0.1)
+	_velocity.z = lerp(_velocity.z, _move_direction.z * speed, 0.1)
 	_velocity.y -= 0 if is_on_floor() else gravity * delta
 		
-	velocity = lerp(velocity, _velocity, 0.1)
+	velocity = _velocity
 	move_and_slide()
 	_last_physics_pos = global_position
 	

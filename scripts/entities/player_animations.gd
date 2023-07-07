@@ -21,7 +21,7 @@ func update_anim_parameters(dir: Vector3, locked_on: bool):
 		_lock_on_walk_blend = lerp(_lock_on_walk_blend, 1.0, 0.05)
 		anim_tree["parameters/Lock On Walk/blend_position"] = _input_dir
 	else:
-		_lock_on_walk_blend = lerp(_lock_on_walk_blend, 0.0, 0.05)
+		_lock_on_walk_blend = lerp(_lock_on_walk_blend, 0.0, 0.1)
 		
 	anim_tree["parameters/Lock On Movement/blend_amount"] = _lock_on_walk_blend
 	anim_tree["parameters/Free Movement/blend_amount"] = _lock_on_walk_blend	
