@@ -112,7 +112,7 @@ input_1/auto_advance = false
 input_1/reset = true
 
 [resource]
-graph_offset = Vector2(114.663, -121.915)
+graph_offset = Vector2(1356.35, 201.535)
 "nodes/Free Idle/node" = SubResource("AnimationNodeAnimation_cr5tb")
 "nodes/Free Idle/position" = Vector2(-40, 340)
 "nodes/Free Movement/node" = SubResource("AnimationNodeBlend2_bhxsy")

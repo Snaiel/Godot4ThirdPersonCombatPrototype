@@ -2,6 +2,7 @@ class_name PlayerAnimations
 extends Node3D
 
 signal jumped
+signal jump_landed
 
 var _lock_on_walk_blend = 0.0
 var _input_dir = Vector2.ZERO
@@ -45,3 +46,6 @@ func start_jump():
 
 func jump_force():
 	jumped.emit()
+
+func jump_finished():
+	jump_landed.emit()

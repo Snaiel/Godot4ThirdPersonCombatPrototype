@@ -48,6 +48,30 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 3, 6)
 size = Vector3(1, 6, 10)
 material = ExtResource("2_5uhq1")
 
+[node name="CSGBox3D" type="CSGBox3D" parent="World/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, -1, 9)
+material_override = ExtResource("2_5uhq1")
+size = Vector3(2, 5, 2)
+material = ExtResource("2_5uhq1")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="World/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 0, 6)
+material_override = ExtResource("2_5uhq1")
+size = Vector3(2, 5, 2)
+material = ExtResource("2_5uhq1")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="World/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 1, 6)
+material_override = ExtResource("2_5uhq1")
+size = Vector3(2, 5, 2)
+material = ExtResource("2_5uhq1")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="World/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 2, 5)
+material_override = ExtResource("2_5uhq1")
+size = Vector3(2, 5, 2)
+material = ExtResource("2_5uhq1")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
 transform = Transform3D(0.90815, 0.108353, 0.404379, -0.418644, 0.235047, 0.877206, -6.56417e-10, -0.965926, 0.258819, 0, 32.9971, 0)
 shadow_enabled = true

@@ -4,7 +4,7 @@ extends CharacterBody3D
 @export_category("Properties")
 @export var walk_speed = 3.0
 @export var run_speed = 6
-@export var jump_strength = 10
+@export var jump_strength = 8
 @export var gravity = 20
 
 @export_category("Flags")
@@ -38,6 +38,7 @@ func _ready():
 	_last_physics_pos = global_position
 	
 	character.jumped.connect(_jump)
+	character.jump_landed.connect(_jump_landed)
 
 func _physics_process(delta):
 	rotation_degrees.y = wrapf(rotation_degrees.y, -180, 180.0)
@@ -46,9 +47,16 @@ func _physics_process(delta):
 	_move_direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
 	_move_direction.z = Input.get_action_strength("backward") - Input.get_action_strength("forward")
 	
+	# retrieve the input direction to send to the animation script
 	input_direction = _move_direction
 	
-	if _lock_on_enemy and not (running and input_direction.z > 0):
+	# handles rotating the player.
+	# we want to rotate the player towards the target lock on entity if we are locked on (obviously).
+	# We also want to rotate the player based on the where the character is moving.
+	# So when it isn't locked on, it is handled by the elif block.
+	# But we also want to have this behaviour at certain times while also
+	# locked on. For example, when running away from the target or when jumping
+	if _lock_on_enemy and not (running and input_direction.z > 0) and not jumping:
 		# get the angle towards the lock on target and
 		# smoothyl rotate the player towards it
 		_looking_direction = -global_position.direction_to(_lock_on_enemy.global_position)
@@ -94,9 +102,14 @@ func _physics_process(delta):
 			_turning = false
 		rotation.y = lerp_angle(rotation.y, _target_look, 0.1)
 	
+	# start the jump animation when the jump key is pressed
 	if Input.is_action_just_pressed("jump"):
+		jumping = true
 		character.start_jump()
 		
+	# _can_jump is true when the jump animation reaches the point
+	# where the character actually jumps. When this happens,
+	# apply the jumping force
 	if _can_jump:
 		jumping = true
 		_velocity.y = jump_strength
@@ -116,8 +129,6 @@ func _physics_process(delta):
 		_velocity.y -= gravity * delta
 	elif !jumping:
 		_velocity.y = 0
-	else:
-		jumping = false
 		
 	velocity = _velocity
 	move_and_slide()
@@ -133,3 +144,6 @@ func _on_lock_on_system_lock_on(enemy):
 
 func _jump():
 	_can_jump = true
+
+func _jump_landed():
+	jumping = false
