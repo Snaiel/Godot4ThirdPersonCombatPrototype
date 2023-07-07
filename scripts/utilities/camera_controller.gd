@@ -19,7 +19,8 @@ extends SpringArm3D
 
 var _lock_on_enemy: Enemy = null
 var _player_looking_around = false
-var _temp_angle
+var _temp_lock_on_min_angle: float
+var _temp_lock_on_max_angle: float
 
 var locked_on: bool
 
@@ -39,7 +40,8 @@ func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	mouse_sensitivity = mouse_sensitivity * pow(10, -3)
 	
-	_temp_angle = lock_on_max_angle
+	_temp_lock_on_min_angle = lock_on_min_angle
+	_temp_lock_on_max_angle = lock_on_max_angle	
 	
 func _physics_process(_delta):
 	locked_on = _lock_on_enemy != null
@@ -54,8 +56,8 @@ func _physics_process(_delta):
 		lock_on_max_angle = lerp(lock_on_max_angle, 10.0, 0.1)
 		lock_on_min_angle = lerp(lock_on_min_angle, 10.0, 0.1)		
 	else:
-		lock_on_max_angle = lerp(lock_on_max_angle, _temp_angle, 0.1)
-		lock_on_min_angle = lerp(lock_on_min_angle, _temp_angle, 0.1)				
+		lock_on_max_angle = lerp(lock_on_max_angle, _temp_lock_on_max_angle, 0.1)
+		lock_on_min_angle = lerp(lock_on_min_angle, _temp_lock_on_min_angle, 0.1)				
 		
 	if _lock_on_enemy:
 		var _looking_direction = -global_position.direction_to(_lock_on_enemy.position)
