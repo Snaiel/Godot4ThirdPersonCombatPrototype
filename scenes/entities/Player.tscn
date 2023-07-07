@@ -10,7 +10,6 @@ radius = 0.3
 collision_layer = 2
 collision_mask = 9
 script = ExtResource("1_lgfyt")
-speed = 3.0
 character = NodePath("YBot")
 
 [node name="CapsuleCollider" type="CollisionShape3D" parent="."]

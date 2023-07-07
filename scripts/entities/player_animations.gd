@@ -12,7 +12,7 @@ var _input_dir = Vector2.ZERO
 func _ready():
 	anim_tree.active = true
 
-func update_anim_parameters(dir: Vector3, locked_on: bool):
+func update_anim_parameters(dir: Vector3, locked_on: bool, running: bool):
 	var new_dir = Vector2(dir.x, dir.z)
 	
 	_input_dir = _input_dir.lerp(new_dir, 0.1)
@@ -27,9 +27,18 @@ func update_anim_parameters(dir: Vector3, locked_on: bool):
 	anim_tree["parameters/Free Movement/blend_amount"] = _lock_on_walk_blend	
 	
 	if locked_on:
-		anim_tree["parameters/Transition/transition_request"] = "locked_on"
+		anim_tree["parameters/Walking Lock On/transition_request"] = "locked_on"
+		anim_tree["parameters/Running Lock On/transition_request"] = "locked_on"		
 	else:
-		anim_tree["parameters/Transition/transition_request"] = "not_locked_on"		
+		anim_tree["parameters/Walking Lock On/transition_request"] = "not_locked_on"		
+		anim_tree["parameters/Running Lock On/transition_request"] = "not_locked_on"
+		
+	if running and _input_dir.length() > 0.5:
+		anim_tree["parameters/Movement/transition_request"] = "running"
+	else:
+		anim_tree["parameters/Movement/transition_request"] = "walking"
+		
+	anim_tree["parameters/Running Lock On Look Direction/blend_position"] = _input_dir
 
 func start_jump():
 	anim_tree["parameters/Jump/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE

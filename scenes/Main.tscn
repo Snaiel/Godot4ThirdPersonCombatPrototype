@@ -39,10 +39,11 @@ metadata/_edit_group_ = true
 use_collision = true
 
 [node name="Ground" type="CSGBox3D" parent="World/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 5)
 size = Vector3(50, 1, 50)
 material = ExtResource("2_5uhq1")
 
-[node name="Ground2" type="CSGBox3D" parent="World/CSGCombiner3D"]
+[node name="Wall" type="CSGBox3D" parent="World/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 3, 6)
 size = Vector3(1, 6, 10)
 material = ExtResource("2_5uhq1")
@@ -55,7 +56,7 @@ shadow_enabled = true
 player = NodePath("../Player")
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera_controller") instance=ExtResource("2_thr8q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.35663, 2, 7.57123)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5071, 2, 16.6948)
 camera_controller = NodePath("../CameraController")
 
 [node name="Enemies" type="Node3D" parent="."]
@@ -76,7 +77,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.43554, 2, -9.07073)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.737, 2, -10.9117)
 
 [node name="Enemy6" parent="Enemies" instance=ExtResource("2_oia4d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0914, 2, 1.43307)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5218, 2, 14.0395)
 
 [node name="LockOnSystem" type="Area3D" parent="." node_paths=PackedStringArray("player", "potential_target")]
 collision_layer = 0
