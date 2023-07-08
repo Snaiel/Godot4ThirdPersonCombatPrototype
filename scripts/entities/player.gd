@@ -8,8 +8,9 @@ extends CharacterBody3D
 @export var gravity = 20
 
 @export_category("Flags")
-@export var running: bool = false
-@export var jumping: bool = false
+@export var jumping = false
+@export var running = false
+@export var dodging = false
 
 @export_category("Mechanisms")
 @export var character: PlayerAnimations
@@ -21,6 +22,8 @@ var _speed: float = 0.0
 var _move_direction = Vector3.ZERO
 var _velocity = Vector3.ZERO
 var _can_jump = false
+var _can_dodge = true
+var _holding_down_run = false
 
 var _turning = false
 var _looking_direction
@@ -102,6 +105,19 @@ func _physics_process(delta):
 			_turning = false
 		rotation.y = lerp_angle(rotation.y, _target_look, 0.1)
 	
+	
+	
+	
+	############################
+	# secondary movement actions
+	############################
+	
+	if Input.is_action_just_pressed("run") and _can_dodge:
+		_dodge()
+		_holding_down_run = true
+	if Input.is_action_just_released("run"):
+		_holding_down_run = false
+	
 	# start the jump animation when the jump key is pressed
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		jumping = true
@@ -119,15 +135,20 @@ func _physics_process(delta):
 	# go back to walking speed for the moment
 	if jumping and is_on_floor() and _speed == run_speed:
 		_speed = walk_speed
-	elif Input.is_action_pressed("run") or (jumping and _speed == run_speed):
+	elif (Input.is_action_pressed("run") and not dodging) or (jumping and _speed == run_speed):
 		# change to running speed if pressing the run button
 		# or keep running speed in the air
-		_speed = run_speed
-		running = true
+		if _holding_down_run || _can_dodge:
+			_speed = run_speed
+			running = true
 	else:
 		# walking speed for everything else
 		_speed = walk_speed
 		running = false
+	
+	################################
+	# applying velocity calculations
+	################################
 	
 	_velocity.x = lerp(_velocity.x, _move_direction.x * _speed, 0.1)
 	_velocity.z = lerp(_velocity.z, _move_direction.z * _speed, 0.1)
@@ -148,6 +169,21 @@ func _process(_delta):
 func _on_lock_on_system_lock_on(enemy):
 	_lock_on_enemy = enemy
 	camera_controller.lock_on(enemy)
+
+func _dodge():
+	_can_dodge = false
+	dodging = true
+	_velocity += _move_direction * 8
+	var timer = get_tree().create_timer(0.2)
+	var can_dodge_timer = get_tree().create_timer(0.6)	
+	timer.connect("timeout", _finish_dodging)
+	can_dodge_timer.connect("timeout", _can_dodge_again)	
+	
+func _finish_dodging():
+	dodging = false
+	
+func _can_dodge_again():
+	_can_dodge = true
 
 func _jump():
 	_can_jump = true

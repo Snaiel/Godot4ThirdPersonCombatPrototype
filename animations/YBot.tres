@@ -55,15 +55,7 @@ blend_point_6/node = SubResource("AnimationNodeAnimation_a3gr1")
 blend_point_6/pos = Vector2(1, 1)
 sync = true
 
-[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_3pc3n"]
-sync = true
-xfade_time = 0.3
-input_0/name = "walking"
-input_0/auto_advance = false
-input_0/reset = true
-input_1/name = "running"
-input_1/auto_advance = false
-input_1/reset = true
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_qdiac"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_e1vcj"]
 animation = &"character_animations/Run-Forwards"
@@ -89,6 +81,7 @@ blend_point_2/node = SubResource("AnimationNodeAnimation_ub6a1")
 blend_point_2/pos = Vector2(1, 0)
 blend_point_3/node = SubResource("AnimationNodeAnimation_f2832")
 blend_point_3/pos = Vector2(-1, 0)
+sync = true
 
 [sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_vit6k"]
 input_0/name = "locked_on"
@@ -112,7 +105,6 @@ input_1/auto_advance = false
 input_1/reset = true
 
 [resource]
-graph_offset = Vector2(415.726, 109.405)
 "nodes/Free Idle/node" = SubResource("AnimationNodeAnimation_cr5tb")
 "nodes/Free Idle/position" = Vector2(-40, 340)
 "nodes/Free Movement/node" = SubResource("AnimationNodeBlend2_bhxsy")
@@ -127,8 +119,8 @@ nodes/Jump/position = Vector2(2060, 380)
 "nodes/Lock On Movement/position" = Vector2(220, -180)
 "nodes/Lock On Walk/node" = SubResource("AnimationNodeBlendSpace2D_rugdq")
 "nodes/Lock On Walk/position" = Vector2(-40, -20)
-nodes/Movement/node = SubResource("AnimationNodeTransition_3pc3n")
-nodes/Movement/position = Vector2(1380, 220)
+nodes/Movement/node = SubResource("AnimationNodeBlend2_qdiac")
+nodes/Movement/position = Vector2(1380, 40)
 "nodes/Run Forwards/node" = SubResource("AnimationNodeAnimation_e1vcj")
 "nodes/Run Forwards/position" = Vector2(560, 820)
 "nodes/Running Lock On/node" = SubResource("AnimationNodeTransition_vit6k")
