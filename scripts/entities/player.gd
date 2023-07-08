@@ -103,7 +103,7 @@ func _physics_process(delta):
 		rotation.y = lerp_angle(rotation.y, _target_look, 0.1)
 	
 	# start the jump animation when the jump key is pressed
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("jump") and is_on_floor():
 		jumping = true
 		character.start_jump()
 		
@@ -115,10 +115,17 @@ func _physics_process(delta):
 		_velocity.y = jump_strength
 		_can_jump = false
 		
-	if Input.is_action_pressed("run"):
+	# after doing a running jump and landing on the floor,
+	# go back to walking speed for the moment
+	if jumping and is_on_floor() and _speed == run_speed:
+		_speed = walk_speed
+	elif Input.is_action_pressed("run") or (jumping and _speed == run_speed):
+		# change to running speed if pressing the run button
+		# or keep running speed in the air
 		_speed = run_speed
 		running = true
 	else:
+		# walking speed for everything else
 		_speed = walk_speed
 		running = false
 	

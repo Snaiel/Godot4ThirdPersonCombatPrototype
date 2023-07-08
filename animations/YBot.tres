@@ -10,7 +10,7 @@ animation = &"character_animations/Jump-Quick"
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_tblb2"]
 fadein_time = 0.1
-fadeout_time = 0.1
+fadeout_time = 0.3
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1oinc"]
 animation = &"character_animations/Idle"
@@ -112,15 +112,15 @@ input_1/auto_advance = false
 input_1/reset = true
 
 [resource]
-graph_offset = Vector2(1356.35, 201.535)
+graph_offset = Vector2(415.726, 109.405)
 "nodes/Free Idle/node" = SubResource("AnimationNodeAnimation_cr5tb")
 "nodes/Free Idle/position" = Vector2(-40, 340)
 "nodes/Free Movement/node" = SubResource("AnimationNodeBlend2_bhxsy")
 "nodes/Free Movement/position" = Vector2(300, 300)
 nodes/Jump/node = SubResource("AnimationNodeOneShot_tblb2")
-nodes/Jump/position = Vector2(2180, 380)
+nodes/Jump/position = Vector2(2060, 380)
 "nodes/Jump Animation/node" = SubResource("AnimationNodeAnimation_epagc")
-"nodes/Jump Animation/position" = Vector2(1700, 600)
+"nodes/Jump Animation/position" = Vector2(1580, 600)
 "nodes/Lock On Idle/node" = SubResource("AnimationNodeAnimation_1oinc")
 "nodes/Lock On Idle/position" = Vector2(-100, -160)
 "nodes/Lock On Movement/node" = SubResource("AnimationNodeBlend2_aq83o")
