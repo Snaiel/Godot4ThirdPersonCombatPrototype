@@ -56,7 +56,7 @@ func _physics_process(delta):
 	# So when it isn't locked on, it is handled by the elif block.
 	# But we also want to have this behaviour at certain times while also
 	# locked on. For example, when running away from the target or when jumping
-	if _lock_on_enemy and not (running and input_direction.z > 0) and not jumping:
+	if _lock_on_enemy and not (running and input_direction.z > 0) and not (running and jumping):
 		# get the angle towards the lock on target and
 		# smoothyl rotate the player towards it
 		_looking_direction = -global_position.direction_to(_lock_on_enemy.global_position)
