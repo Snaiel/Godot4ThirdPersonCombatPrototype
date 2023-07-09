@@ -3,6 +3,9 @@ extends Node3D
 
 signal jumped
 signal jump_landed
+signal attacking_can_stop
+signal attacking_finished
+signal can_rotate(flag: bool)
 
 var _lock_on_walk_blend = 0.0
 var _input_dir = Vector2.ZERO
@@ -50,3 +53,15 @@ func jump_force():
 
 func jump_finished():
 	jump_landed.emit()
+	
+func prevent_rotation():
+	can_rotate.emit(false)
+
+func can_stop_attacking():
+	attacking_can_stop.emit()
+
+func _on_animation_tree_animation_finished(anim_name):
+	if "attack_animations_1" in anim_name:
+		anim_tree["parameters/Attacking/transition_request"] = "not_attacking"
+		attacking_finished.emit()
+		can_rotate.emit(true)		

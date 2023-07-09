@@ -8,6 +8,8 @@ extends CharacterBody3D
 @export var gravity = 20
 
 @export_category("Flags")
+@export var can_move = true
+@export var can_rotate = true
 @export var jumping = false
 @export var running = false
 @export var dodging = false
@@ -15,6 +17,7 @@ extends CharacterBody3D
 @export_category("Mechanisms")
 @export var character: PlayerAnimations
 @export var camera_controller: CameraController
+@export var attack_component: AttackComponent
 
 var input_direction = Vector3.ZERO
 
@@ -42,6 +45,9 @@ func _ready():
 	
 	character.jumped.connect(_jump)
 	character.jump_landed.connect(_jump_landed)
+	
+	attack_component.attacking.connect(_attacking)
+	attack_component.can_rotate.connect(_can_rotate)
 
 func _physics_process(delta):
 	rotation_degrees.y = wrapf(rotation_degrees.y, -180, 180.0)
@@ -85,7 +91,13 @@ func _physics_process(delta):
 	elif _move_direction.length() > 0.2:
 		# get the rotation based on the current velocity direction
 		_turning = true
-		_looking_direction = -Vector3(_velocity.x, 0, _velocity.z)
+		
+		if can_move:
+			_looking_direction = -Vector3(_velocity.x, 0, _velocity.z)				
+		elif can_rotate:
+			_looking_direction = -Vector3(_move_direction.x, 0, _move_direction.z)
+			_looking_direction = _looking_direction.rotated(Vector3.UP, camera_controller.rotation.y).normalized()
+			
 		_target_look = atan2(_looking_direction.x, _looking_direction.z)
 		
 		# swivel the camera in the opposite direction so
@@ -93,11 +105,11 @@ func _physics_process(delta):
 		# (needs playtesting idk if it's actually good behaviour)
 		if delta and !_lock_on_enemy:
 			camera_controller.player_moving(_move_direction, delta)
-		
+	
 		# change move direction so it is relative to where
 		# the camera is facing
 		_move_direction = _move_direction.rotated(Vector3.UP, camera_controller.rotation.y).normalized()
-	
+		
 	# Makes sure the player is rotated fully to the desired direction
 	# even if pressed for a short period of time
 	if _turning:
@@ -150,9 +162,10 @@ func _physics_process(delta):
 	# applying velocity calculations
 	################################
 	
-	_velocity.x = lerp(_velocity.x, _move_direction.x * _speed, 0.1)
-	_velocity.z = lerp(_velocity.z, _move_direction.z * _speed, 0.1)
-	
+	if can_move:
+		_velocity.x = lerp(_velocity.x, _move_direction.x * _speed, 0.1)
+		_velocity.z = lerp(_velocity.z, _move_direction.z * _speed, 0.1)
+		
 	if !is_on_floor():
 		_velocity.y -= gravity * delta
 	elif !jumping:
@@ -169,6 +182,9 @@ func _process(_delta):
 func _on_lock_on_system_lock_on(enemy):
 	_lock_on_enemy = enemy
 	camera_controller.lock_on(enemy)
+	
+func _can_rotate(flag: bool):
+	can_rotate = flag
 
 func _dodge():
 	_can_dodge = false
@@ -190,3 +206,11 @@ func _jump():
 
 func _jump_landed():
 	jumping = false
+
+func _attacking(active):
+	if active:
+		can_move = false
+		_velocity.x = 0
+		_velocity.z = 0
+	else:
+		can_move = true

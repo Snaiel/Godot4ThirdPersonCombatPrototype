@@ -1,16 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://dujukbu10vbmm"]
+[gd_scene load_steps=5 format=3 uid="uid://dujukbu10vbmm"]
 
 [ext_resource type="Script" path="res://scripts/entities/player.gd" id="1_lgfyt"]
+[ext_resource type="Script" path="res://scripts/components/attack_component.gd" id="3_nq7ea"]
 [ext_resource type="PackedScene" uid="uid://x0oxbha36o2h" path="res://scenes/entities/YBot.tscn" id="5_gusos"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lnhvg"]
 radius = 0.3
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("character")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("character", "attack_component")]
 collision_layer = 2
 collision_mask = 9
 script = ExtResource("1_lgfyt")
 character = NodePath("YBot")
+attack_component = NodePath("AttackComponent")
 
 [node name="CapsuleCollider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.135378, 0)
@@ -18,3 +20,7 @@ shape = SubResource("CapsuleShape3D_lnhvg")
 
 [node name="YBot" parent="." instance=ExtResource("5_gusos")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1.14092, 0)
+
+[node name="AttackComponent" type="Node3D" parent="." node_paths=PackedStringArray("character")]
+script = ExtResource("3_nq7ea")
+character = NodePath("../YBot")
