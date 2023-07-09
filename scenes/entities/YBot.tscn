@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b2og8yg2m6wv5" path="res://models/ybot.blend" id="1_ml8ck"]
 [ext_resource type="Script" path="res://scripts/entities/player_animations.gd" id="2_vu2o0"]
 [ext_resource type="AnimationLibrary" uid="uid://co71smyho10eh" path="res://animations/character_animations.blend" id="3_q6bfl"]
-[ext_resource type="AnimationLibrary" uid="uid://bly5qjh4v27gl" path="res://animations/attack_animations_1.blend" id="3_wecg7"]
+[ext_resource type="AnimationLibrary" path="res://animations/attack_animations_1.blend" id="3_wecg7"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://cm3sogson3826" path="res://animations/YBot.tres" id="4_w0sfw"]
 
 [sub_resource type="Animation" id="Animation_s2fp0"]
