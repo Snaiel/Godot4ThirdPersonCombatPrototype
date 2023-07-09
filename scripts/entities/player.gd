@@ -24,30 +24,30 @@ var input_direction = Vector3.ZERO
 var _speed: float = 0.0
 var _move_direction = Vector3.ZERO
 var _velocity = Vector3.ZERO
+
 var _can_jump = false
 var _can_dodge = true
 var _holding_down_run = false
 
 var _turning = false
-var _looking_direction
+var _looking_direction = Vector3.BACK
 var _target_look
 
-var _lock_on_enemy: Enemy = null
-var _last_physics_pos = null
+var _impulse = 0.0
 
-var angle = 0.0
+var _lock_on_enemy: Enemy = null
+
 
 func _ready():
 	Globals.player = self
 	_target_look = camera_controller.rotation.y
-	_looking_direction = Vector3.FORWARD
-	_last_physics_pos = global_position
 	
 	character.jumped.connect(_jump)
 	character.jump_landed.connect(_jump_landed)
 	
 	attack_component.attacking.connect(_attacking)
 	attack_component.can_rotate.connect(_can_rotate)
+	
 
 func _physics_process(delta):
 	rotation_degrees.y = wrapf(rotation_degrees.y, -180, 180.0)
@@ -162,6 +162,9 @@ func _physics_process(delta):
 	# applying velocity calculations
 	################################
 	
+	if _impulse:
+		_velocity = -_looking_direction * _impulse
+	
 	if can_move:
 		_velocity.x = lerp(_velocity.x, _move_direction.x * _speed, 0.1)
 		_velocity.z = lerp(_velocity.z, _move_direction.z * _speed, 0.1)
@@ -173,7 +176,6 @@ func _physics_process(delta):
 		
 	velocity = _velocity
 	move_and_slide()
-	_last_physics_pos = global_position
 	
 	
 func _process(_delta):
@@ -210,7 +212,7 @@ func _jump_landed():
 func _attacking(active):
 	if active:
 		can_move = false
-		_velocity.x = 0
-		_velocity.z = 0
+		_impulse = 0.4
 	else:
 		can_move = true
+		_impulse = 0.0

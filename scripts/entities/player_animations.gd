@@ -46,6 +46,7 @@ func update_anim_parameters(dir: Vector3, locked_on: bool, running: bool):
 	
 
 func start_jump():
+	anim_tree["parameters/Jump Trim/seek_request"] = 0.45
 	anim_tree["parameters/Jump/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 
 func jump_force():
@@ -55,13 +56,14 @@ func jump_finished():
 	jump_landed.emit()
 	
 func prevent_rotation():
-	can_rotate.emit(false)
+	var flag = false
+	can_rotate.emit(flag)
 
 func can_stop_attacking():
 	attacking_can_stop.emit()
 
 func _on_animation_tree_animation_finished(anim_name):
-	if "attack_animations_1" in anim_name:
+	if "combat_animations_1" in anim_name:
 		anim_tree["parameters/Attacking/transition_request"] = "not_attacking"
 		attacking_finished.emit()
 		can_rotate.emit(true)		

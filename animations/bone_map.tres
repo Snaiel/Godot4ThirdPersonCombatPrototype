@@ -1,11 +1,11 @@
-[gd_resource type="BoneMap" load_steps=2 format=3 uid="uid://bani40vquy4lu"]
+[gd_resource type="BoneMap" load_steps=2 format=3 uid="uid://dkmy3sb0i54xw"]
 
-[sub_resource type="SkeletonProfileHumanoid" id="SkeletonProfileHumanoid_4fpje"]
+[sub_resource type="SkeletonProfileHumanoid" id="SkeletonProfileHumanoid_4ljjk"]
 
 [resource]
-profile = SubResource("SkeletonProfileHumanoid_4fpje")
+profile = SubResource("SkeletonProfileHumanoid_4ljjk")
 bonemap = null
-bone_map/Root = &""
+bone_map/Root = &"mixamorig_Root"
 bone_map/Hips = &"mixamorig_Hips"
 bone_map/Spine = &"mixamorig_Spine"
 bone_map/Chest = &"mixamorig_Spine1"

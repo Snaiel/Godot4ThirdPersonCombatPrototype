@@ -19,6 +19,7 @@ func _process(delta):
 func _attack():
 	var anim_tree = character.anim_tree
 	anim_tree["parameters/Attacking/transition_request"] = "attacking"
+	anim_tree["parameters/Attack Step/seek_request"] = 0.55
 	attacking.emit(true)
 
 func _attacking_finished():
