@@ -25,7 +25,7 @@ func _attack():
 		can_attack = false
 		attacking.emit(true)
 		
-		if can_attack_again and attack_level < 2:
+		if can_attack_again and attack_level < 4:
 			can_attack_again = false
 			attack_level += 1
 		else:
@@ -41,6 +41,7 @@ func _attacking_finished():
 	attacking.emit(false)
 	can_attack_again = false
 	can_attack = true
+	attack_level = 1
 
 func _receive_rotation(flag: bool):
 	can_rotate.emit(flag)
