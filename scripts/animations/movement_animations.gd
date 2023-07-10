@@ -1,22 +1,12 @@
-class_name PlayerAnimations
-extends Node3D
+class_name MovementAnimations
+extends BaseAnimations
 
-signal jumped
-signal jump_landed
-signal attacking_can_stop
-signal attacking_finished
 signal can_rotate(flag: bool)
 
 var _lock_on_walk_blend = 0.0
 var _input_dir = Vector2.ZERO
 
-@onready var anim_tree: AnimationTree = $AnimationTree
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	anim_tree.active = true
-
-func update_anim_parameters(dir: Vector3, locked_on: bool, running: bool):
+func move(dir: Vector3, locked_on: bool, running: bool):
 	var new_dir = Vector2(dir.x, dir.z)
 	
 	_input_dir = _input_dir.lerp(new_dir, 0.1)
@@ -43,27 +33,3 @@ func update_anim_parameters(dir: Vector3, locked_on: bool, running: bool):
 		anim_tree["parameters/Movement/blend_amount"] = lerp(anim_tree["parameters/Movement/blend_amount"], 0.0, 0.1)		
 		
 	anim_tree["parameters/Running Lock On Look Direction/blend_position"] = _input_dir
-	
-
-func start_jump():
-	anim_tree["parameters/Jump Trim/seek_request"] = 0.45
-	anim_tree["parameters/Jump/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
-
-func jump_force():
-	jumped.emit()
-
-func jump_finished():
-	jump_landed.emit()
-	
-func prevent_rotation():
-	var flag = false
-	can_rotate.emit(flag)
-
-func can_stop_attacking():
-	attacking_can_stop.emit()
-
-func _on_animation_tree_animation_finished(anim_name):
-	if "combat_animations_1" in anim_name:
-		anim_tree["parameters/Attacking/transition_request"] = "not_attacking"
-		attacking_finished.emit()
-		can_rotate.emit(true)		

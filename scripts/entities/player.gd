@@ -42,8 +42,8 @@ func _ready():
 	Globals.player = self
 	_target_look = camera_controller.rotation.y
 	
-	character.jumped.connect(_jump)
-	character.jump_landed.connect(_jump_landed)
+	character.jump_animations.jumped.connect(_jump)
+	character.jump_animations.jump_landed.connect(_jump_landed)
 	
 	attack_component.attacking.connect(_attacking)
 	attack_component.can_rotate.connect(_can_rotate)
@@ -133,7 +133,7 @@ func _physics_process(delta):
 	# start the jump animation when the jump key is pressed
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		jumping = true
-		character.start_jump()
+		character.jump_animations.start_jump()
 		
 	# _can_jump is true when the jump animation reaches the point
 	# where the character actually jumps. When this happens,
@@ -179,7 +179,7 @@ func _physics_process(delta):
 	
 	
 func _process(_delta):
-	character.update_anim_parameters(input_direction, _lock_on_enemy != null, running)
+	character.movement_animations.move(input_direction, _lock_on_enemy != null, running)
 	
 func _on_lock_on_system_lock_on(enemy):
 	_lock_on_enemy = enemy
