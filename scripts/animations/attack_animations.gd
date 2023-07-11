@@ -73,7 +73,6 @@ func prevent_rotation():
 	
 	
 func recieve_can_play_animation():
-#	print("PLAY")
 	_can_play_animation = true
 	
 	
