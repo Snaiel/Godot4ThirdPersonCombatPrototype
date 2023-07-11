@@ -154,12 +154,11 @@ func _physics_process(delta):
 	# OR when we jump while running, slow down to walk speed to 'prepare' for the leap
 	if (jumping and is_on_floor() and _speed == run_speed) or (jumping and is_on_floor() and not _can_jump):
 		_speed = walk_speed
-	elif (Input.is_action_pressed("run") and not dodging) or (jumping and _speed == run_speed):
+	elif (_holding_down_run and is_on_floor() and not dodging) or (jumping and running):
 		# change to running speed if pressing the run button
 		# or keep running speed in the air
-		if _holding_down_run || _can_dodge:
-			_speed = run_speed
-			running = true
+		_speed = run_speed
+		running = true
 	else:
 		# walking speed for everything else
 		_speed = walk_speed
@@ -201,13 +200,16 @@ func _can_rotate(flag: bool):
 	can_rotate = flag
 
 func _dodge():
-	_can_dodge = false
-	dodging = true
-	_velocity += _move_direction * 8
-	var timer = get_tree().create_timer(0.2)
-	var can_dodge_timer = get_tree().create_timer(0.6)	
-	timer.connect("timeout", _finish_dodging)
-	can_dodge_timer.connect("timeout", _can_dodge_again)	
+	if is_on_floor():
+		_can_dodge = false
+		dodging = true
+		_velocity += _move_direction * 8
+		
+		var timer = get_tree().create_timer(0.2)
+		var can_dodge_timer = get_tree().create_timer(0.6)	
+		
+		timer.connect("timeout", _finish_dodging)
+		can_dodge_timer.connect("timeout", _can_dodge_again)	
 	
 func _finish_dodging():
 	dodging = false
