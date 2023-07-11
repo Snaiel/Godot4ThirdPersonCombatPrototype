@@ -25,20 +25,18 @@ var _intend_to_stop_attacking = true
 
 
 func _ready():
-	anim_tree["parameters/Attackin/blend_amount"] = 0.0
+	anim_tree["parameters/Attacking/blend_amount"] = 0.0
 
 
 func _process(_delta):
 	
 	if _attacking:
-		anim_tree["parameters/Attackin/blend_amount"] = lerp(anim_tree["parameters/Attackin/blend_amount"], 1.0, 0.3)
+		anim_tree["parameters/Attacking/blend_amount"] = lerp(anim_tree["parameters/Attacking/blend_amount"], 1.0, 0.3)
 	else:
-		anim_tree["parameters/Attackin/blend_amount"] = lerp(anim_tree["parameters/Attackin/blend_amount"], 0.0, 0.1)		
+		anim_tree["parameters/Attacking/blend_amount"] = lerp(anim_tree["parameters/Attacking/blend_amount"], 0.0, 0.1)		
 
 	if _can_play_animation and _intent_to_attack:
 		_can_play_animation = false
-		
-		anim_tree["parameters/Attacking/transition_request"] = "attacking"
 		
 		match _level:
 			1:
