@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://x0oxbha36o2h"]
+[gd_scene load_steps=64 format=3 uid="uid://x0oxbha36o2h"]
 
 [ext_resource type="PackedScene" uid="uid://q3eag1ltsb0y" path="res://models/ybot.blend" id="1_ml8ck"]
 [ext_resource type="Script" path="res://scripts/animations/player_animations.gd" id="2_l62dg"]
@@ -415,6 +415,8 @@ node_connections = [&"output", 0, &"Forward Thrust Speed", &"Forward Thrust Spee
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_m02a1"]
 
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_l3u60"]
+
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_gbv1b"]
 filter_enabled = true
 filters = ["%GeneralSkeleton:Head", "%GeneralSkeleton:Hips", "%GeneralSkeleton:LeftFoot", "%GeneralSkeleton:LeftLowerLeg", "%GeneralSkeleton:LeftToes", "%GeneralSkeleton:LeftUpperLeg", "%GeneralSkeleton:Neck", "%GeneralSkeleton:RightFoot", "%GeneralSkeleton:RightLowerLeg", "%GeneralSkeleton:RightToes", "%GeneralSkeleton:RightUpperLeg", "%GeneralSkeleton:Root"]
@@ -430,11 +432,13 @@ animation = &"combat_animations_1/Inward Slash"
 animation = &"movement_animations_1/Walk-Forwards"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_kb1f6"]
-graph_offset = Vector2(-421.041, 39.8608)
+graph_offset = Vector2(-905.495, -125.087)
 "nodes/Inward Slash/node" = SubResource("AnimationNodeAnimation_eno2e")
-"nodes/Inward Slash/position" = Vector2(-700, 80)
+"nodes/Inward Slash/position" = Vector2(-900, 80)
 "nodes/Inward Slash Speed/node" = SubResource("AnimationNodeTimeScale_m02a1")
 "nodes/Inward Slash Speed/position" = Vector2(-240, 80)
+"nodes/Inward Slash Trim/node" = SubResource("AnimationNodeTimeSeek_l3u60")
+"nodes/Inward Slash Trim/position" = Vector2(-480, 80)
 "nodes/Inward Slash and Walk Blend/node" = SubResource("AnimationNodeBlend2_gbv1b")
 "nodes/Inward Slash and Walk Blend/position" = Vector2(120, 160)
 "nodes/Walk Forwards/node" = SubResource("AnimationNodeAnimation_kcile")
@@ -444,7 +448,7 @@ graph_offset = Vector2(-421.041, 39.8608)
 "nodes/Walk Forwards Trim/node" = SubResource("AnimationNodeTimeSeek_xjju2")
 "nodes/Walk Forwards Trim/position" = Vector2(-460, 340)
 nodes/output/position = Vector2(500, 160)
-node_connections = [&"output", 0, &"Inward Slash and Walk Blend", &"Inward Slash Speed", 0, &"Inward Slash", &"Inward Slash and Walk Blend", 0, &"Inward Slash Speed", &"Inward Slash and Walk Blend", 1, &"Walk Forwards Speed", &"Walk Forwards Speed", 0, &"Walk Forwards Trim", &"Walk Forwards Trim", 0, &"Walk Forwards"]
+node_connections = [&"output", 0, &"Inward Slash and Walk Blend", &"Inward Slash Speed", 0, &"Inward Slash Trim", &"Inward Slash and Walk Blend", 0, &"Inward Slash Speed", &"Inward Slash and Walk Blend", 1, &"Walk Forwards Speed", &"Walk Forwards Speed", 0, &"Walk Forwards Trim", &"Walk Forwards Trim", 0, &"Walk Forwards", &"Inward Slash Trim", 0, &"Inward Slash"]
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_bnp0m"]
 filter_enabled = true
@@ -515,8 +519,10 @@ input_3/name = "attack_4"
 input_3/auto_advance = false
 input_3/reset = true
 
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_vrma0"]
+
 [sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_54wjh"]
-xfade_time = 0.5
+xfade_time = 0.2
 input_0/name = "not_attacking"
 input_0/auto_advance = false
 input_0/reset = true
@@ -637,7 +643,7 @@ input_1/auto_advance = false
 input_1/reset = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_pvyc3"]
-graph_offset = Vector2(19.7034, 114.181)
+graph_offset = Vector2(-253.772, 312.424)
 nodes/Attack/node = SubResource("AnimationNodeTransition_gr1qy")
 nodes/Attack/position = Vector2(200, 940)
 "nodes/Attack Forward Thrust/node" = SubResource("AnimationNodeBlendTree_ws83a")
@@ -648,6 +654,8 @@ nodes/Attack/position = Vector2(200, 940)
 "nodes/Attack Outward Slash/position" = Vector2(-180, 920)
 "nodes/Attack Quick Slash/node" = SubResource("AnimationNodeBlendTree_y0rq4")
 "nodes/Attack Quick Slash/position" = Vector2(-120, 1260)
+nodes/Attackin/node = SubResource("AnimationNodeBlend2_vrma0")
+nodes/Attackin/position = Vector2(560, 440)
 nodes/Attacking/node = SubResource("AnimationNodeTransition_54wjh")
 nodes/Attacking/position = Vector2(480, 180)
 "nodes/Free Idle/node" = SubResource("AnimationNodeAnimation_met48")
@@ -679,68 +687,76 @@ nodes/Movement/position = Vector2(-612, 106)
 "nodes/Walking Lock On/node" = SubResource("AnimationNodeTransition_0mwvr")
 "nodes/Walking Lock On/position" = Vector2(-1223.12, 6.67313)
 nodes/output/position = Vector2(920, 160)
-node_connections = [&"output", 0, &"Attacking", &"Attack", 0, &"Attack Inward Slash", &"Attack", 1, &"Attack Outward Slash", &"Attack", 2, &"Attack Forward Thrust", &"Attack", 3, &"Attack Quick Slash", &"Attacking", 0, &"Jump", &"Attacking", 1, &"Attack", &"Free Movement", 0, &"Free Idle", &"Free Movement", 1, &"Walk Forward", &"Jump", 0, &"Movement", &"Jump", 1, &"Jump Trim", &"Jump Trim", 0, &"Jump Animation", &"Lock On Movement", 0, &"Lock On Idle", &"Lock On Movement", 1, &"Lock On Walk", &"Movement", 0, &"Walking Lock On", &"Movement", 1, &"Running Lock On", &"Running Lock On", 0, &"Running Lock On Look Direction", &"Running Lock On", 1, &"Run Forwards", &"Walking Lock On", 0, &"Lock On Movement", &"Walking Lock On", 1, &"Free Movement"]
+node_connections = [&"output", 0, &"Attackin", &"Attack", 0, &"Attack Inward Slash", &"Attack", 1, &"Attack Outward Slash", &"Attack", 2, &"Attack Forward Thrust", &"Attack", 3, &"Attack Quick Slash", &"Free Movement", 0, &"Free Idle", &"Free Movement", 1, &"Walk Forward", &"Jump", 0, &"Movement", &"Jump", 1, &"Jump Trim", &"Jump Trim", 0, &"Jump Animation", &"Lock On Movement", 0, &"Lock On Idle", &"Lock On Movement", 1, &"Lock On Walk", &"Movement", 0, &"Walking Lock On", &"Movement", 1, &"Running Lock On", &"Running Lock On", 0, &"Running Lock On Look Direction", &"Running Lock On", 1, &"Run Forwards", &"Walking Lock On", 0, &"Lock On Movement", &"Walking Lock On", 1, &"Free Movement", &"Attackin", 0, &"Jump", &"Attackin", 1, &"Attack"]
 
 [node name="YBot" instance=ExtResource("1_ml8ck")]
 script = ExtResource("2_l62dg")
 
 [node name="GeneralSkeleton" parent="Armature_004" index="0"]
-bones/1/rotation = Quaternion(0, 2.2904e-14, -6.7831e-14, 1)
-bones/2/rotation = Quaternion(2.11667e-10, -2.1808e-13, 2.94964e-16, 1)
-bones/3/rotation = Quaternion(3.72529e-09, -4.54747e-13, 2.84217e-14, 1)
-bones/4/rotation = Quaternion(2.77556e-17, -6.82121e-13, -3.63798e-12, 1)
-bones/5/rotation = Quaternion(2.32831e-10, 0, 3.63803e-12, 1)
-bones/8/rotation = Quaternion(-0.500032, -0.499969, -0.500032, 0.499968)
-bones/9/rotation = Quaternion(-1.3411e-06, 1, 1.91033e-05, 2.08616e-07)
-bones/10/rotation = Quaternion(-4.21468e-08, -0.707107, 0, 0.707107)
-bones/11/rotation = Quaternion(-7.10043e-09, 0.707107, -7.10043e-09, 0.707107)
+bones/0/position = Vector3(-0.0761865, 9.27874e-09, 0.0778357)
+bones/1/position = Vector3(0.076364, 0.851613, -0.00273713)
+bones/1/rotation = Quaternion(0.00768301, 0.150394, -0.0021453, 0.988594)
+bones/2/rotation = Quaternion(0.0482461, 0.206388, 0.0368114, 0.976587)
+bones/3/rotation = Quaternion(0.0679727, 0.196304, 0.0388768, 0.977411)
+bones/4/rotation = Quaternion(0.0645746, 0.197062, 0.0405657, 0.977421)
+bones/5/rotation = Quaternion(-0.00852592, -0.0944855, 0.0504507, 0.99421)
+bones/6/rotation = Quaternion(-0.147902, -0.418396, 0.0450181, 0.89501)
+bones/8/rotation = Quaternion(-0.521754, -0.471721, -0.516548, 0.488294)
+bones/9/rotation = Quaternion(0.0384405, 0.773071, -0.481344, -0.411329)
+bones/10/rotation = Quaternion(0.428561, -0.562437, 0.428561, 0.562437)
+bones/11/rotation = Quaternion(-0.178768, 0.661005, 0.0019519, 0.728773)
 bones/12/rotation = Quaternion(-0.0916112, 0.0960744, -0.0539684, 0.989679)
-bones/13/rotation = Quaternion(-0.214187, 0.673887, 0.214187, 0.673887)
-bones/14/rotation = Quaternion(-4.47035e-08, 2.98023e-08, 4.44089e-16, 1)
-bones/15/rotation = Quaternion(0, -5.96046e-08, -2.98023e-08, 1)
+bones/13/rotation = Quaternion(-0.0701763, 0.610587, 0.160535, 0.772326)
+bones/14/rotation = Quaternion(0.228434, 0.123377, 0.0263254, 0.965351)
+bones/15/rotation = Quaternion(0, -2.98023e-08, -2.98023e-08, 1)
 bones/16/rotation = Quaternion(0.255734, -0.0158477, 0.0307751, 0.966127)
-bones/18/rotation = Quaternion(0, -5.96046e-08, 0, 1)
-bones/19/rotation = Quaternion(2.98023e-08, 2.98023e-08, -2.98023e-08, 1)
+bones/17/rotation = Quaternion(0.348393, -1.3411e-07, -0.0420441, 0.936405)
+bones/18/rotation = Quaternion(0.227566, -1.63913e-07, -0.0274628, 0.973375)
+bones/19/rotation = Quaternion(-2.98023e-08, -5.96046e-08, -2.98023e-08, 1)
 bones/20/rotation = Quaternion(0.260783, -0.00603709, -0.00891694, 0.965337)
-bones/21/rotation = Quaternion(2.98023e-08, -2.98023e-08, 2.98023e-08, 1)
-bones/22/rotation = Quaternion(2.98023e-08, -2.98023e-08, 2.98023e-08, 1)
-bones/23/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
+bones/21/rotation = Quaternion(0.284518, -1.63913e-07, -0.0343356, 0.958056)
+bones/22/rotation = Quaternion(0.240765, -1.63913e-07, -0.0290554, 0.970148)
+bones/23/rotation = Quaternion(-1.49012e-08, 1.49012e-08, 1.49012e-08, 1)
 bones/24/rotation = Quaternion(0.281692, -0.00498192, -0.0169053, 0.959343)
-bones/25/rotation = Quaternion(-4.47035e-08, -4.47035e-08, 0, 1)
-bones/26/rotation = Quaternion(-1.49012e-08, -1.49012e-08, -1.49012e-08, 1)
-bones/27/rotation = Quaternion(0, -5.96046e-08, 0, 1)
-bones/28/rotation = Quaternion(-2.72691e-06, 2.98023e-08, -0.000141129, 1)
-bones/29/rotation = Quaternion(6.22869e-06, 1.04308e-07, 0.000368372, 1)
-bones/30/rotation = Quaternion(-3.57628e-06, 0, -0.000229612, 1)
-bones/31/rotation = Quaternion(1.49012e-08, -1.49012e-08, 0, 1)
-bones/32/rotation = Quaternion(0.499969, -0.500031, -0.499969, -0.500031)
-bones/33/rotation = Quaternion(-4.17233e-07, 1, -1.99974e-05, -2.83122e-07)
-bones/34/rotation = Quaternion(-4.21468e-08, 0.707107, 0, 0.707107)
-bones/35/rotation = Quaternion(-2.81893e-08, -0.707107, -1.39575e-08, 0.707107)
+bones/25/rotation = Quaternion(0.319743, -2.23517e-07, -0.0385866, 0.946718)
+bones/26/rotation = Quaternion(0.3363, -1.78814e-07, -0.0405847, 0.94088)
+bones/27/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
+bones/28/rotation = Quaternion(0.310823, 0.0198503, -0.0965012, 0.945348)
+bones/29/rotation = Quaternion(0.362578, 0.012879, -0.0102708, 0.931808)
+bones/30/rotation = Quaternion(0.367084, -2.08616e-07, -0.0442996, 0.929132)
+bones/31/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
+bones/32/rotation = Quaternion(0.314805, -0.547713, -0.67971, -0.372698)
+bones/33/rotation = Quaternion(-0.465107, 0.860762, -0.165673, 0.123764)
+bones/34/rotation = Quaternion(0.424971, 0.565154, -0.424971, 0.565154)
+bones/35/rotation = Quaternion(0.0103401, -0.0848746, 0.134743, 0.987185)
 bones/36/rotation = Quaternion(0.178976, -0.0983939, 0.0592812, 0.977125)
-bones/37/rotation = Quaternion(-0.214187, -0.673887, -0.214187, 0.673887)
-bones/38/rotation = Quaternion(-2.98023e-08, 1.49012e-08, 2.22045e-16, 1)
-bones/39/rotation = Quaternion(0, -8.9407e-08, 0, 1)
+bones/37/rotation = Quaternion(-0.0535249, -0.803289, -0.0681638, 0.589249)
+bones/38/rotation = Quaternion(0.567592, -0.142258, 0.0157965, 0.810773)
+bones/39/rotation = Quaternion(4.47035e-08, 4.47035e-08, 0, 1)
 bones/40/rotation = Quaternion(0.576473, -0.00316162, 0.0747119, 0.813688)
-bones/41/rotation = Quaternion(0, 5.96046e-08, 5.96046e-08, 1)
+bones/41/rotation = Quaternion(0.594882, 3.8743e-07, 0.0724963, 0.800537)
+bones/42/rotation = Quaternion(0.47124, 2.98023e-07, 0.0574285, 0.880134)
+bones/43/rotation = Quaternion(-1.49012e-08, 0, 1.49012e-08, 1)
 bones/44/rotation = Quaternion(0.590048, 5.40465e-05, 0.0718344, 0.804166)
-bones/46/rotation = Quaternion(0, 5.96046e-08, 5.96046e-08, 1)
-bones/47/rotation = Quaternion(2.98023e-08, -1.49012e-08, 1.49012e-08, 1)
+bones/45/rotation = Quaternion(0.666831, 3.94881e-07, 0.0812646, 0.740764)
+bones/46/rotation = Quaternion(0.304277, -8.34614e-05, 0.0370542, 0.951863)
+bones/47/rotation = Quaternion(-1.49012e-08, 1.49012e-08, 1.49012e-08, 1)
 bones/48/rotation = Quaternion(0.590849, 0.00424366, 0.0662239, 0.804048)
-bones/49/rotation = Quaternion(-1.49012e-08, 4.47035e-08, 5.96046e-08, 1)
-bones/50/rotation = Quaternion(-1.49012e-08, 1.49012e-08, -1.49012e-08, 1)
+bones/49/rotation = Quaternion(0.666593, 5.02914e-07, 0.0812355, 0.740982)
+bones/50/rotation = Quaternion(0.343417, -8.34912e-05, 0.0418201, 0.938252)
+bones/51/rotation = Quaternion(-1.49012e-08, 0, 1.49012e-08, 1)
 bones/52/rotation = Quaternion(0.557745, 0.00959279, 0.0536826, 0.828219)
-bones/53/rotation = Quaternion(1.49012e-07, -8.9407e-08, -1.05202e-05, 1)
-bones/54/rotation = Quaternion(-2.98023e-08, 8.9407e-08, 1.05351e-05, 1)
-bones/55/rotation = Quaternion(2.98023e-08, -2.98023e-08, -2.98023e-08, 1)
-bones/56/rotation = Quaternion(-8.25414e-09, -1.02951e-05, -1, 8.79593e-08)
-bones/57/rotation = Quaternion(1.39698e-09, 1, -1.97939e-05, -5.46588e-08)
-bones/58/rotation = Quaternion(-1.20905e-09, 0.707107, -0.707107, 2.41295e-09)
-bones/59/rotation = Quaternion(8.23181e-10, 1, 5.96046e-08, -8.23181e-10)
-bones/61/rotation = Quaternion(-1.3356e-12, -6.52502e-10, 1, 2.1827e-11)
-bones/62/rotation = Quaternion(-2.32831e-10, 1, 1.39698e-09, -1.09139e-11)
-bones/63/rotation = Quaternion(1.60006e-09, 0.707107, -0.707107, -3.75576e-10)
-bones/64/rotation = Quaternion(-2.63418e-09, 1, 0, 0)
+bones/53/rotation = Quaternion(0.66681, 4.28408e-07, 0.081262, 0.740784)
+bones/54/rotation = Quaternion(0.304281, 1.63913e-07, 0.0370817, 0.95186)
+bones/55/rotation = Quaternion(-1.49012e-08, 0, 1.49012e-08, 1)
+bones/56/rotation = Quaternion(-0.172917, 0.430636, 0.885801, 0.00292699)
+bones/57/rotation = Quaternion(0.0348047, 0.901821, -0.425102, -0.0692523)
+bones/58/rotation = Quaternion(-0.0440868, 0.693553, -0.717465, 0.047796)
+bones/59/rotation = Quaternion(-2.46954e-09, 1, 0, 7.07935e-09)
+bones/61/rotation = Quaternion(-0.256597, 0.0474699, 0.963976, 0.0515299)
+bones/62/rotation = Quaternion(0.0929835, 0.874699, -0.467889, -0.0856507)
+bones/63/rotation = Quaternion(0.0121542, 0.450909, -0.875169, -0.174966)
+bones/64/rotation = Quaternion(-8.4492e-08, 0.992703, 0.120585, -2.86468e-08)
 
 [node name="AnimationPlayer" parent="." index="1"]
 libraries = {
@@ -759,19 +775,21 @@ parameters/Attack/current_index = 0
 "parameters/Attack Forward Thrust/Forward Thrust Speed/scale" = 1.5
 "parameters/Attack Forward Thrust/Forward Thrust Trim/seek_request" = -1.0
 "parameters/Attack Inward Slash/Inward Slash Speed/scale" = 1.5
+"parameters/Attack Inward Slash/Inward Slash Trim/seek_request" = -1.0
 "parameters/Attack Inward Slash/Inward Slash and Walk Blend/blend_amount" = 1.0
 "parameters/Attack Inward Slash/Walk Forwards Speed/scale" = 0.5
 "parameters/Attack Inward Slash/Walk Forwards Trim/seek_request" = -1.0
 "parameters/Attack Outward Slash/Outward Slash and Walk Blend/blend_amount" = 1.0
 "parameters/Attack Outward Slash/Outwards Slash Speed/scale" = 1.8
-"parameters/Attack Outward Slash/Outwards Slash Trim/seek_request" = 0.5
+"parameters/Attack Outward Slash/Outwards Slash Trim/seek_request" = -1.0
 "parameters/Attack Outward Slash/Walk Forwards Speed/scale" = 0.5
 "parameters/Attack Outward Slash/Walk Forwards Trim/seek_request" = -1.0
 "parameters/Attack Quick Slash/Quick Slash Speed/scale" = 1.5
 "parameters/Attack Quick Slash/Quick Slash Trim/seek_request" = 0.9
-parameters/Attacking/current_state = "not_attacking"
+parameters/Attackin/blend_amount = 1.0
+parameters/Attacking/current_state = "attacking"
 parameters/Attacking/transition_request = ""
-parameters/Attacking/current_index = 0
+parameters/Attacking/current_index = 1
 "parameters/Free Movement/blend_amount" = 0
 parameters/Jump/active = false
 parameters/Jump/internal_active = false
@@ -802,6 +820,3 @@ anim_tree = NodePath("../AnimationTree")
 script = ExtResource("7_qu3gw")
 parent_animations = NodePath("..")
 anim_tree = NodePath("../AnimationTree")
-
-[connection signal="animation_finished" from="AnimationTree" to="AttackAnimations" method="_on_animation_tree_animation_finished"]
-[connection signal="animation_started" from="AnimationTree" to="AttackAnimations" method="_on_animation_tree_animation_started"]
