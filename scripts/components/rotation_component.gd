@@ -3,24 +3,24 @@ extends Node3D
 
 @export var player: Player
 
-var looking_direction
-var move_direction
+var looking_direction: Vector3
+var move_direction: Vector3
 
 
-var _camera_controller
+var _camera_controller: CameraController
 
 var _lock_on_enemy
-var _running
-var _jumping
+var _running: bool
+var _jumping: bool
 
-var _input_direction
+var _input_direction: Vector3
 
-var _can_move
-var _can_rotate
+var _can_move: bool
+var _can_rotate: bool
 
-var _velocity
+var _velocity: Vector3
 
-var _target_look
+var _target_look: float
 var _turning = true
 
 
@@ -39,8 +39,6 @@ func handle_rotation(delta):
 	_can_move = player.can_move
 	_can_rotate = player.can_rotate
 	_velocity = player.desired_velocity
-	
-	print(player.rotation.y, ' ', _target_look)
 	
 	# handles rotating the player.
 	# we want to rotate the player towards the target lock on entity if we are locked on (obviously).
@@ -75,12 +73,12 @@ func handle_rotation(delta):
 		# get the rotation based on the current velocity direction
 		_turning = true
 		
-		if _can_move:
+		if _can_move and _velocity.length() > 0:
 			looking_direction = -Vector3(_velocity.x, 0, _velocity.z)				
 		elif _can_rotate:
 			looking_direction = -Vector3(move_direction.x, 0, move_direction.z)
 			looking_direction = looking_direction.rotated(Vector3.UP, _camera_controller.rotation.y).normalized()
-			
+		
 		_target_look = atan2(looking_direction.x, looking_direction.z)
 		
 		# swivel the camera in the opposite direction so
