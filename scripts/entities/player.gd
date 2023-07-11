@@ -7,40 +7,42 @@ extends CharacterBody3D
 @export var jump_strength = 8
 @export var gravity = 20
 
-@export_category("Flags")
-@export var can_move = true
-@export var can_rotate = true
-@export var jumping = false
-@export var running = false
-@export var dodging = false
-
 @export_category("Mechanisms")
+@export var rotation_component: RotationComponent
 @export var character: PlayerAnimations
 @export var camera_controller: CameraController
 @export var attack_component: AttackComponent
 
 var input_direction = Vector3.ZERO
 
-var _speed: float = 0.0
-var _move_direction = Vector3.ZERO
-var _velocity = Vector3.ZERO
+var move_direction = Vector3.ZERO
+var desired_velocity = Vector3.ZERO
 
-var _can_jump = false
-var _can_dodge = true
+var can_move = true
+var running = false
+
+var can_rotate = true
+
+var can_jump = false
+var jumping = false
+
+var can_dodge = true
+var dodging = false
+
+var lock_on_enemy: Enemy = null
+
+
+
+var _speed: float = 0.0
 var _holding_down_run = false
 
-var _turning = false
 var _looking_direction = Vector3.BACK
-var _target_look
-
 var _impulse = 0.0
 
-var _lock_on_enemy: Enemy = null
 
 
 func _ready():
 	Globals.player = self
-	_target_look = camera_controller.rotation.y
 	
 	character.jump_animations.jumped.connect(_jump)
 	character.jump_animations.jump_landed.connect(_jump_landed)
@@ -53,72 +55,22 @@ func _physics_process(delta):
 	rotation_degrees.y = wrapf(rotation_degrees.y, -180, 180.0)
 	
 	# player inputs
-	_move_direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
-	_move_direction.z = Input.get_action_strength("backward") - Input.get_action_strength("forward")
+	move_direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
+	move_direction.z = Input.get_action_strength("backward") - Input.get_action_strength("forward")
 	
 	# retrieve the input direction to send to the animation script
-	input_direction = _move_direction
+	input_direction = move_direction
 	
-	# handles rotating the player.
-	# we want to rotate the player towards the target lock on entity if we are locked on (obviously).
-	# We also want to rotate the player based on the where the character is moving.
-	# So when it isn't locked on, it is handled by the elif block.
-	# But we also want to have this behaviour at certain times while also
-	# locked on. For example, when running away from the target or when jumping
-	if _lock_on_enemy and not (running and input_direction.z > 0) and not (running and jumping):
-		# get the angle towards the lock on target and
-		# smoothyl rotate the player towards it
-		_looking_direction = -global_position.direction_to(_lock_on_enemy.global_position)
-		_target_look = atan2(_looking_direction.x, _looking_direction.z)
-		
-		# This makes the rotation smoother when the player is locked
-		# on and transitions from sprinting to walking
-		var rotation_weight
-		if abs(rotation.y - _target_look) > PI/4:
-			rotation_weight = 0.03
-		else:
-			rotation_weight = 0.2
-		rotation.y = lerp_angle(rotation.y, _target_look, rotation_weight)
-			
-		# change move direction so it orbits the locked on target
-		# (not a perfect orbit, needs tuning but not unplayable)
-		if _move_direction.length() > 0.2:
-			_move_direction = _move_direction.rotated(
-				Vector3.UP, 
-				_target_look + sign(_move_direction.x) * 0.02
-			).normalized()
-			
-	elif _move_direction.length() > 0.2:
-		# get the rotation based on the current velocity direction
-		_turning = true
-		
-		if can_move:
-			_looking_direction = -Vector3(_velocity.x, 0, _velocity.z)				
-		elif can_rotate:
-			_looking_direction = -Vector3(_move_direction.x, 0, _move_direction.z)
-			_looking_direction = _looking_direction.rotated(Vector3.UP, camera_controller.rotation.y).normalized()
-			
-		_target_look = atan2(_looking_direction.x, _looking_direction.z)
-		
-		# swivel the camera in the opposite direction so
-		# it tries to position itself back behind the player
-		# (needs playtesting idk if it's actually good behaviour)
-		if delta and !_lock_on_enemy:
-			camera_controller.player_moving(_move_direction, delta)
+	character.movement_animations.move(input_direction, lock_on_enemy != null, running)	
 	
-		# change move direction so it is relative to where
-		# the camera is facing
-		_move_direction = _move_direction.rotated(Vector3.UP, camera_controller.rotation.y).normalized()
-		
-	# Makes sure the player is rotated fully to the desired direction
-	# even if pressed for a short period of time
-	if _turning:
-		if abs(rotation.y - _target_look) < 0.01:
-			_turning = false
-		rotation.y = lerp_angle(rotation.y, _target_look, 0.1)
+	############################
+	# player rotation
+	############################
 	
-	
-	
+	# handle rotation of the player based on camera, movement, or lock on
+	rotation_component.handle_rotation(delta)
+	move_direction = rotation_component.move_direction
+	_looking_direction = rotation_component.looking_direction
 	
 	############################
 	# secondary movement actions
@@ -126,12 +78,11 @@ func _physics_process(delta):
 	
 	# make sure the user is actually holding down
 	# the run key to make the player run 
-	if Input.is_action_just_pressed("run") and _can_dodge:
+	if Input.is_action_just_pressed("run") and can_dodge:
 		_dodge()
 		_holding_down_run = true
 	if Input.is_action_just_released("run"):
 		_holding_down_run = false
-	
 	
 	
 	
@@ -140,19 +91,19 @@ func _physics_process(delta):
 		jumping = true
 		character.jump_animations.start_jump()
 		
-	# _can_jump is true when the jump animation reaches the point
+	# can_jump is true when the jump animation reaches the point
 	# where the character actually jumps. When this happens,
 	# apply the jumping force
-	if _can_jump:
-		_velocity.y = jump_strength
-		_can_jump = false
+	if can_jump:
+		desired_velocity.y = jump_strength
+		can_jump = false
 	
 		
 		
 		
 	# after doing a running jump and landing on the floor, go back to walking speed for the moment
 	# OR when we jump while running, slow down to walk speed to 'prepare' for the leap
-	if (jumping and is_on_floor() and _speed == run_speed) or (jumping and is_on_floor() and not _can_jump):
+	if (jumping and is_on_floor() and _speed == run_speed) or (jumping and is_on_floor() and not can_jump):
 		_speed = walk_speed
 	elif (_holding_down_run and is_on_floor() and not dodging) or (jumping and running):
 		# change to running speed if pressing the run button
@@ -172,28 +123,23 @@ func _physics_process(delta):
 	################################
 	
 	if _impulse:
-		_velocity = -_looking_direction * _impulse
-	
-	print(_speed)
+		desired_velocity = -_looking_direction * _impulse
 	
 	if can_move:
-		_velocity.x = lerp(_velocity.x, _move_direction.x * _speed, 0.1)
-		_velocity.z = lerp(_velocity.z, _move_direction.z * _speed, 0.1)
+		desired_velocity.x = lerp(desired_velocity.x, move_direction.x * _speed, 0.1)
+		desired_velocity.z = lerp(desired_velocity.z, move_direction.z * _speed, 0.1)
 		
 	if !is_on_floor():
-		_velocity.y -= gravity * delta
+		desired_velocity.y -= gravity * delta
 	elif !jumping:
-		_velocity.y = 0
+		desired_velocity.y = 0
 		
-	velocity = _velocity
+	velocity = desired_velocity
 	move_and_slide()
 	
 	
-func _process(_delta):
-	character.movement_animations.move(input_direction, _lock_on_enemy != null, running)
-	
 func _on_lock_on_system_lock_on(enemy):
-	_lock_on_enemy = enemy
+	lock_on_enemy = enemy
 	camera_controller.lock_on(enemy)
 	
 func _can_rotate(flag: bool):
@@ -201,9 +147,9 @@ func _can_rotate(flag: bool):
 
 func _dodge():
 	if is_on_floor():
-		_can_dodge = false
+		can_dodge = false
 		dodging = true
-		_velocity += _move_direction * 8
+		desired_velocity += move_direction * 8
 		
 		var timer = get_tree().create_timer(0.2)
 		var can_dodge_timer = get_tree().create_timer(0.6)	
@@ -215,10 +161,10 @@ func _finish_dodging():
 	dodging = false
 	
 func _can_dodge_again():
-	_can_dodge = true
+	can_dodge = true
 
 func _jump():
-	_can_jump = true
+	can_jump = true
 
 func _jump_landed():
 	jumping = false
