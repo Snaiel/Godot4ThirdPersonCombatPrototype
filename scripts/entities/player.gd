@@ -124,11 +124,16 @@ func _physics_process(delta):
 	# secondary movement actions
 	############################
 	
+	# make sure the user is actually holding down
+	# the run key to make the player run 
 	if Input.is_action_just_pressed("run") and _can_dodge:
 		_dodge()
 		_holding_down_run = true
 	if Input.is_action_just_released("run"):
 		_holding_down_run = false
+	
+	
+	
 	
 	# start the jump animation when the jump key is pressed
 	if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -139,13 +144,15 @@ func _physics_process(delta):
 	# where the character actually jumps. When this happens,
 	# apply the jumping force
 	if _can_jump:
-		jumping = true
 		_velocity.y = jump_strength
 		_can_jump = false
+	
 		
-	# after doing a running jump and landing on the floor,
-	# go back to walking speed for the moment
-	if jumping and is_on_floor() and _speed == run_speed:
+		
+		
+	# after doing a running jump and landing on the floor, go back to walking speed for the moment
+	# OR when we jump while running, slow down to walk speed to 'prepare' for the leap
+	if (jumping and is_on_floor() and _speed == run_speed) or (jumping and is_on_floor() and not _can_jump):
 		_speed = walk_speed
 	elif (Input.is_action_pressed("run") and not dodging) or (jumping and _speed == run_speed):
 		# change to running speed if pressing the run button
@@ -157,6 +164,9 @@ func _physics_process(delta):
 		# walking speed for everything else
 		_speed = walk_speed
 		running = false
+		
+		
+	
 	
 	################################
 	# applying velocity calculations
@@ -164,6 +174,8 @@ func _physics_process(delta):
 	
 	if _impulse:
 		_velocity = -_looking_direction * _impulse
+	
+	print(_speed)
 	
 	if can_move:
 		_velocity.x = lerp(_velocity.x, _move_direction.x * _speed, 0.1)
