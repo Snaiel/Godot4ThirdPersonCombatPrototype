@@ -37,6 +37,7 @@ var lock_on_enemy: Enemy = null
 
 var _speed: float = 0.0
 var _holding_down_run = false
+var _holding_down_run_timer: Timer
 
 var _looking_direction = Vector3.BACK
 var _impulse = 0.0
@@ -52,6 +53,9 @@ func _ready():
 	attack_component.attacking.connect(_attacking)
 	attack_component.can_rotate.connect(_can_rotate)
 	
+	_holding_down_run_timer = Timer.new()
+	_holding_down_run_timer.timeout.connect(_handle_hold_down_run_timer)
+	add_child(_holding_down_run_timer)
 
 func _physics_process(delta):
 	rotation_degrees.y = wrapf(rotation_degrees.y, -180, 180.0)
@@ -83,8 +87,9 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("run"):
 		if _can_set_intent_to_dodge:
 			_intent_to_dodge = true
-		_holding_down_run = true
+		_holding_down_run_timer.start(0.1)
 	if Input.is_action_just_released("run"):
+		_holding_down_run_timer.stop()
 		_holding_down_run = false
 	
 	print(_holding_down_run)
@@ -150,6 +155,9 @@ func _on_lock_on_system_lock_on(enemy):
 	
 func _can_rotate(flag: bool):
 	can_rotate = flag
+	
+func _handle_hold_down_run_timer():
+	_holding_down_run = true
 
 func _dodge():
 	if is_on_floor():
