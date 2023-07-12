@@ -28,6 +28,8 @@ var jumping = false
 
 var can_dodge = true
 var dodging = false
+var _intent_to_dodge = false
+var _can_set_intent_to_dodge = true
 
 var lock_on_enemy: Enemy = null
 
@@ -78,13 +80,17 @@ func _physics_process(delta):
 	
 	# make sure the user is actually holding down
 	# the run key to make the player run 
-	if Input.is_action_just_pressed("run") and can_dodge:
-		_dodge()
+	if Input.is_action_just_pressed("run"):
+		if _can_set_intent_to_dodge:
+			_intent_to_dodge = true
 		_holding_down_run = true
 	if Input.is_action_just_released("run"):
 		_holding_down_run = false
 	
+	print(_holding_down_run)
 	
+	if can_dodge and _intent_to_dodge:
+		_dodge()
 	
 	# start the jump animation when the jump key is pressed
 	if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -147,18 +153,28 @@ func _can_rotate(flag: bool):
 
 func _dodge():
 	if is_on_floor():
+		_intent_to_dodge = false
+		_can_set_intent_to_dodge = false
 		can_dodge = false
 		dodging = true
 		desired_velocity += move_direction * 8
 		
-		var timer = get_tree().create_timer(0.2)
-		var can_dodge_timer = get_tree().create_timer(0.6)	
+		# how long the dodge status lasts
+		var dodge_timer = get_tree().create_timer(0.2) 
+		# after this time, presing dodge again will dodge as soon as possible
+		var register_next_dodge_timer = get_tree().create_timer(0.3)
+		# this is the time it takes for the next dodge to actually occur
+		var can_dodge_timer = get_tree().create_timer(0.8)	
 		
-		timer.connect("timeout", _finish_dodging)
+		dodge_timer.connect("timeout", _finish_dodging)
+		register_next_dodge_timer.connect("timeout", _register_next_dodge_input)		
 		can_dodge_timer.connect("timeout", _can_dodge_again)	
 	
 func _finish_dodging():
 	dodging = false
+	
+func _register_next_dodge_input():
+	_can_set_intent_to_dodge = true
 	
 func _can_dodge_again():
 	can_dodge = true
