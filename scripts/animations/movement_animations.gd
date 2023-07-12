@@ -11,7 +11,7 @@ func move(dir: Vector3, locked_on: bool, running: bool):
 	
 	_input_dir = _input_dir.lerp(new_dir, 0.1)
 
-	if dir.length() > 0.2:
+	if _input_dir.length() > 0.1:
 		_lock_on_walk_blend = lerp(_lock_on_walk_blend, 1.0, 0.05)
 		anim_tree["parameters/Lock On Walk/blend_position"] = _input_dir
 	else:

@@ -6,7 +6,6 @@ extends Node3D
 var looking_direction: Vector3
 var move_direction: Vector3
 
-
 var _camera_controller: CameraController
 
 var _lock_on_enemy
