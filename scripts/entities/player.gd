@@ -92,7 +92,6 @@ func _physics_process(delta):
 		_holding_down_run_timer.stop()
 		_holding_down_run = false
 	
-	print(_holding_down_run)
 	
 	if can_dodge and _intent_to_dodge:
 		_dodge()

@@ -3,7 +3,7 @@ extends Node3D
 
 @export var player: Player
 
-var looking_direction: Vector3
+var looking_direction: Vector3 = Vector3.BACK
 var move_direction: Vector3
 
 var _camera_controller: CameraController
@@ -27,7 +27,8 @@ var _turning = true
 func _ready():
 	_camera_controller = player.camera_controller
 	_target_look = _camera_controller.rotation.y
-
+	
+	looking_direction = looking_direction.rotated(Vector3.UP, _camera_controller.rotation.y).normalized()
 
 func handle_rotation(delta):
 	_lock_on_enemy = player.lock_on_enemy
