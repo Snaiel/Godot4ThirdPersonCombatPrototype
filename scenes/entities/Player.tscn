@@ -1,32 +1,53 @@
-[gd_scene load_steps=6 format=3 uid="uid://dujukbu10vbmm"]
+[gd_scene load_steps=9 format=3 uid="uid://dujukbu10vbmm"]
 
 [ext_resource type="Script" path="res://scripts/entities/player.gd" id="1_lgfyt"]
 [ext_resource type="Script" path="res://scripts/components/rotation_component.gd" id="3_2h1y6"]
 [ext_resource type="Script" path="res://scripts/components/attack_component.gd" id="3_nq7ea"]
+[ext_resource type="Script" path="res://scripts/components/movement_component.gd" id="3_pph25"]
+[ext_resource type="Script" path="res://scripts/components/jump_component.gd" id="5_20kj8"]
 [ext_resource type="PackedScene" uid="uid://x0oxbha36o2h" path="res://scenes/entities/YBot.tscn" id="5_gusos"]
+[ext_resource type="Script" path="res://scripts/components/dodge_component.gd" id="6_66sk2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lnhvg"]
 radius = 0.3
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("rotation_component", "character", "attack_component")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("character", "movement_component", "jump_component", "dodge_component", "rotation_component", "attack_component")]
 collision_layer = 2
 collision_mask = 9
 script = ExtResource("1_lgfyt")
+character = NodePath("CharacterModel")
+movement_component = NodePath("MovementComponent")
+jump_component = NodePath("JumpComponent")
+dodge_component = NodePath("DodgeComponent")
 rotation_component = NodePath("RotationComponent")
-character = NodePath("YBot")
 attack_component = NodePath("AttackComponent")
 
-[node name="CapsuleCollider" type="CollisionShape3D" parent="."]
+[node name="Collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.135378, 0)
 shape = SubResource("CapsuleShape3D_lnhvg")
 
-[node name="YBot" parent="." instance=ExtResource("5_gusos")]
+[node name="CharacterModel" parent="." instance=ExtResource("5_gusos")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1.14092, 0)
 
 [node name="RotationComponent" type="Node3D" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("3_2h1y6")
 player = NodePath("..")
 
+[node name="MovementComponent" type="Node3D" parent="." node_paths=PackedStringArray("target_entity", "rotation_component")]
+script = ExtResource("3_pph25")
+target_entity = NodePath("..")
+rotation_component = NodePath("../RotationComponent")
+
+[node name="JumpComponent" type="Node3D" parent="." node_paths=PackedStringArray("character", "movement_component")]
+script = ExtResource("5_20kj8")
+character = NodePath("../CharacterModel")
+movement_component = NodePath("../MovementComponent")
+
+[node name="DodgeComponent" type="Node3D" parent="." node_paths=PackedStringArray("entity", "movement_component")]
+script = ExtResource("6_66sk2")
+entity = NodePath("..")
+movement_component = NodePath("../MovementComponent")
+
 [node name="AttackComponent" type="Node3D" parent="." node_paths=PackedStringArray("character")]
 script = ExtResource("3_nq7ea")
-character = NodePath("../YBot")
+character = NodePath("../CharacterModel")

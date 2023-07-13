@@ -8,19 +8,10 @@ var move_direction: Vector3
 
 var _camera_controller: CameraController
 
-var _lock_on_enemy
-var _running: bool
-var _jumping: bool
-
-var _input_direction: Vector3
-
-var _can_move: bool
-var _can_rotate: bool
-
-var _velocity: Vector3
-
 var _target_look: float
 var _turning = true
+
+var rotate_towards_target = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -31,22 +22,19 @@ func _ready():
 	looking_direction = looking_direction.rotated(Vector3.UP, _camera_controller.rotation.y).normalized()
 
 func handle_rotation(delta):
-	_lock_on_enemy = player.lock_on_enemy
-	_running = player.running
-	_jumping = player.jumping
-	_input_direction = player.input_direction
-	move_direction = player.move_direction
-	_can_move = player.can_move
-	_can_rotate = player.can_rotate
-	_velocity = player.desired_velocity
+	player.rotation_degrees.y = wrapf(player.rotation_degrees.y, -180, 180.0)
 	
-	# handles rotating the player.
-	# we want to rotate the player towards the target lock on entity if we are locked on (obviously).
-	# We also want to rotate the player based on the where the character is moving.
-	# So when it isn't locked on, it is handled by the elif block.
-	# But we also want to have this behaviour at certain times while also
-	# locked on. For example, when _running away from the target or when _jumping
-	if _lock_on_enemy and not (_running and _input_direction.z > 0) and not (_running and _jumping):
+	var _lock_on_enemy = player.lock_on_enemy
+	var _input_direction = player.input_direction
+	var _can_move = player.movement_component.can_move
+	var _can_rotate = player.can_rotate
+	var _velocity = player.movement_component.desired_velocity
+	
+#	print(_input_direction)
+	move_direction = _input_direction
+	
+	
+	if rotate_towards_target:
 		# get the angle towards the lock on target and
 		# smoothyl rotate the player towards it
 		looking_direction = -global_position.direction_to(_lock_on_enemy.global_position)
@@ -69,7 +57,7 @@ func handle_rotation(delta):
 				_target_look + sign(move_direction.x) * 0.02
 			).normalized()
 			
-	elif move_direction.length() > 0.2:
+	elif _input_direction.length() > 0.2:
 		# get the rotation based on the current velocity direction
 		_turning = true
 		
@@ -97,3 +85,4 @@ func handle_rotation(delta):
 		if abs(player.rotation.y - _target_look) < 0.01:
 			_turning = false
 		player.rotation.y = lerp_angle(player.rotation.y, _target_look, 0.1)
+		

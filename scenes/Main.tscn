@@ -81,10 +81,6 @@ player = NodePath("../Player")
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera_controller") instance=ExtResource("2_thr8q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5071, 2, 16.6948)
-walk_speed = 3.0
-run_speed = 6
-jump_strength = 8
-gravity = 20
 camera_controller = NodePath("../CameraController")
 
 [node name="Enemies" type="Node3D" parent="."]
