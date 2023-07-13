@@ -24,13 +24,14 @@ func _ready():
 func handle_rotation(delta):
 	player.rotation_degrees.y = wrapf(player.rotation_degrees.y, -180, 180.0)
 	
+	
 	var _lock_on_enemy = player.lock_on_enemy
 	var _input_direction = player.input_direction
 	var _can_move = player.movement_component.can_move
 	var _can_rotate = player.can_rotate
 	var _velocity = player.movement_component.desired_velocity
 	
-#	print(_input_direction)
+	
 	move_direction = _input_direction
 	
 	
@@ -40,6 +41,7 @@ func handle_rotation(delta):
 		looking_direction = -global_position.direction_to(_lock_on_enemy.global_position)
 		_target_look = atan2(looking_direction.x, looking_direction.z)
 		
+		
 		# This makes the rotation smoother when the player is locked
 		# on and transitions from sprinting to walking
 		var rotation_weight
@@ -48,6 +50,7 @@ func handle_rotation(delta):
 		else:
 			rotation_weight = 0.2
 		player.rotation.y = lerp_angle(player.rotation.y, _target_look, rotation_weight)
+			
 			
 		# change move direction so it orbits the locked on target
 		# (not a perfect orbit, needs tuning but not unplayable)
@@ -61,13 +64,16 @@ func handle_rotation(delta):
 		# get the rotation based on the current velocity direction
 		_turning = true
 		
+		
 		if _can_move and _velocity.length() > 0:
 			looking_direction = -Vector3(_velocity.x, 0, _velocity.z)				
 		elif _can_rotate:
 			looking_direction = -Vector3(move_direction.x, 0, move_direction.z)
 			looking_direction = looking_direction.rotated(Vector3.UP, _camera_controller.rotation.y).normalized()
 		
+		
 		_target_look = atan2(looking_direction.x, looking_direction.z)
+		
 		
 		# swivel the camera in the opposite direction so
 		# it tries to position itself back behind the player
@@ -75,9 +81,11 @@ func handle_rotation(delta):
 		if delta and !_lock_on_enemy:
 			_camera_controller.player_moving(move_direction, delta)
 	
+	
 		# change move direction so it is relative to where
 		# the camera is facing
 		move_direction = move_direction.rotated(Vector3.UP, _camera_controller.rotation.y).normalized()
+		
 		
 	# Makes sure the player is rotated fully to the desired direction
 	# even if pressed for a short period of time

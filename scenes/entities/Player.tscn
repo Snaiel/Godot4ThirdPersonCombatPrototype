@@ -48,6 +48,7 @@ script = ExtResource("6_66sk2")
 entity = NodePath("..")
 movement_component = NodePath("../MovementComponent")
 
-[node name="AttackComponent" type="Node3D" parent="." node_paths=PackedStringArray("character")]
+[node name="AttackComponent" type="Node3D" parent="." node_paths=PackedStringArray("character", "movement_component")]
 script = ExtResource("3_nq7ea")
 character = NodePath("../CharacterModel")
+movement_component = NodePath("../MovementComponent")

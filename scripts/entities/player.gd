@@ -31,8 +31,8 @@ func _ready():
 	character.jump_animations.jumped.connect(jump_component.jump)
 	character.jump_animations.jump_landed.connect(jump_component.jump_landed)
 	
-#	attack_component.attacking.connect(_attacking)
-	attack_component.can_rotate.connect(_can_rotate)
+	attack_component.can_move.connect(_receive_can_move)
+	attack_component.can_rotate.connect(_receive_can_rotate)
 	
 	_holding_down_run_timer = Timer.new()
 	_holding_down_run_timer.timeout.connect(_handle_hold_down_run_timer)
@@ -92,13 +92,18 @@ func _physics_process(delta):
 		movement_component.speed_to_walk()
 		running = false
 		
+	movement_component.can_move = can_move
 
 func _on_lock_on_system_lock_on(enemy):
 	lock_on_enemy = enemy
 	camera_controller.lock_on(enemy)
 	
+
+func _receive_can_move(flag: bool):
+	can_move = flag
 	
-func _can_rotate(flag: bool):
+	
+func _receive_can_rotate(flag: bool):
 	can_rotate = flag
 	
 	

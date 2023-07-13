@@ -1,6 +1,8 @@
 class_name AttackAnimations
 extends BaseAnimations
 
+signal secondary_movement
+signal can_rotate(flag: bool)
 signal can_attack_again(flag: bool)
 signal attacking_finished
 
@@ -65,9 +67,12 @@ func attack(level: int):
 	_level = level	
 
 
+func receive_secondary_movement():
+	secondary_movement.emit()
+
+
 func prevent_rotation():
-	var flag = false
-	parent_animations.movement_animations.can_rotate.emit(flag)
+	can_rotate.emit(false)
 	
 	
 func recieve_can_play_animation():
@@ -87,5 +92,5 @@ func receive_attack_finished():
 	if _intend_to_stop_attacking:
 		_can_play_animation = true
 		attacking_finished.emit()
-		parent_animations.movement_animations.can_rotate.emit(true)
+		can_rotate.emit(true)
 		_attacking = false
