@@ -35,6 +35,8 @@ func _attack():
 			attack_level = 1
 				
 		can_attack = false
+		
+		can_rotate.emit(true)
 		can_move.emit(false)
 		character.attack_animations.attack(attack_level)
 	
