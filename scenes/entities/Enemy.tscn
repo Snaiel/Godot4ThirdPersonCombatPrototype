@@ -1,17 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://cv8knl5vavfyy"]
+[gd_scene load_steps=11 format=3 uid="uid://cv8knl5vavfyy"]
 
 [ext_resource type="Script" path="res://scripts/entities/enemy.gd" id="1_nrck3"]
+[ext_resource type="PackedScene" uid="uid://blqmpc6qop5nm" path="res://scenes/entities/EnemyBot.tscn" id="2_bivj4"]
 [ext_resource type="PackedScene" uid="uid://cko2lhqdu4n44" path="res://scenes/components/HitboxComponent.tscn" id="2_h2tgk"]
 [ext_resource type="PackedScene" uid="uid://cq3fjofav3npm" path="res://scenes/components/HealthComponent.tscn" id="3_c0k3s"]
 [ext_resource type="Material" uid="uid://ddlvel7t33vc8" path="res://materials/blood.tres" id="4_conbd"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t3wl8"]
-albedo_color = Color(0.898039, 0.278431, 0.137255, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_gkoum"]
-material = SubResource("StandardMaterial3D_t3wl8")
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lwy87"]
+radius = 0.3
+height = 1.8
 
 [sub_resource type="Curve" id="Curve_ngpsf"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.829457, 0.6), -1.80419, -1.80419, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -37,8 +34,8 @@ collision_layer = 8
 collision_mask = 3
 script = ExtResource("1_nrck3")
 
-[node name="Model" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_gkoum")
+[node name="EnemyBot" parent="." instance=ExtResource("2_bivj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.916228, 0)
 
 [node name="Collider" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_lwy87")

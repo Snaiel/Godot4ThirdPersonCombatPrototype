@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://blqmpc6qop5nm"]
+
+[ext_resource type="PackedScene" uid="uid://x0oxbha36o2h" path="res://scenes/entities/YBot.tscn" id="1_pjo7l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v44eh"]
+albedo_color = Color(0.752941, 0.109804, 0.109804, 1)
+
+[node name="EnemyBot" instance=ExtResource("1_pjo7l")]
+
+[node name="Alpha_Surface" parent="Armature_004/GeneralSkeleton" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v44eh")
+
+[node name="AnimationTree" parent="." index="2"]
+root_motion_track = NodePath("../Armature_004/GeneralSkeleton")

@@ -3,6 +3,8 @@
 [ext_resource type="Script" path="res://scripts/components/hitbox_component.gd" id="1_4x2gt"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hdxcr"]
+radius = 0.3
+height = 1.8
 
 [node name="EntityHitbox" type="Area3D"]
 collision_layer = 8
