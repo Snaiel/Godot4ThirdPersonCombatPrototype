@@ -64,7 +64,7 @@ func _receive_movement():
 		2:
 			movement_component.set_secondary_movement(0.3, 1.2)
 		3:
-			movement_component.set_secondary_movement(1.5, 0.2)
+			movement_component.set_secondary_movement(1.2, 0.2)
 		4:
 			movement_component.set_secondary_movement(-0.8, 0.2)
 		

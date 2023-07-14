@@ -97,9 +97,9 @@ func receive_attack_finished():
 		_attacking = false
 
 
-func _receive_can_damage():
+func receive_can_damage():
 	can_damage.emit(true)
 	
 
-func _receive_cannot_damage():
+func receive_cannot_damage():
 	can_damage.emit(false)
