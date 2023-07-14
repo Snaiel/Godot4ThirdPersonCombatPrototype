@@ -11,6 +11,7 @@ A base project for third person combat. Contains a simple setup for player movem
 - https://www.youtube.com/watch?v=2gx1lfhqnFM as an introduction to blend trees
 - https://www.youtube.com/watch?v=fq0hR2tIsRk showed how to enable root motion
 - https://github.com/finepointcgi/Mixamo-Root blender addon for adding root bone to animations
+- https://www.youtube.com/watch?v=A2JMYQBWeig for showing how to attach weapons to a character
 
 # Attribution
 Giving credit is not necessary but much appreciated!
