@@ -2,6 +2,7 @@ class_name AttackAnimations
 extends BaseAnimations
 
 signal secondary_movement
+signal can_damage(flag: bool)
 signal can_rotate(flag: bool)
 signal can_attack_again(flag: bool)
 signal attacking_finished
@@ -94,3 +95,11 @@ func receive_attack_finished():
 		attacking_finished.emit()
 		can_rotate.emit(true)
 		_attacking = false
+
+
+func _receive_can_damage():
+	can_damage.emit(true)
+	
+
+func _receive_cannot_damage():
+	can_damage.emit(false)

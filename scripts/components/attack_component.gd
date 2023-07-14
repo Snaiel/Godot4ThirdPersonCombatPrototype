@@ -6,6 +6,7 @@ signal can_move(flag: bool)
 
 @export var character: PlayerAnimations
 @export var movement_component: MovementComponent
+@export var weapon: Sword
 @export var attack_level = 1
 @export var can_attack = true
 
@@ -15,6 +16,7 @@ var _can_attack_again: bool
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	character.attack_animations.secondary_movement.connect(_receive_movement)
+	character.attack_animations.can_damage.connect(_receive_can_damage)	
 	character.attack_animations.attacking_finished.connect(_receive_attacking_finished)
 	character.attack_animations.can_attack_again.connect(_receive_can_attack_again)
 	character.attack_animations.can_rotate.connect(_receive_rotation)
@@ -66,3 +68,6 @@ func _receive_movement():
 		4:
 			movement_component.set_secondary_movement(-0.8, 0.2)
 		
+		
+func _receive_can_damage(flag: bool):
+	weapon.can_damage = flag

@@ -47,7 +47,7 @@ shape = SubResource("CapsuleShape3D_lwy87")
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("hitbox", "blood") instance=ExtResource("3_c0k3s")]
 hitbox = NodePath("../HitboxComponent")
-health = 30
+health = 50
 blood = NodePath("Blood")
 
 [node name="Blood" type="GPUParticles3D" parent="HealthComponent"]
@@ -60,5 +60,7 @@ randomness = 0.5
 process_material = SubResource("ParticleProcessMaterial_ju3bf")
 draw_pass_1 = SubResource("BoxMesh_ijk3c")
 
+[connection signal="area_entered" from="HitboxComponent" to="HitboxComponent" method="_on_area_entered"]
+[connection signal="area_exited" from="HitboxComponent" to="HitboxComponent" method="_on_area_exited"]
 [connection signal="weapon_hit" from="HitboxComponent" to="." method="_on_entity_hitbox_weapon_hit"]
 [connection signal="zero_health" from="HealthComponent" to="." method="_on_health_component_zero_health"]
