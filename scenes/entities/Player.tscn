@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dujukbu10vbmm"]
+[gd_scene load_steps=10 format=3 uid="uid://dujukbu10vbmm"]
 
 [ext_resource type="Script" path="res://scripts/entities/player.gd" id="1_lgfyt"]
 [ext_resource type="Script" path="res://scripts/components/rotation_component.gd" id="3_2h1y6"]
@@ -10,6 +10,11 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lnhvg"]
 radius = 0.3
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_dg00e"]
+top_radius = 0.02
+bottom_radius = 0.02
+height = 1.0
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("character", "movement_component", "jump_component", "dodge_component", "rotation_component", "attack_component")]
 collision_layer = 2
@@ -28,6 +33,15 @@ shape = SubResource("CapsuleShape3D_lnhvg")
 
 [node name="CharacterModel" parent="." instance=ExtResource("5_gusos")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1.14092, 0)
+
+[node name="Sword" type="BoneAttachment3D" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2"]
+transform = Transform3D(7.54791e-07, -1, -8.41021e-05, 5.5829e-07, 8.41021e-05, -1, 1, 7.54744e-07, 5.58354e-07, -0.737829, 1.43565, -0.0617133)
+bone_name = "RightHand"
+bone_idx = 35
+
+[node name="SwordMesh" type="MeshInstance3D" parent="CharacterModel/Armature_004/GeneralSkeleton/Sword"]
+transform = Transform3D(-0.891467, -0.453089, -3.91618e-05, 0.453089, -0.891468, -0.000158824, 3.70497e-05, -0.00015933, 1, 0.168411, 0.443186, 0.0233156)
+mesh = SubResource("CylinderMesh_dg00e")
 
 [node name="RotationComponent" type="Node3D" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("3_2h1y6")
@@ -52,3 +66,5 @@ movement_component = NodePath("../MovementComponent")
 script = ExtResource("3_nq7ea")
 character = NodePath("../CharacterModel")
 movement_component = NodePath("../MovementComponent")
+
+[editable path="CharacterModel"]
