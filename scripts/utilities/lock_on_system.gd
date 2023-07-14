@@ -1,14 +1,14 @@
 class_name LockOnSystem
-extends Area3D
+extends LockOnComponent
 
-signal lock_on(enemy: Enemy)
+signal lock_on(target: LockOnComponent)
 
 @export var player: Player
 
 @export_category("Enemies")
-@export var enemy: Enemy = null
-@export var potential_target: Enemy = null
-@export var enemy_detection_range = 20
+@export var target: LockOnComponent = null
+@export var potential_target: LockOnComponent = null
+@export var target_detection_range = 20
 
 
 @export_category("Changing Target")
@@ -16,7 +16,7 @@ signal lock_on(enemy: Enemy)
 @export var change_target_wait_time = 0.2
 @export var can_change_target = true
 
-var _enemies_nearby: Array[Enemy]
+var _targets_nearby: Array[LockOnComponent]
 
 @onready var _change_target_timer = $ChangeTargetTimer
 
@@ -25,22 +25,22 @@ var _enemies_nearby: Array[Enemy]
 func _ready():
 	Globals.lock_on_system = self
 	_change_target_timer.wait_time = change_target_wait_time
-	$EnemyDetectionSphere.shape.radius = enemy_detection_range
+	$EnemyDetectionSphere.shape.radius = target_detection_range
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	position = player.position
 	
 	if Input.is_action_just_pressed("lock_on"):
-		if enemy:
-			enemy = null
+		if target:
+			target = null
 		else:
-			_choose_lock_on_enemy()
-		lock_on.emit(enemy)
+			_choose_lock_on_target()
+		lock_on.emit(target)
 		
 func _input(event):
 	if event is InputEventMouseMotion:
-		if not enemy:
+		if not target:
 			return
 		
 		var current_mouse_pos = event.relative
@@ -51,142 +51,142 @@ func _input(event):
 			else:
 				_change_target_left()
 			
-			lock_on.emit(enemy)			
+			lock_on.emit(target)			
 			can_change_target = false
 			_change_target_timer.start()
 
-func _on_body_entered(body: Enemy):
-	if body not in _enemies_nearby:
-		_enemies_nearby.append(body)
-		body.death.connect(_enemy_death)
+func _on_area_entered(area: LockOnComponent):
+	if area not in _targets_nearby:
+		_targets_nearby.append(area)
+		area.destroyed.connect(_target_destroyed)
 	
-func _on_body_exited(body: Enemy):
-	_enemies_nearby.erase(body)
-	body.death.disconnect(_enemy_death)
+func _on_area_exited(area: LockOnComponent):
+	_targets_nearby.erase(area)
+	area.destroyed.disconnect(_target_destroyed)
 	
 func _on_change_target_timer_timeout():
 	can_change_target = true
 	
-func _enemy_death(e):
-	_enemies_nearby.erase(e)
-	_choose_lock_on_enemy()
-	lock_on.emit(enemy)		
+func _target_destroyed(t):
+	_targets_nearby.erase(t)
+	_choose_lock_on_target()
+	lock_on.emit(target)		
 	
-func _can_see_enemy(e: Enemy) -> bool:
+func _can_see_target(t: LockOnComponent) -> bool:
 	var can_see: bool = true
 	var cam = get_viewport().get_camera_3d()	
 	
 	var space_state = get_world_3d().direct_space_state
-	var query = PhysicsRayQueryParameters3D.create(cam.global_position, e.position, 1)
+	var query = PhysicsRayQueryParameters3D.create(cam.global_position, t.global_position, 1)
 	var result = space_state.intersect_ray(query)
 	
 	can_see = result.size() == 0
 	
 	return can_see
 	
-func _get_enemies_in_front() -> Array[Enemy]:
-	var enemies: Array[Enemy] = []
+func _get_targets_in_front() -> Array[LockOnComponent]:
+	var targets: Array[LockOnComponent] = []
 	var cam = get_viewport().get_camera_3d()
 	
-	for e in _enemies_nearby:
-		if not cam.is_position_behind(e.position) and _can_see_enemy(e):
-			enemies.append(e)
+	for t in _targets_nearby:
+		if not cam.is_position_behind(t.global_position) and _can_see_target(t):
+			targets.append(t)
 			
-	return enemies
+	return targets
 	
-func _get_enemies_in_frustum() -> Array[Enemy]:
-	var enemies: Array[Enemy] = []
+func _get_targets_in_frustum() -> Array[LockOnComponent]:
+	var targets: Array[LockOnComponent] = []
 	var cam = get_viewport().get_camera_3d()
 	
-	for e in _enemies_nearby:
-		if e != enemy and cam.is_position_in_frustum(e.position) and _can_see_enemy(e):
-			enemies.append(e)
+	for t in _targets_nearby:
+		if t != target and cam.is_position_in_frustum(t.global_position) and _can_see_target(t):
+			targets.append(t)
 			
-	return enemies
+	return targets
 
-func _choose_lock_on_enemy():
+func _choose_lock_on_target():
 	var cam = get_viewport().get_camera_3d()
 	var viewport_center = Vector2(get_viewport().size / 2)	
-	var enemies_in_frustum = _get_enemies_in_frustum()
+	var targets_in_frustum = _get_targets_in_frustum()
 	
 	var closest_dist: float 
-	var closest_enemy: Enemy = null
+	var closest_target: LockOnComponent = null
 			
-	if enemies_in_frustum.size() == 0:
-		enemy = null
+	if targets_in_frustum.size() == 0:
+		target = null
 		return
 	
-	for e in enemies_in_frustum:
-		var dist = viewport_center.distance_to(cam.unproject_position(e.position))
-		if closest_enemy == null or dist < closest_dist:
+	for t in targets_in_frustum:
+		var dist = viewport_center.distance_to(cam.unproject_position(t.global_position))
+		if closest_target == null or dist < closest_dist:
 			closest_dist = dist
-			closest_enemy = e
+			closest_target = t
 	
-	enemy = closest_enemy
+	target = closest_target
 
 func _change_target_right():
 	var cam = get_viewport().get_camera_3d()
-	var enemies_in_frustum = _get_enemies_in_front()
+	var targets_in_frustum = _get_targets_in_front()
 			
-	if enemies_in_frustum.size() == 0:
-		enemy = null
+	if targets_in_frustum.size() == 0:
+		target = null
 		return
-	enemies_in_frustum.erase(enemy)
+	targets_in_frustum.erase(target)
 	
 	var closest_dist: float 
-	var target_enemy: Enemy = null
-	var current_target_pos = cam.unproject_position(enemy.position)
+	var target_target: LockOnComponent = null
+	var current_target_pos = cam.unproject_position(target.global_position)
 	
-	for e in enemies_in_frustum:
-		var pos = cam.unproject_position(e.position)
+	for t in targets_in_frustum:
+		var pos = cam.unproject_position(t.global_position)
 		var dist = current_target_pos.distance_to(pos)
 		
-		if pos.x > current_target_pos.x and (target_enemy == null or dist <= closest_dist):
+		if pos.x > current_target_pos.x and (target_target == null or dist <= closest_dist):
 			closest_dist = dist
-			target_enemy = e
+			target_target = t
 			
-	if not target_enemy:
+	if not target_target:
 		var furthest_dst: float
-		for e in enemies_in_frustum:
-			var pos = cam.unproject_position(e.position)
+		for t in targets_in_frustum:
+			var pos = cam.unproject_position(t.global_position)
 			var dist = current_target_pos.distance_to(pos)
 			
-			if pos.x < current_target_pos.x and (target_enemy == null or dist >= furthest_dst):
+			if pos.x < current_target_pos.x and (target_target == null or dist >= furthest_dst):
 				furthest_dst = dist
-				target_enemy = e
+				target_target = t
 			
-	enemy = target_enemy if target_enemy else enemy
+	target = target_target if target_target else target
 	
 	
 func _change_target_left():
 	var cam = get_viewport().get_camera_3d()
-	var enemies_in_frustum = _get_enemies_in_front()
+	var targets_in_frustum = _get_targets_in_front()
 			
-	if enemies_in_frustum.size() == 0:
-		enemy = null
+	if targets_in_frustum.size() == 0:
+		target = null
 		return
-	enemies_in_frustum.erase(enemy)
+	targets_in_frustum.erase(target)
 	
 	var closest_dist: float 
-	var target_enemy: Enemy = null
-	var current_target_pos = cam.unproject_position(enemy.position)
+	var target_target: LockOnComponent = null
+	var current_target_pos = cam.unproject_position(target.global_position)
 	
-	for e in enemies_in_frustum:
-		var pos = cam.unproject_position(e.position)
+	for t in targets_in_frustum:
+		var pos = cam.unproject_position(t.global_position)
 		var dist = current_target_pos.distance_to(pos)
 		
-		if pos.x < current_target_pos.x and (target_enemy == null or dist <= closest_dist):
+		if pos.x < current_target_pos.x and (target_target == null or dist <= closest_dist):
 			closest_dist = dist
-			target_enemy = e
+			target_target = t
 			
-	if not target_enemy:
+	if not target_target:
 		var furthest_dst: float
-		for e in enemies_in_frustum:
-			var pos = cam.unproject_position(e.position)
+		for t in targets_in_frustum:
+			var pos = cam.unproject_position(t.global_position)
 			var dist = current_target_pos.distance_to(pos)
 			
-			if pos.x > current_target_pos.x and (target_enemy == null or dist >= furthest_dst):
+			if pos.x > current_target_pos.x and (target_target == null or dist >= furthest_dst):
 				furthest_dst = dist
-				target_enemy = e
+				target_target = t
 			
-	enemy = target_enemy if target_enemy else enemy
+	target = target_target if target_target else target

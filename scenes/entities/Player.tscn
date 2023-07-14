@@ -106,7 +106,7 @@ bones/63/rotation = Quaternion(0.06606, 0.413479, -0.902405, -0.101664)
 bones/64/rotation = Quaternion(1.23444e-07, 0.99684, 0.0794273, 2.13996e-09)
 
 [node name="Sword" type="BoneAttachment3D" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2"]
-transform = Transform3D(-0.865693, 0.499755, -0.0286506, 0.11819, 0.148445, -0.981833, -0.486423, -0.853352, -0.187573, 0.175637, 1.19929, 0.109227)
+transform = Transform3D(-0.865693, 0.499754, -0.0286509, 0.11819, 0.148445, -0.981832, -0.486422, -0.853352, -0.187573, 0.175637, 1.19929, 0.109227)
 bone_name = "RightHand"
 bone_idx = 35
 script = ExtResource("3_7pxxd")

@@ -25,7 +25,7 @@ func handle_rotation(delta):
 	player.rotation_degrees.y = wrapf(player.rotation_degrees.y, -180, 180.0)
 	
 	
-	var _lock_on_enemy = player.lock_on_enemy
+	var _lock_on_target = player.lock_on_target
 	var _input_direction = player.input_direction
 	var _can_move = player.movement_component.can_move
 	var _can_rotate = player.can_rotate
@@ -38,7 +38,7 @@ func handle_rotation(delta):
 	if rotate_towards_target:
 		# get the angle towards the lock on target and
 		# smoothyl rotate the player towards it
-		looking_direction = -global_position.direction_to(_lock_on_enemy.global_position)
+		looking_direction = -global_position.direction_to(_lock_on_target.global_position)
 		_target_look = atan2(looking_direction.x, looking_direction.z)
 		
 		
@@ -78,7 +78,7 @@ func handle_rotation(delta):
 		# swivel the camera in the opposite direction so
 		# it tries to position itself back behind the player
 		# (needs playtesting idk if it's actually good behaviour)
-		if delta and !_lock_on_enemy:
+		if delta and !_lock_on_target:
 			_camera_controller.player_moving(move_direction, delta)
 	
 	

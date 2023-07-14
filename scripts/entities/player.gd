@@ -17,7 +17,7 @@ var running = false
 
 var can_rotate = true
 
-var lock_on_enemy: Enemy = null
+var lock_on_target: LockOnComponent = null
 
 
 var _holding_down_run = false
@@ -44,7 +44,7 @@ func _physics_process(delta):
 	input_direction.z = Input.get_action_strength("backward") - Input.get_action_strength("forward")
 	
 	
-	character.movement_animations.move(input_direction, lock_on_enemy != null, running)	
+	character.movement_animations.move(input_direction, lock_on_target != null, running)	
 	
 	
 	# handle rotation of the player based on camera, movement, or lock on
@@ -54,7 +54,7 @@ func _physics_process(delta):
 	# So when it isn't locked on, it is handled by the elif block.
 	# But we also want to have this behaviour at certain times while also
 	# locked on. For example, when _running away from the target or when _jumping
-	if lock_on_enemy and not (running and input_direction.z > 0) and not (running and jump_component.jumping):
+	if lock_on_target and not (running and input_direction.z > 0) and not (running and jump_component.jumping):
 		rotate_towards_target = true
 		
 	rotation_component.rotate_towards_target = rotate_towards_target
@@ -94,9 +94,9 @@ func _physics_process(delta):
 		
 	movement_component.can_move = can_move
 
-func _on_lock_on_system_lock_on(enemy):
-	lock_on_enemy = enemy
-	camera_controller.lock_on(enemy)
+func _on_lock_on_system_lock_on(target):
+	lock_on_target = target
+	camera_controller.lock_on(target)
 	
 
 func _receive_can_move(flag: bool):

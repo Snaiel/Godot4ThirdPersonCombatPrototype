@@ -17,7 +17,7 @@ extends SpringArm3D
 @export var lock_on_min_distance = 1
 @export var lock_on_max_distance = 10
 
-var _lock_on_enemy: Enemy = null
+var _lock_on_target: LockOnComponent = null
 var _player_looking_around = false
 var _temp_lock_on_min_angle: float
 var _temp_lock_on_max_angle: float
@@ -44,7 +44,7 @@ func _ready():
 	_temp_lock_on_max_angle = lock_on_max_angle	
 	
 func _physics_process(_delta):
-	locked_on = _lock_on_enemy != null
+	locked_on = _lock_on_target != null
 	position = position.lerp(player.position + Vector3(0, vertical_offset, 0), 0.1)
 	
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -59,12 +59,12 @@ func _physics_process(_delta):
 		lock_on_max_angle = lerp(lock_on_max_angle, _temp_lock_on_max_angle, 0.1)
 		lock_on_min_angle = lerp(lock_on_min_angle, _temp_lock_on_min_angle, 0.1)				
 		
-	if _lock_on_enemy:
-		var _looking_direction = -global_position.direction_to(_lock_on_enemy.position)
+	if _lock_on_target:
+		var _looking_direction = -global_position.direction_to(_lock_on_target.global_position)
 		var _target_look = atan2(_looking_direction.x, _looking_direction.z)
 		var desired_rotation_y = lerp_angle(rotation.y, _target_look, 0.05)
 
-		var clamped_distance = clamp(position.distance_to(_lock_on_enemy.position), lock_on_min_distance, lock_on_max_distance)
+		var clamped_distance = clamp(position.distance_to(_lock_on_target.global_position), lock_on_min_distance, lock_on_max_distance)
 		var normalized_distance = (clamped_distance - lock_on_min_distance) / (lock_on_max_distance - lock_on_min_distance)
 		normalized_distance = smoothstep(0.0, 1.0, normalized_distance)
 		var angle = lerp(lock_on_max_angle, lock_on_min_angle, normalized_distance)
@@ -74,7 +74,7 @@ func _physics_process(_delta):
 		rotation.x = lerp(rotation.x, desired_rotation_x, 0.05)
 		
 func _unhandled_input(event):
-	if event is InputEventMouseMotion and not _lock_on_enemy:
+	if event is InputEventMouseMotion and not _lock_on_target:
 		_player_looking_around = true
 		var new_rotation_x = rotation.x - event.relative.y * mouse_sensitivity
 		rotation.x = lerp(rotation.x, new_rotation_x, 0.8)
@@ -91,9 +91,9 @@ func player_moving(move_direction: Vector3, delta):
 		var new_rotation = rotation.y - sign(move_direction.x) * delta * autonomous_speed
 		rotation.y = lerp(rotation.y, new_rotation, 0.2)
 
-func get_lock_on_position(enemy: Enemy) -> Vector2:
-	var pos = cam.unproject_position(enemy.global_position)
+func get_lock_on_position(target: LockOnComponent) -> Vector2:
+	var pos = cam.unproject_position(target.global_position)
 	return pos
 
-func lock_on(enemy: Enemy):
-	_lock_on_enemy = enemy
+func lock_on(target: LockOnComponent):
+	_lock_on_target = target

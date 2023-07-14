@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://cv8knl5vavfyy"]
+[gd_scene load_steps=12 format=3 uid="uid://cv8knl5vavfyy"]
 
 [ext_resource type="Script" path="res://scripts/entities/enemy.gd" id="1_nrck3"]
 [ext_resource type="PackedScene" uid="uid://blqmpc6qop5nm" path="res://scenes/entities/EnemyBot.tscn" id="2_bivj4"]
 [ext_resource type="PackedScene" uid="uid://cko2lhqdu4n44" path="res://scenes/components/HitboxComponent.tscn" id="2_h2tgk"]
 [ext_resource type="PackedScene" uid="uid://cq3fjofav3npm" path="res://scenes/components/HealthComponent.tscn" id="3_c0k3s"]
 [ext_resource type="Material" uid="uid://ddlvel7t33vc8" path="res://materials/blood.tres" id="4_conbd"]
+[ext_resource type="PackedScene" uid="uid://ia1adrmqd0lf" path="res://scenes/components/LockOnComponent.tscn" id="6_nxetg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lwy87"]
 radius = 0.3
@@ -56,6 +57,9 @@ explosiveness = 0.8
 randomness = 0.5
 process_material = SubResource("ParticleProcessMaterial_ju3bf")
 draw_pass_1 = SubResource("BoxMesh_ijk3c")
+
+[node name="LockOnComponent" parent="." instance=ExtResource("6_nxetg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [connection signal="area_entered" from="HitboxComponent" to="HitboxComponent" method="_on_area_entered"]
 [connection signal="area_exited" from="HitboxComponent" to="HitboxComponent" method="_on_area_exited"]

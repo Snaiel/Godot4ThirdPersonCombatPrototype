@@ -1,3 +1,4 @@
+class_name HealthComponent
 extends Node3D
 
 signal zero_health
