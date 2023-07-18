@@ -6,6 +6,7 @@ extends CharacterBody3D
 @export var camera_controller: CameraController
 @export var movement_component: MovementComponent
 @export var jump_component: JumpComponent
+@export var block_component: BlockComponent
 @export var dodge_component: DodgeComponent
 @export var rotation_component: RotationComponent
 @export var attack_component: AttackComponent
@@ -19,10 +20,8 @@ var can_rotate = true
 
 var lock_on_target: LockOnComponent = null
 
-
 var _holding_down_run = false
 var _holding_down_run_timer: Timer
-
 
 
 func _ready():
@@ -60,6 +59,11 @@ func _physics_process(delta):
 	rotation_component.rotate_towards_target = rotate_towards_target
 	rotation_component.handle_rotation(delta)
 	movement_component.move_direction = rotation_component.move_direction
+	
+	if Input.is_action_pressed("block"):
+		block_component.blocking = true
+	elif Input.is_action_just_released("block"):
+		block_component.blocking = false		
 	
 	
 	# make sure the user is actually holding down

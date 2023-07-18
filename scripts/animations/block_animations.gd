@@ -1,0 +1,13 @@
+class_name BlockAnimations
+extends BaseAnimations
+
+
+func block(blocking: bool):
+	anim_tree["parameters/Blocking Trim/seek_request"] = 0.35
+	anim_tree["parameters/Blocking Speed/scale"] = 0.0
+	
+	var blend_amount = anim_tree["parameters/Blocking/blend_amount"]
+	if blocking:
+		anim_tree["parameters/Blocking/blend_amount"] = lerp(blend_amount, 1.0, 0.2)
+	else:
+		anim_tree["parameters/Blocking/blend_amount"] = lerp(blend_amount, 0.0, 0.1)		
