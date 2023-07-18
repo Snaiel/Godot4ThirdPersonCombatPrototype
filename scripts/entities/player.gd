@@ -81,20 +81,22 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		jump_component.start_jump()
 		
-		
-	# after doing a running jump and landing on the floor, go back to walking speed for the moment
-	# OR when we jump while running, slow down to walk speed to 'prepare' for the leap
-	if (jump_component.jumping and is_on_floor() and movement_component.is_running()) or (jump_component.jumping and is_on_floor() and not jump_component.can_jump):
-		movement_component.speed_to_walk()
-	elif (_holding_down_run and is_on_floor() and not dodge_component.dodging) or (jump_component.jumping and running):
-		# change to running speed if pressing the run button
-		# or keep running speed in the air
-		movement_component.speed_to_run()
-		running = true
+	if not block_component.blocking:
+		# after doing a running jump and landing on the floor, go back to walking speed for the moment
+		# OR when we jump while running, slow down to walk speed to 'prepare' for the leap
+		if (jump_component.jumping and is_on_floor() and movement_component.is_running()) or (jump_component.jumping and is_on_floor() and not jump_component.can_jump):
+			movement_component.walk()
+		elif (_holding_down_run and is_on_floor() and not dodge_component.dodging) or (jump_component.jumping and running):
+			# change to running speed if pressing the run button
+			# or keep running speed in the air
+			movement_component.run()
+			running = true
+		else:
+			# walking speed for everything else
+			movement_component.walk()
+			running = false
 	else:
-		# walking speed for everything else
-		movement_component.speed_to_walk()
-		running = false
+		running = false		
 		
 	movement_component.can_move = can_move
 

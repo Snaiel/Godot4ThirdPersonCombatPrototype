@@ -15,7 +15,7 @@ var desired_velocity = Vector3.ZERO
 var can_move = true
 var vertical_movement = false
 
-var _speed: float = 0.0
+var speed: float = 0.0
 var _looking_direction = Vector3.BACK
 
 var _secondary_movement = 0.0
@@ -23,7 +23,7 @@ var _secondary_movement_timer: Timer
 
 
 func _ready():
-	_speed = walk_speed
+	speed = walk_speed
 	
 	_secondary_movement_timer = Timer.new()
 	_secondary_movement_timer.timeout.connect(_process_movement_timer)
@@ -36,8 +36,8 @@ func _physics_process(delta):
 	
 	if can_move:
 		if move_direction.length() > 0.2:
-			desired_velocity.x = lerp(desired_velocity.x, move_direction.x * _speed, 0.1)
-			desired_velocity.z = lerp(desired_velocity.z, move_direction.z * _speed, 0.1)
+			desired_velocity.x = lerp(desired_velocity.x, move_direction.x * speed, 0.1)
+			desired_velocity.z = lerp(desired_velocity.z, move_direction.z * speed, 0.1)
 		else:
 			desired_velocity.x = lerp(desired_velocity.x, 0.0, 0.05)
 			desired_velocity.z = lerp(desired_velocity.z, 0.0, 0.05)			
@@ -58,15 +58,15 @@ func _physics_process(delta):
 
 
 func is_running() -> bool:
-	return _speed == run_speed
+	return speed == run_speed
 
 
-func speed_to_walk():
-	_speed = walk_speed
+func walk():
+	speed = walk_speed
 	
 
-func speed_to_run():
-	_speed = run_speed
+func run():
+	speed = run_speed
 
 
 func set_secondary_movement(speed: float, time: float):

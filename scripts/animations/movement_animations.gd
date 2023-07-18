@@ -6,12 +6,14 @@ var _lock_on_walk_blend = 0.0
 var _input_dir = Vector2.ZERO
 
 
+func _ready():
+	anim_tree["parameters/Free walk Speed/scale"] = 1
+
+
 func move(dir: Vector3, locked_on: bool, running: bool):
 	var new_dir = Vector2(dir.x, dir.z)
 	
 	_input_dir = _input_dir.lerp(new_dir, 0.1)
-
-	anim_tree["parameters/Free walk Speed/scale"] = 1.1
 
 	if _input_dir.length() > 0.1:
 		_lock_on_walk_blend = lerp(_lock_on_walk_blend, 1.0, 0.05)
