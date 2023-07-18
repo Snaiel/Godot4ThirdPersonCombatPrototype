@@ -10,6 +10,8 @@ signal can_move(flag: bool)
 @export var attack_level = 1
 @export var can_attack = true
 
+var attacking = false
+
 var _can_attack_again: bool
 
 
@@ -30,7 +32,7 @@ func _process(_delta):
 
 func _attack():
 	if can_attack:
-		
+		attacking = true
 		if _can_attack_again and  attack_level < 4:
 			attack_level += 1
 		else:
@@ -51,7 +53,7 @@ func _receive_can_attack_again(flag: bool):
 func _receive_attacking_finished():
 	can_move.emit(true)
 	can_attack = true
-
+	attacking = false
 
 func _receive_rotation(flag: bool):
 	can_rotate.emit(flag)

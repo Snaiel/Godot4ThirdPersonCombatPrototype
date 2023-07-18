@@ -60,9 +60,9 @@ func _physics_process(delta):
 	rotation_component.handle_rotation(delta)
 	movement_component.move_direction = rotation_component.move_direction
 	
-	if Input.is_action_pressed("block"):
+	if Input.is_action_pressed("block") and not attack_component.attacking:
 		block_component.blocking = true
-	elif Input.is_action_just_released("block"):
+	else:
 		block_component.blocking = false		
 	
 	
