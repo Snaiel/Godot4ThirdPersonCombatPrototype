@@ -1,8 +1,8 @@
 class_name MovementComponent
 extends Node3D
 
-@export var walk_speed = 3.0
-@export var run_speed = 6
+@export var walk_speed = 2
+@export var run_speed = 5
 
 @export var target_entity: Player
 @export var rotation_component: RotationComponent
@@ -35,8 +35,12 @@ func _physics_process(delta):
 	
 	
 	if can_move:
-		desired_velocity.x = lerp(desired_velocity.x, move_direction.x * _speed, 0.1)
-		desired_velocity.z = lerp(desired_velocity.z, move_direction.z * _speed, 0.1)
+		if move_direction.length() > 0.2:
+			desired_velocity.x = lerp(desired_velocity.x, move_direction.x * _speed, 0.1)
+			desired_velocity.z = lerp(desired_velocity.z, move_direction.z * _speed, 0.1)
+		else:
+			desired_velocity.x = lerp(desired_velocity.x, 0.0, 0.05)
+			desired_velocity.z = lerp(desired_velocity.z, 0.0, 0.05)			
 	elif _secondary_movement:
 		desired_velocity = -_looking_direction * _secondary_movement
 	else:

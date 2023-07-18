@@ -86,6 +86,7 @@ shape = SubResource("CylinderShape3D_cds6g")
 [node name="AnimationTree" parent="CharacterModel" index="2"]
 "parameters/Blocking Speed/scale" = 1.0
 "parameters/Blocking Trim/seek_request" = -1.0
+"parameters/Free walk Speed/scale" = 1.0
 
 [node name="BlockAnimations" parent="CharacterModel" index="6" node_paths=PackedStringArray("parent_animations", "anim_tree")]
 parent_animations = NodePath("..")
