@@ -84,6 +84,5 @@ func _receive_movement():
 		
 		
 func _receive_can_damage(can_damage: bool):
-	weapon.can_damage = can_damage
-	if can_damage:
-		_can_stop_attack = false
+	if not _attack_interrupted:
+		weapon.can_damage = can_damage
