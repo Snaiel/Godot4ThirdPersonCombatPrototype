@@ -1,11 +1,17 @@
 class_name AttackAnimations
 extends BaseAnimations
 
+
 signal secondary_movement
 signal can_damage(flag: bool)
 signal can_rotate(flag: bool)
 signal can_attack_again(flag: bool)
 signal attacking_finished
+
+
+# this means if an attacking animation is currently occurring
+var attacking = false
+
 
 # which attack to do, meant to control animations
 # for successive attacks
@@ -13,9 +19,6 @@ var _level = 1
 
 # this means that there is an intent to attack
 var _intent_to_attack = false
-
-# this means if an attacking animation is currently occurring
-var _attacking = false
 
 # this means that the attack animation can play
 # meant to control when the next attack plays
@@ -33,7 +36,7 @@ func _ready():
 
 func _process(_delta):
 	
-	if _attacking:
+	if attacking:
 		anim_tree["parameters/Attacking/blend_amount"] = lerp(anim_tree["parameters/Attacking/blend_amount"], 1.0, 0.3)
 	else:
 		anim_tree["parameters/Attacking/blend_amount"] = lerp(anim_tree["parameters/Attacking/blend_amount"], 0.0, 0.1)		
@@ -60,12 +63,18 @@ func _process(_delta):
 		
 
 func attack(level: int):
-	_attacking = true
+	attacking = true
 	_intent_to_attack = true
 	_intend_to_stop_attacking = false
 	if level == 1:
 		_can_play_animation = true
 	_level = level	
+
+
+func stop_attacking():
+	_can_play_animation = true
+	can_rotate.emit(true)
+	attacking = false
 
 
 func receive_secondary_movement():
@@ -91,10 +100,8 @@ func receive_cannot_attack_again():
 
 func receive_attack_finished():
 	if _intend_to_stop_attacking:
-		_can_play_animation = true
-		attacking_finished.emit()
-		can_rotate.emit(true)
-		_attacking = false
+		attacking_finished.emit()		
+		stop_attacking()
 
 
 func receive_can_damage():

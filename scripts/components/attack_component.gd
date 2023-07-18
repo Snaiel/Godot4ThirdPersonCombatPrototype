@@ -4,7 +4,7 @@ extends Node3D
 signal can_rotate(flag: bool)
 signal can_move(flag: bool)
 
-@export var character: PlayerAnimations
+@export var attack_animations: AttackAnimations
 @export var movement_component: MovementComponent
 @export var weapon: Sword
 @export var attack_level = 1
@@ -12,28 +12,26 @@ signal can_move(flag: bool)
 
 var attacking = false
 
-var _can_attack_again: bool
+var _can_attack_again: bool = false
+var _can_stop_attack: bool = true
+var _attack_interrupted: bool = false
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	character.attack_animations.secondary_movement.connect(_receive_movement)
-	character.attack_animations.can_damage.connect(_receive_can_damage)	
-	character.attack_animations.attacking_finished.connect(_receive_attacking_finished)
-	character.attack_animations.can_attack_again.connect(_receive_can_attack_again)
-	character.attack_animations.can_rotate.connect(_receive_rotation)
+	attack_animations.secondary_movement.connect(_receive_movement)
+	attack_animations.can_damage.connect(_receive_can_damage)	
+	attack_animations.attacking_finished.connect(_receive_attacking_finished)
+	attack_animations.can_attack_again.connect(_receive_can_attack_again)
+	attack_animations.can_rotate.connect(_receive_rotation)
+	
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	if Input.is_action_just_pressed("attack"):
-		_attack()
-
-
-func _attack():
+func attack():
 	if can_attack:
 		attacking = true
-		if _can_attack_again and  attack_level < 4:
+		_attack_interrupted = false
+		
+		if _can_attack_again and attack_level < 4:
 			attack_level += 1
 		else:
 			attack_level = 1
@@ -42,18 +40,32 @@ func _attack():
 		
 		can_rotate.emit(true)
 		can_move.emit(false)
-		character.attack_animations.attack(attack_level)
+		attack_animations.attack(attack_level)
 	
+	
+func stop_attacking() -> bool:
+	if _can_stop_attack:
+		if attacking:
+			_attack_interrupted = true
+		can_move.emit(true)
+		attacking = false
+		attack_level = 1
+		_can_attack_again = false
+		attack_animations.stop_attacking()
+	return not attacking
+		
 		
 func _receive_can_attack_again(flag: bool):
 	can_attack = true
-	_can_attack_again = flag
+	if not _attack_interrupted:
+		_can_attack_again = flag
 	
 	
 func _receive_attacking_finished():
-	can_move.emit(true)
 	can_attack = true
-	attacking = false
+	_can_stop_attack = true
+	stop_attacking()
+
 
 func _receive_rotation(flag: bool):
 	can_rotate.emit(flag)
@@ -71,5 +83,7 @@ func _receive_movement():
 			movement_component.set_secondary_movement(-0.8, 0.2)
 		
 		
-func _receive_can_damage(flag: bool):
-	weapon.can_damage = flag
+func _receive_can_damage(can_damage: bool):
+	weapon.can_damage = can_damage
+	if can_damage:
+		_can_stop_attack = false

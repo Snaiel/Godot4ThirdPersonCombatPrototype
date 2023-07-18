@@ -141,19 +141,20 @@ script = ExtResource("5_20kj8")
 character = NodePath("../CharacterModel")
 movement_component = NodePath("../MovementComponent")
 
-[node name="BlockComponent" type="Node3D" parent="." node_paths=PackedStringArray("block_animations", "movement_component")]
+[node name="BlockComponent" type="Node3D" parent="." node_paths=PackedStringArray("movement_component", "block_animations", "attack_animations")]
 script = ExtResource("7_qnswb")
-block_animations = NodePath("../CharacterModel/BlockAnimations")
 movement_component = NodePath("../MovementComponent")
+block_animations = NodePath("../CharacterModel/BlockAnimations")
+attack_animations = NodePath("../CharacterModel/AttackAnimations")
 
 [node name="DodgeComponent" type="Node3D" parent="." node_paths=PackedStringArray("entity", "movement_component")]
 script = ExtResource("6_66sk2")
 entity = NodePath("..")
 movement_component = NodePath("../MovementComponent")
 
-[node name="AttackComponent" type="Node3D" parent="." node_paths=PackedStringArray("character", "movement_component", "weapon")]
+[node name="AttackComponent" type="Node3D" parent="." node_paths=PackedStringArray("attack_animations", "movement_component", "weapon")]
 script = ExtResource("3_nq7ea")
-character = NodePath("../CharacterModel")
+attack_animations = NodePath("../CharacterModel/AttackAnimations")
 movement_component = NodePath("../MovementComponent")
 weapon = NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Sword")
 

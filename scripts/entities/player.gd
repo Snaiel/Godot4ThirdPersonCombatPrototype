@@ -60,10 +60,18 @@ func _physics_process(delta):
 	rotation_component.handle_rotation(delta)
 	movement_component.move_direction = rotation_component.move_direction
 	
-	if Input.is_action_pressed("block") and not attack_component.attacking:
-		block_component.blocking = true
+	
+	if Input.is_action_pressed("block"):
+		if attack_component.attacking:
+			block_component.blocking = attack_component.stop_attacking()
+		else:
+			block_component.blocking = true
 	else:
-		block_component.blocking = false		
+		block_component.blocking = false
+		
+		
+	if Input.is_action_just_pressed("attack"):
+		attack_component.attack()
 	
 	
 	# make sure the user is actually holding down
