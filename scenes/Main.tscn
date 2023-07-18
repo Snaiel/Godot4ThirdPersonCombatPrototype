@@ -80,6 +80,21 @@ material = ExtResource("2_5uhq1")
 transform = Transform3D(0.90815, 0.108353, 0.404379, -0.418644, 0.235047, 0.877206, -6.56417e-10, -0.965926, 0.258819, 0, 32.9971, 0)
 shadow_enabled = true
 
+[node name="LockOnSystem" type="Area3D" parent="." node_paths=PackedStringArray("player", "potential_target")]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("6_tdxnb")
+player = NodePath("../Player")
+potential_target = NodePath("../Enemies/Enemy")
+change_target_mouse_threshold = 60
+change_target_wait_time = 0.5
+
+[node name="EnemyDetectionSphere" type="CollisionShape3D" parent="LockOnSystem"]
+shape = SubResource("SphereShape3D_bb732")
+
+[node name="ChangeTargetTimer" type="Timer" parent="LockOnSystem"]
+wait_time = 0.5
+
 [node name="CameraController" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_s2v7n")]
 player = NodePath("../Player")
 
@@ -106,21 +121,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.737, 2, -10.9117)
 
 [node name="Enemy6" parent="Enemies" instance=ExtResource("2_oia4d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5218, 2, 14.0395)
-
-[node name="LockOnSystem" type="Area3D" parent="." node_paths=PackedStringArray("player", "potential_target")]
-collision_layer = 0
-collision_mask = 16
-script = ExtResource("6_tdxnb")
-player = NodePath("../Player")
-potential_target = NodePath("../Enemies/Enemy")
-change_target_mouse_threshold = 60
-change_target_wait_time = 0.5
-
-[node name="EnemyDetectionSphere" type="CollisionShape3D" parent="LockOnSystem"]
-shape = SubResource("SphereShape3D_bb732")
-
-[node name="ChangeTargetTimer" type="Timer" parent="LockOnSystem"]
-wait_time = 0.5
 
 [connection signal="area_entered" from="LockOnSystem" to="LockOnSystem" method="_on_area_entered"]
 [connection signal="area_exited" from="LockOnSystem" to="LockOnSystem" method="_on_area_exited"]

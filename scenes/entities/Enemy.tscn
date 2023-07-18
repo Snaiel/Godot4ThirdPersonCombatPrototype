@@ -35,11 +35,15 @@ collision_layer = 8
 collision_mask = 3
 script = ExtResource("1_nrck3")
 
-[node name="EnemyBot" parent="." instance=ExtResource("2_bivj4")]
+[node name="Model" parent="." instance=ExtResource("2_bivj4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.916228, 0)
 
 [node name="Collider" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_lwy87")
+
+[node name="LockOnComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("6_nxetg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+health_component = NodePath("../HealthComponent")
 
 [node name="HitboxComponent" parent="." instance=ExtResource("2_h2tgk")]
 
@@ -57,9 +61,6 @@ explosiveness = 0.8
 randomness = 0.5
 process_material = SubResource("ParticleProcessMaterial_ju3bf")
 draw_pass_1 = SubResource("BoxMesh_ijk3c")
-
-[node name="LockOnComponent" parent="." instance=ExtResource("6_nxetg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [connection signal="area_entered" from="HitboxComponent" to="HitboxComponent" method="_on_area_entered"]
 [connection signal="area_exited" from="HitboxComponent" to="HitboxComponent" method="_on_area_exited"]
