@@ -11,7 +11,7 @@ signal can_move(flag: bool)
 @export var can_attack = true
 
 var attacking = false
-var can_stop_attack: bool = true
+var _can_stop_attack: bool = true
 
 var _can_attack_again: bool = false
 var _attack_interrupted: bool = false
@@ -20,15 +20,17 @@ var _attack_interrupted: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	attack_animations.secondary_movement.connect(_receive_movement)
-	attack_animations.can_damage.connect(_receive_can_damage)	
-	attack_animations.attacking_finished.connect(_receive_attacking_finished)
-	attack_animations.can_attack_again.connect(_receive_can_attack_again)
 	attack_animations.can_rotate.connect(_receive_rotation)
+	attack_animations.can_damage.connect(_receive_can_damage)	
+	attack_animations.can_attack_again.connect(_receive_can_attack_again)
+	attack_animations.can_play_animation.connect(_receive_can_play_animation)
+	attack_animations.attacking_finished.connect(_receive_attacking_finished)
 	
 
-func attack():
+func attack(can_stop: bool = true):
 	if can_attack:
 		attacking = true
+		_can_stop_attack = can_stop
 		_attack_interrupted = false
 		
 		if _can_attack_again and attack_level < 4:
@@ -44,7 +46,7 @@ func attack():
 	
 	
 func stop_attacking() -> bool:
-	if can_stop_attack:
+	if _can_stop_attack:
 		if attacking:
 			_attack_interrupted = true
 		can_move.emit(true)
@@ -55,15 +57,18 @@ func stop_attacking() -> bool:
 	return not attacking
 		
 		
-func _receive_can_attack_again(flag: bool):
+func _receive_can_attack_again(can_attack_again: bool):
 	can_attack = true
 	if not _attack_interrupted:
-		_can_attack_again = flag
+		_can_attack_again = can_attack_again
+	
+	
+func _receive_can_play_animation():
+	_can_stop_attack = true	
 	
 	
 func _receive_attacking_finished():
 	can_attack = true
-	can_stop_attack = true
 	stop_attacking()
 
 
@@ -84,6 +89,6 @@ func _receive_movement():
 		
 		
 func _receive_can_damage(can_damage: bool):
-	can_stop_attack = false
+	_can_stop_attack = false
 	if not _attack_interrupted:
 		weapon.can_damage = can_damage

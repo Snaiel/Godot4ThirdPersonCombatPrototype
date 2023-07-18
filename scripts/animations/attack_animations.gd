@@ -6,6 +6,7 @@ signal secondary_movement
 signal can_damage(flag: bool)
 signal can_rotate(flag: bool)
 signal can_attack_again(flag: bool)
+signal can_play_animation
 signal attacking_finished
 
 
@@ -86,6 +87,7 @@ func prevent_rotation():
 	
 	
 func recieve_can_play_animation():
+	can_play_animation.emit()
 	_can_play_animation = true
 	
 	

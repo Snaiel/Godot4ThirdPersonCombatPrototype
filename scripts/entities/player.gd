@@ -72,8 +72,9 @@ func _physics_process(delta):
 		
 	if Input.is_action_just_pressed("attack"):
 		if block_component.blocking:
-			attack_component.can_stop_attack = false
-		attack_component.attack()
+			attack_component.attack(false)
+		else:
+			attack_component.attack()
 	
 	
 	# make sure the user is actually holding down

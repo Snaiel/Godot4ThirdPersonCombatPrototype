@@ -69,10 +69,11 @@ func run():
 	speed = run_speed
 
 
-func set_secondary_movement(speed: float, time: float):
+func set_secondary_movement(new_speed: float, time: float):
 	_secondary_movement_timer.stop()
-	_secondary_movement = speed
+	_secondary_movement = new_speed
 	_secondary_movement_timer.start(time)
+
 
 func _process_movement_timer():
 	_secondary_movement = 0.0
