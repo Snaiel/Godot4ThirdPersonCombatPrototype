@@ -11,9 +11,9 @@ signal can_move(flag: bool)
 @export var can_attack = true
 
 var attacking = false
+var can_stop_attack: bool = true
 
 var _can_attack_again: bool = false
-var _can_stop_attack: bool = true
 var _attack_interrupted: bool = false
 
 
@@ -44,7 +44,7 @@ func attack():
 	
 	
 func stop_attacking() -> bool:
-	if _can_stop_attack:
+	if can_stop_attack:
 		if attacking:
 			_attack_interrupted = true
 		can_move.emit(true)
@@ -63,7 +63,7 @@ func _receive_can_attack_again(flag: bool):
 	
 func _receive_attacking_finished():
 	can_attack = true
-	_can_stop_attack = true
+	can_stop_attack = true
 	stop_attacking()
 
 
@@ -84,5 +84,6 @@ func _receive_movement():
 		
 		
 func _receive_can_damage(can_damage: bool):
+	can_stop_attack = false
 	if not _attack_interrupted:
 		weapon.can_damage = can_damage

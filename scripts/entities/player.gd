@@ -66,11 +66,13 @@ func _physics_process(delta):
 			block_component.blocking = attack_component.stop_attacking()
 		else:
 			block_component.blocking = true
-	else:
+	elif Input.is_action_just_released("block"):
 		block_component.blocking = false
 		
 		
 	if Input.is_action_just_pressed("attack"):
+		if block_component.blocking:
+			attack_component.can_stop_attack = false
 		attack_component.attack()
 	
 	
