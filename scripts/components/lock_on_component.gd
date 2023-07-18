@@ -1,7 +1,7 @@
 class_name LockOnComponent
 extends Area3D
 
-signal destroyed
+signal destroyed(target: LockOnComponent)
 
 @export var health_component: HealthComponent
 
