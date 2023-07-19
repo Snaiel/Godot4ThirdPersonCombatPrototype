@@ -1,3 +1,5 @@
+builds/
+
 # Godot 4+ specific ignores
 .godot/
 
