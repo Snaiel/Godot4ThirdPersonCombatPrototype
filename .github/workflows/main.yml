@@ -30,6 +30,10 @@ jobs:
         relative_project_path: ./
         archive_output: true
 
+    - name: get tag message
+      id: get_tag_message
+      run: echo ::set-output name=message::$(git tag -l --format='%(contents)' ${{ github.ref_name }})
+
       # This release action has worked well for me. However, you can most likely use any release action of your choosing.
       # https://github.com/ncipollo/release-action
     - name: create release
@@ -38,4 +42,5 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         generateReleaseNotes: true
         tag: ${{ github.ref_name }}
+        body: ${{ steps.get_tag_message.outputs.message }}
         artifacts: ${{ steps.export.outputs.archive_directory }}/*
