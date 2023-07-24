@@ -5,4 +5,4 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_dfnl7")
-shader_parameter/alpha = 0.5
+shader_parameter/alpha = 1.0

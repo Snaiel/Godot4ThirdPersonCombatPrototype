@@ -14,6 +14,7 @@ script = ExtResource("1_embid")
 mouse_sensitivity = 5
 
 [node name="NormalCam" type="Camera3D" parent="."]
+cull_mask = 1048573
 
 [node name="PlayerFade" parent="." node_paths=PackedStringArray("cam_controller", "cam_normal") instance=ExtResource("2_w6wbh")]
 cam_controller = NodePath("..")

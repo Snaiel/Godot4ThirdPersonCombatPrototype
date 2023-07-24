@@ -97,6 +97,12 @@ bones/62/rotation = Quaternion(-2.32831e-10, 1, 1.39698e-09, -1.09139e-11)
 bones/63/rotation = Quaternion(1.60006e-09, 0.707107, -0.707107, -3.75576e-10)
 bones/64/rotation = Quaternion(-2.63418e-09, 1, 0, 0)
 
+[node name="Alpha_Joints" parent="CharacterModel/Armature_004/GeneralSkeleton" index="0"]
+layers = 2
+
+[node name="Alpha_Surface" parent="CharacterModel/Armature_004/GeneralSkeleton" index="1"]
+layers = 2
+
 [node name="Sword" type="BoneAttachment3D" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2"]
 transform = Transform3D(7.54791e-07, -1, -8.41021e-05, 5.5829e-07, 8.41021e-05, -1, 1, 7.54744e-07, 5.58354e-07, -0.737829, 1.43565, -0.0617133)
 bone_name = "RightHand"
@@ -105,6 +111,7 @@ script = ExtResource("3_7pxxd")
 
 [node name="Mesh" type="MeshInstance3D" parent="CharacterModel/Armature_004/GeneralSkeleton/Sword"]
 transform = Transform3D(-0.891467, -0.453089, -3.91618e-05, 0.453089, -0.891468, -0.000158824, 3.70497e-05, -0.00015933, 1, 0.168411, 0.443186, 0.0233156)
+layers = 2
 mesh = SubResource("CylinderMesh_dg00e")
 
 [node name="Area" type="Area3D" parent="CharacterModel/Armature_004/GeneralSkeleton/Sword" groups=["weapon"]]
