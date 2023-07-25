@@ -44,12 +44,12 @@ func handle_rotation(delta):
 		# This makes the rotation smoother when the player is locked
 		# on and transitions from sprinting to walking
 		var rotation_weight
-		if rotation_difference > PI/4 and player.running:
-			rotation_weight = 0.03
-		elif rotation_difference < 0.05:
+		if rotation_difference < 0.05:
 			rotation_weight = 0.2
 		else:
 			rotation_weight = 0.1
+			
+		print(rotation_weight)
 			
 		player.rotation.y = lerp_angle(player.rotation.y, _target_look, rotation_weight)
 		
