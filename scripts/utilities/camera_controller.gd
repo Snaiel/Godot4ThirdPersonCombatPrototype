@@ -18,8 +18,8 @@ extends SpringArm3D
 @export var controller_deadzone = 0.2
 
 @export_category("Lock On Settings")
-@export var lock_on_min_angle = 20.0
-@export var lock_on_max_angle = 35.0
+@export var lock_on_min_angle = -35.0
+@export var lock_on_max_angle = 60.0
 @export var lock_on_min_distance = 1
 @export var lock_on_max_distance = 10
 @export var desired_unproject_pos = 175
@@ -61,13 +61,6 @@ func _physics_process(_delta):
 		
 	var dist = cam.global_position.distance_to(player.global_position)
 		
-	if dist < 1.5 or (locked_on and dist < 1.5):
-		lock_on_max_angle = lerp(lock_on_max_angle, 10.0, 0.1)
-		lock_on_min_angle = lerp(lock_on_min_angle, 10.0, 0.1)		
-	else:
-		lock_on_max_angle = lerp(lock_on_max_angle, _temp_lock_on_max_angle, 0.1)
-		lock_on_min_angle = lerp(lock_on_min_angle, _temp_lock_on_min_angle, 0.1)				
-		
 	if _lock_on_target:
 		var _looking_direction = -global_position.direction_to(_lock_on_target.global_position)
 		var _target_look = atan2(_looking_direction.x, _looking_direction.z)
@@ -83,7 +76,9 @@ func _physics_process(_delta):
 			dist_to_target
 		)
 		var desired_rotation_x = rotation.x + atan2(_lock_on_target.global_position.y - project_desired_pos.y, dist_to_target)
-		rotation.x = lerp(rotation.x, desired_rotation_x, 0.1)
+		desired_rotation_x = rad_to_deg(desired_rotation_x)
+		desired_rotation_x = clamp(desired_rotation_x, lock_on_min_angle, lock_on_max_angle)
+		rotation_degrees.x = lerp(rotation_degrees.x, desired_rotation_x, 0.1)
 			
 	else:
 		var controller_look = Vector2(
