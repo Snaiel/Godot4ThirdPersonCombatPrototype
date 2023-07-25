@@ -42,9 +42,10 @@ func _physics_process(delta):
 			var weight = 0.15 if vertical_movement else 0.05
 			desired_velocity.x = lerp(desired_velocity.x, 0.0, weight)
 			desired_velocity.z = lerp(desired_velocity.z, 0.0, weight)			
-	elif _secondary_movement:
-		desired_velocity = -_looking_direction * _secondary_movement
-	else:
+	elif _secondary_movement and not vertical_movement:
+		desired_velocity.x = -_looking_direction.x * _secondary_movement
+		desired_velocity.z = -_looking_direction.z * _secondary_movement		
+	elif target_entity.is_on_floor():
 		desired_velocity.x = lerp(desired_velocity.x, 0.0, 0.1)
 		desired_velocity.z = lerp(desired_velocity.z, 0.0, 0.1)
 		
