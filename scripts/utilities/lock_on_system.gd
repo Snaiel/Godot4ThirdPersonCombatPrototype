@@ -13,6 +13,7 @@ signal lock_on(target: LockOnComponent)
 
 @export_category("Changing Target")
 @export var change_target_mouse_threshold = 1
+@export var change_target_controller_threshold = 0.2
 @export var change_target_wait_time = 0.2
 @export var can_change_target = true
 
@@ -27,8 +28,9 @@ func _ready():
 	_change_target_timer.wait_time = change_target_wait_time
 	$EnemyDetectionSphere.shape.radius = target_detection_range
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
+func _physics_process(_delta):
 	position = player.position
 	
 	if Input.is_action_just_pressed("lock_on"):
@@ -37,14 +39,25 @@ func _process(_delta):
 		else:
 			_choose_lock_on_target()
 		lock_on.emit(target)
+	
+	# change target with controller
+	var controller_r_joystick_x = Input.get_joy_axis(0, JOY_AXIS_RIGHT_X)
+	if can_change_target and abs(controller_r_joystick_x) > change_target_controller_threshold and target:
+		
+		if controller_r_joystick_x > 0:
+			_change_target_right()
+		else:
+			_change_target_left()
+			
+		lock_on.emit(target)			
+		can_change_target = false
+		_change_target_timer.start()
+		
 		
 func _input(event):
-	if event is InputEventMouseMotion:
-		if not target:
-			return
-		
+	# change target with mouse
+	if event is InputEventMouseMotion and target:
 		var current_mouse_pos = event.relative
-		
 		if Vector2.ZERO.distance_to(current_mouse_pos) > change_target_mouse_threshold and can_change_target:
 			if current_mouse_pos.x > 0:
 				_change_target_right()
@@ -55,22 +68,27 @@ func _input(event):
 			can_change_target = false
 			_change_target_timer.start()
 
+
 func _on_area_entered(area: LockOnComponent):
 	if area not in _targets_nearby:
 		_targets_nearby.append(area)
 		area.destroyed.connect(_target_destroyed)
 	
+	
 func _on_area_exited(area: LockOnComponent):
 	_targets_nearby.erase(area)
 	area.destroyed.disconnect(_target_destroyed)
 	
+	
 func _on_change_target_timer_timeout():
 	can_change_target = true
+	
 	
 func _target_destroyed(t):
 	_targets_nearby.erase(t)
 	_choose_lock_on_target()
 	lock_on.emit(target)		
+	
 	
 func _can_see_target(t: LockOnComponent) -> bool:
 	var can_see: bool = true
@@ -84,6 +102,7 @@ func _can_see_target(t: LockOnComponent) -> bool:
 	
 	return can_see
 	
+	
 func _get_targets_in_front() -> Array[LockOnComponent]:
 	var targets: Array[LockOnComponent] = []
 	var cam = get_viewport().get_camera_3d()
@@ -94,6 +113,7 @@ func _get_targets_in_front() -> Array[LockOnComponent]:
 			
 	return targets
 	
+	
 func _get_targets_in_frustum() -> Array[LockOnComponent]:
 	var targets: Array[LockOnComponent] = []
 	var cam = get_viewport().get_camera_3d()
@@ -103,6 +123,7 @@ func _get_targets_in_frustum() -> Array[LockOnComponent]:
 			targets.append(t)
 			
 	return targets
+
 
 func _choose_lock_on_target():
 	var cam = get_viewport().get_camera_3d()
@@ -123,6 +144,7 @@ func _choose_lock_on_target():
 			closest_target = t
 	
 	target = closest_target
+
 
 func _change_target_right():
 	var cam = get_viewport().get_camera_3d()

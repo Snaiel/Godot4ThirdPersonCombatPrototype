@@ -3,8 +3,6 @@ extends SpringArm3D
 
 @export var player: Player
 
-@export var event_label: Label
-
 @export_category("Camera Settings")
 @export var camera_distance = 2
 @export var vertical_offset = 0.5
@@ -16,7 +14,7 @@ extends SpringArm3D
 @export var mouse_sensitivity = 10
 
 @export_category("Controller Settings")
-@export var controller_sensitivity = 10
+@export var controller_sensitivity = 14
 @export var controller_deadzone = 0.2
 
 @export_category("Lock On Settings")
@@ -88,7 +86,6 @@ func _physics_process(_delta):
 		)	
 		
 		if controller_look.length() > controller_deadzone:
-			event_label.text = str(controller_look)
 			
 			var new_rotation_x = rotation.x - controller_look.y * controller_sensitivity
 			rotation.x = lerp(rotation.x, new_rotation_x, 0.8)
@@ -97,9 +94,6 @@ func _physics_process(_delta):
 			var new_rotation_y = rotation.y - controller_look.x * controller_sensitivity
 			rotation.y = lerp(rotation.y, new_rotation_y, 0.8)
 			rotation_degrees.y = wrapf(rotation_degrees.y, 0.0, 360.0)
-			
-			event_label.text = event_label.text + "\n" + str(new_rotation_x)
-			event_label.text = event_label.text + "\n" + str(new_rotation_y)			
 		
 func _unhandled_input(event):
 	if event is InputEventMouseMotion and not _lock_on_target:
@@ -112,9 +106,6 @@ func _unhandled_input(event):
 		var new_rotation_y = rotation.y - event.relative.x * mouse_sensitivity
 		rotation.y = lerp(rotation.y, new_rotation_y, 0.8)
 		rotation_degrees.y = wrapf(rotation_degrees.y, 0.0, 360.0)
-		
-		event_label.text = str(new_rotation_x)
-		event_label.text = event_label.text + "\n" + str(new_rotation_y)
 	else:
 		_player_looking_around = false
 		

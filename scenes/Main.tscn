@@ -103,9 +103,8 @@ shape = SubResource("SphereShape3D_bb732")
 [node name="ChangeTargetTimer" type="Timer" parent="LockOnSystem"]
 wait_time = 0.5
 
-[node name="CameraController" parent="." node_paths=PackedStringArray("player", "event_label") instance=ExtResource("2_s2v7n")]
+[node name="CameraController" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_s2v7n")]
 player = NodePath("../Player")
-event_label = NodePath("../UserInterface/EventLabel")
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera_controller") instance=ExtResource("2_thr8q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5071, 2, 16.6948)
