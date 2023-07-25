@@ -22,6 +22,7 @@ extends SpringArm3D
 @export var lock_on_max_angle = 35.0
 @export var lock_on_min_distance = 1
 @export var lock_on_max_distance = 10
+@export var desired_unproject_pos = 175
 
 var _lock_on_target: LockOnComponent = null
 var _player_looking_around = false
@@ -30,7 +31,7 @@ var _temp_lock_on_max_angle: float
 
 var locked_on: bool
 
-@onready var cam = $NormalCam
+@onready var cam: Camera3D = $NormalCam
 
 
 
@@ -70,15 +71,20 @@ func _physics_process(_delta):
 		var _looking_direction = -global_position.direction_to(_lock_on_target.global_position)
 		var _target_look = atan2(_looking_direction.x, _looking_direction.z)
 		var desired_rotation_y = lerp_angle(rotation.y, _target_look, 0.05)
-
-		var clamped_distance = clamp(position.distance_to(_lock_on_target.global_position), lock_on_min_distance, lock_on_max_distance)
-		var normalized_distance = (clamped_distance - lock_on_min_distance) / (lock_on_max_distance - lock_on_min_distance)
-		normalized_distance = smoothstep(0.0, 1.0, normalized_distance)
-		var angle = lerp(lock_on_max_angle, lock_on_min_angle, normalized_distance)
-		var desired_rotation_x = deg_to_rad(-angle)
-		
 		rotation.y = lerp(rotation.y, desired_rotation_y, 0.8)
-		rotation.x = lerp(rotation.x, desired_rotation_x, 0.05)
+		
+		var dist_to_target = cam.global_position.distance_to(_lock_on_target.global_position)
+		var project_desired_pos = cam.project_position(
+			Vector2(
+				ProjectSettings.get("display/window/size/viewport_width")/2,
+				ProjectSettings.get("display/window/size/viewport_height")/4
+			),
+			dist_to_target
+		)
+		$Sphere.global_position = project_desired_pos
+		var desired_rotation_x = rotation.x + atan2(_lock_on_target.global_position.y - project_desired_pos.y, dist_to_target)
+		rotation.x = lerp(rotation.x, desired_rotation_x, 0.1)
+			
 	else:
 		var controller_look = Vector2(
 			Input.get_joy_axis(0, JOY_AXIS_RIGHT_X),
