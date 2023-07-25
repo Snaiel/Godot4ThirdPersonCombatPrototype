@@ -82,7 +82,6 @@ func _physics_process(_delta):
 			),
 			dist_to_target
 		)
-		$Sphere.global_position = project_desired_pos
 		var desired_rotation_x = rotation.x + atan2(_lock_on_target.global_position.y - project_desired_pos.y, dist_to_target)
 		rotation.x = lerp(rotation.x, desired_rotation_x, 0.1)
 			
