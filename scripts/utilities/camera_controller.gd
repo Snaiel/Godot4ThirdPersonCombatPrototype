@@ -37,6 +37,7 @@ var locked_on: bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
 	position = player.position + Vector3(0, vertical_offset, 0)
 	spring_length = camera_distance
 	
@@ -72,12 +73,12 @@ func _physics_process(_delta):
 		var _target_look = atan2(_looking_direction.x, _looking_direction.z)
 		var desired_rotation_y = lerp_angle(rotation.y, _target_look, 0.05)
 		rotation.y = lerp(rotation.y, desired_rotation_y, 0.8)
-		
+		get_viewport().size.x
 		var dist_to_target = cam.global_position.distance_to(_lock_on_target.global_position)
 		var project_desired_pos = cam.project_position(
 			Vector2(
-				ProjectSettings.get("display/window/size/viewport_width")/2,
-				ProjectSettings.get("display/window/size/viewport_height")/4
+				get_viewport().size.x/2,
+				get_viewport().size.y/4
 			),
 			dist_to_target
 		)
