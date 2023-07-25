@@ -73,7 +73,7 @@ func _physics_process(_delta):
 		var _target_look = atan2(_looking_direction.x, _looking_direction.z)
 		var desired_rotation_y = lerp_angle(rotation.y, _target_look, 0.05)
 		rotation.y = lerp(rotation.y, desired_rotation_y, 0.8)
-		get_viewport().size.x
+		
 		var dist_to_target = cam.global_position.distance_to(_lock_on_target.global_position)
 		var project_desired_pos = cam.project_position(
 			Vector2(

@@ -23,6 +23,7 @@ var lock_on_target: LockOnComponent = null
 var _holding_down_run = false
 var _holding_down_run_timer: Timer
 
+var _locked_on_turning_in_place = false
 
 func _ready():
 	Globals.player = self
@@ -43,7 +44,6 @@ func _physics_process(delta):
 	input_direction.z = Input.get_action_strength("backward") - Input.get_action_strength("forward")
 	
 	
-	character.movement_animations.move(input_direction, lock_on_target != null, running)	
 	
 	
 	# handle rotation of the player based on camera, movement, or lock on
@@ -59,6 +59,11 @@ func _physics_process(delta):
 	rotation_component.rotate_towards_target = rotate_towards_target
 	rotation_component.handle_rotation(delta)
 	movement_component.move_direction = rotation_component.move_direction
+	
+	if _locked_on_turning_in_place:
+		input_direction = Vector3.FORWARD * 0.4
+	
+	character.movement_animations.move(input_direction, lock_on_target != null, running)		
 	
 	
 	if Input.is_action_pressed("block"):
@@ -111,10 +116,23 @@ func _physics_process(delta):
 		
 	movement_component.can_move = can_move
 
+
 func _on_lock_on_system_lock_on(target):
 	lock_on_target = target
 	camera_controller.lock_on(target)
+	if input_direction.length() < 0.1 and target and rotation_component.get_lock_on_rotation_difference() > 0.1:
+		var diff = rotation_component.get_lock_on_rotation_difference()
+		_locked_on_turning_in_place = true
+		character.movement_animations.locked_on_turning_in_place = true
+		var duration = clamp(diff / PI * 0.18, 0.1, 0.18)
+		var pressed_lock_on_timer = get_tree().create_timer(duration)
+		pressed_lock_on_timer.timeout.connect(_handle_pressed_lock_on_timer)
 	
+
+func _handle_pressed_lock_on_timer():
+	character.movement_animations.locked_on_turning_in_place = false
+	_locked_on_turning_in_place = false
+
 
 func _receive_can_move(flag: bool):
 	can_move = flag
