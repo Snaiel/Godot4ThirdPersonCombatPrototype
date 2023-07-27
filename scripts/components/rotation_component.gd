@@ -49,8 +49,6 @@ func handle_rotation(delta):
 		else:
 			rotation_weight = 0.1
 			
-		print(rotation_weight)
-			
 		player.rotation.y = lerp_angle(player.rotation.y, _target_look, rotation_weight)
 		
 		# change move direction so it orbits the locked on target
