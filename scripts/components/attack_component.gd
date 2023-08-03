@@ -79,9 +79,9 @@ func _receive_rotation(flag: bool):
 func _receive_movement():
 	match attack_level:
 		1: 
-			movement_component.set_secondary_movement(0.3, 1.2)
+			movement_component.set_secondary_movement(0.6, 1.2)
 		2:
-			movement_component.set_secondary_movement(0.3, 1.2)
+			movement_component.set_secondary_movement(0.4, 1.2)
 		3:
 			movement_component.set_secondary_movement(1.2, 0.2)
 		4:
