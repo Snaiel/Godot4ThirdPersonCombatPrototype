@@ -19,10 +19,6 @@ config/icon="res://icon.svg"
 
 Globals="*res://scripts/globals.gd"
 
-[display]
-
-window/size/mode=3
-
 [input]
 
 ui_cancel={

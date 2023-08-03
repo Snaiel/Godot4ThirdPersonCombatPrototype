@@ -22,7 +22,8 @@ func _dodge():
 		can_set_intent_to_dodge = false
 		can_dodge = false
 		dodging = true
-		movement_component.desired_velocity += movement_component.move_direction * 8
+		
+		movement_component.desired_velocity += -movement_component.looking_direction.normalized() * 8
 		
 		# how long the dodge status lasts
 		var dodge_timer = get_tree().create_timer(0.2) 

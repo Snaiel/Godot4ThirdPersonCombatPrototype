@@ -60,7 +60,7 @@ func _physics_process(delta):
 	rotation_component.handle_rotation(delta)
 	movement_component.move_direction = rotation_component.move_direction
 	
-	if _locked_on_turning_in_place:
+	if _locked_on_turning_in_place or (dodge_component.dodging and input_direction.length() < 0.1):
 		input_direction = Vector3.FORWARD * 0.4
 	
 	character.movement_animations.move(input_direction, lock_on_target != null, running)		

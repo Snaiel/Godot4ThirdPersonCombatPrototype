@@ -9,6 +9,7 @@ extends Node3D
 
 @export var gravity = 20
 
+var looking_direction = Vector3.BACK
 var move_direction = Vector3.ZERO
 var desired_velocity = Vector3.ZERO
 
@@ -16,7 +17,6 @@ var can_move = true
 var vertical_movement = false
 
 var speed: float = 0.0
-var _looking_direction = Vector3.BACK
 
 var _secondary_movement = 0.0
 var _secondary_movement_timer: Timer
@@ -31,7 +31,7 @@ func _ready():
 
 func _physics_process(delta):
 	move_direction = rotation_component.move_direction
-	_looking_direction = rotation_component.looking_direction
+	looking_direction = rotation_component.looking_direction
 	
 	
 	if can_move:
@@ -43,8 +43,8 @@ func _physics_process(delta):
 			desired_velocity.x = lerp(desired_velocity.x, 0.0, weight)
 			desired_velocity.z = lerp(desired_velocity.z, 0.0, weight)			
 	elif _secondary_movement and target_entity.is_on_floor():
-		desired_velocity.x = -_looking_direction.x * _secondary_movement
-		desired_velocity.z = -_looking_direction.z * _secondary_movement		
+		desired_velocity.x = -looking_direction.x * _secondary_movement
+		desired_velocity.z = -looking_direction.z * _secondary_movement		
 	elif target_entity.is_on_floor():
 		desired_velocity.x = lerp(desired_velocity.x, 0.0, 0.1)
 		desired_velocity.z = lerp(desired_velocity.z, 0.0, 0.1)
