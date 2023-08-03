@@ -29,14 +29,6 @@ radius = 10.0
 
 [node name="UserInterface" parent="." instance=ExtResource("3_hlhuw")]
 
-[node name="EventLabel" type="Label" parent="UserInterface"]
-layout_mode = 0
-offset_left = 25.0
-offset_top = 23.0
-offset_right = 65.0
-offset_bottom = 46.0
-text = "event"
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_32f71")
 
