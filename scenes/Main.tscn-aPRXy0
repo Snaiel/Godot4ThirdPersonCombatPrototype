@@ -1,0 +1,100 @@
+[gd_scene load_steps=12 format=3 uid="uid://cfip2n0nvr8n3"]
+
+[ext_resource type="Material" uid="uid://qml1qedtuxl6" path="res://materials/grid.tres" id="2_5uhq1"]
+[ext_resource type="PackedScene" uid="uid://cv8knl5vavfyy" path="res://scenes/entities/Enemy.tscn" id="2_oia4d"]
+[ext_resource type="PackedScene" uid="uid://cy5wvw01aul4m" path="res://scenes/utilities/CameraController.tscn" id="2_s2v7n"]
+[ext_resource type="PackedScene" uid="uid://dujukbu10vbmm" path="res://scenes/entities/Player.tscn" id="2_thr8q"]
+[ext_resource type="PackedScene" uid="uid://b075d85nmca7s" path="res://scenes/utilities/UserInterface.tscn" id="3_hlhuw"]
+[ext_resource type="PackedScene" uid="uid://ia1adrmqd0lf" path="res://scenes/components/LockOnComponent.tscn" id="3_tjdxr"]
+[ext_resource type="Script" path="res://scripts/utilities/lock_on_system.gd" id="6_tdxnb"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_co0qk"]
+sky_top_color = Color(0.384314, 0.454902, 0.54902, 1)
+sky_horizon_color = Color(0.646078, 0.655975, 0.670505, 1)
+ground_horizon_color = Color(0.646078, 0.655975, 0.670505, 1)
+
+[sub_resource type="Sky" id="Sky_qudfu"]
+sky_material = SubResource("ProceduralSkyMaterial_co0qk")
+
+[sub_resource type="Environment" id="Environment_32f71"]
+background_mode = 2
+sky = SubResource("Sky_qudfu")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bb732"]
+radius = 10.0
+
+[node name="Main" type="Node3D"]
+
+[node name="UserInterface" parent="." instance=ExtResource("3_hlhuw")]
+
+[node name="EventLabel" type="Label" parent="UserInterface"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 23.0
+offset_right = 65.0
+offset_bottom = 46.0
+text = "event"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_32f71")
+
+[node name="World" type="Node3D" parent="."]
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="World"]
+use_collision = true
+
+[node name="Ground" type="CSGBox3D" parent="World/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 5)
+size = Vector3(50, 1, 50)
+material = ExtResource("2_5uhq1")
+
+[node name="Wall" type="CSGBox3D" parent="World/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 3, 6)
+size = Vector3(1, 6, 10)
+material = ExtResource("2_5uhq1")
+
+[node name="LockOnComponent" parent="World/CSGCombiner3D/Wall" instance=ExtResource("3_tjdxr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.625704, 1.85612, 3.75698)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="World/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, -1, 9)
+material_override = ExtResource("2_5uhq1")
+size = Vector3(2, 5, 2)
+material = ExtResource("2_5uhq1")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="World/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 0, 6)
+material_override = ExtResource("2_5uhq1")
+size = Vector3(2, 5, 2)
+material = ExtResource("2_5uhq1")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="World/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 1, 6)
+material_override = ExtResource("2_5uhq1")
+size = Vector3(2, 5, 2)
+material = ExtResource("2_5uhq1")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="World/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 1, 5)
+material_override = ExtResource("2_5uhq1")
+size = Vector3(2, 5, 2)
+material = ExtResource("2_5uhq1")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
+transform = Transform3D(0.90815, 0.108353, 0.404379, -0.418644, 0.235047, 0.877206, -6.56417e-10, -0.965926, 0.258819, 0, 32.9971, 0)
+shadow_enabled = true
+
+[node name="LockOnSystem" type="Area3D" parent="." node_paths=PackedStringArray("player", "potential_target")]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("6_tdxnb")
+player = NodePath("../Player")
+potential_target = NodePath("../Enemies/Enemy")
+change_target_mouse_threshold = 60
+change_target_wait_time = 0.5
+
+[node name="EnemyDetectionSphere" type="CollisionShap
