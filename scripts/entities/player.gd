@@ -98,10 +98,7 @@ func _physics_process(delta):
 		jump_component.start_jump()
 		
 	if not block_component.blocking:
-		# after doing a running jump and landing on the floor, go back to walking speed for the moment
-		if (jump_component.jumping and is_on_floor() and movement_component.speed == 5):
-			movement_component.speed = 2
-		elif (_holding_down_run and is_on_floor() and not dodge_component.dodging) or (jump_component.jumping and running):
+		if (_holding_down_run and is_on_floor() and not dodge_component.dodging) or (jump_component.jumping and not is_on_floor() and movement_component.speed == 5):
 			# change to running speed if pressing the run button
 			# or keep running speed in the air
 			movement_component.speed = 5
@@ -116,6 +113,7 @@ func _physics_process(delta):
 	else:
 		running = false		
 		
+	print(movement_component.speed)
 	movement_component.can_move = can_move
 
 

@@ -1,6 +1,7 @@
 class_name JumpComponent
 extends Node3D
 
+
 @export var character: PlayerAnimations
 @export var movement_component: MovementComponent
 @export var jump_strength: float = 8
@@ -14,9 +15,9 @@ func _process(_delta):
 	# where the character actually jumps. When this happens,
 	# apply the jumping force
 	if can_jump:
-		movement_component.vertical_movement = true
-		movement_component.desired_velocity.y = jump_strength
 		can_jump = false
+		movement_component.desired_velocity.y = jump_strength
+		movement_component.vertical_movement = true
 
 
 func start_jump():
