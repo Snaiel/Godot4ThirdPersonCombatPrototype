@@ -1,9 +1,6 @@
 class_name MovementComponent
 extends Node3D
 
-@export var walk_speed = 2
-@export var run_speed = 5
-
 @export var target_entity: Player
 @export var rotation_component: RotationComponent
 
@@ -23,8 +20,6 @@ var _secondary_movement_timer: Timer
 
 
 func _ready():
-	speed = walk_speed
-	
 	_secondary_movement_timer = Timer.new()
 	_secondary_movement_timer.timeout.connect(_process_movement_timer)
 	add_child(_secondary_movement_timer)
@@ -58,18 +53,6 @@ func _physics_process(delta):
 		
 	target_entity.velocity = desired_velocity
 	target_entity.move_and_slide()
-
-
-func is_running() -> bool:
-	return speed == run_speed
-
-
-func walk():
-	speed = walk_speed
-	
-
-func run():
-	speed = run_speed
 
 
 func set_secondary_movement(new_speed: float, time: float):

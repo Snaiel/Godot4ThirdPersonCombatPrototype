@@ -10,5 +10,5 @@ extends Node3D
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	block_animations.block(blocking)
-	if not movement_component.vertical_movement or movement_component.target_entity.is_on_floor():
+	if blocking and movement_component.target_entity.is_on_floor():
 		movement_component.speed = walk_speed_while_blocking

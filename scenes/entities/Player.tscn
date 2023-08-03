@@ -42,7 +42,6 @@ shape = SubResource("CapsuleShape3D_lnhvg")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1.1177, 0)
 
 [node name="GeneralSkeleton" parent="CharacterModel/Armature_004" index="0"]
-bones/0/position = Vector3(0, 0, 0)
 bones/1/rotation = Quaternion(-0.028835, -0.0509401, -0.0298165, 0.99784)
 bones/2/rotation = Quaternion(0.0293574, 0.0121938, 0.0212719, 0.999268)
 bones/3/rotation = Quaternion(0.0104525, 0.00359918, 0.0137752, 0.999844)
@@ -71,7 +70,7 @@ layers = 2
 layers = 2
 
 [node name="Sword" type="BoneAttachment3D" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2"]
-transform = Transform3D(0.390254, 0.0203353, 0.920482, 0.0585129, -0.998283, -0.00275352, 0.918846, 0.0549346, -0.390774, -0.247447, 0.84284, -0.00509795)
+transform = Transform3D(0.375746, -0.0585626, 0.92487, -0.0499478, -0.997831, -0.0428902, 0.925375, -0.0300795, -0.377856, -0.269261, 0.851963, -0.028814)
 bone_name = "RightHand"
 bone_idx = 35
 script = ExtResource("3_7pxxd")
