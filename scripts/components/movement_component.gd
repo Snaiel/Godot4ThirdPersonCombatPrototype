@@ -26,8 +26,7 @@ func _ready():
 
 func _physics_process(delta):
 	move_direction = rotation_component.move_direction
-	looking_direction = rotation_component.looking_direction
-	
+	looking_direction = rotation_component.looking_direction.normalized()
 	
 	if can_move:
 		if move_direction.length() > 0.2:
@@ -43,13 +42,11 @@ func _physics_process(delta):
 	elif target_entity.is_on_floor():
 		desired_velocity.x = lerp(desired_velocity.x, 0.0, 0.1)
 		desired_velocity.z = lerp(desired_velocity.z, 0.0, 0.1)
-		
 	
 	if not target_entity.is_on_floor():
 		desired_velocity.y -= gravity * delta
 	elif not vertical_movement:
 		desired_velocity.y = 0
-
 		
 	target_entity.velocity = desired_velocity
 	target_entity.move_and_slide()

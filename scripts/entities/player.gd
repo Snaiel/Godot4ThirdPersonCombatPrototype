@@ -113,7 +113,6 @@ func _physics_process(delta):
 	else:
 		running = false		
 		
-	print(movement_component.speed)
 	movement_component.can_move = can_move
 
 
