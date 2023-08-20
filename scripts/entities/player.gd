@@ -8,7 +8,7 @@ extends CharacterBody3D
 @export var jump_component: JumpComponent
 @export var block_component: BlockComponent
 @export var dodge_component: DodgeComponent
-@export var rotation_component: RotationComponent
+@export var rotation_component: PlayerRotationComponent
 @export var attack_component: AttackComponent
 
 var input_direction = Vector3.ZERO
@@ -38,7 +38,7 @@ func _ready():
 	_holding_down_run_timer.timeout.connect(_handle_hold_down_run_timer)
 	add_child(_holding_down_run_timer)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	# player inputs
 	input_direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
 	input_direction.z = Input.get_action_strength("backward") - Input.get_action_strength("forward")
@@ -57,7 +57,6 @@ func _physics_process(delta):
 		rotate_towards_target = true
 		
 	rotation_component.rotate_towards_target = rotate_towards_target
-	rotation_component.handle_rotation(delta)
 	movement_component.move_direction = rotation_component.move_direction
 	
 	if _locked_on_turning_in_place or (dodge_component.dodging and input_direction.length() < 0.1):

@@ -1,18 +1,20 @@
-[gd_scene load_steps=19 format=3 uid="uid://cv8knl5vavfyy"]
+[gd_scene load_steps=21 format=3 uid="uid://cv8knl5vavfyy"]
 
 [ext_resource type="Script" path="res://scripts/entities/enemy.gd" id="1_nrck3"]
 [ext_resource type="PackedScene" uid="uid://blqmpc6qop5nm" path="res://scenes/entities/EnemyBot.tscn" id="2_bivj4"]
 [ext_resource type="PackedScene" uid="uid://cko2lhqdu4n44" path="res://scenes/components/HitboxComponent.tscn" id="2_h2tgk"]
+[ext_resource type="Script" path="res://scripts/components/rotation_component.gd" id="3_8oquf"]
 [ext_resource type="PackedScene" uid="uid://cq3fjofav3npm" path="res://scenes/components/HealthComponent.tscn" id="3_c0k3s"]
 [ext_resource type="Material" uid="uid://ddlvel7t33vc8" path="res://materials/blood.tres" id="4_conbd"]
 [ext_resource type="PackedScene" uid="uid://ia1adrmqd0lf" path="res://scenes/components/LockOnComponent.tscn" id="6_nxetg"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="7_6a3a7"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="8_wqauf"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="9_aj65e"]
-[ext_resource type="Script" path="res://scripts/beehave/player_in_range.gd" id="10_3dylp"]
-[ext_resource type="Script" path="res://scripts/beehave/can_see_player.gd" id="11_8cx5b"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/leaves/action.gd" id="11_gqdv6"]
+[ext_resource type="Script" path="res://scripts/beehave/can_see_target.gd" id="11_rbarl"]
+[ext_resource type="Script" path="res://scripts/beehave/target_in_range.gd" id="12_bwlcv"]
 [ext_resource type="Script" path="res://addons/beehave/blackboard.gd" id="12_q7h63"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_set.gd" id="13_dt0d4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lwy87"]
 radius = 0.3
@@ -48,6 +50,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.916228, 0)
 [node name="Collider" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_lwy87")
 
+[node name="RotationComponent" type="Node3D" parent="." node_paths=PackedStringArray("entity")]
+script = ExtResource("3_8oquf")
+entity = NodePath("..")
+
 [node name="LockOnComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("6_nxetg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 health_component = NodePath("../HealthComponent")
@@ -79,16 +85,26 @@ script = ExtResource("8_wqauf")
 [node name="NoticePlayer" type="Node" parent="BeehaveTree/SelectorComposite"]
 script = ExtResource("9_aj65e")
 
-[node name="CanSeePlayer" type="Node" parent="BeehaveTree/SelectorComposite/NoticePlayer"]
-script = ExtResource("11_8cx5b")
+[node name="CanSeeTarget" type="Node" parent="BeehaveTree/SelectorComposite/NoticePlayer"]
+script = ExtResource("11_rbarl")
 
-[node name="PlayerInRange" type="Node" parent="BeehaveTree/SelectorComposite/NoticePlayer"]
-script = ExtResource("10_3dylp")
+[node name="TargetInRange" type="Node" parent="BeehaveTree/SelectorComposite/NoticePlayer"]
+script = ExtResource("12_bwlcv")
 
-[node name="LookAtPlayer" type="Node" parent="BeehaveTree/SelectorComposite/NoticePlayer"]
-script = ExtResource("11_gqdv6")
+[node name="LookAtTarget" type="Node" parent="BeehaveTree/SelectorComposite/NoticePlayer"]
+script = ExtResource("13_dt0d4")
+key = "\"look_at_target\""
+value = "bool(1)"
 
-[node name="Idle" type="Node" parent="BeehaveTree/SelectorComposite"]
+[node name="idle" type="Node" parent="BeehaveTree/SelectorComposite"]
+script = ExtResource("9_aj65e")
+
+[node name="DontLookAtTarget" type="Node" parent="BeehaveTree/SelectorComposite/idle"]
+script = ExtResource("13_dt0d4")
+key = "\"look_at_target\""
+value = "bool(0)"
+
+[node name="Idle" type="Node" parent="BeehaveTree/SelectorComposite/idle"]
 script = ExtResource("11_gqdv6")
 
 [node name="Blackboard" type="Node" parent="."]

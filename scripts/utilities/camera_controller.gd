@@ -58,8 +58,10 @@ func _physics_process(_delta):
 	
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().quit()
-		
-	var dist = cam.global_position.distance_to(player.global_position)
+	elif Input.is_action_just_pressed("ui_text_backspace"):
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	elif Input.is_action_just_pressed("attack"):
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED		
 		
 	if _lock_on_target:
 		var _looking_direction = -global_position.direction_to(_lock_on_target.global_position)

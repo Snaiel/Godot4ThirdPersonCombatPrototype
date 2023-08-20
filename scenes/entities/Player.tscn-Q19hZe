@@ -31,7 +31,7 @@ movement_component = NodePath("MovementComponent")
 jump_component = NodePath("JumpComponent")
 block_component = NodePath("BlockComponent")
 dodge_component = NodePath("DodgeComponent")
-rotation_component = NodePath("PlayerRotationComponent")
+rotation_component = NodePath("PlayerRotation")
 attack_component = NodePath("AttackComponent")
 
 [node name="Collider" type="CollisionShape3D" parent="."]
@@ -70,58 +70,4 @@ layers = 2
 layers = 2
 
 [node name="Sword" type="BoneAttachment3D" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2"]
-transform = Transform3D(0.375746, -0.0585626, 0.92487, -0.0499478, -0.997831, -0.0428902, 0.925375, -0.0300795, -0.377856, -0.269261, 0.851963, -0.028814)
-bone_name = "RightHand"
-bone_idx = 35
-script = ExtResource("3_7pxxd")
-
-[node name="Mesh" type="MeshInstance3D" parent="CharacterModel/Armature_004/GeneralSkeleton/Sword"]
-transform = Transform3D(-0.891467, -0.453089, -3.91618e-05, 0.453089, -0.891468, -0.000158824, 3.70497e-05, -0.00015933, 1, 0.168411, 0.443186, 0.0233156)
-layers = 2
-mesh = SubResource("CylinderMesh_dg00e")
-
-[node name="Area" type="Area3D" parent="CharacterModel/Armature_004/GeneralSkeleton/Sword" groups=["weapon"]]
-transform = Transform3D(1, 0, 0, 0, 1, 4.70233e-13, 0, 4.70233e-13, 1, 0, 0, 0)
-collision_layer = 4
-collision_mask = 8
-
-[node name="Collider" type="CollisionShape3D" parent="CharacterModel/Armature_004/GeneralSkeleton/Sword/Area"]
-transform = Transform3D(-0.891466, -0.453088, -3.91619e-05, 0.453088, -0.891466, -0.000158824, 3.70497e-05, -0.00015933, 1, 0.168411, 0.443186, 0.0233156)
-shape = SubResource("CylinderShape3D_cds6g")
-
-[node name="AnimationTree" parent="CharacterModel" index="2"]
-"parameters/Blocking Speed/scale" = 1.0
-"parameters/Running Lock On Look Direction/blend_position" = Vector2(0.0196936, 0.881657)
-
-[node name="PlayerRotationComponent" type="Node3D" parent="." node_paths=PackedStringArray("entity")]
-script = ExtResource("4_y1oi3")
-entity = NodePath("..")
-
-[node name="MovementComponent" type="Node3D" parent="." node_paths=PackedStringArray("target_entity", "rotation_component")]
-script = ExtResource("3_pph25")
-target_entity = NodePath("..")
-rotation_component = NodePath("../PlayerRotationComponent")
-
-[node name="JumpComponent" type="Node3D" parent="." node_paths=PackedStringArray("character", "movement_component")]
-script = ExtResource("5_20kj8")
-character = NodePath("../CharacterModel")
-movement_component = NodePath("../MovementComponent")
-
-[node name="BlockComponent" type="Node3D" parent="." node_paths=PackedStringArray("movement_component", "block_animations", "attack_animations")]
-script = ExtResource("7_qnswb")
-movement_component = NodePath("../MovementComponent")
-block_animations = NodePath("../CharacterModel/BlockAnimations")
-attack_animations = NodePath("../CharacterModel/AttackAnimations")
-
-[node name="DodgeComponent" type="Node3D" parent="." node_paths=PackedStringArray("entity", "movement_component")]
-script = ExtResource("6_66sk2")
-entity = NodePath("..")
-movement_component = NodePath("../MovementComponent")
-
-[node name="AttackComponent" type="Node3D" parent="." node_paths=PackedStringArray("attack_animations", "movement_component", "weapon")]
-script = ExtResource("3_nq7ea")
-attack_animations = NodePath("../CharacterModel/AttackAnimations")
-movement_component = NodePath("../MovementComponent")
-weapon = NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Sword")
-
-[editable path="CharacterModel"]
+transform = Transform3D(0.375746, -0.0585626, 0.92487, -0.0499478, -0.997831, -0.0428902, 0.925375, -
