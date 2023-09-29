@@ -62,7 +62,6 @@ health_component = NodePath("../HealthComponent")
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("hitbox", "blood") instance=ExtResource("3_c0k3s")]
 hitbox = NodePath("../HitboxComponent")
-health = 50
 blood = NodePath("Blood")
 
 [node name="Blood" type="GPUParticles3D" parent="HealthComponent"]
