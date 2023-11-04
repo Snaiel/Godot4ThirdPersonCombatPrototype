@@ -15,8 +15,9 @@ func _ready() -> void:
 	player = entity as Player
 	_camera_controller = player.camera_controller
 	_target_look = _camera_controller.rotation.y
-
+	
 	looking_direction = looking_direction.rotated(Vector3.UP, _camera_controller.rotation.y).normalized()
+
 
 func _physics_process(delta: float) -> void:
 	player.rotation_degrees.y = wrapf(player.rotation_degrees.y, -180, 180.0)
@@ -34,8 +35,8 @@ func _physics_process(delta: float) -> void:
 		_freelook_turn = false
 		# get the angle towards the lock on target and
 		# smoothyl rotate the player towards it
-		looking_direction = -player.global_position.direction_to(target.global_position)
-		_target_look = atan2(looking_direction.x, looking_direction.z)
+		looking_direction = player.global_position.direction_to(target.global_position)
+		_target_look = atan2(-looking_direction.x, -looking_direction.z)
 
 		var rotation_difference: float = abs(player.rotation.y - _target_look)
 
@@ -63,13 +64,13 @@ func _physics_process(delta: float) -> void:
 
 
 		if _can_move and _velocity.length() > 0:
-			looking_direction = -Vector3(_velocity.x, 0, _velocity.z)
+			looking_direction = Vector3(_velocity.x, 0, _velocity.z)
 		elif _can_rotate:
-			looking_direction = -Vector3(move_direction.x, 0, move_direction.z)
+			looking_direction = Vector3(move_direction.x, 0, move_direction.z)
 			looking_direction = looking_direction.rotated(Vector3.UP, _camera_controller.rotation.y).normalized()
 
 
-		_target_look = atan2(looking_direction.x, looking_direction.z)
+		_target_look = atan2(-looking_direction.x, -looking_direction.z)
 
 
 		# swivel the camera in the opposite direction so

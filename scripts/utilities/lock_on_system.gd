@@ -12,9 +12,9 @@ signal lock_on(target: LockOnComponent)
 
 
 @export_category("Changing Target")
-@export var change_target_mouse_threshold: float = 1
+@export var change_target_mouse_threshold: float = 60
 @export var change_target_controller_threshold: float = 0.2
-@export var change_target_wait_time: float = 0.2
+@export var change_target_wait_time: float = 0.5
 @export var can_change_target = true
 
 var _targets_nearby: Array[LockOnComponent]

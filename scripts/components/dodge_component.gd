@@ -23,7 +23,10 @@ func _dodge() -> void:
 		can_dodge = false
 		dodging = true
 
-		movement_component.desired_velocity += movement_component.move_direction.normalized() * 8
+		if movement_component.move_direction.length() > 0.0:
+			movement_component.desired_velocity += movement_component.move_direction.normalized() * 8
+		else:			
+			movement_component.desired_velocity += movement_component.looking_direction.normalized() * 8
 
 		# how long the dodge status lasts
 		var dodge_timer: SceneTreeTimer = get_tree().create_timer(0.2)
