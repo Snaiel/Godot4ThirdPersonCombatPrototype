@@ -174,7 +174,6 @@ collision_mask = 16
 script = ExtResource("6_tdxnb")
 player = NodePath("../Player")
 potential_target = NodePath("../Enemies/Enemy")
-change_target_mouse_threshold = 60
 change_target_wait_time = 0.5
 
 [node name="EnemyDetectionSphere" type="CollisionShape3D" parent="LockOnSystem"]
@@ -186,6 +185,7 @@ wait_time = 0.5
 [node name="CameraController" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_s2v7n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.6934, 0)
 player = NodePath("../Player")
+mouse_sensitivity = 10.0
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera_controller") instance=ExtResource("2_thr8q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5071, 14.2882, 21.6948)
@@ -225,7 +225,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.737, 2, -10.9117)
 
 [node name="Enemy6" parent="Enemies" instance=ExtResource("2_oia4d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5218, 2, 14.0395)
-debug = true
 
 [connection signal="area_entered" from="LockOnSystem" to="LockOnSystem" method="_on_area_entered"]
 [connection signal="area_exited" from="LockOnSystem" to="LockOnSystem" method="_on_area_exited"]
