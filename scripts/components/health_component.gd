@@ -5,7 +5,7 @@ signal zero_health
 
 @export var hitbox: HitboxComponent
 @export var health: float = 100.0
-@export var blood: GPUParticles3D
+@export var blood_scene: PackedScene
 
 # Called when the node nters the scene tree for the first time.
 func _ready() -> void:
@@ -13,9 +13,14 @@ func _ready() -> void:
 
 func decrement_health(weapon: Sword) -> void:
 	health -= weapon.damage
-	if blood:
-		blood.look_at(weapon.global_position)
-		blood.rotate_y(PI)
-		blood.restart()
+	if blood_scene:
+		var blood_particle: GPUParticles3D = blood_scene.instantiate()
+		add_child(blood_particle)
+		blood_particle.look_at(weapon.global_position)
+		blood_particle.rotate_y(PI)
+		blood_particle.restart()
 	if health <= 0:
 		zero_health.emit()
+
+
+
