@@ -1,7 +1,7 @@
 class_name MovementComponent
 extends Node3D
 
-@export var target_entity: Player
+@export var target_entity: CharacterBody3D
 @export var rotation_component: RotationComponent
 
 @export var gravity: float = 20.0
@@ -25,7 +25,6 @@ func _ready() -> void:
 	add_child(_secondary_movement_timer)
 
 func _physics_process(delta: float) -> void:
-#	print(move_direction, " ", looking_direction)
 	move_direction = rotation_component.move_direction
 	looking_direction = rotation_component.looking_direction.normalized()
 

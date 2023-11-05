@@ -20,9 +20,6 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	player.rotation_degrees.y = wrapf(player.rotation_degrees.y, -180, 180.0)
-
-
 	target = player.lock_on_target
 	var _input_direction: Vector3 = player.input_direction
 	var _can_move: bool = player.movement_component.can_move

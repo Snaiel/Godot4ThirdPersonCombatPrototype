@@ -1,3 +1,4 @@
+class_name CanSeeTarget
 extends ConditionLeaf
 
 @export var min_angle: float = 1.2

@@ -13,17 +13,19 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var _blackboard: Blackboard = $Blackboard
 @onready var _player: Player = Globals.player
 @onready var _rotation_component: RotationComponent = $RotationComponent
+@onready var _movement_component: MovementComponent = $MovementComponent
 
 
 func _ready() -> void:
 	_rotation_component.target = _player
+	_movement_component.speed = 1.5
 
 
 func _physics_process(delta: float) -> void:
 
 	var player_dist: float = global_position.distance_to(_player.global_position)
 	var player_dir: Vector3 = global_position.direction_to(_player.global_position)
-	var player_dir_angle: float = player_dir.angle_to(Vector3.BACK.rotated(Vector3.UP, global_rotation.y))
+	var player_dir_angle: float = player_dir.angle_to(Vector3.FORWARD.rotated(Vector3.UP, global_rotation.y))
 
 	_blackboard.set_value("target", _player)
 	_blackboard.set_value("target_dist", player_dist)
@@ -31,7 +33,10 @@ func _physics_process(delta: float) -> void:
 	_blackboard.set_value("target_dir_angle", player_dir_angle)
 
 	if debug:
-		print(_rotation_component.look_at_target)
+		_rotation_component.debug = debug
+#		print(_rotation_component.look_at_target)
+#		print(_blackboard.get_value("input_direction", Vector3.ZERO))
+#		print(_rotation_component.move_direction, " ", _movement_component.desired_velocity)
 
 	_rotation_component.look_at_target = _blackboard.get_value("look_at_target", false)
 

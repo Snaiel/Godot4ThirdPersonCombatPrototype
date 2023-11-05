@@ -1,3 +1,4 @@
+class_name TargetInRange
 extends ConditionLeaf
 
 @export var look_range: float = 5.0
