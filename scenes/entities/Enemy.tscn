@@ -30,10 +30,11 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -0.
 [node name="Collider" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_lwy87")
 
-[node name="RotationComponent" type="Node3D" parent="." node_paths=PackedStringArray("movement_component", "_blackboard", "entity")]
+[node name="RotationComponent" type="Node3D" parent="." node_paths=PackedStringArray("movement_component", "blackboard", "agent", "entity")]
 script = ExtResource("3_sltme")
 movement_component = NodePath("../MovementComponent")
-_blackboard = NodePath("../Blackboard")
+blackboard = NodePath("../Blackboard")
+agent = NodePath("../NavigationAgent3D")
 entity = NodePath("..")
 
 [node name="LockOnComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("6_nxetg")]
@@ -47,6 +48,7 @@ hitbox = NodePath("../HitboxComponent")
 
 [node name="MovementComponent" type="Node3D" parent="." node_paths=PackedStringArray("target_entity", "rotation_component")]
 script = ExtResource("7_dfa2r")
+speed = 3.0
 target_entity = NodePath("..")
 rotation_component = NodePath("../RotationComponent")
 
@@ -65,6 +67,7 @@ script = ExtResource("11_rbarl")
 
 [node name="TargetInRange" type="Node" parent="BeehaveTree/SelectorComposite/NoticePlayer"]
 script = ExtResource("12_bwlcv")
+look_range = 10.0
 
 [node name="LookAtTarget" type="Node" parent="BeehaveTree/SelectorComposite/NoticePlayer"]
 script = ExtResource("13_dt0d4")

@@ -3,34 +3,32 @@ extends CharacterBody3D
 
 signal death(enemy)
 
+@export var target: Node3D
 @export var debug: bool = false
-
 @export var friction: float = 0.05
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var _blackboard: Blackboard = $Blackboard
-@onready var _player: Player = Globals.player
 @onready var _rotation_component: RotationComponent = $RotationComponent
-@onready var _movement_component: MovementComponent = $MovementComponent
-
+@onready var _agent: NavigationAgent3D = $NavigationAgent3D
 
 func _ready() -> void:
-	_rotation_component.target = _player
-	_movement_component.speed = 1.5
+	target = Globals.player
+	_rotation_component.target = target
 
+func _physics_process(_delta: float) -> void:
+	_agent.target_position = target.global_position
 
-func _physics_process(delta: float) -> void:
+	var target_dist: float = global_position.distance_to(target.global_position)
+	var target_dir: Vector3 = global_position.direction_to(target.global_position)
+	var target_dir_angle: float = target_dir.angle_to(Vector3.FORWARD.rotated(Vector3.UP, global_rotation.y))
 
-	var player_dist: float = global_position.distance_to(_player.global_position)
-	var player_dir: Vector3 = global_position.direction_to(_player.global_position)
-	var player_dir_angle: float = player_dir.angle_to(Vector3.FORWARD.rotated(Vector3.UP, global_rotation.y))
-
-	_blackboard.set_value("target", _player)
-	_blackboard.set_value("target_dist", player_dist)
-	_blackboard.set_value("target_dir", player_dir)
-	_blackboard.set_value("target_dir_angle", player_dir_angle)
+	_blackboard.set_value("target", target)
+	_blackboard.set_value("target_dist", target_dist)
+	_blackboard.set_value("target_dir", target_dir)
+	_blackboard.set_value("target_dir_angle", target_dir_angle)
 
 	if debug:
 		_rotation_component.debug = debug
@@ -40,18 +38,11 @@ func _physics_process(delta: float) -> void:
 
 	_rotation_component.look_at_target = _blackboard.get_value("look_at_target", false)
 
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y -= gravity * delta
-
-	velocity.x = lerp(velocity.x, 0.0, friction)
-	velocity.z = lerp(velocity.z, 0.0, friction)
-
-	move_and_slide()
 
 func get_hit(knockback: float) -> void:
 	var player = Globals.player
 	velocity = player.position.direction_to(position) * knockback
+
 
 func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 	get_hit(weapon.knockback)

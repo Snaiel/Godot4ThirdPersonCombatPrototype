@@ -1,6 +1,8 @@
 class_name MovementComponent
 extends Node3D
 
+@export var speed: float = 0.0
+
 @export var target_entity: CharacterBody3D
 @export var rotation_component: RotationComponent
 
@@ -12,8 +14,6 @@ var desired_velocity: Vector3 = Vector3.ZERO
 
 var can_move: bool = true
 var vertical_movement: bool = false
-
-var speed: float = 0.0
 
 var _secondary_movement: float = 0.0
 var _secondary_movement_timer: Timer

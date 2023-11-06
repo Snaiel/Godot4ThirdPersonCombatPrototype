@@ -3,7 +3,8 @@ extends RotationComponent
 
 @export var debug: bool = false
 @export var movement_component: MovementComponent
-@export var _blackboard: Blackboard
+@export var blackboard: Blackboard
+@export var agent: NavigationAgent3D
 
 var _target_look: float
 var _freelook_turn: bool = false
@@ -17,9 +18,9 @@ func _ready() -> void:
 #
 	looking_direction = looking_direction.rotated(Vector3.UP, entity.rotation.y).normalized()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 #	target = player.lock_on_target
-	var _input_direction: Vector3 = _blackboard.get_value("input_direction", Vector3.ZERO)
+	var _input_direction: Vector3 = blackboard.get_value("input_direction", Vector3.ZERO)
 	var _can_move: bool = movement_component.can_move
 #	var _can_rotate: bool = player.can_rotate
 	var _velocity: Vector3 = movement_component.desired_velocity
@@ -35,7 +36,8 @@ func _physics_process(delta: float) -> void:
 	if look_at_target:
 		# get the angle towards the lock on target and
 		# smoothyl rotate the player towards it
-		looking_direction = entity.global_position.direction_to(target.global_position)
+		var _next_location: Vector3 = agent.get_next_path_position()
+		looking_direction = entity.global_position.direction_to(_next_location)
 		_target_look = atan2(-looking_direction.x, -looking_direction.z)
 		
 
@@ -58,8 +60,7 @@ func _physics_process(delta: float) -> void:
 				Vector3.UP,
 				_target_look + sign(move_direction.x) * 0.02
 			).normalized()
-
-
+	
 	elif _input_direction.length() > 0.2:
 		# get the rotation based on the current velocity direction
 		_freelook_turn = true
