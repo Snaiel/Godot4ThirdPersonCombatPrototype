@@ -12,12 +12,17 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var _blackboard: Blackboard = $Blackboard
 @onready var _rotation_component: RotationComponent = $RotationComponent
+@onready var _movement_component: MovementComponent = $MovementComponent
 @onready var _agent: NavigationAgent3D = $NavigationAgent3D
+
+var _default_move_speed: float
 
 func _ready() -> void:
 	target = Globals.player
 	_rotation_component.target = target
 	_blackboard.set_value("debug", debug)
+	_default_move_speed = _movement_component.speed
+	_blackboard.set_value("move_speed", _default_move_speed)
 
 func _physics_process(_delta: float) -> void:
 	_agent.target_position = target.global_position
@@ -33,12 +38,13 @@ func _physics_process(_delta: float) -> void:
 
 	if debug:
 		_rotation_component.debug = debug
+#		print(_blackboard.get_value("input_direction"))
 #		print(_rotation_component.look_at_target)
 #		print(_blackboard.get_value("input_direction", Vector3.ZERO))
 #		print(_rotation_component.move_direction, " ", _movement_component.desired_velocity)
 
 	_rotation_component.look_at_target = _blackboard.get_value("look_at_target", false)
-
+	_movement_component.speed = _blackboard.get_value("move_speed", _default_move_speed)
 
 func get_hit(knockback: float) -> void:
 	var player = Globals.player

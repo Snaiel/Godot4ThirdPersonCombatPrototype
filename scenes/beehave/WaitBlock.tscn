@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://chv25a2oggqaw"]
+
+[ext_resource type="Script" path="res://scripts/beehave/wait_block.gd" id="1_ua4k5"]
+[ext_resource type="Script" path="res://scripts/beehave/wait.gd" id="2_4n1n2"]
+[ext_resource type="Script" path="res://scripts/beehave/reset_wait.gd" id="3_ji7q3"]
+
+[node name="WaitBlock" type="Node" node_paths=PackedStringArray("wait_leaf", "reset_wait")]
+script = ExtResource("1_ua4k5")
+wait_leaf = NodePath("Wait")
+reset_wait = NodePath("ResetWait")
+
+[node name="Wait" type="Node" parent="."]
+script = ExtResource("2_4n1n2")
+time = 1.0
+wait_id = 2
+
+[node name="ResetWait" type="Node" parent="."]
+script = ExtResource("3_ji7q3")
+wait_id = 2

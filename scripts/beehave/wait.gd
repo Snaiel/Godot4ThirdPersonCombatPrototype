@@ -2,6 +2,7 @@ class_name Wait
 extends ActionLeaf
 
 @export var time: float
+@export var wait_id: int
 
 var _timer: Timer = Timer.new()
 var _finished: bool = false
@@ -17,12 +18,12 @@ func _ready():
 ## Executes this node and returns a status code.
 ## This method must be overwritten.
 func tick(_actor: Node, blackboard: Blackboard) -> int:
-	if blackboard.get_value("wait_before_chase", true):
+	if blackboard.get_value("wait_" + str(wait_id), true):
 		_finished = false
 		if not _waiting:
 			_waiting = true
 			_timer.start()
-		blackboard.set_value("wait_before_chase", false)
+		blackboard.set_value("wait_" + str(wait_id), false)
 			
 	if _finished:
 		return SUCCESS
