@@ -19,11 +19,10 @@ func _ready():
 func tick(_actor: Node, blackboard: Blackboard) -> int:
 	if blackboard.get_value("wait_before_chase", true):
 		_finished = false
+		if not _waiting:
+			_waiting = true
+			_timer.start()
 		blackboard.set_value("wait_before_chase", false)
-		
-	if not _waiting:
-		_waiting = true
-		_timer.start()
 			
 	if _finished:
 		return SUCCESS
