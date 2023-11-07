@@ -5,6 +5,7 @@ extends ActionLeaf
 
 var _timer: Timer = Timer.new()
 var _finished: bool = false
+var _waiting: bool = false
 
 func _ready():
 	_timer.timeout.connect(_timer_finished)
@@ -12,24 +13,24 @@ func _ready():
 	_timer.one_shot = true
 	add_child(_timer)
 
+
 ## Executes this node and returns a status code.
 ## This method must be overwritten.
-func tick(_actor: Node, _blackboard: Blackboard) -> int:
+func tick(_actor: Node, blackboard: Blackboard) -> int:
+	if blackboard.get_value("wait_before_chase", true):
+		_finished = false
+		blackboard.set_value("wait_before_chase", false)
+		
+	if not _waiting:
+		_waiting = true
+		_timer.start()
+			
 	if _finished:
 		return SUCCESS
 	else:
 		return RUNNING
 
 
-## Called before the first time it ticks by the parent.
-func before_run(_actor: Node, _blackboard: Blackboard) -> void:
-	_timer.start()
-	
-
-func after_run(_actor: Node, _blackboard: Blackboard) -> void:
-	_timer.stop()
-	_finished = false
-	
-
-func _timer_finished():
+func _timer_finished() -> void:
 	_finished = true
+	_waiting = false

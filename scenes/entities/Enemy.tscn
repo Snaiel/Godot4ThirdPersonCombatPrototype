@@ -74,7 +74,7 @@ script = ExtResource("13_dt0d4")
 key = "\"look_at_target\""
 value = "bool(1)"
 
-[node name="Wait" type="Node" parent="BeehaveTree/SelectorComposite/NoticePlayer"]
+[node name="WaitBeforeChase" type="Node" parent="BeehaveTree/SelectorComposite/NoticePlayer"]
 script = ExtResource("14_ngb5f")
 time = 2.0
 
@@ -85,6 +85,11 @@ value = "Vector3(0, 0, -1)"
 
 [node name="idle" type="Node" parent="BeehaveTree/SelectorComposite"]
 script = ExtResource("9_aj65e")
+
+[node name="ResetWaitBeforeChase" type="Node" parent="BeehaveTree/SelectorComposite/idle"]
+script = ExtResource("13_dt0d4")
+key = "\"wait_before_chase\""
+value = "bool(1)"
 
 [node name="DontLookAtTarget" type="Node" parent="BeehaveTree/SelectorComposite/idle"]
 script = ExtResource("13_dt0d4")

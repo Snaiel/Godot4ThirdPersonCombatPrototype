@@ -17,6 +17,7 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _ready() -> void:
 	target = Globals.player
 	_rotation_component.target = target
+	_blackboard.set_value("debug", debug)
 
 func _physics_process(_delta: float) -> void:
 	_agent.target_position = target.global_position

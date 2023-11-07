@@ -193,7 +193,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.6934, 0)
 player = NodePath("../Player")
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera_controller") instance=ExtResource("2_thr8q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5071, 14.2882, 21.6948)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5071, 2.23141, 21.6948)
 camera_controller = NodePath("../CameraController")
 
 [node name="Enemies" type="Node3D" parent="."]
