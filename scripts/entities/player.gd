@@ -104,7 +104,7 @@ func _physics_process(_delta: float) -> void:
 			if jump_component.jumping and not is_on_floor():
 				movement_component.speed = 3.5
 			else:
-				movement_component.speed = 2
+				movement_component.speed = 3
 			running = false
 	else:
 		running = false
