@@ -28,9 +28,6 @@ var _locked_on_turning_in_place: bool = false
 func _ready() -> void:
 	Globals.player = self
 
-	character.jump_animations.jumped.connect(jump_component.jump)
-	character.jump_animations.jump_landed.connect(jump_component.jump_landed)
-
 	attack_component.can_move.connect(_receive_can_move)
 	attack_component.can_rotate.connect(_receive_can_rotate)
 
