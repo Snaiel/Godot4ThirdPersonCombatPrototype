@@ -19,6 +19,7 @@ var vertical_movement: bool = false
 
 var _secondary_movement_direction: Vector3
 var _secondary_movement_speed: float = 0.0
+var _secondary_movement_friction: float = 0.0
 var _secondary_movement_timer: Timer
 
 
@@ -32,7 +33,8 @@ func _physics_process(delta: float) -> void:
 	looking_direction = rotation_component.looking_direction.normalized()
 	
 	if debug:
-		print(_secondary_movement_direction, " ", _secondary_movement_speed)
+		pass
+#		print(_secondary_movement_direction, " ", _secondary_movement_speed, " ", _secondary_movement_friction)
 
 	if can_move:
 		if move_direction.length() > 0.2:
@@ -43,9 +45,15 @@ func _physics_process(delta: float) -> void:
 			desired_velocity.x = lerp(desired_velocity.x, 0.0, weight)
 			desired_velocity.z = lerp(desired_velocity.z, 0.0, weight)
 			
-	if _secondary_movement_speed and target_entity.is_on_floor():
+	
+	if _secondary_movement_speed > 0.0 and target_entity.is_on_floor():
 		desired_velocity.x = _secondary_movement_direction.x * _secondary_movement_speed
 		desired_velocity.z = _secondary_movement_direction.z * _secondary_movement_speed
+		_secondary_movement_speed -= _secondary_movement_friction * delta
+	
+	if _secondary_movement_speed < 0.0:
+		_secondary_movement_speed = 0
+		
 	
 	if not can_move and target_entity.is_on_floor():
 		desired_velocity.x = lerp(desired_velocity.x, 0.0, 0.1)
@@ -60,8 +68,9 @@ func _physics_process(delta: float) -> void:
 	target_entity.move_and_slide()
 
 
-func set_secondary_movement(secondary_speed: float, time: float, direction: Vector3 = Vector3.ZERO) -> void:
+func set_secondary_movement(secondary_speed: float, time: float, direction: Vector3 = Vector3.ZERO, friction: float = 0.0) -> void:
 	_secondary_movement_timer.stop()
+	_secondary_movement_friction = friction
 	if direction == Vector3.ZERO:
 		_secondary_movement_direction = looking_direction
 	else:
@@ -72,3 +81,4 @@ func set_secondary_movement(secondary_speed: float, time: float, direction: Vect
 
 func _process_movement_timer() -> void:
 	_secondary_movement_speed = 0.0
+	_secondary_movement_friction = 0.0
