@@ -69,11 +69,12 @@ layers = 2
 [node name="Alpha_Surface" parent="CharacterModel/Armature_004/GeneralSkeleton" index="1"]
 layers = 2
 
-[node name="Sword" type="BoneAttachment3D" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2"]
+[node name="Sword" type="BoneAttachment3D" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity")]
 transform = Transform3D(0.375746, -0.0585626, 0.92487, -0.0499478, -0.997831, -0.0428902, 0.925375, -0.0300795, -0.377856, -0.269261, 0.851963, -0.028814)
 bone_name = "RightHand"
 bone_idx = 35
 script = ExtResource("3_7pxxd")
+_entity = NodePath("../../../..")
 
 [node name="Mesh" type="MeshInstance3D" parent="CharacterModel/Armature_004/GeneralSkeleton/Sword"]
 transform = Transform3D(-0.891467, -0.453089, -3.91618e-05, 0.453089, -0.891468, -0.000158824, 3.70497e-05, -0.00015933, 1, 0.168411, 0.443186, 0.0233156)

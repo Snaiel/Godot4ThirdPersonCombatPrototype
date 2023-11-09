@@ -36,7 +36,7 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -0.
 [node name="Collider" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_lwy87")
 
-[node name="RotationComponent" type="Node3D" parent="." node_paths=PackedStringArray("movement_component", "blackboard", "agent", "entity")]
+[node name="EnemyRotationComponent" type="Node3D" parent="." node_paths=PackedStringArray("movement_component", "blackboard", "agent", "entity")]
 script = ExtResource("3_sltme")
 movement_component = NodePath("../MovementComponent")
 blackboard = NodePath("../Blackboard")
@@ -57,7 +57,7 @@ blood_scene = ExtResource("7_fiewg")
 script = ExtResource("7_dfa2r")
 speed = 3.0
 target_entity = NodePath("..")
-rotation_component = NodePath("../RotationComponent")
+rotation_component = NodePath("../EnemyRotationComponent")
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard")]
 script = ExtResource("7_6a3a7")

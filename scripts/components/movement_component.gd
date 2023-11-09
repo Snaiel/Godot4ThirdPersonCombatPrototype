@@ -1,6 +1,8 @@
 class_name MovementComponent
 extends Node3D
 
+@export var debug: bool = false
+
 @export var speed: float = 0.0
 
 @export var target_entity: CharacterBody3D
@@ -15,7 +17,8 @@ var desired_velocity: Vector3 = Vector3.ZERO
 var can_move: bool = true
 var vertical_movement: bool = false
 
-var _secondary_movement: float = 0.0
+var _secondary_movement_direction: Vector3
+var _secondary_movement_speed: float = 0.0
 var _secondary_movement_timer: Timer
 
 
@@ -27,6 +30,9 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	move_direction = rotation_component.move_direction
 	looking_direction = rotation_component.looking_direction.normalized()
+	
+	if debug:
+		print(_secondary_movement_direction, " ", _secondary_movement_speed)
 
 	if can_move:
 		if move_direction.length() > 0.2:
@@ -36,10 +42,12 @@ func _physics_process(delta: float) -> void:
 			var weight: float = 0.15 if vertical_movement else 0.05
 			desired_velocity.x = lerp(desired_velocity.x, 0.0, weight)
 			desired_velocity.z = lerp(desired_velocity.z, 0.0, weight)
-	elif _secondary_movement and target_entity.is_on_floor():
-		desired_velocity.x = looking_direction.x * _secondary_movement
-		desired_velocity.z = looking_direction.z * _secondary_movement
-	elif target_entity.is_on_floor():
+			
+	if _secondary_movement_speed and target_entity.is_on_floor():
+		desired_velocity.x = _secondary_movement_direction.x * _secondary_movement_speed
+		desired_velocity.z = _secondary_movement_direction.z * _secondary_movement_speed
+	
+	if not can_move and target_entity.is_on_floor():
 		desired_velocity.x = lerp(desired_velocity.x, 0.0, 0.1)
 		desired_velocity.z = lerp(desired_velocity.z, 0.0, 0.1)
 
@@ -52,11 +60,15 @@ func _physics_process(delta: float) -> void:
 	target_entity.move_and_slide()
 
 
-func set_secondary_movement(new_speed: float, time: float) -> void:
+func set_secondary_movement(speed: float, time: float, direction: Vector3 = Vector3.ZERO) -> void:
 	_secondary_movement_timer.stop()
-	_secondary_movement = new_speed
+	if direction == Vector3.ZERO:
+		_secondary_movement_direction = looking_direction
+	else:
+		_secondary_movement_direction = direction
+	_secondary_movement_speed = speed
 	_secondary_movement_timer.start(time)
 
 
 func _process_movement_timer() -> void:
-	_secondary_movement = 0.0
+	_secondary_movement_speed = 0.0

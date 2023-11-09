@@ -12,7 +12,7 @@ func _ready() -> void:
 	hitbox.weapon_hit.connect(decrement_health)
 
 func decrement_health(weapon: Sword) -> void:
-	health -= weapon.damage
+	health -= weapon.get_damage()
 	if blood_scene:
 		var blood_particle: GPUParticles3D = blood_scene.instantiate()
 		add_child(blood_particle)

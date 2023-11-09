@@ -11,7 +11,7 @@ signal death(enemy)
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var _blackboard: Blackboard = $Blackboard
-@onready var _rotation_component: RotationComponent = $RotationComponent
+@onready var _rotation_component: RotationComponent = $EnemyRotationComponent
 @onready var _movement_component: MovementComponent = $MovementComponent
 @onready var _agent: NavigationAgent3D = $NavigationAgent3D
 
@@ -23,6 +23,9 @@ func _ready() -> void:
 	_blackboard.set_value("debug", debug)
 	_default_move_speed = _movement_component.speed
 	_blackboard.set_value("move_speed", _default_move_speed)
+	
+	_rotation_component.debug = debug
+	_movement_component.debug = debug
 
 func _physics_process(_delta: float) -> void:
 	_agent.target_position = target.global_position
@@ -37,7 +40,7 @@ func _physics_process(_delta: float) -> void:
 	_blackboard.set_value("target_dir_angle", target_dir_angle)
 
 	if debug:
-		_rotation_component.debug = debug
+		pass
 #		print(_blackboard.get_value("input_direction"))
 #		print(_rotation_component.look_at_target)
 #		print(_blackboard.get_value("input_direction", Vector3.ZERO))
@@ -46,13 +49,11 @@ func _physics_process(_delta: float) -> void:
 	_rotation_component.look_at_target = _blackboard.get_value("look_at_target", false)
 	_movement_component.speed = _blackboard.get_value("move_speed", _default_move_speed)
 
-func get_hit(knockback: float) -> void:
-	var player = Globals.player
-	velocity = player.position.direction_to(position) * knockback
-
 
 func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
-	get_hit(weapon.knockback)
+	var opponent_position: Vector3 = weapon.get_entity().global_position
+	var direction: Vector3 = global_position.direction_to(opponent_position)
+	_movement_component.set_secondary_movement(weapon.get_knockback(), 0.3, -direction)
 
 
 func _on_health_component_zero_health() -> void:
