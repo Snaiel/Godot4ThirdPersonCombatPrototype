@@ -89,7 +89,7 @@ script = ExtResource("9_aj65e")
 
 [node name="CloseToTarget" type="Node" parent="BeehaveTree/SelectorComposite/NoticePlayer/StayOrChase/StayIfClose"]
 script = ExtResource("15_8pg6b")
-range = 2.5
+target_range = 2.5
 
 [node name="ResetWaitBeforeChase" type="Node" parent="BeehaveTree/SelectorComposite/NoticePlayer/StayOrChase/StayIfClose"]
 script = ExtResource("16_lpnau")

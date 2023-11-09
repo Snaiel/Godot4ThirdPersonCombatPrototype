@@ -60,13 +60,13 @@ func _physics_process(delta: float) -> void:
 	target_entity.move_and_slide()
 
 
-func set_secondary_movement(speed: float, time: float, direction: Vector3 = Vector3.ZERO) -> void:
+func set_secondary_movement(secondary_speed: float, time: float, direction: Vector3 = Vector3.ZERO) -> void:
 	_secondary_movement_timer.stop()
 	if direction == Vector3.ZERO:
 		_secondary_movement_direction = looking_direction
 	else:
 		_secondary_movement_direction = direction
-	_secondary_movement_speed = speed
+	_secondary_movement_speed = secondary_speed
 	_secondary_movement_timer.start(time)
 
 
