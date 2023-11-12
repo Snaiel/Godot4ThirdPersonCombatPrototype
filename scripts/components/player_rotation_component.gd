@@ -74,7 +74,7 @@ func _physics_process(delta: float) -> void:
 		# it tries to position itself back behind the player
 		# (needs playtesting idk if it's actually good behaviour)
 		if delta and not target:
-			_camera_controller.player_moving(move_direction, delta)
+			_camera_controller.player_moving(move_direction, player.running, delta)
 
 
 		# change move direction so it is relative to where

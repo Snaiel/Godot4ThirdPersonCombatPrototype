@@ -1,6 +1,7 @@
 class_name CameraController
 extends SpringArm3D
 
+
 @export var player: Player
 
 @export_category("Camera Settings")
@@ -8,10 +9,17 @@ extends SpringArm3D
 @export var vertical_offset: float = 0.5
 @export var camera_angle: float = 0.0
 @export var camera_fov: float = 75.0
-@export var autonomous_speed: float = 3.0
 
 @export_category("Mouse Settings")
-@export var mouse_sensitivity: float = 10.0
+@export var mouse_sensitivity: float = 5.0
+
+@export_category("Spin Around Speed")
+## The speed the camera tries to spin around
+## to be behind the player when their are not running
+@export var not_running_spin_speed: float = 4.0
+## The speed the camera tries to spin around 
+## to be behind the player when their are running
+@export var running_spin_speed: float = 5.0
 
 @export_category("Controller Settings")
 @export var controller_sensitivity: float = 14.0
@@ -112,10 +120,14 @@ func _unhandled_input(event: InputEvent) -> void:
 	else:
 		_player_looking_around = false
 
-func player_moving(move_direction: Vector3, delta: float) -> void:
+func player_moving(move_direction: Vector3, running: bool, delta: float) -> void:
 	if not _player_looking_around:
-		var new_rotation: float = rotation.y - sign(move_direction.x) * delta * autonomous_speed
-		rotation.y = lerp(rotation.y, new_rotation, 0.2)
+		var new_rotation: float
+		if running:
+			new_rotation = rotation.y - sign(move_direction.x) * delta * running_spin_speed		
+		else:
+			new_rotation = rotation.y - sign(move_direction.x) * delta * not_running_spin_speed		
+		rotation.y = lerp(rotation.y, new_rotation, 0.3)
 
 func get_lock_on_position(target: LockOnComponent) -> Vector2:
 	var pos = cam.unproject_position(target.global_position)
