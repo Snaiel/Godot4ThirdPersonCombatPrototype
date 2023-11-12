@@ -7,7 +7,6 @@ extends Node3D
 
 var move_direction: Vector3 = Vector3.ZERO
 var looking_direction: Vector3 = Vector3.FORWARD
-var move_input_multipler: Vector3
 var target_look: float
 
 

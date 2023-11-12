@@ -28,9 +28,6 @@ func _physics_process(delta: float) -> void:
 	var _velocity: Vector3 = player.movement_component.desired_velocity
 
 	move_direction = _input_direction
-	
-	move_input_multipler = player.move_input_multiplier
-	move_direction = move_direction * move_input_multipler
 
 	if rotate_towards_target:
 		_freelook_turn = false
@@ -80,7 +77,10 @@ func _physics_process(delta: float) -> void:
 		if delta and not target:
 			_camera_controller.player_moving(move_direction, player.running, delta)
 
-
+			if not player.is_on_floor():
+				move_direction.x = move_direction.x * 0.5
+				if _input_direction.z > 0.2:
+					move_direction.z = move_direction.z * 0.3
 		# change move direction so it is relative to where
 		# the camera is facing
 		move_direction = move_direction.rotated(Vector3.UP, _camera_controller.rotation.y)
@@ -88,7 +88,7 @@ func _physics_process(delta: float) -> void:
 
 	# Makes sure the player is rotated fully to the desired direction
 	# even if pressed for a short period of time
-	if _freelook_turn:
+	if _freelook_turn and not (not player.is_on_floor() and _input_direction.z > 0.2):
 		if abs(player.rotation.y - _target_look) < 0.01:
 			_freelook_turn = false
 		player.rotation.y = lerp_angle(player.rotation.y, _target_look, 0.1)
