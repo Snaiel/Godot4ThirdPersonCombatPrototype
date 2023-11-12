@@ -12,6 +12,7 @@ extends CharacterBody3D
 @export var attack_component: AttackComponent
 
 var input_direction: Vector3 = Vector3.ZERO
+var move_input_multiplier: Vector3 = Vector3(1.0, 0, 1.0)
 
 var can_move: bool = true
 var running: bool = false
@@ -91,6 +92,11 @@ func _physics_process(_delta: float) -> void:
 	# start the jump animation when the jump key is pressed
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		jump_component.start_jump()
+		
+	if jump_component.jumping and not is_on_floor():
+		move_input_multiplier = Vector3(0.5, 0, 1.0)
+	else:
+		move_input_multiplier = Vector3(1.0, 0, 1.0)		
 
 	if not block_component.blocking:
 		if (_holding_down_run and is_on_floor() and not dodge_component.dodging) or (jump_component.jumping and not is_on_floor() and movement_component.speed == 5):

@@ -21,12 +21,16 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	target = player.lock_on_target
+	
 	var _input_direction: Vector3 = player.input_direction
 	var _can_move: bool = player.movement_component.can_move
 	var _can_rotate: bool = player.can_rotate
 	var _velocity: Vector3 = player.movement_component.desired_velocity
 
 	move_direction = _input_direction
+	
+	move_input_multipler = player.move_input_multiplier
+	move_direction = move_direction * move_input_multipler
 
 	if rotate_towards_target:
 		_freelook_turn = false
@@ -79,7 +83,7 @@ func _physics_process(delta: float) -> void:
 
 		# change move direction so it is relative to where
 		# the camera is facing
-		move_direction = move_direction.rotated(Vector3.UP, _camera_controller.rotation.y).normalized()
+		move_direction = move_direction.rotated(Vector3.UP, _camera_controller.rotation.y)
 
 
 	# Makes sure the player is rotated fully to the desired direction
