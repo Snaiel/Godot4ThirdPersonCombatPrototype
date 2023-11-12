@@ -72,7 +72,7 @@ layers = 2
 layers = 2
 
 [node name="Sword" type="BoneAttachment3D" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity")]
-transform = Transform3D(0.406129, 0.0173798, 0.91365, 0.0839512, -0.996301, -0.0183652, 0.909951, 0.0841607, -0.406086, -0.250425, 0.840076, 0.00626004)
+transform = Transform3D(0.406128, 0.0173783, 0.913651, 0.0839508, -0.996301, -0.0183665, 0.909952, 0.0841608, -0.406084, -0.250426, 0.840077, 0.00625988)
 bone_name = "RightHand"
 bone_idx = 35
 script = ExtResource("3_7pxxd")
