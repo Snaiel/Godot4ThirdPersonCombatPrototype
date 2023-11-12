@@ -41,8 +41,6 @@ func _physics_process(_delta: float) -> void:
 	input_direction.z = Input.get_action_strength("backward") - Input.get_action_strength("forward")
 
 
-
-
 	# handle rotation of the player based on camera, movement, or lock on
 	var rotate_towards_target: bool = false
 	# we want to rotate the player towards the target lock on entity if we are locked on (obviously).
@@ -55,11 +53,12 @@ func _physics_process(_delta: float) -> void:
 
 	rotation_component.rotate_towards_target = rotate_towards_target
 	movement_component.move_direction = rotation_component.move_direction
-
+	
+	var _animation_input_dir: Vector3 = input_direction
 	if _locked_on_turning_in_place or (dodge_component.dodging and input_direction.length() < 0.1):
-		input_direction = Vector3.FORWARD * 0.4
+		_animation_input_dir = Vector3.FORWARD * 0.4
 
-	character.movement_animations.move(input_direction, lock_on_target != null, running)
+	character.movement_animations.move(_animation_input_dir, lock_on_target != null, running)
 
 
 	if Input.is_action_pressed("block"):
