@@ -31,35 +31,47 @@ var _can_play_animation: bool = false
 var _intend_to_stop_attacking: bool = true
 
 
+var _transition_legs: bool = false
+
+
 func _ready() -> void:
 	anim_tree["parameters/Attacking/blend_amount"] = 0.0
 
 
-func _process(_delta: float) -> void:
-
+func _physics_process(_delta: float) -> void:
+	
 	if attacking:
-		anim_tree["parameters/Attacking/blend_amount"] = lerp(anim_tree["parameters/Attacking/blend_amount"], 1.0, 0.3)
+		anim_tree["parameters/Attacking/blend_amount"] = lerp(anim_tree["parameters/Attacking/blend_amount"], 1.0, 0.15)
 	else:
 		anim_tree["parameters/Attacking/blend_amount"] = lerp(anim_tree["parameters/Attacking/blend_amount"], 0.0, 0.1)
 
+	if _transition_legs:
+		var _legs_blend: float = anim_tree["parameters/Attack Inward Slash/Inward Slash and Walk Blend/blend_amount"]
+		anim_tree["parameters/Attack Inward Slash/Inward Slash and Walk Blend/blend_amount"] = lerp(_legs_blend, 1.0, 0.3)
+	else:
+		var _legs_scale = anim_tree["parameters/Attack Inward Slash/Walk Forwards Speed/scale"]
+		anim_tree["parameters/Attack Inward Slash/Walk Forwards Speed/scale"] = lerp(_legs_scale, 0.1, 0.2)
+			
+			
 	if _can_play_animation and _intent_to_attack:
-		_can_play_animation = false
-
 		match _level:
 			1:
+				anim_tree["parameters/Attack Inward Slash/Inward Slash and Walk Blend/blend_amount"] = 0.0				
 				anim_tree["parameters/Attack Inward Slash/Inward Slash Trim/seek_request"] = 0.0
 				anim_tree["parameters/Attack Inward Slash/Walk Forwards Trim/seek_request"] = 0.55
+				anim_tree["parameters/Attack Inward Slash/Walk Forwards Speed/scale"] = 0.0
 				anim_tree["parameters/Attack/transition_request"] = "attack_1"
 			2:
 				anim_tree["parameters/Attack Outward Slash/Outwards Slash Trim/seek_request"] = 0.5
-				anim_tree["parameters/Attack Outward Slash/Walk Forwards Trim/seek_request"] = 0.55
+				anim_tree["parameters/Attack Outward Slash/Walk Forwards Trim/seek_request"] = 0.2
 				anim_tree["parameters/Attack/transition_request"] = "attack_2"
 			3:
 				anim_tree["parameters/Attack/transition_request"] = "attack_3"
 			4:
 				anim_tree["parameters/Attack Quick Slash/Quick Slash Trim/seek_request"] = 0.9
 				anim_tree["parameters/Attack/transition_request"] = "attack_4"
-
+		
+		_can_play_animation = false
 		_intent_to_attack = false
 
 
@@ -91,6 +103,19 @@ func recieve_can_play_animation() -> void:
 	_can_play_animation = true
 
 
+func receive_play_legs() -> void:
+	match _level:
+		1:
+			_transition_legs = true
+			anim_tree["parameters/Attack Inward Slash/Walk Forwards Speed/scale"] = 0.8
+			
+
+func receive_stop_legs() -> void:
+	match _level:
+		1:
+			_transition_legs = false
+
+
 func receive_can_attack_again() -> void:
 	can_attack_again.emit(true)
 	_intend_to_stop_attacking = true
@@ -98,7 +123,7 @@ func receive_can_attack_again() -> void:
 
 func receive_cannot_attack_again() -> void:
 	can_attack_again.emit(false)
-
+				
 
 func receive_attack_finished() -> void:
 	if _intend_to_stop_attacking:

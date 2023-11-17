@@ -53,7 +53,7 @@ func _physics_process(_delta: float) -> void:
 func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 	var opponent_position: Vector3 = weapon.get_entity().global_position
 	var direction: Vector3 = global_position.direction_to(opponent_position)
-	_movement_component.set_secondary_movement(weapon.get_knockback(), 5, -direction, 1)
+	_movement_component.set_secondary_movement(weapon.get_knockback(), 5, 5, -direction)
 
 
 func _on_health_component_zero_health() -> void:

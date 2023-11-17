@@ -68,7 +68,7 @@ func _physics_process(delta: float) -> void:
 	target_entity.move_and_slide()
 
 
-func set_secondary_movement(secondary_speed: float, time: float, direction: Vector3 = Vector3.ZERO, friction: float = 0.0) -> void:
+func set_secondary_movement(secondary_speed: float, time: float, friction: float = 0.0, direction: Vector3 = Vector3.ZERO) -> void:
 	_secondary_movement_timer.stop()
 	_secondary_movement_friction = friction
 	if direction == Vector3.ZERO:
