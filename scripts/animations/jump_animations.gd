@@ -3,7 +3,6 @@ extends BaseAnimations
 
 
 signal jumped
-signal jump_landed
 
 
 func start_jump() -> void:
@@ -13,10 +12,6 @@ func start_jump() -> void:
 
 func jump_force() -> void:
 	jumped.emit()
-
-
-func jump_finished() -> void:
-	jump_landed.emit()
 
 
 func fade_out() -> void:
