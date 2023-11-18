@@ -8,7 +8,7 @@ var locked_on_turning_in_place: bool = false
 
 
 func _ready() -> void:
-	anim_tree["parameters/Free walk Speed/scale"] = 1
+	anim_tree["parameters/Free Walk Speed/scale"] = 1
 
 
 func move(dir: Vector3, locked_on: bool, running: bool) -> void:

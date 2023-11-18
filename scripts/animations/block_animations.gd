@@ -6,7 +6,7 @@ var _temp_speed: float
 
 
 func _ready() -> void:
-	_temp_speed = anim_tree["parameters/Free walk Speed/scale"]
+	_temp_speed = anim_tree["parameters/Free Walk Speed/scale"]
 
 
 func block(blocking: bool) -> void:
@@ -20,5 +20,5 @@ func block(blocking: bool) -> void:
 		anim_tree["parameters/Lock On Walk Speed/scale"] = 0.5
 	else:
 		anim_tree["parameters/Blocking/blend_amount"] = lerp(blend_amount, 0.0, 0.1)
-		anim_tree["parameters/Free walk Speed/scale"] = _temp_speed
+		anim_tree["parameters/Free Walk Speed/scale"] = _temp_speed
 		anim_tree["parameters/Lock On Walk Speed/scale"] = _temp_speed

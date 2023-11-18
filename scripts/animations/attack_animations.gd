@@ -58,28 +58,9 @@ func _physics_process(_delta: float) -> void:
 		)
 
 	if _transition_legs:
-		anim_tree["parameters/Attack Inward Slash/Inward Slash and Walk Blend/blend_amount"] = lerp(
-			float(anim_tree["parameters/Attack Inward Slash/Inward Slash and Walk Blend/blend_amount"]), 
-			1.0, 
-			0.3
-		)
-			
-		anim_tree["parameters/Attack Inward Slash Copy/Inward Slash and Walk Blend/blend_amount"] = lerp(
-			float(anim_tree["parameters/Attack Inward Slash Copy/Inward Slash and Walk Blend/blend_amount"]), 
-			1.0, 
-			0.3
-		)		
+		_perform_transition_legs()
 	else:
-		anim_tree["parameters/Attack Inward Slash/Walk Forwards Speed/scale"] = lerp(
-			float(anim_tree["parameters/Attack Inward Slash/Walk Forwards Speed/scale"]), 
-			0.05, 
-			0.3
-		)
-		anim_tree["parameters/Attack Inward Slash Copy/Walk Forwards Speed/scale"] = lerp(
-			float(anim_tree["parameters/Attack Inward Slash Copy/Walk Forwards Speed/scale"]), 
-			0.05, 
-			0.3
-		)
+		_end_legs_transition()
 			
 			
 	if _can_play_animation and _intent_to_attack:
@@ -88,7 +69,8 @@ func _physics_process(_delta: float) -> void:
 				_play_attack_1()
 			2:
 				anim_tree["parameters/Attack Outward Slash/Outwards Slash Trim/seek_request"] = 0.5
-				anim_tree["parameters/Attack Outward Slash/Walk Forwards Trim/seek_request"] = 0.2
+				anim_tree["parameters/Attack Outward Slash/Walk Forwards Trim/seek_request"] = 0.955
+				anim_tree["parameters/Attack Outward Slash/Walk Forwards Speed/scale"] = 0.0				
 				anim_tree["parameters/Attack/transition_request"] = "attack_2"
 			3:
 				anim_tree["parameters/Attack/transition_request"] = "attack_3"
@@ -115,7 +97,43 @@ func _play_attack_1() -> void:
 		anim_tree["parameters/Attack Inward Slash/Walk Forwards Speed/scale"] = 0.0
 		anim_tree["parameters/Attack/transition_request"] = "attack_1"
 		_play_attack_1_copy = true
-		
+
+
+func _perform_transition_legs() -> void:
+	match _level:
+		1:
+			anim_tree["parameters/Attack Inward Slash/Inward Slash and Walk Blend/blend_amount"] = lerp(
+				float(anim_tree["parameters/Attack Inward Slash/Inward Slash and Walk Blend/blend_amount"]), 
+				1.0, 
+				0.3
+			)
+				
+			anim_tree["parameters/Attack Inward Slash Copy/Inward Slash and Walk Blend/blend_amount"] = lerp(
+				float(anim_tree["parameters/Attack Inward Slash Copy/Inward Slash and Walk Blend/blend_amount"]), 
+				1.0, 
+				0.3
+			)
+
+
+func _end_legs_transition() -> void:
+	match _level:
+		1:
+			anim_tree["parameters/Attack Inward Slash/Walk Forwards Speed/scale"] = lerp(
+				float(anim_tree["parameters/Attack Inward Slash/Walk Forwards Speed/scale"]), 
+				0.05, 
+				0.3
+			)
+			anim_tree["parameters/Attack Inward Slash Copy/Walk Forwards Speed/scale"] = lerp(
+				float(anim_tree["parameters/Attack Inward Slash Copy/Walk Forwards Speed/scale"]), 
+				0.05, 
+				0.3
+			)
+		2:
+			anim_tree["parameters/Attack Outward Slash/Walk Forwards Speed/scale"] = lerp(
+				anim_tree["parameters/Attack Outward Slash/Walk Forwards Speed/scale"],
+				0.05,
+				0.3
+			)
 
 func attack(level: int) -> void:
 	attacking = true
@@ -146,17 +164,17 @@ func recieve_can_play_animation() -> void:
 
 
 func receive_play_legs() -> void:
+	_transition_legs = true
 	match _level:
 		1:
-			_transition_legs = true
 			anim_tree["parameters/Attack Inward Slash/Walk Forwards Speed/scale"] = 0.8
 			anim_tree["parameters/Attack Inward Slash Copy/Walk Forwards Speed/scale"] = 0.8
+		2:
+			anim_tree["parameters/Attack Outward Slash/Walk Forwards Speed/scale"] = 0.8
 			
 
 func receive_stop_legs() -> void:
-	match _level:
-		1:
-			_transition_legs = false
+	_transition_legs = false
 
 
 func receive_can_attack_again() -> void:
