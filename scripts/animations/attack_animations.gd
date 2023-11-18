@@ -63,6 +63,8 @@ func _physics_process(_delta: float) -> void:
 		_end_legs_transition()
 			
 	if _can_play_animation and _intent_to_attack:
+		_transition_legs = false
+		
 		match _level:
 			1:
 				_play_attack_1()
