@@ -85,7 +85,7 @@ func _receive_movement() -> void:
 		3:
 			movement_component.set_secondary_movement(6, 5, 15)
 		4:
-			movement_component.set_secondary_movement(-0.8, 0.2)
+			movement_component.set_secondary_movement(6, 5, 15)
 
 
 func _receive_can_damage(can_damage: bool) -> void:

@@ -66,3 +66,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_v44eh")
 
 [node name="AnimationTree" parent="." index="2"]
 root_motion_track = NodePath("../Armature_004/GeneralSkeleton")
+"parameters/Attack Quick Slash/Quick Slash and Walk Blend/blend_amount" = 0
+"parameters/Attack Quick Slash/Walk Forwards Speed/scale" = 1.0
+"parameters/Attack Quick Slash/Walk Forwards Trim/seek_request" = -1.0

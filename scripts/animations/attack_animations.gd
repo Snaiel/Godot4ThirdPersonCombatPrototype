@@ -43,7 +43,7 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if debug:
 		pass
-	
+		
 	if attacking:
 		anim_tree["parameters/Attacking/blend_amount"] = lerp(
 			anim_tree["parameters/Attacking/blend_amount"], 
@@ -62,7 +62,6 @@ func _physics_process(_delta: float) -> void:
 	else:
 		_end_legs_transition()
 			
-			
 	if _can_play_animation and _intent_to_attack:
 		match _level:
 			1:
@@ -76,6 +75,8 @@ func _physics_process(_delta: float) -> void:
 				anim_tree["parameters/Attack/transition_request"] = "attack_3"
 			4:
 				anim_tree["parameters/Attack Quick Slash/Quick Slash Trim/seek_request"] = 0.9
+				anim_tree["parameters/Attack Quick Slash/Walk Forwards Trim/seek_request"] = 0.8
+				anim_tree["parameters/Attack Quick Slash/Walk Forwards Speed/scale"] = 0.8				
 				anim_tree["parameters/Attack/transition_request"] = "attack_4"
 		
 		_can_play_animation = false
@@ -113,6 +114,12 @@ func _perform_transition_legs() -> void:
 				1.0, 
 				0.3
 			)
+		4:
+			anim_tree["parameters/Attack Quick Slash/Quick Slash and Walk Blend/blend_amount"] = lerp(
+				float(anim_tree["parameters/Attack Quick Slash/Quick Slash and Walk Blend/blend_amount"]),
+				1.0,
+				0.3
+			)
 
 
 func _end_legs_transition() -> void:
@@ -130,10 +137,17 @@ func _end_legs_transition() -> void:
 			)
 		2:
 			anim_tree["parameters/Attack Outward Slash/Walk Forwards Speed/scale"] = lerp(
-				anim_tree["parameters/Attack Outward Slash/Walk Forwards Speed/scale"],
+				float(anim_tree["parameters/Attack Outward Slash/Walk Forwards Speed/scale"]),
 				0.05,
 				0.3
 			)
+		4:
+			anim_tree["parameters/Attack Quick Slash/Walk Forwards Speed/scale"] = lerp(
+				float(anim_tree["parameters/Attack Quick Slash/Walk Forwards Speed/scale"]),
+				0.05,
+				0.3
+			)
+
 
 func attack(level: int) -> void:
 	attacking = true
@@ -171,10 +185,15 @@ func receive_play_legs() -> void:
 			anim_tree["parameters/Attack Inward Slash Copy/Walk Forwards Speed/scale"] = 0.8
 		2:
 			anim_tree["parameters/Attack Outward Slash/Walk Forwards Speed/scale"] = 0.8
-			
+		4:
+			anim_tree["parameters/Attack Quick Slash/Walk Forwards Speed/scale"] = 0.8
 
-func receive_stop_legs() -> void:
-	_transition_legs = false
+func receive_stop_legs(level: int) -> void:
+	# having a check for the level originating from the animation
+	# against the current attack _level to see whether
+	# to actually transition out of the current animation's legs
+	if level == _level:
+		_transition_legs = false
 
 
 func receive_can_attack_again() -> void:

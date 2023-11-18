@@ -94,6 +94,9 @@ transform = Transform3D(-0.891466, -0.453088, -3.91619e-05, 0.453088, -0.891466,
 shape = SubResource("CylinderShape3D_cds6g")
 
 [node name="AnimationTree" parent="CharacterModel" index="2"]
+"parameters/Attack Quick Slash/Quick Slash and Walk Blend/blend_amount" = 0
+"parameters/Attack Quick Slash/Walk Forwards Speed/scale" = 1.0
+"parameters/Attack Quick Slash/Walk Forwards Trim/seek_request" = -1.0
 "parameters/Blocking Speed/scale" = 1.0
 "parameters/Running Lock On Look Direction/blend_position" = Vector2(0.0196936, 0.881657)
 
