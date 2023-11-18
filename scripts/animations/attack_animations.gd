@@ -13,7 +13,6 @@ signal attacking_finished
 # this means if an attacking animation is currently occurring
 var attacking: bool = false
 
-
 # which attack to do, meant to control animations
 # for successive attacks
 var _level: int = 1
@@ -30,9 +29,20 @@ var _can_play_animation: bool = false
 # the attacking animatino
 var _intend_to_stop_attacking: bool = true
 
+# A flag for whether to start transitioning
+# the blend of the legs with the attack
+# animation if it's 1, to slow down the
+# legs animation to come to a stop when
+# it's -1, and to do nothing when it's 0
+var _transition_legs: int = 0
 
-var _transition_legs: bool = false
-
+# A flag that signifies whether to play
+# the attack 1 animation or the copy
+# of the attack 1 animation. This is done
+# to rectify the issue of instant
+# transitions when the transition node
+# in the blend tree is requested to play
+# the animation that is currently playing.
 var _play_attack_1_copy: bool = false
 
 
@@ -57,13 +67,14 @@ func _physics_process(_delta: float) -> void:
 			0.1
 		)
 
-	if _transition_legs:
+	if _transition_legs  == 1:
 		_perform_transition_legs()
-	else:
+	elif _transition_legs == -1:
 		_end_legs_transition()
 			
 	if _can_play_animation and _intent_to_attack:
-		_transition_legs = false
+		
+		_transition_legs = 0
 		
 		match _level:
 			1:
@@ -114,12 +125,6 @@ func _perform_transition_legs() -> void:
 			anim_tree["parameters/Attack Inward Slash Copy/Inward Slash and Walk Blend/blend_amount"] = lerp(
 				float(anim_tree["parameters/Attack Inward Slash Copy/Inward Slash and Walk Blend/blend_amount"]), 
 				1.0, 
-				0.3
-			)
-		4:
-			anim_tree["parameters/Attack Quick Slash/Quick Slash and Walk Blend/blend_amount"] = lerp(
-				float(anim_tree["parameters/Attack Quick Slash/Quick Slash and Walk Blend/blend_amount"]),
-				1.0,
 				0.3
 			)
 
@@ -180,7 +185,7 @@ func recieve_can_play_animation() -> void:
 
 
 func receive_play_legs() -> void:
-	_transition_legs = true
+	_transition_legs = 1
 	match _level:
 		1:
 			anim_tree["parameters/Attack Inward Slash/Walk Forwards Speed/scale"] = 0.8
@@ -195,7 +200,7 @@ func receive_stop_legs(level: int) -> void:
 	# against the current attack _level to see whether
 	# to actually transition out of the current animation's legs
 	if level == _level:
-		_transition_legs = false
+		_transition_legs = -1
 
 
 func receive_can_attack_again() -> void:
