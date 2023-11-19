@@ -196,7 +196,7 @@ not_running_spin_speed = 3.5
 running_spin_speed = 4.0
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera_controller") instance=ExtResource("2_thr8q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5071, 2.23141, 21.6948)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.96124, 12.6798, 17.7885)
 camera_controller = NodePath("../CameraController")
 
 [node name="Enemies" type="Node3D" parent="."]

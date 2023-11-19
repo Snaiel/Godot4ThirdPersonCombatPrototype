@@ -43,28 +43,27 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1.
 
 [node name="GeneralSkeleton" parent="CharacterModel/Armature_004" index="0"]
 bones/0/position = Vector3(-0.00109031, 1.79931e-10, 0.00150937)
-bones/1/position = Vector3(0.0763627, 0.865697, -0.00273713)
-bones/1/rotation = Quaternion(0.00494858, -0.113554, -0.0220028, 0.993276)
-bones/2/rotation = Quaternion(0.0609037, 0.113719, 0.0346353, 0.991039)
-bones/3/rotation = Quaternion(0.0686904, 0.10886, 0.0263228, 0.991332)
-bones/4/rotation = Quaternion(0.0687297, 0.108698, 0.0269169, 0.991331)
-bones/5/rotation = Quaternion(0.0481598, -0.0264578, 0.00244162, 0.998486)
-bones/6/rotation = Quaternion(-0.123611, -0.125735, -0.0141523, 0.984231)
-bones/8/rotation = Quaternion(0.481652, 0.48933, 0.574852, -0.445099)
-bones/9/rotation = Quaternion(-0.0237573, 0.863655, -0.39022, -0.31822)
-bones/10/rotation = Quaternion(0.466468, -0.531421, 0.466467, 0.531421)
-bones/11/rotation = Quaternion(-0.24645, 0.488432, 0.0057242, 0.837057)
-bones/32/rotation = Quaternion(0.360901, -0.537188, -0.650235, -0.397963)
-bones/33/rotation = Quaternion(-0.272201, 0.919221, -0.249979, 0.135828)
-bones/34/rotation = Quaternion(0.486509, 0.513137, -0.486509, 0.513136)
-bones/35/rotation = Quaternion(-0.0393595, -0.363754, 0.0878685, 0.926506)
-bones/56/rotation = Quaternion(-0.0702808, 0.391039, 0.911569, -0.105784)
-bones/57/rotation = Quaternion(-0.0117155, 0.908405, -0.416864, 0.0298028)
-bones/58/rotation = Quaternion(-0.0667478, 0.68766, -0.718808, 0.077351)
-bones/61/rotation = Quaternion(-0.1948, 0.174677, 0.959438, 0.104977)
-bones/62/rotation = Quaternion(0.0866891, 0.84153, -0.530787, -0.0507671)
-bones/63/rotation = Quaternion(0.0531796, 0.530517, -0.84417, -0.0556816)
-bones/64/rotation = Quaternion(1.07044e-07, 0.984945, 0.172867, 7.93745e-09)
+bones/1/rotation = Quaternion(-0.0334407, -0.0468364, -0.0281099, 0.997947)
+bones/2/rotation = Quaternion(0.0296894, 0.0130452, 0.0224781, 0.999221)
+bones/3/rotation = Quaternion(0.0102915, 0.00294545, 0.0137655, 0.999848)
+bones/4/rotation = Quaternion(0.0100681, 0.00314199, 0.0137926, 0.999849)
+bones/5/rotation = Quaternion(0.0490399, -0.00110635, 0.00427603, 0.998787)
+bones/6/rotation = Quaternion(-0.0664332, 0.0116201, -0.00140201, 0.997722)
+bones/8/rotation = Quaternion(0.457129, 0.500312, 0.631947, -0.375985)
+bones/9/rotation = Quaternion(0.123528, 0.803166, -0.568977, -0.126213)
+bones/10/rotation = Quaternion(0.00918777, -0.707047, 0.00918778, 0.707047)
+bones/11/rotation = Quaternion(0.0537127, 0.475209, -0.0154351, 0.878096)
+bones/32/rotation = Quaternion(0.475602, -0.479681, -0.634768, -0.375205)
+bones/33/rotation = Quaternion(-0.151732, 0.827234, -0.497434, 0.212653)
+bones/34/rotation = Quaternion(0.0412572, 0.705902, -0.0412574, 0.705902)
+bones/35/rotation = Quaternion(0.0442474, -0.571234, 0.0366109, 0.818776)
+bones/56/rotation = Quaternion(0.134337, 0.0820817, 0.984728, -0.0743386)
+bones/57/rotation = Quaternion(-0.0386384, 0.992884, -0.111625, 0.0151095)
+bones/58/rotation = Quaternion(-0.0408525, 0.711924, -0.69941, 0.0481789)
+bones/61/rotation = Quaternion(-0.0911136, -0.00951434, 0.995411, -0.0276405)
+bones/62/rotation = Quaternion(0.0331782, 0.994275, -0.0581165, -0.0833)
+bones/63/rotation = Quaternion(0.0106749, 0.685456, -0.727482, -0.0283684)
+bones/64/rotation = Quaternion(-3.09168e-07, 0.998011, 0.0630344, -3.24905e-08)
 
 [node name="Alpha_Joints" parent="CharacterModel/Armature_004/GeneralSkeleton" index="0"]
 layers = 2
@@ -73,7 +72,7 @@ layers = 2
 layers = 2
 
 [node name="Sword" type="BoneAttachment3D" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity")]
-transform = Transform3D(0.300511, 0.949093, 0.0944227, 0.866961, -0.313083, 0.387758, 0.397581, -0.0346648, -0.916912, 0.155603, 0.94031, 0.260024)
+transform = Transform3D(0.396742, 0.0227573, 0.917648, 0.0718808, -0.997393, -0.00634267, 0.915112, 0.0684777, -0.397343, -0.246876, 0.841688, 0.00146994)
 bone_name = "RightHand"
 bone_idx = 35
 script = ExtResource("3_7pxxd")
@@ -97,6 +96,9 @@ shape = SubResource("CylinderShape3D_cds6g")
 "parameters/Blocking Speed/scale" = 1.0
 "parameters/Running Lock On Look Direction/blend_position" = Vector2(0.0196936, 0.881657)
 
+[node name="JumpAnimations" parent="CharacterModel" index="4"]
+debug = true
+
 [node name="AttackAnimations" parent="CharacterModel" index="5"]
 debug = true
 
@@ -115,6 +117,10 @@ script = ExtResource("5_20kj8")
 entity = NodePath("..")
 animations = NodePath("../CharacterModel")
 movement_component = NodePath("../MovementComponent")
+
+[node name="JumpRaycast" type="RayCast3D" parent="JumpComponent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.13165, 0)
+target_position = Vector3(0, -2, 0)
 
 [node name="BlockComponent" type="Node3D" parent="." node_paths=PackedStringArray("movement_component", "block_animations", "attack_animations")]
 script = ExtResource("7_qnswb")
