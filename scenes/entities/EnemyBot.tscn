@@ -38,3 +38,4 @@ surface_material_override/0 = SubResource("StandardMaterial3D_v44eh")
 root_motion_track = NodePath("../Armature_004/GeneralSkeleton")
 "parameters/Attack Quick Slash/Quick Slash and Walk Blend/blend_amount" = 0
 "parameters/Jump Speed/scale" = 1.0
+"parameters/Vertical Movement/blend_amount" = 0

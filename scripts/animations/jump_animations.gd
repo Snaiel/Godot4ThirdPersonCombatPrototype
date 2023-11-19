@@ -1,18 +1,34 @@
 class_name JumpAnimations
 extends BaseAnimations
 
+
 signal jumped
 
 var about_to_land: bool = false
 
 var _can_set_falling: bool = true
+var _fade_vertical_movement: bool = false
 var _fade_to_fall: bool = false
 
 
 func _physics_process(_delta):
 	if debug:
 		pass
-#		prints(_fade_to_fall, anim_tree["parameters/Jump and Fall Blend/blend_amount"])
+	
+	# This blends between the normal movement stuff
+	# and all this vertical movement stuff (jump and fall)
+	if _fade_vertical_movement:
+		anim_tree["parameters/Vertical Movement/blend_amount"] = lerp(
+			float(anim_tree["parameters/Vertical Movement/blend_amount"]),
+			1.0,
+			0.05
+		)
+	else:
+		anim_tree["parameters/Vertical Movement/blend_amount"] = lerp(
+			float(anim_tree["parameters/Vertical Movement/blend_amount"]),
+			0.0,
+			0.05
+		)
 	
 	# This blends between the jump animation and the
 	# falling idle animation
@@ -29,11 +45,13 @@ func _physics_process(_delta):
 			0.1
 		)
 
+
 ## Method to start the jump animation
 func start_jump() -> void:
 	anim_tree["parameters/Jump Trim/seek_request"] = 0.65
-	anim_tree["parameters/Jump and Fall/transition_request"] = "jump_and_fall"
-
+	anim_tree["parameters/Jump Speed/scale"] = 1.0	
+	_fade_vertical_movement = true
+	
 
 ## When to actually apply the jump force
 func jump_force() -> void:
@@ -47,6 +65,15 @@ func falling_idle() -> void:
 	if _can_set_falling and not about_to_land:
 		_can_set_falling = false
 		_fade_to_fall = true
+
+
+## Method to just play the fall animation
+## without the jump. Useful if the player
+## literally just walks off a platform
+func just_fall() -> void:
+	anim_tree["parameters/Jump Speed/scale"] = 0.0
+	anim_tree["parameters/Jump and Fall Blend/blend_amount"] = 1.0
+	_fade_vertical_movement = true
 	
 
 ## A method to signfiy when to blend from the
@@ -58,5 +85,5 @@ func jump_landing() -> void:
 
 ## A method call to transition from jumping
 func fade_out() -> void:
-	anim_tree["parameters/Jump and Fall/transition_request"] = "none"
+	_fade_vertical_movement = false	
 	_fade_to_fall = false

@@ -43,27 +43,27 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1.
 
 [node name="GeneralSkeleton" parent="CharacterModel/Armature_004" index="0"]
 bones/0/position = Vector3(-0.00109031, 1.79931e-10, 0.00150937)
-bones/1/rotation = Quaternion(-0.0334407, -0.0468364, -0.0281099, 0.997947)
-bones/2/rotation = Quaternion(0.0296894, 0.0130452, 0.0224781, 0.999221)
-bones/3/rotation = Quaternion(0.0102915, 0.00294545, 0.0137655, 0.999848)
-bones/4/rotation = Quaternion(0.0100681, 0.00314199, 0.0137926, 0.999849)
-bones/5/rotation = Quaternion(0.0490399, -0.00110635, 0.00427603, 0.998787)
-bones/6/rotation = Quaternion(-0.0664332, 0.0116201, -0.00140201, 0.997722)
-bones/8/rotation = Quaternion(0.457129, 0.500312, 0.631947, -0.375985)
-bones/9/rotation = Quaternion(0.123528, 0.803166, -0.568977, -0.126213)
-bones/10/rotation = Quaternion(0.00918777, -0.707047, 0.00918778, 0.707047)
-bones/11/rotation = Quaternion(0.0537127, 0.475209, -0.0154351, 0.878096)
-bones/32/rotation = Quaternion(0.475602, -0.479681, -0.634768, -0.375205)
-bones/33/rotation = Quaternion(-0.151732, 0.827234, -0.497434, 0.212653)
-bones/34/rotation = Quaternion(0.0412572, 0.705902, -0.0412574, 0.705902)
-bones/35/rotation = Quaternion(0.0442474, -0.571234, 0.0366109, 0.818776)
-bones/56/rotation = Quaternion(0.134337, 0.0820817, 0.984728, -0.0743386)
-bones/57/rotation = Quaternion(-0.0386384, 0.992884, -0.111625, 0.0151095)
-bones/58/rotation = Quaternion(-0.0408525, 0.711924, -0.69941, 0.0481789)
-bones/61/rotation = Quaternion(-0.0911136, -0.00951434, 0.995411, -0.0276405)
-bones/62/rotation = Quaternion(0.0331782, 0.994275, -0.0581165, -0.0833)
-bones/63/rotation = Quaternion(0.0106749, 0.685456, -0.727482, -0.0283684)
-bones/64/rotation = Quaternion(-3.09168e-07, 0.998011, 0.0630344, -3.24905e-08)
+bones/1/rotation = Quaternion(-0.036759, -0.0423612, -0.0237519, 0.998143)
+bones/2/rotation = Quaternion(0.0287577, 0.015291, 0.0243648, 0.999172)
+bones/3/rotation = Quaternion(0.00969505, 0.00383958, 0.0143629, 0.999843)
+bones/4/rotation = Quaternion(0.00963546, 0.00409042, 0.0144447, 0.999841)
+bones/5/rotation = Quaternion(0.0486875, -0.00230719, 0.00544346, 0.998797)
+bones/6/rotation = Quaternion(-0.0679548, 0.00834398, -0.000841287, 0.997653)
+bones/8/rotation = Quaternion(0.457694, 0.500694, 0.628538, -0.380476)
+bones/9/rotation = Quaternion(0.125248, 0.799005, -0.574809, -0.124496)
+bones/10/rotation = Quaternion(0.00959287, -0.707042, 0.009593, 0.707042)
+bones/11/rotation = Quaternion(0.054871, 0.477863, -0.0170611, 0.876553)
+bones/32/rotation = Quaternion(0.475739, -0.479179, -0.635931, -0.3737)
+bones/33/rotation = Quaternion(-0.149225, 0.828399, -0.495639, 0.214076)
+bones/34/rotation = Quaternion(0.0405486, 0.705943, -0.0405487, 0.705943)
+bones/35/rotation = Quaternion(0.0416154, -0.571454, 0.0351149, 0.818826)
+bones/56/rotation = Quaternion(0.1362, 0.0719466, 0.985291, -0.073998)
+bones/57/rotation = Quaternion(-0.0386398, 0.993518, -0.106557, 0.00864464)
+bones/58/rotation = Quaternion(-0.0424932, 0.712245, -0.698845, 0.0501666)
+bones/61/rotation = Quaternion(-0.0933559, -0.0155844, 0.995168, -0.0261158)
+bones/62/rotation = Quaternion(0.0342154, 0.993845, -0.0645399, -0.0832827)
+bones/63/rotation = Quaternion(0.00812532, 0.677244, -0.735103, -0.0299658)
+bones/64/rotation = Quaternion(-2.32886e-07, 0.998104, 0.0615474, 1.03628e-08)
 
 [node name="Alpha_Joints" parent="CharacterModel/Armature_004/GeneralSkeleton" index="0"]
 layers = 2
@@ -72,7 +72,7 @@ layers = 2
 layers = 2
 
 [node name="Sword" type="BoneAttachment3D" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity")]
-transform = Transform3D(0.396742, 0.0227573, 0.917648, 0.0718808, -0.997393, -0.00634267, 0.915112, 0.0684777, -0.397343, -0.246876, 0.841688, 0.00146994)
+transform = Transform3D(0.413153, 0.0278533, 0.910236, 0.0812612, -0.996673, -0.0063859, 0.907029, 0.0766052, -0.414041, -0.245313, 0.838003, 0.00666378)
 bone_name = "RightHand"
 bone_idx = 35
 script = ExtResource("3_7pxxd")
@@ -95,6 +95,7 @@ shape = SubResource("CylinderShape3D_cds6g")
 [node name="AnimationTree" parent="CharacterModel" index="2"]
 "parameters/Blocking Speed/scale" = 1.0
 "parameters/Running Lock On Look Direction/blend_position" = Vector2(0.0196936, 0.881657)
+"parameters/Vertical Movement/blend_amount" = 0
 
 [node name="JumpAnimations" parent="CharacterModel" index="4"]
 debug = true

@@ -25,6 +25,13 @@ func _process(_delta: float) -> void:
 	
 	animations.jump_animations.about_to_land = _jump_raycast.is_colliding()
 	
+	# if the player just walks off a platform, play the fall animation
+	if not jumping: 
+		if not entity.is_on_floor() and not _jump_raycast.is_colliding():
+			animations.jump_animations.just_fall()
+		else:
+			animations.jump_animations.fade_out()
+	
 	# Check if we're about to land on the floor
 	if not entity.is_on_floor() and \
 		entity.velocity.y < -0.2 and \
