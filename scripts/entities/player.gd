@@ -12,6 +12,7 @@ extends CharacterBody3D
 @export var attack_component: AttackComponent
 
 var input_direction: Vector3 = Vector3.ZERO
+var last_input_on_ground: Vector3 = Vector3.ZERO
 
 var can_move: bool = true
 var running: bool = false
@@ -40,6 +41,7 @@ func _physics_process(_delta: float) -> void:
 	input_direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
 	input_direction.z = Input.get_action_strength("backward") - Input.get_action_strength("forward")
 
+	last_input_on_ground = input_direction if is_on_floor() else last_input_on_ground
 
 	# handle rotation of the player based on camera, movement, or lock on
 	var rotate_towards_target: bool = false
@@ -48,7 +50,10 @@ func _physics_process(_delta: float) -> void:
 	# So when it isn't locked on, it is handled by the elif block.
 	# But we also want to have this behaviour at certain times while also
 	# locked on. For example, when _running away from the target or when _jumping
-	if lock_on_target and not (running and input_direction.z > 0) and not (running and jump_component.jumping):
+	if lock_on_target and \
+		not (running and input_direction.z > 0) and \
+		not (running and jump_component.jumping):
+			
 		rotate_towards_target = true
 
 	rotation_component.rotate_towards_target = rotate_towards_target
