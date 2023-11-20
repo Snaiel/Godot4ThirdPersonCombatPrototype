@@ -96,8 +96,9 @@ func _physics_process(delta: float) -> void:
 		move_direction = move_direction.rotated(Vector3.UP, _camera_controller.rotation.y)
 
 
-	# Makes sure the player is rotated fully to the desired direction
-	# even if pressed for a short period of time
+	# the massive not condition ensures that the player does not rotate
+	# the opposite way if mid air and the player is inputting to go in
+	# the opposite direction from their original momentum on the ground
 	if _freelook_turn and \
 		not (
 			not player.is_on_floor() and \
@@ -105,6 +106,8 @@ func _physics_process(delta: float) -> void:
 			abs(_input_direction.z) > 0.2
 			):
 		
+		# Makes sure the player is rotated fully to the desired direction
+		# even if pressed for a short period of time
 		if abs(player.rotation.y - _target_look) < 0.01:
 			_freelook_turn = false
 		player.rotation.y = lerp_angle(player.rotation.y, _target_look, 0.1)
