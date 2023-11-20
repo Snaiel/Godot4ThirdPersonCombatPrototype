@@ -4,7 +4,7 @@ extends BoneAttachment3D
 @export var _entity: CharacterBody3D
 
 @export var _damage: float = 10.0
-@export var _knockback: float = 4.0
+@export var _knockback: float = 3.0
 @export var can_damage: bool = false
 
 
