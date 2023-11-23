@@ -33,7 +33,6 @@ func _ready():
 
 
 func _physics_process(_delta: float) -> void:
-	
 	if not entity.is_on_floor():
 		_in_air = true
 	
@@ -52,6 +51,8 @@ func _dodge() -> void:
 	can_set_intent_to_dodge = false
 	can_dodge = false
 	dodging = true
+
+	movement_component.vertical_movement = false
 
 	if movement_component.move_direction.length() > 0.0:
 		movement_component.desired_velocity += movement_component.move_direction.normalized() * dodge_strength

@@ -48,11 +48,6 @@ func _physics_process(delta: float) -> void:
 			
 			desired_velocity.x = lerp(desired_velocity.x, 0.0, weight)
 			desired_velocity.z = lerp(desired_velocity.z, 0.0, weight)
-			
-			# coming from a jump, if the desire velocity has come
-			# to a stop, then turn vertical movement off 
-			if vertical_movement and Vector2(desired_velocity.x, desired_velocity.z).length() < 0.05:
-				vertical_movement = false
 	
 	if _secondary_movement_speed > 0.0 and target_entity.is_on_floor():
 		desired_velocity.x = _secondary_movement_direction.x * _secondary_movement_speed
