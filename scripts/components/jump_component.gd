@@ -17,8 +17,10 @@ var _can_emit_just_landed: bool = true
 
 @onready var _jump_raycast: RayCast3D = $JumpRaycast
 
+
 func _ready():
-	animations.jump_animations.jumped.connect(jump)
+	animations.jump_animations.jumped.connect(_jump)
+	animations.jump_animations.vertical_movement_ended.connect(_receive_vertical_movement_ended)
 
 
 func _process(_delta: float) -> void:
@@ -43,7 +45,6 @@ func _process(_delta: float) -> void:
 	if entity.is_on_floor() and _can_emit_just_landed:
 		_can_emit_just_landed = false
 		jumping = false
-		movement_component.vertical_movement = false
 		animations.jump_animations.fade_out()		
 		just_landed.emit()
 	
@@ -62,7 +63,12 @@ func start_jump() -> void:
 	animations.jump_animations.start_jump()
 
 
-# the point in the animation where they lift
-# off of the ground 
-func jump() -> void:
+## the point in the animation where they lift off of the ground 
+func _jump() -> void:
 	actually_jump = true
+
+
+## assumes we are now not doing any vertical movement
+func _receive_vertical_movement_ended() -> void:
+	if movement_component.move_direction.length() > 0.2:
+		movement_component.vertical_movement = false

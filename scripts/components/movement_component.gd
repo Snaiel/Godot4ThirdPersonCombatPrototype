@@ -30,7 +30,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	move_direction = rotation_component.move_direction
-	looking_direction = rotation_component.looking_direction.normalized()
+	looking_direction = rotation_component.looking_direction
 	
 	if debug:
 		pass
@@ -41,10 +41,18 @@ func _physics_process(delta: float) -> void:
 			desired_velocity.x = lerp(desired_velocity.x, move_direction.x * speed, 0.1)
 			desired_velocity.z = lerp(desired_velocity.z, move_direction.z * speed, 0.1)
 		elif target_entity.is_on_floor():
-			var weight: float = 0.15 if vertical_movement else 0.05
+			# if coming from a jump, quickly come to a stop.
+			# otherwise, if just going from walking/runnning to a stop,
+			# come to a gentle stop
+			var weight: float = 0.3 if vertical_movement else 0.05
+			
 			desired_velocity.x = lerp(desired_velocity.x, 0.0, weight)
 			desired_velocity.z = lerp(desired_velocity.z, 0.0, weight)
 			
+			# coming from a jump, if the desire velocity has come
+			# to a stop, then turn vertical movement off 
+			if vertical_movement and Vector2(desired_velocity.x, desired_velocity.z).length() < 0.05:
+				vertical_movement = false
 	
 	if _secondary_movement_speed > 0.0 and target_entity.is_on_floor():
 		desired_velocity.x = _secondary_movement_direction.x * _secondary_movement_speed

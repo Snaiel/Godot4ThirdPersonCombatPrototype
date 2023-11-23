@@ -3,12 +3,15 @@ extends BaseAnimations
 
 
 signal jumped
+signal vertical_movement_ended
 
 var about_to_land: bool = false
 
 var _can_set_falling: bool = true
 var _fade_vertical_movement: bool = false
 var _fade_to_fall: bool = false
+
+var _can_emit_vertical_movement_ended: bool = false
 
 
 func _physics_process(_delta):
@@ -23,12 +26,25 @@ func _physics_process(_delta):
 			1.0,
 			0.05
 		)
+		
+		# assume we're transitioning to the vertical movement state,
+		# allow the ability to emit the signal when we come back down
+		if float(anim_tree["parameters/Vertical Movement/blend_amount"]) > 0.8:
+			_can_emit_vertical_movement_ended = true
 	else:
 		anim_tree["parameters/Vertical Movement/blend_amount"] = lerp(
 			float(anim_tree["parameters/Vertical Movement/blend_amount"]),
 			0.0,
 			0.05
 		)
+	
+	# here we assume we've successfully transitioned from the
+	# vertical movement state to the normal state
+	if _can_emit_vertical_movement_ended and \
+		float(anim_tree["parameters/Vertical Movement/blend_amount"]) < 0.8:
+		
+		_can_emit_vertical_movement_ended = false
+		vertical_movement_ended.emit()
 	
 	# This blends between the jump animation and the
 	# falling idle animation
