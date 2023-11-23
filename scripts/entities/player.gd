@@ -1,6 +1,7 @@
 class_name Player
 extends CharacterBody3D
 
+
 @export_category("Mechanisms")
 @export var character: PlayerAnimations
 @export var camera_controller: CameraController
@@ -26,6 +27,7 @@ var _holding_down_run_timer: Timer
 
 var _locked_on_turning_in_place: bool = false
 
+
 func _ready() -> void:
 	Globals.player = self
 
@@ -35,6 +37,7 @@ func _ready() -> void:
 	_holding_down_run_timer = Timer.new()
 	_holding_down_run_timer.timeout.connect(_handle_hold_down_run_timer)
 	add_child(_holding_down_run_timer)
+
 
 func _physics_process(_delta: float) -> void:
 	# player inputs

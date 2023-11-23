@@ -16,7 +16,7 @@ func block(blocking: bool) -> void:
 	var blend_amount = anim_tree["parameters/Blocking/blend_amount"]
 	if blocking:
 		anim_tree["parameters/Blocking/blend_amount"] = lerp(blend_amount, 1.0, 0.2)
-		anim_tree["parameters/Free walk Speed/scale"] = 0.5
+		anim_tree["parameters/Free Walk Speed/scale"] = 0.5
 		anim_tree["parameters/Lock On Walk Speed/scale"] = 0.5
 	else:
 		anim_tree["parameters/Blocking/blend_amount"] = lerp(blend_amount, 0.0, 0.1)
