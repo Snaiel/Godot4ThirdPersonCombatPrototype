@@ -1,5 +1,5 @@
 class_name LockOnSystem
-extends LockOnComponent
+extends Node3D
 
 signal lock_on(target: LockOnComponent)
 
@@ -103,8 +103,9 @@ func _can_see_target(t: LockOnComponent) -> bool:
 		1
 	)
 	var result: Dictionary = space_state.intersect_ray(query)
-
-	can_see = result.size() == 0
+	
+	if result.size() != 0 and result["collider"] != t.inside_world:
+		can_see = false
 
 	return can_see
 
