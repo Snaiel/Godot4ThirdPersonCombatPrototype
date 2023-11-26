@@ -28,7 +28,7 @@ func _physics_process(delta: float) -> void:
 	var _can_rotate: bool = player.can_rotate
 	var _velocity: Vector3 = player.movement_component.desired_velocity
 	
-	move_direction = _input_direction
+	move_direction = _input_direction.normalized()
 
 	if rotate_towards_target:
 		_freelook_turn = false
