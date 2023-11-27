@@ -55,7 +55,7 @@ func _physics_process(delta: float) -> void:
 		if move_direction.length() > 0.2:
 			move_direction = move_direction.rotated(
 				Vector3.UP,
-				_target_look + sign(move_direction.x) * 0.02
+				_target_look + sign(move_direction.x) * 0.13
 			).normalized()
 
 	elif _input_direction.length() > 0.2:

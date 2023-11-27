@@ -10,6 +10,5 @@ radius = 0.1
 shape = SubResource("SphereShape3D_gxheq")
 margin = 0.2
 script = ExtResource("1_embid")
-mouse_sensitivity = 5
 
 [node name="NormalCam" type="Camera3D" parent="."]

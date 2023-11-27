@@ -75,27 +75,27 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1.
 
 [node name="GeneralSkeleton" parent="CharacterModel/Armature_004" index="0"]
 bones/0/position = Vector3(-0.00109031, 1.79931e-10, 0.00150937)
-bones/1/rotation = Quaternion(-0.0373254, -0.0419825, -0.0238577, 0.998136)
-bones/2/rotation = Quaternion(0.0295031, 0.0154266, 0.024469, 0.999146)
-bones/3/rotation = Quaternion(0.00972716, 0.00384554, 0.0143394, 0.999843)
-bones/4/rotation = Quaternion(0.0097081, 0.00411323, 0.0144343, 0.99984)
-bones/5/rotation = Quaternion(0.0494614, -0.00230519, 0.00517722, 0.99876)
-bones/6/rotation = Quaternion(-0.0694851, 0.00821448, -0.000888508, 0.997549)
-bones/8/rotation = Quaternion(0.457703, 0.500526, 0.629107, -0.379746)
-bones/9/rotation = Quaternion(0.12557, 0.799522, -0.574066, -0.124279)
-bones/10/rotation = Quaternion(0.00957848, -0.707042, 0.0095786, 0.707042)
-bones/11/rotation = Quaternion(0.0543346, 0.477156, -0.0165815, 0.876981)
-bones/32/rotation = Quaternion(0.47535, -0.479435, -0.63646, -0.372965)
-bones/33/rotation = Quaternion(-0.148483, 0.828294, -0.496035, 0.214083)
-bones/34/rotation = Quaternion(0.0405135, 0.705945, -0.0405136, 0.705945)
-bones/35/rotation = Quaternion(0.04184, -0.571036, 0.0351165, 0.819106)
-bones/56/rotation = Quaternion(0.136664, 0.0718128, 0.985199, -0.0744868)
-bones/57/rotation = Quaternion(-0.0385553, 0.993405, -0.107714, 0.00761026)
-bones/58/rotation = Quaternion(-0.0425401, 0.711797, -0.699292, 0.0502596)
-bones/61/rotation = Quaternion(-0.0933985, -0.0161035, 0.995149, -0.0263992)
-bones/62/rotation = Quaternion(0.0342507, 0.993836, -0.0646535, -0.0832835)
-bones/63/rotation = Quaternion(0.00792502, 0.67676, -0.735543, -0.0301555)
-bones/64/rotation = Quaternion(-2.37994e-07, 0.998102, 0.0615764, 8.89929e-09)
+bones/1/rotation = Quaternion(-0.0366583, -0.0450092, -0.0256831, 0.997983)
+bones/2/rotation = Quaternion(0.0368278, 0.0179904, 0.0259353, 0.998823)
+bones/3/rotation = Quaternion(0.0120378, 0.00489772, 0.014806, 0.999806)
+bones/4/rotation = Quaternion(0.0118477, 0.00507106, 0.0148019, 0.999807)
+bones/5/rotation = Quaternion(0.0550596, -0.00184734, 0.0024243, 0.998478)
+bones/6/rotation = Quaternion(-0.0776627, 0.00821687, -0.00083645, 0.996946)
+bones/8/rotation = Quaternion(0.456583, 0.499602, 0.636238, -0.370313)
+bones/9/rotation = Quaternion(0.129626, 0.805651, -0.565505, -0.119697)
+bones/10/rotation = Quaternion(0.0112251, -0.707018, 0.0112252, 0.707018)
+bones/11/rotation = Quaternion(0.0530069, 0.470257, -0.00468821, 0.880924)
+bones/32/rotation = Quaternion(0.473067, -0.481188, -0.638757, -0.369668)
+bones/33/rotation = Quaternion(-0.145965, 0.829321, -0.496586, 0.21053)
+bones/34/rotation = Quaternion(0.041255, 0.705902, -0.0412551, 0.705902)
+bones/35/rotation = Quaternion(0.0404483, -0.567785, 0.0326446, 0.821534)
+bones/56/rotation = Quaternion(0.13974, 0.075687, 0.984303, -0.0767571)
+bones/57/rotation = Quaternion(-0.0383629, 0.992682, -0.114346, 0.00597067)
+bones/58/rotation = Quaternion(-0.0424178, 0.708823, -0.702305, 0.0503853)
+bones/61/rotation = Quaternion(-0.0928355, -0.0152927, 0.995174, -0.0278683)
+bones/62/rotation = Quaternion(0.0347216, 0.993621, -0.0677833, -0.0831761)
+bones/63/rotation = Quaternion(0.0103692, 0.676257, -0.736055, -0.0281299)
+bones/64/rotation = Quaternion(-1.59998e-07, 0.998062, 0.0622259, -1.57514e-08)
 
 [node name="Alpha_Joints" parent="CharacterModel/Armature_004/GeneralSkeleton" index="0"]
 layers = 2
@@ -106,7 +106,7 @@ layers = 2
 surface_material_override/0 = SubResource("ShaderMaterial_q3dg7")
 
 [node name="Sword" type="BoneAttachment3D" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity")]
-transform = Transform3D(0.413938, 0.0291909, 0.909837, 0.0803782, -0.996754, -0.00458906, 0.90675, 0.0750307, -0.414941, -0.244778, 0.837784, 0.00636628)
+transform = Transform3D(0.409445, 0.0320159, 0.911773, 0.0674899, -0.997709, 0.00472607, 0.909835, 0.0596005, -0.410668, -0.241495, 0.836184, 0.00282639)
 bone_name = "RightHand"
 bone_idx = 35
 script = ExtResource("3_7pxxd")

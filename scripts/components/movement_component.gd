@@ -38,8 +38,8 @@ func _physics_process(delta: float) -> void:
 
 	if can_move:
 		if move_direction.length() > 0.2:
-			desired_velocity.x = lerp(desired_velocity.x, move_direction.x * speed, 0.1)
-			desired_velocity.z = lerp(desired_velocity.z, move_direction.z * speed, 0.1)
+			desired_velocity.z = lerp(desired_velocity.z, move_direction.z * speed, 0.2)
+			desired_velocity.x = lerp(desired_velocity.x, move_direction.x * speed, 0.2)
 		elif target_entity.is_on_floor():
 			# if coming from a jump, quickly come to a stop.
 			# otherwise, if just going from walking/runnning to a stop,
