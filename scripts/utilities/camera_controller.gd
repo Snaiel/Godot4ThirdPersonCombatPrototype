@@ -26,16 +26,10 @@ extends SpringArm3D
 @export var controller_deadzone: float = 0.2
 
 @export_category("Lock On Settings")
-@export var lock_on_min_angle: float = -35.0
-@export var lock_on_max_angle: float = 60.0
-@export var lock_on_min_distance: float = 1.0
-@export var lock_on_max_distance: float = 10.0
 @export var desired_unproject_pos: float = 175.0
 
 var _lock_on_target: LockOnComponent = null
 var _player_looking_around: bool = false
-var _temp_lock_on_min_angle: float
-var _temp_lock_on_max_angle: float
 
 var locked_on: bool
 
@@ -56,9 +50,6 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	mouse_sensitivity = mouse_sensitivity * pow(10, -3)
 	controller_sensitivity = controller_sensitivity * pow(10, -2) / 2
-
-	_temp_lock_on_min_angle = lock_on_min_angle
-	_temp_lock_on_max_angle = lock_on_max_angle
 
 func _physics_process(_delta: float) -> void:
 	locked_on = _lock_on_target != null
@@ -87,6 +78,10 @@ func _physics_process(_delta: float) -> void:
 		)
 		var desired_rotation_x: float = rotation.x + atan2(_lock_on_target.global_position.y - project_desired_pos.y, dist_to_target)
 		desired_rotation_x = rad_to_deg(desired_rotation_x)
+		
+		var lock_on_min_angle: float = -4.5 * (player.global_position.y - _lock_on_target.global_position.y) - 35
+		var lock_on_max_angle: float = 60.0
+		
 		desired_rotation_x = clamp(desired_rotation_x, lock_on_min_angle, lock_on_max_angle)
 		rotation_degrees.x = lerp(rotation_degrees.x, desired_rotation_x, 0.1)
 
