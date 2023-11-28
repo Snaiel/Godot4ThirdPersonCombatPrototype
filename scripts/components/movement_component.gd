@@ -53,6 +53,7 @@ func _physics_process(delta: float) -> void:
 	if _secondary_movement_speed > 0.0 and target_entity.is_on_floor():
 		desired_velocity.x = _secondary_movement_direction.x * _secondary_movement_speed
 		desired_velocity.z = _secondary_movement_direction.z * _secondary_movement_speed
+		print(_secondary_movement_direction)
 		_secondary_movement_speed -= _secondary_movement_friction * delta
 	
 	if _secondary_movement_speed < 0.0:
@@ -75,10 +76,13 @@ func _physics_process(delta: float) -> void:
 func set_secondary_movement(secondary_speed: float, time: float, friction: float = 0.0, direction: Vector3 = Vector3.ZERO) -> void:
 	_secondary_movement_timer.stop()
 	_secondary_movement_friction = friction
+	
 	if direction == Vector3.ZERO:
 		_secondary_movement_direction = looking_direction
 	else:
 		_secondary_movement_direction = direction
+	_secondary_movement_direction = _secondary_movement_direction.normalized()
+	
 	_secondary_movement_speed = secondary_speed
 	_secondary_movement_timer.start(time)
 
