@@ -1,8 +1,13 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dp5o22jl53pqh"]
 
-[ext_resource type="Shader" path="res://materials/transparent.gdshader" id="1_dfnl7"]
+[ext_resource type="Shader" path="res://shaders/fade.gdshader" id="1_6pmhb"]
 
 [resource]
 render_priority = 0
-shader = ExtResource("1_dfnl7")
-shader_parameter/alpha = 1.0
+shader = ExtResource("1_6pmhb")
+shader_parameter/albedo = Color(0.133333, 0.564706, 0.8, 1)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 1.0
+shader_parameter/normal_strength = 1.0
+shader_parameter/alpha_clip = 0.0

@@ -52,7 +52,7 @@ func _physics_process(_delta):
 		anim_tree["parameters/Jump and Fall Blend/blend_amount"] = lerp(
 			float(anim_tree["parameters/Jump and Fall Blend/blend_amount"]),
 			1.0,
-			0.1
+			0.05
 		)
 	else:
 		anim_tree["parameters/Jump and Fall Blend/blend_amount"] = lerp(

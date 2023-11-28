@@ -1,14 +1,17 @@
 class_name UserInterface
 extends Control
 
+
 var _lock_on_target: LockOnComponent = null
 
 @onready var _lock_on_texture: TextureRect = $LockOn
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_lock_on_texture.visible = false
-
+	Globals.debug_label = $DebugLabel
+	
 
 func _process(_delta: float) -> void:
 	if _lock_on_target:
@@ -19,6 +22,7 @@ func _process(_delta: float) -> void:
 		)
 		_lock_on_texture.position = lock_on_pos
 	_lock_on_texture.visible = _lock_on_target != null
+
 
 func _on_lock_on_system_lock_on(target: LockOnComponent) -> void:
 	_lock_on_target = target

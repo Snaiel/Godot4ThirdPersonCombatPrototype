@@ -19,3 +19,11 @@ offset_right = 10.0
 offset_bottom = 10.0
 texture = ExtResource("1_v2w42")
 expand_mode = 1
+
+[node name="DebugLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 21.0
+offset_right = 116.0
+offset_bottom = 47.0
+text = "DebugLabel"

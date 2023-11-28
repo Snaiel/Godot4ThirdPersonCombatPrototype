@@ -221,7 +221,6 @@ wait_time = 0.5
 [node name="CameraController" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_s2v7n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.6934, 0)
 player = NodePath("../Player")
-mouse_sensitivity = 5.0
 not_running_spin_speed = 3.5
 running_spin_speed = 4.0
 

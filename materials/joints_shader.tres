@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bgbid1wqcdi4p"]
+
+[ext_resource type="Shader" path="res://shaders/fade.gdshader" id="1_hwvs1"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_hwvs1")
+shader_parameter/albedo = Color(0.239216, 0.239216, 0.239216, 1)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 1.0
+shader_parameter/normal_strength = 1.0
+shader_parameter/alpha_clip = 0.0
