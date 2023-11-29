@@ -21,6 +21,7 @@ texture = ExtResource("1_v2w42")
 expand_mode = 1
 
 [node name="DebugLabel" type="Label" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 24.0
 offset_top = 21.0
