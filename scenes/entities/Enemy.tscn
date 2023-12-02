@@ -31,7 +31,7 @@ collision_mask = 3
 script = ExtResource("1_nrck3")
 
 [node name="Model" parent="." instance=ExtResource("2_bivj4")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -0.916228, 0)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -0.892938, 0)
 
 [node name="Collider" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_lwy87")
@@ -128,16 +128,7 @@ value = "Vector3(1, 0, 0)"
 
 [node name="WaitBlock" parent="BeehaveTree/SelectorComposite/NoticePlayer/StayOrChase/StayIfClose/SquareUp" instance=ExtResource("17_6vmq4")]
 wait_id = 3
-wait_time = 1.0
-
-[node name="StandStill" type="Node" parent="BeehaveTree/SelectorComposite/NoticePlayer/StayOrChase/StayIfClose/SquareUp"]
-script = ExtResource("13_dt0d4")
-key = "\"input_direction\""
-value = "Vector3(0, 0, 0)"
-
-[node name="WaitBlock2" parent="BeehaveTree/SelectorComposite/NoticePlayer/StayOrChase/StayIfClose/SquareUp" instance=ExtResource("17_6vmq4")]
-wait_id = 4
-wait_time = 1.0
+wait_time = 2.0
 
 [node name="Chase" type="Node" parent="BeehaveTree/SelectorComposite/NoticePlayer/StayOrChase"]
 script = ExtResource("9_aj65e")

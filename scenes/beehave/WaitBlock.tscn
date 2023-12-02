@@ -11,9 +11,6 @@ reset_wait = NodePath("ResetWait")
 
 [node name="Wait" type="Node" parent="."]
 script = ExtResource("2_4n1n2")
-time = 1.0
-wait_id = 2
 
 [node name="ResetWait" type="Node" parent="."]
 script = ExtResource("3_ji7q3")
-wait_id = 2

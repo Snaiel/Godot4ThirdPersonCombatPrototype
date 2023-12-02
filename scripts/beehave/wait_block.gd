@@ -7,7 +7,7 @@ extends SequenceComposite
 @export var reset_wait: ResetWait
 
 
-func _ready():
+func _enter_tree():
 	wait_leaf.time = wait_time
 	wait_leaf.wait_id = wait_id
 	reset_wait.wait_id = wait_id

@@ -11,6 +11,7 @@ signal death(enemy)
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var _blackboard: Blackboard = $Blackboard
+@onready var _character: PlayerAnimations = $Model
 @onready var _rotation_component: RotationComponent = $EnemyRotationComponent
 @onready var _movement_component: MovementComponent = $MovementComponent
 @onready var _agent: NavigationAgent3D = $NavigationAgent3D
@@ -48,6 +49,11 @@ func _physics_process(_delta: float) -> void:
 
 	_rotation_component.look_at_target = _blackboard.get_value("look_at_target", false)
 	_movement_component.speed = _blackboard.get_value("move_speed", _default_move_speed)
+
+	var _input_direction: Vector3 = _blackboard.get_value("input_direction", Vector3.ZERO)
+	_character.anim_tree["parameters/Lock On Walk/4/TimeScale/scale"] = 0.5
+	_character.anim_tree["parameters/Lock On Walk/5/TimeScale/scale"] = 0.5	
+	_character.movement_animations.move(_input_direction, true, false)
 
 
 func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
