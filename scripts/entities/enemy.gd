@@ -72,5 +72,6 @@ func _on_health_component_zero_health() -> void:
 	death.emit(self)
 	_character.anim_tree["parameters/Death/transition_request"] = "dead"
 	_blackboard.set_value("dead", true)
+	_blackboard.set_value("interrupt_timers", true)
 	collision_layer = 0
 	collision_mask = 1
