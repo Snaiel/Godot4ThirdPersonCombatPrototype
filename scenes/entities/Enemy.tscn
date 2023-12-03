@@ -81,6 +81,11 @@ script = ExtResource("13_dt0d4")
 key = "\"look_at_target\""
 value = "bool(1)"
 
+[node name="LockedOn" type="Node" parent="BeehaveTree/SelectorComposite/NoticePlayer"]
+script = ExtResource("13_dt0d4")
+key = "\"locked_on\""
+value = "bool(1)"
+
 [node name="StayOrChase" type="Node" parent="BeehaveTree/SelectorComposite/NoticePlayer"]
 script = ExtResource("8_wqauf")
 
@@ -173,6 +178,11 @@ value = "bool(0)"
 script = ExtResource("13_dt0d4")
 key = "\"input_direction\""
 value = "Vector3(0, 0, 0)"
+
+[node name="NotLockedOn" type="Node" parent="BeehaveTree/SelectorComposite/idle"]
+script = ExtResource("13_dt0d4")
+key = "\"locked_on\""
+value = "bool(0)"
 
 [node name="Blackboard" type="Node" parent="."]
 script = ExtResource("12_q7h63")

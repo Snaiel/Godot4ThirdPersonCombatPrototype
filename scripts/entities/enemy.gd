@@ -51,9 +51,10 @@ func _physics_process(_delta: float) -> void:
 	_movement_component.speed = _blackboard.get_value("move_speed", _default_move_speed)
 
 	var _input_direction: Vector3 = _blackboard.get_value("input_direction", Vector3.ZERO)
+	var _locked_on: bool = _blackboard.get_value("locked_on", false)
 	_character.anim_tree["parameters/Lock On Walk/4/TimeScale/scale"] = 0.5
 	_character.anim_tree["parameters/Lock On Walk/5/TimeScale/scale"] = 0.5	
-	_character.movement_animations.move(_input_direction, true, false)
+	_character.movement_animations.move(_input_direction, _locked_on, false)
 
 
 func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
