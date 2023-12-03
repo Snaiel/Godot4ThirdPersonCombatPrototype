@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cfip2n0nvr8n3"]
+[gd_scene load_steps=16 format=3 uid="uid://cfip2n0nvr8n3"]
 
 [ext_resource type="Material" uid="uid://qml1qedtuxl6" path="res://materials/grid.tres" id="2_5uhq1"]
 [ext_resource type="PackedScene" uid="uid://cv8knl5vavfyy" path="res://scenes/entities/Enemy.tscn" id="2_oia4d"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dujukbu10vbmm" path="res://scenes/entities/Player.tscn" id="2_thr8q"]
 [ext_resource type="PackedScene" uid="uid://b075d85nmca7s" path="res://scenes/utilities/UserInterface.tscn" id="3_hlhuw"]
 [ext_resource type="PackedScene" uid="uid://ia1adrmqd0lf" path="res://scenes/components/LockOnComponent.tscn" id="3_tjdxr"]
+[ext_resource type="Script" path="res://scripts/utilities/backstab_system.gd" id="5_thw20"]
 [ext_resource type="Script" path="res://scripts/utilities/lock_on_system.gd" id="6_tdxnb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_co0qk"]
@@ -218,6 +219,9 @@ shape = SubResource("SphereShape3D_bb732")
 [node name="ChangeTargetTimer" type="Timer" parent="LockOnSystem"]
 wait_time = 0.5
 
+[node name="BackstabSystem" type="Node3D" parent="."]
+script = ExtResource("5_thw20")
+
 [node name="CameraController" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_s2v7n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.6934, 0)
 player = NodePath("../Player")
@@ -267,10 +271,17 @@ debug = true
 [node name="HealthComponent" parent="Enemies/Enemy6" index="5"]
 health = 30.0
 
+[node name="Enemy12" parent="Enemies" instance=ExtResource("2_oia4d")]
+transform = Transform3D(-0.933104, 0, 0.359606, 0, 1, 0, -0.359606, 0, -0.933104, 4.52544, 1.95832, 34.9633)
+
+[node name="Enemy13" parent="Enemies" instance=ExtResource("2_oia4d")]
+transform = Transform3D(-0.186421, 0, 0.98247, 0, 1, 0, -0.98247, 0, -0.186421, 3.91759, 1.95832, 34.1214)
+
 [connection signal="area_entered" from="LockOnSystem" to="LockOnSystem" method="_on_area_entered"]
 [connection signal="area_exited" from="LockOnSystem" to="LockOnSystem" method="_on_area_exited"]
 [connection signal="lock_on" from="LockOnSystem" to="UserInterface" method="_on_lock_on_system_lock_on"]
 [connection signal="lock_on" from="LockOnSystem" to="Player" method="_on_lock_on_system_lock_on"]
 [connection signal="timeout" from="LockOnSystem/ChangeTargetTimer" to="LockOnSystem" method="_on_change_target_timer_timeout"]
+[connection signal="backstab_victim" from="BackstabSystem" to="UserInterface" method="_on_backstab_system_backstab_victim"]
 
 [editable path="Enemies/Enemy6"]

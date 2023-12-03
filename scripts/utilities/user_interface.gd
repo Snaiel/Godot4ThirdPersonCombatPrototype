@@ -3,8 +3,9 @@ extends Control
 
 
 var _lock_on_target: LockOnComponent = null
-var _backstab_victim: Node3D = null
-var _backstab_crosshair_visible: bool = false
+var _backstab_victim: BackstabComponent = null
+var _previous_backstab_victim: BackstabComponent = null
+var _backstab_crosshair_visisble: bool = false
 
 @onready var _lock_on_texture: TextureRect = $LockOn
 @onready var _crosshair: Sprite2D = $Crosshair
@@ -46,7 +47,13 @@ func _process_backstab() -> void:
 	if not _backstab_victim:
 		return
 	
-	var pos: Vector2 = Globals.camera_controller.get_lock_on_position(_backstab_victim)
+	var current_focus: BackstabComponent
+	if _previous_backstab_victim:
+		current_focus = _previous_backstab_victim
+	else:
+		current_focus = _backstab_victim
+	
+	var pos: Vector2 = Globals.camera_controller.get_lock_on_position(current_focus)
 	var crosshair_pos: Vector2 = Vector2(
 		pos.x,
 		pos.y
@@ -54,7 +61,7 @@ func _process_backstab() -> void:
 	
 	_crosshair.position = crosshair_pos
 	
-	if _backstab_crosshair_visible:
+	if _backstab_crosshair_visisble and not _previous_backstab_victim:
 		_crosshair.modulate.a = lerp(
 			_crosshair.modulate.a,
 			1.0,
@@ -66,10 +73,17 @@ func _process_backstab() -> void:
 			0.0,
 			0.2
 		)
+	
+	if _previous_backstab_victim and _crosshair.modulate.a < 0.1:
+		_previous_backstab_victim = null
 
 
-func set_backstab_visible(victim: Node3D, flag: bool) -> void:
+func _on_backstab_system_backstab_victim(victim):
+		
 	if victim:
+		_previous_backstab_victim = _backstab_victim
 		_backstab_victim = victim
-	_backstab_crosshair_visible = flag
+		_backstab_crosshair_visisble = true
+	else:
+		_backstab_crosshair_visisble = false
 	

@@ -63,9 +63,9 @@ speed = 3.0
 target_entity = NodePath("..")
 rotation_component = NodePath("../EnemyRotationComponent")
 
-[node name="BackstabComponent" type="Node3D" parent="." node_paths=PackedStringArray("_entity", "_lock_on_component")]
+[node name="BackstabComponent" type="Node3D" parent="." node_paths=PackedStringArray("entity", "_lock_on_component")]
 script = ExtResource("9_hiwp2")
-_entity = NodePath("..")
+entity = NodePath("..")
 _lock_on_component = NodePath("../LockOnComponent")
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard")]
