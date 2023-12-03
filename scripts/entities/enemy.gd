@@ -18,6 +18,7 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var _default_move_speed: float
 
+
 func _ready() -> void:
 	target = Globals.player
 	_rotation_component.target = target
@@ -27,6 +28,9 @@ func _ready() -> void:
 	
 	_rotation_component.debug = debug
 	_movement_component.debug = debug
+	
+	_blackboard.set_value("notice_player", false)	
+
 
 func _physics_process(_delta: float) -> void:
 	_agent.target_position = target.global_position
@@ -42,7 +46,7 @@ func _physics_process(_delta: float) -> void:
 
 	if debug:
 		pass
-#		print(_blackboard.get_value("input_direction"))
+#		print(_blackboard.get_value("look_at_target"))
 #		print(_rotation_component.look_at_target)
 #		print(_blackboard.get_value("input_direction", Vector3.ZERO))
 #		print(_rotation_component.move_direction, " ", _movement_component.desired_velocity)
@@ -61,7 +65,7 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 	var opponent_position: Vector3 = weapon.get_entity().global_position
 	var direction: Vector3 = global_position.direction_to(opponent_position)
 	_movement_component.set_secondary_movement(weapon.get_knockback(), 5, 5, -direction)
-
+	_blackboard.set_value("notice_player", true)
 
 func _on_health_component_zero_health() -> void:
 	death.emit(self)

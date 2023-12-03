@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cv8knl5vavfyy"]
+[gd_scene load_steps=23 format=3 uid="uid://cv8knl5vavfyy"]
 
 [ext_resource type="Script" path="res://scripts/entities/enemy.gd" id="1_nrck3"]
 [ext_resource type="PackedScene" uid="uid://blqmpc6qop5nm" path="res://scenes/entities/EnemyBot.tscn" id="2_bivj4"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://scripts/beehave/can_see_target.gd" id="11_rbarl"]
 [ext_resource type="Script" path="res://scripts/beehave/target_in_range.gd" id="12_bwlcv"]
 [ext_resource type="Script" path="res://addons/beehave/blackboard.gd" id="12_q7h63"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_compare.gd" id="12_qw7d2"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_set.gd" id="13_dt0d4"]
 [ext_resource type="Script" path="res://scripts/beehave/wait.gd" id="14_ngb5f"]
 [ext_resource type="Script" path="res://scripts/beehave/close_to_target.gd" id="15_8pg6b"]
@@ -47,7 +48,9 @@ entity = NodePath("..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 health_component = NodePath("../HealthComponent")
 
-[node name="HitboxComponent" parent="." instance=ExtResource("2_h2tgk")]
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("entity", "anim") instance=ExtResource("2_h2tgk")]
+entity = NodePath("..")
+anim = NodePath("../Model")
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("hitbox") instance=ExtResource("3_c0k3s")]
 hitbox = NodePath("../HitboxComponent")
@@ -69,10 +72,29 @@ script = ExtResource("8_wqauf")
 [node name="NoticePlayer" type="Node" parent="BeehaveTree/SelectorComposite"]
 script = ExtResource("9_aj65e")
 
-[node name="CanSeeTarget" type="Node" parent="BeehaveTree/SelectorComposite/NoticePlayer"]
+[node name="CanNoticePlayer" type="Node" parent="BeehaveTree/SelectorComposite/NoticePlayer"]
+script = ExtResource("8_wqauf")
+
+[node name="CheckBlackboard" type="Node" parent="BeehaveTree/SelectorComposite/NoticePlayer/CanNoticePlayer"]
+script = ExtResource("9_aj65e")
+
+[node name="GetNoticePlayer" type="Node" parent="BeehaveTree/SelectorComposite/NoticePlayer/CanNoticePlayer/CheckBlackboard"]
+script = ExtResource("12_qw7d2")
+left_operand = "get_value(\"notice_player\")"
+right_operand = "bool(1)"
+
+[node name="DontNoticePlayer" type="Node" parent="BeehaveTree/SelectorComposite/NoticePlayer/CanNoticePlayer/CheckBlackboard"]
+script = ExtResource("13_dt0d4")
+key = "\"notice_player\""
+value = "bool(0)"
+
+[node name="CheckNoticePlayer" type="Node" parent="BeehaveTree/SelectorComposite/NoticePlayer/CanNoticePlayer"]
+script = ExtResource("9_aj65e")
+
+[node name="CanSeeTarget" type="Node" parent="BeehaveTree/SelectorComposite/NoticePlayer/CanNoticePlayer/CheckNoticePlayer"]
 script = ExtResource("11_rbarl")
 
-[node name="TargetInRange" type="Node" parent="BeehaveTree/SelectorComposite/NoticePlayer"]
+[node name="TargetInRange" type="Node" parent="BeehaveTree/SelectorComposite/NoticePlayer/CanNoticePlayer/CheckNoticePlayer"]
 script = ExtResource("12_bwlcv")
 look_range = 8.0
 
@@ -182,6 +204,11 @@ value = "Vector3(0, 0, 0)"
 [node name="NotLockedOn" type="Node" parent="BeehaveTree/SelectorComposite/idle"]
 script = ExtResource("13_dt0d4")
 key = "\"locked_on\""
+value = "bool(0)"
+
+[node name="DontNoticePlayer" type="Node" parent="BeehaveTree/SelectorComposite/idle"]
+script = ExtResource("13_dt0d4")
+key = "\"notice_player\""
 value = "bool(0)"
 
 [node name="Blackboard" type="Node" parent="."]

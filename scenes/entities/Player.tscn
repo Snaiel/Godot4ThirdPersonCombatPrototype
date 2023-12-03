@@ -121,6 +121,12 @@ shape = SubResource("CylinderShape3D_cds6g")
 
 [node name="AnimationTree" parent="CharacterModel" index="2"]
 "parameters/Blocking Speed/scale" = 1.0
+"parameters/Hit Reaction Moving/active" = false
+"parameters/Hit Reaction Moving/internal_active" = false
+"parameters/Hit Reaction Moving/request" = 0
+"parameters/Hit Reaction Not Moving/active" = false
+"parameters/Hit Reaction Not Moving/internal_active" = false
+"parameters/Hit Reaction Not Moving/request" = 0
 "parameters/Running Lock On Look Direction/blend_position" = Vector2(0.0196936, 0.881657)
 "parameters/Vertical Movement/blend_amount" = 0
 

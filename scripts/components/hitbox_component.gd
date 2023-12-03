@@ -3,19 +3,36 @@ extends Area3D
 
 signal weapon_hit(weapon: Sword)
 
+@export var entity: CharacterBody3D
+@export var anim: PlayerAnimations
+
 var _weapons_in_hitbox: Array[Sword] = []
 
 func _process(_delta: float) -> void:
-	if _weapons_in_hitbox:
-		for weapon in _weapons_in_hitbox:
-			if weapon.can_damage:
-				weapon_hit.emit(weapon)
-				_weapons_in_hitbox.erase(weapon)
+	if not _weapons_in_hitbox:
+		return
+		
+	for weapon in _weapons_in_hitbox:
+		if not weapon.can_damage:
+			continue
+			
+		weapon_hit.emit(weapon)
+		_weapons_in_hitbox.erase(weapon)
+		_process_hit_reaction()
+
+
+func _process_hit_reaction() -> void:
+	if entity.velocity.length() > 0.05:
+		anim.anim_tree["parameters/Hit Reaction Moving/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+	else:
+		anim.anim_tree["parameters/Hit Reaction Not Moving/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+
 
 func _on_area_entered(area: Area3D) -> void:
 	if area.is_in_group("weapon") and area.get_parent() not in _weapons_in_hitbox:
 		var weapon: Sword = area.get_parent()
 		_weapons_in_hitbox.append(weapon)
+
 
 func _on_area_exited(area: Area3D) -> void:
 	if area.is_in_group("weapon"):
