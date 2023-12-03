@@ -29,7 +29,8 @@ func _ready() -> void:
 	_rotation_component.debug = debug
 	_movement_component.debug = debug
 	
-	_blackboard.set_value("notice_player", false)	
+	_blackboard.set_value("notice_player", false)
+	_blackboard.set_value("dead", false)
 
 
 func _physics_process(_delta: float) -> void:
@@ -69,4 +70,7 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 
 func _on_health_component_zero_health() -> void:
 	death.emit(self)
-	queue_free()
+	_character.anim_tree["parameters/Death/transition_request"] = "dead"
+	_blackboard.set_value("dead", true)
+	collision_layer = 0
+	collision_mask = 1

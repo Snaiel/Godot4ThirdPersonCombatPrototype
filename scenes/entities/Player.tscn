@@ -65,29 +65,7 @@ shape = SubResource("CapsuleShape3D_lnhvg")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1.1177, 0)
 
 [node name="GeneralSkeleton" parent="CharacterModel/Armature_004" index="0"]
-bones/0/position = Vector3(-0.00109031, 1.79931e-10, 0.00150937)
-bones/1/position = Vector3(6.94653e-07, 0.98996, -9.63814e-08)
-bones/1/rotation = Quaternion(-0.029488, -0.0504105, -0.0288862, 0.997875)
-bones/2/rotation = Quaternion(0.0299953, 0.0143741, 0.0219023, 0.999207)
-bones/3/rotation = Quaternion(0.0104297, 0.00381206, 0.0137512, 0.999844)
-bones/4/rotation = Quaternion(0.0103507, 0.00411765, 0.0138604, 0.999842)
-bones/5/rotation = Quaternion(0.0487699, -0.00166737, 0.00441068, 0.998799)
-bones/6/rotation = Quaternion(-0.0695188, 0.0100212, -0.00176408, 0.997529)
-bones/8/rotation = Quaternion(0.45841, 0.499123, 0.631499, -0.376757)
-bones/9/rotation = Quaternion(0.125026, 0.804024, -0.568108, -0.123158)
-bones/10/rotation = Quaternion(0.00920171, -0.707047, 0.00920178, 0.707047)
-bones/11/rotation = Quaternion(0.0514369, 0.477398, -0.0144986, 0.87706)
-bones/32/rotation = Quaternion(0.476928, -0.477953, -0.635753, -0.374057)
-bones/33/rotation = Quaternion(-0.14899, 0.827093, -0.498513, 0.21261)
-bones/34/rotation = Quaternion(0.041011, 0.705917, -0.0410109, 0.705917)
-bones/35/rotation = Quaternion(0.0454431, -0.57048, 0.0378527, 0.819179)
-bones/56/rotation = Quaternion(0.137552, 0.0837926, 0.983878, -0.0777402)
-bones/57/rotation = Quaternion(-0.0381115, 0.992558, -0.114696, 0.0148666)
-bones/58/rotation = Quaternion(-0.0416204, 0.710315, -0.700929, 0.0491937)
-bones/61/rotation = Quaternion(-0.0901915, -0.0136792, 0.995379, -0.0299921)
-bones/62/rotation = Quaternion(0.032475, 0.994706, -0.0501361, -0.0836149)
-bones/63/rotation = Quaternion(0.0122072, 0.685843, -0.727208, -0.025289)
-bones/64/rotation = Quaternion(-3.71697e-07, 0.998055, 0.0623354, -2.94074e-08)
+bones/0/position = Vector3(0, 0, 0)
 
 [node name="Alpha_Joints" parent="CharacterModel/Armature_004/GeneralSkeleton" index="0"]
 layers = 2
@@ -98,7 +76,7 @@ layers = 2
 surface_material_override/0 = ExtResource("4_ysu0o")
 
 [node name="Sword" type="BoneAttachment3D" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity")]
-transform = Transform3D(0.389407, 0.0276794, 0.92065, 0.0583931, -0.998279, 0.0053148, 0.919213, 0.05169, -0.390354, -0.244514, 0.840991, -0.00394543)
+transform = Transform3D(0.396289, 0.0233159, 0.91783, 0.0690642, -0.997602, -0.00447724, 0.915524, 0.0651633, -0.396949, -0.246457, 0.842359, -0.000616003)
 bone_name = "RightHand"
 bone_idx = 35
 script = ExtResource("3_7pxxd")
@@ -121,12 +99,6 @@ shape = SubResource("CylinderShape3D_cds6g")
 
 [node name="AnimationTree" parent="CharacterModel" index="2"]
 "parameters/Blocking Speed/scale" = 1.0
-"parameters/Hit Reaction Moving/active" = false
-"parameters/Hit Reaction Moving/internal_active" = false
-"parameters/Hit Reaction Moving/request" = 0
-"parameters/Hit Reaction Not Moving/active" = false
-"parameters/Hit Reaction Not Moving/internal_active" = false
-"parameters/Hit Reaction Not Moving/request" = 0
 "parameters/Running Lock On Look Direction/blend_position" = Vector2(0.0196936, 0.881657)
 "parameters/Vertical Movement/blend_amount" = 0
 

@@ -69,6 +69,24 @@ blackboard = NodePath("../Blackboard")
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]
 script = ExtResource("8_wqauf")
 
+[node name="Dead" type="Node" parent="BeehaveTree/SelectorComposite"]
+script = ExtResource("9_aj65e")
+
+[node name="IsDead" type="Node" parent="BeehaveTree/SelectorComposite/Dead"]
+script = ExtResource("12_qw7d2")
+left_operand = "get_value(\"dead\")"
+right_operand = "true"
+
+[node name="StandStill" type="Node" parent="BeehaveTree/SelectorComposite/Dead"]
+script = ExtResource("13_dt0d4")
+key = "\"input_direction\""
+value = "Vector3(0, 0, 0)"
+
+[node name="DontLookAtTarget" type="Node" parent="BeehaveTree/SelectorComposite/Dead"]
+script = ExtResource("13_dt0d4")
+key = "\"look_at_target\""
+value = "bool(0)"
+
 [node name="NoticePlayer" type="Node" parent="BeehaveTree/SelectorComposite"]
 script = ExtResource("9_aj65e")
 

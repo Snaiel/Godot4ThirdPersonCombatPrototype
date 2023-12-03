@@ -8,39 +8,11 @@ albedo_color = Color(0.752941, 0.109804, 0.109804, 1)
 [node name="EnemyBot" instance=ExtResource("1_pjo7l")]
 
 [node name="GeneralSkeleton" parent="Armature_004" index="0"]
-bones/0/position = Vector3(0.00387278, 1.04785e-10, 0.000878997)
-bones/1/position = Vector3(6.94653e-07, 0.98996, -9.63814e-08)
-bones/1/rotation = Quaternion(-0.0370442, -0.0449951, -0.0259242, 0.997964)
-bones/2/rotation = Quaternion(0.0354539, 0.0182945, 0.0255821, 0.998876)
-bones/3/rotation = Quaternion(0.0117131, 0.00486607, 0.0146601, 0.999812)
-bones/4/rotation = Quaternion(0.011534, 0.00506714, 0.0146677, 0.999813)
-bones/5/rotation = Quaternion(0.0543728, -0.00191692, 0.00268789, 0.998515)
-bones/6/rotation = Quaternion(-0.0755664, 0.00834131, -0.00101782, 0.997105)
-bones/8/rotation = Quaternion(0.45717, 0.499297, 0.635249, -0.371694)
-bones/9/rotation = Quaternion(0.129082, 0.80519, -0.566186, -0.120169)
-bones/10/rotation = Quaternion(0.0114798, -0.707014, 0.0114801, 0.707014)
-bones/11/rotation = Quaternion(0.0529022, 0.471663, -0.00604872, 0.88017)
-bones/32/rotation = Quaternion(0.474181, -0.479925, -0.638977, -0.369504)
-bones/33/rotation = Quaternion(-0.145487, 0.829236, -0.496487, 0.211426)
-bones/34/rotation = Quaternion(0.0412547, 0.705902, -0.0412548, 0.705902)
-bones/35/rotation = Quaternion(0.040223, -0.568273, 0.0333392, 0.82118)
-bones/56/rotation = Quaternion(0.139836, 0.0754194, 0.984295, -0.0769539)
-bones/57/rotation = Quaternion(-0.0381954, 0.992552, -0.115532, 0.00589913)
-bones/58/rotation = Quaternion(-0.0423919, 0.708549, -0.702584, 0.0503695)
-bones/61/rotation = Quaternion(-0.0926689, -0.0160542, 0.995178, -0.0278373)
-bones/62/rotation = Quaternion(0.034642, 0.993679, -0.0669058, -0.083219)
-bones/63/rotation = Quaternion(0.0105318, 0.675973, -0.736316, -0.0280661)
-bones/64/rotation = Quaternion(-1.62754e-07, 0.998078, 0.0619732, -1.72104e-08)
+bones/0/position = Vector3(0, 0, 0)
 
 [node name="Alpha_Surface" parent="Armature_004/GeneralSkeleton" index="1"]
 surface_material_override/0 = SubResource("StandardMaterial3D_v44eh")
 
 [node name="AnimationTree" parent="." index="2"]
 "parameters/Attack Quick Slash/Quick Slash and Walk Blend/blend_amount" = 0
-"parameters/Hit Reaction Moving/active" = false
-"parameters/Hit Reaction Moving/internal_active" = false
-"parameters/Hit Reaction Moving/request" = 0
-"parameters/Hit Reaction Not Moving/active" = false
-"parameters/Hit Reaction Not Moving/internal_active" = false
-"parameters/Hit Reaction Not Moving/request" = 0
 "parameters/Vertical Movement/blend_amount" = 0
