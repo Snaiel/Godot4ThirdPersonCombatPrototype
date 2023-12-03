@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b075d85nmca7s"]
+[gd_scene load_steps=4 format=3 uid="uid://b075d85nmca7s"]
 
 [ext_resource type="Script" path="res://scripts/utilities/user_interface.gd" id="1_2nhxu"]
 [ext_resource type="Texture2D" uid="uid://dishehhur7io2" path="res://assets/white_dot.png" id="1_v2w42"]
+[ext_resource type="Texture2D" uid="uid://b1oqk2tqilbw" path="res://assets/crosshair.svg" id="3_etq2v"]
 
 [node name="UserInterface" type="Control"]
 layout_mode = 3
@@ -12,6 +13,11 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_2nhxu")
+
+[node name="Crosshair" type="Sprite2D" parent="."]
+position = Vector2(119, 116)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_etq2v")
 
 [node name="LockOn" type="TextureRect" parent="."]
 layout_mode = 1

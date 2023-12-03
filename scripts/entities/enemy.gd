@@ -28,6 +28,7 @@ func _ready() -> void:
 	
 	_rotation_component.debug = debug
 	_movement_component.debug = debug
+	$BackstabComponent.debug = debug
 	
 	_blackboard.set_value("notice_player", false)
 	_blackboard.set_value("dead", false)

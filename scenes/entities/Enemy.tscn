@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cv8knl5vavfyy"]
+[gd_scene load_steps=24 format=3 uid="uid://cv8knl5vavfyy"]
 
 [ext_resource type="Script" path="res://scripts/entities/enemy.gd" id="1_nrck3"]
 [ext_resource type="PackedScene" uid="uid://blqmpc6qop5nm" path="res://scenes/entities/EnemyBot.tscn" id="2_bivj4"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bsbt5fjir608i" path="res://scenes/particles/blood.tscn" id="7_fiewg"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="8_wqauf"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="9_aj65e"]
+[ext_resource type="Script" path="res://scripts/components/backstab_component.gd" id="9_hiwp2"]
 [ext_resource type="Script" path="res://scripts/beehave/can_see_target.gd" id="11_rbarl"]
 [ext_resource type="Script" path="res://scripts/beehave/target_in_range.gd" id="12_bwlcv"]
 [ext_resource type="Script" path="res://addons/beehave/blackboard.gd" id="12_q7h63"]
@@ -61,6 +62,11 @@ script = ExtResource("7_dfa2r")
 speed = 3.0
 target_entity = NodePath("..")
 rotation_component = NodePath("../EnemyRotationComponent")
+
+[node name="BackstabComponent" type="Node3D" parent="." node_paths=PackedStringArray("_entity", "_lock_on_component")]
+script = ExtResource("9_hiwp2")
+_entity = NodePath("..")
+_lock_on_component = NodePath("../LockOnComponent")
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard")]
 script = ExtResource("7_6a3a7")

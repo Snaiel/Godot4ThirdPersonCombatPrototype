@@ -124,7 +124,7 @@ func player_moving(move_direction: Vector3, running: bool, delta: float) -> void
 			new_rotation = rotation.y - sign(move_direction.x) * delta * not_running_spin_speed		
 		rotation.y = lerp(rotation.y, new_rotation, 0.3)
 
-func get_lock_on_position(target: LockOnComponent) -> Vector2:
+func get_lock_on_position(target: Node3D) -> Vector2:
 	var pos = cam.unproject_position(target.global_position)
 	return pos
 
