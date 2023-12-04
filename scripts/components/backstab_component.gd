@@ -44,5 +44,4 @@ func _process(_delta):
 
 
 func _on_hitbox_component_weapon_hit(_weapon):
-	if _backstab_system.backstab_victim == self:
-		health_component.decrement_all_health()
+	health_component.deal_max_damage = true

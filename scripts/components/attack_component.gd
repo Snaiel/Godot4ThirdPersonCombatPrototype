@@ -37,7 +37,7 @@ func attack(can_stop: bool = true) -> void:
 	_can_stop_attack = can_stop
 	_attack_interrupted = false
 
-	if _can_attack_again and _attack_level < 4:
+	if _can_attack_again and _attack_level < 2:
 		_attack_level += 1
 	else:
 		_attack_level = 1

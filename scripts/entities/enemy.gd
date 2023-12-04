@@ -72,12 +72,16 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 
 
 func _on_health_component_zero_health() -> void:
+	print('hi')
 	death.emit(self)
+	
+	_blackboard.set_value("dead", true)
+	_blackboard.set_value("interrupt_timers", true)
+	
+	collision_layer = 0
+	collision_mask = 1
+	
 	if Globals.backstab_system.backstab_victim == _backstab_component:
 		_character.anim_tree["parameters/Death/transition_request"] = "backstab"
 	else:
 		_character.anim_tree["parameters/Death/transition_request"] = "dead"
-	_blackboard.set_value("dead", true)
-	_blackboard.set_value("interrupt_timers", true)
-	collision_layer = 0
-	collision_mask = 1
