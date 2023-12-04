@@ -11,6 +11,11 @@ signal zero_health
 func _ready() -> void:
 	hitbox.weapon_hit.connect(decrement_health)
 
+
+func is_alive() -> bool:
+	return health > 0
+
+
 func decrement_health(weapon: Sword) -> void:
 	health -= weapon.get_damage()
 	if blood_scene:
