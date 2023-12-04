@@ -4,7 +4,7 @@ extends Node3D
 
 @export var debug: bool = false
 @export var entity: CharacterBody3D
-@export var _lock_on_component: LockOnComponent
+@export var lock_on_component: LockOnComponent
 
 var _angle_to_player: float = 0.0
 var _dist_to_player: float = 0.0
@@ -13,8 +13,8 @@ var _dist_to_player: float = 0.0
 @onready var _backstab_system = Globals.backstab_system
 
 func _ready():
-	if _lock_on_component:
-		position = _lock_on_component.position
+	if lock_on_component:
+		position = lock_on_component.position
 
 
 func _process(_delta):

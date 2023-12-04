@@ -58,7 +58,15 @@ func _physics_process(_delta: float) -> void:
 		not (running and jump_component.jumping):
 			
 		rotate_towards_target = true
-
+	
+	var backstab_victim: BackstabComponent = Globals.backstab_system.backstab_victim
+	if backstab_victim:
+		rotation_component.target = backstab_victim
+		if attack_component.attacking:
+			rotate_towards_target = true
+	else:
+		rotation_component.target = lock_on_target
+	
 	rotation_component.rotate_towards_target = rotate_towards_target
 	movement_component.move_direction = rotation_component.move_direction
 	
