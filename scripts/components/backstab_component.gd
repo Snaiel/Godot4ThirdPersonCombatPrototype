@@ -5,6 +5,7 @@ extends Node3D
 @export var debug: bool = false
 @export var entity: CharacterBody3D
 @export var lock_on_component: LockOnComponent
+@export var _health_component: HealthComponent
 
 var _angle_to_player: float = 0.0
 var _dist_to_player: float = 0.0
@@ -30,3 +31,9 @@ func _process(_delta):
 		_backstab_system.set_backstab_victim(self, _dist_to_player)
 	else:
 		_backstab_system.clear_backstab_victim(self)
+
+
+func _on_hitbox_component_weapon_hit(weapon):
+	if _backstab_system.backstab_victim == self:
+		print("IVE BEEN BACKSTABBED")
+		_health_component.decrement_all_health()

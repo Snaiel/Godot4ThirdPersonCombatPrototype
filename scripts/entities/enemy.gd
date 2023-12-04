@@ -14,6 +14,7 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var _character: PlayerAnimations = $Model
 @onready var _rotation_component: RotationComponent = $EnemyRotationComponent
 @onready var _movement_component: MovementComponent = $MovementComponent
+@onready var _backstab_component: BackstabComponent = $BackstabComponent
 @onready var _agent: NavigationAgent3D = $NavigationAgent3D
 
 var _default_move_speed: float
@@ -69,9 +70,13 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 	_movement_component.set_secondary_movement(weapon.get_knockback(), 5, 5, -direction)
 	_blackboard.set_value("notice_player", true)
 
+
 func _on_health_component_zero_health() -> void:
 	death.emit(self)
-	_character.anim_tree["parameters/Death/transition_request"] = "dead"
+	if Globals.backstab_system.backstab_victim == _backstab_component:
+		_character.anim_tree["parameters/Death/transition_request"] = "backstab"
+	else:
+		_character.anim_tree["parameters/Death/transition_request"] = "dead"
 	_blackboard.set_value("dead", true)
 	_blackboard.set_value("interrupt_timers", true)
 	collision_layer = 0

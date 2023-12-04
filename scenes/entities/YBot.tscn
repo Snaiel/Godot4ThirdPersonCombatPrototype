@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=3 uid="uid://x0oxbha36o2h"]
+[gd_scene load_steps=97 format=3 uid="uid://x0oxbha36o2h"]
 
 [ext_resource type="PackedScene" uid="uid://q3eag1ltsb0y" path="res://models/ybot.blend" id="1_ml8ck"]
 [ext_resource type="Script" path="res://scripts/animations/player_animations.gd" id="2_l62dg"]
@@ -600,6 +600,8 @@ animation = &"combat_animations_1/Death"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l3xmt"]
 animation = &"combat_animations_1/Death Backstab"
 
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_2xovq"]
+
 [sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_8g4fo"]
 xfade_time = 0.3
 input_0/name = "not_dead"
@@ -772,7 +774,7 @@ input_1/auto_advance = false
 input_1/reset = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_pvyc3"]
-graph_offset = Vector2(189.092, 589.837)
+graph_offset = Vector2(2463.09, 702.837)
 nodes/Attack/node = SubResource("AnimationNodeTransition_gr1qy")
 nodes/Attack/position = Vector2(860, 1120)
 "nodes/Attack Forward Thrust/node" = SubResource("AnimationNodeBlendTree_ws83a")
@@ -800,7 +802,9 @@ nodes/Death/position = Vector2(4140, 960)
 "nodes/Death Animation/node" = SubResource("AnimationNodeAnimation_vsvsm")
 "nodes/Death Animation/position" = Vector2(3700, 1220)
 "nodes/Death Backstab Animation/node" = SubResource("AnimationNodeAnimation_l3xmt")
-"nodes/Death Backstab Animation/position" = Vector2(3640, 1400)
+"nodes/Death Backstab Animation/position" = Vector2(3440, 1380)
+"nodes/Death Backstab Speed/node" = SubResource("AnimationNodeTimeScale_2xovq")
+"nodes/Death Backstab Speed/position" = Vector2(3820, 1380)
 "nodes/Fall Animation/node" = SubResource("AnimationNodeAnimation_pia0b")
 "nodes/Fall Animation/position" = Vector2(-180, 720)
 "nodes/Free Idle/node" = SubResource("AnimationNodeAnimation_met48")
@@ -848,7 +852,7 @@ nodes/Movement/position = Vector2(-640, 180)
 "nodes/Walking Lock On/node" = SubResource("AnimationNodeTransition_0mwvr")
 "nodes/Walking Lock On/position" = Vector2(-1223.12, 6.67313)
 nodes/output/position = Vector2(4520, 840)
-node_connections = [&"output", 0, &"Death", &"Attack", 0, &"Attack Inward Slash", &"Attack", 1, &"Attack Inward Slash Copy", &"Attack", 2, &"Attack Outward Slash", &"Attack", 3, &"Attack Forward Thrust", &"Attack", 4, &"Attack Quick Slash", &"Attacking", 0, &"Vertical Movement", &"Attacking", 1, &"Attack", &"Blocking", 0, &"Attacking", &"Blocking", 1, &"Blocking Speed", &"Blocking Speed", 0, &"Blocking Trim", &"Blocking Trim", 0, &"Blocking Animation", &"Death", 0, &"Hit Reaction Not Moving", &"Death", 1, &"Death Animation", &"Death", 2, &"Death Backstab Animation", &"Free Movement", 0, &"Free Idle", &"Free Movement", 1, &"Free Walk Speed", &"Free Walk Speed", 0, &"Walk Forward", &"Hit Reaction Moving", 0, &"Blocking", &"Hit Reaction Moving", 1, &"Hit Reaction 1", &"Hit Reaction Not Moving", 0, &"Hit Reaction Moving", &"Hit Reaction Not Moving", 1, &"Hit Reaction 1 Copy", &"Jump Speed", 0, &"Jump Trim", &"Jump Trim", 0, &"Jump Animation", &"Jump and Fall Blend", 0, &"Jump Speed", &"Jump and Fall Blend", 1, &"Fall Animation", &"Lock On Movement", 0, &"Lock On Idle", &"Lock On Movement", 1, &"Lock On Walk Speed", &"Lock On Walk Speed", 0, &"Lock On Walk", &"Movement", 0, &"Walking Lock On", &"Movement", 1, &"Running Lock On", &"Running Lock On", 0, &"Running Lock On Look Direction", &"Running Lock On", 1, &"Run Forwards", &"Vertical Movement", 0, &"Movement", &"Vertical Movement", 1, &"Jump and Fall Blend", &"Walking Lock On", 0, &"Lock On Movement", &"Walking Lock On", 1, &"Free Movement"]
+node_connections = [&"output", 0, &"Death", &"Attack", 0, &"Attack Inward Slash", &"Attack", 1, &"Attack Inward Slash Copy", &"Attack", 2, &"Attack Outward Slash", &"Attack", 3, &"Attack Forward Thrust", &"Attack", 4, &"Attack Quick Slash", &"Attacking", 0, &"Vertical Movement", &"Attacking", 1, &"Attack", &"Blocking", 0, &"Attacking", &"Blocking", 1, &"Blocking Speed", &"Blocking Speed", 0, &"Blocking Trim", &"Blocking Trim", 0, &"Blocking Animation", &"Death", 0, &"Hit Reaction Not Moving", &"Death", 1, &"Death Animation", &"Death", 2, &"Death Backstab Speed", &"Free Movement", 0, &"Free Idle", &"Free Movement", 1, &"Free Walk Speed", &"Free Walk Speed", 0, &"Walk Forward", &"Hit Reaction Moving", 0, &"Blocking", &"Hit Reaction Moving", 1, &"Hit Reaction 1", &"Hit Reaction Not Moving", 0, &"Hit Reaction Moving", &"Hit Reaction Not Moving", 1, &"Hit Reaction 1 Copy", &"Jump Speed", 0, &"Jump Trim", &"Jump Trim", 0, &"Jump Animation", &"Jump and Fall Blend", 0, &"Jump Speed", &"Jump and Fall Blend", 1, &"Fall Animation", &"Lock On Movement", 0, &"Lock On Idle", &"Lock On Movement", 1, &"Lock On Walk Speed", &"Lock On Walk Speed", 0, &"Lock On Walk", &"Movement", 0, &"Walking Lock On", &"Movement", 1, &"Running Lock On", &"Running Lock On", 0, &"Running Lock On Look Direction", &"Running Lock On", 1, &"Run Forwards", &"Vertical Movement", 0, &"Movement", &"Vertical Movement", 1, &"Jump and Fall Blend", &"Walking Lock On", 0, &"Lock On Movement", &"Walking Lock On", 1, &"Free Movement", &"Death Backstab Speed", 0, &"Death Backstab Animation"]
 
 [node name="YBot" instance=ExtResource("1_ml8ck")]
 script = ExtResource("2_l62dg")
@@ -963,6 +967,7 @@ parameters/Blocking/blend_amount = 0.0
 parameters/Death/current_state = "not_dead"
 parameters/Death/transition_request = ""
 parameters/Death/current_index = 0
+"parameters/Death Backstab Speed/scale" = 2.0
 "parameters/Free Movement/blend_amount" = 0
 "parameters/Free Walk Speed/scale" = 1.0
 "parameters/Hit Reaction Moving/active" = false

@@ -23,4 +23,6 @@ func decrement_health(weapon: Sword) -> void:
 		zero_health.emit()
 
 
-
+func decrement_all_health() -> void:
+	health = 0
+	zero_health.emit()

@@ -63,10 +63,11 @@ speed = 3.0
 target_entity = NodePath("..")
 rotation_component = NodePath("../EnemyRotationComponent")
 
-[node name="BackstabComponent" type="Node3D" parent="." node_paths=PackedStringArray("entity", "lock_on_component")]
+[node name="BackstabComponent" type="Node3D" parent="." node_paths=PackedStringArray("entity", "lock_on_component", "_health_component")]
 script = ExtResource("9_hiwp2")
 entity = NodePath("..")
 lock_on_component = NodePath("../LockOnComponent")
+_health_component = NodePath("../HealthComponent")
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard")]
 script = ExtResource("7_6a3a7")
@@ -243,4 +244,5 @@ script = ExtResource("12_q7h63")
 [connection signal="area_entered" from="HitboxComponent" to="HitboxComponent" method="_on_area_entered"]
 [connection signal="area_exited" from="HitboxComponent" to="HitboxComponent" method="_on_area_exited"]
 [connection signal="weapon_hit" from="HitboxComponent" to="." method="_on_entity_hitbox_weapon_hit"]
+[connection signal="weapon_hit" from="HitboxComponent" to="BackstabComponent" method="_on_hitbox_component_weapon_hit"]
 [connection signal="zero_health" from="HealthComponent" to="." method="_on_health_component_zero_health"]
