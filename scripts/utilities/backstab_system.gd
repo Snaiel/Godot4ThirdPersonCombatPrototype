@@ -15,7 +15,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta) -> void:
-#	prints(backstab_victim)
 	
 	if backstab_victim and not backstab_victim.health_component.is_alive():
 		backstab_victim = null
@@ -43,7 +42,7 @@ func set_backstab_victim(victim: BackstabComponent, dist: float) -> void:
 	if victim == backstab_victim:
 		return
 	
-	if dist > _current_dist_to_player:
+	if dist > _current_dist_to_player - 0.05:
 		return
 	
 	if not _can_switch_victim:
