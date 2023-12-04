@@ -42,7 +42,7 @@ func set_backstab_victim(victim: BackstabComponent, dist: float) -> void:
 	if victim == backstab_victim:
 		return
 	
-	if dist > _current_dist_to_player - 0.05:
+	if dist > _current_dist_to_player - 0.02:
 		return
 	
 	if not _can_switch_victim:
