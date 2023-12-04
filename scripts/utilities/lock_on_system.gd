@@ -88,8 +88,9 @@ func _on_change_target_timer_timeout() -> void:
 
 func _target_destroyed(t: LockOnComponent) -> void:
 	_targets_nearby.erase(t)
-	_choose_lock_on_target()
-	lock_on.emit(target)
+	if target:
+		_choose_lock_on_target()
+		lock_on.emit(target)
 
 
 func _can_see_target(t: LockOnComponent) -> bool:
