@@ -96,6 +96,84 @@ func _physics_process(_delta: float) -> void:
 		_intent_to_attack = false
 
 
+func attack(level: int) -> void:
+	attacking = true
+	_intent_to_attack = true
+	_intend_to_stop_attacking = false
+	if level == 1:
+		_can_play_animation = true
+	_level = level
+
+
+func backstab() -> void:
+	attacking = true
+	_intent_to_attack = true
+	_level = 3
+	_can_play_animation = true
+
+
+func stop_attacking() -> void:
+	_can_play_animation = true
+	can_rotate.emit(true)
+	attacking = false
+
+
+func receive_secondary_movement() -> void:
+	secondary_movement.emit()
+
+
+func prevent_rotation() -> void:
+	can_rotate.emit(false)
+
+
+func recieve_can_play_animation() -> void:
+	can_play_animation.emit()
+	_can_play_animation = true
+
+
+func receive_play_legs() -> void:
+	_transition_legs = 1
+	match _level:
+		1:
+			anim_tree["parameters/Attack Inward Slash/Walk Forwards Speed/scale"] = 0.8
+			anim_tree["parameters/Attack Inward Slash Copy/Walk Forwards Speed/scale"] = 0.8
+		2:
+			anim_tree["parameters/Attack Outward Slash/Walk Forwards Speed/scale"] = 0.8
+		4:
+			anim_tree["parameters/Attack Quick Slash/Walk Forwards Speed/scale"] = 0.8
+
+func receive_stop_legs(level: int) -> void:
+	# having a check for the level originating from the animation
+	# against the current attack _level to see whether
+	# to actually transition out of the current animation's legs
+	if level == _level:
+		_transition_legs = -1
+
+
+func receive_can_attack_again() -> void:
+	can_attack_again.emit(true)
+	_intend_to_stop_attacking = true
+
+
+func receive_cannot_attack_again() -> void:
+	can_attack_again.emit(false)
+				
+
+func receive_attack_finished() -> void:
+	_level = 1
+	if _intend_to_stop_attacking:
+		attacking_finished.emit()
+		stop_attacking()
+
+
+func receive_can_damage() -> void:
+	can_damage.emit(true)
+
+
+func receive_cannot_damage() -> void:
+	can_damage.emit(false)
+
+
 func _play_attack_1() -> void:
 	if _play_attack_1_copy:
 		anim_tree["parameters/Attack Inward Slash Copy/Inward Slash and Walk Blend/blend_amount"] = 0.0				
@@ -154,73 +232,3 @@ func _end_legs_transition() -> void:
 				0.05,
 				0.3
 			)
-
-
-func attack(level: int) -> void:
-	attacking = true
-	_intent_to_attack = true
-	_intend_to_stop_attacking = false
-	if level == 1:
-		_can_play_animation = true
-	_level = level
-
-
-func stop_attacking() -> void:
-	_can_play_animation = true
-	can_rotate.emit(true)
-	attacking = false
-
-
-func receive_secondary_movement() -> void:
-	secondary_movement.emit()
-
-
-func prevent_rotation() -> void:
-	can_rotate.emit(false)
-
-
-func recieve_can_play_animation() -> void:
-	can_play_animation.emit()
-	_can_play_animation = true
-
-
-func receive_play_legs() -> void:
-	_transition_legs = 1
-	match _level:
-		1:
-			anim_tree["parameters/Attack Inward Slash/Walk Forwards Speed/scale"] = 0.8
-			anim_tree["parameters/Attack Inward Slash Copy/Walk Forwards Speed/scale"] = 0.8
-		2:
-			anim_tree["parameters/Attack Outward Slash/Walk Forwards Speed/scale"] = 0.8
-		4:
-			anim_tree["parameters/Attack Quick Slash/Walk Forwards Speed/scale"] = 0.8
-
-func receive_stop_legs(level: int) -> void:
-	# having a check for the level originating from the animation
-	# against the current attack _level to see whether
-	# to actually transition out of the current animation's legs
-	if level == _level:
-		_transition_legs = -1
-
-
-func receive_can_attack_again() -> void:
-	can_attack_again.emit(true)
-	_intend_to_stop_attacking = true
-
-
-func receive_cannot_attack_again() -> void:
-	can_attack_again.emit(false)
-				
-
-func receive_attack_finished() -> void:
-	if _intend_to_stop_attacking:
-		attacking_finished.emit()
-		stop_attacking()
-
-
-func receive_can_damage() -> void:
-	can_damage.emit(true)
-
-
-func receive_cannot_damage() -> void:
-	can_damage.emit(false)

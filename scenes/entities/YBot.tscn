@@ -564,6 +564,7 @@ node_connections = [&"output", 0, &"Quick Slash and Walk Blend", &"Quick Slash S
 
 [sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_gr1qy"]
 xfade_time = 0.2
+allow_transition_to_self = true
 input_0/name = "attack_1"
 input_0/auto_advance = false
 input_0/reset = true
@@ -771,7 +772,7 @@ input_1/auto_advance = false
 input_1/reset = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_pvyc3"]
-graph_offset = Vector2(2373.05, 636.906)
+graph_offset = Vector2(189.092, 589.837)
 nodes/Attack/node = SubResource("AnimationNodeTransition_gr1qy")
 nodes/Attack/position = Vector2(860, 1120)
 "nodes/Attack Forward Thrust/node" = SubResource("AnimationNodeBlendTree_ws83a")
@@ -853,7 +854,7 @@ node_connections = [&"output", 0, &"Death", &"Attack", 0, &"Attack Inward Slash"
 script = ExtResource("2_l62dg")
 
 [node name="GeneralSkeleton" parent="Armature_004" index="0"]
-bones/0/position = Vector3(-0.00692284, 6.62391e-09, 0.0555654)
+bones/0/position = Vector3(0.000329297, -1.53142e-09, -0.0128465)
 bones/1/position = Vector3(6.94653e-07, 0.98996, -9.63814e-08)
 bones/1/rotation = Quaternion(-0.0319434, -0.0460476, -0.0288428, 0.998012)
 bones/2/rotation = Quaternion(0.0291198, 0.0127742, 0.0220343, 0.999251)
@@ -930,9 +931,9 @@ tree_root = SubResource("AnimationNodeBlendTree_pvyc3")
 anim_player = NodePath("../AnimationPlayer")
 active = true
 root_motion_track = NodePath("%GeneralSkeleton:Root")
-parameters/Attack/current_state = "attack_1_copy"
+parameters/Attack/current_state = "attack_1"
 parameters/Attack/transition_request = ""
-parameters/Attack/current_index = 1
+parameters/Attack/current_index = 0
 "parameters/Attack Forward Thrust/Forward Thrust Speed/scale" = 1.5
 "parameters/Attack Forward Thrust/Forward Thrust Trim/seek_request" = -1.0
 "parameters/Attack Inward Slash/Inward Slash Speed/scale" = 1.5

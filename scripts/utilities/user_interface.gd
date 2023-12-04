@@ -78,8 +78,7 @@ func _process_backstab() -> void:
 		_previous_backstab_victim = null
 
 
-func _on_backstab_system_backstab_victim(victim):
-		
+func _on_backstab_system_current_victim(victim):
 	if victim:
 		_previous_backstab_victim = _backstab_victim
 		_backstab_victim = victim
