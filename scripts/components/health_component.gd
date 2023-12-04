@@ -4,6 +4,7 @@ extends Node3D
 
 signal zero_health
 
+@export var active: bool = true
 @export var hitbox: HitboxComponent
 @export var health: float = 100.0
 @export var blood_scene: PackedScene
@@ -21,6 +22,9 @@ func is_alive() -> bool:
 
 
 func decrement_health(weapon: Sword) -> void:
+	if not active:
+		return
+	
 	if blood_scene:
 		var blood_particle: GPUParticles3D = blood_scene.instantiate()
 		add_child(blood_particle)

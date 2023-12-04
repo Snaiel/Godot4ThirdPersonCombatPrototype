@@ -14,11 +14,12 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var _character: PlayerAnimations = $Model
 @onready var _rotation_component: RotationComponent = $EnemyRotationComponent
 @onready var _movement_component: MovementComponent = $MovementComponent
+@onready var _health_compoennt: HealthComponent = $HealthComponent
 @onready var _backstab_component: BackstabComponent = $BackstabComponent
 @onready var _agent: NavigationAgent3D = $NavigationAgent3D
 
 var _default_move_speed: float
-
+var _dead: bool = false
 
 func _ready() -> void:
 	target = Globals.player
@@ -72,8 +73,12 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 
 
 func _on_health_component_zero_health() -> void:
-	print('hi')
+	if _dead:
+		return
+	
 	death.emit(self)
+	_dead = true
+	_health_compoennt.active = false
 	
 	_blackboard.set_value("dead", true)
 	_blackboard.set_value("interrupt_timers", true)
