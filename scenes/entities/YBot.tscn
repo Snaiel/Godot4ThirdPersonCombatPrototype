@@ -852,7 +852,7 @@ nodes/Movement/position = Vector2(-640, 180)
 "nodes/Walking Lock On/node" = SubResource("AnimationNodeTransition_0mwvr")
 "nodes/Walking Lock On/position" = Vector2(-1223.12, 6.67313)
 nodes/output/position = Vector2(4520, 840)
-node_connections = [&"output", 0, &"Death", &"Attack", 0, &"Attack Inward Slash", &"Attack", 1, &"Attack Inward Slash Copy", &"Attack", 2, &"Attack Outward Slash", &"Attack", 3, &"Attack Forward Thrust", &"Attack", 4, &"Attack Quick Slash", &"Attacking", 0, &"Vertical Movement", &"Attacking", 1, &"Attack", &"Blocking", 0, &"Attacking", &"Blocking", 1, &"Blocking Speed", &"Blocking Speed", 0, &"Blocking Trim", &"Blocking Trim", 0, &"Blocking Animation", &"Death", 0, &"Hit Reaction Not Moving", &"Death", 1, &"Death Animation", &"Death", 2, &"Death Backstab Speed", &"Free Movement", 0, &"Free Idle", &"Free Movement", 1, &"Free Walk Speed", &"Free Walk Speed", 0, &"Walk Forward", &"Hit Reaction Moving", 0, &"Blocking", &"Hit Reaction Moving", 1, &"Hit Reaction 1", &"Hit Reaction Not Moving", 0, &"Hit Reaction Moving", &"Hit Reaction Not Moving", 1, &"Hit Reaction 1 Copy", &"Jump Speed", 0, &"Jump Trim", &"Jump Trim", 0, &"Jump Animation", &"Jump and Fall Blend", 0, &"Jump Speed", &"Jump and Fall Blend", 1, &"Fall Animation", &"Lock On Movement", 0, &"Lock On Idle", &"Lock On Movement", 1, &"Lock On Walk Speed", &"Lock On Walk Speed", 0, &"Lock On Walk", &"Movement", 0, &"Walking Lock On", &"Movement", 1, &"Running Lock On", &"Running Lock On", 0, &"Running Lock On Look Direction", &"Running Lock On", 1, &"Run Forwards", &"Vertical Movement", 0, &"Movement", &"Vertical Movement", 1, &"Jump and Fall Blend", &"Walking Lock On", 0, &"Lock On Movement", &"Walking Lock On", 1, &"Free Movement", &"Death Backstab Speed", 0, &"Death Backstab Animation"]
+node_connections = [&"output", 0, &"Death", &"Attack", 0, &"Attack Inward Slash", &"Attack", 1, &"Attack Inward Slash Copy", &"Attack", 2, &"Attack Outward Slash", &"Attack", 3, &"Attack Forward Thrust", &"Attack", 4, &"Attack Quick Slash", &"Attacking", 0, &"Vertical Movement", &"Attacking", 1, &"Attack", &"Blocking", 0, &"Attacking", &"Blocking", 1, &"Blocking Speed", &"Blocking Speed", 0, &"Blocking Trim", &"Blocking Trim", 0, &"Blocking Animation", &"Death", 0, &"Hit Reaction Not Moving", &"Death", 1, &"Death Animation", &"Death", 2, &"Death Backstab Speed", &"Death Backstab Speed", 0, &"Death Backstab Animation", &"Free Movement", 0, &"Free Idle", &"Free Movement", 1, &"Free Walk Speed", &"Free Walk Speed", 0, &"Walk Forward", &"Hit Reaction Moving", 0, &"Blocking", &"Hit Reaction Moving", 1, &"Hit Reaction 1", &"Hit Reaction Not Moving", 0, &"Hit Reaction Moving", &"Hit Reaction Not Moving", 1, &"Hit Reaction 1 Copy", &"Jump Speed", 0, &"Jump Trim", &"Jump Trim", 0, &"Jump Animation", &"Jump and Fall Blend", 0, &"Jump Speed", &"Jump and Fall Blend", 1, &"Fall Animation", &"Lock On Movement", 0, &"Lock On Idle", &"Lock On Movement", 1, &"Lock On Walk Speed", &"Lock On Walk Speed", 0, &"Lock On Walk", &"Movement", 0, &"Walking Lock On", &"Movement", 1, &"Running Lock On", &"Running Lock On", 0, &"Running Lock On Look Direction", &"Running Lock On", 1, &"Run Forwards", &"Vertical Movement", 0, &"Movement", &"Vertical Movement", 1, &"Jump and Fall Blend", &"Walking Lock On", 0, &"Lock On Movement", &"Walking Lock On", 1, &"Free Movement"]
 
 [node name="YBot" instance=ExtResource("1_ml8ck")]
 script = ExtResource("2_l62dg")
@@ -922,6 +922,12 @@ bones/61/rotation = Quaternion(-0.0907232, -0.00982679, 0.995417, -0.0285846)
 bones/62/rotation = Quaternion(0.0330748, 0.99437, -0.0564608, -0.0833526)
 bones/63/rotation = Quaternion(0.0095147, 0.685712, -0.727228, -0.0291443)
 bones/64/rotation = Quaternion(-3.65492e-07, 0.998003, 0.0631675, -3.81956e-08)
+
+[node name="Alpha_Joints" parent="Armature_004/GeneralSkeleton" index="0"]
+extra_cull_margin = 1.0
+
+[node name="Alpha_Surface" parent="Armature_004/GeneralSkeleton" index="1"]
+extra_cull_margin = 1.0
 
 [node name="AnimationPlayer" parent="." index="1"]
 libraries = {
