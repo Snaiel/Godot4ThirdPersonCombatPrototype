@@ -7,8 +7,11 @@ var _backstab_victim: BackstabComponent = null
 var _previous_backstab_victim: BackstabComponent = null
 var _backstab_crosshair_visisble: bool = false
 
+@onready var notice_triangles: Node2D = $NoticeTriangles
+
 @onready var _lock_on_texture: TextureRect = $LockOn
 @onready var _crosshair: Sprite2D = $Crosshair
+
 
 
 # Called when the node enters the scene tree for the first time.
