@@ -30,6 +30,7 @@ var _locked_on_turning_in_place: bool = false
 
 func _ready() -> void:
 	Globals.player = self
+	Globals.backstab_system.attack_component = attack_component
 
 	attack_component.can_move.connect(_receive_can_move)
 	attack_component.can_rotate.connect(_receive_can_rotate)

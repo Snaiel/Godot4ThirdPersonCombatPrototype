@@ -5,6 +5,8 @@ extends Node3D
 signal current_victim(victim: BackstabComponent)
 
 var backstab_victim: BackstabComponent
+var attack_component: AttackComponent
+
 var _current_dist_to_player: float = 10
 var _can_switch_victim: bool = true
 
@@ -35,6 +37,9 @@ func _process(_delta) -> void:
 
 func set_backstab_victim(victim: BackstabComponent, dist: float) -> void:
 #	if backstab_victim: prints(victim.get_parent().name, backstab_victim.get_parent().name, dist, _current_dist_to_player)
+	
+	if not backstab_victim and attack_component.attacking:
+		return
 	
 	if not victim.health_component.is_alive():
 		return
