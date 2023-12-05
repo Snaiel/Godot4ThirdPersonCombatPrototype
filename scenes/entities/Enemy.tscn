@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cv8knl5vavfyy"]
+[gd_scene load_steps=27 format=3 uid="uid://cv8knl5vavfyy"]
 
 [ext_resource type="Script" path="res://scripts/entities/enemy.gd" id="1_nrck3"]
 [ext_resource type="PackedScene" uid="uid://blqmpc6qop5nm" path="res://scenes/entities/EnemyBot.tscn" id="2_bivj4"]
@@ -28,6 +28,12 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lwy87"]
 radius = 0.3
 height = 1.8
+
+[sub_resource type="Curve" id="Curve_0rc4c"]
+min_value = 1.0
+max_value = 1.5
+_data = [Vector2(0, 1.00526), 0.0, 0.0, 0, 0, Vector2(0.5, 1.5), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [node name="Enemy" type="CharacterBody3D" groups=["enemy"]]
 collision_layer = 8
@@ -74,6 +80,7 @@ health_component = NodePath("../HealthComponent")
 [node name="NoticeComponent" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 script = ExtResource("10_oa804")
+curve = SubResource("Curve_0rc4c")
 notice_triangle = ExtResource("11_vpmre")
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard")]
