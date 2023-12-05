@@ -97,7 +97,7 @@ func _physics_process(_delta: float) -> void:
 	# make sure the user is actually holding down
 	# the run key to make the player run
 	if Input.is_action_just_pressed("run"):
-		if dodge_component.can_set_intent_to_dodge:
+		if dodge_component.can_set_intent_to_dodge and not attack_component.attacking:
 			dodge_component.intent_to_dodge = true
 		_holding_down_run_timer.start(0.1)
 	if Input.is_action_just_released("run"):
@@ -106,7 +106,7 @@ func _physics_process(_delta: float) -> void:
 
 
 	# start the jump animation when the jump key is pressed
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and is_on_floor() and not attack_component.attacking:
 		jump_component.start_jump()
 	
 
