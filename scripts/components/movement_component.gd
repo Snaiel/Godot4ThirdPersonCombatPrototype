@@ -15,7 +15,9 @@ var move_direction: Vector3 = Vector3.ZERO
 var desired_velocity: Vector3 = Vector3.ZERO
 
 var can_move: bool = true
+
 var vertical_movement: bool = false
+var can_disable_vertical_movement: bool = false
 
 var _secondary_movement_direction: Vector3
 var _secondary_movement_speed: float = 0.0
@@ -34,6 +36,7 @@ func _physics_process(delta: float) -> void:
 	
 	if debug:
 		pass
+#		prints(get_parent().name, desired_velocity, vertical_movement)
 #		print(_secondary_movement_direction, " ", _secondary_movement_speed, " ", _secondary_movement_friction)
 
 	if can_move:
@@ -49,6 +52,15 @@ func _physics_process(delta: float) -> void:
 			
 			desired_velocity.x = lerp(desired_velocity.x, 0.0, weight)
 			desired_velocity.z = lerp(desired_velocity.z, 0.0, weight)
+			
+			if can_disable_vertical_movement and \
+				Vector2(
+						desired_velocity.x, 
+						desired_velocity.z
+				).length() < 0.05:
+				
+				vertical_movement = false
+				can_disable_vertical_movement = false
 	
 	if _secondary_movement_speed > 0.0 and target_entity.is_on_floor():
 		desired_velocity.x = _secondary_movement_direction.x * _secondary_movement_speed

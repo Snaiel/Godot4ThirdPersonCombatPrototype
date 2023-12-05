@@ -4,7 +4,6 @@ extends Node3D
 
 signal just_landed
 
-
 @export var entity: CharacterBody3D
 @export var animations: PlayerAnimations
 @export var movement_component: MovementComponent
@@ -72,5 +71,6 @@ func _jump() -> void:
 
 ## assumes we are now not doing any vertical movement
 func _receive_vertical_movement_ended() -> void:
+	movement_component.can_disable_vertical_movement = true
 	if movement_component.move_direction.length() > 0.2:
 		movement_component.vertical_movement = false
