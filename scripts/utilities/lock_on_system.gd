@@ -4,6 +4,7 @@ extends Node3D
 signal lock_on(target: LockOnComponent)
 
 @export var player: Player
+@export var retain_distance: float = 25.0
 
 @export_category("Enemies")
 @export var target: LockOnComponent = null
@@ -12,7 +13,7 @@ signal lock_on(target: LockOnComponent)
 
 
 @export_category("Changing Target")
-@export var change_target_mouse_threshold: float = 60
+@export var change_target_mouse_threshold: float = 60.0
 @export var change_target_controller_threshold: float = 0.2
 @export var change_target_wait_time: float = 0.5
 @export var can_change_target = true
@@ -33,7 +34,13 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
 	position = player.position
-
+	
+	if target:
+		var distance: float = player.global_position.distance_to(target.global_position)
+		if distance > retain_distance:
+			target = null
+			lock_on.emit(target)
+	
 	if Input.is_action_just_pressed("lock_on"):
 		if target:
 			target = null
