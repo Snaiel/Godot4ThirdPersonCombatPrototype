@@ -19,7 +19,7 @@ texture = ExtResource("1_rgvvu")
 clip_children = 1
 position = Vector2(0, -42)
 texture = ExtResource("2_816p2")
-offset = Vector2(0, 47.6)
+offset = Vector2(0, 20)
 
 [node name="Inside Triangle" type="Sprite2D" parent="TriangleMask"]
 modulate = Color(0.870588, 0.756863, 0.137255, 1)
