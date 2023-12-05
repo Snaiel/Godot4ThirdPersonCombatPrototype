@@ -12,7 +12,3 @@ bones/0/position = Vector3(0, 0, 0)
 
 [node name="Alpha_Surface" parent="Armature_004/GeneralSkeleton" index="1"]
 surface_material_override/0 = SubResource("StandardMaterial3D_v44eh")
-
-[node name="AnimationTree" parent="." index="2"]
-"parameters/Attack Quick Slash/Quick Slash and Walk Blend/blend_amount" = 0
-"parameters/Vertical Movement/blend_amount" = 0
