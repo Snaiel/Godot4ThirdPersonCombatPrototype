@@ -85,6 +85,9 @@ func _receive_rotation(flag: bool) -> void:
 
 
 func _receive_movement() -> void:
+	if _attack_interrupted:
+		return
+		
 	match _attack_level:
 		1:
 			_movement_component.set_secondary_movement(6, 5, 15)
