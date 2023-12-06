@@ -240,11 +240,6 @@ script = ExtResource("13_dt0d4")
 key = "\"input_direction\""
 value = "Vector3(0, 0, 0)"
 
-[node name="NotLockedOn" type="Node" parent="BeehaveTree/SelectorComposite/idle"]
-script = ExtResource("13_dt0d4")
-key = "\"locked_on\""
-value = "bool(0)"
-
 [node name="DontNoticePlayer" type="Node" parent="BeehaveTree/SelectorComposite/idle"]
 script = ExtResource("13_dt0d4")
 key = "\"notice_player\""

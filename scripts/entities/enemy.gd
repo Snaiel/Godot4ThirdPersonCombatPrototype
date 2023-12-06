@@ -16,6 +16,7 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var _movement_component: MovementComponent = $MovementComponent
 @onready var _health_compoennt: HealthComponent = $HealthComponent
 @onready var _backstab_component: BackstabComponent = $BackstabComponent
+@onready var _notice_component: NoticeComponent = $NoticeComponent
 @onready var _agent: NavigationAgent3D = $NavigationAgent3D
 
 var _default_move_speed: float
@@ -24,15 +25,24 @@ var _dead: bool = false
 func _ready() -> void:
 	target = Globals.player
 	_rotation_component.target = target
-	_blackboard.set_value("debug", debug)
+	
 	_default_move_speed = _movement_component.speed
 	_blackboard.set_value("move_speed", _default_move_speed)
 	
 	_rotation_component.debug = debug
 	_movement_component.debug = debug
-	$BackstabComponent.debug = debug
-	$NoticeComponent.debug = debug
+	_backstab_component.debug = debug
+	_notice_component.debug = debug
 	
+	_notice_component.state_changed.connect(
+		func(new_state: NoticeComponent.NoticeState): 
+			_blackboard.set_value(
+				"locked_on", 
+				new_state == NoticeComponent.NoticeState.SUSPICIOUS
+			)
+	)
+	
+	_blackboard.set_value("debug", debug)	
 	_blackboard.set_value("notice_player", false)
 	_blackboard.set_value("dead", false)
 
@@ -51,6 +61,7 @@ func _physics_process(_delta: float) -> void:
 
 	if debug:
 		pass
+#		print(_blackboard.get_value("locked_on", "bruh"))
 #		print(_blackboard.get_value("look_at_target"))
 #		print(_rotation_component.look_at_target)
 #		print(_blackboard.get_value("input_direction", Vector3.ZERO))
