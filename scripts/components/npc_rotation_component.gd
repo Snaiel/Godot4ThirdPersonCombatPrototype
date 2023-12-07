@@ -65,20 +65,40 @@ func _physics_process(_delta: float) -> void:
 		_freelook_turn = true
 
 
-		if _can_move and _velocity.length() > 0:
-			looking_direction = Vector3(_velocity.x, 0, _velocity.z)
+#		if _can_move and _velocity.length() > 0:
+#			looking_direction = Vector3(_velocity.x, 0, _velocity.z)
 #		elif _can_rotate:
 #			looking_direction = Vector3(move_direction.x, 0, move_direction.z)
 #			looking_direction = looking_direction.rotated(Vector3.UP, _camera_controller.rotation.y).normalized()
 
-		_target_look = atan2(-looking_direction.x, -looking_direction.z)
+		move_direction.rotated(Vector3.UP, _target_look).normalized()
 		
-		move_direction = move_direction.rotated(Vector3.UP, _target_look).normalized()				
+		looking_direction = lerp(
+			Vector3.FORWARD.rotated(
+				Vector3.UP,
+				get_parent().global_rotation.y
+			),
+			_input_direction.rotated(
+				Vector3.UP,
+				get_parent().global_rotation.y
+			),
+			0.15
+		)
+		
+#		looking_direction = _input_direction.rotated(
+#			Vector3.UP,
+#			get_parent().global_rotation.y
+#		)
+		
+		_target_look = atan2(-looking_direction.x, -looking_direction.z)
+		entity.rotation.y = lerp_angle(entity.rotation.y, _target_look, 0.1)
+		
+		move_direction = Vector3.ZERO
 		
 
 	# Makes sure the entity is rotated fully to the desired direction
 	# even if pressed for a short period of time
-	if _freelook_turn:
-		if abs(entity.rotation.y - _target_look) < 0.01:
-			_freelook_turn = false
-		entity.rotation.y = lerp_angle(entity.rotation.y, _target_look, 0.1)
+#	if _freelook_turn:
+#		if abs(entity.rotation.y - _target_look) < 0.01:
+#			_freelook_turn = false
+#		entity.rotation.y = lerp_angle(entity.rotation.y, _target_look, 0.1)

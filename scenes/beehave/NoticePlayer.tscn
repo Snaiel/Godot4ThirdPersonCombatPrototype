@@ -9,10 +9,10 @@
 [ext_resource type="Script" path="res://scripts/beehave/close_to_target.gd" id="7_w4tpx"]
 [ext_resource type="Script" path="res://scripts/beehave/reset_wait.gd" id="8_wubls"]
 [ext_resource type="Script" path="res://scripts/beehave/wait.gd" id="9_jg3p3"]
-[ext_resource type="PackedScene" uid="uid://5653b3wcf25p" path="res://scenes/beehave/StandStill.tscn" id="9_m6fib"]
+[ext_resource type="PackedScene" uid="uid://5653b3wcf25p" path="res://scenes/beehave/InputNone.tscn" id="9_m6fib"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_random.gd" id="10_gcfgk"]
 [ext_resource type="PackedScene" uid="uid://chv25a2oggqaw" path="res://scenes/beehave/WaitBlock.tscn" id="11_5w1xk"]
-[ext_resource type="PackedScene" uid="uid://bxdxaxbqnawm5" path="res://scenes/beehave/RunForwards.tscn" id="12_f5wff"]
+[ext_resource type="PackedScene" uid="uid://ppcsagqgu032" path="res://scenes/beehave/InputForwards.tscn" id="13_681hn"]
 
 [node name="NoticePlayer" type="Node"]
 script = ExtResource("1_t3b3j")
@@ -67,7 +67,7 @@ target_range = 2.5
 script = ExtResource("8_wubls")
 wait_id = 1
 
-[node name="StandStill" parent="StayOrChase/StayIfClose" instance=ExtResource("9_m6fib")]
+[node name="InputNone" parent="StayOrChase/StayIfClose" instance=ExtResource("9_m6fib")]
 
 [node name="Wait" type="Node" parent="StayOrChase/StayIfClose"]
 script = ExtResource("9_jg3p3")
@@ -121,4 +121,4 @@ script = ExtResource("9_jg3p3")
 time = 2.0
 wait_id = 1
 
-[node name="RunForwards" parent="StayOrChase/Chase" instance=ExtResource("12_f5wff")]
+[node name="InputForwards" parent="StayOrChase/Chase" instance=ExtResource("13_681hn")]

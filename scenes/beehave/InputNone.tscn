@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_set.gd" id="1_1e61n"]
 
-[node name="StandStill" type="Node"]
+[node name="InputNone" type="Node"]
 script = ExtResource("1_1e61n")
 key = "\"input_direction\""
 value = "Vector3(0, 0, 0)"

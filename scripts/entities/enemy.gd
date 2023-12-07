@@ -42,7 +42,7 @@ func _ready() -> void:
 				new_state == NoticeComponent.NoticeState.SUSPICIOUS
 			)
 			_blackboard.set_value("suspicious", true)
-			_blackboard.set_value("look_at_target", true)			
+			_blackboard.set_value("look_at_target", true)
 			if position_to_check != Vector3.ZERO:
 				_agent.target_position = position_to_check
 	)
@@ -64,21 +64,22 @@ func _physics_process(_delta: float) -> void:
 	_blackboard.set_value("target_dir_angle", target_dir_angle)
 
 	if debug:
-		print(target_dist)
-#		print(_blackboard.get_value("locked_on", "bruh"))
-#		print(_blackboard.get_value("look_at_target"))
-#		print(_rotation_component.look_at_target)
-#		print(_blackboard.get_value("input_direction", Vector3.ZERO))
-#		print(_rotation_component.move_direction, " ", _movement_component.desired_velocity)
-
+		prints(
+			_blackboard.get_value("input_direction"),
+			_blackboard.get_value("locked_on"),
+			_blackboard.get_value("look_at_target")
+		)
+	
 	_rotation_component.look_at_target = _blackboard.get_value("look_at_target", false)
 	_movement_component.speed = _blackboard.get_value("move_speed", _default_move_speed)
 
-	var _input_direction: Vector3 = _blackboard.get_value("input_direction", Vector3.ZERO)
-	var _locked_on: bool = _blackboard.get_value("locked_on", false)
 	_character.anim_tree["parameters/Lock On Walk/4/TimeScale/scale"] = 0.5
 	_character.anim_tree["parameters/Lock On Walk/5/TimeScale/scale"] = 0.5	
-	_character.movement_animations.move(_input_direction, _locked_on, false)
+	_character.movement_animations.move(
+		_blackboard.get_value("input_direction", Vector3.ZERO), 
+		_blackboard.get_value("locked_on", false), 
+		false
+	)
 
 
 func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:

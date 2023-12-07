@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpmbb56ftoyja"]
+
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_set.gd" id="1_d5ep8"]
+
+[node name="InputRight" type="Node"]
+script = ExtResource("1_d5ep8")
+key = "\"input_direction\""
+value = "Vector3(1, 0, 0)"

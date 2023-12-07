@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ppcsagqgu032"]
+
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_set.gd" id="1_1n7b0"]
+
+[node name="InputForwards" type="Node"]
+script = ExtResource("1_1n7b0")
+key = "\"input_direction\""
+value = "Vector3(0, 0, -1)"
