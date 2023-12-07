@@ -6,13 +6,18 @@ extends NoticeComponentState
 
 
 func enter() -> void:
-	notice_component.notice_triangle_sprite.visible = false
+	notice_component.notice_triangle_sprite.self_modulate = Color.WHITE
 
 
 func physics_process(delta) -> void:
+	notice_component.notice_triangle_sprite.visible = false	
 	if notice_component.angle_to_player < 60 and notice_component.distance_to_player < 15.0:
 		notice_component.change_state(getting_suspicious_state)
 
 
 func exit() -> void:
+	pass
+
+
+func interrupt() -> void:
 	pass

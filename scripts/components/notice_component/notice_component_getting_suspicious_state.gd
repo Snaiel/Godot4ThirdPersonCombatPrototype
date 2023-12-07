@@ -9,13 +9,18 @@ var _notice_val: float
 
 func enter() -> void:
 	_notice_val = 0.0
+	notice_component.notice_triangle_sprite.self_modulate = lerp(
+		notice_component.notice_triangle_sprite.self_modulate,
+		Color.WHITE,
+		0.2
+	)
 
 
 func physics_process(delta) -> void:
 	super.physics_process(delta)
 	
 	# change the offset of the mask to reflect on the meter in the triangle
-	var mask_offset: float = -62 * _notice_val + 80
+	var mask_offset: float = notice_component.get_mask_offset(_notice_val)
 	var mask: Sprite2D = notice_component.notice_triangle_sprite.get_node("TriangleMask")
 	mask.offset.y = mask_offset
 	
@@ -28,6 +33,10 @@ func physics_process(delta) -> void:
 	
 	_notice_val = clamp(_notice_val, 0.0, 1.0)
 	
+	if not (notice_component.in_camera_frustum() and _notice_val > 0):
+		notice_component.notice_triangle_sprite.visible = false
+	
+	
 	if is_equal_approx(_notice_val, 1.0):
 		notice_component.change_state(suspicious_state)
 	elif is_equal_approx(_notice_val, 0.0):
@@ -35,4 +44,8 @@ func physics_process(delta) -> void:
 
 
 func exit() -> void:
+	pass
+
+
+func interrupt() -> void:
 	pass

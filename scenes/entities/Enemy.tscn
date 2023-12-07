@@ -20,6 +20,7 @@
 [ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_set.gd" id="13_dt0d4"]
 [ext_resource type="Script" path="res://scripts/components/notice_component/notice_component_getting_suspicious_state.gd" id="14_kjgmi"]
 [ext_resource type="Script" path="res://scripts/components/notice_component/notice_component_suspicious_state.gd" id="15_ukem2"]
+[ext_resource type="Curve" uid="uid://deth5jw41owwx" path="res://resources/notice_scale_curve.tres" id="15_wmy70"]
 [ext_resource type="Script" path="res://scripts/components/notice_component/notice_component_getting_aggro_state.gd" id="16_y0bt8"]
 [ext_resource type="PackedScene" uid="uid://5653b3wcf25p" path="res://scenes/beehave/inputs/InputNone.tscn" id="17_6rhnw"]
 [ext_resource type="Script" path="res://scripts/components/notice_component/notice_component_aggro_state.gd" id="17_peuo8"]
@@ -27,12 +28,6 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lwy87"]
 radius = 0.3
 height = 1.8
-
-[sub_resource type="Curve" id="Curve_0rc4c"]
-min_value = 1.0
-max_value = 1.5
-_data = [Vector2(0, 1.00526), 0.0, 0.0, 0, 0, Vector2(0.5, 1.5), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 3
 
 [node name="Enemy" type="CharacterBody3D" groups=["enemy"]]
 collision_layer = 8
@@ -79,7 +74,6 @@ health_component = NodePath("../HealthComponent")
 [node name="NoticeComponent" type="Node3D" parent="." node_paths=PackedStringArray("health_component", "initial_state")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 script = ExtResource("10_14kyj")
-curve = SubResource("Curve_0rc4c")
 notice_triangle = ExtResource("11_vpmre")
 health_component = NodePath("../HealthComponent")
 initial_state = NodePath("Idle")
@@ -95,8 +89,11 @@ idle_state = NodePath("../Idle")
 suspicious_state = NodePath("../Suspicious")
 notice_component = NodePath("..")
 
-[node name="Suspicious" type="Node" parent="NoticeComponent"]
+[node name="Suspicious" type="Node" parent="NoticeComponent" node_paths=PackedStringArray("idle_state", "notice_component")]
 script = ExtResource("15_ukem2")
+idle_state = NodePath("../Idle")
+curve = ExtResource("15_wmy70")
+notice_component = NodePath("..")
 
 [node name="GettingAggro" type="Node" parent="NoticeComponent"]
 script = ExtResource("16_y0bt8")

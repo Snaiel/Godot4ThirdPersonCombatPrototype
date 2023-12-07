@@ -30,15 +30,15 @@ func _ready() -> void:
 	_default_move_speed = _movement_component.speed
 	_blackboard.set_value("move_speed", _default_move_speed)
 	
-#	_notice_component.state_changed.connect(
-#		func(new_state: NoticeComponent.NoticeState, position_to_check: Vector3): 
-#			var val: bool = new_state == NoticeComponent.NoticeState.SUSPICIOUS
-#			_blackboard.set_value("locked_on", val)
-#			_blackboard.set_value("suspicious", val)
-#			_blackboard.set_value("look_at_target", val)
-#			if position_to_check != Vector3.ZERO:
-#				_agent.target_position = position_to_check
-#	)
+	_notice_component.state_changed.connect(
+		func(new_state: NoticeComponentState): 
+			var val: bool = new_state is NoticeComponentSuspiciousState
+			_blackboard.set_value("locked_on", val)
+			_blackboard.set_value("suspicious", val)
+			_blackboard.set_value("look_at_target", val)
+			if _notice_component.position_to_check != Vector3.INF:
+				_agent.target_position = _notice_component.position_to_check
+	)
 	
 	_blackboard.set_value("notice_player", false)
 	_blackboard.set_value("dead", false)

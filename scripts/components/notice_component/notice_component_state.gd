@@ -17,3 +17,7 @@ func physics_process(delta) -> void:
 
 func exit() -> void:
 	pass
+
+
+func interrupt() -> void:
+	pass
