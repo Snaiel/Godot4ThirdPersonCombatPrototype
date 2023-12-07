@@ -77,11 +77,12 @@ entity = NodePath("..")
 lock_on_component = NodePath("../LockOnComponent")
 health_component = NodePath("../HealthComponent")
 
-[node name="NoticeComponent" type="Node3D" parent="."]
+[node name="NoticeComponent" type="Node3D" parent="." node_paths=PackedStringArray("health_component")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 script = ExtResource("10_oa804")
 curve = SubResource("Curve_0rc4c")
 notice_triangle = ExtResource("11_vpmre")
+health_component = NodePath("../HealthComponent")
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard")]
 script = ExtResource("7_6a3a7")

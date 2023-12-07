@@ -13,6 +13,7 @@ enum NoticeState {
 @export var curve: Curve
 @export var debug: bool
 @export var notice_triangle: PackedScene
+@export var health_component: HealthComponent
 
 var current_state: NoticeState = NoticeState.IDLE
 
@@ -46,6 +47,15 @@ func _ready() -> void:
 			_check_to_leave_suspicion = true
 	)
 	add_child(_suspicion_timer)
+	
+	health_component.zero_health.connect(
+		func():
+			_notice_val = 0
+			_notice_triangle_sprite.visible = false
+			_suspicion_timer.stop()
+			_can_start_suspicion_timer = false
+			current_state = NoticeState.IDLE
+	)
 
 func _process(delta) -> void:
 	# the angle of the player relative to where the entity is facing
