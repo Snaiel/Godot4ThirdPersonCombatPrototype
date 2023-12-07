@@ -30,32 +30,31 @@ func _ready() -> void:
 	_default_move_speed = _movement_component.speed
 	_blackboard.set_value("move_speed", _default_move_speed)
 	
-	_rotation_component.debug = debug
-	_movement_component.debug = debug
-	_backstab_component.debug = debug
-	_notice_component.debug = debug
+#	_notice_component.state_changed.connect(
+#		func(new_state: NoticeComponent.NoticeState, position_to_check: Vector3): 
+#			var val: bool = new_state == NoticeComponent.NoticeState.SUSPICIOUS
+#			_blackboard.set_value("locked_on", val)
+#			_blackboard.set_value("suspicious", val)
+#			_blackboard.set_value("look_at_target", val)
+#			if position_to_check != Vector3.ZERO:
+#				_agent.target_position = position_to_check
+#	)
 	
-	_notice_component.state_changed.connect(
-		func(new_state: NoticeComponent.NoticeState, position_to_check: Vector3): 
-			var val: bool = new_state == NoticeComponent.NoticeState.SUSPICIOUS
-			_blackboard.set_value("locked_on", val)
-			_blackboard.set_value("suspicious", val)
-			_blackboard.set_value("look_at_target", val)
-			if position_to_check != Vector3.ZERO:
-				_agent.target_position = position_to_check
-	)
-	
-	_blackboard.set_value("debug", debug)	
 	_blackboard.set_value("notice_player", false)
 	_blackboard.set_value("dead", false)
 
 
 func _physics_process(_delta: float) -> void:
-
+	_rotation_component.debug = debug
+	_movement_component.debug = debug
+	_backstab_component.debug = debug
+	_notice_component.debug = debug
+	_blackboard.set_value("debug", debug)		
+	
 	var target_dist: float = _agent.distance_to_target()
 	var target_dir: Vector3 = global_position.direction_to(_agent.target_position)
 	var target_dir_angle: float = target_dir.angle_to(Vector3.FORWARD.rotated(Vector3.UP, global_rotation.y))
-
+	
 	_blackboard.set_value("target", target)
 	_blackboard.set_value("target_dist", target_dist)
 	_blackboard.set_value("target_dir", target_dir)
