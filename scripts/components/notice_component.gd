@@ -17,6 +17,8 @@ enum NoticeState {
 
 var current_state: NoticeState = NoticeState.IDLE
 
+var _disabled: bool = false
+
 var _notice_val: float = 0.0
 var _notice_triangle_sprite: Sprite2D
 var _expand_x: float = 0.0
@@ -55,9 +57,13 @@ func _ready() -> void:
 			_suspicion_timer.stop()
 			_can_start_suspicion_timer = false
 			current_state = NoticeState.IDLE
+			_disabled = true
 	)
 
 func _process(delta) -> void:
+	if _disabled:
+		return
+		
 	# the angle of the player relative to where the entity is facing
 	var _angle_to_player: float = rad_to_deg(
 		Vector3.FORWARD.rotated(Vector3.UP, _entity.global_rotation.y).angle_to(
