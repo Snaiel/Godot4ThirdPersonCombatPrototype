@@ -37,12 +37,11 @@ func _ready() -> void:
 	
 	_notice_component.state_changed.connect(
 		func(new_state: NoticeComponent.NoticeState, position_to_check: Vector3): 
-			_blackboard.set_value(
-				"locked_on", 
-				new_state == NoticeComponent.NoticeState.SUSPICIOUS
-			)
-			_blackboard.set_value("suspicious", true)
-			_blackboard.set_value("look_at_target", true)
+			print(new_state)
+			var val: bool = new_state == NoticeComponent.NoticeState.SUSPICIOUS
+			_blackboard.set_value("locked_on", val)
+			_blackboard.set_value("suspicious", val)
+			_blackboard.set_value("look_at_target", val)
 			if position_to_check != Vector3.ZERO:
 				_agent.target_position = position_to_check
 	)
@@ -63,12 +62,12 @@ func _physics_process(_delta: float) -> void:
 	_blackboard.set_value("target_dir", target_dir)
 	_blackboard.set_value("target_dir_angle", target_dir_angle)
 
-	if debug:
-		prints(
-			_blackboard.get_value("input_direction"),
-			_blackboard.get_value("locked_on"),
-			_blackboard.get_value("look_at_target")
-		)
+#	if debug:
+#		prints(
+#			_blackboard.get_value("input_direction"),
+#			_blackboard.get_value("locked_on"),
+#			_blackboard.get_value("look_at_target")
+#		)
 	
 	_rotation_component.look_at_target = _blackboard.get_value("look_at_target", false)
 	_movement_component.speed = _blackboard.get_value("move_speed", _default_move_speed)

@@ -130,39 +130,67 @@ right_operand = "2"
 [node name="ResetWait" parent="BeehaveTree/SelectorComposite/Suspicious/GoToTarget/StayIfClose" instance=ExtResource("18_ikqcx")]
 wait_id = 1
 
-[node name="CheckOutArea" type="Node" parent="BeehaveTree/SelectorComposite/Suspicious/GoToTarget/StayIfClose"]
+[node name="LookAround" type="Node" parent="BeehaveTree/SelectorComposite/Suspicious/GoToTarget/StayIfClose"]
+script = ExtResource("8_wqauf")
+
+[node name="StandStill" type="Node" parent="BeehaveTree/SelectorComposite/Suspicious/GoToTarget/StayIfClose/LookAround"]
 script = ExtResource("9_aj65e")
 
-[node name="DontLookAtTarget" type="Node" parent="BeehaveTree/SelectorComposite/Suspicious/GoToTarget/StayIfClose/CheckOutArea"]
+[node name="HasLookedAround" type="Node" parent="BeehaveTree/SelectorComposite/Suspicious/GoToTarget/StayIfClose/LookAround/StandStill"]
+script = ExtResource("12_qw7d2")
+left_operand = "get_value(\"looked_around\")"
+right_operand = "true"
+
+[node name="InputNone" parent="BeehaveTree/SelectorComposite/Suspicious/GoToTarget/StayIfClose/LookAround/StandStill" instance=ExtResource("17_6rhnw")]
+
+[node name="CheckOutArea" type="Node" parent="BeehaveTree/SelectorComposite/Suspicious/GoToTarget/StayIfClose/LookAround"]
+script = ExtResource("9_aj65e")
+
+[node name="DontLookAtTarget" type="Node" parent="BeehaveTree/SelectorComposite/Suspicious/GoToTarget/StayIfClose/LookAround/CheckOutArea"]
 script = ExtResource("13_dt0d4")
 key = "\"look_at_target\""
 value = "false"
 
-[node name="InputNone" parent="BeehaveTree/SelectorComposite/Suspicious/GoToTarget/StayIfClose/CheckOutArea" instance=ExtResource("17_6rhnw")]
+[node name="InputNone" parent="BeehaveTree/SelectorComposite/Suspicious/GoToTarget/StayIfClose/LookAround/CheckOutArea" instance=ExtResource("17_6rhnw")]
 
-[node name="WaitBlock" parent="BeehaveTree/SelectorComposite/Suspicious/GoToTarget/StayIfClose/CheckOutArea" instance=ExtResource("17_6vmq4")]
+[node name="WaitBlock" parent="BeehaveTree/SelectorComposite/Suspicious/GoToTarget/StayIfClose/LookAround/CheckOutArea" instance=ExtResource("17_6vmq4")]
 wait_id = 2
 wait_time = 2.0
 
-[node name="InputLeft" parent="BeehaveTree/SelectorComposite/Suspicious/GoToTarget/StayIfClose/CheckOutArea" instance=ExtResource("20_8rwyq")]
+[node name="InputLeft" parent="BeehaveTree/SelectorComposite/Suspicious/GoToTarget/StayIfClose/LookAround/CheckOutArea" instance=ExtResource("20_8rwyq")]
 
-[node name="WaitBlock2" parent="BeehaveTree/SelectorComposite/Suspicious/GoToTarget/StayIfClose/CheckOutArea" instance=ExtResource("17_6vmq4")]
+[node name="WaitBlock2" parent="BeehaveTree/SelectorComposite/Suspicious/GoToTarget/StayIfClose/LookAround/CheckOutArea" instance=ExtResource("17_6vmq4")]
 wait_id = 3
 wait_time = 1.0
 
-[node name="InputNone2" parent="BeehaveTree/SelectorComposite/Suspicious/GoToTarget/StayIfClose/CheckOutArea" instance=ExtResource("17_6rhnw")]
+[node name="InputNone2" parent="BeehaveTree/SelectorComposite/Suspicious/GoToTarget/StayIfClose/LookAround/CheckOutArea" instance=ExtResource("17_6rhnw")]
 
-[node name="WaitBlock3" parent="BeehaveTree/SelectorComposite/Suspicious/GoToTarget/StayIfClose/CheckOutArea" instance=ExtResource("17_6vmq4")]
+[node name="WaitBlock3" parent="BeehaveTree/SelectorComposite/Suspicious/GoToTarget/StayIfClose/LookAround/CheckOutArea" instance=ExtResource("17_6vmq4")]
 wait_id = 4
 wait_time = 5.0
 
-[node name="InputRight" parent="BeehaveTree/SelectorComposite/Suspicious/GoToTarget/StayIfClose/CheckOutArea" instance=ExtResource("21_lhpbf")]
+[node name="InputRight" parent="BeehaveTree/SelectorComposite/Suspicious/GoToTarget/StayIfClose/LookAround/CheckOutArea" instance=ExtResource("21_lhpbf")]
 
-[node name="WaitBlock4" parent="BeehaveTree/SelectorComposite/Suspicious/GoToTarget/StayIfClose/CheckOutArea" instance=ExtResource("17_6vmq4")]
+[node name="WaitBlock4" parent="BeehaveTree/SelectorComposite/Suspicious/GoToTarget/StayIfClose/LookAround/CheckOutArea" instance=ExtResource("17_6vmq4")]
 wait_id = 5
 wait_time = 2.0
 
-[node name="InputNone3" parent="BeehaveTree/SelectorComposite/Suspicious/GoToTarget/StayIfClose/CheckOutArea" instance=ExtResource("17_6rhnw")]
+[node name="InputNone3" parent="BeehaveTree/SelectorComposite/Suspicious/GoToTarget/StayIfClose/LookAround/CheckOutArea" instance=ExtResource("17_6rhnw")]
+
+[node name="WaitBlock5" parent="BeehaveTree/SelectorComposite/Suspicious/GoToTarget/StayIfClose/LookAround/CheckOutArea" instance=ExtResource("17_6vmq4")]
+wait_id = 6
+wait_time = 5.0
+
+[node name="InputLeft2" parent="BeehaveTree/SelectorComposite/Suspicious/GoToTarget/StayIfClose/LookAround/CheckOutArea" instance=ExtResource("20_8rwyq")]
+
+[node name="WaitBlock6" parent="BeehaveTree/SelectorComposite/Suspicious/GoToTarget/StayIfClose/LookAround/CheckOutArea" instance=ExtResource("17_6vmq4")]
+wait_id = 7
+wait_time = 1.0
+
+[node name="LookedAroundTrue" type="Node" parent="BeehaveTree/SelectorComposite/Suspicious/GoToTarget/StayIfClose/LookAround/CheckOutArea"]
+script = ExtResource("13_dt0d4")
+key = "\"looked_around\""
+value = "true"
 
 [node name="MoveToTarget" type="Node" parent="BeehaveTree/SelectorComposite/Suspicious/GoToTarget"]
 script = ExtResource("9_aj65e")
@@ -187,6 +215,11 @@ value = "bool(0)"
 script = ExtResource("13_dt0d4")
 key = "\"notice_player\""
 value = "bool(0)"
+
+[node name="LookedAroundFalse" type="Node" parent="BeehaveTree/SelectorComposite/idle"]
+script = ExtResource("13_dt0d4")
+key = "\"looked_around\""
+value = "false"
 
 [node name="Blackboard" type="Node" parent="."]
 script = ExtResource("12_q7h63")
