@@ -37,7 +37,6 @@ func _ready() -> void:
 	
 	_notice_component.state_changed.connect(
 		func(new_state: NoticeComponent.NoticeState, position_to_check: Vector3): 
-			print(new_state)
 			var val: bool = new_state == NoticeComponent.NoticeState.SUSPICIOUS
 			_blackboard.set_value("locked_on", val)
 			_blackboard.set_value("suspicious", val)
