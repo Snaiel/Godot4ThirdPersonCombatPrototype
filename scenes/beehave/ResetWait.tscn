@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://t8wg0g461fli"]
+
+[ext_resource type="Script" path="res://scripts/beehave/reset_wait.gd" id="1_2yujl"]
+
+[node name="ResetWait" type="Node"]
+script = ExtResource("1_2yujl")

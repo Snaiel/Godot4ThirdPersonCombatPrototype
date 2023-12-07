@@ -24,6 +24,7 @@ var _dead: bool = false
 
 func _ready() -> void:
 	target = Globals.player
+	_agent.target_position = target.global_position	
 	_rotation_component.target = target
 	
 	_default_move_speed = _movement_component.speed
@@ -35,11 +36,15 @@ func _ready() -> void:
 	_notice_component.debug = debug
 	
 	_notice_component.state_changed.connect(
-		func(new_state: NoticeComponent.NoticeState): 
+		func(new_state: NoticeComponent.NoticeState, position_to_check: Vector3): 
 			_blackboard.set_value(
 				"locked_on", 
 				new_state == NoticeComponent.NoticeState.SUSPICIOUS
 			)
+			_blackboard.set_value("suspicious", true)
+			_blackboard.set_value("look_at_target", true)			
+			if position_to_check != Vector3.ZERO:
+				_agent.target_position = position_to_check
 	)
 	
 	_blackboard.set_value("debug", debug)	
@@ -48,10 +53,9 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	_agent.target_position = target.global_position
 
-	var target_dist: float = global_position.distance_to(target.global_position)
-	var target_dir: Vector3 = global_position.direction_to(target.global_position)
+	var target_dist: float = _agent.distance_to_target()
+	var target_dir: Vector3 = global_position.direction_to(_agent.target_position)
 	var target_dir_angle: float = target_dir.angle_to(Vector3.FORWARD.rotated(Vector3.UP, global_rotation.y))
 
 	_blackboard.set_value("target", target)
@@ -60,7 +64,7 @@ func _physics_process(_delta: float) -> void:
 	_blackboard.set_value("target_dir_angle", target_dir_angle)
 
 	if debug:
-		pass
+		print(target_dist)
 #		print(_blackboard.get_value("locked_on", "bruh"))
 #		print(_blackboard.get_value("look_at_target"))
 #		print(_rotation_component.look_at_target)

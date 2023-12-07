@@ -2,7 +2,7 @@ class_name NoticeComponent
 extends Node3D
 
 
-signal state_changed(new_state: NoticeState)
+signal state_changed(new_state: NoticeState, position_to_check: Vector3)
 
 enum NoticeState {
 	IDLE,
@@ -23,7 +23,7 @@ var _original_triangle_scale: Vector2
 
 var _can_emit_suspicious: bool = true
 var _can_create_suspicion_timer: bool = true
-var _suspicion_interval: float = 5.0
+var _suspicion_interval: float = 20.0
 var _check_to_leave_suspicion: bool = false
 
 @onready var _entity: CharacterBody3D = get_parent()
@@ -66,7 +66,7 @@ func _process(delta) -> void:
 		if _check_to_leave_suspicion:
 			_notice_val = 0.0
 			current_state = NoticeState.IDLE
-			state_changed.emit(current_state)
+			state_changed.emit(current_state, Vector3.ZERO)
 			_check_to_leave_suspicion = false
 			_can_create_suspicion_timer = true
 			_notice_triangle_sprite.visible = false
@@ -78,7 +78,7 @@ func _process(delta) -> void:
 	_notice_val = clamp(_notice_val, 0.0, 1.0)
 	
 	# change the offset of the mask to reflect on the meter in the triangle
-	var mask_offset:float = -62 * _notice_val + 80
+	var mask_offset: float = -62 * _notice_val + 80
 	var mask: Sprite2D = _notice_triangle_sprite.get_node("TriangleMask")
 	mask.offset.y = mask_offset
 	
@@ -106,7 +106,7 @@ func _process(delta) -> void:
 	if _notice_triangle_sprite.scale.y > _original_triangle_scale.y * 1.45:
 		if _can_emit_suspicious:
 			current_state = NoticeState.SUSPICIOUS
-			state_changed.emit(current_state)
+			state_changed.emit(current_state, _player.global_position)
 			_can_emit_suspicious = false
 			
 		# make the entire triangle yellow

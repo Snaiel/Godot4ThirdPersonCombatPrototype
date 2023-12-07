@@ -1,6 +1,7 @@
 class_name NPCRotationComponent
 extends RotationComponent
 
+
 @export var debug: bool = false
 @export var movement_component: MovementComponent
 @export var blackboard: Blackboard
@@ -29,8 +30,6 @@ func _physics_process(_delta: float) -> void:
 	move_direction = _input_direction
 	
 	if debug:
-#		print(look_at_target, _input_direction)
-#		print(entity.rotation.y)
 		pass
 
 	if look_at_target:
