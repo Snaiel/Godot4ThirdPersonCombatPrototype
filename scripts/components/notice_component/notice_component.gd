@@ -13,13 +13,19 @@ signal state_changed(new_state: NoticeComponentState)
 
 @export_category("Notice Thresholds")
 @export var angle_threshold: float = 60.0
-@export var inner_distance: float = 7.0
+@export var inner_distance: float = 8.5
 @export var outer_distance: float = 15.0
+
+@export_category("Notice Value")
+@export var min_notice_step: float = 0.15
+@export var max_notice_step: float = 3.0
+@export var notice_val_curve: Curve
 
 @export_category("Notice Triangle")
 @export var suspicion_color: Color
 @export var aggro_color: Color
 @export var background_color: Color
+@export var expand_curve: Curve
 
 var position_to_check: Vector3
 
@@ -67,7 +73,7 @@ func _ready() -> void:
 func _physics_process(delta) -> void:
 	current_state.debug = debug
 	
-	if debug: prints(angle_to_player, distance_to_player)
+#	if debug: prints(angle_to_player, distance_to_player, get_notice_value())
 	
 	if _disabled:
 		return
@@ -110,6 +116,16 @@ func inside_outer_threshold() -> bool:
 func get_mask_offset(value: float) -> float:
 	return -62.0 * value + 80.0
 
+
+func get_notice_value() -> float:
+	var notice_value: float
+	
+	notice_value = inverse_lerp(outer_distance, inner_distance, distance_to_player)
+	notice_value = clamp(notice_value, 0.0, 1.0)
+	notice_value = notice_val_curve.sample(notice_value)
+	notice_value = lerp(min_notice_step, max_notice_step, notice_value)
+	
+	return notice_value
 
 func in_camera_frustum() -> bool:
 	return camera.is_position_in_frustum(global_position)

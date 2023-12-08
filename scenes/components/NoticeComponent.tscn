@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://da664p5ek0cgr"]
+[gd_scene load_steps=10 format=3 uid="uid://da664p5ek0cgr"]
 
 [ext_resource type="Script" path="res://scripts/components/notice_component/notice_component.gd" id="1_611qe"]
 [ext_resource type="PackedScene" uid="uid://dt6i863shdkev" path="res://scenes/utilities/NoticeTriangle.tscn" id="2_2dsee"]
+[ext_resource type="Curve" uid="uid://bxbb6mv0mtdp0" path="res://resources/notice_value_curve.tres" id="3_ibel0"]
 [ext_resource type="Script" path="res://scripts/components/notice_component/notice_component_idle_state.gd" id="3_uu8gw"]
 [ext_resource type="Script" path="res://scripts/components/notice_component/notice_component_getting_suspicious_state.gd" id="4_xr38t"]
 [ext_resource type="Script" path="res://scripts/components/notice_component/notice_component_suspicious_state.gd" id="5_kw0yb"]
@@ -15,9 +16,11 @@ script = ExtResource("1_611qe")
 notice_triangle_scene = ExtResource("2_2dsee")
 initial_state = NodePath("Idle")
 aggro_state = NodePath("Aggro")
+notice_val_curve = ExtResource("3_ibel0")
 suspicion_color = Color(0.815686, 0.654902, 0.105882, 1)
 aggro_color = Color(0.631373, 0.207843, 0.188235, 1)
 background_color = Color(0.196078, 0.196078, 0.196078, 1)
+expand_curve = ExtResource("6_na4u2")
 
 [node name="Idle" type="Node" parent="." node_paths=PackedStringArray("getting_suspicious_state", "aggro_state", "notice_component")]
 script = ExtResource("3_uu8gw")
@@ -37,7 +40,6 @@ script = ExtResource("5_kw0yb")
 idle_state = NodePath("../Idle")
 getting_aggro_state = NodePath("../GettingAggro")
 aggro_state = NodePath("../Aggro")
-curve = ExtResource("6_na4u2")
 notice_component = NodePath("..")
 
 [node name="GettingAggro" type="Node" parent="." node_paths=PackedStringArray("suspicious_state", "aggro_state", "notice_component")]
@@ -49,5 +51,4 @@ notice_component = NodePath("..")
 [node name="Aggro" type="Node" parent="." node_paths=PackedStringArray("idle_state", "notice_component")]
 script = ExtResource("8_ry4ay")
 idle_state = NodePath("../Idle")
-curve = ExtResource("6_na4u2")
 notice_component = NodePath("..")

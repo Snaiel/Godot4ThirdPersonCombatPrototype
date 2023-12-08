@@ -29,9 +29,9 @@ func physics_process(delta) -> void:
 		notice_component.transition_to_aggro()
 	elif notice_component.inside_outer_threshold():
 		# raise suspicion
-		_notice_val += 0.3 * delta
+		_notice_val += notice_component.get_notice_value() * delta
 	else:
-		_notice_val -= 0.3 * delta
+		_notice_val -= notice_component.get_notice_value() * delta
 	
 	_notice_val = clamp(_notice_val, 0.0, 1.0)
 	

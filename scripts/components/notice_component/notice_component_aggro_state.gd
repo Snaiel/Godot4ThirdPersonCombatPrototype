@@ -3,7 +3,6 @@ extends NoticeComponentState
 
 
 @export var idle_state: NoticeComponentIdleState
-@export var curve: Curve
 
 var _expand_x: float
 var _expand_scale: float
@@ -35,7 +34,7 @@ func enter() -> void:
 func physics_process(delta) -> void:
 	notice_component.notice_triangle_sprite.visible = true
 	
-	_expand_scale = curve.sample(_expand_x)
+	_expand_scale = notice_component.expand_curve.sample(_expand_x)
 	
 	notice_component.notice_triangle_sprite.scale = \
 		notice_component.original_triangle_scale * \
