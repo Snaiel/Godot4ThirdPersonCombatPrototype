@@ -4,10 +4,20 @@ extends Node3D
 
 signal state_changed(new_state: NoticeComponentState)
 
+@export_category("Configuration")
 @export var debug: bool
 @export var notice_triangle: PackedScene
 @export var health_component: HealthComponent
 @export var initial_state: NoticeComponentState
+
+@export_category("Notice Thresholds")
+@export var angle_threshold: float = 60.0
+@export var outer_distance: float = 15.0
+
+@export_category("Notice Triangle")
+@export var suspicion_color: Color
+@export var aggro_color: Color
+@export var background_color: Color
 
 var position_to_check: Vector3
 
@@ -17,6 +27,10 @@ var angle_to_player: float
 var distance_to_player: float
 
 var notice_triangle_sprite: Sprite2D
+var notice_triangle_inner_sprite: Sprite2D
+var notice_triangle_background_sprite: Sprite2D
+var notice_triangle_mask: Sprite2D
+
 var original_triangle_scale: Vector2
 
 var _disabled: bool = false
@@ -30,6 +44,10 @@ func _ready() -> void:
 	notice_triangle_sprite = notice_triangle.instantiate()
 	Globals.user_interface.notice_triangles.add_child(notice_triangle_sprite)
 	original_triangle_scale = notice_triangle_sprite.scale
+	
+	notice_triangle_inner_sprite = notice_triangle_sprite.get_node("TriangleMask/InsideTriangle")
+	notice_triangle_background_sprite = notice_triangle_sprite.get_node("BackgroundTriangle")
+	notice_triangle_mask = notice_triangle_sprite.get_node("TriangleMask")
 	
 	health_component.zero_health.connect(
 		func():
@@ -69,10 +87,16 @@ func _physics_process(delta) -> void:
 
 
 func change_state(new_state: NoticeComponentState) -> void:
+	print(new_state)
 	new_state.enter()
 	current_state.exit()
 	current_state = new_state
 	state_changed.emit(new_state)
+
+
+func inside_outer_threshold() -> bool:
+	return angle_to_player < angle_threshold and \
+		distance_to_player < outer_distance
 
 
 func get_mask_offset(value: float) -> float:

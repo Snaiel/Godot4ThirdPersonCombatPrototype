@@ -11,7 +11,7 @@ func enter() -> void:
 	pass
 
 
-func physics_process(delta) -> void:
+func physics_process(_delta) -> void:
 	pass
 
 

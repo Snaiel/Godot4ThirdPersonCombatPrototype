@@ -10,7 +10,7 @@ texture = ExtResource("1_rgvvu")
 offset = Vector2(0, -40)
 
 [node name="BackgroundTriangle" type="Sprite2D" parent="."]
-modulate = Color(0.196078, 0.196078, 0.196078, 1)
+self_modulate = Color(0.196078, 0.196078, 0.196078, 1)
 position = Vector2(0, -42)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("1_rgvvu")
@@ -22,6 +22,6 @@ texture = ExtResource("2_816p2")
 offset = Vector2(0, 20)
 
 [node name="InsideTriangle" type="Sprite2D" parent="TriangleMask"]
-modulate = Color(0.870588, 0.756863, 0.137255, 1)
+self_modulate = Color(0.870588, 0.756863, 0.137255, 1)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("1_rgvvu")

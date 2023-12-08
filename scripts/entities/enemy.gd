@@ -32,7 +32,7 @@ func _ready() -> void:
 	
 	_notice_component.state_changed.connect(
 		func(new_state: NoticeComponentState): 
-			var val: bool = new_state is NoticeComponentSuspiciousState
+			var val: bool = not (new_state is NoticeComponentIdleState)
 			_blackboard.set_value("locked_on", val)
 			_blackboard.set_value("suspicious", val)
 			_blackboard.set_value("look_at_target", val)

@@ -1,6 +1,7 @@
 class_name NoticeComponentGettingSuspiciousState
 extends NoticeComponentState
 
+
 @export var idle_state: NoticeComponentIdleState
 @export var suspicious_state: NoticeComponentSuspiciousState
 
@@ -17,14 +18,11 @@ func enter() -> void:
 
 
 func physics_process(delta) -> void:
-	super.physics_process(delta)
-	
 	# change the offset of the mask to reflect on the meter in the triangle
 	var mask_offset: float = notice_component.get_mask_offset(_notice_val)
-	var mask: Sprite2D = notice_component.notice_triangle_sprite.get_node("TriangleMask")
-	mask.offset.y = mask_offset
+	notice_component.notice_triangle_mask.offset.y = mask_offset
 	
-	if notice_component.angle_to_player < 60 and notice_component.distance_to_player < 15.0:
+	if notice_component.inside_outer_threshold():
 		# raise suspicion
 		_notice_val += 0.3 * delta
 		notice_component.notice_triangle_sprite.visible = true
@@ -33,7 +31,7 @@ func physics_process(delta) -> void:
 	
 	_notice_val = clamp(_notice_val, 0.0, 1.0)
 	
-	if not (notice_component.in_camera_frustum() and _notice_val > 0):
+	if not notice_component.in_camera_frustum():
 		notice_component.notice_triangle_sprite.visible = false
 	
 	

@@ -77,6 +77,9 @@ script = ExtResource("10_14kyj")
 notice_triangle = ExtResource("11_vpmre")
 health_component = NodePath("../HealthComponent")
 initial_state = NodePath("Idle")
+suspicion_color = Color(0.815686, 0.654902, 0.105882, 1)
+aggro_color = Color(0.631373, 0.207843, 0.188235, 1)
+background_color = Color(0.196078, 0.196078, 0.196078, 1)
 
 [node name="Idle" type="Node" parent="NoticeComponent" node_paths=PackedStringArray("getting_suspicious_state", "notice_component")]
 script = ExtResource("13_4tgkd")
@@ -89,17 +92,24 @@ idle_state = NodePath("../Idle")
 suspicious_state = NodePath("../Suspicious")
 notice_component = NodePath("..")
 
-[node name="Suspicious" type="Node" parent="NoticeComponent" node_paths=PackedStringArray("idle_state", "notice_component")]
+[node name="Suspicious" type="Node" parent="NoticeComponent" node_paths=PackedStringArray("idle_state", "getting_aggro_state", "notice_component")]
 script = ExtResource("15_ukem2")
 idle_state = NodePath("../Idle")
+getting_aggro_state = NodePath("../GettingAggro")
 curve = ExtResource("15_wmy70")
 notice_component = NodePath("..")
 
-[node name="GettingAggro" type="Node" parent="NoticeComponent"]
+[node name="GettingAggro" type="Node" parent="NoticeComponent" node_paths=PackedStringArray("suspicious_state", "aggro_state", "notice_component")]
 script = ExtResource("16_y0bt8")
+suspicious_state = NodePath("../Suspicious")
+aggro_state = NodePath("../Aggro")
+notice_component = NodePath("..")
 
-[node name="Aggro" type="Node" parent="NoticeComponent"]
+[node name="Aggro" type="Node" parent="NoticeComponent" node_paths=PackedStringArray("idle_state", "notice_component")]
 script = ExtResource("17_peuo8")
+idle_state = NodePath("../Idle")
+curve = ExtResource("15_wmy70")
+notice_component = NodePath("..")
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard")]
 script = ExtResource("7_6a3a7")
