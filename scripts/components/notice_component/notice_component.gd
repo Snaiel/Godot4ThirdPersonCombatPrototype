@@ -12,7 +12,8 @@ signal state_changed(new_state: NoticeComponentState)
 @export var aggro_state: NoticeComponentAggroState
 
 @export_category("Notice Thresholds")
-@export var angle_threshold: float = 60.0
+@export var inner_angle: float = 50.0
+@export var outer_angle: float = 70.0
 @export var inner_distance: float = 8.5
 @export var outer_distance: float = 15.0
 
@@ -104,12 +105,12 @@ func change_state(new_state: NoticeComponentState) -> void:
 
 
 func inside_inner_threshold() -> bool:
-	return angle_to_player < angle_threshold and \
+	return angle_to_player < inner_angle and \
 		distance_to_player < inner_distance
 
 
 func inside_outer_threshold() -> bool:
-	return angle_to_player < angle_threshold and \
+	return angle_to_player < outer_angle and \
 		distance_to_player < outer_distance
 
 
@@ -118,14 +119,28 @@ func get_mask_offset(value: float) -> float:
 
 
 func get_notice_value() -> float:
-	var notice_value: float
+	var normalized_distance: float = inverse_lerp(
+		outer_distance, 
+		inner_distance, 
+		distance_to_player
+	)
+	normalized_distance = clamp(normalized_distance, 0.0, 1.0)
 	
-	notice_value = inverse_lerp(outer_distance, inner_distance, distance_to_player)
-	notice_value = clamp(notice_value, 0.0, 1.0)
+	var normalized_angle: float = inverse_lerp(
+		outer_angle,
+		0.0,
+		angle_to_player
+	)
+	normalized_angle = clamp(normalized_angle, 0.0, 1.0)
+	
+	var notice_value: float = (normalized_distance + normalized_angle) / 2.0
+#	prints(normalized_distance, normalized_angle, notice_value)
+	
 	notice_value = notice_val_curve.sample(notice_value)
 	notice_value = lerp(min_notice_step, max_notice_step, notice_value)
 	
 	return notice_value
+
 
 func in_camera_frustum() -> bool:
 	return camera.is_position_in_frustum(global_position)
