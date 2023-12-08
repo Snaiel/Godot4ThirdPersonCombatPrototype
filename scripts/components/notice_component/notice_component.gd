@@ -51,6 +51,7 @@ func _ready() -> void:
 	
 	health_component.zero_health.connect(
 		func():
+			current_state.interrupt()
 			notice_triangle_sprite.visible = false
 			_disabled = true
 	)
