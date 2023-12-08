@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cv8knl5vavfyy"]
+[gd_scene load_steps=19 format=3 uid="uid://cv8knl5vavfyy"]
 
 [ext_resource type="Script" path="res://scripts/entities/enemy.gd" id="1_nrck3"]
 [ext_resource type="PackedScene" uid="uid://blqmpc6qop5nm" path="res://scenes/entities/EnemyBot.tscn" id="2_bivj4"]
@@ -12,18 +12,11 @@
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="8_wqauf"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="9_aj65e"]
 [ext_resource type="Script" path="res://scripts/components/backstab_component.gd" id="9_hiwp2"]
-[ext_resource type="Script" path="res://scripts/components/notice_component/notice_component.gd" id="10_14kyj"]
-[ext_resource type="PackedScene" uid="uid://dt6i863shdkev" path="res://scenes/utilities/NoticeTriangle.tscn" id="11_vpmre"]
+[ext_resource type="PackedScene" uid="uid://da664p5ek0cgr" path="res://scenes/components/NoticeComponent.tscn" id="10_rxy6t"]
 [ext_resource type="Script" path="res://addons/beehave/blackboard.gd" id="12_q7h63"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_compare.gd" id="12_qw7d2"]
-[ext_resource type="Script" path="res://scripts/components/notice_component/notice_component_idle_state.gd" id="13_4tgkd"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_set.gd" id="13_dt0d4"]
-[ext_resource type="Script" path="res://scripts/components/notice_component/notice_component_getting_suspicious_state.gd" id="14_kjgmi"]
-[ext_resource type="Script" path="res://scripts/components/notice_component/notice_component_suspicious_state.gd" id="15_ukem2"]
-[ext_resource type="Curve" uid="uid://deth5jw41owwx" path="res://resources/notice_scale_curve.tres" id="15_wmy70"]
-[ext_resource type="Script" path="res://scripts/components/notice_component/notice_component_getting_aggro_state.gd" id="16_y0bt8"]
 [ext_resource type="PackedScene" uid="uid://5653b3wcf25p" path="res://scenes/beehave/inputs/InputNone.tscn" id="17_6rhnw"]
-[ext_resource type="Script" path="res://scripts/components/notice_component/notice_component_aggro_state.gd" id="17_peuo8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lwy87"]
 radius = 0.3
@@ -71,45 +64,8 @@ entity = NodePath("..")
 lock_on_component = NodePath("../LockOnComponent")
 health_component = NodePath("../HealthComponent")
 
-[node name="NoticeComponent" type="Node3D" parent="." node_paths=PackedStringArray("health_component", "initial_state")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
-script = ExtResource("10_14kyj")
-notice_triangle = ExtResource("11_vpmre")
+[node name="NoticeComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("10_rxy6t")]
 health_component = NodePath("../HealthComponent")
-initial_state = NodePath("Idle")
-suspicion_color = Color(0.815686, 0.654902, 0.105882, 1)
-aggro_color = Color(0.631373, 0.207843, 0.188235, 1)
-background_color = Color(0.196078, 0.196078, 0.196078, 1)
-
-[node name="Idle" type="Node" parent="NoticeComponent" node_paths=PackedStringArray("getting_suspicious_state", "notice_component")]
-script = ExtResource("13_4tgkd")
-getting_suspicious_state = NodePath("../GettingSuspicious")
-notice_component = NodePath("..")
-
-[node name="GettingSuspicious" type="Node" parent="NoticeComponent" node_paths=PackedStringArray("idle_state", "suspicious_state", "notice_component")]
-script = ExtResource("14_kjgmi")
-idle_state = NodePath("../Idle")
-suspicious_state = NodePath("../Suspicious")
-notice_component = NodePath("..")
-
-[node name="Suspicious" type="Node" parent="NoticeComponent" node_paths=PackedStringArray("idle_state", "getting_aggro_state", "notice_component")]
-script = ExtResource("15_ukem2")
-idle_state = NodePath("../Idle")
-getting_aggro_state = NodePath("../GettingAggro")
-curve = ExtResource("15_wmy70")
-notice_component = NodePath("..")
-
-[node name="GettingAggro" type="Node" parent="NoticeComponent" node_paths=PackedStringArray("suspicious_state", "aggro_state", "notice_component")]
-script = ExtResource("16_y0bt8")
-suspicious_state = NodePath("../Suspicious")
-aggro_state = NodePath("../Aggro")
-notice_component = NodePath("..")
-
-[node name="Aggro" type="Node" parent="NoticeComponent" node_paths=PackedStringArray("idle_state", "notice_component")]
-script = ExtResource("17_peuo8")
-idle_state = NodePath("../Idle")
-curve = ExtResource("15_wmy70")
-notice_component = NodePath("..")
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard")]
 script = ExtResource("7_6a3a7")
