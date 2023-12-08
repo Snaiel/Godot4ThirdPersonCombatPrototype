@@ -74,6 +74,8 @@ func physics_process(delta) -> void:
 			)
 	if notice_component.inside_inner_threshold():
 		notice_component.transition_to_aggro()
+		_before_getting_aggro_timer.stop()
+		return
 	elif notice_component.inside_outer_threshold():
 		
 		if _can_start_before_getting_aggro_timer:

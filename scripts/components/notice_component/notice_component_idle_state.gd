@@ -15,6 +15,7 @@ func enter() -> void:
 func physics_process(_delta) -> void:
 	if notice_component.inside_inner_threshold():
 		notice_component.transition_to_aggro()
+		return
 	elif notice_component.inside_outer_threshold():
 		notice_component.change_state(getting_suspicious_state)
 
