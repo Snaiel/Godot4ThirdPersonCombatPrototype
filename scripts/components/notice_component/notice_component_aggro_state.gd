@@ -26,6 +26,7 @@ func _ready():
 
 
 func enter() -> void:
+	notice_component.notice_triangle_background_sprite.self_modulate.a = 0
 	_expand_x = 0
 	_check_to_leave_aggro = false
 	_can_start_aggro_timer = true
@@ -52,6 +53,18 @@ func physics_process(delta) -> void:
 				notice_component.aggro_color,
 				0.2
 			)
+		
+		if _expand_x >= 1.0:
+			notice_component.notice_triangle_sprite.modulate.a = \
+			lerp(
+				notice_component
+					.notice_triangle_sprite
+					.modulate
+					.a,
+				0.0,
+				0.1
+			)
+	
 	if not notice_component.inside_outer_threshold():
 		
 		if _check_to_leave_aggro:
