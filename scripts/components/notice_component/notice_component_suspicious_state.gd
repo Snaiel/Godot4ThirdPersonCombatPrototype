@@ -15,8 +15,7 @@ var _suspicion_interval: float = 20.0
 var _check_to_leave_suspicion: bool = false
 
 var _before_getting_aggro_timer: Timer
-var _can_start_before_getting_aggro_timer: bool = true
-var _before_getting_aggro_pause: float = 3.0
+var _before_getting_aggro_pause: float = 2.0
 
 
 func _ready():
@@ -47,6 +46,7 @@ func enter() -> void:
 	_check_to_leave_suspicion = false
 	_can_start_suspicion_timer = true
 	notice_component.position_to_check = notice_component.player.global_position
+	_before_getting_aggro_timer.start()
 
 
 func physics_process(delta) -> void:
@@ -76,22 +76,9 @@ func physics_process(delta) -> void:
 		notice_component.transition_to_aggro()
 		_before_getting_aggro_timer.stop()
 		return
-	elif notice_component.inside_outer_threshold():
-		
-		if _can_start_before_getting_aggro_timer:
-			_before_getting_aggro_timer.start()
-			_can_start_before_getting_aggro_timer = false
-		
 	else:
-		
-		_before_getting_aggro_timer.stop()
-		_can_start_before_getting_aggro_timer = true
-		
 		if _check_to_leave_suspicion:
 			notice_component.change_state(idle_state)
-		elif _can_start_suspicion_timer:
-			_suspicion_timer.start()
-			_can_start_suspicion_timer = false
 	
 	if not notice_component.in_camera_frustum():
 		notice_component.notice_triangle_sprite.visible = false
