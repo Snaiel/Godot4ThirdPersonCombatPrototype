@@ -3,6 +3,7 @@ extends NoticeComponentState
 
 
 @export var getting_suspicious_state: NoticeComponentGettingSuspiciousState
+@export var aggro_state: NoticeComponentAggroState
 
 
 func enter() -> void:
@@ -12,7 +13,9 @@ func enter() -> void:
 
 
 func physics_process(_delta) -> void:
-	if notice_component.inside_outer_threshold():
+	if notice_component.inside_inner_threshold():
+		notice_component.transition_to_aggro()
+	elif notice_component.inside_outer_threshold():
 		notice_component.change_state(getting_suspicious_state)
 
 

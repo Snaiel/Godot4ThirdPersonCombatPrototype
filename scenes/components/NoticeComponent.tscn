@@ -9,30 +9,34 @@
 [ext_resource type="Script" path="res://scripts/components/notice_component/notice_component_getting_aggro_state.gd" id="7_5di1i"]
 [ext_resource type="Script" path="res://scripts/components/notice_component/notice_component_aggro_state.gd" id="8_ry4ay"]
 
-[node name="NoticeComponent" type="Node3D" node_paths=PackedStringArray("initial_state")]
+[node name="NoticeComponent" type="Node3D" node_paths=PackedStringArray("initial_state", "aggro_state")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 script = ExtResource("1_611qe")
-notice_triangle = ExtResource("2_2dsee")
+notice_triangle_scene = ExtResource("2_2dsee")
 initial_state = NodePath("Idle")
+aggro_state = NodePath("Aggro")
 suspicion_color = Color(0.815686, 0.654902, 0.105882, 1)
 aggro_color = Color(0.631373, 0.207843, 0.188235, 1)
 background_color = Color(0.196078, 0.196078, 0.196078, 1)
 
-[node name="Idle" type="Node" parent="." node_paths=PackedStringArray("getting_suspicious_state", "notice_component")]
+[node name="Idle" type="Node" parent="." node_paths=PackedStringArray("getting_suspicious_state", "aggro_state", "notice_component")]
 script = ExtResource("3_uu8gw")
 getting_suspicious_state = NodePath("../GettingSuspicious")
+aggro_state = NodePath("../Aggro")
 notice_component = NodePath("..")
 
-[node name="GettingSuspicious" type="Node" parent="." node_paths=PackedStringArray("idle_state", "suspicious_state", "notice_component")]
+[node name="GettingSuspicious" type="Node" parent="." node_paths=PackedStringArray("idle_state", "suspicious_state", "aggro_state", "notice_component")]
 script = ExtResource("4_xr38t")
 idle_state = NodePath("../Idle")
 suspicious_state = NodePath("../Suspicious")
+aggro_state = NodePath("../Aggro")
 notice_component = NodePath("..")
 
-[node name="Suspicious" type="Node" parent="." node_paths=PackedStringArray("idle_state", "getting_aggro_state", "notice_component")]
+[node name="Suspicious" type="Node" parent="." node_paths=PackedStringArray("idle_state", "getting_aggro_state", "aggro_state", "notice_component")]
 script = ExtResource("5_kw0yb")
 idle_state = NodePath("../Idle")
 getting_aggro_state = NodePath("../GettingAggro")
+aggro_state = NodePath("../Aggro")
 curve = ExtResource("6_na4u2")
 notice_component = NodePath("..")
 

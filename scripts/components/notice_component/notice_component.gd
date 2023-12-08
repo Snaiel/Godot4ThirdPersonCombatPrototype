@@ -6,12 +6,14 @@ signal state_changed(new_state: NoticeComponentState)
 
 @export_category("Configuration")
 @export var debug: bool
-@export var notice_triangle: PackedScene
+@export var notice_triangle_scene: PackedScene
 @export var health_component: HealthComponent
 @export var initial_state: NoticeComponentState
+@export var aggro_state: NoticeComponentAggroState
 
 @export_category("Notice Thresholds")
 @export var angle_threshold: float = 60.0
+@export var inner_distance: float = 7.0
 @export var outer_distance: float = 15.0
 
 @export_category("Notice Triangle")
@@ -41,7 +43,7 @@ var _disabled: bool = false
 
 
 func _ready() -> void:
-	notice_triangle_sprite = notice_triangle.instantiate()
+	notice_triangle_sprite = notice_triangle_scene.instantiate()
 	Globals.user_interface.notice_triangles.add_child(notice_triangle_sprite)
 	original_triangle_scale = notice_triangle_sprite.scale
 	
@@ -65,7 +67,7 @@ func _ready() -> void:
 func _physics_process(delta) -> void:
 	current_state.debug = debug
 	
-#	if debug: print(current_state)
+	if debug: prints(angle_to_player, distance_to_player)
 	
 	if _disabled:
 		return
@@ -95,6 +97,11 @@ func change_state(new_state: NoticeComponentState) -> void:
 	state_changed.emit(new_state)
 
 
+func inside_inner_threshold() -> bool:
+	return angle_to_player < angle_threshold and \
+		distance_to_player < inner_distance
+
+
 func inside_outer_threshold() -> bool:
 	return angle_to_player < angle_threshold and \
 		distance_to_player < outer_distance
@@ -106,3 +113,10 @@ func get_mask_offset(value: float) -> float:
 
 func in_camera_frustum() -> bool:
 	return camera.is_position_in_frustum(global_position)
+
+
+func transition_to_aggro() -> void:
+	notice_triangle_mask.offset.y = get_mask_offset(1.0)
+	notice_triangle_inner_sprite.self_modulate = aggro_color
+	notice_triangle_sprite.self_modulate = aggro_color
+	change_state(aggro_state)

@@ -4,6 +4,8 @@ extends NoticeComponentState
 
 @export var idle_state: NoticeComponentIdleState
 @export var getting_aggro_state: NoticeComponentGettingAggroState
+@export var aggro_state: NoticeComponentAggroState
+
 @export var curve: Curve
 
 var _expand_x: float
@@ -72,7 +74,9 @@ func physics_process(delta) -> void:
 				notice_component.suspicion_color,
 				0.2
 			)
-	if notice_component.inside_outer_threshold():
+	if notice_component.inside_inner_threshold():
+		notice_component.transition_to_aggro()
+	elif notice_component.inside_outer_threshold():
 		
 		if _can_start_before_getting_aggro_timer:
 			_before_getting_aggro_timer.start()

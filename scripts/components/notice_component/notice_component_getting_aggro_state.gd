@@ -25,7 +25,9 @@ func physics_process(delta) -> void:
 	var mask_offset: float = notice_component.get_mask_offset(_notice_val)
 	notice_component.notice_triangle_mask.offset.y = mask_offset
 	
-	if notice_component.inside_outer_threshold():
+	if notice_component.inside_inner_threshold():
+		notice_component.transition_to_aggro()
+	elif notice_component.inside_outer_threshold():
 		# raise suspicion
 		_notice_val += 0.3 * delta
 	else:
