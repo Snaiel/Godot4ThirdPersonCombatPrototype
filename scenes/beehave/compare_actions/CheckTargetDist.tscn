@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b86f1aqdcdlkw"]
+
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_compare.gd" id="1_wujt7"]
+
+[node name="CheckTargetDist" type="Node"]
+script = ExtResource("1_wujt7")
+left_operand = "get_value(\"target_dist\")"
+operator = 3
+right_operand = "2"

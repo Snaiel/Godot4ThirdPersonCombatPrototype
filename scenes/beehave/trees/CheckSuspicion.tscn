@@ -1,12 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://d1p0cwvn1hlcs"]
+[gd_scene load_steps=14 format=3 uid="uid://d1p0cwvn1hlcs"]
 
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="1_iijci"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="2_4t6t0"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_compare.gd" id="3_qyxri"]
+[ext_resource type="PackedScene" uid="uid://b86f1aqdcdlkw" path="res://scenes/beehave/compare_actions/CheckTargetDist.tscn" id="3_52eub"]
 [ext_resource type="PackedScene" uid="uid://5653b3wcf25p" path="res://scenes/beehave/inputs/InputNone.tscn" id="4_d3e5r"]
 [ext_resource type="PackedScene" uid="uid://t8wg0g461fli" path="res://scenes/beehave/wait/ResetWait.tscn" id="5_h0iya"]
+[ext_resource type="PackedScene" uid="uid://ch58eya8rlua6" path="res://scenes/beehave/compare_actions/IsLookedAroundFalse.tscn" id="6_1kgwm"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_set.gd" id="6_o0oe3"]
 [ext_resource type="PackedScene" uid="uid://chv25a2oggqaw" path="res://scenes/beehave/wait/WaitBlock.tscn" id="7_gyiuy"]
+[ext_resource type="PackedScene" uid="uid://dka5as0tjf4rh" path="res://scenes/beehave/set_actions/SetLookAtTargetFalse.tscn" id="7_l3n5i"]
 [ext_resource type="PackedScene" uid="uid://rnknofcns6ch" path="res://scenes/beehave/inputs/InputLeft.tscn" id="8_n7c65"]
 [ext_resource type="PackedScene" uid="uid://bpmbb56ftoyja" path="res://scenes/beehave/inputs/InputRight.tscn" id="9_pe7t2"]
 [ext_resource type="PackedScene" uid="uid://bdnrgdpa3fa5c" path="res://scenes/beehave/wait/Wait.tscn" id="10_ocgtl"]
@@ -18,11 +20,7 @@ script = ExtResource("1_iijci")
 [node name="StayIfClose" type="Node" parent="."]
 script = ExtResource("2_4t6t0")
 
-[node name="CheckTargetDist" type="Node" parent="StayIfClose"]
-script = ExtResource("3_qyxri")
-left_operand = "get_value(\"target_dist\")"
-operator = 3
-right_operand = "2"
+[node name="CheckTargetDist" parent="StayIfClose" instance=ExtResource("3_52eub")]
 
 [node name="InputNone" parent="StayIfClose" instance=ExtResource("4_d3e5r")]
 
@@ -35,20 +33,14 @@ script = ExtResource("1_iijci")
 [node name="StandStill" type="Node" parent="StayIfClose/LookAround"]
 script = ExtResource("2_4t6t0")
 
-[node name="HasLookedAround" type="Node" parent="StayIfClose/LookAround/StandStill"]
-script = ExtResource("3_qyxri")
-left_operand = "get_value(\"looked_around\")"
-right_operand = "true"
+[node name="IsLookedAroundFalse" parent="StayIfClose/LookAround/StandStill" instance=ExtResource("6_1kgwm")]
 
 [node name="InputNone" parent="StayIfClose/LookAround/StandStill" instance=ExtResource("4_d3e5r")]
 
 [node name="CheckOutArea" type="Node" parent="StayIfClose/LookAround"]
 script = ExtResource("2_4t6t0")
 
-[node name="DontLookAtTarget" type="Node" parent="StayIfClose/LookAround/CheckOutArea"]
-script = ExtResource("6_o0oe3")
-key = "\"look_at_target\""
-value = "false"
+[node name="SetLookAtTargetFalse" parent="StayIfClose/LookAround/CheckOutArea" instance=ExtResource("7_l3n5i")]
 
 [node name="InputNone" parent="StayIfClose/LookAround/CheckOutArea" instance=ExtResource("4_d3e5r")]
 

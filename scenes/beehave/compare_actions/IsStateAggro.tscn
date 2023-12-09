@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://buwmvh65dccg5"]
+
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_compare.gd" id="1_k2sr6"]
+
+[node name="IsStateAggro" type="Node"]
+script = ExtResource("1_k2sr6")
+left_operand = "get_value(\"notice_state\")"
+right_operand = "\"aggro\""

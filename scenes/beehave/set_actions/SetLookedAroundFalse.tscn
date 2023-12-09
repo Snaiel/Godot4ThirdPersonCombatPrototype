@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://t7wqbcml070v"]
+
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_set.gd" id="1_5g0qt"]
+
+[node name="SetLookedAroundFalse" type="Node"]
+script = ExtResource("1_5g0qt")
+key = "\"looked_around\""
+value = "false"

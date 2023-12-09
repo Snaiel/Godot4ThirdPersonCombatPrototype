@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cw3sck872787g"]
+
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_set.gd" id="1_dif5v"]
+
+[node name="SetGotHitFalse" type="Node"]
+script = ExtResource("1_dif5v")
+key = "\"got_hit\""
+value = "false"

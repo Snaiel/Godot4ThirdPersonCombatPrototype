@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ch58eya8rlua6"]
+
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_compare.gd" id="1_dgo45"]
+
+[node name="IsLookedAroundFalse" type="Node"]
+script = ExtResource("1_dgo45")
+left_operand = "get_value(\"looked_around\")"
+right_operand = "true"

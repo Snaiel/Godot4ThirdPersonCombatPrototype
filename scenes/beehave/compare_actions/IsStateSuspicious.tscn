@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://csbpq6cbn8rvn"]
+
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_compare.gd" id="1_bu7t0"]
+
+[node name="IsStateSuspicious" type="Node"]
+script = ExtResource("1_bu7t0")
+left_operand = "get_value(\"notice_state\")"
+right_operand = "\"suspicious\""

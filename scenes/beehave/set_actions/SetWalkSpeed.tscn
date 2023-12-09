@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4vbjom07vuli"]
+
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_set.gd" id="1_hafuq"]
+
+[node name="WalkSpeed" type="Node"]
+script = ExtResource("1_hafuq")
+key = "\"move_speed\""
+value = "0.8"
