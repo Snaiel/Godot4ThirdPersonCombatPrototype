@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cv8knl5vavfyy"]
+[gd_scene load_steps=24 format=3 uid="uid://cv8knl5vavfyy"]
 
 [ext_resource type="Script" path="res://scripts/entities/enemy.gd" id="1_nrck3"]
 [ext_resource type="PackedScene" uid="uid://blqmpc6qop5nm" path="res://scenes/entities/EnemyBot.tscn" id="2_bivj4"]
@@ -20,6 +20,8 @@
 [ext_resource type="PackedScene" uid="uid://5653b3wcf25p" path="res://scenes/beehave/inputs/InputNone.tscn" id="17_6rhnw"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_reactive.gd" id="17_sr624"]
 [ext_resource type="PackedScene" uid="uid://cij3tna3vvi65" path="res://scenes/beehave/trees/ActAggro.tscn" id="19_3laeb"]
+[ext_resource type="PackedScene" uid="uid://cryed6dtlo286" path="res://scenes/beehave/set_actions/SetLookAtTargetTrue.tscn" id="20_1isai"]
+[ext_resource type="PackedScene" uid="uid://b2vrwljrc7cpp" path="res://scenes/beehave/set_actions/SetLockedOnTrue.tscn" id="21_dq1l1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lwy87"]
 radius = 0.3
@@ -130,6 +132,18 @@ right_operand = "\"aggro\""
 
 [node name="ActAggro" parent="BeehaveTree/SelectorComposite/Aggro" instance=ExtResource("19_3laeb")]
 
+[node name="GotHit" type="Node" parent="BeehaveTree/SelectorComposite"]
+script = ExtResource("9_aj65e")
+
+[node name="IsGotHitTrue" type="Node" parent="BeehaveTree/SelectorComposite/GotHit"]
+script = ExtResource("12_qw7d2")
+left_operand = "get_value(\"got_hit\", false)"
+right_operand = "true"
+
+[node name="SetLookAtTargetTrue" parent="BeehaveTree/SelectorComposite/GotHit" instance=ExtResource("20_1isai")]
+
+[node name="SetLockedOnTrue" parent="BeehaveTree/SelectorComposite/GotHit" instance=ExtResource("21_dq1l1")]
+
 [node name="idle" type="Node" parent="BeehaveTree/SelectorComposite"]
 script = ExtResource("9_aj65e")
 
@@ -153,6 +167,11 @@ value = "false"
 [node name="LookedAroundFalse" type="Node" parent="BeehaveTree/SelectorComposite/idle"]
 script = ExtResource("13_dt0d4")
 key = "\"looked_around\""
+value = "false"
+
+[node name="SetGotHitFalse" type="Node" parent="BeehaveTree/SelectorComposite/idle"]
+script = ExtResource("13_dt0d4")
+key = "\"got_hit\""
 value = "false"
 
 [node name="Blackboard" type="Node" parent="."]

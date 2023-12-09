@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2vrwljrc7cpp"]
+
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_set.gd" id="1_k1y8j"]
+
+[node name="SetLockedOnTrue" type="Node"]
+script = ExtResource("1_k1y8j")
+key = "\"locked_on\""
+value = "true"

@@ -1,7 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://cij3tna3vvi65"]
+[gd_scene load_steps=13 format=3 uid="uid://cij3tna3vvi65"]
 
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="1_5577v"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_set.gd" id="2_4pqiw"]
+[ext_resource type="PackedScene" uid="uid://cryed6dtlo286" path="res://scenes/beehave/set_actions/SetLookAtTargetTrue.tscn" id="2_604vf"]
+[ext_resource type="PackedScene" uid="uid://b2vrwljrc7cpp" path="res://scenes/beehave/set_actions/SetLockedOnTrue.tscn" id="3_5engx"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="3_j8m5m"]
 [ext_resource type="Script" path="res://scripts/beehave/close_to_target.gd" id="4_fuagw"]
 [ext_resource type="Script" path="res://scripts/beehave/reset_wait.gd" id="5_p35gd"]
@@ -14,15 +16,9 @@
 [node name="ActAggro" type="Node"]
 script = ExtResource("1_5577v")
 
-[node name="LookAtTarget" type="Node" parent="."]
-script = ExtResource("2_4pqiw")
-key = "\"look_at_target\""
-value = "bool(1)"
+[node name="SetLookAtTargetTrue" parent="." instance=ExtResource("2_604vf")]
 
-[node name="LockedOn" type="Node" parent="."]
-script = ExtResource("2_4pqiw")
-key = "\"locked_on\""
-value = "bool(1)"
+[node name="SetLockedOnTrue" parent="." instance=ExtResource("3_5engx")]
 
 [node name="StayOrChase" type="Node" parent="."]
 script = ExtResource("3_j8m5m")
