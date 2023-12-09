@@ -48,7 +48,8 @@ func enter() -> void:
 	_check_to_leave_suspicion = false
 	_can_start_suspicion_timer = true
 	
-	notice_component.position_to_check = notice_component.player.global_position
+	if not (notice_component.previous_state is NoticeComponentGettingAggroState):
+		notice_component.position_to_check = notice_component.player.global_position
 	
 	if notice_component.distance_to_player > 0.9 * notice_component.outer_distance:
 		_before_getting_aggro_timer.start()
@@ -84,10 +85,12 @@ func physics_process(delta) -> void:
 		notice_component.transition_to_aggro()
 		_before_getting_aggro_timer.stop()
 		return
+	
+	if notice_component.inside_outer_threshold():
+		if _check_to_get_aggro:
+			notice_component.change_state(getting_aggro_state)
 	elif _check_to_leave_suspicion:
 		notice_component.change_state(idle_state)
-	elif _check_to_get_aggro:
-		notice_component.change_state(getting_aggro_state)
 	
 	if not notice_component.in_camera_frustum():
 		notice_component.notice_triangle_sprite.visible = false

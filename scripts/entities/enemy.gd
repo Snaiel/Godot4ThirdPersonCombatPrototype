@@ -19,6 +19,8 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var _notice_component: NoticeComponent = $NoticeComponent
 @onready var _agent: NavigationAgent3D = $NavigationAgent3D
 
+var _set_agent_target_to_target: bool = false
+
 var _default_move_speed: float
 var _dead: bool = false
 
@@ -31,13 +33,12 @@ func _ready() -> void:
 	_blackboard.set_value("move_speed", _default_move_speed)
 	
 	_notice_component.state_changed.connect(
-		func(new_state: NoticeComponentState): 
-			var val: bool = not (new_state is NoticeComponentIdleState)
-			_blackboard.set_value("locked_on", val)
-			_blackboard.set_value("suspicious", val)
-			_blackboard.set_value("look_at_target", val)
+		func(new_state: String, target_to_target: bool): 
+			_blackboard.set_value("notice_state", new_state)
+			_set_agent_target_to_target = target_to_target
 			if _notice_component.position_to_check != Vector3.INF:
 				_agent.target_position = _notice_component.position_to_check
+#				prints(_agent.target_position, target.global_position)
 	)
 	
 	_blackboard.set_value("notice_player", false)
@@ -49,7 +50,11 @@ func _physics_process(_delta: float) -> void:
 	_movement_component.debug = debug
 	_backstab_component.debug = debug
 	_notice_component.debug = debug
-	_blackboard.set_value("debug", debug)		
+	_blackboard.set_value("debug", debug)
+	
+	if _set_agent_target_to_target:
+		_agent.target_position = target.global_position
+	
 	
 	var target_dist: float = _agent.distance_to_target()
 	var target_dir: Vector3 = global_position.direction_to(_agent.target_position)

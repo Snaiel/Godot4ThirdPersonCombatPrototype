@@ -43,7 +43,6 @@ func physics_process(delta) -> void:
 	if is_equal_approx(_notice_val, 1.0):
 		notice_component.change_state(aggro_state)
 	elif is_equal_approx(_notice_val, 0.0):
-		print('bruh')
 		notice_component.change_state(suspicious_state)
 
 

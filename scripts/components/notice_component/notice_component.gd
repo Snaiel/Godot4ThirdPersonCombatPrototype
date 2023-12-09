@@ -2,7 +2,7 @@ class_name NoticeComponent
 extends Node3D
 
 
-signal state_changed(new_state: NoticeComponentState)
+signal state_changed(new_state: String, set_agent_target_to_target: bool)
 
 @export_category("Configuration")
 @export var debug: bool
@@ -31,6 +31,7 @@ signal state_changed(new_state: NoticeComponentState)
 var position_to_check: Vector3
 
 var current_state: NoticeComponentState
+var previous_state: NoticeComponentState
 
 var angle_to_player: float
 var distance_to_player: float
@@ -98,10 +99,28 @@ func _physics_process(delta) -> void:
 
 func change_state(new_state: NoticeComponentState) -> void:
 	prints(current_state, new_state)
-	new_state.enter()
+	
 	current_state.exit()
+	previous_state = current_state
+	new_state.enter()
 	current_state = new_state
-	state_changed.emit(new_state)
+	
+	var new_state_string: String
+	var agent_target_to_target: bool = false
+	
+	if new_state is NoticeComponentIdleState:
+		new_state_string = "idle"
+	elif new_state is NoticeComponentGettingSuspiciousState:
+		new_state_string = "getting_suspicious"
+	elif new_state is NoticeComponentSuspiciousState:
+		new_state_string = "suspicious"
+	elif new_state is NoticeComponentGettingAggroState:
+		new_state_string = "getting_aggro"
+	elif new_state is NoticeComponentAggroState:
+		new_state_string = "aggro"
+		agent_target_to_target = true
+	
+	state_changed.emit(new_state_string, agent_target_to_target)
 
 
 func get_position_to_check() -> Vector3:
