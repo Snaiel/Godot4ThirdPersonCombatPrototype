@@ -6,6 +6,8 @@ extends NoticeComponentState
 @export var getting_aggro_state: NoticeComponentGettingAggroState
 @export var aggro_state: NoticeComponentAggroState
 
+@export var before_getting_aggro_dist_threshold: float = 0.8
+
 var _expand_x: float
 var _expand_scale: float
 
@@ -51,7 +53,17 @@ func enter() -> void:
 	if not (notice_component.previous_state is NoticeComponentGettingAggroState):
 		notice_component.position_to_check = notice_component.player.global_position
 	
-	if notice_component.distance_to_player > 0.9 * notice_component.outer_distance:
+#	prints(
+#		notice_component.distance_to_player,
+#		notice_component.outer_distance,
+#		before_getting_aggro_dist_threshold * \
+#			notice_component.outer_distance
+#	)
+	
+	if notice_component.distance_to_player > \
+		before_getting_aggro_dist_threshold * \
+		notice_component.outer_distance:
+			
 		_before_getting_aggro_timer.start()
 	else:
 		_check_to_get_aggro = true
@@ -91,13 +103,14 @@ func physics_process(delta) -> void:
 		return
 	
 	if notice_component.inside_outer_threshold():
-		if _check_to_get_aggro:
+		if _check_to_get_aggro and _expand_x >= 1.0:
 			notice_component.change_state(getting_aggro_state)
 	elif _check_to_leave_suspicion:
 		notice_component.change_state(idle_state)
 	
 	if not notice_component.in_camera_frustum():
 		notice_component.notice_triangle_sprite.visible = false
+
 
 func exit() -> void:
 	_suspicion_timer.stop()
