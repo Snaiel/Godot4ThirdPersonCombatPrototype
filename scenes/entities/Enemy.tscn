@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cv8knl5vavfyy"]
+[gd_scene load_steps=22 format=3 uid="uid://cv8knl5vavfyy"]
 
 [ext_resource type="Script" path="res://scripts/entities/enemy.gd" id="1_nrck3"]
 [ext_resource type="PackedScene" uid="uid://blqmpc6qop5nm" path="res://scenes/entities/EnemyBot.tscn" id="2_bivj4"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://d1p0cwvn1hlcs" path="res://scenes/beehave/trees/CheckSuspicion.tscn" id="17_4we3r"]
 [ext_resource type="PackedScene" uid="uid://5653b3wcf25p" path="res://scenes/beehave/inputs/InputNone.tscn" id="17_6rhnw"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_reactive.gd" id="17_sr624"]
+[ext_resource type="PackedScene" uid="uid://cij3tna3vvi65" path="res://scenes/beehave/trees/ActAggro.tscn" id="19_3laeb"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lwy87"]
 radius = 0.3
@@ -118,6 +119,16 @@ key = "\"look_at_target\""
 value = "true"
 
 [node name="CheckSuspicion" parent="BeehaveTree/SelectorComposite/Suspicious" instance=ExtResource("17_4we3r")]
+
+[node name="Aggro" type="Node" parent="BeehaveTree/SelectorComposite"]
+script = ExtResource("9_aj65e")
+
+[node name="IsAggro" type="Node" parent="BeehaveTree/SelectorComposite/Aggro"]
+script = ExtResource("12_qw7d2")
+left_operand = "get_value(\"notice_state\")"
+right_operand = "\"aggro\""
+
+[node name="ActAggro" parent="BeehaveTree/SelectorComposite/Aggro" instance=ExtResource("19_3laeb")]
 
 [node name="idle" type="Node" parent="BeehaveTree/SelectorComposite"]
 script = ExtResource("9_aj65e")

@@ -24,6 +24,7 @@ var _set_agent_target_to_target: bool = false
 var _default_move_speed: float
 var _dead: bool = false
 
+
 func _ready() -> void:
 	target = Globals.player
 	_agent.target_position = target.global_position	
@@ -41,7 +42,6 @@ func _ready() -> void:
 #				prints(_agent.target_position, target.global_position)
 	)
 	
-	_blackboard.set_value("notice_player", false)
 	_blackboard.set_value("dead", false)
 
 
@@ -55,7 +55,6 @@ func _physics_process(_delta: float) -> void:
 	if _set_agent_target_to_target:
 		_agent.target_position = target.global_position
 	
-	
 	var target_dist: float = _agent.distance_to_target()
 	var target_dir: Vector3 = global_position.direction_to(_agent.target_position)
 	var target_dir_angle: float = target_dir.angle_to(Vector3.FORWARD.rotated(Vector3.UP, global_rotation.y))
@@ -64,17 +63,17 @@ func _physics_process(_delta: float) -> void:
 	_blackboard.set_value("target_dist", target_dist)
 	_blackboard.set_value("target_dir", target_dir)
 	_blackboard.set_value("target_dir_angle", target_dir_angle)
-
-#	if debug:
-#		prints(
-#			_blackboard.get_value("input_direction"),
-#			_blackboard.get_value("locked_on"),
-#			_blackboard.get_value("look_at_target")
-#		)
+	
+	if debug:
+		prints(
+			_blackboard.get_value("input_direction"),
+			_blackboard.get_value("locked_on"),
+			_blackboard.get_value("look_at_target")
+		)
 	
 	_rotation_component.look_at_target = _blackboard.get_value("look_at_target", false)
 	_movement_component.speed = _blackboard.get_value("move_speed", _default_move_speed)
-
+	
 	_character.anim_tree["parameters/Lock On Walk/4/TimeScale/scale"] = 0.5
 	_character.anim_tree["parameters/Lock On Walk/5/TimeScale/scale"] = 0.5	
 	_character.movement_animations.move(
@@ -88,7 +87,8 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 	var opponent_position: Vector3 = weapon.get_entity().global_position
 	var direction: Vector3 = global_position.direction_to(opponent_position)
 	_movement_component.set_secondary_movement(weapon.get_knockback(), 5, 5, -direction)
-	_blackboard.set_value("notice_player", true)
+	_set_agent_target_to_target = true
+	_blackboard.set_value("look_at_player", true)
 
 
 func _on_health_component_zero_health() -> void:

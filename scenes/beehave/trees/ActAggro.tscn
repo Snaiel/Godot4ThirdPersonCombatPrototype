@@ -1,0 +1,95 @@
+[gd_scene load_steps=11 format=3 uid="uid://cij3tna3vvi65"]
+
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="1_5577v"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_set.gd" id="2_4pqiw"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="3_j8m5m"]
+[ext_resource type="Script" path="res://scripts/beehave/close_to_target.gd" id="4_fuagw"]
+[ext_resource type="Script" path="res://scripts/beehave/reset_wait.gd" id="5_p35gd"]
+[ext_resource type="PackedScene" uid="uid://5653b3wcf25p" path="res://scenes/beehave/inputs/InputNone.tscn" id="6_ibk58"]
+[ext_resource type="Script" path="res://scripts/beehave/wait.gd" id="7_8lmka"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_random.gd" id="8_onipt"]
+[ext_resource type="PackedScene" uid="uid://chv25a2oggqaw" path="res://scenes/beehave/wait/WaitBlock.tscn" id="9_rdkoq"]
+[ext_resource type="PackedScene" uid="uid://ppcsagqgu032" path="res://scenes/beehave/inputs/InputForwards.tscn" id="10_isq64"]
+
+[node name="ActAggro" type="Node"]
+script = ExtResource("1_5577v")
+
+[node name="LookAtTarget" type="Node" parent="."]
+script = ExtResource("2_4pqiw")
+key = "\"look_at_target\""
+value = "bool(1)"
+
+[node name="LockedOn" type="Node" parent="."]
+script = ExtResource("2_4pqiw")
+key = "\"locked_on\""
+value = "bool(1)"
+
+[node name="StayOrChase" type="Node" parent="."]
+script = ExtResource("3_j8m5m")
+
+[node name="SquareUpIfClose" type="Node" parent="StayOrChase"]
+script = ExtResource("1_5577v")
+
+[node name="CloseToTarget" type="Node" parent="StayOrChase/SquareUpIfClose"]
+script = ExtResource("4_fuagw")
+target_range = 2.5
+
+[node name="ResetWaitBeforeChase" type="Node" parent="StayOrChase/SquareUpIfClose"]
+script = ExtResource("5_p35gd")
+wait_id = 23169934
+
+[node name="InputNone" parent="StayOrChase/SquareUpIfClose" instance=ExtResource("6_ibk58")]
+
+[node name="Wait" type="Node" parent="StayOrChase/SquareUpIfClose"]
+script = ExtResource("7_8lmka")
+time = 1.0
+wait_id = 61967809
+
+[node name="SquareUp" type="Node" parent="StayOrChase/SquareUpIfClose"]
+script = ExtResource("1_5577v")
+
+[node name="WalkSpeed" type="Node" parent="StayOrChase/SquareUpIfClose/SquareUp"]
+script = ExtResource("2_4pqiw")
+key = "\"move_speed\""
+value = "0.8"
+
+[node name="Strafe" type="Node" parent="StayOrChase/SquareUpIfClose/SquareUp"]
+script = ExtResource("8_onipt")
+
+[node name="MoveLeft" type="Node" parent="StayOrChase/SquareUpIfClose/SquareUp/Strafe"]
+script = ExtResource("2_4pqiw")
+key = "\"input_direction\""
+value = "Vector3(-1, 0, 0)"
+
+[node name="MoveRight" type="Node" parent="StayOrChase/SquareUpIfClose/SquareUp/Strafe"]
+script = ExtResource("2_4pqiw")
+key = "\"input_direction\""
+value = "Vector3(1, 0, 0)"
+
+[node name="WaitBlock" parent="StayOrChase/SquareUpIfClose/SquareUp" instance=ExtResource("9_rdkoq")]
+wait_id = 23245375
+wait_time = 2.0
+
+[node name="Chase" type="Node" parent="StayOrChase"]
+script = ExtResource("1_5577v")
+
+[node name="ResetWait" type="Node" parent="StayOrChase/Chase"]
+script = ExtResource("5_p35gd")
+wait_id = 61967809
+
+[node name="StandStill" type="Node" parent="StayOrChase/Chase"]
+script = ExtResource("2_4pqiw")
+key = "\"input_direction\""
+value = "Vector3(0, 0, 0)"
+
+[node name="RunSpeed" type="Node" parent="StayOrChase/Chase"]
+script = ExtResource("2_4pqiw")
+key = "\"move_speed\""
+value = "3"
+
+[node name="WaitBeforeChase" type="Node" parent="StayOrChase/Chase"]
+script = ExtResource("7_8lmka")
+time = 2.0
+wait_id = 23169934
+
+[node name="InputForwards" parent="StayOrChase/Chase" instance=ExtResource("10_isq64")]
