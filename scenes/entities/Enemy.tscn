@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cv8knl5vavfyy"]
+[gd_scene load_steps=32 format=3 uid="uid://cv8knl5vavfyy"]
 
 [ext_resource type="Script" path="res://scripts/entities/enemy.gd" id="1_nrck3"]
 [ext_resource type="PackedScene" uid="uid://blqmpc6qop5nm" path="res://scenes/entities/EnemyBot.tscn" id="2_bivj4"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://5653b3wcf25p" path="res://scenes/beehave/inputs/InputNone.tscn" id="17_6rhnw"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_reactive.gd" id="17_sr624"]
 [ext_resource type="PackedScene" uid="uid://csbpq6cbn8rvn" path="res://scenes/beehave/compare_actions/IsStateSuspicious.tscn" id="18_e0yjj"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_set.gd" id="18_k7e7h"]
 [ext_resource type="PackedScene" uid="uid://cij3tna3vvi65" path="res://scenes/beehave/trees/ActAggro.tscn" id="19_3laeb"]
 [ext_resource type="PackedScene" uid="uid://c4jualprb4d24" path="res://scenes/beehave/compare_actions/IsStateGettingSuspicious.tscn" id="19_l4d6w"]
 [ext_resource type="PackedScene" uid="uid://cryed6dtlo286" path="res://scenes/beehave/set_actions/SetLookAtTargetTrue.tscn" id="20_1isai"]
@@ -99,6 +100,11 @@ script = ExtResource("9_aj65e")
 script = ExtResource("9_aj65e")
 
 [node name="IsStateAggro" parent="BeehaveTree/SelectorComposite/Aggro" instance=ExtResource("23_augt0")]
+
+[node name="SetInterruptTimersFalse" type="Node" parent="BeehaveTree/SelectorComposite/Aggro"]
+script = ExtResource("18_k7e7h")
+key = "\"interrupt_timers\""
+value = "false"
 
 [node name="ActAggro" parent="BeehaveTree/SelectorComposite/Aggro" instance=ExtResource("19_3laeb")]
 

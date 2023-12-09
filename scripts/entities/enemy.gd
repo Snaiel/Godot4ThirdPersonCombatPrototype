@@ -34,7 +34,9 @@ func _ready() -> void:
 	_blackboard.set_value("move_speed", _default_move_speed)
 	
 	_notice_component.state_changed.connect(
-		func(new_state: String, target_to_target: bool): 
+		func(new_state: String, target_to_target: bool):
+			if new_state == "aggro":
+				_blackboard.set_value("interrupt_timers", true)
 			_blackboard.set_value("notice_state", new_state)
 			_set_agent_target_to_target = target_to_target
 			if _notice_component.position_to_check != Vector3.INF:

@@ -33,7 +33,7 @@ script = ExtResource("1_iijci")
 [node name="StandStill" type="Node" parent="StayIfClose/LookAround"]
 script = ExtResource("2_4t6t0")
 
-[node name="IsLookedAroundFalse" parent="StayIfClose/LookAround/StandStill" instance=ExtResource("6_1kgwm")]
+[node name="IsLookedAroundTrue" parent="StayIfClose/LookAround/StandStill" instance=ExtResource("6_1kgwm")]
 
 [node name="InputNone" parent="StayIfClose/LookAround/StandStill" instance=ExtResource("4_d3e5r")]
 
@@ -78,7 +78,7 @@ wait_time = 5.0
 wait_id = 67583776
 wait_time = 1.0
 
-[node name="LookedAroundTrue" type="Node" parent="StayIfClose/LookAround/CheckOutArea"]
+[node name="SetLookedAroundTrue" type="Node" parent="StayIfClose/LookAround/CheckOutArea"]
 script = ExtResource("6_o0oe3")
 key = "\"looked_around\""
 value = "true"
