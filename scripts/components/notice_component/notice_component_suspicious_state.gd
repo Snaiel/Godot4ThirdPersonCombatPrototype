@@ -50,7 +50,9 @@ func enter() -> void:
 	_check_to_leave_suspicion = false
 	_can_start_suspicion_timer = true
 	
-	if not (notice_component.previous_state is NoticeComponentGettingAggroState):
+	if notice_component.previous_state is NoticeComponentGettingAggroState:
+		_expand_x = 1.0
+	else:
 		notice_component.position_to_check = notice_component.player.global_position
 	
 #	prints(
@@ -79,8 +81,9 @@ func physics_process(delta) -> void:
 	notice_component.notice_triangle_sprite.scale = \
 		notice_component.original_triangle_scale * \
 		Vector2(_expand_scale, _expand_scale)
-		
+	
 	_expand_x += 3.0 * delta
+	_expand_x = clamp(_expand_x, 0.0, 1.0)
 	
 	if _expand_x >= 0.5:
 		# make the entire triangle yellow
