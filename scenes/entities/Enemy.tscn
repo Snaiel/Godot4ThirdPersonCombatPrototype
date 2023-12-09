@@ -86,7 +86,7 @@ right_operand = "true"
 
 [node name="StandStill" parent="BeehaveTree/SelectorComposite/Dead" instance=ExtResource("17_6rhnw")]
 
-[node name="DontLookAtTarget" type="Node" parent="BeehaveTree/SelectorComposite/Dead"]
+[node name="LookAtTargetFalse" type="Node" parent="BeehaveTree/SelectorComposite/Dead"]
 script = ExtResource("13_dt0d4")
 key = "\"look_at_target\""
 value = "bool(0)"
@@ -122,17 +122,22 @@ value = "true"
 [node name="idle" type="Node" parent="BeehaveTree/SelectorComposite"]
 script = ExtResource("9_aj65e")
 
-[node name="DontLookAtTarget" type="Node" parent="BeehaveTree/SelectorComposite/idle"]
-script = ExtResource("13_dt0d4")
-key = "\"look_at_target\""
-value = "bool(0)"
-
 [node name="StandStill" parent="BeehaveTree/SelectorComposite/idle" instance=ExtResource("17_6rhnw")]
 
-[node name="DontNoticePlayer" type="Node" parent="BeehaveTree/SelectorComposite/idle"]
+[node name="LockedOnTrue" type="Node" parent="BeehaveTree/SelectorComposite/idle"]
+script = ExtResource("13_dt0d4")
+key = "\"locked_on\""
+value = "false"
+
+[node name="LookAtTargetFalse" type="Node" parent="BeehaveTree/SelectorComposite/idle"]
+script = ExtResource("13_dt0d4")
+key = "\"look_at_target\""
+value = "false"
+
+[node name="NoticePlayerFalse" type="Node" parent="BeehaveTree/SelectorComposite/idle"]
 script = ExtResource("13_dt0d4")
 key = "\"notice_player\""
-value = "bool(0)"
+value = "false"
 
 [node name="LookedAroundFalse" type="Node" parent="BeehaveTree/SelectorComposite/idle"]
 script = ExtResource("13_dt0d4")

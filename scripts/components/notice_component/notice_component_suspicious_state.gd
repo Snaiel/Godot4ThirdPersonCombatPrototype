@@ -81,6 +81,10 @@ func physics_process(delta) -> void:
 				0.2
 			)
 	
+	if _can_start_suspicion_timer:
+		_can_start_suspicion_timer = false
+		_suspicion_timer.start()
+	
 	if notice_component.inside_inner_threshold():
 		notice_component.transition_to_aggro()
 		_before_getting_aggro_timer.stop()
