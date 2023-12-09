@@ -72,7 +72,6 @@ wait_id = 1
 [node name="Wait" type="Node" parent="StayOrChase/StayIfClose"]
 script = ExtResource("10_vqvhi")
 time = 1.0
-wait_id = 2
 
 [node name="SquareUp" type="Node" parent="StayOrChase/StayIfClose"]
 script = ExtResource("1_1uvwj")
@@ -119,6 +118,5 @@ value = "3"
 [node name="WaitBeforeChase" type="Node" parent="StayOrChase/Chase"]
 script = ExtResource("10_vqvhi")
 time = 2.0
-wait_id = 1
 
 [node name="InputForwards" parent="StayOrChase/Chase" instance=ExtResource("13_qn06h")]
