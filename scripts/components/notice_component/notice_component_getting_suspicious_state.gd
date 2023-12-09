@@ -8,6 +8,23 @@ extends NoticeComponentState
 
 var _notice_val: float
 
+var _back_to_idle_timer: Timer
+var _back_to_idle_pause: float = 1.0
+var _can_go_back_to_idle: bool = false
+
+
+func _ready():
+	_back_to_idle_timer = Timer.new()
+	_back_to_idle_timer.wait_time = _back_to_idle_pause
+	_back_to_idle_timer.one_shot = true
+	_back_to_idle_timer.autostart = false
+	_back_to_idle_timer.timeout.connect(
+		func(): 
+			_can_go_back_to_idle = true
+	)
+	add_child(_back_to_idle_timer)
+
+
 
 func enter() -> void:
 	_notice_val = 0.0
@@ -16,6 +33,8 @@ func enter() -> void:
 		Color.WHITE,
 		0.2
 	)
+	_back_to_idle_timer.start()
+	_can_go_back_to_idle = false
 
 
 func physics_process(delta) -> void:
@@ -41,13 +60,9 @@ func physics_process(delta) -> void:
 	
 	if is_equal_approx(_notice_val, 1.0):
 		notice_component.change_state(suspicious_state)
-	elif is_equal_approx(_notice_val, 0.0):
+	elif is_equal_approx(_notice_val, 0.0) and _can_go_back_to_idle:
 		notice_component.change_state(idle_state)
 
 
 func exit() -> void:
-	pass
-
-
-func interrupt() -> void:
-	pass
+	_back_to_idle_timer.stop()

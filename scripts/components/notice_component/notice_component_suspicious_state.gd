@@ -93,8 +93,4 @@ func physics_process(delta) -> void:
 		notice_component.notice_triangle_sprite.visible = false
 
 func exit() -> void:
-	pass
-
-
-func interrupt() -> void:
 	_suspicion_timer.stop()

@@ -60,7 +60,7 @@ func _ready() -> void:
 	
 	health_component.zero_health.connect(
 		func():
-			current_state.interrupt()
+			current_state.exit()
 			notice_triangle_sprite.visible = false
 			_disabled = true
 	)
@@ -102,6 +102,10 @@ func change_state(new_state: NoticeComponentState) -> void:
 	current_state.exit()
 	current_state = new_state
 	state_changed.emit(new_state)
+
+
+func get_position_to_check() -> Vector3:
+	return position_to_check
 
 
 func inside_inner_threshold() -> bool:
