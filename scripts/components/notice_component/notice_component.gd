@@ -129,12 +129,14 @@ func get_position_to_check() -> Vector3:
 
 func inside_inner_threshold() -> bool:
 	return angle_to_player < inner_angle and \
-		distance_to_player < inner_distance
+		distance_to_player < inner_distance and \
+		_can_see_target(player)
 
 
 func inside_outer_threshold() -> bool:
 	return angle_to_player < outer_angle and \
-		distance_to_player < outer_distance
+		distance_to_player < outer_distance and \
+		_can_see_target(player)
 
 
 func get_mask_offset(value: float) -> float:
@@ -174,3 +176,20 @@ func transition_to_aggro() -> void:
 	notice_triangle_inner_sprite.self_modulate = aggro_color
 	notice_triangle_sprite.self_modulate = aggro_color
 	change_state(aggro_state)
+
+
+func _can_see_target(t: Node3D) -> bool:
+	var can_see: bool = true
+
+	var space_state: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
+	var query: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(
+		entity.global_position,
+		t.global_position,
+		1
+	)
+	var result: Dictionary = space_state.intersect_ray(query)
+	
+	if result.size() != 0:
+		can_see = false
+
+	return can_see
