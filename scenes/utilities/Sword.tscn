@@ -22,12 +22,11 @@ shader_parameter/alpha_clip = 0.0
 height = 1.0
 radius = 0.02
 
-[node name="Sword" type="BoneAttachment3D" node_paths=PackedStringArray("_entity")]
+[node name="Sword" type="BoneAttachment3D"]
 transform = Transform3D(0, -1, 0, 0, 0, -1, 1, 0, 0, -0.734268, 1.43559, -0.0641424)
 bone_name = "RightHand"
 bone_idx = 35
 script = ExtResource("1_bx4em")
-_entity = NodePath("")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.891467, -0.453089, -3.91618e-05, 0.453089, -0.891468, -0.000158824, 3.70497e-05, -0.00015933, 1, 0.168411, 0.443186, 0.0233156)

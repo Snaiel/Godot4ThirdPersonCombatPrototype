@@ -57,7 +57,7 @@ script = ExtResource("1_nrck3")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1, 0)
 
 [node name="GeneralSkeleton" parent="CharacterModel/Armature_004" index="0"]
-bones/0/position = Vector3(-0.00352706, 9.43397e-10, 0.00791379)
+bones/0/position = Vector3(0.00362314, -3.15843e-10, -0.00264948)
 bones/1/position = Vector3(-6.75701e-08, 0.997919, 3.87323e-07)
 bones/1/rotation = Quaternion(0, 0, 0, 1)
 bones/2/rotation = Quaternion(0, 0, 0, 1)
@@ -125,8 +125,9 @@ bones/64/rotation = Quaternion(0, 1, 0, 0)
 [node name="Alpha_Surface" parent="CharacterModel/Armature_004/GeneralSkeleton" index="1"]
 surface_material_override/0 = SubResource("ShaderMaterial_i1ddg")
 
-[node name="Sword" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" instance=ExtResource("4_r63io")]
-transform = Transform3D(0, -1, 0, 0, 0, -1, 1, 0, 0, -0.741356, 1.43559, -0.0537999)
+[node name="Sword" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity") instance=ExtResource("4_r63io")]
+transform = Transform3D(0, -1, 0, 0, 0, -1, 1, 0, 0, -0.734206, 1.43559, -0.0643632)
+_entity = NodePath("../../../..")
 
 [node name="Collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
@@ -199,7 +200,23 @@ script = ExtResource("18_k7e7h")
 key = "\"interrupt_timers\""
 value = "false"
 
-[node name="ActAggro" parent="BeehaveTree/SelectorComposite/Aggro" instance=ExtResource("19_3laeb")]
+[node name="AggroTarget" type="Node" parent="BeehaveTree/SelectorComposite/Aggro"]
+script = ExtResource("8_wqauf")
+
+[node name="Attack" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget"]
+script = ExtResource("9_aj65e")
+
+[node name="IsCanAttackTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack"]
+script = ExtResource("12_qw7d2")
+left_operand = "get_value(\"can_attack\")"
+right_operand = "true"
+
+[node name="SetAttackTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack"]
+script = ExtResource("18_k7e7h")
+key = "\"attack\""
+value = "true"
+
+[node name="ActAggro" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget" instance=ExtResource("19_3laeb")]
 
 [node name="Suspicious" type="Node" parent="BeehaveTree/SelectorComposite"]
 script = ExtResource("9_aj65e")

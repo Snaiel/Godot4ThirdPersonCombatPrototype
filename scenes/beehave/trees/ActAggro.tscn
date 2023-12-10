@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cij3tna3vvi65"]
+[gd_scene load_steps=17 format=3 uid="uid://cij3tna3vvi65"]
 
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="1_5577v"]
 [ext_resource type="PackedScene" uid="uid://cryed6dtlo286" path="res://scenes/beehave/set_actions/SetLookAtTargetTrue.tscn" id="2_604vf"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://ppcsagqgu032" path="res://scenes/beehave/inputs/InputForwards.tscn" id="10_isq64"]
 [ext_resource type="PackedScene" uid="uid://rnknofcns6ch" path="res://scenes/beehave/inputs/InputLeft.tscn" id="11_6ora8"]
 [ext_resource type="PackedScene" uid="uid://bpmbb56ftoyja" path="res://scenes/beehave/inputs/InputRight.tscn" id="12_coe31"]
+[ext_resource type="PackedScene" uid="uid://8q4shgtn2rdm" path="res://scenes/beehave/set_actions/SetCanAttackTrue.tscn" id="14_a6ulk"]
 [ext_resource type="PackedScene" uid="uid://d1wjh32ysekoi" path="res://scenes/beehave/set_actions/SetRunSpeed.tscn" id="14_lbagp"]
 
 [node name="ActAggro" type="Node"]
@@ -59,6 +60,13 @@ script = ExtResource("8_onipt")
 [node name="WaitBlock" parent="StayOrChase/SquareUpIfClose/SquareUp" instance=ExtResource("9_rdkoq")]
 wait_id = 23245375
 wait_time = 2.0
+
+[node name="AttackOrNot" type="Node" parent="StayOrChase/SquareUpIfClose/SquareUp"]
+script = ExtResource("8_onipt")
+
+[node name="SetCanAttackTrue" parent="StayOrChase/SquareUpIfClose/SquareUp/AttackOrNot" instance=ExtResource("14_a6ulk")]
+
+[node name="InputNone" parent="StayOrChase/SquareUpIfClose/SquareUp/AttackOrNot" instance=ExtResource("6_ibk58")]
 
 [node name="Chase" type="Node" parent="StayOrChase"]
 script = ExtResource("1_5577v")

@@ -47,7 +47,7 @@ shape = SubResource("CapsuleShape3D_lnhvg")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1, 0)
 
 [node name="GeneralSkeleton" parent="CharacterModel/Armature_004" index="0"]
-bones/0/position = Vector3(0.00237851, -2.55944e-10, -0.00214701)
+bones/0/position = Vector3(0.00356102, -2.89525e-10, -0.00242871)
 bones/1/position = Vector3(-6.75701e-08, 0.997919, 3.87323e-07)
 bones/1/rotation = Quaternion(0, 0, 0, 1)
 bones/2/rotation = Quaternion(0, 0, 0, 1)
@@ -121,7 +121,7 @@ layers = 2
 surface_material_override/0 = ExtResource("4_ysu0o")
 
 [node name="Sword" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity") instance=ExtResource("5_vtx6o")]
-transform = Transform3D(0, -1, 0, 0, 0, -1, 1, 0, 0, -0.735451, 1.43559, -0.0638607)
+transform = Transform3D(0, -1, 0, 0, 0, -1, 1, 0, 0, -0.734268, 1.43559, -0.0641424)
 _entity = NodePath("../../../..")
 
 [node name="JumpAnimations" parent="CharacterModel" index="4"]

@@ -17,6 +17,7 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var _health_compoennt: HealthComponent = $HealthComponent
 @onready var _backstab_component: BackstabComponent = $BackstabComponent
 @onready var _notice_component: NoticeComponent = $NoticeComponent
+@onready var _attack_component: AttackComponent = $AttackComponent
 @onready var _agent: NavigationAgent3D = $NavigationAgent3D
 
 var _set_agent_target_to_target: bool = false
@@ -43,6 +44,8 @@ func _ready() -> void:
 				_agent.target_position = _notice_component.position_to_check
 #				prints(_agent.target_position, target.global_position)
 	)
+	
+	_blackboard.set_value("can_attack", true)	
 	
 	_blackboard.set_value("dead", false)
 
@@ -75,6 +78,10 @@ func _physics_process(_delta: float) -> void:
 	
 	_rotation_component.look_at_target = _blackboard.get_value("look_at_target", false)
 	_movement_component.speed = _blackboard.get_value("move_speed", _default_move_speed)
+	
+	if _blackboard.get_value("can_attack") and _blackboard.get_value("attack"):
+		_attack_component.attack()
+		_blackboard.set_value("can_attack", false)
 	
 	_character.anim_tree["parameters/Lock On Walk/4/TimeScale/scale"] = 0.5
 	_character.anim_tree["parameters/Lock On Walk/5/TimeScale/scale"] = 0.5	
