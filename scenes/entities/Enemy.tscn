@@ -57,7 +57,7 @@ script = ExtResource("1_nrck3")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1, 0)
 
 [node name="GeneralSkeleton" parent="CharacterModel/Armature_004" index="0"]
-bones/0/position = Vector3(0.00362314, -3.15843e-10, -0.00264948)
+bones/0/position = Vector3(0.00356102, -2.89525e-10, -0.00242871)
 bones/1/position = Vector3(-6.75701e-08, 0.997919, 3.87323e-07)
 bones/1/rotation = Quaternion(0, 0, 0, 1)
 bones/2/rotation = Quaternion(0, 0, 0, 1)
@@ -126,7 +126,7 @@ bones/64/rotation = Quaternion(0, 1, 0, 0)
 surface_material_override/0 = SubResource("ShaderMaterial_i1ddg")
 
 [node name="Sword" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity") instance=ExtResource("4_r63io")]
-transform = Transform3D(0, -1, 0, 0, 0, -1, 1, 0, 0, -0.734206, 1.43559, -0.0643632)
+transform = Transform3D(0, -1, 0, 0, 0, -1, 1, 0, 0, -0.734268, 1.43559, -0.0641424)
 _entity = NodePath("../../../..")
 
 [node name="Collider" type="CollisionShape3D" parent="."]
@@ -141,7 +141,7 @@ agent = NodePath("../NavigationAgent3D")
 entity = NodePath("..")
 
 [node name="LockOnComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("6_nxetg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 health_component = NodePath("../HealthComponent")
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("entity", "character") instance=ExtResource("2_h2tgk")]
