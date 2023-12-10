@@ -4,7 +4,7 @@ extends Area3D
 signal weapon_hit(weapon: Sword)
 
 @export var entity: CharacterBody3D
-@export var anim: PlayerAnimations
+@export var anim: CharacterAnimations
 
 var _weapons_in_hitbox: Array[Sword] = []
 

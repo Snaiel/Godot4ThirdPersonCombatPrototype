@@ -1,4 +1,4 @@
-class_name PlayerAnimations
+class_name CharacterAnimations
 extends Node3D
 
 

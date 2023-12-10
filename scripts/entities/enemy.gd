@@ -11,7 +11,7 @@ signal death(enemy)
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var _blackboard: Blackboard = $Blackboard
-@onready var _character: PlayerAnimations = $Model
+@onready var _character: CharacterAnimations = $Model
 @onready var _rotation_component: RotationComponent = $EnemyRotationComponent
 @onready var _movement_component: MovementComponent = $MovementComponent
 @onready var _health_compoennt: HealthComponent = $HealthComponent

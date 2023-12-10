@@ -3,7 +3,7 @@ extends CharacterBody3D
 
 
 @export_category("Mechanisms")
-@export var character: PlayerAnimations
+@export var character: CharacterAnimations
 @export var camera_controller: CameraController
 @export var movement_component: MovementComponent
 @export var jump_component: JumpComponent

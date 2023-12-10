@@ -5,7 +5,7 @@ extends Node3D
 signal just_landed
 
 @export var entity: CharacterBody3D
-@export var animations: PlayerAnimations
+@export var animations: CharacterAnimations
 @export var movement_component: MovementComponent
 @export var jump_strength: float = 8
 

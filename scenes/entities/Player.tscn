@@ -66,27 +66,27 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1.
 
 [node name="GeneralSkeleton" parent="CharacterModel/Armature_004" index="0"]
 bones/0/position = Vector3(0, 0, 0)
-bones/1/rotation = Quaternion(-0.0330664, -0.0455634, -0.0257855, 0.998081)
-bones/2/rotation = Quaternion(0.032279, 0.0161223, 0.0237534, 0.999067)
-bones/3/rotation = Quaternion(0.0102156, 0.00393622, 0.0139822, 0.999842)
-bones/4/rotation = Quaternion(0.0102438, 0.00433367, 0.0140915, 0.999839)
-bones/5/rotation = Quaternion(0.0501245, -0.00206315, 0.00309269, 0.998736)
-bones/6/rotation = Quaternion(-0.0740914, 0.00699592, -0.00126574, 0.997226)
-bones/8/rotation = Quaternion(0.458115, 0.498678, 0.63405, -0.373405)
-bones/9/rotation = Quaternion(0.125762, 0.804871, -0.56696, -0.122159)
-bones/10/rotation = Quaternion(0.00935953, -0.707045, 0.00935963, 0.707045)
-bones/11/rotation = Quaternion(0.0523518, 0.475705, -0.0130367, 0.877949)
-bones/32/rotation = Quaternion(0.47494, -0.479266, -0.638421, -0.370343)
-bones/33/rotation = Quaternion(-0.147778, 0.828175, -0.495883, 0.21538)
-bones/34/rotation = Quaternion(0.0407941, 0.705929, -0.040794, 0.705929)
-bones/35/rotation = Quaternion(0.0414652, -0.569016, 0.0356976, 0.820504)
-bones/56/rotation = Quaternion(0.137601, 0.0781482, 0.984496, -0.075675)
-bones/57/rotation = Quaternion(-0.0381478, 0.993091, -0.110481, 0.0104313)
-bones/58/rotation = Quaternion(-0.042057, 0.710896, -0.700277, 0.0496941)
-bones/61/rotation = Quaternion(-0.0918052, -0.0130094, 0.995298, -0.0280216)
-bones/62/rotation = Quaternion(0.0341407, 0.994011, -0.0619174, -0.0833295)
-bones/63/rotation = Quaternion(0.00974408, 0.679822, -0.732766, -0.0283199)
-bones/64/rotation = Quaternion(-3.15548e-07, 0.998075, 0.0620175, -1.22043e-08)
+bones/1/rotation = Quaternion(-0.0319434, -0.0460476, -0.0288428, 0.998012)
+bones/2/rotation = Quaternion(0.0291198, 0.0127742, 0.0220343, 0.999251)
+bones/3/rotation = Quaternion(0.0100965, 0.0028306, 0.0135898, 0.999853)
+bones/4/rotation = Quaternion(0.00987334, 0.00302615, 0.013618, 0.999854)
+bones/5/rotation = Quaternion(0.049056, -0.000893555, 0.00395111, 0.998788)
+bones/6/rotation = Quaternion(-0.0659366, 0.0119233, -0.00149593, 0.997751)
+bones/8/rotation = Quaternion(0.457455, 0.499835, 0.632451, -0.375375)
+bones/9/rotation = Quaternion(0.123069, 0.803944, -0.567855, -0.12676)
+bones/10/rotation = Quaternion(0.00901698, -0.707049, 0.00901694, 0.707049)
+bones/11/rotation = Quaternion(0.0531773, 0.475265, -0.0152579, 0.878102)
+bones/32/rotation = Quaternion(0.476171, -0.479096, -0.634667, -0.375401)
+bones/33/rotation = Quaternion(-0.151596, 0.827236, -0.497296, 0.213062)
+bones/34/rotation = Quaternion(0.0412578, 0.705902, -0.041258, 0.705902)
+bones/35/rotation = Quaternion(0.0458193, -0.571087, 0.0374694, 0.818753)
+bones/56/rotation = Quaternion(0.134773, 0.0845074, 0.984377, -0.0754818)
+bones/57/rotation = Quaternion(-0.0382602, 0.992701, -0.113544, 0.0137497)
+bones/58/rotation = Quaternion(-0.0408457, 0.711173, -0.700171, 0.0482138)
+bones/61/rotation = Quaternion(-0.0907232, -0.00982679, 0.995417, -0.0285846)
+bones/62/rotation = Quaternion(0.0330748, 0.99437, -0.0564608, -0.0833526)
+bones/63/rotation = Quaternion(0.0095147, 0.685712, -0.727228, -0.0291443)
+bones/64/rotation = Quaternion(-3.65492e-07, 0.998003, 0.0631675, -3.81956e-08)
 
 [node name="Alpha_Joints" parent="CharacterModel/Armature_004/GeneralSkeleton" index="0"]
 layers = 2
@@ -97,7 +97,7 @@ layers = 2
 surface_material_override/0 = ExtResource("4_ysu0o")
 
 [node name="Sword" type="BoneAttachment3D" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity")]
-transform = Transform3D(0.409818, 0.027084, 0.911765, 0.0626485, -0.998035, 0.0014876, 0.910013, 0.0565113, -0.41071, -0.242553, 0.838089, -2.36519e-05)
+transform = Transform3D(0.396289, 0.0233159, 0.91783, 0.0690642, -0.997602, -0.00447724, 0.915524, 0.0651633, -0.396949, -0.246457, 0.842359, -0.000616003)
 bone_name = "RightHand"
 bone_idx = 35
 script = ExtResource("3_7pxxd")
