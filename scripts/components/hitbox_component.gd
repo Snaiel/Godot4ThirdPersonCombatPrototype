@@ -4,7 +4,7 @@ extends Area3D
 signal weapon_hit(weapon: Sword)
 
 @export var entity: CharacterBody3D
-@export var anim: CharacterAnimations
+@export var character: CharacterAnimations
 
 var _weapons_in_hitbox: Array[Sword] = []
 
@@ -23,9 +23,9 @@ func _process(_delta: float) -> void:
 
 func _process_hit_reaction() -> void:
 	if entity.velocity.length() > 0.05:
-		anim.anim_tree["parameters/Hit Reaction Moving/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+		character.anim_tree["parameters/Hit Reaction Moving/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 	else:
-		anim.anim_tree["parameters/Hit Reaction Not Moving/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+		character.anim_tree["parameters/Hit Reaction Not Moving/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 
 
 func _on_area_entered(area: Area3D) -> void:
