@@ -96,11 +96,11 @@ func _physics_process(_delta: float) -> void:
 		_intent_to_attack = false
 
 
-func attack(level: int) -> void:
+func attack(level: int, manually_set_level: bool = false) -> void:
 	attacking = true
 	_intent_to_attack = true
 	_intend_to_stop_attacking = false
-	if level == 1:
+	if level == 1 or manually_set_level:
 		_can_play_animation = true
 	_level = level
 

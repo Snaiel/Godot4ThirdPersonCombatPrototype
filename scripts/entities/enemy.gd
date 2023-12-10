@@ -70,6 +70,7 @@ func _physics_process(_delta: float) -> void:
 	_blackboard.set_value("target_dir_angle", target_dir_angle)
 	
 #	if debug:
+#		prints(_blackboard.get_value("can_attack", false), _blackboard.get_value("attack", false))
 #		prints(
 #			_blackboard.get_value("input_direction"),
 #			_blackboard.get_value("locked_on"),
@@ -79,9 +80,11 @@ func _physics_process(_delta: float) -> void:
 	_rotation_component.look_at_target = _blackboard.get_value("look_at_target", false)
 	_movement_component.speed = _blackboard.get_value("move_speed", _default_move_speed)
 	
-	if _blackboard.get_value("can_attack") and _blackboard.get_value("attack"):
-		_attack_component.attack()
+	if _blackboard.get_value("can_attack", false) and _blackboard.get_value("attack", false):
 		_blackboard.set_value("can_attack", false)
+		_blackboard.set_value("attack", false)
+		_attack_component.attack_level = _blackboard.get_value("attack_level", 1)
+		_attack_component.attack()
 	
 	_character.anim_tree["parameters/Lock On Walk/4/TimeScale/scale"] = 0.5
 	_character.anim_tree["parameters/Lock On Walk/5/TimeScale/scale"] = 0.5	

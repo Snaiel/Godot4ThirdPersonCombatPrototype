@@ -98,7 +98,7 @@ func _physics_process(delta) -> void:
 
 
 func change_state(new_state: NoticeComponentState) -> void:
-	prints(current_state, new_state)
+#	prints(current_state, new_state)
 	
 	current_state.exit()
 	previous_state = current_state

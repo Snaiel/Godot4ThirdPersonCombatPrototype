@@ -7,12 +7,14 @@ signal can_move(flag: bool)
 @export var _attack_animations: AttackAnimations
 @export var _movement_component: MovementComponent
 @export var _weapon: Sword
-@export var _attack_level: int = 1
 @export var _can_attack: bool = true
 
 var attacking: bool = false
-var _can_stop_attack: bool = true
+var attack_level: int = 1:
+	set = set_attack_level
 
+var _manually_set_attack_level: bool = false
+var _can_stop_attack: bool = true
 var _can_attack_again: bool = false
 var _attack_interrupted: bool = false
 
@@ -36,12 +38,13 @@ func attack(can_stop: bool = true) -> void:
 	attacking = true
 	_can_stop_attack = can_stop
 	_attack_interrupted = false
-
-	if _can_attack_again and _attack_level < 2:
-		_attack_level += 1
-	else:
-		_attack_level = 1
-
+	
+	if not _manually_set_attack_level:
+		if _can_attack_again and attack_level < 2:
+			attack_level += 1
+		else:
+			attack_level = 1
+	
 	_can_attack = false
 	
 	can_rotate.emit(true)
@@ -50,7 +53,9 @@ func attack(can_stop: bool = true) -> void:
 	if _backstab_system.backstab_victim:
 		_attack_animations.backstab()
 	else:
-		_attack_animations.attack(_attack_level)
+		_attack_animations.attack(attack_level, _manually_set_attack_level)
+		
+	_manually_set_attack_level = false
 
 
 func stop_attacking() -> bool:
@@ -59,10 +64,15 @@ func stop_attacking() -> bool:
 			_attack_interrupted = true
 		can_move.emit(true)
 		attacking = false
-		_attack_level = 1
+		attack_level = 1
 		_can_attack_again = false
 		_attack_animations.stop_attacking()
 	return not attacking
+
+
+func set_attack_level(level: int) -> void:
+	attack_level = level
+	_manually_set_attack_level = true
 
 
 func _receive_can_attack_again(can_attack_again: bool) -> void:
@@ -88,7 +98,7 @@ func _receive_movement() -> void:
 	if _attack_interrupted:
 		return
 		
-	match _attack_level:
+	match attack_level:
 		1:
 			_movement_component.set_secondary_movement(6, 5, 15)
 		2:
