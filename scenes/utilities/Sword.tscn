@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://b78ctcv6lulvi"]
+
+[ext_resource type="Script" path="res://scripts/entities/sword.gd" id="1_bx4em"]
+[ext_resource type="Shader" path="res://shaders/fade.gdshader" id="2_fbolq"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_dg00e"]
+top_radius = 0.02
+bottom_radius = 0.02
+height = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5w3p4"]
+render_priority = 0
+shader = ExtResource("2_fbolq")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 1.0
+shader_parameter/normal_strength = 1.0
+shader_parameter/alpha_clip = 0.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_cds6g"]
+height = 1.0
+radius = 0.02
+
+[node name="Sword" type="BoneAttachment3D" node_paths=PackedStringArray("_entity")]
+transform = Transform3D(0, -1, 0, 0, 0, -1, 1, 0, 0, -0.734268, 1.43559, -0.0641424)
+bone_name = "RightHand"
+bone_idx = 35
+script = ExtResource("1_bx4em")
+_entity = NodePath("")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.891467, -0.453089, -3.91618e-05, 0.453089, -0.891468, -0.000158824, 3.70497e-05, -0.00015933, 1, 0.168411, 0.443186, 0.0233156)
+layers = 2
+mesh = SubResource("CylinderMesh_dg00e")
+surface_material_override/0 = SubResource("ShaderMaterial_5w3p4")
+
+[node name="Area" type="Area3D" parent="." groups=["weapon"]]
+transform = Transform3D(1, 0, 0, 0, 1, 4.70233e-13, 0, 4.70233e-13, 1, 0, 0, 0)
+collision_layer = 4
+collision_mask = 8
+
+[node name="Collider" type="CollisionShape3D" parent="Area"]
+transform = Transform3D(-0.891466, -0.453088, -3.91619e-05, 0.453088, -0.891466, -0.000158824, 3.70497e-05, -0.00015933, 1, 0.168411, 0.443186, 0.0233156)
+shape = SubResource("CylinderShape3D_cds6g")

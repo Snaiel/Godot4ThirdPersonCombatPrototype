@@ -285,3 +285,4 @@ transform = Transform3D(-0.186421, 0, 0.98247, 0, 1, 0, -0.98247, 0, -0.186421, 
 [connection signal="current_victim" from="BackstabSystem" to="UserInterface" method="_on_backstab_system_current_victim"]
 
 [editable path="Enemies/Enemy6"]
+[editable path="Enemies/Enemy6/CharacterModel"]

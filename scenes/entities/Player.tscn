@@ -1,7 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://dujukbu10vbmm"]
+[gd_scene load_steps=15 format=3 uid="uid://dujukbu10vbmm"]
 
 [ext_resource type="Script" path="res://scripts/entities/player.gd" id="1_lgfyt"]
-[ext_resource type="Script" path="res://scripts/entities/sword.gd" id="3_7pxxd"]
 [ext_resource type="Shader" path="res://shaders/fade.gdshader" id="3_iqmy4"]
 [ext_resource type="Script" path="res://scripts/components/attack_component.gd" id="3_nq7ea"]
 [ext_resource type="Script" path="res://scripts/components/movement_component.gd" id="3_pph25"]
@@ -9,6 +8,7 @@
 [ext_resource type="Material" uid="uid://dp5o22jl53pqh" path="res://materials/player_shader_mat.tres" id="4_ysu0o"]
 [ext_resource type="Script" path="res://scripts/components/jump_component.gd" id="5_20kj8"]
 [ext_resource type="PackedScene" uid="uid://x0oxbha36o2h" path="res://scenes/entities/YBot.tscn" id="5_gusos"]
+[ext_resource type="PackedScene" uid="uid://b78ctcv6lulvi" path="res://scenes/utilities/Sword.tscn" id="5_vtx6o"]
 [ext_resource type="Script" path="res://scripts/components/dodge_component.gd" id="6_66sk2"]
 [ext_resource type="Script" path="res://scripts/components/block_component.gd" id="7_qnswb"]
 [ext_resource type="Script" path="res://scripts/components/fade_component.gd" id="11_kcojp"]
@@ -26,25 +26,6 @@ shader_parameter/metallic = 0.0
 shader_parameter/roughness = 1.0
 shader_parameter/normal_strength = 1.0
 shader_parameter/alpha_clip = 0.0
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_dg00e"]
-top_radius = 0.02
-bottom_radius = 0.02
-height = 1.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5w3p4"]
-render_priority = 0
-shader = ExtResource("3_iqmy4")
-shader_parameter/albedo = Color(1, 1, 1, 1)
-shader_parameter/specular = 0.5
-shader_parameter/metallic = 0.0
-shader_parameter/roughness = 1.0
-shader_parameter/normal_strength = 1.0
-shader_parameter/alpha_clip = 0.0
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_cds6g"]
-height = 1.0
-radius = 0.02
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("character", "movement_component", "jump_component", "block_component", "dodge_component", "rotation_component", "attack_component")]
 collision_layer = 2
@@ -66,7 +47,7 @@ shape = SubResource("CapsuleShape3D_lnhvg")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1, 0)
 
 [node name="GeneralSkeleton" parent="CharacterModel/Armature_004" index="0"]
-bones/0/position = Vector3(0.00356102, -2.89525e-10, -0.00242871)
+bones/0/position = Vector3(0.00237851, -2.55944e-10, -0.00214701)
 bones/1/position = Vector3(-6.75701e-08, 0.997919, 3.87323e-07)
 bones/1/rotation = Quaternion(0, 0, 0, 1)
 bones/2/rotation = Quaternion(0, 0, 0, 1)
@@ -139,27 +120,9 @@ surface_material_override/0 = SubResource("ShaderMaterial_kr42x")
 layers = 2
 surface_material_override/0 = ExtResource("4_ysu0o")
 
-[node name="Sword" type="BoneAttachment3D" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity")]
-transform = Transform3D(0, -1, 0, 0, 0, -1, 1, 0, 0, -0.734268, 1.43559, -0.0641424)
-bone_name = "RightHand"
-bone_idx = 35
-script = ExtResource("3_7pxxd")
+[node name="Sword" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity") instance=ExtResource("5_vtx6o")]
+transform = Transform3D(0, -1, 0, 0, 0, -1, 1, 0, 0, -0.735451, 1.43559, -0.0638607)
 _entity = NodePath("../../../..")
-
-[node name="Mesh" type="MeshInstance3D" parent="CharacterModel/Armature_004/GeneralSkeleton/Sword"]
-transform = Transform3D(-0.891467, -0.453089, -3.91618e-05, 0.453089, -0.891468, -0.000158824, 3.70497e-05, -0.00015933, 1, 0.168411, 0.443186, 0.0233156)
-layers = 2
-mesh = SubResource("CylinderMesh_dg00e")
-surface_material_override/0 = SubResource("ShaderMaterial_5w3p4")
-
-[node name="Area" type="Area3D" parent="CharacterModel/Armature_004/GeneralSkeleton/Sword" groups=["weapon"]]
-transform = Transform3D(1, 0, 0, 0, 1, 4.70233e-13, 0, 4.70233e-13, 1, 0, 0, 0)
-collision_layer = 4
-collision_mask = 8
-
-[node name="Collider" type="CollisionShape3D" parent="CharacterModel/Armature_004/GeneralSkeleton/Sword/Area"]
-transform = Transform3D(-0.891466, -0.453088, -3.91619e-05, 0.453088, -0.891466, -0.000158824, 3.70497e-05, -0.00015933, 1, 0.168411, 0.443186, 0.0233156)
-shape = SubResource("CylinderShape3D_cds6g")
 
 [node name="JumpAnimations" parent="CharacterModel" index="4"]
 debug = true
@@ -213,3 +176,4 @@ meshes = [NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Alpha_Joints"
 entity = NodePath("..")
 
 [editable path="CharacterModel"]
+[editable path="CharacterModel/Armature_004/GeneralSkeleton/Sword"]
