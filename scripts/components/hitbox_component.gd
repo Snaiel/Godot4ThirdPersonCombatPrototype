@@ -1,14 +1,19 @@
 class_name HitboxComponent
 extends Area3D
 
+
 signal weapon_hit(weapon: Sword)
 
+@export var debug: bool = false
 @export var entity: CharacterBody3D
 @export var character: CharacterAnimations
 
 var _weapons_in_hitbox: Array[Sword] = []
 
+
 func _process(_delta: float) -> void:
+#	if debug: print(_weapons_in_hitbox)
+	
 	if not _weapons_in_hitbox:
 		return
 		

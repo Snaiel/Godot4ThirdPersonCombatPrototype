@@ -6,6 +6,7 @@ extends CharacterBody3D
 @export var character: CharacterAnimations
 @export var camera_controller: CameraController
 @export var movement_component: MovementComponent
+@export var hitbox_component: HitboxComponent
 @export var jump_component: JumpComponent
 @export var block_component: BlockComponent
 @export var dodge_component: DodgeComponent
@@ -38,6 +39,11 @@ func _ready() -> void:
 	_holding_down_run_timer = Timer.new()
 	_holding_down_run_timer.timeout.connect(_handle_hold_down_run_timer)
 	add_child(_holding_down_run_timer)
+	
+	hitbox_component.weapon_hit.connect(
+		func(_x):
+			print('bruh')
+	)
 
 
 func _physics_process(_delta: float) -> void:

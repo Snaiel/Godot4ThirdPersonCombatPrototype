@@ -130,6 +130,9 @@ surface_material_override/0 = SubResource("ShaderMaterial_i1ddg")
 transform = Transform3D(0.396289, 0.0233159, 0.91783, 0.0690642, -0.997602, -0.00447724, 0.915524, 0.0651633, -0.396949, -0.242896, 0.842359, -0.00304471)
 _entity = NodePath("../../../..")
 
+[node name="Area" parent="CharacterModel/Armature_004/GeneralSkeleton/Sword" index="1"]
+collision_mask = 2
+
 [node name="Collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 shape = SubResource("CapsuleShape3D_lwy87")
@@ -279,10 +282,9 @@ script = ExtResource("12_q7h63")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
-[connection signal="area_entered" from="HitboxComponent" to="HitboxComponent" method="_on_area_entered"]
-[connection signal="area_exited" from="HitboxComponent" to="HitboxComponent" method="_on_area_exited"]
 [connection signal="weapon_hit" from="HitboxComponent" to="." method="_on_entity_hitbox_weapon_hit"]
 [connection signal="weapon_hit" from="HitboxComponent" to="BackstabComponent" method="_on_hitbox_component_weapon_hit"]
 [connection signal="zero_health" from="HealthComponent" to="." method="_on_health_component_zero_health"]
 
 [editable path="CharacterModel"]
+[editable path="CharacterModel/Armature_004/GeneralSkeleton/Sword"]

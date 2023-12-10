@@ -6,7 +6,7 @@
 radius = 0.3
 height = 1.8
 
-[node name="EntityHitbox" type="Area3D"]
+[node name="HitboxComponent" type="Area3D"]
 collision_layer = 8
 collision_mask = 4
 script = ExtResource("1_4x2gt")
@@ -14,5 +14,5 @@ script = ExtResource("1_4x2gt")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_hdxcr")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
