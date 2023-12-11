@@ -115,7 +115,7 @@ func _receive_can_damage(can_damage: bool) -> void:
 		_weapon.can_damage = can_damage
 
 
-func _on_hitbox_component_weapon_hit(weapon):
+func _on_hitbox_component_weapon_hit(_w: Sword):
 	if attacking:
 		_attack_interrupted = true
 	can_move.emit(true)

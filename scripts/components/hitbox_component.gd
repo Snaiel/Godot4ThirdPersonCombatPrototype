@@ -21,6 +21,9 @@ func _process(_delta: float) -> void:
 		if not weapon.can_damage:
 			continue
 			
+		if weapon.get_entity() == entity:
+			continue
+			
 		weapon_hit.emit(weapon)
 		_weapons_in_hitbox.erase(weapon)
 		_process_hit_reaction()

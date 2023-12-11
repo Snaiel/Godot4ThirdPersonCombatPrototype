@@ -41,8 +41,8 @@ func _ready() -> void:
 	add_child(_holding_down_run_timer)
 	
 	hitbox_component.weapon_hit.connect(
-		func(_x):
-			print('bruh')
+		func(x: Sword):
+			prints('bruh', x, x.get_entity())
 	)
 
 

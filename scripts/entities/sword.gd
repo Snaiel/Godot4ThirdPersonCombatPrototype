@@ -19,3 +19,6 @@ func get_damage() -> float:
 func get_knockback() -> float:
 	return _knockback
 	
+
+func _on_enemy_death(_enemy: Enemy):
+	can_damage = false
