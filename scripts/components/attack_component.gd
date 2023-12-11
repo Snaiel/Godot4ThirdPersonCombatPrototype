@@ -113,3 +113,13 @@ func _receive_can_damage(can_damage: bool) -> void:
 	_can_stop_attack = false
 	if not _attack_interrupted:
 		_weapon.can_damage = can_damage
+
+
+func _on_hitbox_component_weapon_hit(weapon):
+	if attacking:
+		_attack_interrupted = true
+	can_move.emit(true)
+	attacking = false
+	attack_level = 1
+	_can_attack_again = false
+	_attack_animations.stop_attacking()

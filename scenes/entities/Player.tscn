@@ -178,12 +178,13 @@ script = ExtResource("3_nq7ea")
 _attack_animations = NodePath("../CharacterModel/AttackAnimations")
 _movement_component = NodePath("../MovementComponent")
 _weapon = NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Sword")
-_can_attack = null
 
 [node name="FadeComponent" type="Node3D" parent="." node_paths=PackedStringArray("meshes", "entity")]
 script = ExtResource("11_kcojp")
 meshes = [NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Alpha_Joints"), NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Alpha_Surface"), NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Sword/Mesh")]
 entity = NodePath("..")
+
+[connection signal="weapon_hit" from="HitboxComponent" to="AttackComponent" method="_on_hitbox_component_weapon_hit"]
 
 [editable path="CharacterModel"]
 [editable path="CharacterModel/Armature_004/GeneralSkeleton/Sword"]

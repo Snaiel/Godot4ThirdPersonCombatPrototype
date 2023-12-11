@@ -177,7 +177,6 @@ script = ExtResource("11_cpcwt")
 _attack_animations = NodePath("../CharacterModel/AttackAnimations")
 _movement_component = NodePath("../MovementComponent")
 _weapon = NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Sword")
-_can_attack = null
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard")]
 script = ExtResource("7_6a3a7")
