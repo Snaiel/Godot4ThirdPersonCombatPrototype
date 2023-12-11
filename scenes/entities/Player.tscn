@@ -50,69 +50,6 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1,
 
 [node name="GeneralSkeleton" parent="CharacterModel/Armature_004" index="0"]
 bones/0/position = Vector3(0.00356102, -2.89525e-10, -0.00242871)
-bones/1/position = Vector3(6.94653e-07, 0.98996, -9.63814e-08)
-bones/1/rotation = Quaternion(-0.0331964, -0.0455591, -0.0257957, 0.998077)
-bones/2/rotation = Quaternion(0.0322985, 0.0160932, 0.0237715, 0.999066)
-bones/3/rotation = Quaternion(0.0102069, 0.00393461, 0.0139886, 0.999842)
-bones/4/rotation = Quaternion(0.0102343, 0.00432976, 0.0140976, 0.999839)
-bones/5/rotation = Quaternion(0.0501635, -0.00206471, 0.00307456, 0.998734)
-bones/6/rotation = Quaternion(-0.0741484, 0.00697445, -0.00126217, 0.997222)
-bones/8/rotation = Quaternion(0.458115, 0.498688, 0.634018, -0.373447)
-bones/9/rotation = Quaternion(0.125763, 0.804868, -0.566971, -0.122131)
-bones/10/rotation = Quaternion(0.00936341, -0.707045, 0.0093635, 0.707045)
-bones/11/rotation = Quaternion(0.0523431, 0.475715, -0.0130624, 0.877944)
-bones/12/rotation = Quaternion(-0.0420418, -0.00498506, -0.0190783, 0.998921)
-bones/13/rotation = Quaternion(-0.152845, 0.81215, -0.0148129, 0.562878)
-bones/14/rotation = Quaternion(0.0400131, -0.052876, -0.128588, 0.989479)
-bones/15/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 2.98023e-08, 1)
-bones/16/rotation = Quaternion(0.0662167, 0.000733167, 0.00843111, 0.997769)
-bones/17/rotation = Quaternion(0.150998, -5.96046e-08, -0.0154737, 0.988413)
-bones/18/rotation = Quaternion(0.0700819, -1.19209e-07, -0.0071817, 0.997515)
-bones/19/rotation = Quaternion(-2.98023e-08, -5.96046e-08, -2.98023e-08, 1)
-bones/20/rotation = Quaternion(0.136531, -0.00383598, -0.0229523, 0.990362)
-bones/21/rotation = Quaternion(0.151255, -8.9407e-08, -0.0155001, 0.988373)
-bones/22/rotation = Quaternion(0.159933, -5.96046e-08, -0.0163893, 0.986992)
-bones/23/rotation = Quaternion(-1.49012e-08, 1.49012e-08, 1.49012e-08, 1)
-bones/24/rotation = Quaternion(0.183251, -0.0046532, -0.0314551, 0.982552)
-bones/25/rotation = Quaternion(0.181388, -5.96047e-08, -0.0185879, 0.983236)
-bones/26/rotation = Quaternion(0.155213, -1.19209e-07, -0.0159056, 0.987753)
-bones/27/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
-bones/28/rotation = Quaternion(0.233867, -0.00350565, -0.0490086, 0.971026)
-bones/29/rotation = Quaternion(0.151258, -7.45058e-08, -0.0155004, 0.988373)
-bones/30/rotation = Quaternion(0.143498, -1.3411e-07, -0.0147051, 0.989541)
-bones/31/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
-bones/32/rotation = Quaternion(0.474942, -0.479268, -0.638409, -0.370359)
-bones/33/rotation = Quaternion(-0.147738, 0.828167, -0.495919, 0.215353)
-bones/34/rotation = Quaternion(0.0407887, 0.705929, -0.0407887, 0.705929)
-bones/35/rotation = Quaternion(0.0414616, -0.569048, 0.0357359, 0.82048)
-bones/36/rotation = Quaternion(-0.0367837, 0.014466, 0.00205664, 0.999216)
-bones/37/rotation = Quaternion(-0.121712, -0.819574, 0.0371683, 0.558662)
-bones/38/rotation = Quaternion(0.0455455, 0.0460792, 0.161693, 0.984712)
-bones/39/rotation = Quaternion(5.96046e-08, 8.9407e-08, 2.98023e-08, 1)
-bones/40/rotation = Quaternion(0.0595129, -0.00099124, -0.0109759, 0.998167)
-bones/41/rotation = Quaternion(0.151288, 5.96046e-08, 0.0123242, 0.988413)
-bones/42/rotation = Quaternion(0.0702164, -2.98023e-08, 0.00571987, 0.997515)
-bones/43/rotation = Quaternion(-4.47035e-08, 0, -4.47035e-08, 1)
-bones/44/rotation = Quaternion(0.130515, 0.00368983, 0.0189221, 0.991259)
-bones/45/rotation = Quaternion(0.151545, 1.93715e-07, 0.012345, 0.988373)
-bones/46/rotation = Quaternion(0.16024, 8.9407e-08, 0.0130534, 0.986992)
-bones/47/rotation = Quaternion(-1.49012e-08, 4.47035e-08, -4.47035e-08, 1)
-bones/48/rotation = Quaternion(0.177452, 0.00450173, 0.0264588, 0.983763)
-bones/49/rotation = Quaternion(0.181736, 2.38419e-07, 0.0148044, 0.983236)
-bones/50/rotation = Quaternion(0.155511, 2.98023e-08, 0.0126682, 0.987753)
-bones/51/rotation = Quaternion(-4.47035e-08, 0, -4.47035e-08, 1)
-bones/52/rotation = Quaternion(0.228493, 0.00340301, 0.0429806, 0.97259)
-bones/53/rotation = Quaternion(0.151548, 7.45058e-08, 0.0123454, 0.988373)
-bones/54/rotation = Quaternion(0.143773, 1.49012e-07, 0.0117119, 0.989541)
-bones/55/rotation = Quaternion(-4.47035e-08, 0, -4.47035e-08, 1)
-bones/56/rotation = Quaternion(0.137649, 0.0780548, 0.984492, -0.0757296)
-bones/57/rotation = Quaternion(-0.0381326, 0.99308, -0.110595, 0.0103197)
-bones/58/rotation = Quaternion(-0.0420595, 0.710859, -0.700314, 0.0497013)
-bones/59/rotation = Quaternion(8.23181e-10, 0.999075, 0.0429962, -1.07013e-08)
-bones/61/rotation = Quaternion(-0.0918276, -0.0130359, 0.995296, -0.0279996)
-bones/62/rotation = Quaternion(0.0341567, 0.994006, -0.0619783, -0.0833269)
-bones/63/rotation = Quaternion(0.00970679, 0.679749, -0.732831, -0.028375)
-bones/64/rotation = Quaternion(-3.14159e-07, 0.998076, 0.0620097, -1.18126e-08)
 
 [node name="Alpha_Joints" parent="CharacterModel/Armature_004/GeneralSkeleton" index="0"]
 layers = 2
@@ -123,7 +60,7 @@ layers = 2
 surface_material_override/0 = ExtResource("4_ysu0o")
 
 [node name="Sword" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity") instance=ExtResource("5_vtx6o")]
-transform = Transform3D(0.409721, 0.0271114, 0.911808, 0.0627676, -0.998027, 0.00147025, 0.910049, 0.0566295, -0.410614, -0.23898, 0.838082, -0.00246416)
+transform = Transform3D(0.396289, 0.0233159, 0.91783, 0.0690642, -0.997602, -0.00447724, 0.915524, 0.0651633, -0.396949, -0.242896, 0.842359, -0.00304471)
 _entity = NodePath("../../../..")
 
 [node name="JumpAnimations" parent="CharacterModel" index="4"]
@@ -138,14 +75,12 @@ entity = NodePath("..")
 
 [node name="MovementComponent" type="Node3D" parent="." node_paths=PackedStringArray("target_entity", "rotation_component")]
 script = ExtResource("3_pph25")
-debug = true
 target_entity = NodePath("..")
 rotation_component = NodePath("../PlayerRotationComponent")
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("entity", "character") instance=ExtResource("8_2xenc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 collision_layer = 2
-debug = true
 entity = NodePath("..")
 character = NodePath("../CharacterModel")
 
@@ -184,6 +119,7 @@ script = ExtResource("11_kcojp")
 meshes = [NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Alpha_Joints"), NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Alpha_Surface"), NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Sword/Mesh")]
 entity = NodePath("..")
 
+[connection signal="weapon_hit" from="HitboxComponent" to="MovementComponent" method="_on_hitbox_component_weapon_hit"]
 [connection signal="weapon_hit" from="HitboxComponent" to="AttackComponent" method="_on_hitbox_component_weapon_hit"]
 
 [editable path="CharacterModel"]

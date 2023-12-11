@@ -24,21 +24,40 @@ var _secondary_movement_speed: float = 0.0
 var _secondary_movement_friction: float = 0.0
 var _secondary_movement_timer: Timer
 
+var _got_hit: bool = false
+var _got_hit_timer: Timer
+var _got_hit_pause: float = 0.8
+
 
 func _ready() -> void:
 	_secondary_movement_timer = Timer.new()
 	_secondary_movement_timer.timeout.connect(_process_movement_timer)
 	add_child(_secondary_movement_timer)
+	
+	_got_hit_timer = Timer.new()
+	_got_hit_timer.wait_time = _got_hit_pause
+	_got_hit_timer.autostart = false
+	_got_hit_timer.one_shot = true
+	_got_hit_timer.timeout.connect(
+		func():
+			_got_hit = false
+			can_move = true
+	)
+	add_child(_got_hit_timer)
+
 
 func _physics_process(delta: float) -> void:
 	move_direction = rotation_component.move_direction
 	looking_direction = rotation_component.looking_direction
 	
-	if debug:
-		pass
+#	if debug:
+#		print(_got_hit)
 #		prints(get_parent().name, desired_velocity, vertical_movement)
 #		print(_secondary_movement_direction, " ", _secondary_movement_speed, " ", _secondary_movement_friction)
-
+	
+	if _got_hit:
+		can_move = false
+	
 	if can_move:
 		if move_direction.length() > 0.05:
 			var weight: float = 0.2 if target_entity.is_on_floor() else 0.1
@@ -101,3 +120,8 @@ func set_secondary_movement(secondary_speed: float, time: float, friction: float
 func _process_movement_timer() -> void:
 	_secondary_movement_speed = 0.0
 	_secondary_movement_friction = 0.0
+
+
+func _on_hitbox_component_weapon_hit(_w: Sword):
+	_got_hit = true
+	_got_hit_timer.start()
