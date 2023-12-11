@@ -268,8 +268,34 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.737, 2, -10.9117)
 transform = Transform3D(-0.722786, 0, 0.691072, 0, 1, 0, -0.691072, 0, -0.722786, 13.5218, 2, 14.0395)
 debug = true
 
+[node name="GeneralSkeleton" parent="Enemies/Enemy6/CharacterModel/Armature_004" index="0"]
+bones/1/rotation = Quaternion(-0.0319434, -0.0460476, -0.0288428, 0.998012)
+bones/2/rotation = Quaternion(0.0291198, 0.0127742, 0.0220343, 0.999251)
+bones/3/rotation = Quaternion(0.0100965, 0.0028306, 0.0135898, 0.999853)
+bones/4/rotation = Quaternion(0.00987334, 0.00302615, 0.013618, 0.999854)
+bones/5/rotation = Quaternion(0.049056, -0.000893555, 0.00395111, 0.998788)
+bones/6/rotation = Quaternion(-0.0659366, 0.0119233, -0.00149593, 0.997751)
+bones/8/rotation = Quaternion(0.457455, 0.499835, 0.632451, -0.375375)
+bones/9/rotation = Quaternion(0.123069, 0.803944, -0.567855, -0.12676)
+bones/10/rotation = Quaternion(0.00901698, -0.707049, 0.00901694, 0.707049)
+bones/11/rotation = Quaternion(0.0531773, 0.475265, -0.0152579, 0.878102)
+bones/32/rotation = Quaternion(0.476171, -0.479096, -0.634667, -0.375401)
+bones/33/rotation = Quaternion(-0.151596, 0.827236, -0.497296, 0.213062)
+bones/34/rotation = Quaternion(0.0412578, 0.705902, -0.041258, 0.705902)
+bones/35/rotation = Quaternion(0.0458193, -0.571087, 0.0374694, 0.818753)
+bones/56/rotation = Quaternion(0.134773, 0.0845074, 0.984377, -0.0754818)
+bones/57/rotation = Quaternion(-0.0382602, 0.992701, -0.113544, 0.0137497)
+bones/58/rotation = Quaternion(-0.0408457, 0.711173, -0.700171, 0.0482138)
+bones/61/rotation = Quaternion(-0.0907232, -0.00982679, 0.995417, -0.0285846)
+bones/62/rotation = Quaternion(0.0330748, 0.99437, -0.0564608, -0.0833526)
+bones/63/rotation = Quaternion(0.0095147, 0.685712, -0.727228, -0.0291443)
+bones/64/rotation = Quaternion(-3.65492e-07, 0.998003, 0.0631675, -3.81956e-08)
+
 [node name="Sword" parent="Enemies/Enemy6/CharacterModel/Armature_004/GeneralSkeleton" index="2"]
-transform = Transform3D(0.39629, 0.0233149, 0.91783, 0.0690643, -0.997602, -0.00447848, 0.915524, 0.0651641, -0.39695, -0.242897, 0.84236, -0.00304415)
+transform = Transform3D(0.396289, 0.0233159, 0.91783, 0.0690642, -0.997602, -0.00447724, 0.915524, 0.0651633, -0.396949, -0.242896, 0.842359, -0.00304471)
+
+[node name="HitAndDeathAnimations" parent="Enemies/Enemy6/CharacterModel" index="7"]
+debug = true
 
 [node name="HealthComponent" parent="Enemies/Enemy6" index="5"]
 health = 30.0

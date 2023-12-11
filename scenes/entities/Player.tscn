@@ -50,6 +50,27 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1,
 
 [node name="GeneralSkeleton" parent="CharacterModel/Armature_004" index="0"]
 bones/0/position = Vector3(0.00356102, -2.89525e-10, -0.00242871)
+bones/1/rotation = Quaternion(-0.0324342, -0.0448252, -0.0259406, 0.998131)
+bones/2/rotation = Quaternion(0.0321449, 0.0163229, 0.0236286, 0.999071)
+bones/3/rotation = Quaternion(0.0102752, 0.00394729, 0.0139386, 0.999842)
+bones/4/rotation = Quaternion(0.0103092, 0.00436058, 0.0140497, 0.999839)
+bones/5/rotation = Quaternion(0.049856, -0.00205238, 0.00321764, 0.998749)
+bones/6/rotation = Quaternion(-0.0740003, 0.00724194, -0.00145808, 0.997231)
+bones/8/rotation = Quaternion(0.458118, 0.498608, 0.634274, -0.373113)
+bones/9/rotation = Quaternion(0.125756, 0.804895, -0.566887, -0.122352)
+bones/10/rotation = Quaternion(0.0093328, -0.707045, 0.00933289, 0.707045)
+bones/11/rotation = Quaternion(0.0523847, 0.475783, -0.0124123, 0.877913)
+bones/32/rotation = Quaternion(0.474931, -0.479249, -0.638505, -0.370233)
+bones/33/rotation = Quaternion(-0.148344, 0.828107, -0.495722, 0.215622)
+bones/34/rotation = Quaternion(0.0408308, 0.705927, -0.0408308, 0.705927)
+bones/35/rotation = Quaternion(0.0416475, -0.568832, 0.0356175, 0.820626)
+bones/56/rotation = Quaternion(0.13722, 0.0792294, 0.98447, -0.0755842)
+bones/57/rotation = Quaternion(-0.0381167, 0.993078, -0.110652, 0.00997114)
+bones/58/rotation = Quaternion(-0.0420393, 0.711151, -0.700024, 0.0496445)
+bones/61/rotation = Quaternion(-0.0916509, -0.0128271, 0.99531, -0.0281734)
+bones/62/rotation = Quaternion(0.03403, 0.994039, -0.0614981, -0.0833474)
+bones/63/rotation = Quaternion(0.00914306, 0.68019, -0.732412, -0.0288196)
+bones/64/rotation = Quaternion(-3.25122e-07, 0.998072, 0.0620713, -1.49045e-08)
 
 [node name="Alpha_Joints" parent="CharacterModel/Armature_004/GeneralSkeleton" index="0"]
 layers = 2
@@ -60,7 +81,7 @@ layers = 2
 surface_material_override/0 = ExtResource("4_ysu0o")
 
 [node name="Sword" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity") instance=ExtResource("5_vtx6o")]
-transform = Transform3D(0.39629, 0.0233149, 0.91783, 0.0690643, -0.997602, -0.00447848, 0.915524, 0.0651641, -0.39695, -0.242897, 0.84236, -0.00304415)
+transform = Transform3D(0.412396, 0.0273158, 0.910595, 0.0622655, -0.998058, 0.00174027, 0.908874, 0.0559811, -0.413296, -0.238881, 0.838238, -0.00180195)
 _entity = NodePath("../../../..")
 
 [node name="JumpAnimations" parent="CharacterModel" index="4"]
