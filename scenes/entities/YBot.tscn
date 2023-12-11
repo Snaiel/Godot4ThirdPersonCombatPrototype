@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=3 uid="uid://x0oxbha36o2h"]
+[gd_scene load_steps=104 format=3 uid="uid://x0oxbha36o2h"]
 
 [ext_resource type="PackedScene" uid="uid://q3eag1ltsb0y" path="res://models/ybot.blend" id="1_ml8ck"]
 [ext_resource type="Script" path="res://scripts/animations/character_animations.gd" id="2_l62dg"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/animations/jump_animations.gd" id="6_olmu2"]
 [ext_resource type="Script" path="res://scripts/animations/attack_animations.gd" id="7_qu3gw"]
 [ext_resource type="Script" path="res://scripts/animations/block_animations.gd" id="8_hx2j7"]
+[ext_resource type="Script" path="res://scripts/animations/hit_and_death_animations.gd" id="9_qcdnc"]
 
 [sub_resource type="Animation" id="Animation_263e4"]
 resource_name = "Y Bot"
@@ -594,25 +595,29 @@ animation = &"combat_animations_1/Blocking"
 filter_enabled = true
 filters = ["%GeneralSkeleton:LeftHand", "%GeneralSkeleton:LeftIndexDistal", "%GeneralSkeleton:LeftIndexIntermediate", "%GeneralSkeleton:LeftIndexProximal", "%GeneralSkeleton:LeftLittleDistal", "%GeneralSkeleton:LeftLittleIntermediate", "%GeneralSkeleton:LeftLittleProximal", "%GeneralSkeleton:LeftLowerArm", "%GeneralSkeleton:LeftMiddleDistal", "%GeneralSkeleton:LeftMiddleIntermediate", "%GeneralSkeleton:LeftMiddleProximal", "%GeneralSkeleton:LeftRingDistal", "%GeneralSkeleton:LeftRingIntermediate", "%GeneralSkeleton:LeftRingProximal", "%GeneralSkeleton:LeftShoulder", "%GeneralSkeleton:LeftThumbDistal", "%GeneralSkeleton:LeftThumbMetacarpal", "%GeneralSkeleton:LeftThumbProximal", "%GeneralSkeleton:LeftUpperArm", "%GeneralSkeleton:mixamorig_LeftHandIndex1", "%GeneralSkeleton:mixamorig_LeftHandMiddle1", "%GeneralSkeleton:mixamorig_LeftHandPinky1", "%GeneralSkeleton:mixamorig_LeftHandRing1", "%GeneralSkeleton:mixamorig_LeftHandThumb1"]
 
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_era1v"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_jbigd"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_2xovq"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_5gs3k"]
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vsvsm"]
 animation = &"combat_animations_1/Death"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l3xmt"]
 animation = &"combat_animations_1/Death Backstab"
 
-[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_2xovq"]
-
-[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_8g4fo"]
-xfade_time = 0.3
-input_0/name = "not_dead"
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_vq7r5"]
+input_0/name = "death_1"
 input_0/auto_advance = false
 input_0/reset = true
-input_1/name = "dead"
+input_1/name = "death_2"
 input_1/auto_advance = false
 input_1/reset = true
-input_2/name = "backstab"
-input_2/auto_advance = false
-input_2/reset = true
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_3rnpj"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pia0b"]
 animation = &"movement_animations_1/Falling Idle"
@@ -623,24 +628,6 @@ animation = &"movement_animations_1/Idle Inactive"
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_vxaje"]
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_4ihs2"]
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jol07"]
-animation = &"combat_animations_1/Hit Reaction From Front"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fu77e"]
-animation = &"combat_animations_1/Hit Reaction From Front"
-
-[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_otu4m"]
-filter_enabled = true
-filters = ["%GeneralSkeleton:Chest", "%GeneralSkeleton:LeftShoulder", "%GeneralSkeleton:Neck", "%GeneralSkeleton:RightShoulder", "%GeneralSkeleton:UpperChest"]
-fadein_time = 0.1
-fadeout_time = 0.3
-
-[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_kjrf3"]
-filter_enabled = true
-filters = ["%GeneralSkeleton:Chest", "%GeneralSkeleton:Head", "%GeneralSkeleton:LeftHand", "%GeneralSkeleton:LeftIndexDistal", "%GeneralSkeleton:LeftIndexIntermediate", "%GeneralSkeleton:LeftIndexProximal", "%GeneralSkeleton:LeftLittleDistal", "%GeneralSkeleton:LeftLittleIntermediate", "%GeneralSkeleton:LeftLittleProximal", "%GeneralSkeleton:LeftLowerArm", "%GeneralSkeleton:LeftMiddleDistal", "%GeneralSkeleton:LeftMiddleIntermediate", "%GeneralSkeleton:LeftMiddleProximal", "%GeneralSkeleton:LeftRingDistal", "%GeneralSkeleton:LeftRingIntermediate", "%GeneralSkeleton:LeftRingProximal", "%GeneralSkeleton:LeftShoulder", "%GeneralSkeleton:LeftThumbDistal", "%GeneralSkeleton:LeftThumbMetacarpal", "%GeneralSkeleton:LeftThumbProximal", "%GeneralSkeleton:LeftUpperArm", "%GeneralSkeleton:Neck", "%GeneralSkeleton:RightHand", "%GeneralSkeleton:RightIndexDistal", "%GeneralSkeleton:RightIndexIntermediate", "%GeneralSkeleton:RightIndexProximal", "%GeneralSkeleton:RightLittleDistal", "%GeneralSkeleton:RightLittleIntermediate", "%GeneralSkeleton:RightLittleProximal", "%GeneralSkeleton:RightLowerArm", "%GeneralSkeleton:RightMiddleDistal", "%GeneralSkeleton:RightMiddleIntermediate", "%GeneralSkeleton:RightMiddleProximal", "%GeneralSkeleton:RightRingDistal", "%GeneralSkeleton:RightRingIntermediate", "%GeneralSkeleton:RightRingProximal", "%GeneralSkeleton:RightShoulder", "%GeneralSkeleton:RightThumbDistal", "%GeneralSkeleton:RightThumbMetacarpal", "%GeneralSkeleton:RightThumbProximal", "%GeneralSkeleton:RightUpperArm", "%GeneralSkeleton:Spine", "%GeneralSkeleton:UpperChest", "%GeneralSkeleton:mixamorig_LeftHandIndex1", "%GeneralSkeleton:mixamorig_LeftHandMiddle1", "%GeneralSkeleton:mixamorig_LeftHandPinky1", "%GeneralSkeleton:mixamorig_LeftHandRing1", "%GeneralSkeleton:mixamorig_LeftHandThumb1", "%GeneralSkeleton:mixamorig_RightHandIndex1", "%GeneralSkeleton:mixamorig_RightHandMiddle1", "%GeneralSkeleton:mixamorig_RightHandPinky1", "%GeneralSkeleton:mixamorig_RightHandRing1", "%GeneralSkeleton:mixamorig_RightHandThumb1"]
-fadein_time = 0.1
-fadeout_time = 0.3
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wpde5"]
 animation = &"movement_animations_1/Jump"
@@ -803,7 +790,7 @@ input_1/auto_advance = false
 input_1/reset = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_pvyc3"]
-graph_offset = Vector2(2965.25, 771.135)
+graph_offset = Vector2(1860.96, 639.066)
 nodes/Attack/node = SubResource("AnimationNodeTransition_gr1qy")
 nodes/Attack/position = Vector2(860, 1120)
 "nodes/Attack Forward Thrust/node" = SubResource("AnimationNodeBlendTree_ws83a")
@@ -826,14 +813,22 @@ nodes/Blocking/position = Vector2(2040, 680)
 "nodes/Blocking Speed/position" = Vector2(1860, 920)
 "nodes/Blocking Trim/node" = SubResource("AnimationNodeTimeSeek_qy2by")
 "nodes/Blocking Trim/position" = Vector2(1700, 1040)
-nodes/Death/node = SubResource("AnimationNodeTransition_8g4fo")
-nodes/Death/position = Vector2(4140, 960)
+nodes/Death/node = SubResource("AnimationNodeBlend2_3rnpj")
+nodes/Death/position = Vector2(3400, 740)
+"nodes/Death 1 Speed/node" = SubResource("AnimationNodeTimeScale_era1v")
+"nodes/Death 1 Speed/position" = Vector2(2860, 880)
+"nodes/Death 1 Trim/node" = SubResource("AnimationNodeTimeSeek_jbigd")
+"nodes/Death 1 Trim/position" = Vector2(2640, 880)
+"nodes/Death 2 Speed/node" = SubResource("AnimationNodeTimeScale_2xovq")
+"nodes/Death 2 Speed/position" = Vector2(2860, 1060)
+"nodes/Death 2 Trim/node" = SubResource("AnimationNodeTimeSeek_5gs3k")
+"nodes/Death 2 Trim/position" = Vector2(2640, 1060)
 "nodes/Death Animation/node" = SubResource("AnimationNodeAnimation_vsvsm")
-"nodes/Death Animation/position" = Vector2(3700, 1220)
+"nodes/Death Animation/position" = Vector2(2300, 880)
 "nodes/Death Backstab Animation/node" = SubResource("AnimationNodeAnimation_l3xmt")
-"nodes/Death Backstab Animation/position" = Vector2(3440, 1380)
-"nodes/Death Backstab Speed/node" = SubResource("AnimationNodeTimeScale_2xovq")
-"nodes/Death Backstab Speed/position" = Vector2(3820, 1380)
+"nodes/Death Backstab Animation/position" = Vector2(2240, 1060)
+"nodes/Death Which One/node" = SubResource("AnimationNodeTransition_vq7r5")
+"nodes/Death Which One/position" = Vector2(3160, 960)
 "nodes/Fall Animation/node" = SubResource("AnimationNodeAnimation_pia0b")
 "nodes/Fall Animation/position" = Vector2(-300, 760)
 "nodes/Free Idle/node" = SubResource("AnimationNodeAnimation_met48")
@@ -842,14 +837,6 @@ nodes/Death/position = Vector2(4140, 960)
 "nodes/Free Movement/position" = Vector2(-1741.12, 334.673)
 "nodes/Free Walk Speed/node" = SubResource("AnimationNodeTimeScale_4ihs2")
 "nodes/Free Walk Speed/position" = Vector2(-1980, 500)
-"nodes/Hit Reaction 1/node" = SubResource("AnimationNodeAnimation_fu77e")
-"nodes/Hit Reaction 1/position" = Vector2(2340, 1120)
-"nodes/Hit Reaction 1 Copy/node" = SubResource("AnimationNodeAnimation_jol07")
-"nodes/Hit Reaction 1 Copy/position" = Vector2(2920, 1220)
-"nodes/Hit Reaction Moving/node" = SubResource("AnimationNodeOneShot_otu4m")
-"nodes/Hit Reaction Moving/position" = Vector2(2780, 960)
-"nodes/Hit Reaction Not Moving/node" = SubResource("AnimationNodeOneShot_kjrf3")
-"nodes/Hit Reaction Not Moving/position" = Vector2(3360, 940)
 "nodes/Jump 1/node" = SubResource("AnimationNodeBlendTree_qb1it")
 "nodes/Jump 1/position" = Vector2(-440, 440)
 "nodes/Jump 2/node" = SubResource("AnimationNodeBlendTree_6g7ih")
@@ -880,8 +867,8 @@ nodes/Movement/position = Vector2(-640, 180)
 "nodes/Walk Forward/position" = Vector2(-2440, 480)
 "nodes/Walking Lock On/node" = SubResource("AnimationNodeTransition_0mwvr")
 "nodes/Walking Lock On/position" = Vector2(-1223.12, 6.67313)
-nodes/output/position = Vector2(4520, 840)
-node_connections = [&"output", 0, &"Death", &"Attack", 0, &"Attack Inward Slash", &"Attack", 1, &"Attack Inward Slash Copy", &"Attack", 2, &"Attack Outward Slash", &"Attack", 3, &"Attack Forward Thrust", &"Attack", 4, &"Attack Quick Slash", &"Attacking", 0, &"Vertical Movement", &"Attacking", 1, &"Attack", &"Blocking", 0, &"Attacking", &"Blocking", 1, &"Blocking Speed", &"Blocking Speed", 0, &"Blocking Trim", &"Blocking Trim", 0, &"Blocking Animation", &"Death", 0, &"Hit Reaction Not Moving", &"Death", 1, &"Death Animation", &"Death", 2, &"Death Backstab Speed", &"Death Backstab Speed", 0, &"Death Backstab Animation", &"Free Movement", 0, &"Free Idle", &"Free Movement", 1, &"Free Walk Speed", &"Free Walk Speed", 0, &"Walk Forward", &"Hit Reaction Moving", 0, &"Blocking", &"Hit Reaction Moving", 1, &"Hit Reaction 1", &"Hit Reaction Not Moving", 0, &"Hit Reaction Moving", &"Hit Reaction Not Moving", 1, &"Hit Reaction 1 Copy", &"Jump Handler", 0, &"Jump 1", &"Jump Handler", 1, &"Jump 2", &"Jump and Fall Blend", 0, &"Jump Handler", &"Jump and Fall Blend", 1, &"Fall Animation", &"Lock On Movement", 0, &"Lock On Idle", &"Lock On Movement", 1, &"Lock On Walk Speed", &"Lock On Walk Speed", 0, &"Lock On Walk", &"Movement", 0, &"Walking Lock On", &"Movement", 1, &"Running Lock On", &"Running Lock On", 0, &"Running Lock On Look Direction", &"Running Lock On", 1, &"Run Forwards", &"Vertical Movement", 0, &"Movement", &"Vertical Movement", 1, &"Jump and Fall Blend", &"Walking Lock On", 0, &"Lock On Movement", &"Walking Lock On", 1, &"Free Movement"]
+nodes/output/position = Vector2(4140, 660)
+node_connections = [&"output", 0, &"Death", &"Attack", 0, &"Attack Inward Slash", &"Attack", 1, &"Attack Inward Slash Copy", &"Attack", 2, &"Attack Outward Slash", &"Attack", 3, &"Attack Forward Thrust", &"Attack", 4, &"Attack Quick Slash", &"Attacking", 0, &"Vertical Movement", &"Attacking", 1, &"Attack", &"Blocking", 0, &"Attacking", &"Blocking", 1, &"Blocking Speed", &"Blocking Speed", 0, &"Blocking Trim", &"Blocking Trim", 0, &"Blocking Animation", &"Death", 0, &"Blocking", &"Death", 1, &"Death Which One", &"Death 1 Speed", 0, &"Death 1 Trim", &"Death 1 Trim", 0, &"Death Animation", &"Death 2 Speed", 0, &"Death 2 Trim", &"Death 2 Trim", 0, &"Death Backstab Animation", &"Death Which One", 0, &"Death 1 Speed", &"Death Which One", 1, &"Death 2 Speed", &"Free Movement", 0, &"Free Idle", &"Free Movement", 1, &"Free Walk Speed", &"Free Walk Speed", 0, &"Walk Forward", &"Jump Handler", 0, &"Jump 1", &"Jump Handler", 1, &"Jump 2", &"Jump and Fall Blend", 0, &"Jump Handler", &"Jump and Fall Blend", 1, &"Fall Animation", &"Lock On Movement", 0, &"Lock On Idle", &"Lock On Movement", 1, &"Lock On Walk Speed", &"Lock On Walk Speed", 0, &"Lock On Walk", &"Movement", 0, &"Walking Lock On", &"Movement", 1, &"Running Lock On", &"Running Lock On", 0, &"Running Lock On Look Direction", &"Running Lock On", 1, &"Run Forwards", &"Vertical Movement", 0, &"Movement", &"Vertical Movement", 1, &"Jump and Fall Blend", &"Walking Lock On", 0, &"Lock On Movement", &"Walking Lock On", 1, &"Free Movement"]
 
 [node name="YBot" instance=ExtResource("1_ml8ck")]
 script = ExtResource("2_l62dg")
@@ -999,18 +986,16 @@ parameters/Attacking/blend_amount = 0.0
 parameters/Blocking/blend_amount = 0.0
 "parameters/Blocking Speed/scale" = 0.0
 "parameters/Blocking Trim/seek_request" = -1.0
-parameters/Death/current_state = "not_dead"
-parameters/Death/transition_request = ""
-parameters/Death/current_index = 0
-"parameters/Death Backstab Speed/scale" = 2.0
+parameters/Death/blend_amount = 0
+"parameters/Death 1 Speed/scale" = 1.0
+"parameters/Death 1 Trim/seek_request" = -1.0
+"parameters/Death 2 Speed/scale" = 2.0
+"parameters/Death 2 Trim/seek_request" = -1.0
+"parameters/Death Which One/current_state" = "death_2"
+"parameters/Death Which One/transition_request" = ""
+"parameters/Death Which One/current_index" = 1
 "parameters/Free Movement/blend_amount" = 0
 "parameters/Free Walk Speed/scale" = 1.0
-"parameters/Hit Reaction Moving/active" = false
-"parameters/Hit Reaction Moving/internal_active" = false
-"parameters/Hit Reaction Moving/request" = 0
-"parameters/Hit Reaction Not Moving/active" = false
-"parameters/Hit Reaction Not Moving/internal_active" = false
-"parameters/Hit Reaction Not Moving/request" = 0
 "parameters/Jump 1/Jump Speed/scale" = 1.0
 "parameters/Jump 1/Jump Trim/seek_request" = -1.0
 "parameters/Jump 2/Jump Speed/scale" = 1.0
@@ -1049,5 +1034,10 @@ anim_tree = NodePath("../AnimationTree")
 
 [node name="BlockAnimations" type="Node3D" parent="." index="6" node_paths=PackedStringArray("parent_animations", "anim_tree")]
 script = ExtResource("8_hx2j7")
+parent_animations = NodePath("..")
+anim_tree = NodePath("../AnimationTree")
+
+[node name="HitAndDeathAnimations" type="Node3D" parent="." index="7" node_paths=PackedStringArray("parent_animations", "anim_tree")]
+script = ExtResource("9_qcdnc")
 parent_animations = NodePath("..")
 anim_tree = NodePath("../AnimationTree")

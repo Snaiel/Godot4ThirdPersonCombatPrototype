@@ -26,14 +26,14 @@ func _process(_delta: float) -> void:
 			
 		weapon_hit.emit(weapon)
 		_weapons_in_hitbox.erase(weapon)
-		_process_hit_reaction()
+#		_process_hit_reaction()
 
 
-func _process_hit_reaction() -> void:
-	if entity.velocity.length() > 0.05:
-		character.anim_tree["parameters/Hit Reaction Moving/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
-	else:
-		character.anim_tree["parameters/Hit Reaction Not Moving/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+#func _process_hit_reaction() -> void:
+#	if entity.velocity.length() > 0.05:
+#		character.anim_tree["parameters/Hit Reaction Moving/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+#	else:
+#		character.anim_tree["parameters/Hit Reaction Not Moving/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 
 
 func _on_area_entered(area: Area3D) -> void:

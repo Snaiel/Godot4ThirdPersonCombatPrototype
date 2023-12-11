@@ -59,12 +59,33 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1,
 
 [node name="GeneralSkeleton" parent="CharacterModel/Armature_004" index="0"]
 bones/0/position = Vector3(0.00356102, -2.89525e-10, -0.00242871)
+bones/1/rotation = Quaternion(-0.0351588, -0.0457249, -0.0262906, 0.997989)
+bones/2/rotation = Quaternion(0.0368152, 0.016282, 0.0254698, 0.998865)
+bones/3/rotation = Quaternion(0.0120471, 0.00408513, 0.014638, 0.999812)
+bones/4/rotation = Quaternion(0.0118442, 0.00428854, 0.0146541, 0.999813)
+bones/5/rotation = Quaternion(0.0535497, -0.00215741, 0.00401305, 0.998555)
+bones/6/rotation = Quaternion(-0.0753688, 0.00731933, 0.000661635, 0.997129)
+bones/8/rotation = Quaternion(0.455452, 0.500983, 0.635477, -0.371145)
+bones/9/rotation = Quaternion(0.129691, 0.804173, -0.566948, -0.122702)
+bones/10/rotation = Quaternion(0.00978349, -0.707039, 0.00978357, 0.707039)
+bones/11/rotation = Quaternion(0.0524772, 0.470645, -0.00669668, 0.880735)
+bones/32/rotation = Quaternion(0.473133, -0.481279, -0.638247, -0.370347)
+bones/33/rotation = Quaternion(-0.146322, 0.828573, -0.497399, 0.211308)
+bones/34/rotation = Quaternion(0.0412558, 0.705902, -0.0412559, 0.705902)
+bones/35/rotation = Quaternion(0.0418959, -0.570461, 0.0347198, 0.81952)
+bones/56/rotation = Quaternion(0.138505, 0.0782539, 0.984321, -0.0761858)
+bones/57/rotation = Quaternion(-0.0387958, 0.992765, -0.113283, 0.00887948)
+bones/58/rotation = Quaternion(-0.0420978, 0.710129, -0.70104, 0.0498738)
+bones/61/rotation = Quaternion(-0.0923469, -0.0109369, 0.995276, -0.0278949)
+bones/62/rotation = Quaternion(0.0345501, 0.993645, -0.067652, -0.0830551)
+bones/63/rotation = Quaternion(0.010201, 0.678415, -0.734071, -0.0280895)
+bones/64/rotation = Quaternion(-1.87342e-07, 0.998033, 0.062698, -1.46662e-08)
 
 [node name="Alpha_Surface" parent="CharacterModel/Armature_004/GeneralSkeleton" index="1"]
 surface_material_override/0 = SubResource("ShaderMaterial_i1ddg")
 
 [node name="Sword" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity") instance=ExtResource("4_r63io")]
-transform = Transform3D(0.396289, 0.0233159, 0.91783, 0.0690642, -0.997602, -0.00447724, 0.915524, 0.0651633, -0.396949, -0.242896, 0.842359, -0.00304471)
+transform = Transform3D(0.408676, 0.032963, 0.912084, 0.0603158, -0.998138, 0.00904716, 0.910684, 0.0513157, -0.409903, -0.237487, 0.836879, -0.00460214)
 _entity = NodePath("../../../..")
 
 [node name="Area" parent="CharacterModel/Armature_004/GeneralSkeleton/Sword" index="1"]

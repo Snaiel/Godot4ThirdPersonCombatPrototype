@@ -118,6 +118,6 @@ func _on_health_component_zero_health() -> void:
 	collision_mask = 1
 	
 	if Globals.backstab_system.backstab_victim == _backstab_component:
-		_character.anim_tree["parameters/Death/transition_request"] = "backstab"
+		_character.hit_and_death_animatinos.death_2()
 	else:
-		_character.anim_tree["parameters/Death/transition_request"] = "dead"
+		_character.hit_and_death_animatinos.death_1()
