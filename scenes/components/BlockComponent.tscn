@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b616qwvblkmpo"]
+
+[ext_resource type="Script" path="res://scripts/components/block_component.gd" id="1_gfkgn"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_h1652"]
+radius = 0.45
+
+[node name="BlockComponent" type="Node3D" node_paths=PackedStringArray("movement_component", "block_animations", "attack_animations")]
+script = ExtResource("1_gfkgn")
+movement_component = NodePath("")
+block_animations = NodePath("")
+attack_animations = NodePath("")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transparency = 0.7
+cast_shadow = 0
+mesh = SubResource("CapsuleMesh_h1652")

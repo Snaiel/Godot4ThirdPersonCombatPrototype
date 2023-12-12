@@ -292,7 +292,7 @@ bones/63/rotation = Quaternion(0.0095147, 0.685712, -0.727228, -0.0291443)
 bones/64/rotation = Quaternion(-3.65492e-07, 0.998003, 0.0631675, -3.81956e-08)
 
 [node name="Sword" parent="Enemies/Enemy6/CharacterModel/Armature_004/GeneralSkeleton" index="2"]
-transform = Transform3D(0.396289, 0.0233159, 0.91783, 0.0690642, -0.997602, -0.00447724, 0.915524, 0.0651633, -0.396949, -0.242896, 0.842359, -0.00304471)
+transform = Transform3D(0.39629, 0.0233149, 0.91783, 0.0690643, -0.997602, -0.00447848, 0.915524, 0.0651641, -0.39695, -0.242884, 0.700267, -0.00304414)
 
 [node name="HitAndDeathAnimations" parent="Enemies/Enemy6/CharacterModel" index="7"]
 debug = true
