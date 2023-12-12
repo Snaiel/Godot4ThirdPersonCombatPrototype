@@ -2,11 +2,15 @@ class_name HitAndDeathAnimations
 extends BaseAnimations
 
 
+signal hit_finished()
+
 var _death: bool = false
 var _blend_death: bool = false
 
 var _hit_timer: Timer
 var _hit_wait_time: float = 0.3
+
+var _can_emit_hit_finished: bool = false
 
 
 func _ready():
@@ -37,12 +41,20 @@ func _physics_process(_delta) -> void:
 			0.0,
 			0.05
 		)
+	
+	if _can_emit_hit_finished and \
+		float(anim_tree["parameters/Death/blend_amount"]) < 0.1:
+		
+		_can_emit_hit_finished = false
+		hit_finished.emit()
 
 
 func hit() -> void:
 	if _death:
 		return
-		
+	
+	_can_emit_hit_finished = true
+	
 	anim_tree["parameters/Death 2 Trim/seek_request"] = 0.4
 	anim_tree["parameters/Death Which One/transition_request"] = "death_2"
 	_blend_death = true

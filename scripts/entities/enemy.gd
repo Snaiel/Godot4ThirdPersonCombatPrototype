@@ -45,6 +45,11 @@ func _ready() -> void:
 #				prints(_agent.target_position, target.global_position)
 	)
 	
+	_character.hit_and_death_animatinos.hit_finished.connect(
+		func():
+			_blackboard.set_value("got_hit", false)
+	)
+	
 	_blackboard.set_value("can_attack", true)	
 	
 	_blackboard.set_value("dead", false)
