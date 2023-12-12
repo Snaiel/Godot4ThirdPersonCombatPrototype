@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://cv8knl5vavfyy"]
+[gd_scene load_steps=40 format=3 uid="uid://cv8knl5vavfyy"]
 
 [ext_resource type="Script" path="res://scripts/entities/enemy.gd" id="1_nrck3"]
 [ext_resource type="PackedScene" uid="uid://x0oxbha36o2h" path="res://scenes/entities/YBot.tscn" id="2_0tr8h"]
@@ -33,6 +33,7 @@
 [ext_resource type="PackedScene" uid="uid://buwmvh65dccg5" path="res://scenes/beehave/compare_actions/IsStateAggro.tscn" id="23_augt0"]
 [ext_resource type="PackedScene" uid="uid://chv25a2oggqaw" path="res://scenes/beehave/wait/WaitBlock.tscn" id="24_ac52a"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/decorators/succeeder.gd" id="24_maunq"]
+[ext_resource type="Script" path="res://scripts/beehave/execute_expression.gd" id="26_7nn3v"]
 [ext_resource type="PackedScene" uid="uid://nc8fs0at3l7x" path="res://scenes/beehave/set_actions/SetLockedOnFalse.tscn" id="26_l0o05"]
 [ext_resource type="PackedScene" uid="uid://t7wqbcml070v" path="res://scenes/beehave/set_actions/SetLookedAroundFalse.tscn" id="27_2m2v4"]
 [ext_resource type="PackedScene" uid="uid://cw3sck872787g" path="res://scenes/beehave/set_actions/SetGotHitFalse.tscn" id="28_mcqya"]
@@ -199,6 +200,10 @@ script = ExtResource("12_qw7d2")
 left_operand = "get_value(\"got_hit\", false)"
 right_operand = "true"
 
+[node name="Print" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/AlwaysSucceed/WaitIfGotHit"]
+script = ExtResource("26_7nn3v")
+expression_string = "prints(\"wait!\")"
+
 [node name="WaitBlock" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/AlwaysSucceed/WaitIfGotHit" instance=ExtResource("24_ac52a")]
 wait_id = 19094146
 wait_time = 0.5
@@ -207,6 +212,10 @@ wait_time = 0.5
 script = ExtResource("18_k7e7h")
 key = "\"attack\""
 value = "true"
+
+[node name="Print" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack"]
+script = ExtResource("26_7nn3v")
+expression_string = "prints(\"attack! got_hit:\", get_value(\"got_hit\"))"
 
 [node name="ActAggro" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget" instance=ExtResource("19_3laeb")]
 
