@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cv8knl5vavfyy"]
+[gd_scene load_steps=39 format=3 uid="uid://cv8knl5vavfyy"]
 
 [ext_resource type="Script" path="res://scripts/entities/enemy.gd" id="1_nrck3"]
 [ext_resource type="PackedScene" uid="uid://x0oxbha36o2h" path="res://scenes/entities/YBot.tscn" id="2_0tr8h"]
@@ -31,6 +31,8 @@
 [ext_resource type="PackedScene" uid="uid://b2vrwljrc7cpp" path="res://scenes/beehave/set_actions/SetLockedOnTrue.tscn" id="21_dq1l1"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_random.gd" id="23_4n8cs"]
 [ext_resource type="PackedScene" uid="uid://buwmvh65dccg5" path="res://scenes/beehave/compare_actions/IsStateAggro.tscn" id="23_augt0"]
+[ext_resource type="PackedScene" uid="uid://chv25a2oggqaw" path="res://scenes/beehave/wait/WaitBlock.tscn" id="24_ac52a"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/succeeder.gd" id="24_maunq"]
 [ext_resource type="PackedScene" uid="uid://nc8fs0at3l7x" path="res://scenes/beehave/set_actions/SetLockedOnFalse.tscn" id="26_l0o05"]
 [ext_resource type="PackedScene" uid="uid://t7wqbcml070v" path="res://scenes/beehave/set_actions/SetLookedAroundFalse.tscn" id="27_2m2v4"]
 [ext_resource type="PackedScene" uid="uid://cw3sck872787g" path="res://scenes/beehave/set_actions/SetGotHitFalse.tscn" id="28_mcqya"]
@@ -85,7 +87,7 @@ bones/64/rotation = Quaternion(-2.92465e-07, 0.998083, 0.0618876, -5.69366e-09)
 surface_material_override/0 = SubResource("ShaderMaterial_i1ddg")
 
 [node name="Sword" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity") instance=ExtResource("4_r63io")]
-transform = Transform3D(0.414552, 0.0276046, 0.909607, 0.0651955, -0.997872, 0.000570352, 0.907687, 0.0590657, -0.41547, -0.238837, 0.838123, -0.000776201)
+transform = Transform3D(0.414552, 0.0276046, 0.909607, 0.0651955, -0.997872, 0.000570352, 0.907687, 0.0590657, -0.41547, -0.238825, 0.696031, -0.000776187)
 _entity = NodePath("../../../..")
 
 [node name="Area" parent="CharacterModel/Armature_004/GeneralSkeleton/Sword" index="1"]
@@ -185,6 +187,21 @@ value = "1"
 script = ExtResource("18_k7e7h")
 key = "\"attack_level\""
 value = "2"
+
+[node name="AlwaysSucceed" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack"]
+script = ExtResource("24_maunq")
+
+[node name="WaitIfGotHit" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/AlwaysSucceed"]
+script = ExtResource("9_aj65e")
+
+[node name="IsGotHitTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/AlwaysSucceed/WaitIfGotHit"]
+script = ExtResource("12_qw7d2")
+left_operand = "get_value(\"got_hit\", false)"
+right_operand = "true"
+
+[node name="WaitBlock" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/AlwaysSucceed/WaitIfGotHit" instance=ExtResource("24_ac52a")]
+wait_id = 19094146
+wait_time = 0.5
 
 [node name="SetAttackTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack"]
 script = ExtResource("18_k7e7h")
