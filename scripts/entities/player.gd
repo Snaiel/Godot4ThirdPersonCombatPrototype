@@ -39,16 +39,6 @@ func _ready() -> void:
 	_holding_down_run_timer = Timer.new()
 	_holding_down_run_timer.timeout.connect(_handle_hold_down_run_timer)
 	add_child(_holding_down_run_timer)
-	
-	hitbox_component.weapon_hit.connect(
-		func(x: Sword):
-			prints('bruh', x, x.get_entity())
-			if not block_component.blocking:
-				character.hit_and_death_animations.hit()
-				movement_component.got_hit()
-	)
-	
-	
 
 
 func _physics_process(_delta: float) -> void:
@@ -167,3 +157,14 @@ func _receive_can_rotate(flag: bool) -> void:
 
 func _handle_hold_down_run_timer():
 	_holding_down_run = true
+
+
+func _on_hitbox_component_weapon_hit(weapon: Sword):
+	prints('bruh', weapon, weapon.get_entity())
+	if not block_component.blocking:
+		character.hit_and_death_animations.hit()
+		movement_component.got_hit()
+	# knockback
+	var opponent_position: Vector3 = weapon.get_entity().global_position
+	var direction: Vector3 = global_position.direction_to(opponent_position)
+	movement_component.set_secondary_movement(weapon.get_knockback(), 5, 5, -direction)
