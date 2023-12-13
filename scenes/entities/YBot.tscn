@@ -675,13 +675,13 @@ animation = &"movement_animations_1/Idle Active"
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_1bqjp"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dotnv"]
-animation = &"movement_animations_1/Jog Backward"
+animation = &"movement_animations_1/Walk-Backwards"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sh867"]
-animation = &"movement_animations_1/Jog Backward"
+animation = &"movement_animations_1/Walk-Backwards"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_td22i"]
-animation = &"movement_animations_1/Jog Backward"
+animation = &"movement_animations_1/Walk-Backwards"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_npwrp"]
 animation = &"movement_animations_1/Walk-Forwards"
@@ -790,6 +790,7 @@ input_1/auto_advance = false
 input_1/reset = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_pvyc3"]
+graph_offset = Vector2(-776.497, 39.3269)
 nodes/Attack/node = SubResource("AnimationNodeTransition_gr1qy")
 nodes/Attack/position = Vector2(860, 1120)
 "nodes/Attack Forward Thrust/node" = SubResource("AnimationNodeBlendTree_ws83a")
