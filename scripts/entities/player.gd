@@ -164,7 +164,8 @@ func _on_hitbox_component_weapon_hit(weapon: Sword):
 	if not block_component.blocking:
 		character.hit_and_death_animations.hit()
 		movement_component.got_hit()
-	# knockback
-	var opponent_position: Vector3 = weapon.get_entity().global_position
-	var direction: Vector3 = global_position.direction_to(opponent_position)
-	movement_component.set_secondary_movement(weapon.get_knockback(), 5, 5, -direction)
+		
+		# knockback
+		var opponent_position: Vector3 = weapon.get_entity().global_position
+		var direction: Vector3 = global_position.direction_to(opponent_position)
+		movement_component.set_secondary_movement(weapon.get_knockback(), 5, 5, -direction)
