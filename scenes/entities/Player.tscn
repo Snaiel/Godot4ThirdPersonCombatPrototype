@@ -60,12 +60,8 @@ layers = 2
 surface_material_override/0 = ExtResource("4_ysu0o")
 
 [node name="Sword" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity") instance=ExtResource("5_vtx6o")]
-transform = Transform3D(8.64318e-07, -1, -8.56519e-05, 8.63812e-07, 8.56221e-05, -1, 1, 8.64302e-07, 8.93688e-07, -0.737829, 1.43565, -0.0617132)
+transform = Transform3D(0.153326, -0.23942, 0.958733, 0.648106, -0.708026, -0.280461, 0.745956, 0.664362, 0.0466111, -0.259383, 1.01472, -0.104614)
 _entity = NodePath("../../../..")
-
-[node name="AnimationTree" parent="CharacterModel" index="2"]
-"parameters/Free Jog Or Walk/blend_amount" = 0
-"parameters/Free Jog Speed/scale" = 1.0
 
 [node name="JumpAnimations" parent="CharacterModel" index="4"]
 debug = true
@@ -82,11 +78,10 @@ script = ExtResource("3_pph25")
 target_entity = NodePath("..")
 rotation_component = NodePath("../PlayerRotationComponent")
 
-[node name="HitboxComponent" parent="." node_paths=PackedStringArray("entity", "character") instance=ExtResource("8_2xenc")]
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("8_2xenc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 collision_layer = 2
 entity = NodePath("..")
-character = NodePath("../CharacterModel")
 
 [node name="JumpComponent" type="Node3D" parent="." node_paths=PackedStringArray("entity", "animations", "movement_component")]
 script = ExtResource("5_20kj8")
@@ -121,7 +116,6 @@ script = ExtResource("11_kcojp")
 meshes = [NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Alpha_Joints"), NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Alpha_Surface"), NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Sword/Mesh")]
 entity = NodePath("..")
 
-[connection signal="weapon_hit" from="HitboxComponent" to="MovementComponent" method="_on_hitbox_component_weapon_hit"]
 [connection signal="weapon_hit" from="HitboxComponent" to="AttackComponent" method="_on_hitbox_component_weapon_hit"]
 
 [editable path="CharacterModel"]

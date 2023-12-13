@@ -117,11 +117,11 @@ func set_secondary_movement(secondary_speed: float, time: float, friction: float
 	_secondary_movement_timer.start(time)
 
 
+func got_hit() -> void:
+	_got_hit = true
+	_got_hit_timer.start()
+
+
 func _process_movement_timer() -> void:
 	_secondary_movement_speed = 0.0
 	_secondary_movement_friction = 0.0
-
-
-func _on_hitbox_component_weapon_hit(_w: Sword):
-	_got_hit = true
-	_got_hit_timer.start()

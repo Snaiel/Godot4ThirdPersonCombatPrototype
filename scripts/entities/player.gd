@@ -43,7 +43,12 @@ func _ready() -> void:
 	hitbox_component.weapon_hit.connect(
 		func(x: Sword):
 			prints('bruh', x, x.get_entity())
+			if not block_component.blocking:
+				character.hit_and_death_animations.hit()
+				movement_component.got_hit()
 	)
+	
+	
 
 
 func _physics_process(_delta: float) -> void:

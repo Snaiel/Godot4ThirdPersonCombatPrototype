@@ -45,7 +45,7 @@ func _ready() -> void:
 #				prints(_agent.target_position, target.global_position)
 	)
 	
-	_character.hit_and_death_animatinos.hit_finished.connect(
+	_character.hit_and_death_animations.hit_finished.connect(
 		func():
 			_blackboard.set_value("got_hit", false)
 	)
@@ -101,11 +101,15 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
+	_movement_component.got_hit()
+	_character.hit_and_death_animations.hit()
+	_set_agent_target_to_target = true
+	_blackboard.set_value("got_hit", true)
+	
+	# knockback
 	var opponent_position: Vector3 = weapon.get_entity().global_position
 	var direction: Vector3 = global_position.direction_to(opponent_position)
 	_movement_component.set_secondary_movement(weapon.get_knockback(), 5, 5, -direction)
-	_set_agent_target_to_target = true
-	_blackboard.set_value("got_hit", true)
 
 
 func _on_health_component_zero_health() -> void:
@@ -123,6 +127,6 @@ func _on_health_component_zero_health() -> void:
 	collision_mask = 1
 	
 	if Globals.backstab_system.backstab_victim == _backstab_component:
-		_character.hit_and_death_animatinos.death_2()
+		_character.hit_and_death_animations.death_2()
 	else:
-		_character.hit_and_death_animatinos.death_1()
+		_character.hit_and_death_animations.death_1()

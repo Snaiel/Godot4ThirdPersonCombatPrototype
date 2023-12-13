@@ -6,7 +6,6 @@ signal weapon_hit(weapon: Sword)
 
 @export var debug: bool = false
 @export var entity: CharacterBody3D
-@export var character: CharacterAnimations
 
 var _weapons_in_hitbox: Array[Sword] = []
 
@@ -20,17 +19,12 @@ func _process(_delta: float) -> void:
 	for weapon in _weapons_in_hitbox:
 		if not weapon.can_damage:
 			continue
-			
+		
 		if weapon.get_entity() == entity:
 			continue
-			
+		
 		weapon_hit.emit(weapon)
 		_weapons_in_hitbox.erase(weapon)
-		_process_hit_reaction()
-
-
-func _process_hit_reaction() -> void:
-	character.hit_and_death_animatinos.hit()
 
 
 func _on_area_entered(area: Area3D) -> void:
