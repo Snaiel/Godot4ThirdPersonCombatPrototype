@@ -161,7 +161,9 @@ func _handle_hold_down_run_timer():
 
 func _on_hitbox_component_weapon_hit(weapon: Sword):
 	prints('bruh', weapon, weapon.get_entity())
-	if not block_component.blocking:
+	if block_component.blocking:
+		character.parry_animations.parry()
+	else:
 		character.hit_and_death_animations.hit()
 		movement_component.got_hit()
 		

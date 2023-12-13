@@ -13,7 +13,7 @@ var blocking: bool = false
 
 
 func _physics_process(_delta: float) -> void:
-	character.block_animations.block(blocking)
+	character.block_animations.process_block(blocking)
 	
 	if blocking:
 		if movement_component.target_entity.is_on_floor():

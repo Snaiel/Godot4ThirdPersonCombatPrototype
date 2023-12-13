@@ -9,10 +9,10 @@ func _ready() -> void:
 	_temp_speed = anim_tree["parameters/Free Walk Speed/scale"]
 
 
-func block(blocking: bool) -> void:
+func process_block(blocking: bool) -> void:
 	anim_tree["parameters/Blocking Trim/seek_request"] = 0.35
 	anim_tree["parameters/Blocking Speed/scale"] = 0.0
-
+	
 	if blocking:
 		anim_tree["parameters/Blocking/blend_amount"] = lerp(
 			float(anim_tree["parameters/Blocking/blend_amount"]), 
