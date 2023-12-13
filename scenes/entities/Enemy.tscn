@@ -83,6 +83,10 @@ _entity = NodePath("../../../..")
 [node name="Area" parent="CharacterModel/Armature_004/GeneralSkeleton/Sword" index="1"]
 collision_mask = 2
 
+[node name="AnimationTree" parent="CharacterModel" index="2"]
+"parameters/Free Jog Or Walk/blend_amount" = 0
+"parameters/Free Jog Speed/scale" = 1.0
+
 [node name="Collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 shape = SubResource("CapsuleShape3D_lwy87")

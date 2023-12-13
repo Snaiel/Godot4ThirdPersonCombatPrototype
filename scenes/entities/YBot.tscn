@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=3 uid="uid://x0oxbha36o2h"]
+[gd_scene load_steps=107 format=3 uid="uid://x0oxbha36o2h"]
 
 [ext_resource type="PackedScene" uid="uid://q3eag1ltsb0y" path="res://models/ybot.blend" id="1_ml8ck"]
 [ext_resource type="Script" path="res://scripts/animations/character_animations.gd" id="2_l62dg"]
@@ -625,9 +625,16 @@ animation = &"movement_animations_1/Falling Idle"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_met48"]
 animation = &"movement_animations_1/Idle Inactive"
 
-[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_vxaje"]
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_2veyp"]
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_4ihs2"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_vxaje"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_uqlxb"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s6br3"]
+animation = &"movement_animations_1/Jog Forward"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wpde5"]
 animation = &"movement_animations_1/Jump"
@@ -777,8 +784,8 @@ input_1/reset = true
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_ox7cf"]
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s6br3"]
-animation = &"movement_animations_1/Jog Forward"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g8521"]
+animation = &"movement_animations_1/Walk-Forwards"
 
 [sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_0mwvr"]
 xfade_time = 0.3
@@ -790,7 +797,7 @@ input_1/auto_advance = false
 input_1/reset = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_pvyc3"]
-graph_offset = Vector2(-776.497, 39.3269)
+graph_offset = Vector2(-2491.17, 311.697)
 nodes/Attack/node = SubResource("AnimationNodeTransition_gr1qy")
 nodes/Attack/position = Vector2(860, 1120)
 "nodes/Attack Forward Thrust/node" = SubResource("AnimationNodeBlendTree_ws83a")
@@ -832,11 +839,17 @@ nodes/Death/position = Vector2(3400, 740)
 "nodes/Fall Animation/node" = SubResource("AnimationNodeAnimation_pia0b")
 "nodes/Fall Animation/position" = Vector2(-300, 760)
 "nodes/Free Idle/node" = SubResource("AnimationNodeAnimation_met48")
-"nodes/Free Idle/position" = Vector2(-2220, 300)
+"nodes/Free Idle/position" = Vector2(-2220, 320)
+"nodes/Free Jog Or Walk/node" = SubResource("AnimationNodeBlend2_2veyp")
+"nodes/Free Jog Or Walk/position" = Vector2(-2060, 540)
+"nodes/Free Jog Speed/node" = SubResource("AnimationNodeTimeScale_4ihs2")
+"nodes/Free Jog Speed/position" = Vector2(-2320, 500)
 "nodes/Free Movement/node" = SubResource("AnimationNodeBlend2_vxaje")
-"nodes/Free Movement/position" = Vector2(-1741.12, 334.673)
-"nodes/Free Walk Speed/node" = SubResource("AnimationNodeTimeScale_4ihs2")
-"nodes/Free Walk Speed/position" = Vector2(-1980, 500)
+"nodes/Free Movement/position" = Vector2(-1740, 380)
+"nodes/Free Walk Speed/node" = SubResource("AnimationNodeTimeScale_uqlxb")
+"nodes/Free Walk Speed/position" = Vector2(-2320, 660)
+"nodes/Jog Forward/node" = SubResource("AnimationNodeAnimation_s6br3")
+"nodes/Jog Forward/position" = Vector2(-2720, 500)
 "nodes/Jump 1/node" = SubResource("AnimationNodeBlendTree_qb1it")
 "nodes/Jump 1/position" = Vector2(-440, 440)
 "nodes/Jump 2/node" = SubResource("AnimationNodeBlendTree_6g7ih")
@@ -863,12 +876,12 @@ nodes/Movement/position = Vector2(-640, 180)
 "nodes/Running Lock On Look Direction/position" = Vector2(-1380, 460)
 "nodes/Vertical Movement/node" = SubResource("AnimationNodeBlend2_ox7cf")
 "nodes/Vertical Movement/position" = Vector2(580, 360)
-"nodes/Walk Forward/node" = SubResource("AnimationNodeAnimation_s6br3")
-"nodes/Walk Forward/position" = Vector2(-2440, 480)
+"nodes/Walk Forward/node" = SubResource("AnimationNodeAnimation_g8521")
+"nodes/Walk Forward/position" = Vector2(-2740, 660)
 "nodes/Walking Lock On/node" = SubResource("AnimationNodeTransition_0mwvr")
 "nodes/Walking Lock On/position" = Vector2(-1223.12, 6.67313)
 nodes/output/position = Vector2(4140, 660)
-node_connections = [&"output", 0, &"Death", &"Attack", 0, &"Attack Inward Slash", &"Attack", 1, &"Attack Inward Slash Copy", &"Attack", 2, &"Attack Outward Slash", &"Attack", 3, &"Attack Forward Thrust", &"Attack", 4, &"Attack Quick Slash", &"Attacking", 0, &"Vertical Movement", &"Attacking", 1, &"Attack", &"Blocking", 0, &"Attacking", &"Blocking", 1, &"Blocking Speed", &"Blocking Speed", 0, &"Blocking Trim", &"Blocking Trim", 0, &"Blocking Animation", &"Death", 0, &"Blocking", &"Death", 1, &"Death Which One", &"Death 1 Speed", 0, &"Death 1 Trim", &"Death 1 Trim", 0, &"Death Animation", &"Death 2 Speed", 0, &"Death 2 Trim", &"Death 2 Trim", 0, &"Death Backstab Animation", &"Death Which One", 0, &"Death 1 Speed", &"Death Which One", 1, &"Death 2 Speed", &"Free Movement", 0, &"Free Idle", &"Free Movement", 1, &"Free Walk Speed", &"Free Walk Speed", 0, &"Walk Forward", &"Jump Handler", 0, &"Jump 1", &"Jump Handler", 1, &"Jump 2", &"Jump and Fall Blend", 0, &"Jump Handler", &"Jump and Fall Blend", 1, &"Fall Animation", &"Lock On Movement", 0, &"Lock On Idle", &"Lock On Movement", 1, &"Lock On Walk Speed", &"Lock On Walk Speed", 0, &"Lock On Walk", &"Movement", 0, &"Walking Lock On", &"Movement", 1, &"Running Lock On", &"Running Lock On", 0, &"Running Lock On Look Direction", &"Running Lock On", 1, &"Run Forwards", &"Vertical Movement", 0, &"Movement", &"Vertical Movement", 1, &"Jump and Fall Blend", &"Walking Lock On", 0, &"Lock On Movement", &"Walking Lock On", 1, &"Free Movement"]
+node_connections = [&"output", 0, &"Death", &"Attack", 0, &"Attack Inward Slash", &"Attack", 1, &"Attack Inward Slash Copy", &"Attack", 2, &"Attack Outward Slash", &"Attack", 3, &"Attack Forward Thrust", &"Attack", 4, &"Attack Quick Slash", &"Attacking", 0, &"Vertical Movement", &"Attacking", 1, &"Attack", &"Blocking", 0, &"Attacking", &"Blocking", 1, &"Blocking Speed", &"Blocking Speed", 0, &"Blocking Trim", &"Blocking Trim", 0, &"Blocking Animation", &"Death", 0, &"Blocking", &"Death", 1, &"Death Which One", &"Death 1 Speed", 0, &"Death 1 Trim", &"Death 1 Trim", 0, &"Death Animation", &"Death 2 Speed", 0, &"Death 2 Trim", &"Death 2 Trim", 0, &"Death Backstab Animation", &"Death Which One", 0, &"Death 1 Speed", &"Death Which One", 1, &"Death 2 Speed", &"Free Movement", 0, &"Free Idle", &"Free Movement", 1, &"Free Jog Or Walk", &"Jump Handler", 0, &"Jump 1", &"Jump Handler", 1, &"Jump 2", &"Jump and Fall Blend", 0, &"Jump Handler", &"Jump and Fall Blend", 1, &"Fall Animation", &"Lock On Movement", 0, &"Lock On Idle", &"Lock On Movement", 1, &"Lock On Walk Speed", &"Lock On Walk Speed", 0, &"Lock On Walk", &"Movement", 0, &"Walking Lock On", &"Movement", 1, &"Running Lock On", &"Running Lock On", 0, &"Running Lock On Look Direction", &"Running Lock On", 1, &"Run Forwards", &"Vertical Movement", 0, &"Movement", &"Vertical Movement", 1, &"Jump and Fall Blend", &"Walking Lock On", 0, &"Lock On Movement", &"Walking Lock On", 1, &"Free Movement", &"Free Jog Speed", 0, &"Jog Forward", &"Free Jog Or Walk", 0, &"Free Jog Speed", &"Free Jog Or Walk", 1, &"Free Walk Speed", &"Free Walk Speed", 0, &"Walk Forward"]
 
 [node name="YBot" instance=ExtResource("1_ml8ck")]
 script = ExtResource("2_l62dg")
@@ -993,6 +1006,8 @@ parameters/Death/blend_amount = 0.0
 "parameters/Death Which One/current_state" = "death_1"
 "parameters/Death Which One/transition_request" = ""
 "parameters/Death Which One/current_index" = 0
+"parameters/Free Jog Or Walk/blend_amount" = 0
+"parameters/Free Jog Speed/scale" = 1.0
 "parameters/Free Movement/blend_amount" = 0
 "parameters/Free Walk Speed/scale" = 1.0
 "parameters/Jump 1/Jump Speed/scale" = 1.0

@@ -63,6 +63,10 @@ surface_material_override/0 = ExtResource("4_ysu0o")
 transform = Transform3D(8.64318e-07, -1, -8.56519e-05, 8.63812e-07, 8.56221e-05, -1, 1, 8.64302e-07, 8.93688e-07, -0.737829, 1.43565, -0.0617132)
 _entity = NodePath("../../../..")
 
+[node name="AnimationTree" parent="CharacterModel" index="2"]
+"parameters/Free Jog Or Walk/blend_amount" = 0
+"parameters/Free Jog Speed/scale" = 1.0
+
 [node name="JumpAnimations" parent="CharacterModel" index="4"]
 debug = true
 
