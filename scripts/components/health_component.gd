@@ -37,8 +37,6 @@ func decrement_health(weapon: Sword) -> void:
 	if not active:
 		return
 	
-	wellbeing_ui.show_health_bar()
-	
 	if blood_scene:
 		var blood_particle: GPUParticles3D = blood_scene.instantiate()
 		add_child(blood_particle)
@@ -51,6 +49,8 @@ func decrement_health(weapon: Sword) -> void:
 		deal_max_damage = false
 	else:
 		health -= weapon.get_damage()
+	
+	wellbeing_ui.show_health_bar(health)	
 	
 	if health <= 0:
 		zero_health.emit()
