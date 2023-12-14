@@ -59,3 +59,7 @@ func parry() -> void:
 	_parry_timer.start(_parry_interval[_parry_index])
 	
 	print("parry window open!")
+
+
+func is_spamming() -> bool:
+	return not _parry_cooldown_timer.is_stopped()

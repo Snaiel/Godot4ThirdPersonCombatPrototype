@@ -171,7 +171,7 @@ func _on_hitbox_component_weapon_hit(weapon: Sword):
 		character.parry_animations.parry()
 		block_component.anim.play("parried")
 		print("PARRIED")
-	elif block_component.blocking:
+	elif block_component.blocking or parry_component.is_spamming():
 		block_component.blocked()
 	else:
 		character.hit_and_death_animations.hit()
