@@ -12,6 +12,7 @@ extends CharacterBody3D
 @export var dodge_component: DodgeComponent
 @export var rotation_component: PlayerRotationComponent
 @export var attack_component: AttackComponent
+@export var parry_component: ParryComponent
 
 var input_direction: Vector3 = Vector3.ZERO
 var last_input_on_ground: Vector3 = Vector3.ZERO
@@ -79,10 +80,15 @@ func _physics_process(_delta: float) -> void:
 	character.movement_animations.move(_animation_input_dir, lock_on_target != null, running)
 
 
-	if Input.is_action_pressed("block"):
-		if attack_component.attacking:
-			block_component.blocking = attack_component.stop_attacking()
-		else:
+	if Input.is_action_just_pressed("block"):
+		if not attack_component.attacking:
+			parry_component.parry()
+		elif attack_component.stop_attacking():
+			parry_component.parry()
+	elif Input.is_action_pressed("block"):
+		if not attack_component.attacking:
+			block_component.blocking = true
+		elif attack_component.stop_attacking():
 			block_component.blocking = true
 	elif Input.is_action_just_released("block"):
 		block_component.blocking = false
@@ -161,9 +167,9 @@ func _handle_hold_down_run_timer():
 
 func _on_hitbox_component_weapon_hit(weapon: Sword):
 #	prints('bruh', weapon, weapon.get_entity())
-	if block_component.blocking:
+	if parry_component.in_parry_window:
 		character.parry_animations.parry()
-	else:
+	elif not block_component.blocking:
 		character.hit_and_death_animations.hit()
 		movement_component.got_hit()
 		

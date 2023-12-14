@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dujukbu10vbmm"]
+[gd_scene load_steps=17 format=3 uid="uid://dujukbu10vbmm"]
 
 [ext_resource type="Script" path="res://scripts/entities/player.gd" id="1_lgfyt"]
 [ext_resource type="Shader" path="res://shaders/fade.gdshader" id="3_iqmy4"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cko2lhqdu4n44" path="res://scenes/components/HitboxComponent.tscn" id="8_2xenc"]
 [ext_resource type="PackedScene" uid="uid://b616qwvblkmpo" path="res://scenes/components/BlockComponent.tscn" id="10_hjlwj"]
 [ext_resource type="Script" path="res://scripts/components/fade_component.gd" id="11_kcojp"]
+[ext_resource type="Script" path="res://scripts/components/parry_component.gd" id="13_a73xb"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lnhvg"]
 radius = 0.3
@@ -28,7 +29,7 @@ shader_parameter/roughness = 1.0
 shader_parameter/normal_strength = 1.0
 shader_parameter/alpha_clip = 0.0
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("character", "movement_component", "hitbox_component", "jump_component", "block_component", "dodge_component", "rotation_component", "attack_component")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("character", "movement_component", "hitbox_component", "jump_component", "block_component", "dodge_component", "rotation_component", "attack_component", "parry_component")]
 collision_layer = 2
 collision_mask = 9
 script = ExtResource("1_lgfyt")
@@ -40,6 +41,7 @@ block_component = NodePath("BlockComponent")
 dodge_component = NodePath("DodgeComponent")
 rotation_component = NodePath("PlayerRotationComponent")
 attack_component = NodePath("AttackComponent")
+parry_component = NodePath("ParryComponent")
 
 [node name="Collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
@@ -110,6 +112,9 @@ script = ExtResource("3_nq7ea")
 _attack_animations = NodePath("../CharacterModel/AttackAnimations")
 _movement_component = NodePath("../MovementComponent")
 _weapon = NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Sword")
+
+[node name="ParryComponent" type="Node3D" parent="."]
+script = ExtResource("13_a73xb")
 
 [node name="FadeComponent" type="Node3D" parent="." node_paths=PackedStringArray("meshes", "entity")]
 script = ExtResource("11_kcojp")
