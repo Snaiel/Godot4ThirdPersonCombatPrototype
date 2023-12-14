@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmhhij288vtbm"]
+
+[ext_resource type="Texture2D" uid="uid://b80p5j73bgwl1" path="res://assets/square.png" id="1_igrwd"]
+
+[node name="NPCHealthBar" type="Node2D"]
+position = Vector2(555, 184)
+
+[node name="Background" type="Sprite2D" parent="."]
+self_modulate = Color(0.196078, 0.196078, 0.196078, 1)
+scale = Vector2(0.62, 0.08)
+texture = ExtResource("1_igrwd")
+
+[node name="Health" type="Sprite2D" parent="."]
+self_modulate = Color(0.662745, 0.105882, 0.105882, 1)
+position = Vector2(-29, 0)
+scale = Vector2(0.58, 0.04)
+texture = ExtResource("1_igrwd")
+offset = Vector2(50, 0)
