@@ -4,9 +4,15 @@ extends Node3D
 
 signal zero_health
 
+@export_category("Configuration")
 @export var active: bool = true
 @export var hitbox: HitboxComponent
+@export var wellbeing_ui: WellbeingComponent
+
+@export_category("Health")
 @export var health: float = 100.0
+
+@export_category("Particles")
 @export var blood_scene: PackedScene
 
 var deal_max_damage: bool = false
@@ -14,7 +20,13 @@ var deal_max_damage: bool = false
 
 # Called when the node nters the scene tree for the first time.
 func _ready() -> void:
+	if wellbeing_ui:
+		wellbeing_ui.default_health = health
 	hitbox.weapon_hit.connect(decrement_health)
+
+
+func _physics_process(delta) -> void:
+	wellbeing_ui.process_health(health)
 
 
 func is_alive() -> bool:

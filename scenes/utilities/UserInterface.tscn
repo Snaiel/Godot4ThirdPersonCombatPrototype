@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b075d85nmca7s"]
+[gd_scene load_steps=5 format=3 uid="uid://b075d85nmca7s"]
 
 [ext_resource type="Script" path="res://scripts/utilities/user_interface.gd" id="1_2nhxu"]
 [ext_resource type="Texture2D" uid="uid://dishehhur7io2" path="res://assets/white_dot.png" id="1_v2w42"]
 [ext_resource type="Texture2D" uid="uid://b1oqk2tqilbw" path="res://assets/crosshair.svg" id="3_etq2v"]
 [ext_resource type="PackedScene" uid="uid://dt6i863shdkev" path="res://scenes/utilities/NoticeTriangle.tscn" id="4_rjkcx"]
-[ext_resource type="PackedScene" uid="uid://bmhhij288vtbm" path="res://scenes/utilities/NPCHealthBar.tscn" id="5_d6cwk"]
 
 [node name="UserInterface" type="Control"]
 layout_mode = 3
@@ -41,4 +40,4 @@ text = "DebugLabel"
 
 [node name="NoticeTriangle" parent="NoticeTriangles" instance=ExtResource("4_rjkcx")]
 
-[node name="NPCHealthBar" parent="." instance=ExtResource("5_d6cwk")]
+[node name="HealthBars" type="Node2D" parent="."]

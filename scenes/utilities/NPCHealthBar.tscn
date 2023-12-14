@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://b80p5j73bgwl1" path="res://assets/square.png" id="1_igrwd"]
 
 [node name="NPCHealthBar" type="Node2D"]
-position = Vector2(555, 184)
 
 [node name="Background" type="Sprite2D" parent="."]
 self_modulate = Color(0.196078, 0.196078, 0.196078, 1)

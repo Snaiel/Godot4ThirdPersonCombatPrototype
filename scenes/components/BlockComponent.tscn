@@ -50,7 +50,7 @@ _data = {
 script = ExtResource("1_gfkgn")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
-transparency = 1.0
+transparency = 0.700741
 cast_shadow = 0
 mesh = SubResource("CapsuleMesh_h1652")
 
