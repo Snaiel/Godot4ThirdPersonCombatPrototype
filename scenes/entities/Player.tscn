@@ -60,7 +60,7 @@ layers = 2
 surface_material_override/0 = ExtResource("4_ysu0o")
 
 [node name="Sword" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity") instance=ExtResource("5_vtx6o")]
-transform = Transform3D(0.056483, 0.213253, 0.975363, 0.996986, -0.0640845, -0.0437239, 0.0531814, 0.974893, -0.216229, -0.154843, 1.08755, 0.166541)
+transform = Transform3D(0.177487, 0.242234, 0.953845, 0.978957, -0.142643, -0.145934, 0.10071, 0.959675, -0.262454, -0.159309, 1.07653, 0.13997)
 _entity = NodePath("../../../..")
 
 [node name="JumpAnimations" parent="CharacterModel" index="4"]
