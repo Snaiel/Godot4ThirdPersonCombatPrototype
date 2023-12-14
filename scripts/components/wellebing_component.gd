@@ -13,9 +13,14 @@ var default_health: float
 var _default_health_sprite_scale_x: float
 var _health_bar_sprite: Node2D
 var _health_sprite: Sprite2D
+var _delay_sprite: Sprite2D
 
 var _show_health_bar_timer: Timer
 var _show_health_bar_interval: float = 5.0
+
+var _health_delay_timer: Timer
+var _health_delay_pause: float = 0.8
+var _play_delay: bool = false
 
 var _visible: bool = false
 
@@ -28,6 +33,7 @@ func _ready():
 	Globals.user_interface.health_bars.add_child(_health_bar_sprite)
 	_health_sprite = _health_bar_sprite.get_node("Health")
 	_default_health_sprite_scale_x = _health_sprite.scale.x
+	_delay_sprite = _health_bar_sprite.get_node("DelayBar")
 	
 	_show_health_bar_timer = Timer.new()
 	_show_health_bar_timer.wait_time = _show_health_bar_interval
@@ -39,6 +45,16 @@ func _ready():
 				_visible = false
 	)
 	add_child(_show_health_bar_timer)
+	
+	_health_delay_timer = Timer.new()
+	_health_delay_timer.wait_time = _health_delay_pause
+	_health_delay_timer.autostart = false
+	_health_delay_timer.one_shot = true
+	_health_delay_timer.timeout.connect(
+		func():
+			_play_delay = true
+	)
+	add_child(_health_delay_timer)
 
 
 func process_health(health: float) -> void:
@@ -58,8 +74,20 @@ func process_health(health: float) -> void:
 		_default_health_sprite_scale_x,
 		health / default_health
 	)
+	
+	if _play_delay:
+		_delay_sprite.scale.x = move_toward(
+			float(_delay_sprite.scale.x),
+			_health_sprite.scale.x,
+			0.005
+		)
+	
+	if is_equal_approx(_delay_sprite.scale.x, _health_sprite.scale.x):
+		_play_delay = false
 
 
 func show_health_bar() -> void:
 	_visible = true
 	_show_health_bar_timer.start()
+	if _health_delay_timer.is_stopped():
+		_health_delay_timer.start()
