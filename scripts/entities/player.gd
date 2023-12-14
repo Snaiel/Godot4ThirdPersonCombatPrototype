@@ -169,7 +169,11 @@ func _on_hitbox_component_weapon_hit(weapon: Sword):
 #	prints('bruh', weapon, weapon.get_entity())
 	if parry_component.in_parry_window:
 		character.parry_animations.parry()
-	elif not block_component.blocking:
+		block_component.anim.play("parried")
+		print("PARRIED")
+	elif block_component.blocking:
+		block_component.blocked()
+	else:
 		character.hit_and_death_animations.hit()
 		movement_component.got_hit()
 		

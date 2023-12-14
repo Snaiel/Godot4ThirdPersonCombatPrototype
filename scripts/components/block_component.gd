@@ -10,6 +10,7 @@ extends Node3D
 var blocking: bool = false
 
 @onready var _mesh: MeshInstance3D = $Mesh
+@onready var anim: AnimationPlayer = $AnimationPlayer
 
 
 func _physics_process(_delta: float) -> void:
@@ -23,10 +24,15 @@ func _physics_process(_delta: float) -> void:
 			transparency,
 			0.2
 		)
-	else:
+	elif not anim.is_playing():
 		_mesh.transparency = lerp(
 			_mesh.transparency,
 			1.0,
 			0.2
 		)
-	
+
+
+func blocked() -> void:
+	if not anim.is_playing():
+		print("BLOCKED")
+		anim.play("blocked")

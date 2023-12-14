@@ -2,6 +2,8 @@ class_name ParryComponent
 extends Node3D
 
 
+@export var block_component: BlockComponent
+
 var in_parry_window: bool = false
 var parry_interval: float = 0.2
 

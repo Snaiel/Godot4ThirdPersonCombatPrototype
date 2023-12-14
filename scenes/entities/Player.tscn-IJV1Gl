@@ -62,7 +62,7 @@ layers = 2
 surface_material_override/0 = ExtResource("4_ysu0o")
 
 [node name="Sword" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity") instance=ExtResource("5_vtx6o")]
-transform = Transform3D(0.177486, 0.242235, 0.953845, 0.978957, -0.142644, -0.145934, 0.10071, 0.959675, -0.262455, -0.159309, 1.07653, 0.13997)
+transform = Transform3D(0.177487, 0.242234, 0.953845, 0.978957, -0.142643, -0.145934, 0.10071, 0.959675, -0.262454, -0.159309, 1.07653, 0.13997)
 _entity = NodePath("../../../..")
 
 [node name="JumpAnimations" parent="CharacterModel" index="4"]
@@ -75,55 +75,4 @@ debug = true
 script = ExtResource("4_y1oi3")
 entity = NodePath("..")
 
-[node name="MovementComponent" type="Node3D" parent="." node_paths=PackedStringArray("target_entity", "rotation_component")]
-script = ExtResource("3_pph25")
-target_entity = NodePath("..")
-rotation_component = NodePath("../PlayerRotationComponent")
-
-[node name="HitboxComponent" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("8_2xenc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
-collision_layer = 2
-entity = NodePath("..")
-
-[node name="JumpComponent" type="Node3D" parent="." node_paths=PackedStringArray("entity", "animations", "movement_component")]
-script = ExtResource("5_20kj8")
-entity = NodePath("..")
-animations = NodePath("../CharacterModel")
-movement_component = NodePath("../MovementComponent")
-
-[node name="JumpRaycast" type="RayCast3D" parent="JumpComponent"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-target_position = Vector3(0, -2, 0)
-
-[node name="BlockComponent" parent="." node_paths=PackedStringArray("movement_component", "character") instance=ExtResource("10_hjlwj")]
-movement_component = NodePath("../MovementComponent")
-character = NodePath("../CharacterModel")
-
-[node name="DodgeComponent" type="Node3D" parent="." node_paths=PackedStringArray("entity", "movement_component", "jump_component")]
-script = ExtResource("6_66sk2")
-dodge_strength = 8.0
-_in_air_buffer = 0.1
-entity = NodePath("..")
-movement_component = NodePath("../MovementComponent")
-jump_component = NodePath("../JumpComponent")
-
-[node name="AttackComponent" type="Node3D" parent="." node_paths=PackedStringArray("_attack_animations", "_movement_component", "_weapon")]
-script = ExtResource("3_nq7ea")
-_attack_animations = NodePath("../CharacterModel/AttackAnimations")
-_movement_component = NodePath("../MovementComponent")
-_weapon = NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Sword")
-
-[node name="ParryComponent" type="Node3D" parent="." node_paths=PackedStringArray("block_component")]
-script = ExtResource("13_a73xb")
-block_component = NodePath("../BlockComponent")
-
-[node name="FadeComponent" type="Node3D" parent="." node_paths=PackedStringArray("meshes", "entity")]
-script = ExtResource("11_kcojp")
-meshes = [NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Alpha_Joints"), NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Alpha_Surface"), NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Sword/Mesh")]
-entity = NodePath("..")
-
-[connection signal="weapon_hit" from="HitboxComponent" to="." method="_on_hitbox_component_weapon_hit"]
-[connection signal="weapon_hit" from="HitboxComponent" to="AttackComponent" method="_on_hitbox_component_weapon_hit"]
-
-[editable path="CharacterModel"]
-[editable path="CharacterModel/Armature_004/GeneralSkeleton/Sword"]
+[no
