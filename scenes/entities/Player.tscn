@@ -95,10 +95,6 @@ movement_component = NodePath("../MovementComponent")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 target_position = Vector3(0, -2, 0)
 
-[node name="BlockComponent" parent="." node_paths=PackedStringArray("movement_component", "character") instance=ExtResource("10_hjlwj")]
-movement_component = NodePath("../MovementComponent")
-character = NodePath("../CharacterModel")
-
 [node name="DodgeComponent" type="Node3D" parent="." node_paths=PackedStringArray("entity", "movement_component", "jump_component")]
 script = ExtResource("6_66sk2")
 dodge_strength = 8.0
@@ -112,6 +108,10 @@ script = ExtResource("3_nq7ea")
 _attack_animations = NodePath("../CharacterModel/AttackAnimations")
 _movement_component = NodePath("../MovementComponent")
 _weapon = NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Sword")
+
+[node name="BlockComponent" parent="." node_paths=PackedStringArray("movement_component", "character") instance=ExtResource("10_hjlwj")]
+movement_component = NodePath("../MovementComponent")
+character = NodePath("../CharacterModel")
 
 [node name="ParryComponent" type="Node3D" parent="." node_paths=PackedStringArray("block_component")]
 script = ExtResource("13_a73xb")
