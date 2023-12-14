@@ -43,8 +43,12 @@ func _process(_delta):
 		_backstab_system.clear_backstab_victim(self)
 
 
+func being_backstabbed() -> bool:
+	return _backstab_system.backstab_victim == self
+
+
 func _on_hitbox_component_weapon_hit(_weapon):
-	if _backstab_system.backstab_victim == self:
+	if being_backstabbed():
 		health_component.deal_max_damage = true
 		entity.rotation.y = _player.rotation.y
 	

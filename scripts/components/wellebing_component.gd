@@ -4,6 +4,7 @@ extends Node3D
 
 @export_category("Configuration")
 @export var lock_on_component: LockOnComponent
+@export var backstab_component: BackstabComponent
 
 @export_category("Health Bar")
 @export var health_bar_scene: PackedScene
@@ -88,6 +89,9 @@ func process_health(health: float) -> void:
 
 
 func show_health_bar(health: float) -> void:
+	if backstab_component and backstab_component.being_backstabbed():
+		return
+	
 	_visible = true
 	
 	if health <= 0:
