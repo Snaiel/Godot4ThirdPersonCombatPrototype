@@ -2,6 +2,9 @@ class_name WellbeingComponent
 extends Node3D
 
 
+@export_category("Configuration")
+@export var lock_on_component: LockOnComponent
+
 @export_category("Health Bar")
 @export var health_bar_scene: PackedScene
 
@@ -12,6 +15,7 @@ var _health_bar_sprite: Node2D
 var _health_sprite: Sprite2D
 
 @onready var _camera: Camera3D = Globals.camera_controller.cam
+@onready var _lock_on_system: LockOnSystem = Globals.lock_on_system
 
 
 func _ready():
@@ -22,7 +26,14 @@ func _ready():
 
 
 func process_health(health: float) -> void:
-	_health_bar_sprite.visible = _camera.is_position_in_frustum(global_position)
+	var visisble: bool = true
+	
+	if _lock_on_system.target != lock_on_component:
+		visisble = false
+	if not _camera.is_position_in_frustum(global_position):
+		visisble = false
+	_health_bar_sprite.visible = visisble
+	
 	_health_bar_sprite.position = _camera.unproject_position(global_position)
 	_health_sprite.scale.x = lerp(
 		0.0, 

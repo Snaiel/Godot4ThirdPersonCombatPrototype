@@ -25,7 +25,7 @@ func _ready() -> void:
 	hitbox.weapon_hit.connect(decrement_health)
 
 
-func _physics_process(delta) -> void:
+func _physics_process(_delta) -> void:
 	wellbeing_ui.process_health(health)
 
 

@@ -182,9 +182,10 @@ _attack_animations = NodePath("../CharacterModel/AttackAnimations")
 _movement_component = NodePath("../MovementComponent")
 _weapon = NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Sword")
 
-[node name="WellbeingComponent" type="Node3D" parent="."]
+[node name="WellbeingComponent" type="Node3D" parent="." node_paths=PackedStringArray("lock_on_component")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("15_1fgoc")
+lock_on_component = NodePath("../LockOnComponent")
 health_bar_scene = ExtResource("9_bwr0v")
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard")]
