@@ -2,35 +2,37 @@ class_name HealthComponent
 extends Node3D
 
 
+signal took_damage
 signal zero_health
 
 @export_category("Configuration")
 @export var active: bool = true
 @export var hitbox: HitboxComponent
-@export var wellbeing_ui: WellbeingComponent
 
 @export_category("Health")
-@export var health: float = 100.0
+@export var max_health: float = 100.0
 
 @export_category("Particles")
 @export var blood_scene: PackedScene
 
 var deal_max_damage: bool = false
 
+var _health: float:
+	set(value):
+		_health = clamp(value, 0.0, max_health)
 
-# Called when the node nters the scene tree for the first time.
+
 func _ready() -> void:
-	if wellbeing_ui:
-		wellbeing_ui.default_health = health
 	hitbox.weapon_hit.connect(decrement_health)
+	_health = max_health
 
 
-func _physics_process(_delta) -> void:
-	wellbeing_ui.process_health(health)
+func get_health() -> float:
+	return _health
 
 
 func is_alive() -> bool:
-	return health > 0
+	return _health > 0
 
 
 func decrement_health(weapon: Sword) -> void:
@@ -45,12 +47,13 @@ func decrement_health(weapon: Sword) -> void:
 		blood_particle.restart()
 	
 	if deal_max_damage:
-		health = 0
+		_health = 0
 		deal_max_damage = false
 	else:
-		health -= weapon.get_damage()
+		_health -= weapon.get_damage()
 	
-	wellbeing_ui.show_health_bar(health)	
+	took_damage.emit()
 	
-	if health <= 0:
+	if _health <= 0:
 		zero_health.emit()
+	

@@ -1,21 +1,11 @@
-class_name WellbeingComponent
-extends Node3D
+class_name NPCHealthBar
+extends Node2D
 
-
-@export_category("Configuration")
-@export var lock_on_component: LockOnComponent
-@export var backstab_component: BackstabComponent
-
-@export_category("Health Bar")
-@export var wellbeing_widget_scene: PackedScene
 
 var default_health: float
-
-var _well_being_widget: Node2D
+var health_bar_visible: bool = false
 
 var _default_health_sprite_scale_x: float
-var _health_sprite: Sprite2D
-var _delay_sprite: Sprite2D
 
 var _show_health_bar_timer: Timer
 var _show_health_bar_interval: float = 5.0
@@ -25,18 +15,12 @@ var _health_delay_timer: Timer
 var _health_delay_pause: float = 0.8
 var _play_delay: bool = false
 
-var _visible: bool = false
-
-@onready var _camera: Camera3D = Globals.camera_controller.cam
-@onready var _lock_on_system: LockOnSystem = Globals.lock_on_system
+@onready var _health_sprite: Sprite2D = $Health
+@onready var _delay_sprite: Sprite2D = $DelayBar
 
 
 func _ready():
-	_well_being_widget = wellbeing_widget_scene.instantiate()
-	Globals.user_interface.wellbeing_widgets.add_child(_well_being_widget)
-	_health_sprite = _well_being_widget.get_node("NPCHealthBar/Health")
 	_default_health_sprite_scale_x = _health_sprite.scale.x
-	_delay_sprite = _well_being_widget.get_node("NPCHealthBar/DelayBar")
 	
 	_show_health_bar_timer = Timer.new()
 	_show_health_bar_timer.wait_time = _show_health_bar_interval
@@ -44,8 +28,7 @@ func _ready():
 	_show_health_bar_timer.one_shot = true
 	_show_health_bar_timer.timeout.connect(
 		func():
-			if _lock_on_system.target != lock_on_component:
-				_visible = false
+			health_bar_visible = false
 	)
 	add_child(_show_health_bar_timer)
 	
@@ -61,17 +44,6 @@ func _ready():
 
 
 func process_health(health: float) -> void:
-	if _lock_on_system.target == lock_on_component or \
-		not _show_health_bar_timer.is_stopped():
-		_visible = true
-	else:
-		_visible = false
-		
-	if not _camera.is_position_in_frustum(global_position):
-		_visible = false
-	_well_being_widget.visible = _visible
-	
-	_well_being_widget.position = _camera.unproject_position(global_position)
 	_health_sprite.scale.x = lerp(
 		0.0, 
 		_default_health_sprite_scale_x,
@@ -90,11 +62,7 @@ func process_health(health: float) -> void:
 
 
 func show_health_bar(health: float) -> void:
-	if backstab_component and backstab_component.being_backstabbed():
-		return
-	
-	_visible = true
-	
+	health_bar_visible = true
 	if health <= 0:
 		_show_health_bar_timer.start(_on_death_interval)		
 	else:

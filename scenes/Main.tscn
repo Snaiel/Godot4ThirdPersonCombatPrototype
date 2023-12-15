@@ -297,9 +297,6 @@ transform = Transform3D(0.39629, 0.0233149, 0.91783, 0.0690643, -0.997602, -0.00
 [node name="HitAndDeathAnimations" parent="Enemies/Enemy6/CharacterModel" index="8"]
 debug = true
 
-[node name="HealthComponent" parent="Enemies/Enemy6" index="5"]
-health = 30.0
-
 [node name="Enemy12" parent="Enemies" instance=ExtResource("2_oia4d")]
 transform = Transform3D(-0.933104, 0, 0.359606, 0, 1, 0, -0.359606, 0, -0.933104, 4.52544, 1.95832, 34.9633)
 

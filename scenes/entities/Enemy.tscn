@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://cv8knl5vavfyy"]
+[gd_scene load_steps=42 format=3 uid="uid://cv8knl5vavfyy"]
 
 [ext_resource type="Script" path="res://scripts/entities/enemy.gd" id="1_nrck3"]
 [ext_resource type="PackedScene" uid="uid://x0oxbha36o2h" path="res://scenes/entities/YBot.tscn" id="2_0tr8h"]
@@ -16,10 +16,11 @@
 [ext_resource type="Script" path="res://scripts/components/backstab_component.gd" id="9_hiwp2"]
 [ext_resource type="PackedScene" uid="uid://da664p5ek0cgr" path="res://scenes/components/NoticeComponent.tscn" id="10_rxy6t"]
 [ext_resource type="Script" path="res://scripts/components/attack_component.gd" id="11_cpcwt"]
+[ext_resource type="Script" path="res://scripts/components/instability_component.gd" id="11_e1j3b"]
 [ext_resource type="Script" path="res://addons/beehave/blackboard.gd" id="12_q7h63"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_compare.gd" id="12_qw7d2"]
 [ext_resource type="PackedScene" uid="uid://q4ffp4qtwtt4" path="res://scenes/beehave/compare_actions/IsDeadTrue.tscn" id="14_7psle"]
-[ext_resource type="Script" path="res://scripts/components/wellebing_component.gd" id="15_1fgoc"]
+[ext_resource type="Script" path="res://scripts/components/wellbeing_component.gd" id="15_eaede"]
 [ext_resource type="PackedScene" uid="uid://clbe1nrax10m8" path="res://scenes/utilities/WellbeingWidget.tscn" id="15_qml0p"]
 [ext_resource type="PackedScene" uid="uid://dka5as0tjf4rh" path="res://scenes/beehave/set_actions/SetLookAtTargetFalse.tscn" id="16_08u5b"]
 [ext_resource type="PackedScene" uid="uid://d1p0cwvn1hlcs" path="res://scenes/beehave/trees/CheckSuspicion.tscn" id="17_4we3r"]
@@ -148,6 +149,12 @@ blackboard = NodePath("../Blackboard")
 agent = NodePath("../NavigationAgent3D")
 entity = NodePath("..")
 
+[node name="MovementComponent" type="Node3D" parent="." node_paths=PackedStringArray("target_entity", "rotation_component")]
+script = ExtResource("7_dfa2r")
+speed = 3.0
+target_entity = NodePath("..")
+rotation_component = NodePath("../EnemyRotationComponent")
+
 [node name="LockOnComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("6_nxetg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 health_component = NodePath("../HealthComponent")
@@ -156,16 +163,12 @@ health_component = NodePath("../HealthComponent")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 entity = NodePath("..")
 
-[node name="HealthComponent" parent="." node_paths=PackedStringArray("hitbox", "wellbeing_ui") instance=ExtResource("3_c0k3s")]
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("hitbox") instance=ExtResource("3_c0k3s")]
 hitbox = NodePath("../HitboxComponent")
-wellbeing_ui = NodePath("../WellbeingComponent")
 blood_scene = ExtResource("7_fiewg")
 
-[node name="MovementComponent" type="Node3D" parent="." node_paths=PackedStringArray("target_entity", "rotation_component")]
-script = ExtResource("7_dfa2r")
-speed = 3.0
-target_entity = NodePath("..")
-rotation_component = NodePath("../EnemyRotationComponent")
+[node name="InstabilityComponent" type="Node3D" parent="."]
+script = ExtResource("11_e1j3b")
 
 [node name="BackstabComponent" type="Node3D" parent="." node_paths=PackedStringArray("entity", "lock_on_component", "health_component")]
 script = ExtResource("9_hiwp2")
@@ -182,11 +185,12 @@ _attack_animations = NodePath("../CharacterModel/AttackAnimations")
 _movement_component = NodePath("../MovementComponent")
 _weapon = NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Sword")
 
-[node name="WellbeingComponent" type="Node3D" parent="." node_paths=PackedStringArray("lock_on_component", "backstab_component")]
+[node name="WellbeingComponent" type="Node3D" parent="." node_paths=PackedStringArray("lock_on_component", "backstab_component", "health_component")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
-script = ExtResource("15_1fgoc")
+script = ExtResource("15_eaede")
 lock_on_component = NodePath("../LockOnComponent")
 backstab_component = NodePath("../BackstabComponent")
+health_component = NodePath("../HealthComponent")
 wellbeing_widget_scene = ExtResource("15_qml0p")
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard")]
