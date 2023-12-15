@@ -7,12 +7,13 @@ extends Node3D
 @export var backstab_component: BackstabComponent
 
 @export_category("Health Bar")
-@export var health_bar_scene: PackedScene
+@export var wellbeing_widget_scene: PackedScene
 
 var default_health: float
 
+var _well_being_widget: Node2D
+
 var _default_health_sprite_scale_x: float
-var _health_bar_sprite: Node2D
 var _health_sprite: Sprite2D
 var _delay_sprite: Sprite2D
 
@@ -31,11 +32,11 @@ var _visible: bool = false
 
 
 func _ready():
-	_health_bar_sprite = health_bar_scene.instantiate()
-	Globals.user_interface.health_bars.add_child(_health_bar_sprite)
-	_health_sprite = _health_bar_sprite.get_node("Health")
+	_well_being_widget = wellbeing_widget_scene.instantiate()
+	Globals.user_interface.wellbeing_widgets.add_child(_well_being_widget)
+	_health_sprite = _well_being_widget.get_node("NPCHealthBar/Health")
 	_default_health_sprite_scale_x = _health_sprite.scale.x
-	_delay_sprite = _health_bar_sprite.get_node("DelayBar")
+	_delay_sprite = _well_being_widget.get_node("NPCHealthBar/DelayBar")
 	
 	_show_health_bar_timer = Timer.new()
 	_show_health_bar_timer.wait_time = _show_health_bar_interval
@@ -68,9 +69,9 @@ func process_health(health: float) -> void:
 		
 	if not _camera.is_position_in_frustum(global_position):
 		_visible = false
-	_health_bar_sprite.visible = _visible
+	_well_being_widget.visible = _visible
 	
-	_health_bar_sprite.position = _camera.unproject_position(global_position)
+	_well_being_widget.position = _camera.unproject_position(global_position)
 	_health_sprite.scale.x = lerp(
 		0.0, 
 		_default_health_sprite_scale_x,

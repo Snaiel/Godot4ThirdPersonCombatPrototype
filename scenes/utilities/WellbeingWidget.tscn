@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3 uid="uid://clbe1nrax10m8"]
+
+[ext_resource type="Texture2D" uid="uid://b80p5j73bgwl1" path="res://assets/square.png" id="1_s7svp"]
+
+[node name="WellbeingWidget" type="Node2D"]
+
+[node name="NPCHealthBar" type="Node2D" parent="."]
+position = Vector2(0, -14)
+
+[node name="Background" type="Sprite2D" parent="NPCHealthBar"]
+self_modulate = Color(0.196078, 0.196078, 0.196078, 1)
+scale = Vector2(0.62, 0.08)
+texture = ExtResource("1_s7svp")
+
+[node name="DelayBar" type="Sprite2D" parent="NPCHealthBar"]
+self_modulate = Color(0.556863, 0.556863, 0.556863, 1)
+position = Vector2(-29, 0)
+scale = Vector2(0.58, 0.04)
+texture = ExtResource("1_s7svp")
+offset = Vector2(50, 0)
+
+[node name="Health" type="Sprite2D" parent="NPCHealthBar"]
+self_modulate = Color(0.662745, 0.105882, 0.105882, 1)
+position = Vector2(-29, 0)
+scale = Vector2(0.58, 0.04)
+texture = ExtResource("1_s7svp")
+offset = Vector2(50, 0)
+
+[node name="NPCInstabilityBar" type="Node2D" parent="."]
+position = Vector2(0, -4)
+
+[node name="Background" type="Polygon2D" parent="NPCInstabilityBar"]
+self_modulate = Color(0.196078, 0.196078, 0.196078, 1)
+polygon = PackedVector2Array(-28, -4, 28, -4, 36, 0, 28, 4, -28, 4, -36, 0)
+
+[node name="Instability" type="Polygon2D" parent="NPCInstabilityBar"]
+self_modulate = Color(0.854902, 0.721569, 0, 1)
+polygon = PackedVector2Array(-31, 0, -27, -2, 28, -2, 32, 0, 28, 2, -27, 2)
+
+[node name="Middle" type="Polygon2D" parent="NPCInstabilityBar"]
+polygon = PackedVector2Array(-1, -3, 1, -3, 1, 3, -1, 3)

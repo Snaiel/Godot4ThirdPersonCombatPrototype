@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://b80p5j73bgwl1" path="res://assets/square.png" id="2_816p2"]
 
 [node name="NoticeTriangle" type="Sprite2D"]
-position = Vector2(35, 27)
 scale = Vector2(0.18, 0.18)
 texture = ExtResource("1_rgvvu")
 offset = Vector2(0, -40)
