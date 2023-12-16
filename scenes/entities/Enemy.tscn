@@ -313,6 +313,7 @@ script = ExtResource("12_q7h63")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
 [connection signal="death" from="." to="CharacterModel/Armature_004/GeneralSkeleton/Sword" method="_on_enemy_death"]
+[connection signal="parried" from="CharacterModel/Armature_004/GeneralSkeleton/Sword" to="InstabilityComponent" method="_on_sword_parried"]
 [connection signal="weapon_hit" from="HitboxComponent" to="." method="_on_entity_hitbox_weapon_hit"]
 [connection signal="weapon_hit" from="HitboxComponent" to="InstabilityComponent" method="_on_hitbox_component_weapon_hit"]
 [connection signal="weapon_hit" from="HitboxComponent" to="BackstabComponent" method="_on_hitbox_component_weapon_hit"]

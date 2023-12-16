@@ -29,3 +29,7 @@ func increment_instability(value: float):
 
 func _on_hitbox_component_weapon_hit(_weapon: Sword):
 	increment_instability(8.0)
+
+
+func _on_sword_parried():
+	increment_instability(35.0)

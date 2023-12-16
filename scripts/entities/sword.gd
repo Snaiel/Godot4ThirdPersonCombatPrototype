@@ -1,6 +1,9 @@
 class_name Sword
 extends BoneAttachment3D
 
+
+signal parried
+
 @export var _entity: CharacterBody3D
 
 @export var _damage: float = 10.0
@@ -18,7 +21,11 @@ func get_damage() -> float:
 
 func get_knockback() -> float:
 	return _knockback
-	
+
+
+func get_parried() -> void:
+	parried.emit()
+
 
 func _on_enemy_death(_enemy: Enemy):
 	can_damage = false
