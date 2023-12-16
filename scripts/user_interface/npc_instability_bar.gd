@@ -13,6 +13,7 @@ var _show_instability_bar_timer: Timer
 var _show_instability_bar_interval: float = 5.0
 
 @onready var instability_bar: Node2D = $Instability
+@onready var glare: Node2D = $Glare
 
 
 func _ready():
@@ -36,8 +37,13 @@ func process_instability(instability: float) -> void:
 		_default_instability_sprite_scale_x,
 		instability_percentage
 	)
+	
 	instability_bar.self_modulate = color_gradient.sample(instability_percentage)
-
+	
+	if is_equal_approx(instability_percentage, 1.0):
+		glare.visible = true
+	else:
+		glare.visible = false
 
 func instability_increased(_instability: float) -> void:
 	instability_bar_visible = true

@@ -40,6 +40,20 @@ position = Vector2(0, -4)
 script = ExtResource("4_viana")
 color_gradient = SubResource("Gradient_xm3x5")
 
+[node name="Glare" type="Node2D" parent="NPCInstabilityBar"]
+
+[node name="Layer1" type="Polygon2D" parent="NPCInstabilityBar/Glare"]
+self_modulate = Color(1, 0.235294, 0, 0.784314)
+polygon = PackedVector2Array(-28, -5, 28, -5, 38, 0, 28, 5, -28, 5, -38, 0)
+
+[node name="Layer2" type="Polygon2D" parent="NPCInstabilityBar/Glare"]
+self_modulate = Color(1, 0.235294, 0, 0.588235)
+polygon = PackedVector2Array(-28, -5, 28, -5, 41, 0, 28, 5, -28, 5, -41, 0)
+
+[node name="Layer3" type="Polygon2D" parent="NPCInstabilityBar/Glare"]
+self_modulate = Color(1, 0.235294, 0, 0.392157)
+polygon = PackedVector2Array(-28, -5, 28, -5, 47, 0, 28, 5, -28, 5, -47, 0)
+
 [node name="Background" type="Polygon2D" parent="NPCInstabilityBar"]
 self_modulate = Color(0.196078, 0.196078, 0.196078, 1)
 polygon = PackedVector2Array(-28, -4, 28, -4, 36, 0, 28, 4, -28, 4, -36, 0)
