@@ -9,7 +9,6 @@ var _default_health_sprite_scale_x: float
 
 var _show_health_bar_timer: Timer
 var _show_health_bar_interval: float = 5.0
-var _on_death_interval: float = 2.0
 
 var _health_delay_timer: Timer
 var _health_delay_pause: float = 0.8
@@ -59,14 +58,14 @@ func process_health(health: float) -> void:
 	
 	if is_equal_approx(_delay_sprite.scale.x, _health_sprite.scale.x):
 		_play_delay = false
+		if is_zero_approx(health):
+			health_bar_visible = false
 
 
-func show_health_bar(health: float) -> void:
+func show_health_bar(_health: float) -> void:
 	health_bar_visible = true
-	if health <= 0:
-		_show_health_bar_timer.start(_on_death_interval)		
-	else:
-		_show_health_bar_timer.start()
+	
+	_show_health_bar_timer.start()
 		
 	if _health_delay_timer.is_stopped():
 		_health_delay_timer.start()
