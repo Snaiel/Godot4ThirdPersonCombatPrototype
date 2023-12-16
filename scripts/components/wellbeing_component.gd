@@ -62,12 +62,16 @@ func _process(_delta):
 	if not _camera.is_position_in_frustum(global_position):
 		_visible = false
 	
-	if _instability_bar.instability_bar_visible:
-		_instability_bar.visible = true
-		_health_bar.position.y = _default_health_bar_y_pos
-	elif instability_component.get_instability() <= 0:
+	if not _instability_bar.instability_bar_visible or \
+		is_zero_approx(instability_component.get_instability()) or \
+		is_zero_approx(health_component.get_health()):
+		_instability_bar.instability_bar_visible = false
 		_instability_bar.visible = false
 		_health_bar.position.y = _health_bar_y_pos_instability_invisible
+	else:
+		_instability_bar.instability_bar_visible = true
+		_instability_bar.visible = true
+		_health_bar.position.y = _default_health_bar_y_pos
 	
 	_well_being_widget.visible = _visible
 	

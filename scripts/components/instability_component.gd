@@ -39,8 +39,6 @@ func _ready():
 func _process(delta):
 	if _reduce_instability:
 		_instability -= reduction_rate * delta
-	if _instability > 0:
-		print(_reduce_instability)
 
 
 func get_instability() -> float:
