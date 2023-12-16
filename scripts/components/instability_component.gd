@@ -5,6 +5,7 @@ extends Node3D
 signal instability_increased
 signal full_instability
 
+
 @export_category("Configuration")
 @export var active: bool = true
 @export var hitbox: HitboxComponent
@@ -47,9 +48,14 @@ func get_instability() -> float:
 
 func increment_instability(value: float):
 	_instability += value
-	instability_increased.emit()
+	
 	_reduce_instability = false
 	_instability_reduction_pause_timer.start()
+	
+	instability_increased.emit()
+	
+	if is_equal_approx(_instability, max_instability):
+		full_instability.emit()
 
 
 func _on_hitbox_component_weapon_hit(_weapon: Sword):
@@ -57,4 +63,4 @@ func _on_hitbox_component_weapon_hit(_weapon: Sword):
 
 
 func _on_sword_parried():
-	increment_instability(35.0)
+	increment_instability(100.0)
