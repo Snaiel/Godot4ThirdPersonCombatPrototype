@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://clbe1nrax10m8"]
+[gd_scene load_steps=6 format=3 uid="uid://clbe1nrax10m8"]
 
 [ext_resource type="Script" path="res://scripts/user_interface/npc_health_bar.gd" id="1_8o0j0"]
 [ext_resource type="Script" path="res://scripts/user_interface/wellbeing_widget.gd" id="1_m8m00"]
 [ext_resource type="Texture2D" uid="uid://b80p5j73bgwl1" path="res://assets/square.png" id="1_s7svp"]
 [ext_resource type="Script" path="res://scripts/user_interface/npc_instability_bar.gd" id="4_viana"]
+
+[sub_resource type="Gradient" id="Gradient_xm3x5"]
+offsets = PackedFloat32Array(0.283465, 0.75853, 1)
+colors = PackedColorArray(0.854902, 0.721569, 0, 1, 0.854902, 0.532069, 0, 1, 0.854902, 0.341176, 0, 1)
 
 [node name="WellbeingWidget" type="Node2D"]
 script = ExtResource("1_m8m00")
@@ -34,6 +38,7 @@ offset = Vector2(50, 0)
 [node name="NPCInstabilityBar" type="Node2D" parent="."]
 position = Vector2(0, -4)
 script = ExtResource("4_viana")
+color_gradient = SubResource("Gradient_xm3x5")
 
 [node name="Background" type="Polygon2D" parent="NPCInstabilityBar"]
 self_modulate = Color(0.196078, 0.196078, 0.196078, 1)

@@ -2,6 +2,8 @@ class_name NPCInstabilityBar
 extends Node2D
 
 
+@export var color_gradient: Gradient
+
 var max_instability: float
 var instability_bar_visible: bool = false
 
@@ -28,11 +30,13 @@ func _ready():
 
 
 func process_instability(instability: float) -> void:
+	var instability_percentage = instability / max_instability
 	instability_bar.scale.x = lerp(
 		0.0, 
 		_default_instability_sprite_scale_x,
-		instability / max_instability
+		instability_percentage
 	)
+	instability_bar.self_modulate = color_gradient.sample(instability_percentage)
 
 
 func instability_increased(_instability: float) -> void:
