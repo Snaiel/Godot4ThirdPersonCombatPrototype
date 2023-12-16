@@ -2,10 +2,15 @@ class_name UserInterface
 extends Control
 
 
+@export var dizzy_system: DizzySystem
+
 var _lock_on_target: LockOnComponent = null
+
 var _backstab_victim: BackstabComponent = null
 var _previous_backstab_victim: BackstabComponent = null
 var _backstab_crosshair_visisble: bool = false
+
+var _saved_dizzy_victim: DizzyComponent
 
 @onready var notice_triangles: Node2D = $NoticeTriangles
 @onready var wellbeing_widgets: Node2D = $WellbeingWidgets
@@ -26,7 +31,22 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	_process_lock_on()
 	_process_backstab()
-		
+	_process_dizzy()
+	
+	if (_backstab_crosshair_visisble and not _previous_backstab_victim) or \
+		dizzy_system.dizzy_victim:
+		_crosshair.modulate.a = lerp(
+			_crosshair.modulate.a,
+			1.0,
+			0.2
+		)
+	else:
+		_crosshair.modulate.a = lerp(
+			_crosshair.modulate.a,
+			0.0,
+			0.2
+		)
+	
 	_lock_on_texture.visible = _lock_on_target != null
 
 
@@ -65,28 +85,29 @@ func _process_backstab() -> void:
 	
 	_crosshair.position = crosshair_pos
 	
-	if _backstab_crosshair_visisble and not _previous_backstab_victim:
-		_crosshair.modulate.a = lerp(
-			_crosshair.modulate.a,
-			1.0,
-			0.2
-		)
-	else:
-		_crosshair.modulate.a = lerp(
-			_crosshair.modulate.a,
-			0.0,
-			0.2
-		)
-	
 	if _previous_backstab_victim and _crosshair.modulate.a < 0.1:
 		_previous_backstab_victim = null
 
 
-func _on_backstab_system_current_victim(victim):
+func _on_backstab_system_current_victim(victim) -> void:
 	if victim:
 		_previous_backstab_victim = _backstab_victim
 		_backstab_victim = victim
 		_backstab_crosshair_visisble = true
 	else:
 		_backstab_crosshair_visisble = false
+
+
+func _process_dizzy() -> void:
+	if dizzy_system.dizzy_victim:
+		_saved_dizzy_victim = dizzy_system.dizzy_victim
+	elif _crosshair.modulate.a < 0.1:
+		return
 	
+	var pos: Vector2 = Globals.camera_controller.get_lock_on_position(_saved_dizzy_victim)
+	var crosshair_pos: Vector2 = Vector2(
+		pos.x,
+		pos.y
+	)
+	
+	_crosshair.position = crosshair_pos

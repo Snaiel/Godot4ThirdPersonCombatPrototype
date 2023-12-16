@@ -39,7 +39,8 @@ radius = 10.0
 
 [node name="Main" type="Node3D"]
 
-[node name="UserInterface" parent="." instance=ExtResource("3_hlhuw")]
+[node name="UserInterface" parent="." node_paths=PackedStringArray("dizzy_system") instance=ExtResource("3_hlhuw")]
+dizzy_system = NodePath("../DizzySystem")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_32f71")
