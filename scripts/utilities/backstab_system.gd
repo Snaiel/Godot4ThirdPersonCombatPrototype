@@ -58,6 +58,7 @@ func set_backstab_victim(victim: BackstabComponent, dist: float) -> void:
 	
 	current_victim.emit(victim)
 
+
 func clear_backstab_victim(victim: BackstabComponent) -> void:
 	if victim == backstab_victim:
 		backstab_victim = null

@@ -12,7 +12,7 @@ var _angle_to_player: float = 0.0
 var _angle_to_entity: float = 0.0
 
 @onready var _player: Player = Globals.player
-@onready var _backstab_system = Globals.backstab_system
+@onready var _backstab_system: BackstabSystem = Globals.backstab_system
 
 
 func _ready():

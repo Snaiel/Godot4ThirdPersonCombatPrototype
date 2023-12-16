@@ -124,8 +124,10 @@ entity = NodePath("..")
 lock_on_component = NodePath("../LockOnComponent")
 health_component = NodePath("../HealthComponent")
 
-[node name="DizzyComponent" type="Node3D" parent="." node_paths=PackedStringArray("character", "blackboard", "instability_component")]
+[node name="DizzyComponent" type="Node3D" parent="." node_paths=PackedStringArray("entity", "lock_on_component", "character", "blackboard", "instability_component")]
 script = ExtResource("13_0wjwt")
+entity = NodePath("..")
+lock_on_component = NodePath("../LockOnComponent")
 character = NodePath("../CharacterModel")
 blackboard = NodePath("../Blackboard")
 instability_component = NodePath("../InstabilityComponent")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cfip2n0nvr8n3"]
+[gd_scene load_steps=17 format=3 uid="uid://cfip2n0nvr8n3"]
 
 [ext_resource type="Material" uid="uid://qml1qedtuxl6" path="res://materials/grid.tres" id="2_5uhq1"]
 [ext_resource type="PackedScene" uid="uid://cv8knl5vavfyy" path="res://scenes/entities/Enemy.tscn" id="2_oia4d"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b075d85nmca7s" path="res://scenes/utilities/UserInterface.tscn" id="3_hlhuw"]
 [ext_resource type="PackedScene" uid="uid://ia1adrmqd0lf" path="res://scenes/components/LockOnComponent.tscn" id="3_tjdxr"]
 [ext_resource type="Script" path="res://scripts/utilities/backstab_system.gd" id="5_thw20"]
+[ext_resource type="Script" path="res://scripts/utilities/dizzy_system.gd" id="6_mckri"]
 [ext_resource type="Script" path="res://scripts/utilities/lock_on_system.gd" id="6_tdxnb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_co0qk"]
@@ -221,6 +222,9 @@ wait_time = 0.5
 
 [node name="BackstabSystem" type="Node3D" parent="."]
 script = ExtResource("5_thw20")
+
+[node name="DizzySystem" type="Node3D" parent="."]
+script = ExtResource("6_mckri")
 
 [node name="CameraController" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_s2v7n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.6934, 0)
