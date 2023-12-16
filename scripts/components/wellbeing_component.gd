@@ -15,6 +15,9 @@ var _well_being_widget: WellbeingWidget
 var _health_bar: NPCHealthBar
 var _instability_bar: NPCInstabilityBar
 
+var _default_health_bar_y_pos: float
+var _health_bar_y_pos_instability_invisible: float = -4.0
+
 var _visible: bool = false
 
 @onready var _camera: Camera3D = Globals.camera_controller.cam
@@ -32,6 +35,7 @@ func _ready():
 			_visible = true
 			_health_bar.show_health_bar(health_component.get_health())
 	)
+	_default_health_bar_y_pos = _health_bar.position.y
 	
 	_instability_bar = _well_being_widget.instability_bar
 	_instability_bar.max_instability = instability_component.max_instability
@@ -57,6 +61,13 @@ func _process(_delta):
 		
 	if not _camera.is_position_in_frustum(global_position):
 		_visible = false
+	
+	if _instability_bar.instability_bar_visible:
+		_instability_bar.visible = true
+		_health_bar.position.y = _default_health_bar_y_pos
+	elif instability_component.get_instability() <= 0:
+		_instability_bar.visible = false
+		_health_bar.position.y = _health_bar_y_pos_instability_invisible
 	
 	_well_being_widget.visible = _visible
 	
