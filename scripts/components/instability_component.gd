@@ -35,6 +35,7 @@ func _ready():
 			_reduce_instability = true
 			if is_equal_approx(_instability, max_instability):
 				full_instability.emit(false)
+				_instability = 0.7 * _instability
 	)
 	add_child(_instability_reduction_pause_timer)
 
