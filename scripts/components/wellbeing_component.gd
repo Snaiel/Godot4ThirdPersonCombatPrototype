@@ -38,7 +38,7 @@ func _ready():
 	instability_component.instability_increased.connect(
 		func():
 #			print(instability_component.get_instability())
-			_instability_bar.change_instability(
+			_instability_bar.instability_increased(
 				instability_component.get_instability()
 			)
 	)
@@ -48,8 +48,9 @@ func _process(_delta):
 	_health_bar.process_health(health_component.get_health())
 	_instability_bar.process_instability(instability_component.get_instability())
 	
-	if _lock_on_system.target == lock_on_component or\
-		_health_bar.health_bar_visible:
+	if _lock_on_system.target == lock_on_component or \
+		_health_bar.health_bar_visible or \
+		_instability_bar.instability_bar_visible:
 		_visible = true
 	else:
 		_visible = false
