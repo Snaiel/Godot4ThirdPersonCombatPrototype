@@ -18,8 +18,7 @@ func _physics_process(_delta):
 			0.0,
 			0.2
 		)
-		
 
 
-func dizzy_from_parry() -> void:
-	_blend_dizzy = true
+func dizzy_from_parry(flag: bool) -> void:
+	_blend_dizzy = flag

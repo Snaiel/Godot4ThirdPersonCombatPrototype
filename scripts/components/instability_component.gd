@@ -3,7 +3,7 @@ extends Node3D
 
 
 signal instability_increased
-signal full_instability
+signal full_instability(flag: bool)
 
 
 @export_category("Configuration")
@@ -33,6 +33,8 @@ func _ready():
 	_instability_reduction_pause_timer.timeout.connect(
 		func():
 			_reduce_instability = true
+			if is_equal_approx(_instability, max_instability):
+				full_instability.emit(false)
 	)
 	add_child(_instability_reduction_pause_timer)
 
@@ -55,7 +57,7 @@ func increment_instability(value: float):
 	instability_increased.emit()
 	
 	if is_equal_approx(_instability, max_instability):
-		full_instability.emit()
+		full_instability.emit(true)
 
 
 func _on_hitbox_component_weapon_hit(_weapon: Sword):
