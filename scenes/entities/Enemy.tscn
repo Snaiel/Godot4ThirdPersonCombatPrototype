@@ -185,12 +185,13 @@ _attack_animations = NodePath("../CharacterModel/AttackAnimations")
 _movement_component = NodePath("../MovementComponent")
 _weapon = NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Sword")
 
-[node name="WellbeingComponent" type="Node3D" parent="." node_paths=PackedStringArray("lock_on_component", "backstab_component", "health_component")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+[node name="WellbeingComponent" type="Node3D" parent="." node_paths=PackedStringArray("lock_on_component", "backstab_component", "health_component", "instability_component")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
 script = ExtResource("15_eaede")
 lock_on_component = NodePath("../LockOnComponent")
 backstab_component = NodePath("../BackstabComponent")
 health_component = NodePath("../HealthComponent")
+instability_component = NodePath("../InstabilityComponent")
 wellbeing_widget_scene = ExtResource("15_qml0p")
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard")]
@@ -313,6 +314,7 @@ script = ExtResource("12_q7h63")
 
 [connection signal="death" from="." to="CharacterModel/Armature_004/GeneralSkeleton/Sword" method="_on_enemy_death"]
 [connection signal="weapon_hit" from="HitboxComponent" to="." method="_on_entity_hitbox_weapon_hit"]
+[connection signal="weapon_hit" from="HitboxComponent" to="InstabilityComponent" method="_on_hitbox_component_weapon_hit"]
 [connection signal="weapon_hit" from="HitboxComponent" to="BackstabComponent" method="_on_hitbox_component_weapon_hit"]
 [connection signal="zero_health" from="HealthComponent" to="." method="_on_health_component_zero_health"]
 
