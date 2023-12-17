@@ -23,16 +23,17 @@ var _targets_nearby: Array[LockOnComponent]
 @onready var _change_target_timer: Timer = $ChangeTargetTimer
 @onready var _enemy_detection_sphere: CollisionShape3D = $EnemyDetectionSphere
 
+@onready var _dizzy_system: DizzySystem = Globals.dizzy_system
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
 	Globals.lock_on_system = self
 	_change_target_timer.wait_time = change_target_wait_time
 	(_enemy_detection_sphere.shape as SphereShape3D).radius = target_detection_range
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
+	
 	position = player.position
 	
 	if target:
@@ -95,9 +96,20 @@ func _on_change_target_timer_timeout() -> void:
 
 func _target_destroyed(t: LockOnComponent) -> void:
 	_targets_nearby.erase(t)
-	if target:
-		_choose_lock_on_target()
-		lock_on.emit(target)
+	
+	if _dizzy_system.prev_victim.entity == target.component_owner:
+		var timer: SceneTreeTimer = get_tree().create_timer(1.0)
+		timer.timeout.connect(
+			func():
+				_choose_new_target()
+		)
+	elif target:
+		_choose_new_target()
+
+
+func _choose_new_target():
+	_choose_lock_on_target()
+	lock_on.emit(target)
 
 
 func _can_see_target(t: LockOnComponent) -> bool:
@@ -112,7 +124,7 @@ func _can_see_target(t: LockOnComponent) -> bool:
 	)
 	var result: Dictionary = space_state.intersect_ray(query)
 	
-	if result.size() != 0 and result["collider"] != t.inside_world:
+	if result.size() != 0 and result["collider"] != t.component_owner:
 		can_see = false
 
 	return can_see
