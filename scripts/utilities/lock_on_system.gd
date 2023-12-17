@@ -98,6 +98,8 @@ func _on_change_target_timer_timeout() -> void:
 func _target_destroyed(t: LockOnComponent) -> void:
 	_targets_nearby.erase(t)
 	
+	var prev_target: LockOnComponent = t
+	
 	if  (
 			_dizzy_system.prev_victim and \
 			_dizzy_system.prev_victim.entity == target.component_owner
@@ -106,11 +108,12 @@ func _target_destroyed(t: LockOnComponent) -> void:
 			_backstab_system.backstab_victim and \
 			_backstab_system.backstab_victim.entity == target.component_owner
 		):
-			
+		
 		var timer: SceneTreeTimer = get_tree().create_timer(1.0)
 		timer.timeout.connect(
 			func():
-				_choose_new_target()
+				if target == prev_target:
+					_choose_new_target()
 		)
 	elif target:
 		_choose_new_target()
