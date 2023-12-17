@@ -35,6 +35,7 @@ func _on_instability_component_full_instability(flag: bool):
 	character.dizzy_animations.dizzy_from_parry(flag)
 	dizzy_system.dizzy_victim = self if flag else null
 	
-	var opponent_position: Vector3 = player.global_position
-	var direction: Vector3 = global_position.direction_to(opponent_position)
-	movement_component.set_secondary_movement(4, 5, 10, -direction)
+	if flag:
+		var opponent_position: Vector3 = player.global_position
+		var direction: Vector3 = global_position.direction_to(opponent_position)
+		movement_component.set_secondary_movement(4, 5, 10, -direction)
