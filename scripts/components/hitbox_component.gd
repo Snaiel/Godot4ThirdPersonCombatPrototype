@@ -7,6 +7,7 @@ signal weapon_hit(weapon: Sword)
 @export var debug: bool = false
 @export var entity: CharacterBody3D
 @export var enabled: bool = true
+@export var groups: Array[String]
 
 var _weapons_in_hitbox: Array[Sword] = []
 
@@ -25,6 +26,16 @@ func _process(_delta: float) -> void:
 			continue
 		
 		if weapon.get_entity() == entity:
+			continue
+		
+		var weapon_entity_in_groups: bool = false
+		for group in groups:
+			if weapon_entity_in_groups:
+				break
+			elif weapon.get_entity().is_in_group(group):
+				weapon_entity_in_groups = true
+		
+		if not weapon_entity_in_groups:
 			continue
 		
 		weapon_hit.emit(weapon)

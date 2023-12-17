@@ -29,7 +29,7 @@ shader_parameter/roughness = 1.0
 shader_parameter/normal_strength = 1.0
 shader_parameter/alpha_clip = 0.0
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("character", "movement_component", "hitbox_component", "jump_component", "block_component", "dodge_component", "rotation_component", "attack_component", "parry_component", "fade_component")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("character", "movement_component", "hitbox_component", "jump_component", "block_component", "dodge_component", "rotation_component", "attack_component", "parry_component", "fade_component") groups=["player"]]
 collision_layer = 2
 collision_mask = 9
 script = ExtResource("1_lgfyt")
@@ -85,6 +85,7 @@ rotation_component = NodePath("../PlayerRotationComponent")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 collision_layer = 2
 entity = NodePath("..")
+groups = Array[String](["enemy"])
 
 [node name="JumpComponent" type="Node3D" parent="." node_paths=PackedStringArray("entity", "animations", "movement_component")]
 script = ExtResource("5_20kj8")

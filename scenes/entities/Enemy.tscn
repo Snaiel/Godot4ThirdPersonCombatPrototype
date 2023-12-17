@@ -101,6 +101,7 @@ health_component = NodePath("../HealthComponent")
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("2_h2tgk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 entity = NodePath("..")
+groups = Array[String](["player"])
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("hitbox") instance=ExtResource("3_c0k3s")]
 hitbox = NodePath("../HitboxComponent")
