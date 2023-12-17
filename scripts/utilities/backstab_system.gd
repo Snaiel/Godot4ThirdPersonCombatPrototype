@@ -38,6 +38,19 @@ func _process(_delta) -> void:
 func set_backstab_victim(victim: BackstabComponent, dist: float) -> void:
 #	if backstab_victim: prints(victim.get_parent().name, backstab_victim.get_parent().name, dist, _current_dist_to_player)
 	
+	var lock_on_system_target: LockOnComponent = Globals.lock_on_system.target
+	if lock_on_system_target and \
+	lock_on_system_target.component_owner != victim.entity:
+		
+		if backstab_victim and \
+		backstab_victim.entity != lock_on_system_target.component_owner:
+			backstab_victim = null
+		
+		return
+	
+	if not lock_on_system_target and dist > _current_dist_to_player - 0.02:
+		return
+	
 	if not backstab_victim and attack_component.attacking:
 		return
 	
@@ -47,12 +60,10 @@ func set_backstab_victim(victim: BackstabComponent, dist: float) -> void:
 	if victim == backstab_victim:
 		return
 	
-	if dist > _current_dist_to_player - 0.02:
-		return
-	
 	if not _can_switch_victim:
 		return
 	
+	print("success")
 	backstab_victim = victim
 	_current_dist_to_player = dist
 	
