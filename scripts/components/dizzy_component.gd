@@ -7,6 +7,7 @@ extends Node3D
 @export var lock_on_component: LockOnComponent
 @export var health_component: HealthComponent
 @export var movement_component: MovementComponent
+@export var instability_component: InstabilityComponent
 @export var character: CharacterAnimations
 @export var blackboard: Blackboard
 
@@ -32,8 +33,21 @@ func _on_hitbox_component_weapon_hit(weapon: Sword):
 func _on_instability_component_full_instability(flag: bool):
 	blackboard.set_value("dizzy", flag)
 	blackboard.set_value("interrupt_timers", true)
-	character.dizzy_animations.dizzy_from_parry(flag)
-	dizzy_system.dizzy_victim = self if flag else null
+	
+	if flag:
+		dizzy_system.dizzy_victim = self
+		
+		if instability_component.full_instability_from_parry:
+			character.dizzy_animations.dizzy_from_parry()
+		else:
+			character.dizzy_animations.dizzy_from_damage()
+		
+		var opponent_position: Vector3 = player.global_position
+		var direction: Vector3 = global_position.direction_to(opponent_position)
+		movement_component.set_secondary_movement(4, 5, 10, -direction)
+	else:
+		dizzy_system.dizzy_victim = null
+	
 	
 	if flag:
 		var opponent_position: Vector3 = player.global_position

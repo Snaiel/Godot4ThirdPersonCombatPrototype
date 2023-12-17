@@ -133,7 +133,7 @@ bones/64/rotation = Quaternion(-3.65492e-07, 0.998003, 0.0631675, -3.81956e-08)
 surface_material_override/0 = SubResource("ShaderMaterial_i1ddg")
 
 [node name="Sword" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity") instance=ExtResource("4_r63io")]
-transform = Transform3D(0.396289, 0.0233159, 0.91783, 0.0690642, -0.997602, -0.00447724, 0.915524, 0.0651633, -0.396949, -0.246457, 0.842359, -0.000616003)
+transform = Transform3D(0.39629, 0.0233149, 0.91783, 0.0690643, -0.997602, -0.00447848, 0.915524, 0.0651641, -0.39695, -0.246458, 0.84236, -0.00061544)
 _entity = NodePath("../../../..")
 
 [node name="Area" parent="CharacterModel/Armature_004/GeneralSkeleton/Sword" index="1"]
@@ -183,12 +183,14 @@ entity = NodePath("..")
 lock_on_component = NodePath("../LockOnComponent")
 health_component = NodePath("../HealthComponent")
 
-[node name="DizzyComponent" type="Node3D" parent="." node_paths=PackedStringArray("entity", "lock_on_component", "health_component", "movement_component", "character", "blackboard")]
+[node name="DizzyComponent" type="Node3D" parent="." node_paths=PackedStringArray("entity", "lock_on_component", "health_component", "movement_component", "instability_component", "character", "blackboard")]
 script = ExtResource("13_0wjwt")
+debug = null
 entity = NodePath("..")
 lock_on_component = NodePath("../LockOnComponent")
 health_component = NodePath("../HealthComponent")
 movement_component = NodePath("../MovementComponent")
+instability_component = NodePath("../InstabilityComponent")
 character = NodePath("../CharacterModel")
 blackboard = NodePath("../Blackboard")
 
