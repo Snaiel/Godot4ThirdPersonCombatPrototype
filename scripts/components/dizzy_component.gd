@@ -24,8 +24,8 @@ func _ready():
 	)
 
 
-func _on_hitbox_component_weapon_hit(_weapon: Sword):
-	if dizzy_system.dizzy_victim == self:
+func _on_hitbox_component_weapon_hit(weapon: Sword):
+	if dizzy_system.dizzy_victim == self and weapon.get_entity() == player:
 		health_component.deal_max_damage = true
 
 
