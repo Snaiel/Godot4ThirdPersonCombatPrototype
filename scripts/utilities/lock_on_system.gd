@@ -87,7 +87,8 @@ func _on_area_entered(area: LockOnComponent) -> void:
 
 func _on_area_exited(area: LockOnComponent) -> void:
 	_targets_nearby.erase(area)
-	area.destroyed.disconnect(_target_destroyed)
+	if area.destroyed.is_connected(_target_destroyed):
+		area.destroyed.disconnect(_target_destroyed)
 
 
 func _on_change_target_timer_timeout() -> void:
