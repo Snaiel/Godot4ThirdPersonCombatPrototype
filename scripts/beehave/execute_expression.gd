@@ -1,3 +1,4 @@
+class_name LeafExecuteExpression
 extends Leaf
 
 @export var enabled: bool = true
