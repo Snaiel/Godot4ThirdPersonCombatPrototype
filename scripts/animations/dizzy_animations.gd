@@ -40,12 +40,12 @@ func _physics_process(_delta):
 
 func dizzy_from_parry() -> void:
 	_blend_dizzy = true
-	anim_tree["parameters/Death Which One/transition_request"] = "from_parry"
+	anim_tree["parameters/Dizzy Which One/transition_request"] = "from_parry"
 
 
 func dizzy_from_damage() -> void:
 	_blend_dizzy = true
-	anim_tree["parameters/Death Which One/transition_request"] = "from_damage"	
+	anim_tree["parameters/Dizzy Which One/transition_request"] = "from_damage"	
 
 
 func disable_blend_dizzy() -> void:
@@ -56,6 +56,7 @@ func set_dizzy_finisher(dizzy_victim: bool, attacking: bool) -> void:
 	if dizzy_victim and not attacking:
 		_blend_dizzy_finisher = true
 		anim_tree["parameters/Dizzy Finisher Speed/scale"] = 0.0
+		anim_tree["parameters/Dizzy Finisher Trim/seek_request"] = 0.0
 	else:
 		_blend_dizzy_finisher = false
 		anim_tree["parameters/Dizzy Finisher Speed/scale"] = 1.0

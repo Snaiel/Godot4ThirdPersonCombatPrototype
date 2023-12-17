@@ -37,6 +37,7 @@ var _recently_had_dizzy_victim: bool = false
 
 var locked_on: bool
 
+@onready var dizzy_system: DizzySystem = Globals.dizzy_system
 @onready var cam: Camera3D = $NormalCam
 
 
@@ -64,11 +65,14 @@ func _physics_process(_delta: float) -> void:
 	locked_on = _lock_on_target != null
 	
 	
-	var dizzy_victim: DizzyComponent = Globals.dizzy_system.dizzy_victim
+	var dizzy_victim: DizzyComponent = dizzy_system.dizzy_victim
+	
 	if dizzy_victim:
 		_dizzy_behaviour = true
 		_saved_dizzy_victim = dizzy_victim
 		_recently_had_dizzy_victim = true
+	elif not dizzy_system.dizzy_victim_killed:
+		_dizzy_behaviour = false
 	elif _recently_had_dizzy_victim:
 		_recently_had_dizzy_victim = false
 		var dizzy_timer: SceneTreeTimer = get_tree().create_timer(0.5)

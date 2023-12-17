@@ -8,4 +8,6 @@ var dizzy_victim: DizzyComponent:
 			prev_victim = dizzy_victim
 		dizzy_victim = value
 
+var dizzy_victim_killed: bool = false
+
 var prev_victim: DizzyComponent

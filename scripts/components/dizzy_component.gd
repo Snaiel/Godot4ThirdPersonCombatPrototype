@@ -28,6 +28,7 @@ func _ready():
 func _on_hitbox_component_weapon_hit(weapon: Sword):
 	if dizzy_system.dizzy_victim == self and weapon.get_entity() == player:
 		health_component.deal_max_damage = true
+		dizzy_system.dizzy_victim_killed = true
 
 
 func _on_instability_component_full_instability(flag: bool):
@@ -36,6 +37,7 @@ func _on_instability_component_full_instability(flag: bool):
 	
 	if flag:
 		dizzy_system.dizzy_victim = self
+		dizzy_system.dizzy_victim_killed = false
 		
 		if instability_component.full_instability_from_parry:
 			character.dizzy_animations.dizzy_from_parry()
@@ -47,9 +49,4 @@ func _on_instability_component_full_instability(flag: bool):
 		movement_component.set_secondary_movement(4, 5, 10, -direction)
 	else:
 		dizzy_system.dizzy_victim = null
-	
-	
-	if flag:
-		var opponent_position: Vector3 = player.global_position
-		var direction: Vector3 = global_position.direction_to(opponent_position)
-		movement_component.set_secondary_movement(4, 5, 10, -direction)
+		character.dizzy_animations.disable_blend_dizzy()
