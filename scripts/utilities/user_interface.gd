@@ -104,6 +104,8 @@ func _process_dizzy() -> void:
 		_saved_dizzy_victim = dizzy_system.dizzy_victim
 	elif _crosshair.modulate.a < 0.1:
 		return
+	else:
+		_saved_dizzy_victim = null
 	
 	if _saved_dizzy_victim == null:
 		return
