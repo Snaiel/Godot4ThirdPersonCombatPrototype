@@ -3,6 +3,7 @@ extends Node3D
 
 
 @export var debug: bool = false
+@export var enabled: bool = true
 @export var entity: CharacterBody3D
 @export var lock_on_component: LockOnComponent
 @export var health_component: HealthComponent
@@ -21,6 +22,9 @@ func _ready():
 
 
 func _process(_delta):
+	if not enabled:
+		return
+	
 	_dist_to_player = entity.global_position.distance_to(_player.global_position)
 	
 	_angle_to_player = rad_to_deg(

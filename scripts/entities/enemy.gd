@@ -122,6 +122,7 @@ func _on_health_component_zero_health() -> void:
 	
 	_health_compoennt.active = false
 	_lock_on_component.enabled = false
+	_backstab_component.enabled = false
 	
 	_blackboard.set_value("dead", true)
 	_blackboard.set_value("interrupt_timers", true)
