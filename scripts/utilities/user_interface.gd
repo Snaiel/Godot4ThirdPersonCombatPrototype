@@ -28,22 +28,23 @@ func _ready() -> void:
 	
 
 func _process(_delta: float) -> void:
+	
 	_process_lock_on()
 	_process_backstab()
 	_process_dizzy()
 	
 	if (_backstab_crosshair_visisble and not _previous_backstab_victim) or \
 		dizzy_system.dizzy_victim:
-		_crosshair.modulate.a = lerp(
+		_crosshair.modulate.a = move_toward(
 			_crosshair.modulate.a,
 			1.0,
-			0.2
+			0.1
 		)
 	else:
-		_crosshair.modulate.a = lerp(
+		_crosshair.modulate.a = move_toward(
 			_crosshair.modulate.a,
 			0.0,
-			0.2
+			0.1
 		)
 	
 	_lock_on_texture.visible = _lock_on_target != null
@@ -70,6 +71,10 @@ func _process_backstab() -> void:
 	if not _backstab_victim:
 		return
 	
+	if _previous_backstab_victim and _crosshair.modulate.a < 0.05:
+		_previous_backstab_victim = null
+		return
+	
 	var current_focus: BackstabComponent
 	if _previous_backstab_victim:
 		current_focus = _previous_backstab_victim
@@ -83,9 +88,6 @@ func _process_backstab() -> void:
 	)
 	
 	_crosshair.position = crosshair_pos
-	
-	if _previous_backstab_victim and _crosshair.modulate.a < 0.1:
-		_previous_backstab_victim = null
 
 
 func _on_backstab_system_current_victim(victim) -> void:

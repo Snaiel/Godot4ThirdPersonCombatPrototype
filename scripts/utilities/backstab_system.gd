@@ -63,7 +63,6 @@ func set_backstab_victim(victim: BackstabComponent, dist: float) -> void:
 	if not _can_switch_victim:
 		return
 	
-	print("success")
 	backstab_victim = victim
 	_current_dist_to_player = dist
 	
