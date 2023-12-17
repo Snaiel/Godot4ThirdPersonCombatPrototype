@@ -80,15 +80,22 @@ func _physics_process(_delta: float) -> void:
 	
 	character.movement_animations.move(_animation_input_dir, lock_on_target != null, running)
 	
+	var dizzy_victim: DizzyComponent = Globals.dizzy_system.dizzy_victim
 	character.dizzy_animations.set_dizzy_finisher(
-		Globals.dizzy_system.dizzy_victim != null, 
+		dizzy_victim != null, 
 		attack_component.attacking
 	)
-	if Globals.dizzy_system.dizzy_victim:
+	if dizzy_victim:
 		can_move = false
 		character.parry_animations.receive_parry_finished()
 	elif not attack_component.attacking:
 		can_move = true
+	
+	
+	if backstab_victim or dizzy_victim:
+		hitbox_component.enabled = false
+	else:
+		hitbox_component.enabled = true
 	
 	
 	if Input.is_action_just_pressed("block"):

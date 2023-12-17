@@ -6,6 +6,7 @@ signal weapon_hit(weapon: Sword)
 
 @export var debug: bool = false
 @export var entity: CharacterBody3D
+@export var enabled: bool = true
 
 var _weapons_in_hitbox: Array[Sword] = []
 
@@ -15,7 +16,10 @@ func _process(_delta: float) -> void:
 	
 	if not _weapons_in_hitbox:
 		return
-		
+	
+	if not enabled:
+		return
+	
 	for weapon in _weapons_in_hitbox:
 		if not weapon.can_damage:
 			continue
