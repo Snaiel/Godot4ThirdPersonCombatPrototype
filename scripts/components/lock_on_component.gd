@@ -3,6 +3,7 @@ extends Area3D
 
 signal destroyed(target: LockOnComponent)
 
+@export var enabled: bool = true
 @export var component_owner: Node3D
 @export var health_component: HealthComponent
 

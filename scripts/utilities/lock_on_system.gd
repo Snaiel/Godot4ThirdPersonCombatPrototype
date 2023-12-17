@@ -80,7 +80,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _on_area_entered(area: LockOnComponent) -> void:
-	if area not in _targets_nearby:
+	if area not in _targets_nearby and area.enabled:
 		_targets_nearby.append(area)
 		area.destroyed.connect(_target_destroyed)
 
