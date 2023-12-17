@@ -36,32 +36,61 @@ var locked_on: bool
 @onready var cam: Camera3D = $NormalCam
 
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 
-	position = player.position + Vector3(0, vertical_offset, 0)
+	global_position = player.global_position + Vector3(0, vertical_offset, 0)
 	spring_length = camera_distance
 
 	Globals.camera_controller = self
-	cam.rotation_degrees.x = camera_angle
 	cam.fov = camera_fov
 	top_level = true
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	mouse_sensitivity = mouse_sensitivity * pow(10, -3)
 	controller_sensitivity = controller_sensitivity * pow(10, -2) / 2
 
-func _physics_process(_delta: float) -> void:
-	locked_on = _lock_on_target != null
-	position = position.lerp(player.position + Vector3(0, vertical_offset, 0), 0.1)
 
+func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().quit()
 	elif Input.is_action_just_pressed("ui_text_backspace"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	elif Input.is_action_just_pressed("attack"):
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
+	
+	
+	locked_on = _lock_on_target != null
+	
+	
+	var dizzy_victim: DizzyComponent = Globals.dizzy_system.dizzy_victim
+	if dizzy_victim:
+		
+		cam.fov = 60
+		global_position = global_position.lerp(
+			player.global_position + Vector3(0, -0.5, 0), 
+			0.1
+		)
+		
+		cam.look_at(dizzy_victim.global_position)
+		
+		var _looking_direction: Vector3 = -global_position.direction_to(dizzy_victim.global_position)
+		var _target_look: float = atan2(_looking_direction.x, _looking_direction.z)
+		_target_look += deg_to_rad(70)
+		
+		var desired_rotation_y: float = lerp_angle(rotation.y, _target_look, 0.2)
+		rotation.y = desired_rotation_y
+		
+	else:
+		global_position = global_position.lerp(
+			player.global_position + Vector3(0, vertical_offset, 0),
+			 0.1
+		)
+		
+		spring_length = camera_distance
+		cam.fov = camera_fov
+		
+		cam.rotation = cam.rotation.lerp(Vector3.ZERO, 0.05)
+	
+	
 	if _lock_on_target:
 		var _looking_direction: Vector3 = -global_position.direction_to(_lock_on_target.global_position)
 		var _target_look: float = atan2(_looking_direction.x, _looking_direction.z)
@@ -101,6 +130,7 @@ func _physics_process(_delta: float) -> void:
 			rotation.y = lerp(rotation.y, new_rotation_y, 0.8)
 			rotation_degrees.y = wrapf(rotation_degrees.y, 0.0, 360.0)
 
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and not _lock_on_target:
 		_player_looking_around = true
@@ -115,6 +145,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	else:
 		_player_looking_around = false
 
+
 func player_moving(move_direction: Vector3, running: bool, delta: float) -> void:
 	if not _player_looking_around:
 		var new_rotation: float
@@ -124,9 +155,11 @@ func player_moving(move_direction: Vector3, running: bool, delta: float) -> void
 			new_rotation = rotation.y - sign(move_direction.x) * delta * not_running_spin_speed		
 		rotation.y = lerp(rotation.y, new_rotation, 0.3)
 
+
 func get_lock_on_position(target: Node3D) -> Vector2:
 	var pos = cam.unproject_position(target.global_position)
 	return pos
+
 
 func lock_on(target: LockOnComponent) -> void:
 	_lock_on_target = target

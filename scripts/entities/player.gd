@@ -13,6 +13,7 @@ extends CharacterBody3D
 @export var rotation_component: PlayerRotationComponent
 @export var attack_component: AttackComponent
 @export var parry_component: ParryComponent
+@export var fade_component: FadeComponent
 
 var input_direction: Vector3 = Vector3.ZERO
 var last_input_on_ground: Vector3 = Vector3.ZERO
@@ -74,6 +75,9 @@ func _physics_process(_delta: float) -> void:
 	movement_component.move_direction = rotation_component.move_direction
 	
 	
+	fade_component.enabled = true
+	
+	
 	var _animation_input_dir: Vector3 = input_direction
 	if _locked_on_turning_in_place or (dodge_component.dodging and input_direction.length() < 0.1):
 		_animation_input_dir = Vector3.FORWARD * 0.4
@@ -87,6 +91,7 @@ func _physics_process(_delta: float) -> void:
 	)
 	if dizzy_victim:
 		can_move = false
+		fade_component.enabled = false
 		character.parry_animations.receive_parry_finished()
 	elif not attack_component.attacking:
 		can_move = true
