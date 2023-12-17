@@ -31,6 +31,10 @@ extends SpringArm3D
 var _lock_on_target: LockOnComponent = null
 var _player_looking_around: bool = false
 
+var _saved_dizzy_victim: DizzyComponent
+var _dizzy_behaviour: bool = false
+var _recently_had_dizzy_victim: bool = false
+
 var locked_on: bool
 
 @onready var cam: Camera3D = $NormalCam
@@ -62,6 +66,19 @@ func _physics_process(_delta: float) -> void:
 	
 	var dizzy_victim: DizzyComponent = Globals.dizzy_system.dizzy_victim
 	if dizzy_victim:
+		_dizzy_behaviour = true
+		_saved_dizzy_victim = dizzy_victim
+		_recently_had_dizzy_victim = true
+	elif _recently_had_dizzy_victim:
+		_recently_had_dizzy_victim = false
+		var dizzy_timer: SceneTreeTimer = get_tree().create_timer(0.5)
+		dizzy_timer.timeout.connect(
+			func():
+				_dizzy_behaviour = false
+				_saved_dizzy_victim = null
+		)
+	
+	if _dizzy_behaviour:
 		
 		cam.fov = 60
 		global_position = global_position.lerp(
@@ -69,9 +86,9 @@ func _physics_process(_delta: float) -> void:
 			0.1
 		)
 		
-		cam.look_at(dizzy_victim.global_position)
+		cam.look_at(_saved_dizzy_victim.global_position)
 		
-		var _looking_direction: Vector3 = -global_position.direction_to(dizzy_victim.global_position)
+		var _looking_direction: Vector3 = -global_position.direction_to(_saved_dizzy_victim.global_position)
 		var _target_look: float = atan2(_looking_direction.x, _looking_direction.z)
 		_target_look += deg_to_rad(70)
 		
@@ -79,13 +96,16 @@ func _physics_process(_delta: float) -> void:
 		rotation.y = desired_rotation_y
 		
 	else:
+		cam.fov = move_toward(
+			cam.fov,
+			camera_fov,
+			2
+		)
+		
 		global_position = global_position.lerp(
 			player.global_position + Vector3(0, vertical_offset, 0),
 			 0.1
 		)
-		
-		spring_length = camera_distance
-		cam.fov = camera_fov
 		
 		cam.rotation = cam.rotation.lerp(Vector3.ZERO, 0.05)
 	
