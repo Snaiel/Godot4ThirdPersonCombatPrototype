@@ -84,8 +84,11 @@ func _physics_process(_delta: float) -> void:
 		Globals.dizzy_system.dizzy_victim != null, 
 		attack_component.attacking
 	)
-	if Globals.dizzy_system.dizzy_victim != null:
+	if Globals.dizzy_system.dizzy_victim:
+		can_move = false
 		character.parry_animations.receive_parry_finished()
+	elif not attack_component.attacking:
+		can_move = true
 	
 	
 	if Input.is_action_just_pressed("block"):
@@ -103,7 +106,10 @@ func _physics_process(_delta: float) -> void:
 
 
 	if Input.is_action_just_pressed("attack"):
-		if block_component.blocking:
+		if Globals.backstab_system.backstab_victim or \
+			Globals.dizzy_system.dizzy_victim:
+			attack_component.thrust()
+		elif block_component.blocking:
 			attack_component.attack(false)
 		else:
 			attack_component.attack()
