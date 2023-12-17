@@ -10,7 +10,6 @@ extends Node3D
 @export var blackboard: Blackboard
 @export var instability_component: InstabilityComponent
 
-@onready var _player: Player = Globals.player
 @onready var dizzy_system: DizzySystem = Globals.dizzy_system
 
 
@@ -35,4 +34,3 @@ func _ready():
 func _on_hitbox_component_weapon_hit(_weapon: Sword):
 	if dizzy_system.dizzy_victim == self:
 		health_component.deal_max_damage = true
-		entity.look_at(_player.global_position)

@@ -73,16 +73,20 @@ func _physics_process(_delta: float) -> void:
 	rotation_component.rotate_towards_target = rotate_towards_target
 	movement_component.move_direction = rotation_component.move_direction
 	
+	
 	var _animation_input_dir: Vector3 = input_direction
 	if _locked_on_turning_in_place or (dodge_component.dodging and input_direction.length() < 0.1):
 		_animation_input_dir = Vector3.FORWARD * 0.4
-
+	
 	character.movement_animations.move(_animation_input_dir, lock_on_target != null, running)
 	
 	character.dizzy_animations.set_dizzy_finisher(
 		Globals.dizzy_system.dizzy_victim != null, 
 		attack_component.attacking
 	)
+	if Globals.dizzy_system.dizzy_victim != null:
+		character.parry_animations.receive_parry_finished()
+	
 	
 	if Input.is_action_just_pressed("block"):
 		if not attack_component.attacking:

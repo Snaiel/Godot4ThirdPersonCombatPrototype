@@ -169,6 +169,7 @@ right_operand = "true"
 [node name="StandStill" parent="BeehaveTree/SelectorComposite/Dizzy" instance=ExtResource("17_6rhnw")]
 
 [node name="SetLookAtTargetFalse" parent="BeehaveTree/SelectorComposite/Dizzy" instance=ExtResource("16_08u5b")]
+value = "true"
 
 [node name="Aggro" type="Node" parent="BeehaveTree/SelectorComposite"]
 script = ExtResource("9_aj65e")
