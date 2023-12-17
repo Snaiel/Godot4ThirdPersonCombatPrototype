@@ -104,6 +104,9 @@ func _process_dizzy() -> void:
 	elif _crosshair.modulate.a < 0.1:
 		return
 	
+	if _saved_dizzy_victim == null:
+		return
+	
 	var pos: Vector2 = Globals.camera_controller.get_lock_on_position(_saved_dizzy_victim)
 	var crosshair_pos: Vector2 = Vector2(
 		pos.x,

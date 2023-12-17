@@ -19,6 +19,7 @@ var _can_attack_again: bool = false
 var _attack_interrupted: bool = false
 
 @onready var _backstab_system: BackstabSystem = Globals.backstab_system
+@onready var _dizzy_system: DizzySystem = Globals.dizzy_system
 
 
 # Called when the node enters the scene tree for the first time.
@@ -50,8 +51,8 @@ func attack(can_stop: bool = true) -> void:
 	can_rotate.emit(true)
 	can_move.emit(false)
 	
-	if _backstab_system.backstab_victim:
-		_attack_animations.backstab()
+	if _backstab_system.backstab_victim or _dizzy_system.dizzy_victim:
+		_attack_animations.thrust()
 	else:
 		_attack_animations.attack(attack_level, _manually_set_attack_level)
 		

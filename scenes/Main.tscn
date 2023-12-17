@@ -299,6 +299,11 @@ bones/64/rotation = Quaternion(-3.65492e-07, 0.998003, 0.0631675, -3.81956e-08)
 [node name="Sword" parent="Enemies/Enemy6/CharacterModel/Armature_004/GeneralSkeleton" index="2"]
 transform = Transform3D(0.39629, 0.0233149, 0.91783, 0.0690643, -0.997602, -0.00447848, 0.915524, 0.0651641, -0.39695, -0.246459, 0.850319, -0.000614956)
 
+[node name="AnimationTree" parent="Enemies/Enemy6/CharacterModel" index="2"]
+"parameters/Dizzy Finisher/blend_amount" = 0
+"parameters/Dizzy Finisher Speed/scale" = 1.0
+"parameters/Dizzy Finisher Trim/seek_request" = -1.0
+
 [node name="HitAndDeathAnimations" parent="Enemies/Enemy6/CharacterModel" index="8"]
 debug = true
 

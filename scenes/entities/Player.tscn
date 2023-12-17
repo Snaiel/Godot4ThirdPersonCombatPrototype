@@ -50,9 +50,6 @@ shape = SubResource("CapsuleShape3D_lnhvg")
 [node name="CharacterModel" parent="." instance=ExtResource("5_gusos")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1, 0)
 
-[node name="GeneralSkeleton" parent="CharacterModel/Armature_004" index="0"]
-bones/1/position = Vector3(-6.75701e-08, 0.997919, 3.87323e-07)
-
 [node name="Alpha_Joints" parent="CharacterModel/Armature_004/GeneralSkeleton" index="0"]
 layers = 2
 surface_material_override/0 = SubResource("ShaderMaterial_kr42x")
@@ -62,8 +59,11 @@ layers = 2
 surface_material_override/0 = ExtResource("4_ysu0o")
 
 [node name="Sword" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity") instance=ExtResource("5_vtx6o")]
-transform = Transform3D(7.54791e-07, -1, -8.41021e-05, 5.5829e-07, 8.41021e-05, -1, 1, 7.54744e-07, 5.58354e-07, -0.74098, 1.43565, -0.0641843)
+transform = Transform3D(0.396289, 0.0233159, 0.91783, 0.0690642, -0.997602, -0.00447724, 0.915524, 0.0651633, -0.396949, -0.246457, 0.842359, -0.000616003)
 _entity = NodePath("../../../..")
+
+[node name="AnimationTree" parent="CharacterModel" index="2"]
+"parameters/Dizzy Finisher/blend_amount" = 0
 
 [node name="JumpAnimations" parent="CharacterModel" index="4"]
 debug = true
