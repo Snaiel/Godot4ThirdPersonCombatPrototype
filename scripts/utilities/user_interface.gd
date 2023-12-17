@@ -23,7 +23,6 @@ var _saved_dizzy_victim: DizzyComponent
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_lock_on_texture.visible = false
-	Globals.user_interface = self
 	Globals.debug_label = $DebugLabel
 	_crosshair.modulate.a = 0.0
 	

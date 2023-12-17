@@ -28,7 +28,6 @@ var _targets_nearby: Array[LockOnComponent]
 
 
 func _ready() -> void:
-	Globals.lock_on_system = self
 	_change_target_timer.wait_time = change_target_wait_time
 	(_enemy_detection_sphere.shape as SphereShape3D).radius = target_detection_range
 

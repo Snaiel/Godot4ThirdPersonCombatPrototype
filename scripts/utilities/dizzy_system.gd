@@ -9,7 +9,3 @@ var dizzy_victim: DizzyComponent:
 		dizzy_victim = value
 
 var prev_victim: DizzyComponent
-
-
-func _ready():
-	Globals.dizzy_system = self

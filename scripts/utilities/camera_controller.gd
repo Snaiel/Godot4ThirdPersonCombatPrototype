@@ -37,11 +37,10 @@ var locked_on: bool
 
 
 func _ready() -> void:
-
+	
 	global_position = player.global_position + Vector3(0, vertical_offset, 0)
 	spring_length = camera_distance
-
-	Globals.camera_controller = self
+	
 	cam.fov = camera_fov
 	top_level = true
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
