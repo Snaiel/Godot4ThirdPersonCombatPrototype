@@ -64,6 +64,8 @@ transform = Transform3D(7.54791e-07, -1, -8.41021e-05, 5.5829e-07, 8.41021e-05, 
 _entity = NodePath("../../../..")
 
 [node name="AnimationTree" parent="CharacterModel" index="2"]
+"parameters/Dizzy Kneeling Speed/scale" = 1.0
+"parameters/Dizzy Kneeling Trim/seek_request" = -1.0
 "parameters/Dizzy Which One/current_state" = ""
 "parameters/Dizzy Which One/transition_request" = ""
 "parameters/Dizzy Which One/current_index" = -1

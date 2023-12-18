@@ -45,6 +45,7 @@ func dizzy_from_parry() -> void:
 
 func dizzy_from_damage() -> void:
 	_blend_dizzy = true
+	anim_tree["parameters/Dizzy Kneeling Trim/seek_request"] = 1.3
 	anim_tree["parameters/Dizzy Which One/transition_request"] = "from_damage"	
 
 
@@ -66,4 +67,7 @@ func set_dizzy_finisher(dizzy_victim: bool, attacking: bool) -> void:
 		_dizzy_finisher_out_blend = 0.3
 	else:
 		_dizzy_finisher_out_blend = 0.1
-	
+
+
+func receive_now_kneeling() -> void:
+	anim_tree["parameters/Dizzy Kneeling Speed/scale"] = 0.0

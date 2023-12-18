@@ -284,6 +284,10 @@ debug = true
 [node name="Sword" parent="Enemies/Enemy6/CharacterModel/Armature_004/GeneralSkeleton" index="2"]
 transform = Transform3D(0.396289, 0.0233159, 0.91783, 0.0690642, -0.997602, -0.00447724, 0.915524, 0.0651633, -0.396949, -0.242896, 0.842359, -0.00304471)
 
+[node name="AnimationTree" parent="Enemies/Enemy6/CharacterModel" index="2"]
+"parameters/Dizzy Kneeling Speed/scale" = 1.0
+"parameters/Dizzy Kneeling Trim/seek_request" = -1.0
+
 [node name="HitAndDeathAnimations" parent="Enemies/Enemy6/CharacterModel" index="8"]
 debug = true
 

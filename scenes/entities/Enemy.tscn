@@ -75,6 +75,8 @@ _entity = NodePath("../../../..")
 collision_mask = 2
 
 [node name="AnimationTree" parent="CharacterModel" index="2"]
+"parameters/Dizzy Kneeling Speed/scale" = 1.0
+"parameters/Dizzy Kneeling Trim/seek_request" = -1.0
 "parameters/Dizzy Which One/current_state" = ""
 "parameters/Dizzy Which One/current_index" = -1
 
