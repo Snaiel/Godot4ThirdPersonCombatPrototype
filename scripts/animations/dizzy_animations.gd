@@ -9,16 +9,16 @@ var _dizzy_finisher_out_blend: float
 
 func _physics_process(_delta):
 	if _blend_dizzy:
-		anim_tree["parameters/Dizzy/blend_amount"] = lerp(
+		anim_tree["parameters/Dizzy/blend_amount"] = move_toward(
 			float(anim_tree["parameters/Dizzy/blend_amount"]),
 			1.0,
 			0.2
 		)
 	else:
-		anim_tree["parameters/Dizzy/blend_amount"] = lerp(
+		anim_tree["parameters/Dizzy/blend_amount"] = move_toward(
 			float(anim_tree["parameters/Dizzy/blend_amount"]),
 			0.0,
-			0.2
+			0.1
 		)
 	
 	if _blend_dizzy_finisher:
@@ -33,20 +33,20 @@ func _physics_process(_delta):
 			0.0,
 			_dizzy_finisher_out_blend
 		)
-	
-#	if anim_tree["parameters/Dizzy Finisher/blend_amount"] > 0:
-#		print(anim_tree["parameters/Dizzy Finisher/blend_amount"])
 
 
 func dizzy_from_parry() -> void:
-	_blend_dizzy = true
 	anim_tree["parameters/Dizzy Which One/transition_request"] = "from_parry"
+	_blend_dizzy = true
 
 
 func dizzy_from_damage() -> void:
-	_blend_dizzy = true
-	anim_tree["parameters/Dizzy Kneeling Trim/seek_request"] = 1.3
+	parent_animations.hit_and_death_animations.interrupt_blend_death()
+	anim_tree["parameters/Dizzy Kneeling Trim/seek_request"] = 1.2
+	anim_tree["parameters/Dizzy Kneeling Speed/scale"] = 1.5
+	anim_tree["parameters/Death Kneel Blend Trim 2/seek_request"] = 1.3
 	anim_tree["parameters/Dizzy Which One/transition_request"] = "from_damage"	
+	_blend_dizzy = true
 
 
 func disable_blend_dizzy() -> void:

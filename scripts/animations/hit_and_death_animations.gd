@@ -71,3 +71,8 @@ func death_2() -> void:
 	anim_tree["parameters/Death Which One/transition_request"] = "death_2"
 	anim_tree["parameters/Death 2 Trim/seek_request"] = 0.0
 	_death = true
+
+
+func interrupt_blend_death() -> void:
+	_blend_death = false
+	anim_tree["parameters/Death/blend_amount"] = 0.0

@@ -3,7 +3,7 @@ extends Node3D
 
 
 signal instability_increased
-signal full_instability()
+signal full_instability
 
 
 @export_category("Configuration")
@@ -49,6 +49,10 @@ func come_out_of_full_instability(multiplier: float) -> void:
 	_instability = _instability * multiplier
 
 
+func is_full_instability() -> bool:
+	return _instability >= max_instability
+
+
 func get_instability() -> float:
 	return _instability
 
@@ -68,7 +72,7 @@ func increment_instability(value: float, from_parry: bool = false):
 
 
 func _on_hitbox_component_weapon_hit(_weapon: Sword):
-	increment_instability(8.0, false)
+	increment_instability(100.0, false)
 
 
 func _on_sword_parried():
