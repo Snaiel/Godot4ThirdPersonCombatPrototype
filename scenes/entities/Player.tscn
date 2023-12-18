@@ -125,10 +125,12 @@ layers = 2
 surface_material_override/0 = ExtResource("4_ysu0o")
 
 [node name="Sword" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity") instance=ExtResource("5_vtx6o")]
-transform = Transform3D(0, -1, 0, 0, 0, -1, 1, 0, 0, -0.737829, 1.43559, -0.0617137)
+transform = Transform3D(0, -1, 0, 0, 0, -1, 1, 0, 0, -0.739411, 1.43559, -0.0596862)
 _entity = NodePath("../../../..")
 
 [node name="AnimationTree" parent="CharacterModel" index="2"]
+"parameters/Dizzy From Damage/current_state" = ""
+"parameters/Dizzy From Damage/current_index" = -1
 "parameters/Dizzy Which One/current_state" = ""
 "parameters/Dizzy Which One/current_index" = -1
 

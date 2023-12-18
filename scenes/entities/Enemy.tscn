@@ -133,13 +133,15 @@ bones/64/rotation = Quaternion(0, 1, 0, 0)
 surface_material_override/0 = SubResource("ShaderMaterial_i1ddg")
 
 [node name="Sword" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity") instance=ExtResource("4_r63io")]
-transform = Transform3D(0, -1, 0, 0, 0, -1, 1, 0, 0, -0.737829, 1.43559, -0.0617137)
+transform = Transform3D(0, -1, 0, 0, 0, -1, 1, 0, 0, -0.739411, 1.43559, -0.0596862)
 _entity = NodePath("../../../..")
 
 [node name="Area" parent="CharacterModel/Armature_004/GeneralSkeleton/Sword" index="1"]
 collision_mask = 2
 
 [node name="AnimationTree" parent="CharacterModel" index="2"]
+"parameters/Dizzy From Damage/current_state" = ""
+"parameters/Dizzy From Damage/current_index" = -1
 "parameters/Dizzy Which One/current_state" = ""
 "parameters/Dizzy Which One/current_index" = -1
 
