@@ -67,7 +67,7 @@ func _physics_process(_delta: float) -> void:
 	
 	var dizzy_victim: DizzyComponent = dizzy_system.dizzy_victim
 	
-	if dizzy_victim:
+	if dizzy_victim and dizzy_victim.instability_component.full_instability_from_parry:
 		_dizzy_behaviour = true
 		_saved_dizzy_victim = dizzy_victim
 		_recently_had_dizzy_victim = true

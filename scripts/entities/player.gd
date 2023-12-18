@@ -30,6 +30,8 @@ var _holding_down_run_timer: Timer
 
 var _locked_on_turning_in_place: bool = false
 
+@onready var dizzy_system: DizzySystem = Globals.dizzy_system
+
 
 func _ready() -> void:
 	Globals.backstab_system.attack_component = attack_component
@@ -83,17 +85,21 @@ func _physics_process(_delta: float) -> void:
 	
 	character.movement_animations.move(_animation_input_dir, lock_on_target != null, running)
 	
-	var dizzy_victim: DizzyComponent = Globals.dizzy_system.dizzy_victim
-	character.dizzy_animations.set_dizzy_finisher(
-		dizzy_victim != null, 
-		attack_component.attacking
-	)
-	if dizzy_victim:
+	var dizzy_victim: DizzyComponent = dizzy_system.dizzy_victim
+	if dizzy_victim and dizzy_victim.instability_component.full_instability_from_parry:
 		can_move = false
 		fade_component.enabled = false
 		character.parry_animations.receive_parry_finished()
+		character.dizzy_animations.set_dizzy_finisher(
+			true, 
+			attack_component.attacking
+		)
 	elif not attack_component.attacking:
 		can_move = true
+		character.dizzy_animations.set_dizzy_finisher(
+			false, 
+			attack_component.attacking
+		)
 	
 	
 	if backstab_victim or dizzy_victim:
