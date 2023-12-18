@@ -2,6 +2,11 @@ class_name DizzyComponent
 extends Node3D
 
 
+@export_category("Dizzy Lengths")
+@export var dizzy_from_parry_length: float = 2.0
+@export var dizzy_from_damage_length: float = 3.0
+
+@export_category("Configuration")
 @export var debug: bool = false
 @export var entity: CharacterBody3D
 @export var lock_on_component: LockOnComponent
@@ -12,6 +17,8 @@ extends Node3D
 @export var blackboard: Blackboard
 
 var _can_kill_dizzy_victim: bool = false
+
+var _dizzy_timer: Timer
 
 @onready var player: Player = Globals.player
 @onready var dizzy_system: DizzySystem = Globals.dizzy_system
@@ -25,6 +32,13 @@ func _ready():
 		func():
 			dizzy_system.dizzy_victim = null
 	)
+	
+	_dizzy_timer = Timer.new()
+	_dizzy_timer.wait_time = dizzy_from_parry_length
+	_dizzy_timer.autostart = false
+	_dizzy_timer.one_shot = true
+	_dizzy_timer.timeout.connect(_come_out_of_dizzy)
+	add_child(_dizzy_timer)
 
 
 func _on_hitbox_component_weapon_hit(weapon: Sword):
@@ -41,29 +55,33 @@ func _on_hitbox_component_weapon_hit(weapon: Sword):
 		dizzy_system.dizzy_victim_killed = true
 
 
-func _on_instability_component_full_instability(flag: bool):
-	blackboard.set_value("dizzy", flag)
+func _on_instability_component_full_instability():
+	blackboard.set_value("dizzy", true)
 	blackboard.set_value("interrupt_timers", true)
 	
+	if dizzy_system.dizzy_victim == self:
+		return
 	
-	if flag:
-		if dizzy_system.dizzy_victim == self:
-			return
-		
-		dizzy_system.dizzy_victim = self
-		dizzy_system.dizzy_victim_killed = false
-		
-		if instability_component.full_instability_from_parry:
-			_can_kill_dizzy_victim = true
-			character.dizzy_animations.dizzy_from_parry()
-		else:
-			_can_kill_dizzy_victim = false
-			character.dizzy_animations.dizzy_from_damage()
-		
-		var opponent_position: Vector3 = player.global_position
-		var direction: Vector3 = global_position.direction_to(opponent_position)
-		movement_component.set_secondary_movement(4, 5, 10, -direction)
+	dizzy_system.dizzy_victim = self
+	dizzy_system.dizzy_victim_killed = false
+	
+	if instability_component.full_instability_from_parry:
+		_can_kill_dizzy_victim = true
+		character.dizzy_animations.dizzy_from_parry()
+		_dizzy_timer.start(dizzy_from_parry_length)
 	else:
-		dizzy_system.dizzy_victim = null
-		character.dizzy_animations.disable_blend_dizzy()
 		_can_kill_dizzy_victim = false
+		character.dizzy_animations.dizzy_from_damage()
+		_dizzy_timer.start(dizzy_from_damage_length)
+	
+	var opponent_position: Vector3 = player.global_position
+	var direction: Vector3 = global_position.direction_to(opponent_position)
+	movement_component.set_secondary_movement(4, 5, 10, -direction)
+
+
+func _come_out_of_dizzy() -> void:
+	dizzy_system.dizzy_victim = null
+	_can_kill_dizzy_victim = false
+	character.dizzy_animations.disable_blend_dizzy()
+	instability_component.come_out_of_full_instability(0.7)
+	blackboard.set_value("dizzy", false)
