@@ -104,8 +104,8 @@ func _target_destroyed(t: LockOnComponent) -> void:
 		return
 	
 	if  (
-		_dizzy_system.prev_victim and \
-		_dizzy_system.prev_victim.entity == target.component_owner
+		_dizzy_system.dizzy_victim and \
+		_dizzy_system.dizzy_victim.entity == target.component_owner
 	) or \
 	(
 		_backstab_system.backstab_victim and \
@@ -120,7 +120,7 @@ func _target_destroyed(t: LockOnComponent) -> void:
 		)
 		
 		return
-		
+	
 	_choose_new_target()
 
 

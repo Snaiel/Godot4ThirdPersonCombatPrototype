@@ -835,7 +835,7 @@ input_1/auto_advance = false
 input_1/reset = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_pvyc3"]
-graph_offset = Vector2(2135.93, 711.252)
+graph_offset = Vector2(3009.93, 872.252)
 nodes/Attack/node = SubResource("AnimationNodeTransition_gr1qy")
 nodes/Attack/position = Vector2(860, 1120)
 "nodes/Attack Forward Thrust/node" = SubResource("AnimationNodeBlendTree_ws83a")
@@ -873,7 +873,7 @@ nodes/Death/position = Vector2(6400, 1340)
 "nodes/Death Backstab Animation/node" = SubResource("AnimationNodeAnimation_l3xmt")
 "nodes/Death Backstab Animation/position" = Vector2(5240, 1660)
 "nodes/Death Kneeling Animation/node" = SubResource("AnimationNodeAnimation_byhug")
-"nodes/Death Kneeling Animation/position" = Vector2(4180, 1580)
+"nodes/Death Kneeling Animation/position" = Vector2(4200, 1580)
 "nodes/Death Which One/node" = SubResource("AnimationNodeTransition_vq7r5")
 "nodes/Death Which One/position" = Vector2(6160, 1560)
 nodes/Dizzy/node = SubResource("AnimationNodeBlend2_myeho")
