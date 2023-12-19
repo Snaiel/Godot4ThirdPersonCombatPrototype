@@ -95,6 +95,9 @@ func _physics_process(_delta: float) -> void:
 			character.parry_animations.receive_parry_finished()
 		else:
 			attack_component.disable_attack_interrupted()
+	else:
+		can_move = true
+		character.dizzy_animations.receive_dizzy_finisher_from_parry_finished()
 	
 	
 	if backstab_victim or dizzy_victim:
