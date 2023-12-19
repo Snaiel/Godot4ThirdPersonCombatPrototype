@@ -91,7 +91,7 @@ func _come_out_of_dizzy() -> void:
 		blackboard.set_value("dizzy", false)
 	else:
 		var come_out_of_damage_dizzy_timer: SceneTreeTimer = get_tree()\
-			.create_timer(2.0)
+			.create_timer(1.5)
 		come_out_of_damage_dizzy_timer.timeout.connect(
 			func():
 				blackboard.set_value("dizzy", false)

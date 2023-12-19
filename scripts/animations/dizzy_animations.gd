@@ -56,6 +56,7 @@ func dizzy_from_damage() -> void:
 func disable_blend_dizzy() -> void:
 	_blend_dizzy = false
 	if not _dizzy_from_parry:
+		anim_tree["parameters/Kneel to Stand Trim/seek_request"] = 1.0
 		anim_tree["parameters/Dizzy From Damage/transition_request"] = "to_stand"
 
 
