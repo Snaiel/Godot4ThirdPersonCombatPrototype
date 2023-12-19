@@ -135,7 +135,6 @@ func _on_health_component_zero_health() -> void:
 	collision_layer = 0
 	collision_mask = 1
 	
-	prints(Globals.dizzy_system.dizzy_victim == _dizzy_component, _dizzy_component.instability_component.full_instability_from_parry)
 	if Globals.backstab_system.backstab_victim == _backstab_component:
 		_character.hit_and_death_animations.death_2()
 	elif Globals.dizzy_system.dizzy_victim == _dizzy_component and \
