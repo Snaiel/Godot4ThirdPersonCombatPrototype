@@ -2,6 +2,9 @@ class_name DizzyAnimations
 extends BaseAnimations
 
 
+signal dizzy_finisher_finished
+
+
 var attacking: bool = false
 
 var _blend_dizzy: bool = false
@@ -110,6 +113,7 @@ func set_dizzy_finisher(from_parry: bool) -> void:
 		anim_tree["parameters/Dizzy Finisher From Damage Speed/scale"] = 1.5
 
 
-func receive_dizzy_finisher_from_parry_finished() -> void:
+func receive_dizzy_finisher_finished() -> void:
 	attacking = false
 	_blend_dizzy_finisher = false
+	dizzy_finisher_finished.emit()

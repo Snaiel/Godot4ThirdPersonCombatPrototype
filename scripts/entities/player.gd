@@ -42,7 +42,12 @@ func _ready() -> void:
 	_holding_down_run_timer = Timer.new()
 	_holding_down_run_timer.timeout.connect(_handle_hold_down_run_timer)
 	add_child(_holding_down_run_timer)
-
+	
+	character.dizzy_animations.dizzy_finisher_finished.connect(
+		func():
+			can_move = true
+			dizzy_system.victim_being_killed = false
+	)
 
 func _physics_process(_delta: float) -> void:
 	# player inputs
@@ -94,12 +99,16 @@ func _physics_process(_delta: float) -> void:
 			fade_component.enabled = false
 			character.parry_animations.receive_parry_finished()
 		else:
+			# since not using the attack component to do the finisher,
+			# manually set attack interrupted to false which will
+			# allow the signals that dictate whether the weapon
+			# can damage to be recognised
 			attack_component.disable_attack_interrupted()
-	elif dizzy_system.prev_victim != null and \
-	dizzy_system.prev_victim.instability_component.full_instability_from_parry:
-		can_move = true
-		character.dizzy_animations.receive_dizzy_finisher_from_parry_finished()
-		dizzy_system.victim_being_killed = false
+	elif not dizzy_system.victim_being_killed and \
+	dizzy_system.saved_victim != null and \
+	dizzy_system.saved_victim.instability_component.full_instability_from_parry:
+		# dizzy from parry but player didn't execute
+		character.dizzy_animations.receive_dizzy_finisher_finished()
 	
 	
 	if backstab_victim or dizzy_victim:

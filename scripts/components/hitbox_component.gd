@@ -11,14 +11,16 @@ signal weapon_hit(weapon: Sword)
 
 var _weapons_in_hitbox: Array[Sword] = []
 
+@onready var dizzy_system: DizzySystem = Globals.dizzy_system
+
 
 func _process(_delta: float) -> void:
 #	if debug: print(_weapons_in_hitbox)
 	
-	if not _weapons_in_hitbox:
+	if not enabled:
 		return
 	
-	if not enabled:
+	if len(_weapons_in_hitbox) == 0:
 		return
 	
 	for weapon in _weapons_in_hitbox:
@@ -38,6 +40,21 @@ func _process(_delta: float) -> void:
 		if not weapon_entity_in_groups:
 			continue
 		
+		# if an entity is being finished while it is
+		# dizzy, do not register the hit if the
+		# victim is not this entity 
+		if dizzy_system.victim_being_killed and \
+		(
+			(dizzy_system.dizzy_victim != null and \
+			dizzy_system.dizzy_victim.entity != entity) or \
+			(dizzy_system.saved_victim != null and \
+			dizzy_system.saved_victim.entity != entity)
+		) and \
+		weapon.get_entity() == Globals.player:
+			continue
+		
+#		prints("HIT", entity)
+
 		weapon_hit.emit(weapon)
 		_weapons_in_hitbox.erase(weapon)
 
