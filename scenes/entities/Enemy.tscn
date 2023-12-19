@@ -65,13 +65,11 @@ script = ExtResource("1_nrck3")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1, 0)
 
 [node name="GeneralSkeleton" parent="CharacterModel/Armature_004" index="0"]
-bones/1/position = Vector3(-6.75701e-08, 0.997919, 3.87323e-07)
 bones/1/rotation = Quaternion(0, 0, 0, 1)
 bones/2/rotation = Quaternion(0, 0, 0, 1)
 bones/3/rotation = Quaternion(0, 0, 0, 1)
 bones/4/rotation = Quaternion(0, 0, 0, 1)
 bones/5/rotation = Quaternion(0, 0, 0, 1)
-bones/6/rotation = Quaternion(0, 0, 0, 1)
 bones/8/rotation = Quaternion(0.5, 0.5, 0.5, -0.5)
 bones/9/rotation = Quaternion(0, 1, 0, 0)
 bones/10/rotation = Quaternion(0, -0.707107, 0, 0.707107)
@@ -81,7 +79,6 @@ bones/13/rotation = Quaternion(-0.214187, 0.673887, 0.214187, 0.673887)
 bones/14/rotation = Quaternion(-1.49012e-08, 0, 0, 1)
 bones/15/rotation = Quaternion(0, 0, 0, 1)
 bones/16/rotation = Quaternion(0, 0, 0, 1)
-bones/17/rotation = Quaternion(0, 0, 0, 1)
 bones/18/rotation = Quaternion(0, 0, 0, 1)
 bones/19/rotation = Quaternion(0, 0, 0, 1)
 bones/20/rotation = Quaternion(0, 0, 0, 1)
@@ -106,16 +103,12 @@ bones/38/rotation = Quaternion(-1.49012e-08, 0, 0, 1)
 bones/39/rotation = Quaternion(0, 0, 0, 1)
 bones/40/rotation = Quaternion(0, 0, 0, 1)
 bones/41/rotation = Quaternion(0, 0, 0, 1)
-bones/42/rotation = Quaternion(0, 0, 0, 1)
-bones/43/rotation = Quaternion(0, 0, 0, 1)
 bones/44/rotation = Quaternion(0, 0, 0, 1)
-bones/45/rotation = Quaternion(0, 0, 0, 1)
 bones/46/rotation = Quaternion(0, 0, 0, 1)
 bones/47/rotation = Quaternion(0, 0, 0, 1)
 bones/48/rotation = Quaternion(0, 0, 0, 1)
 bones/49/rotation = Quaternion(0, 0, 0, 1)
 bones/50/rotation = Quaternion(0, 0, 0, 1)
-bones/51/rotation = Quaternion(0, 0, 0, 1)
 bones/52/rotation = Quaternion(0, 0, 0, 1)
 bones/53/rotation = Quaternion(0, 0, 0, 1)
 bones/54/rotation = Quaternion(0, 0, 0, 1)
@@ -133,13 +126,15 @@ bones/64/rotation = Quaternion(0, 1, 0, 0)
 surface_material_override/0 = SubResource("ShaderMaterial_i1ddg")
 
 [node name="Sword" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity") instance=ExtResource("4_r63io")]
-transform = Transform3D(0, -1, 0, 0, 0, -1, 1, 0, 0, -0.739411, 1.43559, -0.0596862)
+transform = Transform3D(0, -1, 0, 0, 0, -1, 1, 0, 0, -0.737828, 1.42763, -0.0617142)
 _entity = NodePath("../../../..")
 
 [node name="Area" parent="CharacterModel/Armature_004/GeneralSkeleton/Sword" index="1"]
 collision_mask = 2
 
 [node name="AnimationTree" parent="CharacterModel" index="2"]
+"parameters/Dizzy Finisher Which One/current_state" = ""
+"parameters/Dizzy Finisher Which One/current_index" = -1
 "parameters/Dizzy From Damage/current_state" = ""
 "parameters/Dizzy From Damage/current_index" = -1
 "parameters/Dizzy Which One/current_state" = ""

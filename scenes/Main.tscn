@@ -281,21 +281,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.737, 2, -10.9117)
 transform = Transform3D(-0.722786, 0, 0.691072, 0, 1, 0, -0.691072, 0, -0.722786, 13.5218, 2, 14.0395)
 debug = true
 
-[node name="GeneralSkeleton" parent="Enemies/Enemy6/CharacterModel/Armature_004" index="0"]
-bones/1/position = Vector3(-6.75701e-08, 0.997919, 3.87323e-07)
-bones/10/rotation = Quaternion(0, -0.707107, 0, 0.707107)
-bones/11/rotation = Quaternion(0, 0.707107, 0, 0.707107)
-bones/13/rotation = Quaternion(-0.214187, 0.673887, 0.214187, 0.673887)
-bones/14/rotation = Quaternion(-1.49012e-08, 0, 0, 1)
-bones/34/rotation = Quaternion(0, 0.707107, 0, 0.707107)
-bones/35/rotation = Quaternion(0, -0.707107, 0, 0.707107)
-bones/37/rotation = Quaternion(-0.214187, -0.673887, -0.214187, 0.673887)
-bones/38/rotation = Quaternion(-1.49012e-08, 0, 0, 1)
-bones/58/rotation = Quaternion(0, 0.707107, -0.707107, 0)
-bones/63/rotation = Quaternion(0, 0.707107, -0.707107, 0)
-
 [node name="Sword" parent="Enemies/Enemy6/CharacterModel/Armature_004/GeneralSkeleton" index="2"]
-transform = Transform3D(0, -1, 0, 0, 0, -1, 1, 0, 0, -0.739411, 1.43559, -0.0596862)
+transform = Transform3D(0, -1, 0, 0, 0, -1, 1, 0, 0, -0.737828, 1.42763, -0.0617142)
 
 [node name="HitAndDeathAnimations" parent="Enemies/Enemy6/CharacterModel" index="8"]
 debug = true

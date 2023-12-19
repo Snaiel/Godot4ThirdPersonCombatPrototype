@@ -2,11 +2,13 @@ class_name DizzyAnimations
 extends BaseAnimations
 
 
+var attacking: bool = false
+
 var _blend_dizzy: bool = false
 var _dizzy_from_parry: bool = true
 
 var _blend_dizzy_finisher: bool = false
-var _dizzy_finisher_out_blend: float
+
 
 func _physics_process(_delta):
 	if _blend_dizzy:
@@ -32,7 +34,7 @@ func _physics_process(_delta):
 		anim_tree["parameters/Dizzy Finisher/blend_amount"] = move_toward(
 			float(anim_tree["parameters/Dizzy Finisher/blend_amount"]),
 			0.0,
-			_dizzy_finisher_out_blend
+			0.1
 		)
 
 
@@ -60,20 +62,19 @@ func disable_blend_dizzy() -> void:
 		anim_tree["parameters/Dizzy From Damage/transition_request"] = "to_stand"
 
 
-func set_dizzy_finisher(dizzy_victim: bool, attacking: bool) -> void:
+func set_dizzy_finisher(dizzy_victim: bool) -> void:
+	anim_tree["parameters/Dizzy Finisher Which One/transition_request"] = "from_parry"
 	if dizzy_victim and not attacking:
 		_blend_dizzy_finisher = true
-		anim_tree["parameters/Dizzy Finisher Speed/scale"] = 0.0
-		anim_tree["parameters/Dizzy Finisher Trim/seek_request"] = 0.0
+		anim_tree["parameters/Dizzy Finisher From Parry Speed/scale"] = 0.0
+		anim_tree["parameters/Dizzy Finisher From Parry Trim/seek_request"] = 0.0
 	else:
-		_blend_dizzy_finisher = false
-		anim_tree["parameters/Dizzy Finisher Speed/scale"] = 1.0
-	
-	
-	if attacking:
-		_dizzy_finisher_out_blend = 0.3
-	else:
-		_dizzy_finisher_out_blend = 0.1
+		anim_tree["parameters/Dizzy Finisher From Parry Speed/scale"] = 1.5
+
+
+func receive_dizzy_finisher_from_parry_finished() -> void:
+	attacking = false
+	_blend_dizzy_finisher = false
 
 
 func receive_now_kneeling() -> void:

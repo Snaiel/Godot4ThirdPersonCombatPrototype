@@ -90,16 +90,7 @@ func _physics_process(_delta: float) -> void:
 		can_move = false
 		fade_component.enabled = false
 		character.parry_animations.receive_parry_finished()
-		character.dizzy_animations.set_dizzy_finisher(
-			true, 
-			attack_component.attacking
-		)
-	elif not attack_component.attacking:
-		can_move = true
-		character.dizzy_animations.set_dizzy_finisher(
-			false, 
-			attack_component.attacking
-		)
+		character.dizzy_animations.set_dizzy_finisher(true)
 	
 	
 	if backstab_victim or dizzy_victim:
@@ -123,11 +114,12 @@ func _physics_process(_delta: float) -> void:
 
 
 	if Input.is_action_just_pressed("attack"):
-		if Globals.backstab_system.backstab_victim or \
-			Globals.dizzy_system.dizzy_victim:
+		if Globals.backstab_system.backstab_victim:
 			attack_component.thrust()
 		elif block_component.blocking:
 			attack_component.attack(false)
+		elif Globals.dizzy_system.dizzy_victim:
+			character.dizzy_animations.attacking = true
 		else:
 			attack_component.attack()
 
