@@ -95,9 +95,11 @@ func _physics_process(_delta: float) -> void:
 			character.parry_animations.receive_parry_finished()
 		else:
 			attack_component.disable_attack_interrupted()
-	else:
+	elif dizzy_system.prev_victim != null and \
+	dizzy_system.prev_victim.instability_component.full_instability_from_parry:
 		can_move = true
 		character.dizzy_animations.receive_dizzy_finisher_from_parry_finished()
+		dizzy_system.victim_being_killed = false
 	
 	
 	if backstab_victim or dizzy_victim:
@@ -127,10 +129,12 @@ func _physics_process(_delta: float) -> void:
 			attack_component.attack(false)
 		elif dizzy_system.dizzy_victim and dizzy_system.can_kill_victim:
 			character.dizzy_animations.attacking = true
+			dizzy_system.victim_being_killed = true
 		else:
 			attack_component.attack()
-
-
+	
+#	print(dizzy_system.victim_being_killed)
+	
 	# make sure the user is actually holding down
 	# the run key to make the player run
 	if Input.is_action_just_pressed("run"):
