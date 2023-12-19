@@ -123,7 +123,6 @@ func _receive_movement() -> void:
 
 func _receive_can_damage(can_damage: bool) -> void:
 	_can_stop_attack = false
-	prints(can_damage, _attack_interrupted)
 	if not _attack_interrupted:
 		_weapon.can_damage = can_damage
 

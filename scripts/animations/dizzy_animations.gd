@@ -6,6 +6,7 @@ var attacking: bool = false
 
 var _blend_dizzy: bool = false
 var _dizzy_from_parry: bool = true
+var _ignore_receive_kneel: bool = false
 
 var _blend_dizzy_finisher: bool = false
 
@@ -17,7 +18,7 @@ func _physics_process(_delta):
 			1.0,
 			0.2
 		)
-	elif _dizzy_from_parry:
+	else:
 		anim_tree["parameters/Dizzy/blend_amount"] = move_toward(
 			float(anim_tree["parameters/Dizzy/blend_amount"]),
 			0.0,
@@ -56,20 +57,41 @@ func dizzy_from_damage() -> void:
 
 
 func disable_blend_dizzy() -> void:
-	_blend_dizzy = false
-	if not _dizzy_from_parry:
+	if _dizzy_from_parry:
+		_blend_dizzy = false
+	else:
 		anim_tree["parameters/Kneel to Stand Trim/seek_request"] = 1.0
 		anim_tree["parameters/Dizzy From Damage/transition_request"] = "to_stand"
 
 
 func receive_now_kneeling() -> void:
+	if _ignore_receive_kneel:
+		return
+	
 	anim_tree["parameters/Dizzy Kneeling Speed/scale"] = 0.0
 	anim_tree["parameters/Dizzy From Damage/transition_request"] = "kneel"
 
 
 func receive_finished_standing_up() -> void:
-	_dizzy_from_parry = true
+	_blend_dizzy = false
 
+
+func play_death_kneeling() -> void:
+	_ignore_receive_kneel = true
+	
+	anim_tree["parameters/Dizzy Kneeling Trim/seek_request"] = 3.0
+	anim_tree["parameters/Dizzy Kneeling Speed/scale"] = 1.0
+	anim_tree["parameters/Dizzy From Damage/transition_request"] = "to_kneel"
+	
+	var timer: SceneTreeTimer = get_tree().create_timer(0.5)
+	timer.timeout.connect(
+		func():
+			_ignore_receive_kneel = false
+	)
+
+#################################################
+## BELOW IS FOR THE ENTITY DOING THE FINISHING ##
+#################################################
 
 func set_dizzy_finisher(from_parry: bool) -> void:
 	if from_parry:
@@ -86,7 +108,6 @@ func set_dizzy_finisher(from_parry: bool) -> void:
 		_blend_dizzy_finisher = true
 		anim_tree["parameters/Dizzy Finisher From Damage Trim/seek_request"] = 1.8
 		anim_tree["parameters/Dizzy Finisher From Damage Speed/scale"] = 1.5
-	
 
 
 func receive_dizzy_finisher_from_parry_finished() -> void:

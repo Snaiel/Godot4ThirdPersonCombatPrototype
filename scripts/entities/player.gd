@@ -122,7 +122,7 @@ func _physics_process(_delta: float) -> void:
 			attack_component.thrust()
 		elif block_component.blocking:
 			attack_component.attack(false)
-		elif Globals.dizzy_system.dizzy_victim:
+		elif dizzy_system.dizzy_victim and dizzy_system.can_kill_victim:
 			character.dizzy_animations.attacking = true
 		else:
 			attack_component.attack()

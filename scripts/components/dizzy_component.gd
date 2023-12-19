@@ -83,6 +83,9 @@ func _on_instability_component_full_instability():
 
 
 func _come_out_of_dizzy() -> void:
+	if not health_component.is_alive():
+		return
+	
 	dizzy_system.dizzy_victim = null
 	_can_kill_dizzy_victim = false
 	character.dizzy_animations.disable_blend_dizzy()

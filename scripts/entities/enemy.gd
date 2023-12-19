@@ -17,6 +17,7 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var _lock_on_component: LockOnComponent = $LockOnComponent
 @onready var _health_compoennt: HealthComponent = $HealthComponent
 @onready var _backstab_component: BackstabComponent = $BackstabComponent
+@onready var _dizzy_component: DizzyComponent = $DizzyComponent
 @onready var _notice_component: NoticeComponent = $NoticeComponent
 @onready var _attack_component: AttackComponent = $AttackComponent
 @onready var _agent: NavigationAgent3D = $NavigationAgent3D
@@ -102,6 +103,10 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
+	if Globals.dizzy_system.dizzy_victim == _dizzy_component and \
+	not _dizzy_component.instability_component.full_instability_from_parry:
+		return
+	
 	_movement_component.got_hit()
 	_character.hit_and_death_animations.hit()
 	_set_agent_target_to_target = true
@@ -130,7 +135,11 @@ func _on_health_component_zero_health() -> void:
 	collision_layer = 0
 	collision_mask = 1
 	
+	prints(Globals.dizzy_system.dizzy_victim == _dizzy_component, _dizzy_component.instability_component.full_instability_from_parry)
 	if Globals.backstab_system.backstab_victim == _backstab_component:
 		_character.hit_and_death_animations.death_2()
+	elif Globals.dizzy_system.dizzy_victim == _dizzy_component and \
+	not _dizzy_component.instability_component.full_instability_from_parry:
+		_character.dizzy_animations.play_death_kneeling()
 	else:
 		_character.hit_and_death_animations.death_1()
