@@ -70,7 +70,6 @@ bones/15/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 2.98023e-08, 1)
 bones/16/rotation = Quaternion(0.0662167, 0.000733167, 0.00843111, 0.997769)
 bones/17/rotation = Quaternion(0.150998, -5.96046e-08, -0.0154737, 0.988413)
 bones/18/rotation = Quaternion(0.0700819, -1.19209e-07, -0.0071817, 0.997515)
-bones/19/rotation = Quaternion(-2.98023e-08, -5.96046e-08, -2.98023e-08, 1)
 bones/20/rotation = Quaternion(0.136531, -0.00383598, -0.0229523, 0.990362)
 bones/21/rotation = Quaternion(0.151255, -8.9407e-08, -0.0155001, 0.988373)
 bones/22/rotation = Quaternion(0.159933, -5.96046e-08, -0.0163893, 0.986992)
@@ -125,7 +124,7 @@ layers = 2
 surface_material_override/0 = ExtResource("4_ysu0o")
 
 [node name="Sword" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity") instance=ExtResource("5_vtx6o")]
-transform = Transform3D(0.396289, 0.0233159, 0.91783, 0.0690642, -0.997602, -0.00447724, 0.915524, 0.0651633, -0.396949, -0.246457, 0.842359, -0.000616003)
+transform = Transform3D(0.396289, 0.0233159, 0.91783, 0.0690642, -0.997602, -0.00447724, 0.915524, 0.0651633, -0.396949, -0.152622, 0.842359, -0.012998)
 _entity = NodePath("../../../..")
 
 [node name="AnimationTree" parent="CharacterModel" index="2"]

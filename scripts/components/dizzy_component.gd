@@ -75,6 +75,7 @@ func _on_instability_component_full_instability():
 		character.dizzy_animations.dizzy_from_damage()
 		_dizzy_timer.start(dizzy_from_damage_length)
 		blackboard.set_value("look_at_target", false)
+		entity.look_at(player.global_position)
 	
 	var opponent_position: Vector3 = player.global_position
 	var direction: Vector3 = global_position.direction_to(opponent_position)

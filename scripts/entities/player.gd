@@ -86,11 +86,13 @@ func _physics_process(_delta: float) -> void:
 	character.movement_animations.move(_animation_input_dir, lock_on_target != null, running)
 	
 	var dizzy_victim: DizzyComponent = dizzy_system.dizzy_victim
-	if dizzy_victim and dizzy_victim.instability_component.full_instability_from_parry:
-		can_move = false
-		fade_component.enabled = false
-		character.parry_animations.receive_parry_finished()
-		character.dizzy_animations.set_dizzy_finisher(true)
+	if dizzy_victim:
+		var from_parry: bool = dizzy_victim.instability_component.full_instability_from_parry
+		character.dizzy_animations.set_dizzy_finisher(from_parry)
+		if from_parry:
+			can_move = false
+			fade_component.enabled = false
+			character.parry_animations.receive_parry_finished()
 	
 	
 	if backstab_victim or dizzy_victim:

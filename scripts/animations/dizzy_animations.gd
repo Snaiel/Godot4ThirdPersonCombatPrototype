@@ -62,21 +62,6 @@ func disable_blend_dizzy() -> void:
 		anim_tree["parameters/Dizzy From Damage/transition_request"] = "to_stand"
 
 
-func set_dizzy_finisher(dizzy_victim: bool) -> void:
-	anim_tree["parameters/Dizzy Finisher Which One/transition_request"] = "from_parry"
-	if dizzy_victim and not attacking:
-		_blend_dizzy_finisher = true
-		anim_tree["parameters/Dizzy Finisher From Parry Speed/scale"] = 0.0
-		anim_tree["parameters/Dizzy Finisher From Parry Trim/seek_request"] = 0.0
-	else:
-		anim_tree["parameters/Dizzy Finisher From Parry Speed/scale"] = 1.5
-
-
-func receive_dizzy_finisher_from_parry_finished() -> void:
-	attacking = false
-	_blend_dizzy_finisher = false
-
-
 func receive_now_kneeling() -> void:
 	anim_tree["parameters/Dizzy Kneeling Speed/scale"] = 0.0
 	anim_tree["parameters/Dizzy From Damage/transition_request"] = "kneel"
@@ -84,3 +69,28 @@ func receive_now_kneeling() -> void:
 
 func receive_finished_standing_up() -> void:
 	_dizzy_from_parry = true
+
+
+func set_dizzy_finisher(from_parry: bool) -> void:
+	prints(attacking, anim_tree["parameters/Dizzy Finisher/blend_amount"])
+	if from_parry:
+		anim_tree["parameters/Dizzy Finisher Which One/transition_request"] = "from_parry"
+		if not attacking:
+			_blend_dizzy_finisher = true
+			anim_tree["parameters/Dizzy Finisher From Parry Speed/scale"] = 0.0
+			anim_tree["parameters/Dizzy Finisher From Parry Trim/seek_request"] = 0.0
+		else:
+			anim_tree["parameters/Dizzy Finisher From Parry Speed/scale"] = 1.5
+	elif attacking:
+		attacking = false
+		print('BURH')
+		anim_tree["parameters/Dizzy Finisher Which One/transition_request"] = "from_damage"
+		_blend_dizzy_finisher = true
+		anim_tree["parameters/Dizzy Finisher From Damage Trim/seek_request"] = 1.8
+		anim_tree["parameters/Dizzy Finisher From Damage Speed/scale"] = 1.5
+	
+
+
+func receive_dizzy_finisher_from_parry_finished() -> void:
+	attacking = false
+	_blend_dizzy_finisher = false
