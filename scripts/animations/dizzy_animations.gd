@@ -56,7 +56,6 @@ func dizzy_from_damage() -> void:
 func disable_blend_dizzy() -> void:
 	_blend_dizzy = false
 	if not _dizzy_from_parry:
-		print('go')
 		anim_tree["parameters/Dizzy From Damage/transition_request"] = "to_stand"
 
 

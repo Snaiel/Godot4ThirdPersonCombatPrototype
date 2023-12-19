@@ -86,4 +86,13 @@ func _come_out_of_dizzy() -> void:
 	_can_kill_dizzy_victim = false
 	character.dizzy_animations.disable_blend_dizzy()
 	instability_component.come_out_of_full_instability(0.7)
-	blackboard.set_value("dizzy", false)
+	
+	if instability_component.full_instability_from_parry:
+		blackboard.set_value("dizzy", false)
+	else:
+		var come_out_of_damage_dizzy_timer: SceneTreeTimer = get_tree()\
+			.create_timer(2.0)
+		come_out_of_damage_dizzy_timer.timeout.connect(
+			func():
+				blackboard.set_value("dizzy", false)
+		)
