@@ -34,7 +34,7 @@ func _process(_delta: float) -> void:
 	_process_dizzy()
 	
 	if (_backstab_crosshair_visisble and not _previous_backstab_victim) or \
-		dizzy_system.dizzy_victim:
+		(dizzy_system.dizzy_victim and dizzy_system.can_kill_victim):
 		_crosshair.modulate.a = move_toward(
 			_crosshair.modulate.a,
 			1.0,
@@ -69,6 +69,9 @@ func _process_lock_on() -> void:
 
 func _process_backstab() -> void:
 	if not _backstab_victim:
+		return
+	
+	if dizzy_system.dizzy_victim:
 		return
 	
 	if _previous_backstab_victim and _crosshair.modulate.a < 0.05:

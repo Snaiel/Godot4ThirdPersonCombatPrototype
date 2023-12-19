@@ -72,7 +72,6 @@ func receive_finished_standing_up() -> void:
 
 
 func set_dizzy_finisher(from_parry: bool) -> void:
-	prints(attacking, anim_tree["parameters/Dizzy Finisher/blend_amount"])
 	if from_parry:
 		anim_tree["parameters/Dizzy Finisher Which One/transition_request"] = "from_parry"
 		if not attacking:
@@ -83,7 +82,6 @@ func set_dizzy_finisher(from_parry: bool) -> void:
 			anim_tree["parameters/Dizzy Finisher From Parry Speed/scale"] = 1.5
 	elif attacking:
 		attacking = false
-		print('BURH')
 		anim_tree["parameters/Dizzy Finisher Which One/transition_request"] = "from_damage"
 		_blend_dizzy_finisher = true
 		anim_tree["parameters/Dizzy Finisher From Damage Trim/seek_request"] = 1.8

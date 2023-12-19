@@ -66,6 +66,10 @@ func thrust() -> void:
 	_manually_set_attack_level = false
 
 
+func disable_attack_interrupted() -> void:
+	_attack_interrupted = false
+
+
 func stop_attacking() -> bool:
 	if _can_stop_attack:
 		if attacking:
@@ -119,6 +123,7 @@ func _receive_movement() -> void:
 
 func _receive_can_damage(can_damage: bool) -> void:
 	_can_stop_attack = false
+	prints(can_damage, _attack_interrupted)
 	if not _attack_interrupted:
 		_weapon.can_damage = can_damage
 

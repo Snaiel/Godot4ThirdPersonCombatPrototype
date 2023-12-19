@@ -93,6 +93,8 @@ func _physics_process(_delta: float) -> void:
 			can_move = false
 			fade_component.enabled = false
 			character.parry_animations.receive_parry_finished()
+		else:
+			attack_component.disable_attack_interrupted()
 	
 	
 	if backstab_victim or dizzy_victim:
