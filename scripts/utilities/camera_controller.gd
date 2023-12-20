@@ -91,10 +91,12 @@ func _physics_process(_delta: float) -> void:
 		)
 		
 		cam.look_at(_saved_dizzy_victim.global_position)
+		cam.global_rotation_degrees.y += 15
+		cam.global_rotation_degrees.x -= 10
 		
 		var _looking_direction: Vector3 = -global_position.direction_to(_saved_dizzy_victim.global_position)
 		var _target_look: float = atan2(_looking_direction.x, _looking_direction.z)
-		_target_look += deg_to_rad(70)
+		_target_look += deg_to_rad(80)
 		
 		var desired_rotation_y: float = lerp_angle(rotation.y, _target_look, 0.2)
 		rotation.y = desired_rotation_y
