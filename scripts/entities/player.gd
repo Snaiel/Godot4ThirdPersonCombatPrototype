@@ -95,6 +95,9 @@ func _physics_process(_delta: float) -> void:
 		var from_parry: bool = dizzy_victim.instability_component.full_instability_from_parry
 		character.dizzy_animations.set_dizzy_finisher(from_parry)
 		if from_parry:
+			look_at(dizzy_victim.entity.global_position)
+			rotation_component.target = dizzy_victim.entity
+			rotation_component.rotate_towards_target = true
 			can_move = false
 			fade_component.enabled = false
 			character.parry_animations.receive_parry_finished()
