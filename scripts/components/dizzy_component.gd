@@ -20,6 +20,8 @@ extends Node3D
 var _can_kill_dizzy_victim: bool = false
 
 var _dizzy_timer: Timer
+var _come_out_of_damage_dizzy_timer: Timer
+var _damage_dizzy_timer_pause: float = 1.5
 
 @onready var player: Player = Globals.player
 @onready var dizzy_system: DizzySystem = Globals.dizzy_system
@@ -40,6 +42,20 @@ func _ready():
 	_dizzy_timer.one_shot = true
 	_dizzy_timer.timeout.connect(_come_out_of_dizzy)
 	add_child(_dizzy_timer)
+	
+	_come_out_of_damage_dizzy_timer = Timer.new()
+	_come_out_of_damage_dizzy_timer.wait_time = _damage_dizzy_timer_pause
+	_come_out_of_damage_dizzy_timer.autostart = false
+	_come_out_of_damage_dizzy_timer.one_shot = true
+	_come_out_of_damage_dizzy_timer.timeout.connect(
+		func():
+			blackboard.set_value("dizzy", false)
+	)
+	add_child(_come_out_of_damage_dizzy_timer)
+
+
+#func _physics_process(delta):
+#	if debug: prints(entity, blackboard.get_value("dizzy"))
 
 
 func _on_hitbox_component_weapon_hit(weapon: Sword):
@@ -59,6 +75,9 @@ func _on_hitbox_component_weapon_hit(weapon: Sword):
 func _on_instability_component_full_instability():
 	blackboard.set_value("dizzy", true)
 	blackboard.set_value("interrupt_timers", true)
+	
+	_dizzy_timer.stop()
+	_come_out_of_damage_dizzy_timer.stop()
 	
 	if dizzy_system.dizzy_victim == self:
 		return
@@ -98,9 +117,4 @@ func _come_out_of_dizzy() -> void:
 	if instability_component.full_instability_from_parry:
 		blackboard.set_value("dizzy", false)
 	else:
-		var come_out_of_damage_dizzy_timer: SceneTreeTimer = get_tree()\
-			.create_timer(1.5)
-		come_out_of_damage_dizzy_timer.timeout.connect(
-			func():
-				blackboard.set_value("dizzy", false)
-		)
+		_come_out_of_damage_dizzy_timer.start()

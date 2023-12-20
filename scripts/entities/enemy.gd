@@ -62,6 +62,8 @@ func _physics_process(_delta: float) -> void:
 	_movement_component.debug = debug
 	_backstab_component.debug = debug
 	_notice_component.debug = debug
+	_dizzy_component.debug = debug
+	
 	_blackboard.set_value("debug", debug)
 	
 	if _set_agent_target_to_target:
