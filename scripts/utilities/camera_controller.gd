@@ -35,6 +35,9 @@ var _saved_dizzy_victim: DizzyComponent
 var _dizzy_behaviour: bool = false
 var _recently_had_dizzy_victim: bool = false
 var _recently_killed_dizzy_victim: bool = false
+var _dizzy_multiplier: int = 1
+var _can_choose_dizzy_multiplier: bool = true
+var _dizzy_multiplier_chosen: bool = false
 
 var locked_on: bool
 
@@ -73,6 +76,9 @@ func _physics_process(_delta: float) -> void:
 		_saved_dizzy_victim = dizzy_victim
 		_recently_had_dizzy_victim = true
 		_recently_killed_dizzy_victim = true
+		if _can_choose_dizzy_multiplier:
+			_can_choose_dizzy_multiplier = false
+			_dizzy_multiplier_chosen = false
 	elif not dizzy_system.dizzy_victim_killed:
 		_dizzy_behaviour = false
 	elif _recently_killed_dizzy_victim:
@@ -84,27 +90,53 @@ func _physics_process(_delta: float) -> void:
 				_saved_dizzy_victim = null
 		)
 	
+	var diff_in_rotation: float = wrapf(
+		rotation_degrees.y - player.rotation_degrees.y, 
+		0.0, 
+		360.0
+	)
 	
 	if _dizzy_behaviour:
 		
-		cam.fov = 60
-		global_position = global_position.lerp(
-			player.global_position + Vector3(0, -0.5, 0), 
-			0.1
+		cam.fov = move_toward(
+			cam.fov,
+			65,
+			2
 		)
 		
+		global_position = global_position.lerp(
+			player.global_position + Vector3(0, -0.5, 0), 
+			0.05
+		)
+		
+		if not _dizzy_multiplier_chosen:
+			if 182 < diff_in_rotation and diff_in_rotation < 345:
+				_dizzy_multiplier = -1
+			else:
+				_dizzy_multiplier = 1
+			_dizzy_multiplier_chosen = true
+		
 		cam.look_at(_saved_dizzy_victim.global_position)
-		cam.global_rotation_degrees.y += 20
+		cam.global_rotation_degrees.y += _dizzy_multiplier * 20
 		cam.global_rotation_degrees.x -= 10
 		
-		rotation_degrees.x = -35
+		rotation_degrees.x = lerp_angle(
+			rotation_degrees.x,
+			-35.0,
+			0.05
+		)
 		
 		var _looking_direction: Vector3 = -global_position.direction_to(_saved_dizzy_victim.global_position)
 		var _target_look: float = atan2(_looking_direction.x, _looking_direction.z)
-		_target_look += deg_to_rad(90)
+		_target_look += _dizzy_multiplier * deg_to_rad(90)
 		
-		var desired_rotation_y: float = lerp_angle(rotation.y, _target_look, 0.2)
+		var desired_rotation_y: float = lerp_angle(
+			rotation.y, 
+			_target_look, 
+			0.1
+		)
 		rotation.y = desired_rotation_y
+		locked_on = false
 		
 	elif _recently_had_dizzy_victim:
 		
@@ -121,7 +153,7 @@ func _physics_process(_delta: float) -> void:
 		
 		cam.rotation = cam.rotation.lerp(Vector3.ZERO, 0.1)
 		
-		rotation.y = lerp(
+		rotation.y = lerp_angle(
 				rotation.y,
 				player.rotation.y,
 				0.1
@@ -131,6 +163,7 @@ func _physics_process(_delta: float) -> void:
 			_recently_had_dizzy_victim  = false
 		
 	else:
+		_can_choose_dizzy_multiplier = true
 		
 		cam.fov = move_toward(
 			cam.fov,
@@ -146,7 +179,7 @@ func _physics_process(_delta: float) -> void:
 		cam.rotation = cam.rotation.lerp(Vector3.ZERO, 0.05)
 	
 	
-	if _lock_on_target:
+	if locked_on:
 		var _looking_direction: Vector3 = -global_position.direction_to(_lock_on_target.global_position)
 		var _target_look: float = atan2(_looking_direction.x, _looking_direction.z)
 		var desired_rotation_y: float = lerp_angle(rotation.y, _target_look, 0.05)
@@ -169,7 +202,7 @@ func _physics_process(_delta: float) -> void:
 		desired_rotation_x = clamp(desired_rotation_x, lock_on_min_angle, lock_on_max_angle)
 		rotation_degrees.x = lerp(rotation_degrees.x, desired_rotation_x, 0.1)
 
-	if not _lock_on_target and \
+	if not locked_on and \
 	not _dizzy_behaviour and \
 	not _recently_had_dizzy_victim:
 		var controller_look: Vector2 = Vector2(
