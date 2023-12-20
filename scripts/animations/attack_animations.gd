@@ -53,7 +53,7 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if debug:
 		pass
-		
+	
 	if attacking:
 		anim_tree["parameters/Attacking/blend_amount"] = lerp(
 			anim_tree["parameters/Attacking/blend_amount"], 
@@ -141,6 +141,7 @@ func receive_play_legs() -> void:
 			anim_tree["parameters/Attack Outward Slash/Walk Forwards Speed/scale"] = 0.8
 		4:
 			anim_tree["parameters/Attack Quick Slash/Walk Forwards Speed/scale"] = 0.8
+
 
 func receive_stop_legs(level: int) -> void:
 	# having a check for the level originating from the animation

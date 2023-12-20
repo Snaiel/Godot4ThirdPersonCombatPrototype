@@ -70,16 +70,21 @@ func disable_attack_interrupted() -> void:
 	_attack_interrupted = false
 
 
+## request to stop attacking (for example, when blocking)
 func stop_attacking() -> bool:
 	if _can_stop_attack:
-		if attacking:
-			_attack_interrupted = true
-		can_move.emit(true)
-		attacking = false
-		attack_level = 1
-		_can_attack_again = false
-		_attack_animations.stop_attacking()
+		interrupt_attack()
 	return not attacking
+
+
+func interrupt_attack() -> void:
+	if attacking:
+		_attack_interrupted = true
+	can_move.emit(true)
+	attacking = false
+	attack_level = 1
+	_can_attack_again = false
+	_attack_animations.stop_attacking()
 
 
 func set_attack_level(level: int) -> void:

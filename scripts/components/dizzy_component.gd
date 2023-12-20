@@ -12,6 +12,7 @@ extends Node3D
 @export var lock_on_component: LockOnComponent
 @export var health_component: HealthComponent
 @export var movement_component: MovementComponent
+@export var attack_component: AttackComponent
 @export var instability_component: InstabilityComponent
 @export var character: CharacterAnimations
 @export var blackboard: Blackboard
@@ -76,6 +77,9 @@ func _on_instability_component_full_instability():
 		_dizzy_timer.start(dizzy_from_damage_length)
 		blackboard.set_value("look_at_target", false)
 		entity.look_at(player.global_position)
+	
+	if attack_component:
+		attack_component.interrupt_attack()
 	
 	var opponent_position: Vector3 = player.global_position
 	var direction: Vector3 = global_position.direction_to(opponent_position)
