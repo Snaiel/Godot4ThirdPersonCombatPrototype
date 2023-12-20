@@ -78,7 +78,6 @@ func dizzy_from_damage() -> void:
 	parent_animations.hit_and_death_animations.interrupt_blend_death()
 	anim_tree["parameters/Dizzy Kneeling Trim/seek_request"] = 1.2
 	anim_tree["parameters/Dizzy Kneeling Speed/scale"] = 1.5
-	anim_tree["parameters/Death Kneel Blend Trim 2/seek_request"] = 1.3
 	anim_tree["parameters/Dizzy From Damage/transition_request"] = "to_kneel"	
 	anim_tree["parameters/Dizzy Which One/transition_request"] = "from_damage"	
 	_blend_dizzy = true
