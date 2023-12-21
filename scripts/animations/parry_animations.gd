@@ -18,9 +18,6 @@ func _physics_process(_delta) -> void:
 			0.0,
 			0.15
 		)
-	
-	if anim_tree["parameters/Parry/blend_amount"] > 0:
-		print(anim_tree["parameters/Parry/blend_amount"])
 
 
 func parry() -> void:

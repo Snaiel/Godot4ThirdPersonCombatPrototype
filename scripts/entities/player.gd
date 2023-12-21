@@ -140,12 +140,12 @@ func _physics_process(_delta: float) -> void:
 		elif block_component.blocking:
 			attack_component.attack(false)
 		elif dizzy_system.dizzy_victim and dizzy_system.can_kill_victim:
+			attack_component.disable_attack_interrupted()
 			character.dizzy_animations.attacking = true
 			dizzy_system.victim_being_killed = true
 		else:
 			attack_component.attack()
 	
-#	print(dizzy_system.victim_being_killed)
 	
 	# make sure the user is actually holding down
 	# the run key to make the player run

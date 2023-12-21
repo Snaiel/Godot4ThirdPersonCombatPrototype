@@ -74,8 +74,8 @@ func increment_instability(value: float, from_parry: bool = false):
 func _on_hitbox_component_weapon_hit(_weapon: Sword):
 	if is_full_instability():
 		return
-	increment_instability(100.0, false)
+	increment_instability(15, false)
 
 
 func _on_sword_parried():
-	increment_instability(100.0, true)
+	increment_instability(35, true)
