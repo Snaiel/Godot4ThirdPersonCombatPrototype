@@ -1,6 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cy5wvw01aul4m"]
+[gd_scene load_steps=6 format=3 uid="uid://cy5wvw01aul4m"]
 
 [ext_resource type="Script" path="res://scripts/camera_controller/camera_controller.gd" id="1_axdd4"]
+[ext_resource type="Script" path="res://scripts/camera_controller/camera_controller_normal_state.gd" id="2_06p3n"]
+[ext_resource type="Script" path="res://scripts/camera_controller/camera_controller_state_machine.gd" id="2_abkhv"]
+[ext_resource type="Script" path="res://scripts/camera_controller/camera_controller_free_look_state.gd" id="4_imul3"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_gxheq"]
 margin = 0.2
@@ -13,12 +16,21 @@ script = ExtResource("1_axdd4")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 
-[node name="States" type="Node" parent="."]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("camera_controller", "camera")]
+script = ExtResource("2_abkhv")
+camera_controller = NodePath("..")
+camera = NodePath("../Camera3D")
 
-[node name="Normal" type="Node" parent="States"]
+[node name="Normal" type="Node" parent="StateMachine" node_paths=PackedStringArray("camera_controller", "camera")]
+script = ExtResource("2_06p3n")
+camera_controller = NodePath("../..")
+camera = NodePath("../../Camera3D")
 
-[node name="FreeLook" type="Node" parent="States/Normal"]
+[node name="FreeLook" type="Node" parent="StateMachine/Normal" node_paths=PackedStringArray("camera_controller", "camera")]
+script = ExtResource("4_imul3")
+camera_controller = NodePath("../../..")
+camera = NodePath("../../../Camera3D")
 
-[node name="LockedOn" type="Node" parent="States/Normal"]
+[node name="LockedOn" type="Node" parent="StateMachine/Normal"]
 
-[node name="DizzyFinisher" type="Node" parent="States"]
+[node name="DizzyFinisher" type="Node" parent="StateMachine"]

@@ -2,49 +2,82 @@ class_name CameraControllerStateMachine
 extends Node
 
 
-var current_state: CameraControllerStateMachine
-
 @export var camera_controller: CameraController
 @export var camera: Camera3D
 
+var current_state: CameraControllerStateMachine
+var has_sub_states: bool = false
+
+@onready var player: Player =  Globals.player
+
+
+func _ready():
+	if get_child_count() > 0:
+		has_sub_states = true
+	else:
+		return
+	
+	var default_state: CameraControllerStateMachine = get_child(0)
+	default_state.enter_state_machine()
+	current_state = default_state
+
 
 func change_state(new_state: CameraControllerStateMachine) -> void:
-	current_state.enter_state_machine()
-	new_state.exit_state_machine()
+	if not has_sub_states:
+		return
+	
+	new_state.enter_state_machine()
+	current_state.exit_state_machine()
 	current_state = new_state
 
 
 func enter_state_machine() -> void:
-	_enter()
+	enter()
+	
+	if not has_sub_states:
+		return
+	
 	current_state.enter_state_machine()
 
 
-func process_camera_state() -> void:
-	_process_camera_state()
-	current_state.process_camera_state()
+func process_camera_state_machine() -> void:
+	process_camera()
+	
+	if not has_sub_states:
+		return
+	
+	current_state.process_camera_state_machine()
 
 
-func process_unhandled_input(event: InputEvent) -> void:
-	_process_unhandled_input(event)
-	current_state.process_unhandled_input(event)
+func process_unhandled_input_state_machine(event: InputEvent) -> void:
+	process_unhandled_input(event)
+	
+	if not has_sub_states:
+		return
+	
+	current_state.process_unhandled_input_state_machine(event)
 
 
 func exit_state_machine() -> void:
-	_exit()
+	exit()
+	
+	if not has_sub_states:
+		return
+	
 	current_state.exit_state_machine()
 
 
-func _enter() -> void:
+func enter() -> void:
 	pass
 
 
-func _process_camera_state() -> void:
+func process_camera() -> void:
 	pass
 
 
-func _process_unhandled_input(_event: InputEvent) -> void:
+func process_unhandled_input(_event: InputEvent) -> void:
 	pass
 
 
-func _exit() -> void:
+func exit() -> void:
 	pass
