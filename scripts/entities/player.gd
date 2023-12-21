@@ -120,16 +120,16 @@ func _physics_process(_delta: float) -> void:
 		hitbox_component.enabled = true
 	
 	
-	if Input.is_action_just_pressed("block"):
-		if not attack_component.attacking:
-			parry_component.parry()
-		elif attack_component.stop_attacking():
-			parry_component.parry()
-	elif Input.is_action_pressed("block"):
-		if not attack_component.attacking:
-			block_component.blocking = true
-		elif attack_component.stop_attacking():
-			block_component.blocking = true
+	if Input.is_action_just_pressed("block") and (
+		not attack_component.attacking or \
+		attack_component.stop_attacking()
+	):
+		parry_component.parry()
+	elif Input.is_action_pressed("block") and (
+		not attack_component.attacking or \
+		attack_component.stop_attacking()
+	):
+		block_component.blocking = true
 	elif Input.is_action_just_released("block"):
 		block_component.blocking = false
 

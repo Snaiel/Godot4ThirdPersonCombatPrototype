@@ -16,10 +16,12 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var _movement_component: MovementComponent = $MovementComponent
 @onready var _lock_on_component: LockOnComponent = $LockOnComponent
 @onready var _health_compoennt: HealthComponent = $HealthComponent
+@onready var _instability_component: InstabilityComponent = $InstabilityComponent
 @onready var _backstab_component: BackstabComponent = $BackstabComponent
 @onready var _dizzy_component: DizzyComponent = $DizzyComponent
 @onready var _notice_component: NoticeComponent = $NoticeComponent
 @onready var _attack_component: AttackComponent = $AttackComponent
+@onready var _block_component: BlockComponent = $BlockComponent
 @onready var _agent: NavigationAgent3D = $NavigationAgent3D
 
 var _set_agent_target_to_target: bool = false
@@ -109,10 +111,22 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 	not _dizzy_component.instability_component.full_instability_from_parry:
 		return
 	
+	_block_component.blocking = true
+	if _block_component.blocking:
+		_block_component.blocked()
+		var timer: SceneTreeTimer = get_tree().create_timer(0.3)
+		timer.timeout.connect(
+			func(): _block_component.blocking = false
+		)
+		return
+	
 	_movement_component.got_hit()
 	_character.hit_and_death_animations.hit()
 	_set_agent_target_to_target = true
 	_blackboard.set_value("got_hit", true)
+	
+	_health_compoennt.decrement_health(weapon)
+	_instability_component.increment_instability(15)
 	
 	# knockback
 	var opponent_position: Vector3 = weapon.get_entity().global_position

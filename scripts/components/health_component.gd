@@ -7,7 +7,6 @@ signal zero_health
 
 @export_category("Configuration")
 @export var active: bool = true
-@export var hitbox: HitboxComponent
 
 @export_category("Health")
 @export var max_health: float = 100.0
@@ -23,7 +22,6 @@ var _health: float:
 
 
 func _ready() -> void:
-	hitbox.weapon_hit.connect(decrement_health)
 	_health = max_health
 
 

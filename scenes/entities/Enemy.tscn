@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://cv8knl5vavfyy"]
+[gd_scene load_steps=45 format=3 uid="uid://cv8knl5vavfyy"]
 
 [ext_resource type="Script" path="res://scripts/entities/enemy.gd" id="1_nrck3"]
 [ext_resource type="PackedScene" uid="uid://x0oxbha36o2h" path="res://scenes/entities/YBot.tscn" id="2_0tr8h"]
@@ -24,6 +24,7 @@
 [ext_resource type="Script" path="res://scripts/components/wellbeing_component.gd" id="15_eaede"]
 [ext_resource type="PackedScene" uid="uid://clbe1nrax10m8" path="res://scenes/utilities/WellbeingWidget.tscn" id="15_qml0p"]
 [ext_resource type="PackedScene" uid="uid://dka5as0tjf4rh" path="res://scenes/beehave/set_actions/SetLookAtTargetFalse.tscn" id="16_08u5b"]
+[ext_resource type="PackedScene" uid="uid://b616qwvblkmpo" path="res://scenes/components/BlockComponent.tscn" id="16_ckq0d"]
 [ext_resource type="PackedScene" uid="uid://d1p0cwvn1hlcs" path="res://scenes/beehave/trees/CheckSuspicion.tscn" id="17_4we3r"]
 [ext_resource type="PackedScene" uid="uid://5653b3wcf25p" path="res://scenes/beehave/inputs/InputNone.tscn" id="17_6rhnw"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_reactive.gd" id="17_sr624"]
@@ -109,8 +110,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 entity = NodePath("..")
 groups = Array[String](["player"])
 
-[node name="HealthComponent" parent="." node_paths=PackedStringArray("hitbox") instance=ExtResource("3_c0k3s")]
-hitbox = NodePath("../HitboxComponent")
+[node name="HealthComponent" parent="." instance=ExtResource("3_c0k3s")]
 blood_scene = ExtResource("7_fiewg")
 
 [node name="InstabilityComponent" type="Node3D" parent="."]
@@ -141,6 +141,10 @@ script = ExtResource("11_cpcwt")
 _attack_animations = NodePath("../CharacterModel/AttackAnimations")
 _movement_component = NodePath("../MovementComponent")
 _weapon = NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Sword")
+
+[node name="BlockComponent" parent="." node_paths=PackedStringArray("movement_component", "character") instance=ExtResource("16_ckq0d")]
+movement_component = NodePath("../MovementComponent")
+character = NodePath("../CharacterModel")
 
 [node name="WellbeingComponent" type="Node3D" parent="." node_paths=PackedStringArray("lock_on_component", "backstab_component", "health_component", "instability_component")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
@@ -285,7 +289,6 @@ script = ExtResource("12_q7h63")
 [connection signal="death" from="." to="CharacterModel/Armature_004/GeneralSkeleton/Sword" method="_on_enemy_death"]
 [connection signal="parried" from="CharacterModel/Armature_004/GeneralSkeleton/Sword" to="InstabilityComponent" method="_on_sword_parried"]
 [connection signal="weapon_hit" from="HitboxComponent" to="." method="_on_entity_hitbox_weapon_hit"]
-[connection signal="weapon_hit" from="HitboxComponent" to="InstabilityComponent" method="_on_hitbox_component_weapon_hit"]
 [connection signal="weapon_hit" from="HitboxComponent" to="BackstabComponent" method="_on_hitbox_component_weapon_hit"]
 [connection signal="weapon_hit" from="HitboxComponent" to="DizzyComponent" method="_on_hitbox_component_weapon_hit"]
 [connection signal="zero_health" from="HealthComponent" to="." method="_on_health_component_zero_health"]
