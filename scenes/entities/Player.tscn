@@ -73,15 +73,12 @@ bones/18/rotation = Quaternion(0.0700819, -1.19209e-07, -0.0071817, 0.997515)
 bones/20/rotation = Quaternion(0.136531, -0.00383598, -0.0229523, 0.990362)
 bones/21/rotation = Quaternion(0.151255, -8.9407e-08, -0.0155001, 0.988373)
 bones/22/rotation = Quaternion(0.159933, -5.96046e-08, -0.0163893, 0.986992)
-bones/23/rotation = Quaternion(-1.49012e-08, 1.49012e-08, 1.49012e-08, 1)
 bones/24/rotation = Quaternion(0.183251, -0.0046532, -0.0314551, 0.982552)
 bones/25/rotation = Quaternion(0.181388, -5.96047e-08, -0.0185879, 0.983236)
 bones/26/rotation = Quaternion(0.155213, -1.19209e-07, -0.0159056, 0.987753)
-bones/27/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
 bones/28/rotation = Quaternion(0.233867, -0.00350565, -0.0490086, 0.971026)
 bones/29/rotation = Quaternion(0.151258, -7.45058e-08, -0.0155004, 0.988373)
 bones/30/rotation = Quaternion(0.143498, -1.3411e-07, -0.0147051, 0.989541)
-bones/31/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
 bones/32/rotation = Quaternion(0.476171, -0.479096, -0.634667, -0.375401)
 bones/33/rotation = Quaternion(-0.151596, 0.827236, -0.497296, 0.213062)
 bones/34/rotation = Quaternion(0.0412578, 0.705902, -0.041258, 0.705902)
@@ -124,7 +121,7 @@ layers = 2
 surface_material_override/0 = ExtResource("4_ysu0o")
 
 [node name="Sword" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity") instance=ExtResource("5_vtx6o")]
-transform = Transform3D(0.396289, 0.0233159, 0.91783, 0.0690642, -0.997602, -0.00447724, 0.915524, 0.0651633, -0.396949, -0.244983, 0.842359, -0.00238417)
+transform = Transform3D(0.39629, 0.0233149, 0.91783, 0.0690643, -0.997602, -0.00447848, 0.915524, 0.0651641, -0.39695, -0.246129, 0.84236, -0.0134619)
 _entity = NodePath("../../../..")
 debug = true
 

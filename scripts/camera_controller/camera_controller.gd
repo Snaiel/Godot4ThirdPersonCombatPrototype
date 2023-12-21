@@ -28,6 +28,8 @@ extends SpringArm3D
 @export_category("Lock On Settings")
 @export var desired_unproject_pos: float = 175.0
 
+var locked_on: bool
+
 var _lock_on_target: LockOnComponent = null
 var _player_looking_around: bool = false
 
@@ -39,10 +41,9 @@ var _dizzy_multiplier: int = 1
 var _can_choose_dizzy_multiplier: bool = true
 var _dizzy_multiplier_chosen: bool = false
 
-var locked_on: bool
 
 @onready var dizzy_system: DizzySystem = Globals.dizzy_system
-@onready var cam: Camera3D = $NormalCam
+@onready var cam: Camera3D = $Camera3D
 
 
 func _ready() -> void:
@@ -64,7 +65,6 @@ func _physics_process(_delta: float) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	elif Input.is_action_just_pressed("attack"):
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	
 	
 	locked_on = _lock_on_target != null
 	
@@ -222,6 +222,7 @@ func _physics_process(_delta: float) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	
 	if event is InputEventMouseMotion and \
 	not _lock_on_target and \
 	not _dizzy_behaviour and \

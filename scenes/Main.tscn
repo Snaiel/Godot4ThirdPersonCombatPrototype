@@ -280,6 +280,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.737, 2, -10.9117)
 [node name="Enemy6" parent="Enemies" instance=ExtResource("2_oia4d")]
 transform = Transform3D(-0.722786, 0, 0.691072, 0, 1, 0, -0.691072, 0, -0.722786, 13.5218, 2, 14.0395)
 
+[node name="Sword" parent="Enemies/Enemy6/CharacterModel/Armature_004/GeneralSkeleton" index="2"]
+transform = Transform3D(7.54791e-07, -1, -8.41021e-05, 5.5829e-07, 8.41021e-05, -1, 1, 7.54744e-07, 5.58354e-07, -0.737477, 1.16717, -0.0745602)
+
 [node name="HitAndDeathAnimations" parent="Enemies/Enemy6/CharacterModel" index="8"]
 debug = true
 

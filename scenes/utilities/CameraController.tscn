@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cy5wvw01aul4m"]
 
-[ext_resource type="Script" path="res://scripts/utilities/camera_controller.gd" id="1_embid"]
+[ext_resource type="Script" path="res://scripts/camera_controller/camera_controller.gd" id="1_axdd4"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_gxheq"]
 margin = 0.2
@@ -9,6 +9,16 @@ radius = 0.1
 [node name="CameraController" type="SpringArm3D"]
 shape = SubResource("SphereShape3D_gxheq")
 margin = 0.2
-script = ExtResource("1_embid")
+script = ExtResource("1_axdd4")
 
-[node name="NormalCam" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="States" type="Node" parent="."]
+
+[node name="Normal" type="Node" parent="States"]
+
+[node name="FreeLook" type="Node" parent="States/Normal"]
+
+[node name="LockedOn" type="Node" parent="States/Normal"]
+
+[node name="DizzyFinisher" type="Node" parent="States"]
