@@ -30,5 +30,11 @@ You must have Blender installed and have Blender imports (https://docs.godotengi
 - https://github.com/bitbrain/beehave behaviour tree library for Godot
 - https://www.youtube.com/watch?v=EOocBMBbL-E&t=4s for navmesh basics
 
+## State Machines
+
+- https://www.youtube.com/watch?v=ow_Lum-Agbs introduction into state machines
+- https://medium.com/dotcrossdot/hierarchical-finite-state-machine-c9e3f4ce0d9e introduction into hierarchical finite state machines
+
+
 # Attribution
 Giving credit is not necessary but much appreciated!
