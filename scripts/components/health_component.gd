@@ -54,4 +54,3 @@ func decrement_health(weapon: Sword) -> void:
 	
 	if _health <= 0:
 		zero_health.emit()
-	

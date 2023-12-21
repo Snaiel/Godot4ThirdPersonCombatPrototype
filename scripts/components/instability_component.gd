@@ -15,7 +15,7 @@ signal full_instability
 
 @export_category("Instability Reduction")
 var reduction_pause_length: float = 2.0
-var reduction_rate: float = 5.0
+var reduction_rate: float = 0.2
 
 var full_instability_from_parry: bool = false
 
@@ -39,9 +39,9 @@ func _ready():
 	add_child(_instability_reduction_pause_timer)
 
 
-func _process(delta):
+func _physics_process(_delta):
 	if _reduce_instability:
-		_instability -= reduction_rate * delta
+		_instability -= reduction_rate
 
 
 func come_out_of_full_instability(multiplier: float) -> void:
@@ -61,6 +61,7 @@ func increment_instability(value: float, from_parry: bool = false):
 	_instability += value
 	
 	_reduce_instability = false
+	_instability_reduction_pause_timer.stop()
 	
 	instability_increased.emit()
 	
@@ -71,5 +72,15 @@ func increment_instability(value: float, from_parry: bool = false):
 		_instability_reduction_pause_timer.start()
 
 
+func process_hit():
+	if not active:
+		return
+	if is_full_instability():
+		return
+	increment_instability(15, false)
+
+
 func _on_sword_parried():
-	increment_instability(35, true)
+	if not active:
+		return
+	increment_instability(45, true)

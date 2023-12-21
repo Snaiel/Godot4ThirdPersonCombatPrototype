@@ -110,6 +110,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 entity = NodePath("..")
 groups = Array[String](["player"])
 
+[node name="DizzyComponent" type="Node3D" parent="." node_paths=PackedStringArray("entity", "lock_on_component", "health_component", "movement_component", "attack_component", "instability_component", "character", "blackboard")]
+script = ExtResource("13_0wjwt")
+entity = NodePath("..")
+lock_on_component = NodePath("../LockOnComponent")
+health_component = NodePath("../HealthComponent")
+movement_component = NodePath("../MovementComponent")
+attack_component = NodePath("../AttackComponent")
+instability_component = NodePath("../InstabilityComponent")
+character = NodePath("../CharacterModel")
+blackboard = NodePath("../Blackboard")
+
 [node name="HealthComponent" parent="." instance=ExtResource("3_c0k3s")]
 blood_scene = ExtResource("7_fiewg")
 
@@ -121,17 +132,6 @@ script = ExtResource("9_hiwp2")
 entity = NodePath("..")
 lock_on_component = NodePath("../LockOnComponent")
 health_component = NodePath("../HealthComponent")
-
-[node name="DizzyComponent" type="Node3D" parent="." node_paths=PackedStringArray("entity", "lock_on_component", "health_component", "movement_component", "attack_component", "instability_component", "character", "blackboard")]
-script = ExtResource("13_0wjwt")
-entity = NodePath("..")
-lock_on_component = NodePath("../LockOnComponent")
-health_component = NodePath("../HealthComponent")
-movement_component = NodePath("../MovementComponent")
-attack_component = NodePath("../AttackComponent")
-instability_component = NodePath("../InstabilityComponent")
-character = NodePath("../CharacterModel")
-blackboard = NodePath("../Blackboard")
 
 [node name="NoticeComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("10_rxy6t")]
 health_component = NodePath("../HealthComponent")
@@ -289,8 +289,6 @@ script = ExtResource("12_q7h63")
 [connection signal="death" from="." to="CharacterModel/Armature_004/GeneralSkeleton/Sword" method="_on_enemy_death"]
 [connection signal="parried" from="CharacterModel/Armature_004/GeneralSkeleton/Sword" to="InstabilityComponent" method="_on_sword_parried"]
 [connection signal="weapon_hit" from="HitboxComponent" to="." method="_on_entity_hitbox_weapon_hit"]
-[connection signal="weapon_hit" from="HitboxComponent" to="BackstabComponent" method="_on_hitbox_component_weapon_hit"]
-[connection signal="weapon_hit" from="HitboxComponent" to="DizzyComponent" method="_on_hitbox_component_weapon_hit"]
 [connection signal="zero_health" from="HealthComponent" to="." method="_on_health_component_zero_health"]
 [connection signal="full_instability" from="InstabilityComponent" to="DizzyComponent" method="_on_instability_component_full_instability"]
 

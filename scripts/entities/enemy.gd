@@ -15,7 +15,7 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var _rotation_component: RotationComponent = $EnemyRotationComponent
 @onready var _movement_component: MovementComponent = $MovementComponent
 @onready var _lock_on_component: LockOnComponent = $LockOnComponent
-@onready var _health_compoennt: HealthComponent = $HealthComponent
+@onready var _health_component: HealthComponent = $HealthComponent
 @onready var _instability_component: InstabilityComponent = $InstabilityComponent
 @onready var _backstab_component: BackstabComponent = $BackstabComponent
 @onready var _dizzy_component: DizzyComponent = $DizzyComponent
@@ -106,34 +106,50 @@ func _physics_process(_delta: float) -> void:
 	)
 
 
+func _knockback(weapon: Sword) -> void:
+	var opponent_position: Vector3 = weapon.get_entity().global_position
+	var direction: Vector3 = global_position.direction_to(opponent_position)
+	_movement_component.set_secondary_movement(weapon.get_knockback(), 5, 5, -direction)
+
+
 func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
-	if Globals.dizzy_system.dizzy_victim == _dizzy_component and \
-	not _dizzy_component.instability_component.full_instability_from_parry:
+	if Globals.backstab_system.backstab_victim == _backstab_component:
+		_backstab_component.process_hit()
+		_health_component.decrement_health(weapon)
+		_knockback(weapon)
+		return
+	
+	if Globals.dizzy_system.dizzy_victim == _dizzy_component:
+		_dizzy_component.process_hit(weapon)
+		_health_component.decrement_health(weapon)
+		if _instability_component.full_instability_from_parry:
+			_knockback(weapon)
 		return
 	
 	var rng = RandomNumberGenerator.new()
 	_block_component.blocking = rng.randf() > 0.5
 	if _block_component.blocking:
 		_block_component.blocked()
+		_instability_component.active = false
+		_health_component.active = false
 		var timer: SceneTreeTimer = get_tree().create_timer(0.3)
 		timer.timeout.connect(
-			func(): _block_component.blocking = false
+			func(): 
+				_block_component.blocking = false
+				_instability_component.active = true
+				_health_component.active = true
 		)
 		return
+	
+	_health_component.decrement_health(weapon)
+	_instability_component.process_hit()
 	
 	_movement_component.got_hit()
 	_character.hit_and_death_animations.hit()
 	_set_agent_target_to_target = true
 	_blackboard.set_value("got_hit", true)
 	
-	_health_compoennt.decrement_health(weapon)
-	_instability_component.increment_instability(15)
-	
-	# knockback
-	var opponent_position: Vector3 = weapon.get_entity().global_position
-	var direction: Vector3 = global_position.direction_to(opponent_position)
-	_movement_component.set_secondary_movement(weapon.get_knockback(), 5, 5, -direction)
-
+	_knockback(weapon)
 
 func _on_health_component_zero_health() -> void:
 	if _dead:
@@ -142,7 +158,7 @@ func _on_health_component_zero_health() -> void:
 	death.emit(self)
 	_dead = true
 	
-	_health_compoennt.active = false
+	_health_component.active = false
 	_lock_on_component.enabled = false
 	_backstab_component.enabled = false
 	

@@ -17,8 +17,6 @@ extends Node3D
 @export var character: CharacterAnimations
 @export var blackboard: Blackboard
 
-var _can_kill_dizzy_victim: bool = false
-
 var _dizzy_timer: Timer
 var _come_out_of_damage_dizzy_timer: Timer
 var _damage_dizzy_timer_pause: float = 1.5
@@ -57,15 +55,7 @@ func _process(_delta):
 		position = lock_on_component.position
 
 
-func _on_hitbox_component_weapon_hit(weapon: Sword):
-	if not _can_kill_dizzy_victim:
-		var can_kill_timer: SceneTreeTimer = get_tree().create_timer(0.2)
-		can_kill_timer.timeout.connect(
-			func():
-				_can_kill_dizzy_victim = true
-		)
-		return
-	
+func process_hit(weapon: Sword):
 	if dizzy_system.dizzy_victim == self and weapon.get_entity() == player:
 		health_component.deal_max_damage = true
 		dizzy_system.dizzy_victim_killed = true
@@ -85,12 +75,10 @@ func _on_instability_component_full_instability():
 	dizzy_system.dizzy_victim_killed = false
 	
 	if instability_component.full_instability_from_parry:
-		_can_kill_dizzy_victim = true
 		character.dizzy_animations.dizzy_from_parry()
 		_dizzy_timer.start(dizzy_from_parry_length)
 		blackboard.set_value("look_at_target", true)
 	else:
-		_can_kill_dizzy_victim = false
 		character.dizzy_animations.dizzy_from_damage()
 		_dizzy_timer.start(dizzy_from_damage_length)
 		blackboard.set_value("look_at_target", false)
@@ -101,7 +89,7 @@ func _on_instability_component_full_instability():
 	
 	var opponent_position: Vector3 = player.global_position
 	var direction: Vector3 = global_position.direction_to(opponent_position)
-	movement_component.set_secondary_movement(4, 5, 10, -direction)
+	movement_component.set_secondary_movement(5, 5, 10, -direction)
 
 
 func _come_out_of_dizzy() -> void:
@@ -109,7 +97,6 @@ func _come_out_of_dizzy() -> void:
 		return
 	
 	dizzy_system.dizzy_victim = null
-	_can_kill_dizzy_victim = false
 	character.dizzy_animations.disable_blend_dizzy()
 	instability_component.come_out_of_full_instability(0.7)
 	
