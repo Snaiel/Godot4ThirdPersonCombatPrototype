@@ -111,7 +111,8 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 	not _dizzy_component.instability_component.full_instability_from_parry:
 		return
 	
-	_block_component.blocking = true
+	var rng = RandomNumberGenerator.new()
+	_block_component.blocking = rng.randf() > 0.5
 	if _block_component.blocking:
 		_block_component.blocked()
 		var timer: SceneTreeTimer = get_tree().create_timer(0.3)
