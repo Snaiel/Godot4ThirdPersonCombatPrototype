@@ -16,12 +16,10 @@ var _angle_to_entity: float = 0.0
 @onready var _backstab_system: BackstabSystem = Globals.backstab_system
 
 
-func _ready():
+func _process(_delta):
 	if lock_on_component:
 		position = lock_on_component.position
-
-
-func _process(_delta):
+	
 	if not enabled:
 		return
 	

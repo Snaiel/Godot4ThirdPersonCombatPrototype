@@ -28,8 +28,6 @@ var _damage_dizzy_timer_pause: float = 1.5
 
 
 func _ready():
-	if lock_on_component:
-		position = lock_on_component.position
 	
 	health_component.zero_health.connect(
 		func():
@@ -54,8 +52,9 @@ func _ready():
 	add_child(_come_out_of_damage_dizzy_timer)
 
 
-#func _physics_process(delta):
-#	if debug: prints(entity, blackboard.get_value("dizzy"))
+func _process(_delta):
+	if lock_on_component:
+		position = lock_on_component.position
 
 
 func _on_hitbox_component_weapon_hit(weapon: Sword):
