@@ -3,6 +3,7 @@ extends CameraControllerStateMachine
 
 
 func process_camera() -> void:
+	
 	camera.fov = move_toward(
 		camera.fov,
 		camera_controller.camera_fov,

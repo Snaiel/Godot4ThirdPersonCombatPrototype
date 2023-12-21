@@ -2,6 +2,21 @@ class_name CameraControllerFreeLookState
 extends CameraControllerStateMachine
 
 
+@export var lock_on_state: CameraControllerLockedOnState
+
+
+func _ready():
+	lock_on_system.lock_on.connect(
+		func(target: LockOnComponent):
+			if not target:
+				return
+			
+			parent_state.change_state(
+				lock_on_state
+			)
+	)
+
+
 func process_camera() -> void:
 	var controller_look: Vector2 = Vector2(
 		Input.get_joy_axis(0, JOY_AXIS_RIGHT_X),

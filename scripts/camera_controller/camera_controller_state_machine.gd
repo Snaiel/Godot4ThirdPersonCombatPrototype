@@ -6,9 +6,11 @@ extends Node
 @export var camera: Camera3D
 
 var current_state: CameraControllerStateMachine
+var parent_state: CameraControllerStateMachine
 var has_sub_states: bool = false
 
 @onready var player: Player =  Globals.player
+@onready var lock_on_system: LockOnSystem = Globals.lock_on_system
 
 
 func _ready():
@@ -20,6 +22,10 @@ func _ready():
 	var default_state: CameraControllerStateMachine = get_child(0)
 	default_state.enter_state_machine()
 	current_state = default_state
+	
+	for child in get_children():
+		var sub_state: CameraControllerStateMachine = child
+		sub_state.parent_state = self
 
 
 func change_state(new_state: CameraControllerStateMachine) -> void:
