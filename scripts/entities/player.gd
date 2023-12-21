@@ -184,7 +184,6 @@ func _physics_process(_delta: float) -> void:
 
 func _on_lock_on_system_lock_on(target: LockOnComponent) -> void:
 	lock_on_target = target
-	camera_controller.lock_on(target)
 	if input_direction.length() < 0.1 and target and rotation_component.get_lock_on_rotation_difference() > 0.1:
 		var diff: float = rotation_component.get_lock_on_rotation_difference()
 		_locked_on_turning_in_place = true

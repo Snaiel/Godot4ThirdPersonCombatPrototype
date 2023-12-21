@@ -23,8 +23,9 @@ script = ExtResource("2_abkhv")
 camera_controller = NodePath("..")
 camera = NodePath("../Camera3D")
 
-[node name="Normal" type="Node" parent="StateMachine" node_paths=PackedStringArray("camera_controller", "camera")]
+[node name="Normal" type="Node" parent="StateMachine" node_paths=PackedStringArray("dizzy_finisher_state", "camera_controller", "camera")]
 script = ExtResource("2_06p3n")
+dizzy_finisher_state = NodePath("../DizzyFinisher")
 camera_controller = NodePath("../..")
 camera = NodePath("../../Camera3D")
 
@@ -40,7 +41,8 @@ free_look_state = NodePath("../FreeLook")
 camera_controller = NodePath("../../..")
 camera = NodePath("../../../Camera3D")
 
-[node name="DizzyFinisher" type="Node" parent="StateMachine" node_paths=PackedStringArray("camera_controller", "camera")]
+[node name="DizzyFinisher" type="Node" parent="StateMachine" node_paths=PackedStringArray("normal_state", "camera_controller", "camera")]
 script = ExtResource("6_t5jit")
+normal_state = NodePath("../Normal")
 camera_controller = NodePath("../..")
 camera = NodePath("../../Camera3D")

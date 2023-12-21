@@ -4,6 +4,9 @@ extends CameraControllerStateMachine
 
 @export var lock_on_state: CameraControllerLockedOnState
 
+var _mouse_moving: bool = false
+var _joystick_moving: bool = false
+
 
 func _ready():
 	lock_on_system.lock_on.connect(
@@ -24,7 +27,9 @@ func process_camera() -> void:
 	)
 
 	if controller_look.length() > camera_controller.controller_deadzone:
-
+		
+		_joystick_moving = true
+		
 		var new_rotation_x: float = camera_controller.rotation.x \
 			- controller_look.y \
 			* camera_controller.controller_sensitivity
@@ -56,11 +61,23 @@ func process_camera() -> void:
 			0.0, 
 			360.0
 		)
+		
+	else:
+		
+		_joystick_moving = false
+	
+	if _mouse_moving or _joystick_moving:
+		camera_controller.looking_around = true
+	else:
+		camera_controller.looking_around = false
 
 
 func process_unhandled_input(event: InputEvent) -> void:
 	if not event is InputEventMouseMotion:
+		_mouse_moving = false
 		return
+	
+	_mouse_moving = true
 	
 	var new_rotation_x: float = camera_controller.rotation.x \
 		- event.relative.y * camera_controller.mouse_sensitivity
