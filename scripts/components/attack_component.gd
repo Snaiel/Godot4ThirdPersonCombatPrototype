@@ -85,6 +85,7 @@ func interrupt_attack() -> void:
 	attack_level = 1
 	_can_attack_again = false
 	_attack_animations.stop_attacking()
+	_weapon.can_damage = false
 
 
 func set_attack_level(level: int) -> void:

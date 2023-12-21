@@ -144,6 +144,8 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 	_health_component.decrement_health(weapon)
 	_instability_component.process_hit()
 	
+	_attack_component.interrupt_attack()
+	
 	_movement_component.got_hit()
 	_character.hit_and_death_animations.hit()
 	_set_agent_target_to_target = true
