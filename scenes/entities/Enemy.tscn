@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://cv8knl5vavfyy"]
+[gd_scene load_steps=46 format=3 uid="uid://cv8knl5vavfyy"]
 
 [ext_resource type="Script" path="res://scripts/entities/enemy.gd" id="1_nrck3"]
 [ext_resource type="PackedScene" uid="uid://x0oxbha36o2h" path="res://scenes/entities/YBot.tscn" id="2_0tr8h"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://b616qwvblkmpo" path="res://scenes/components/BlockComponent.tscn" id="16_ckq0d"]
 [ext_resource type="PackedScene" uid="uid://d1p0cwvn1hlcs" path="res://scenes/beehave/trees/CheckSuspicion.tscn" id="17_4we3r"]
 [ext_resource type="PackedScene" uid="uid://5653b3wcf25p" path="res://scenes/beehave/inputs/InputNone.tscn" id="17_6rhnw"]
+[ext_resource type="Script" path="res://scripts/components/parry_component.gd" id="17_hxpto"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_reactive.gd" id="17_sr624"]
 [ext_resource type="PackedScene" uid="uid://csbpq6cbn8rvn" path="res://scenes/beehave/compare_actions/IsStateSuspicious.tscn" id="18_e0yjj"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_set.gd" id="18_k7e7h"]
@@ -145,6 +146,10 @@ _weapon = NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Sword")
 [node name="BlockComponent" parent="." node_paths=PackedStringArray("movement_component", "character") instance=ExtResource("16_ckq0d")]
 movement_component = NodePath("../MovementComponent")
 character = NodePath("../CharacterModel")
+
+[node name="ParryComponent" type="Node3D" parent="." node_paths=PackedStringArray("block_component")]
+script = ExtResource("17_hxpto")
+block_component = NodePath("../BlockComponent")
 
 [node name="WellbeingComponent" type="Node3D" parent="." node_paths=PackedStringArray("lock_on_component", "backstab_component", "health_component", "instability_component")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)

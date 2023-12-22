@@ -22,6 +22,7 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var _notice_component: NoticeComponent = $NoticeComponent
 @onready var _attack_component: AttackComponent = $AttackComponent
 @onready var _block_component: BlockComponent = $BlockComponent
+@onready var _parry_component: ParryComponent = $ParryComponent
 @onready var _agent: NavigationAgent3D = $NavigationAgent3D
 
 var _set_agent_target_to_target: bool = false
@@ -126,10 +127,34 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 			_knockback(weapon)
 		return
 	
-	var rng = RandomNumberGenerator.new()
-	_block_component.blocking = rng.randf() > 0.5
-	if _block_component.blocking:
+	var rng: float = RandomNumberGenerator.new().randf()
+	
+	
+	if 0.8 < rng and rng <= 1.0:
+		# 20% chance of parrying
+		
+		_parry_component.in_parry_window = true
+		_attack_component.interrupt_attack()
+		
+		_character.parry_animations.parry()
+		_block_component.anim.play("parried")
+		
+		weapon.get_parried()
+		
+		var timer: SceneTreeTimer = get_tree().create_timer(0.2)
+		timer.timeout.connect(
+			func(): 
+				_attack_component.attack()
+		)
+		
+		return
+		
+	elif 0.4 <= rng and rng <= 0.8:
+		# 40% chance of blocking
+		
+		_block_component.blocking = true
 		_block_component.blocked()
+		_attack_component.interrupt_attack()
 		
 		_instability_component.active = false
 		_health_component.active = false
@@ -143,6 +168,7 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 				_instability_component.active = true
 				_health_component.active = true
 		)
+		
 		return
 	
 	_health_component.decrement_health(weapon)
