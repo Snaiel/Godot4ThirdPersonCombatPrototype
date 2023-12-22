@@ -61,13 +61,7 @@ script = ExtResource("8_onipt")
 wait_id = 23245375
 wait_time = 2.0
 
-[node name="AttackOrNot" type="Node" parent="StayOrChase/SquareUpIfClose/SquareUp"]
-script = ExtResource("8_onipt")
-
-[node name="SetCanAttackTrue" parent="StayOrChase/SquareUpIfClose/SquareUp/AttackOrNot" instance=ExtResource("14_a6ulk")]
-
-[node name="SetCanAttackFalse" parent="StayOrChase/SquareUpIfClose/SquareUp/AttackOrNot" instance=ExtResource("14_a6ulk")]
-value = "false"
+[node name="SetCanAttackTrue" parent="StayOrChase/SquareUpIfClose/SquareUp" instance=ExtResource("14_a6ulk")]
 
 [node name="Chase" type="Node" parent="StayOrChase"]
 script = ExtResource("1_5577v")

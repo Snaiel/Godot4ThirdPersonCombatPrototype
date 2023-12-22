@@ -130,8 +130,12 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 	_block_component.blocking = rng.randf() > 0.5
 	if _block_component.blocking:
 		_block_component.blocked()
+		
 		_instability_component.active = false
 		_health_component.active = false
+		
+		_instability_component.increment_instability(5.0)
+		
 		var timer: SceneTreeTimer = get_tree().create_timer(0.3)
 		timer.timeout.connect(
 			func(): 

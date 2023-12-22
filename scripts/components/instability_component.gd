@@ -58,6 +58,9 @@ func get_instability() -> float:
 
 
 func increment_instability(value: float, from_parry: bool = false):
+	if is_full_instability():
+		return
+	
 	_instability += value
 	
 	_reduce_instability = false
@@ -74,8 +77,6 @@ func increment_instability(value: float, from_parry: bool = false):
 
 func process_hit():
 	if not active:
-		return
-	if is_full_instability():
 		return
 	increment_instability(15, false)
 
