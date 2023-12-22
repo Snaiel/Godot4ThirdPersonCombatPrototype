@@ -133,6 +133,8 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 	if 0.8 < rng and rng <= 1.0:
 		# 20% chance of parrying
 		
+		_knockback(weapon)
+		
 		_parry_component.in_parry_window = true
 		_attack_component.interrupt_attack()
 		
@@ -151,6 +153,8 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 		
 	elif 0.4 <= rng and rng <= 0.8:
 		# 40% chance of blocking
+		
+		_knockback(weapon)
 		
 		_block_component.blocking = true
 		_block_component.blocked()
