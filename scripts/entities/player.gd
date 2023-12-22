@@ -30,6 +30,8 @@ var _holding_down_run_timer: Timer
 
 var _locked_on_turning_in_place: bool = false
 
+var _parried: bool = false
+
 @onready var dizzy_system: DizzySystem = Globals.dizzy_system
 
 
@@ -143,6 +145,14 @@ func _physics_process(_delta: float) -> void:
 			attack_component.disable_attack_interrupted()
 			character.dizzy_animations.attacking = true
 			dizzy_system.victim_being_killed = true
+		elif _parried:
+			print('got parried.. waiting..')
+			var timer: SceneTreeTimer = get_tree().create_timer(0.5)
+			timer.timeout.connect(
+				func():
+					_parried = false
+					attack_component.attack()
+			)
 		else:
 			attack_component.attack()
 	
@@ -233,3 +243,7 @@ func _on_hitbox_component_weapon_hit(weapon: Sword):
 		movement_component.got_hit()
 		
 		attack_component.interrupt_attack()
+
+
+func _on_sword_parried():
+	_parried = true
