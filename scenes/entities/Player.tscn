@@ -1,9 +1,12 @@
-[gd_scene load_steps=17 format=3 uid="uid://dujukbu10vbmm"]
+[gd_scene load_steps=20 format=3 uid="uid://dujukbu10vbmm"]
 
 [ext_resource type="Script" path="res://scripts/entities/player.gd" id="1_lgfyt"]
+[ext_resource type="Script" path="res://scripts/player/player_state_machine.gd" id="2_4ql4h"]
 [ext_resource type="Shader" path="res://shaders/fade.gdshader" id="3_iqmy4"]
 [ext_resource type="Script" path="res://scripts/components/attack_component.gd" id="3_nq7ea"]
+[ext_resource type="Script" path="res://scripts/player/player_idle_state.gd" id="3_pk0l8"]
 [ext_resource type="Script" path="res://scripts/components/movement_component.gd" id="3_pph25"]
+[ext_resource type="Script" path="res://scripts/player/player_walk_state.gd" id="4_4fxcp"]
 [ext_resource type="Script" path="res://scripts/components/player_rotation_component.gd" id="4_y1oi3"]
 [ext_resource type="Material" uid="uid://dp5o22jl53pqh" path="res://materials/player_shader_mat.tres" id="4_ysu0o"]
 [ext_resource type="Script" path="res://scripts/components/jump_component.gd" id="5_20kj8"]
@@ -29,10 +32,11 @@ shader_parameter/roughness = 1.0
 shader_parameter/normal_strength = 1.0
 shader_parameter/alpha_clip = 0.0
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("character", "movement_component", "hitbox_component", "jump_component", "block_component", "dodge_component", "rotation_component", "attack_component", "parry_component", "fade_component") groups=["player"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("state_machine", "character", "movement_component", "hitbox_component", "jump_component", "block_component", "dodge_component", "rotation_component", "attack_component", "parry_component", "fade_component") groups=["player"]]
 collision_layer = 2
 collision_mask = 9
 script = ExtResource("1_lgfyt")
+state_machine = NodePath("StateMachine")
 character = NodePath("CharacterModel")
 movement_component = NodePath("MovementComponent")
 hitbox_component = NodePath("HitboxComponent")
@@ -43,6 +47,20 @@ rotation_component = NodePath("PlayerRotationComponent")
 attack_component = NodePath("AttackComponent")
 parry_component = NodePath("ParryComponent")
 fade_component = NodePath("FadeComponent")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("2_4ql4h")
+player = NodePath("..")
+
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("walk_state", "player")]
+script = ExtResource("3_pk0l8")
+walk_state = NodePath("../Walk")
+player = NodePath("../..")
+
+[node name="Walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "player")]
+script = ExtResource("4_4fxcp")
+idle_state = NodePath("../Idle")
+player = NodePath("../..")
 
 [node name="Collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
