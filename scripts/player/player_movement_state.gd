@@ -27,7 +27,11 @@ func process_player() -> void:
 	player.rotation_component.target = player.lock_on_target
 	
 	var _animation_input_dir: Vector3 = player.input_direction
-	if player.locked_on_turning_in_place:
+	if player.locked_on_turning_in_place or \
+	(
+		player.dodge_component.dodging and \
+		player.input_direction.length() < 0.1
+	):
 		_animation_input_dir = Vector3.FORWARD
 	
 	player.character.movement_animations.move(
@@ -39,7 +43,6 @@ func process_player() -> void:
 	# make sure the user is actually holding down
 	# the run key to make the player run
 	if Input.is_action_just_pressed("run"):
-		print('hi')
 		if player.dodge_component.can_set_intent_to_dodge and \
 		not player.attack_component.attacking:
 			player.dodge_component.intent_to_dodge = true

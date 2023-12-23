@@ -56,7 +56,9 @@ func _dodge() -> void:
 
 	if movement_component.move_direction.length() > 0.0:
 		movement_component.desired_velocity += movement_component.move_direction.normalized() * dodge_strength
-	else:			
+	elif not entity.lock_on_target:
+		movement_component.desired_velocity += movement_component.looking_direction.normalized() * dodge_strength		
+	else:
 		movement_component.desired_velocity += -movement_component.looking_direction.normalized() * dodge_strength
 
 	# how long the dodge status lasts
