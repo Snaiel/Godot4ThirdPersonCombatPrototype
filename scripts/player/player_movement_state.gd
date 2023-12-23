@@ -4,8 +4,9 @@ extends PlayerStateMachine
 
 @export var walk_state: PlayerWalkState
 @export var run_state: PlayerRunState
+@export var dodge_state: PlayerDodgeState
 
-var _holding_down_run: bool = false
+var holding_down_run: bool = false
 var _holding_down_run_timer: Timer
 
 
@@ -15,18 +16,13 @@ func _ready():
 	_holding_down_run_timer = Timer.new()
 	_holding_down_run_timer.timeout.connect(
 		func():
-			_holding_down_run = true
+			holding_down_run = true
 	)
 	add_child(_holding_down_run_timer)
 
 
 func process_player() -> void:
-#	print(current_state)
-	
-	if _holding_down_run and current_state != run_state:
-		change_state(run_state)
-	elif not _holding_down_run and current_state != walk_state:
-		change_state(walk_state)
+	prints(current_state, player.dodge_component.intent_to_dodge)
 	
 	player.rotation_component.target = player.lock_on_target
 	
@@ -43,9 +39,11 @@ func process_player() -> void:
 	# make sure the user is actually holding down
 	# the run key to make the player run
 	if Input.is_action_just_pressed("run"):
-#		if dodge_component.can_set_intent_to_dodge and not attack_component.attacking:
-#			dodge_component.intent_to_dodge = true
+		print('hi')
+		if player.dodge_component.can_set_intent_to_dodge and \
+		not player.attack_component.attacking:
+			player.dodge_component.intent_to_dodge = true
 		_holding_down_run_timer.start(0.1)
 	if Input.is_action_just_released("run"):
 		_holding_down_run_timer.stop()
-		_holding_down_run = false
+		holding_down_run = false

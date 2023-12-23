@@ -5,6 +5,7 @@ extends Node
 @export var player: Player
 
 var current_state: PlayerStateMachine
+var previous_state: PlayerStateMachine
 var parent_state: PlayerStateMachine
 var has_sub_states: bool = false
 
@@ -29,8 +30,16 @@ func change_state(new_state: PlayerStateMachine) -> void:
 		return
 	
 	new_state.enter_state_machine()
+	previous_state = current_state
 	current_state.exit_state_machine()
 	current_state = new_state
+
+
+func transition_to_previous_state() -> void:
+	if not previous_state:
+		return
+	
+	change_state(previous_state)
 
 
 func enter_state_machine() -> void:
