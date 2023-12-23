@@ -2,7 +2,6 @@ class_name PlayerRunState
 extends PlayerStateMachine
 
 
-@export var movement_state: PlayerMovementState
 @export var idle_state: PlayerIdleState
 @export var walk_state: PlayerWalkState
 @export var jump_state: PlayerJumpState
@@ -16,7 +15,7 @@ func process_player() -> void:
 	if player.input_direction.length() < 0.2:
 		parent_state.change_state(idle_state)
 	
-	if not movement_state.holding_down_run:
+	if not player.holding_down_run:
 		parent_state.change_state(walk_state)
 	
 	if Input.is_action_just_pressed("jump") and \

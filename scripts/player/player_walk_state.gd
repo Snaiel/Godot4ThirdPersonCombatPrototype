@@ -2,7 +2,6 @@ class_name PlayerWalkState
 extends PlayerStateMachine
 
 
-@export var movement_state: PlayerMovementState
 @export var idle_state: PlayerIdleState
 @export var dodge_state: PlayerDodgeState
 @export var run_state: PlayerRunState
@@ -20,7 +19,7 @@ func process_player() -> void:
 	if player.dodge_component.intent_to_dodge:
 		parent_state.change_state(dodge_state)
 	
-	if movement_state.holding_down_run:
+	if player.holding_down_run:
 		parent_state.change_state(run_state)
 	
 	if Input.is_action_just_pressed("jump") and \

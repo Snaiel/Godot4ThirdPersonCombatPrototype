@@ -281,12 +281,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.737, 2, -10.9117)
 transform = Transform3D(-0.722786, 0, 0.691072, 0, 1, 0, -0.691072, 0, -0.722786, 13.5218, 2, 14.0395)
 
 [node name="Sword" parent="Enemies/Enemy6/CharacterModel/Armature_004/GeneralSkeleton" index="2"]
-transform = Transform3D(7.54791e-07, -1, -8.41021e-05, 5.5829e-07, 8.41021e-05, -1, 1, 7.54744e-07, 5.58354e-07, -0.737477, 1.16717, -0.0745602)
+transform = Transform3D(-0.18487, -0.251437, 0.950054, 0.31849, -0.929873, -0.184121, 0.929724, 0.268544, 0.251986, -0.309994, 0.879604, -0.216824)
+
+[node name="LockOnAttachment" parent="Enemies/Enemy6/CharacterModel/Armature_004/GeneralSkeleton" index="3"]
+transform = Transform3D(0.942295, -0.128871, -0.308986, -0.0148774, 0.905912, -0.423205, 0.334453, 0.403381, 0.851719, 0.0188887, 1.27706, -0.00738538)
 
 [node name="HitAndDeathAnimations" parent="Enemies/Enemy6/CharacterModel" index="8"]
 debug = true
 
-[node name="HealthComponent" parent="Enemies/Enemy6" index="6"]
+[node name="HealthComponent" parent="Enemies/Enemy6" index="7"]
 max_health = 30.0
 
 [node name="Enemy12" parent="Enemies" instance=ExtResource("2_oia4d")]

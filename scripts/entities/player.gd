@@ -26,7 +26,7 @@ var can_rotate: bool = true
 
 var lock_on_target: LockOnComponent = null
 
-var _holding_down_run: bool = false
+var holding_down_run: bool = false
 var _holding_down_run_timer: Timer
 
 var locked_on_turning_in_place: bool = false
@@ -43,7 +43,10 @@ func _ready() -> void:
 	attack_component.can_rotate.connect(_receive_can_rotate)
 
 	_holding_down_run_timer = Timer.new()
-	_holding_down_run_timer.timeout.connect(_handle_hold_down_run_timer)
+	_holding_down_run_timer.timeout.connect(
+		func():
+			holding_down_run = true
+	)
 	add_child(_holding_down_run_timer)
 	
 	character.dizzy_animations.dizzy_finisher_finished.connect(
@@ -63,6 +66,51 @@ func _physics_process(_delta: float) -> void:
 	input_direction.z = Input.get_action_strength("backward") - Input.get_action_strength("forward")
 
 	last_input_on_ground = input_direction if is_on_floor() else last_input_on_ground
+	
+	rotation_component.target = lock_on_target
+	movement_component.move_direction = rotation_component.move_direction	
+	
+	var _animation_input_dir: Vector3 = input_direction
+	if locked_on_turning_in_place or \
+	(
+		dodge_component.dodging and \
+		input_direction.length() < 0.1
+	):
+		_animation_input_dir = Vector3.FORWARD
+	
+	character.movement_animations.move(
+		_animation_input_dir, 
+		lock_on_target != null, 
+		state_machine.current_state is PlayerRunState
+	)
+	
+	# make sure the user is actually holding down
+	# the run key to make the player run
+	if Input.is_action_just_pressed("run"):
+		if dodge_component.can_set_intent_to_dodge and \
+		not attack_component.attacking:
+			dodge_component.intent_to_dodge = true
+		_holding_down_run_timer.start(0.1)
+	if Input.is_action_just_released("run"):
+		_holding_down_run_timer.stop()
+		holding_down_run = false
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #
 #	# handle rotation of the player based on camera, movement, or lock on
 #	var rotate_towards_target: bool = false
@@ -86,7 +134,7 @@ func _physics_process(_delta: float) -> void:
 #		rotation_component.target = lock_on_target
 #
 #	rotation_component.rotate_towards_target = rotate_towards_target
-	movement_component.move_direction = rotation_component.move_direction
+#	movement_component.move_direction = rotation_component.move_direction
 #
 #
 #	fade_component.enabled = true
@@ -226,10 +274,6 @@ func _receive_can_move(flag: bool) -> void:
 
 func _receive_can_rotate(flag: bool) -> void:
 	can_rotate = flag
-
-
-func _handle_hold_down_run_timer():
-	_holding_down_run = true
 
 
 func _knockback(weapon: Sword) -> void:
