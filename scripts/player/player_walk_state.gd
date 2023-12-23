@@ -12,3 +12,8 @@ func enter() -> void:
 func process_player() -> void:
 	if player.input_direction.length() < 0.2:
 		parent_state.change_state(idle_state)
+	
+	if player.lock_on_target:
+		player.rotation_component.rotate_towards_target = true
+	else:
+		player.rotation_component.rotate_towards_target = false

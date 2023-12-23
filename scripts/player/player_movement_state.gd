@@ -22,6 +22,7 @@ func _ready():
 
 func process_player() -> void:
 	print(current_state)
+	player.rotation_component.target = player.lock_on_target
 	
 	# make sure the user is actually holding down
 	# the run key to make the player run
