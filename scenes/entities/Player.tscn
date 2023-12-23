@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dujukbu10vbmm"]
+[gd_scene load_steps=22 format=3 uid="uid://dujukbu10vbmm"]
 
 [ext_resource type="Script" path="res://scripts/entities/player.gd" id="1_lgfyt"]
 [ext_resource type="Script" path="res://scripts/player/player_state_machine.gd" id="2_4ql4h"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/components/attack_component.gd" id="3_nq7ea"]
 [ext_resource type="Script" path="res://scripts/player/player_idle_state.gd" id="3_pk0l8"]
 [ext_resource type="Script" path="res://scripts/components/movement_component.gd" id="3_pph25"]
+[ext_resource type="Script" path="res://scripts/player/player_movement_state.gd" id="3_r31gm"]
 [ext_resource type="Script" path="res://scripts/player/player_walk_state.gd" id="4_4fxcp"]
 [ext_resource type="Script" path="res://scripts/components/player_rotation_component.gd" id="4_y1oi3"]
 [ext_resource type="Material" uid="uid://dp5o22jl53pqh" path="res://materials/player_shader_mat.tres" id="4_ysu0o"]
@@ -13,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://x0oxbha36o2h" path="res://scenes/entities/YBot.tscn" id="5_gusos"]
 [ext_resource type="PackedScene" uid="uid://b78ctcv6lulvi" path="res://scenes/utilities/Sword.tscn" id="5_vtx6o"]
 [ext_resource type="Script" path="res://scripts/components/dodge_component.gd" id="6_66sk2"]
+[ext_resource type="Script" path="res://scripts/player/player_run_state.gd" id="6_nj3fe"]
 [ext_resource type="PackedScene" uid="uid://cko2lhqdu4n44" path="res://scenes/components/HitboxComponent.tscn" id="8_2xenc"]
 [ext_resource type="PackedScene" uid="uid://b616qwvblkmpo" path="res://scenes/components/BlockComponent.tscn" id="10_hjlwj"]
 [ext_resource type="Script" path="res://scripts/components/fade_component.gd" id="11_kcojp"]
@@ -52,15 +54,25 @@ fade_component = NodePath("FadeComponent")
 script = ExtResource("2_4ql4h")
 player = NodePath("..")
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("walk_state", "player")]
-script = ExtResource("3_pk0l8")
-walk_state = NodePath("../Walk")
+[node name="Movement" type="Node" parent="StateMachine" node_paths=PackedStringArray("walk_state", "run_state", "player")]
+script = ExtResource("3_r31gm")
+walk_state = NodePath("Walk")
+run_state = NodePath("Run")
 player = NodePath("../..")
 
-[node name="Walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "player")]
+[node name="Idle" type="Node" parent="StateMachine/Movement" node_paths=PackedStringArray("walk_state", "player")]
+script = ExtResource("3_pk0l8")
+walk_state = NodePath("../Walk")
+player = NodePath("../../..")
+
+[node name="Walk" type="Node" parent="StateMachine/Movement" node_paths=PackedStringArray("idle_state", "player")]
 script = ExtResource("4_4fxcp")
 idle_state = NodePath("../Idle")
-player = NodePath("../..")
+player = NodePath("../../..")
+
+[node name="Run" type="Node" parent="StateMachine/Movement" node_paths=PackedStringArray("player")]
+script = ExtResource("6_nj3fe")
+player = NodePath("../../..")
 
 [node name="Collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
