@@ -3,6 +3,7 @@ extends PlayerStateMachine
 
 
 @export var walk_state: PlayerWalkState
+@export var attack_state: PlayerAttackState
 
 
 func _ready():
@@ -21,8 +22,11 @@ func enter():
 	if parent_state.previous_state == walk_state:
 		player.movement_component.speed = 3.5
 
+
 func process_player():
-	pass
+	if Input.is_action_just_pressed("attack"):
+		parent_state.change_state(attack_state)
+		return
 
 
 func exit():

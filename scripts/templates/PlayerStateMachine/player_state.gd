@@ -8,7 +8,6 @@ extends PlayerStateMachine
 
 func _ready():
 	super._ready()
-	
 
 
 func enter() -> void:

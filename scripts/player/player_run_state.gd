@@ -5,6 +5,8 @@ extends PlayerStateMachine
 @export var idle_state: PlayerIdleState
 @export var walk_state: PlayerWalkState
 @export var jump_state: PlayerJumpState
+@export var dodge_state: PlayerDodgeState
+@export var attack_state: PlayerAttackState
 
 
 func enter() -> void:
@@ -18,9 +20,15 @@ func process_player() -> void:
 	if not player.holding_down_run:
 		parent_state.change_state(walk_state)
 	
+	if Input.is_action_just_pressed("run"):
+		parent_state.change_state(dodge_state)
+	
 	if Input.is_action_just_pressed("jump") and \
 	player.is_on_floor():
 		parent_state.change_state(jump_state)
+	
+	if Input.is_action_just_pressed("attack"):
+		parent_state.change_state(attack_state)
 	
 	
 	if player.lock_on_target and player.input_direction.z <= 0:

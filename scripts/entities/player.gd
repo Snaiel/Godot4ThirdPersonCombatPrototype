@@ -60,6 +60,7 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	state_machine.process_player_state_machine()
+	prints(state_machine.current_state, dodge_component.intent_to_dodge)
 	
 	# player inputs
 	input_direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
@@ -87,9 +88,9 @@ func _physics_process(_delta: float) -> void:
 	# make sure the user is actually holding down
 	# the run key to make the player run
 	if Input.is_action_just_pressed("run"):
-		if dodge_component.can_set_intent_to_dodge and \
-		not attack_component.attacking:
-			dodge_component.intent_to_dodge = true
+#		if dodge_component.can_set_intent_to_dodge and \
+#		not attack_component.attacking:
+#			dodge_component.intent_to_dodge = true
 		_holding_down_run_timer.start(0.1)
 	if Input.is_action_just_released("run"):
 		_holding_down_run_timer.stop()

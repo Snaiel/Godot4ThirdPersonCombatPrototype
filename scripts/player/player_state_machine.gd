@@ -7,6 +7,7 @@ extends Node
 var current_state: PlayerStateMachine
 var previous_state: PlayerStateMachine
 var parent_state: PlayerStateMachine
+var default_state: PlayerStateMachine
 var has_sub_states: bool = false
 
 
@@ -16,7 +17,7 @@ func _ready():
 	else:
 		return
 	
-	var default_state: PlayerStateMachine = get_child(0)
+	default_state = get_child(0)
 	default_state.enter_state_machine()
 	current_state = default_state
 	
@@ -26,6 +27,7 @@ func _ready():
 
 
 func change_state(new_state: PlayerStateMachine) -> void:
+	prints(current_state, new_state)
 	if not has_sub_states:
 		return
 	
@@ -33,6 +35,13 @@ func change_state(new_state: PlayerStateMachine) -> void:
 	new_state.enter_state_machine()
 	current_state.exit_state_machine()
 	current_state = new_state
+
+
+func transition_to_default_state() -> void:
+	if not default_state:
+		return
+	
+	change_state(default_state)
 
 
 func transition_to_previous_state() -> void:
