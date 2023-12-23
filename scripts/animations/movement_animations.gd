@@ -4,7 +4,6 @@ extends BaseAnimations
 
 var _input_dir: Vector2 = Vector2.ZERO
 var _lock_on_walk_blend: float = 0.0
-var locked_on_turning_in_place: bool = false
 
 
 func _ready() -> void:
@@ -16,7 +15,7 @@ func move(dir: Vector3, locked_on: bool, running: bool) -> void:
 	_input_dir = _input_dir.lerp(new_dir, 0.1)
 
 
-	if locked_on and not locked_on_turning_in_place:
+	if locked_on:
 		anim_tree["parameters/Walking Lock On/transition_request"] = "locked_on"
 		anim_tree["parameters/Running Lock On/transition_request"] = "locked_on"
 	else:

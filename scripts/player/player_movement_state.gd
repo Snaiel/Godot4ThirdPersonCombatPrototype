@@ -21,8 +21,24 @@ func _ready():
 
 
 func process_player() -> void:
-	print(current_state)
+#	print(current_state)
+	
+	if _holding_down_run and current_state != run_state:
+		change_state(run_state)
+	elif not _holding_down_run and current_state != walk_state:
+		change_state(walk_state)
+	
 	player.rotation_component.target = player.lock_on_target
+	
+	var _animation_input_dir: Vector3 = player.input_direction
+	if player.locked_on_turning_in_place:
+		_animation_input_dir = Vector3.FORWARD
+	
+	player.character.movement_animations.move(
+		_animation_input_dir, 
+		player.lock_on_target != null, 
+		current_state is PlayerRunState
+	)
 	
 	# make sure the user is actually holding down
 	# the run key to make the player run
@@ -33,14 +49,3 @@ func process_player() -> void:
 	if Input.is_action_just_released("run"):
 		_holding_down_run_timer.stop()
 		_holding_down_run = false
-	
-	if _holding_down_run and current_state != run_state:
-		change_state(run_state)
-	elif not _holding_down_run and current_state != walk_state:
-		change_state(walk_state)
-	
-	player.character.movement_animations.move(
-		player.input_direction, 
-		player.lock_on_target != null, 
-		current_state is PlayerRunState
-	)

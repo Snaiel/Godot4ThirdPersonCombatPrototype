@@ -29,7 +29,7 @@ var lock_on_target: LockOnComponent = null
 var _holding_down_run: bool = false
 var _holding_down_run_timer: Timer
 
-var _locked_on_turning_in_place: bool = false
+var locked_on_turning_in_place: bool = false
 
 var _parried: bool = false
 
@@ -93,7 +93,7 @@ func _physics_process(_delta: float) -> void:
 #
 #
 #	var _animation_input_dir: Vector3 = input_direction
-#	if _locked_on_turning_in_place or (dodge_component.dodging and input_direction.length() < 0.1):
+#	if locked_on_turning_in_place or (dodge_component.dodging and input_direction.length() < 0.1):
 #		_animation_input_dir = Vector3.FORWARD * 0.4
 #
 #	character.movement_animations.move(_animation_input_dir, lock_on_target != null, running)
@@ -200,18 +200,24 @@ func _physics_process(_delta: float) -> void:
 
 func _on_lock_on_system_lock_on(target: LockOnComponent) -> void:
 	lock_on_target = target
-	if input_direction.length() < 0.1 and target and rotation_component.get_lock_on_rotation_difference() > 0.1:
-		var diff: float = rotation_component.get_lock_on_rotation_difference()
-		_locked_on_turning_in_place = true
-		character.movement_animations.locked_on_turning_in_place = true
+	
+	if input_direction.length() < 0.1 and \
+	target and \
+	rotation_component.get_lock_on_rotation_difference() > 0.1:
+		
+		var diff: float = rotation_component\
+			.get_lock_on_rotation_difference()
+		
+		locked_on_turning_in_place = true
+		
 		var duration: float = clamp(diff / PI * 0.18, 0.1, 0.18)
-		var pressed_lock_on_timer: SceneTreeTimer = get_tree().create_timer(duration)
-		pressed_lock_on_timer.timeout.connect(_handle_pressed_lock_on_timer)
-
-
-func _handle_pressed_lock_on_timer() -> void:
-	character.movement_animations.locked_on_turning_in_place = false
-	_locked_on_turning_in_place = false
+		var pressed_lock_on_timer: SceneTreeTimer = get_tree()\
+			.create_timer(duration)
+		
+		pressed_lock_on_timer.timeout.connect(
+			func():
+				locked_on_turning_in_place = false
+		)
 
 
 func _receive_can_move(flag: bool) -> void:
