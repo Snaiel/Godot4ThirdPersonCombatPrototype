@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dujukbu10vbmm"]
+[gd_scene load_steps=24 format=3 uid="uid://dujukbu10vbmm"]
 
 [ext_resource type="Script" path="res://scripts/entities/player.gd" id="1_lgfyt"]
 [ext_resource type="Script" path="res://scripts/player/player_state_machine.gd" id="2_4ql4h"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" path="res://scripts/player/player_run_state.gd" id="6_nj3fe"]
 [ext_resource type="Script" path="res://scripts/player/player_dodge_state.gd" id="7_e0tbh"]
 [ext_resource type="PackedScene" uid="uid://cko2lhqdu4n44" path="res://scenes/components/HitboxComponent.tscn" id="8_2xenc"]
+[ext_resource type="Script" path="res://scripts/player/player_jump_state.gd" id="8_jgsl3"]
 [ext_resource type="PackedScene" uid="uid://b616qwvblkmpo" path="res://scenes/components/BlockComponent.tscn" id="10_hjlwj"]
 [ext_resource type="Script" path="res://scripts/components/fade_component.gd" id="11_kcojp"]
 [ext_resource type="Script" path="res://scripts/components/parry_component.gd" id="13_a73xb"]
@@ -62,31 +63,40 @@ run_state = NodePath("Run")
 dodge_state = NodePath("Dodge")
 player = NodePath("../..")
 
-[node name="Idle" type="Node" parent="StateMachine/Movement" node_paths=PackedStringArray("walk_state", "dodge_state", "player")]
+[node name="Idle" type="Node" parent="StateMachine/Movement" node_paths=PackedStringArray("walk_state", "dodge_state", "jump_state", "player")]
 script = ExtResource("3_pk0l8")
 walk_state = NodePath("../Walk")
 dodge_state = NodePath("../Dodge")
+jump_state = NodePath("../Jump")
 player = NodePath("../../..")
 
-[node name="Walk" type="Node" parent="StateMachine/Movement" node_paths=PackedStringArray("movement_state", "idle_state", "dodge_state", "run_state", "player")]
+[node name="Walk" type="Node" parent="StateMachine/Movement" node_paths=PackedStringArray("movement_state", "idle_state", "dodge_state", "run_state", "jump_state", "player")]
 script = ExtResource("4_4fxcp")
 movement_state = NodePath("..")
 idle_state = NodePath("../Idle")
 dodge_state = NodePath("../Dodge")
 run_state = NodePath("../Run")
+jump_state = NodePath("../Jump")
 player = NodePath("../../..")
 
-[node name="Run" type="Node" parent="StateMachine/Movement" node_paths=PackedStringArray("movement_state", "idle_state", "walk_state", "player")]
+[node name="Run" type="Node" parent="StateMachine/Movement" node_paths=PackedStringArray("movement_state", "idle_state", "walk_state", "jump_state", "player")]
 script = ExtResource("6_nj3fe")
 movement_state = NodePath("..")
 idle_state = NodePath("../Idle")
 walk_state = NodePath("../Walk")
+jump_state = NodePath("../Jump")
 player = NodePath("../../..")
 
-[node name="Dodge" type="Node" parent="StateMachine/Movement" node_paths=PackedStringArray("movement_state", "run_state", "player")]
+[node name="Dodge" type="Node" parent="StateMachine/Movement" node_paths=PackedStringArray("movement_state", "run_state", "jump_state", "player")]
 script = ExtResource("7_e0tbh")
 movement_state = NodePath("..")
 run_state = NodePath("../Run")
+jump_state = NodePath("../Jump")
+player = NodePath("../../..")
+
+[node name="Jump" type="Node" parent="StateMachine/Movement" node_paths=PackedStringArray("walk_state", "player")]
+script = ExtResource("8_jgsl3")
+walk_state = NodePath("../Walk")
 player = NodePath("../../..")
 
 [node name="Collider" type="CollisionShape3D" parent="."]

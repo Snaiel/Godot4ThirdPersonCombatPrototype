@@ -4,6 +4,7 @@ extends PlayerStateMachine
 
 @export var movement_state: PlayerMovementState
 @export var run_state: PlayerRunState
+@export var jump_state: PlayerJumpState
 
 
 func _ready():
@@ -20,6 +21,10 @@ func process_player():
 		parent_state.change_state(run_state)
 	elif not player.dodge_component.dodging:
 		parent_state.transition_to_previous_state()
+	
+	if Input.is_action_just_pressed("jump") and \
+	player.is_on_floor():
+		parent_state.change_state(jump_state)
 
 
 func exit():

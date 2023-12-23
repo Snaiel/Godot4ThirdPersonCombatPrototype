@@ -22,7 +22,7 @@ func _ready():
 
 
 func process_player() -> void:
-	prints(current_state, player.dodge_component.intent_to_dodge)
+	prints(current_state, previous_state, player.movement_component.speed)
 	
 	player.rotation_component.target = player.lock_on_target
 	

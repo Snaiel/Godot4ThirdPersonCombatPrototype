@@ -29,8 +29,8 @@ func change_state(new_state: PlayerStateMachine) -> void:
 	if not has_sub_states:
 		return
 	
-	new_state.enter_state_machine()
 	previous_state = current_state
+	new_state.enter_state_machine()
 	current_state.exit_state_machine()
 	current_state = new_state
 

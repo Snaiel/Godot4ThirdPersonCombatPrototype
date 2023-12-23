@@ -62,7 +62,7 @@ func _physics_process(_delta: float) -> void:
 	input_direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
 	input_direction.z = Input.get_action_strength("backward") - Input.get_action_strength("forward")
 
-#	last_input_on_ground = input_direction if is_on_floor() else last_input_on_ground
+	last_input_on_ground = input_direction if is_on_floor() else last_input_on_ground
 #
 #	# handle rotation of the player based on camera, movement, or lock on
 #	var rotate_towards_target: bool = false
