@@ -26,6 +26,8 @@ func process_player():
 	player.is_on_floor():
 		parent_state.change_state(jump_state)
 		return
+	
+	player.set_rotation_target_to_lock_on_target()
 
 
 func exit():

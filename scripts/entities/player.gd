@@ -68,7 +68,6 @@ func _physics_process(_delta: float) -> void:
 
 	last_input_on_ground = input_direction if is_on_floor() else last_input_on_ground
 	
-	rotation_component.target = lock_on_target
 	movement_component.move_direction = rotation_component.move_direction	
 	
 	var _animation_input_dir: Vector3 = input_direction
@@ -81,7 +80,7 @@ func _physics_process(_delta: float) -> void:
 	
 	character.movement_animations.move(
 		_animation_input_dir, 
-		lock_on_target != null, 
+		lock_on_target != null or Globals.backstab_system.backstab_victim, 
 		state_machine.current_state is PlayerRunState
 	)
 	
@@ -245,6 +244,10 @@ func _physics_process(_delta: float) -> void:
 #		running = false
 #
 #	movement_component.can_move = can_move
+
+
+func set_rotation_target_to_lock_on_target() -> void:
+	rotation_component.target = lock_on_target
 
 
 func _on_lock_on_system_lock_on(target: LockOnComponent) -> void:

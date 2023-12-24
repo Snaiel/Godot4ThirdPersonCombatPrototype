@@ -44,6 +44,8 @@ func process_player() -> void:
 		return
 	
 	
+	player.set_rotation_target_to_lock_on_target()
+	
 	if player.lock_on_target and player.input_direction.z <= 0:
 		player.rotation_component.rotate_towards_target = true
 	else:

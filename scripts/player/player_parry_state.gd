@@ -29,6 +29,8 @@ func process_player():
 		else:
 			parent_state.transition_to_default_state()
 		return
+	
+	player.set_rotation_target_to_lock_on_target()
 
 
 func exit():
