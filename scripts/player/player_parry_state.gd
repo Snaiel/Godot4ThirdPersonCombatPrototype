@@ -1,8 +1,8 @@
-class_name PlayerBlockState
+class_name PlayerParryState
 extends PlayerStateMachine
 
 
-@export var parry_state: PlayerParryState
+@export var block_state: PlayerBlockState
 
 
 func _ready():
@@ -10,6 +10,7 @@ func _ready():
 
 
 func enter():
+	player.parry_component.parry()
 	player.block_component.blocking = true
 
 
@@ -18,12 +19,15 @@ func process_player():
 		not player.attack_component.attacking or \
 		player.attack_component.stop_attacking()
 	):
-		parent_state.change_state(parry_state)
+		print("PLEASE PARRY")
+		player.parry_component.parry()
 		return
 	
-	if not Input.is_action_pressed("block") and \
-	not player.parry_component.is_spamming():
-		parent_state.transition_to_default_state()
+	if not player.parry_component.in_parry_window:
+		if Input.is_action_pressed("block"):
+			parent_state.change_state(block_state)
+		else:
+			parent_state.transition_to_default_state()
 		return
 
 
