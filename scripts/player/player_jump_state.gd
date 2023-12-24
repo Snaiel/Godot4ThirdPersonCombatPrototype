@@ -35,6 +35,12 @@ func process_player():
 	):
 		parent_state.change_state(block_state)
 		return
+	
+	
+	if parent_state.previous_state is PlayerRunState:
+		player.rotation_component.rotate_towards_target = false
+	else:
+		player.rotation_component.rotate_towards_target = true
 
 
 func exit():
