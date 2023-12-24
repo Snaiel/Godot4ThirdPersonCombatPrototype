@@ -18,7 +18,6 @@ func _ready():
 		return
 	
 	default_state = get_child(0)
-	default_state.enter_state_machine()
 	current_state = default_state
 	
 	for child in get_children():

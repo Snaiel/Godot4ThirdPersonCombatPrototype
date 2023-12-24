@@ -127,9 +127,21 @@ func play_death_kneeling() -> void:
 			_ignore_receive_kneel = false
 	)
 
+
 #################################################
 ## BELOW IS FOR THE ENTITY DOING THE FINISHING ##
 #################################################
+
+func play_from_parry_pre_finisher() -> void:
+	_blend_dizzy_finisher = true
+	anim_tree["parameters/Dizzy Finisher Which One/transition_request"] = "from_parry"
+	anim_tree["parameters/Dizzy Finisher From Parry Speed/scale"] = 0.0
+	anim_tree["parameters/Dizzy Finisher From Parry Trim/seek_request"] = 0.0
+
+
+func play_from_parry_finisher() -> void:
+	anim_tree["parameters/Dizzy Finisher From Parry Speed/scale"] = 1.5
+
 
 func set_dizzy_finisher(from_parry: bool) -> void:
 	if from_parry:

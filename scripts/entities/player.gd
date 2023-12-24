@@ -49,12 +49,6 @@ func _ready() -> void:
 	)
 	add_child(_holding_down_run_timer)
 	
-	character.dizzy_animations.dizzy_finisher_finished.connect(
-		func():
-			can_move = true
-			dizzy_system.victim_being_killed = false
-	)
-	
 	state_machine.enter_state_machine()
 
 

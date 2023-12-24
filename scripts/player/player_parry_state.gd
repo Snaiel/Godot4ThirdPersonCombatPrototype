@@ -3,6 +3,7 @@ extends PlayerStateMachine
 
 
 @export var block_state: PlayerBlockState
+@export var dizzy_finisher_state: PlayerStateMachine
 
 
 func _ready():
@@ -31,6 +32,9 @@ func process_player():
 		return
 	
 	player.set_rotation_target_to_lock_on_target()
+	
+	if Globals.dizzy_system.dizzy_victim:
+		parent_state.change_state(dizzy_finisher_state)
 
 
 func exit():

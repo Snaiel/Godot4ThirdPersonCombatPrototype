@@ -29,7 +29,7 @@ func _physics_process(delta: float) -> void:
 	
 	move_direction = _input_direction.normalized()
 
-	if rotate_towards_target:
+	if rotate_towards_target and target:
 		_freelook_turn = false
 		
 		# get the angle towards the lock on target and
