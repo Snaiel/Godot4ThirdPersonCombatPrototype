@@ -4,6 +4,7 @@ extends PlayerStateMachine
 
 @export var walk_state: PlayerWalkState
 @export var attack_state: PlayerAttackState
+@export var block_state: PlayerBlockState
 
 
 func _ready():
@@ -26,6 +27,13 @@ func enter():
 func process_player():
 	if Input.is_action_just_pressed("attack"):
 		parent_state.change_state(attack_state)
+		return
+	
+	if Input.is_action_pressed("block") and (
+		not player.attack_component.attacking or \
+		player.attack_component.stop_attacking()
+	):
+		parent_state.change_state(block_state)
 		return
 
 
