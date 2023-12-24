@@ -143,6 +143,13 @@ func play_from_parry_finisher() -> void:
 	anim_tree["parameters/Dizzy Finisher From Parry Speed/scale"] = 1.5
 
 
+func play_from_damage_finisher() -> void:
+	_blend_dizzy_finisher = true
+	anim_tree["parameters/Dizzy Finisher Which One/transition_request"] = "from_damage"
+	anim_tree["parameters/Dizzy Finisher From Damage Trim/seek_request"] = 1.8
+	anim_tree["parameters/Dizzy Finisher From Damage Speed/scale"] = 1.5
+
+
 func set_dizzy_finisher(from_parry: bool) -> void:
 	if from_parry:
 		_blend_dizzy_finisher = true

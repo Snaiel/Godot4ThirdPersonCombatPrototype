@@ -42,6 +42,7 @@ func process_player() -> void:
 	):
 		parent_state.change_state(block_state)
 	
+	player.set_rotation_target_to_lock_on_target()
 	
 	if player.lock_on_target:
 		player.rotation_component.rotate_towards_target = true

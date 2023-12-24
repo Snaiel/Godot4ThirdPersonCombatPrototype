@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dujukbu10vbmm"]
+[gd_scene load_steps=30 format=3 uid="uid://dujukbu10vbmm"]
 
 [ext_resource type="Script" path="res://scripts/entities/player.gd" id="1_lgfyt"]
 [ext_resource type="Script" path="res://scripts/player/player_state_machine.gd" id="2_4ql4h"]
@@ -25,6 +25,8 @@
 [ext_resource type="Script" path="res://scripts/components/fade_component.gd" id="11_kcojp"]
 [ext_resource type="Script" path="res://scripts/player/player_dizzy_state/player_dizzy_finisher_from_parry_state.gd" id="12_ull0x"]
 [ext_resource type="Script" path="res://scripts/components/parry_component.gd" id="13_a73xb"]
+[ext_resource type="Script" path="res://scripts/player/player_dizzy_state/player_dizzy_finisher_state.gd" id="16_vyrl8"]
+[ext_resource type="Script" path="res://scripts/player/player_dizzy_state/player_dizzy_finisher_from_damage_state.gd" id="18_hlp8w"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kr42x"]
 render_priority = 0
@@ -134,8 +136,10 @@ attack_state = NodePath("../Attack")
 block_state = NodePath("../Block")
 player = NodePath("../..")
 
-[node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+[node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("dizzy_finisher_state", "finisher_from_damage_state", "player")]
 script = ExtResource("8_bojn3")
+dizzy_finisher_state = NodePath("../DizzyFinisher")
+finisher_from_damage_state = NodePath("../DizzyFinisher/FromDamage")
 player = NodePath("../..")
 
 [node name="Block" type="Node" parent="StateMachine" node_paths=PackedStringArray("parry_state", "player")]
@@ -158,12 +162,18 @@ block_state = NodePath("../Block")
 parry_state = NodePath("../Parry")
 player = NodePath("../..")
 
-[node name="DizzyFinisher" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
-script = ExtResource("2_4ql4h")
+[node name="DizzyFinisher" type="Node" parent="StateMachine" node_paths=PackedStringArray("from_parry", "from_damage", "player")]
+script = ExtResource("16_vyrl8")
+from_parry = NodePath("FromParry")
+from_damage = NodePath("FromDamage")
 player = NodePath("../..")
 
-[node name="PlayerDizzyFinisherFromParryState" type="Node" parent="StateMachine/DizzyFinisher" node_paths=PackedStringArray("player")]
+[node name="FromParry" type="Node" parent="StateMachine/DizzyFinisher" node_paths=PackedStringArray("player")]
 script = ExtResource("12_ull0x")
+player = NodePath("../../..")
+
+[node name="FromDamage" type="Node" parent="StateMachine/DizzyFinisher" node_paths=PackedStringArray("player")]
+script = ExtResource("18_hlp8w")
 player = NodePath("../../..")
 
 [node name="Collider" type="CollisionShape3D" parent="."]

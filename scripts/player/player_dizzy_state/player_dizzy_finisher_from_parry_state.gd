@@ -35,8 +35,7 @@ func process_player():
 		dizzy_system.victim_being_killed = true
 	
 	if not dizzy_system.victim_being_killed and \
-	dizzy_system.saved_victim != null and \
-	dizzy_system.saved_victim.instability_component.full_instability_from_parry:
+	dizzy_system.saved_victim != null:
 		player.character.dizzy_animations.receive_dizzy_finisher_finished()
 	
 	if _finished:
