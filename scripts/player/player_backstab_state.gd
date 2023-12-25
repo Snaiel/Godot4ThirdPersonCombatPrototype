@@ -18,7 +18,11 @@ func enter():
 
 
 func process_player():
-	player.rotation_component.target = Globals.backstab_system.backstab_victim
+	var victim: = Globals.backstab_system.backstab_victim
+	if victim:
+		player.rotation_component.target = victim
+	else:
+		player.set_rotation_target_to_lock_on_target()
 	
 	if Input.is_action_just_pressed("jump") and \
 	player.is_on_floor():

@@ -54,7 +54,7 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	state_machine.process_player_state_machine()
-	prints(state_machine.current_state, attack_component.attacking)
+	prints(state_machine.current_state, rotation_component.target)
 	
 	# player inputs
 	input_direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
