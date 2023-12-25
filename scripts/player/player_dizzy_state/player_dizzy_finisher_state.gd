@@ -12,12 +12,17 @@ func _ready():
 
 
 func enter():
+	player.hitbox_component.enabled = false
 	player.movement_component.speed = 3
 	
+	var state: PlayerStateMachine
 	if dizzy_system.dizzy_victim.instability_component.full_instability_from_parry:
-		change_state(from_parry)
+		state = from_parry
 	else:
-		change_state(from_damage)
+		state = from_damage
+	
+	if current_state != state:
+		change_state(state)
 
 
 func process_player():
@@ -25,5 +30,4 @@ func process_player():
 
 
 func exit():
-	pass
-
+	player.hitbox_component.enabled = true

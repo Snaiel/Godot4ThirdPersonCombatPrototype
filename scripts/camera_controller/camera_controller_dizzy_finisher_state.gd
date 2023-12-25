@@ -49,7 +49,7 @@ func process_camera() -> void:
 		)
 	
 	
-	if dizzy_victim and dizzy_victim.instability_component.full_instability_from_parry:
+	if dizzy_victim:
 		_dizzy_behaviour = true
 		_saved_dizzy_victim = dizzy_victim
 		_recently_had_dizzy_victim = true

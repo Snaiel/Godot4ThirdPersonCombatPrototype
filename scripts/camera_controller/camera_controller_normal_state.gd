@@ -7,8 +7,8 @@ extends CameraControllerStateMachine
 
 func process_camera() -> void:
 	var dizzy_victim: DizzyComponent = Globals.dizzy_system.dizzy_victim
-	if dizzy_victim and \
-	dizzy_victim.instability_component.full_instability_from_parry:
+	if player.state_machine.current_state is PlayerDizzyFinisherState and \
+	dizzy_victim != null:
 		parent_state.change_state(
 			dizzy_finisher_state
 		)

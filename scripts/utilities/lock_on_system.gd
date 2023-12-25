@@ -105,7 +105,8 @@ func _target_destroyed(t: LockOnComponent) -> void:
 	
 	if  (
 		_dizzy_system.dizzy_victim and \
-		_dizzy_system.dizzy_victim.entity == target.component_owner
+		_dizzy_system.dizzy_victim.entity == target.component_owner and \
+		_dizzy_system.dizzy_victim.instability_component.full_instability_from_parry
 	) or \
 	(
 		_backstab_system.backstab_victim and \

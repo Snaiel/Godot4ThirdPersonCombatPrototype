@@ -18,6 +18,7 @@ func _ready():
 
 func enter():
 	_finished = false
+	player.movement_component.can_move = false
 	player.attack_component.disable_attack_interrupted()
 	player.character.dizzy_animations.play_from_damage_finisher()
 	dizzy_system.victim_being_killed = true

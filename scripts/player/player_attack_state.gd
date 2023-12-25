@@ -30,6 +30,7 @@ func enter():
 func process_player():
 	if _transition_to_dizzy_finisher:
 		transition_to_dizzy_finisher()
+		return
 	
 	if not player.attack_component.attacking:
 		parent_state.transition_to_default_state()
