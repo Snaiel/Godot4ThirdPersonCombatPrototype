@@ -82,7 +82,11 @@ func _physics_process(delta: float) -> void:
 		if delta and not target:
 			
 			if player.is_on_floor():
-				_camera_controller.player_moving(move_direction, player.running, delta)
+				_camera_controller.player_moving(
+					move_direction,
+					player.state_machine.current_state is PlayerRunState,
+					delta
+				)
 			else:
 				
 				# artifically keeps the input from the ground

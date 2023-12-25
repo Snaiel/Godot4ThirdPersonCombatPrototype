@@ -20,8 +20,6 @@ var input_direction: Vector3 = Vector3.ZERO
 var last_input_on_ground: Vector3 = Vector3.ZERO
 
 var can_move: bool = true
-var running: bool = false
-
 var can_rotate: bool = true
 
 var lock_on_target: LockOnComponent = null
@@ -30,8 +28,6 @@ var holding_down_run: bool = false
 var _holding_down_run_timer: Timer
 
 var locked_on_turning_in_place: bool = false
-
-var _parried: bool = false
 
 @onready var dizzy_system: DizzySystem = Globals.dizzy_system
 
@@ -143,9 +139,4 @@ func _on_hitbox_component_weapon_hit(weapon: Sword):
 		_knockback(weapon)
 		character.hit_and_death_animations.hit()
 		movement_component.got_hit()
-		
 		attack_component.interrupt_attack()
-
-
-func _on_sword_parried():
-	_parried = true

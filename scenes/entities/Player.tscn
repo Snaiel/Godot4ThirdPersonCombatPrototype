@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dujukbu10vbmm"]
+[gd_scene load_steps=31 format=3 uid="uid://dujukbu10vbmm"]
 
 [ext_resource type="Script" path="res://scripts/entities/player.gd" id="1_lgfyt"]
 [ext_resource type="Script" path="res://scripts/player/player_state_machine.gd" id="2_4ql4h"]
@@ -27,6 +27,7 @@
 [ext_resource type="Script" path="res://scripts/components/parry_component.gd" id="13_a73xb"]
 [ext_resource type="Script" path="res://scripts/player/player_dizzy_state/player_dizzy_finisher_state.gd" id="16_vyrl8"]
 [ext_resource type="Script" path="res://scripts/player/player_dizzy_state/player_dizzy_finisher_from_damage_state.gd" id="18_hlp8w"]
+[ext_resource type="Script" path="res://scripts/player/player_parried_state.gd" id="19_x1xtv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kr42x"]
 render_priority = 0
@@ -176,6 +177,11 @@ player = NodePath("../../..")
 script = ExtResource("18_hlp8w")
 player = NodePath("../../..")
 
+[node name="Parried" type="Node" parent="StateMachine" node_paths=PackedStringArray("weapon", "player")]
+script = ExtResource("19_x1xtv")
+weapon = NodePath("../../CharacterModel/Armature_004/GeneralSkeleton/Sword")
+player = NodePath("../..")
+
 [node name="Collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 shape = SubResource("CapsuleShape3D_lnhvg")
@@ -232,7 +238,6 @@ script = ExtResource("11_kcojp")
 meshes = [NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Alpha_Joints"), NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Alpha_Surface"), NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Sword/Mesh")]
 entity = NodePath("..")
 
-[connection signal="parried" from="CharacterModel/Armature_004/GeneralSkeleton/Sword" to="." method="_on_sword_parried"]
 [connection signal="weapon_hit" from="HitboxComponent" to="." method="_on_hitbox_component_weapon_hit"]
 [connection signal="weapon_hit" from="HitboxComponent" to="AttackComponent" method="_on_hitbox_component_weapon_hit"]
 
