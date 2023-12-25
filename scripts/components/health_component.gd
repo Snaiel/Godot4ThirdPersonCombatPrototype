@@ -6,7 +6,7 @@ signal took_damage
 signal zero_health
 
 @export_category("Configuration")
-@export var active: bool = true
+@export var enabled: bool = true
 
 @export_category("Health")
 @export var max_health: float = 100.0
@@ -34,7 +34,7 @@ func is_alive() -> bool:
 
 
 func decrement_health(weapon: Sword) -> void:
-	if not active:
+	if not enabled:
 		return
 	
 	if blood_scene:

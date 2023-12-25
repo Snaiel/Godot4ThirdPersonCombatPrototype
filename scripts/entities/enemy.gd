@@ -15,6 +15,7 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var _rotation_component: RotationComponent = $EnemyRotationComponent
 @onready var _movement_component: MovementComponent = $MovementComponent
 @onready var _lock_on_component: LockOnComponent = $LockOnComponent
+@onready var _hitbox_component: HitboxComponent = $HitboxComponent
 @onready var _health_component: HealthComponent = $HealthComponent
 @onready var _instability_component: InstabilityComponent = $InstabilityComponent
 @onready var _backstab_component: BackstabComponent = $BackstabComponent
@@ -161,7 +162,7 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 		_attack_component.interrupt_attack()
 		
 		_instability_component.active = false
-		_health_component.active = false
+		_health_component.enabled = false
 		
 		_instability_component.increment_instability(5.0)
 		
@@ -170,7 +171,7 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 			func(): 
 				_block_component.blocking = false
 				_instability_component.active = true
-				_health_component.active = true
+				_health_component.enabled = true
 		)
 		
 		return
@@ -187,6 +188,7 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 	
 	_knockback(weapon)
 
+
 func _on_health_component_zero_health() -> void:
 	if _dead:
 		return
@@ -194,7 +196,8 @@ func _on_health_component_zero_health() -> void:
 	death.emit(self)
 	_dead = true
 	
-	_health_component.active = false
+	_hitbox_component.enabled = false
+	_health_component.enabled = false
 	_lock_on_component.enabled = false
 	_backstab_component.enabled = false
 	
