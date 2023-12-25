@@ -29,6 +29,7 @@ func _ready():
 
 func enter():
 	_timer.start()
+	player.attack_component.interrupt_attack()
 
 
 func process_player():
