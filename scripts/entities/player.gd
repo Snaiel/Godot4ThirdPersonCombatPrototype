@@ -50,7 +50,7 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	state_machine.process_player_state_machine()
-	prints(state_machine.current_state, block_component.blocking, parry_component.is_spamming())
+#	prints(state_machine.current_state, block_component.blocking, parry_component.is_spamming())
 	
 	# player inputs
 	input_direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")

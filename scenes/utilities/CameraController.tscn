@@ -1,11 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://cy5wvw01aul4m"]
+[gd_scene load_steps=10 format=3 uid="uid://cy5wvw01aul4m"]
 
 [ext_resource type="Script" path="res://scripts/camera_controller/camera_controller.gd" id="1_axdd4"]
 [ext_resource type="Script" path="res://scripts/camera_controller/camera_controller_normal_state.gd" id="2_06p3n"]
 [ext_resource type="Script" path="res://scripts/camera_controller/camera_controller_state_machine.gd" id="2_abkhv"]
 [ext_resource type="Script" path="res://scripts/camera_controller/camera_controller_free_look_state.gd" id="4_imul3"]
 [ext_resource type="Script" path="res://scripts/camera_controller/camera_controller_locked_on_state.gd" id="5_5rgud"]
-[ext_resource type="Script" path="res://scripts/camera_controller/camera_controller_dizzy_finisher_state.gd" id="6_t5jit"]
+[ext_resource type="Script" path="res://scripts/camera_controller/dizzy_finisher/camera_controller_dizzy_finisher_state.gd" id="6_w114i"]
+[ext_resource type="Script" path="res://scripts/camera_controller/dizzy_finisher/camera_controller_dizzy_finisher_from_parry_state.gd" id="6_ws6gk"]
+[ext_resource type="Script" path="res://scripts/camera_controller/dizzy_finisher/camera_controller_dizzy_finisher_from_damage_state.gd" id="8_bo7s0"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_gxheq"]
 margin = 0.2
@@ -41,8 +43,21 @@ free_look_state = NodePath("../FreeLook")
 camera_controller = NodePath("../../..")
 camera = NodePath("../../../Camera3D")
 
-[node name="DizzyFinisher" type="Node" parent="StateMachine" node_paths=PackedStringArray("normal_state", "camera_controller", "camera")]
-script = ExtResource("6_t5jit")
-normal_state = NodePath("../Normal")
+[node name="DizzyFinisher" type="Node" parent="StateMachine" node_paths=PackedStringArray("from_parry", "from_damage", "camera_controller", "camera")]
+script = ExtResource("6_w114i")
+from_parry = NodePath("FromParry")
+from_damage = NodePath("FromDamage")
 camera_controller = NodePath("../..")
 camera = NodePath("../../Camera3D")
+
+[node name="FromParry" type="Node" parent="StateMachine/DizzyFinisher" node_paths=PackedStringArray("normal_state", "camera_controller", "camera")]
+script = ExtResource("6_ws6gk")
+normal_state = NodePath("../../Normal")
+camera_controller = NodePath("../../..")
+camera = NodePath("../../../Camera3D")
+
+[node name="FromDamage" type="Node" parent="StateMachine/DizzyFinisher" node_paths=PackedStringArray("normal_state", "camera_controller", "camera")]
+script = ExtResource("8_bo7s0")
+normal_state = NodePath("../../Normal")
+camera_controller = NodePath("../../..")
+camera = NodePath("../../../Camera3D")

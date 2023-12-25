@@ -63,6 +63,7 @@ func _physics_process(_delta: float) -> void:
 	elif Input.is_action_just_pressed("attack"):
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
+	print(state_machine.current_state)
 	state_machine.process_camera_state_machine()
 
 

@@ -9,6 +9,8 @@ var _joystick_moving: bool = false
 
 
 func _ready():
+	super._ready()
+	
 	lock_on_system.lock_on.connect(
 		func(target: LockOnComponent):
 			if not target:

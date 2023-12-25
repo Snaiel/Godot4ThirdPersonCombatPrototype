@@ -1,4 +1,4 @@
-class_name CameraControllerDizzyFinisherState
+class_name CameraControllerDizzyFinisherFromParryState
 extends CameraControllerStateMachine
 
 
@@ -44,7 +44,7 @@ func process_camera() -> void:
 		not _saved_dizzy_victim or \
 		not _recently_had_dizzy_victim
 	):
-		parent_state.change_state(
+		parent_state.parent_state.change_state(
 			normal_state
 		)
 	
