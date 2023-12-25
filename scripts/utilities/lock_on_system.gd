@@ -33,6 +33,7 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
+#	print(target)
 	
 	position = player.position
 	

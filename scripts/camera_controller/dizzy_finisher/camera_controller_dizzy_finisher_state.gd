@@ -24,7 +24,7 @@ func enter():
 
 
 func process_camera():
-	print(current_state)
+	pass
 
 
 func process_unhandled_input(_event: InputEvent):

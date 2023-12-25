@@ -171,7 +171,7 @@ parry_state = NodePath("../Parry")
 backstab_state = NodePath("../Backstab")
 player = NodePath("../..")
 
-[node name="Walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "dodge_state", "run_state", "jump_state", "attack_state", "block_state", "player")]
+[node name="Walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "dodge_state", "run_state", "jump_state", "attack_state", "block_state", "parry_state", "player")]
 script = ExtResource("4_4fxcp")
 idle_state = NodePath("../Idle")
 dodge_state = NodePath("../Dodge")
@@ -179,9 +179,10 @@ run_state = NodePath("../Run")
 jump_state = NodePath("../Jump")
 attack_state = NodePath("../Attack")
 block_state = NodePath("../Block")
+parry_state = NodePath("../Parry")
 player = NodePath("../..")
 
-[node name="Run" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "walk_state", "jump_state", "dodge_state", "attack_state", "block_state", "player")]
+[node name="Run" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "walk_state", "jump_state", "dodge_state", "attack_state", "block_state", "parry_state", "player")]
 script = ExtResource("6_nj3fe")
 idle_state = NodePath("../Idle")
 walk_state = NodePath("../Walk")
@@ -189,6 +190,7 @@ jump_state = NodePath("../Jump")
 dodge_state = NodePath("../Dodge")
 attack_state = NodePath("../Attack")
 block_state = NodePath("../Block")
+parry_state = NodePath("../Parry")
 player = NodePath("../..")
 
 [node name="Dodge" type="Node" parent="StateMachine" node_paths=PackedStringArray("run_state", "jump_state", "player")]
@@ -197,11 +199,12 @@ run_state = NodePath("../Run")
 jump_state = NodePath("../Jump")
 player = NodePath("../..")
 
-[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("walk_state", "attack_state", "block_state", "player")]
+[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("walk_state", "attack_state", "block_state", "parry_state", "player")]
 script = ExtResource("8_jgsl3")
 walk_state = NodePath("../Walk")
 attack_state = NodePath("../Attack")
 block_state = NodePath("../Block")
+parry_state = NodePath("../Parry")
 player = NodePath("../..")
 
 [node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("dizzy_finisher_state", "finisher_from_damage_state", "player")]

@@ -8,6 +8,7 @@ extends PlayerStateMachine
 @export var dodge_state: PlayerDodgeState
 @export var attack_state: PlayerAttackState
 @export var block_state: PlayerBlockState
+@export var parry_state: PlayerParryState
 
 
 func enter() -> void:
@@ -34,6 +35,13 @@ func process_player() -> void:
 	
 	if Input.is_action_just_pressed("attack"):
 		parent_state.change_state(attack_state)
+		return
+	
+	if Input.is_action_just_pressed("block") and (
+		not player.attack_component.attacking or \
+		player.attack_component.stop_attacking()
+	):
+		parent_state.change_state(parry_state)
 		return
 	
 	if Input.is_action_pressed("block") and (

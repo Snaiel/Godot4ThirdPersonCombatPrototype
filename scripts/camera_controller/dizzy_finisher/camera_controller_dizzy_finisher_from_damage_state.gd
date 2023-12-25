@@ -43,7 +43,7 @@ func process_camera() -> void:
 				_transition_out = true
 		)
 	
-	prints(dizzy_victim, _recently_killed_dizzy_victim)
+#	prints(dizzy_victim, _recently_killed_dizzy_victim)
 	
 	if dizzy_victim:
 		
@@ -88,6 +88,12 @@ func process_camera() -> void:
 		camera_controller.rotation.y = desired_rotation_y
 		
 	elif _transition_out:
+		
+		if player.input_direction.length() > 0 or \
+		lock_on_system.target != null:
+			return_back_to_normal_cam()
+			return
+		
 		camera.fov = move_toward(
 			camera.fov,
 			camera_controller.camera_fov,
@@ -110,15 +116,19 @@ func process_camera() -> void:
 		camera_controller.rotation.y = lerp_angle(
 			camera_controller.rotation.y,
 			player.rotation.y,
-			0.05
+			0.1
 		)
 
 		if abs(
 			camera_controller.rotation.y \
 				- player.rotation.y
 		) < 0.05:
-			print("BRUHHHHHHH")
-			parent_state.parent_state.change_state(
-				normal_state
-			)
+			return_back_to_normal_cam()
 			return
+
+
+func return_back_to_normal_cam() -> void:
+	print("Return back to normal cam after dizzy finisher from damage camera behaviour")
+	parent_state.parent_state.change_state(
+		normal_state
+	)
