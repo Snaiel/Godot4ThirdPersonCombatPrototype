@@ -39,7 +39,7 @@ func _ready() -> void:
 
 
 func parry() -> void:
-	prints('spamming?', not _parry_cooldown_timer.is_stopped())
+	prints('spamming?', is_spamming())
 	
 	if _parry_cooldown_timer.is_stopped():
 		_parry_index = 0
@@ -62,4 +62,5 @@ func parry() -> void:
 
 
 func is_spamming() -> bool:
-	return not _parry_cooldown_timer.is_stopped()
+	return not _parry_cooldown_timer.is_stopped() and \
+	_parry_index > 0

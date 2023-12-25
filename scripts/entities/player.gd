@@ -54,7 +54,7 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	state_machine.process_player_state_machine()
-	prints(state_machine.current_state, rotation_component.target)
+	prints(state_machine.current_state, block_component.blocking, parry_component.is_spamming())
 	
 	# player inputs
 	input_direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
@@ -292,6 +292,7 @@ func _on_hitbox_component_weapon_hit(weapon: Sword):
 		_knockback(weapon)
 		block_component.blocked()
 	else:
+		print("HIT")
 		_knockback(weapon)
 		character.hit_and_death_animations.hit()
 		movement_component.got_hit()
