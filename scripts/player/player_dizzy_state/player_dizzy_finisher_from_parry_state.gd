@@ -22,7 +22,7 @@ func enter():
 	player.look_at(dizzy_system.dizzy_victim.entity.global_position)
 	player.rotation_component.target = Globals.dizzy_system.dizzy_victim.entity
 	player.rotation_component.rotate_towards_target = true
-	player.can_move = false
+	player.movement_component.can_move = false
 	player.fade_component.enabled = false
 	player.character.parry_animations.receive_parry_finished()
 

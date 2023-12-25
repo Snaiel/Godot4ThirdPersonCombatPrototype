@@ -19,15 +19,11 @@ extends CharacterBody3D
 var input_direction: Vector3 = Vector3.ZERO
 var last_input_on_ground: Vector3 = Vector3.ZERO
 
-var can_move: bool = true
-var can_rotate: bool = true
-
 var lock_on_target: LockOnComponent = null
+var locked_on_turning_in_place: bool = false
 
 var holding_down_run: bool = false
 var _holding_down_run_timer: Timer
-
-var locked_on_turning_in_place: bool = false
 
 @onready var dizzy_system: DizzySystem = Globals.dizzy_system
 
@@ -35,8 +31,10 @@ var locked_on_turning_in_place: bool = false
 func _ready() -> void:
 	Globals.backstab_system.attack_component = attack_component
 
-	attack_component.can_move.connect(_receive_can_move)
-	attack_component.can_rotate.connect(_receive_can_rotate)
+	attack_component.can_rotate.connect(
+		func(flag: bool):
+			rotation_component.can_rotate = flag
+	)
 
 	_holding_down_run_timer = Timer.new()
 	_holding_down_run_timer.timeout.connect(
@@ -50,7 +48,6 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	state_machine.process_player_state_machine()
-#	prints(state_machine.current_state, block_component.blocking, parry_component.is_spamming())
 	
 	# player inputs
 	input_direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
@@ -107,14 +104,6 @@ func _on_lock_on_system_lock_on(target: LockOnComponent) -> void:
 			func():
 				locked_on_turning_in_place = false
 		)
-
-
-func _receive_can_move(flag: bool) -> void:
-	can_move = flag
-
-
-func _receive_can_rotate(flag: bool) -> void:
-	can_rotate = flag
 
 
 func _knockback(weapon: Sword) -> void:

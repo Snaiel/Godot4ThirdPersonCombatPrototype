@@ -2,7 +2,9 @@ class_name PlayerRotationComponent
 extends RotationComponent
 
 var player: Player
+
 var rotate_towards_target: bool = false
+var can_rotate: bool = true
 
 var _camera_controller: CameraController
 
@@ -24,8 +26,7 @@ func _physics_process(delta: float) -> void:
 	var _input_direction: Vector3 = player.input_direction
 	var _last_input_on_ground: Vector3 = player.last_input_on_ground
 	var _can_move: bool = player.movement_component.can_move
-	var _can_rotate: bool = player.can_rotate
-	var _velocity: Vector3 = player.movement_component.desired_velocity
+	var _velocity: Vector3 = player.velocity
 	
 	move_direction = _input_direction.normalized()
 
@@ -66,7 +67,7 @@ func _physics_process(delta: float) -> void:
 			# normal behaviour: player rotating towards where
 			# they are going
 			looking_direction = Vector3(_velocity.x, 0, _velocity.z)
-		elif _can_rotate:
+		elif can_rotate:
 			# if player can't move but they can rotate,
 			# rotate the player based on input instead
 			looking_direction = Vector3(_input_direction.x, 0, _input_direction.z)
