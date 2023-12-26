@@ -2,7 +2,7 @@ class_name HitAndDeathAnimations
 extends BaseAnimations
 
 
-signal hit_finished()
+signal hit_finished
 
 var _death: bool = false
 var _blend_death: bool = false

@@ -42,7 +42,8 @@ func _ready() -> void:
 	
 	_notice_component.state_changed.connect(
 		func(new_state: String, target_to_target: bool):
-			if new_state == "aggro":
+			if new_state == "aggro" and \
+			not _blackboard.get_value("got_hit", false):
 				_blackboard.set_value("interrupt_timers", true)
 			_blackboard.set_value("notice_state", new_state)
 			_set_agent_target_to_target = target_to_target
@@ -51,10 +52,10 @@ func _ready() -> void:
 #				prints(_agent.target_position, target.global_position)
 	)
 	
-	_character.hit_and_death_animations.hit_finished.connect(
-		func():
-			_blackboard.set_value("got_hit", false)
-	)
+#	_character.hit_and_death_animations.hit_finished.connect(
+#		func():
+#			_blackboard.set_value("got_hit", false)
+#	)
 	
 	_blackboard.set_value("can_attack", true)	
 	
@@ -82,16 +83,21 @@ func _physics_process(_delta: float) -> void:
 	_blackboard.set_value("target_dir", target_dir)
 	_blackboard.set_value("target_dir_angle", target_dir_angle)
 	
-#	if debug:
-#		prints(_blackboard.get_value("can_attack", false), _blackboard.get_value("attack", false))
-#		prints(
-#			_blackboard.get_value("input_direction"),
-#			_blackboard.get_value("locked_on"),
-#			_blackboard.get_value("look_at_target")
-#		)
+#	if debug: print(_blackboard.get_value("can_move"))
 	
-	_rotation_component.look_at_target = _blackboard.get_value("look_at_target", false)
-	_movement_component.speed = _blackboard.get_value("move_speed", _default_move_speed)
+	_rotation_component.look_at_target = _blackboard.get_value(
+		"look_at_target",
+		false
+	)
+	
+	_movement_component.can_move = _blackboard.get_value(
+		"can_move",
+		true
+	)
+	_movement_component.speed = _blackboard.get_value(
+		"move_speed",
+		_default_move_speed
+	)
 	
 	if _blackboard.get_value("can_attack", false) and _blackboard.get_value("attack", false):
 		_blackboard.set_value("can_attack", false)
@@ -123,7 +129,6 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 		return
 	
 	var rng: float = RandomNumberGenerator.new().randf()
-	
 	
 	if 0.8 < rng and rng <= 1.0:
 		# 20% chance of parrying
@@ -172,7 +177,6 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 		
 		_attack_component.interrupt_attack()
 		
-		_movement_component.got_hit()
 		_character.hit_and_death_animations.hit()
 		_set_agent_target_to_target = true
 		_blackboard.set_value("got_hit", true)

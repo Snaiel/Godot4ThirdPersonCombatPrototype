@@ -281,10 +281,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.737, 2, -10.9117)
 transform = Transform3D(-0.722786, 0, 0.691072, 0, 1, 0, -0.691072, 0, -0.722786, 13.5218, 2, 14.0395)
 
 [node name="Sword" parent="Enemies/Enemy6/CharacterModel/Armature_004/GeneralSkeleton" index="2"]
-transform = Transform3D(0.289748, -0.64855, 0.703868, -0.135115, -0.755767, -0.64075, 0.947518, 0.0905526, -0.306611, -0.0974439, 0.996965, -0.468932)
-
-[node name="LockOnAttachment" parent="Enemies/Enemy6/CharacterModel/Armature_004/GeneralSkeleton" index="3"]
-transform = Transform3D(0.281177, -0.345491, -0.895307, -0.266706, 0.86806, -0.418737, 0.92185, 0.356523, 0.151934, -0.00652961, 1.09129, 0.0476643)
+transform = Transform3D(0.027031, 0.0220744, 0.999391, 0.0518122, -0.998443, 0.0206522, 0.998291, 0.0512224, -0.0281328, -0.288508, 0.852497, 0.0551622)
 
 [node name="HitAndDeathAnimations" parent="Enemies/Enemy6/CharacterModel" index="8"]
 debug = true

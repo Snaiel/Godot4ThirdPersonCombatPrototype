@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ynuik1v6nsyt"]
+
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_set.gd" id="1_d6d2i"]
+
+[node name="SetCanMoveTrue" type="Node"]
+script = ExtResource("1_d6d2i")
+key = "\"can_move\""
+value = "true"
