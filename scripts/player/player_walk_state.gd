@@ -37,17 +37,11 @@ func process_player() -> void:
 		parent_state.change_state(attack_state)
 		return
 	
-	if Input.is_action_just_pressed("block") and (
-		not player.attack_component.attacking or \
-		player.attack_component.stop_attacking()
-	):
+	if Input.is_action_just_pressed("block"):
 		parent_state.change_state(parry_state)
 		return
 	
-	if Input.is_action_pressed("block") and (
-		not player.attack_component.attacking or \
-		player.attack_component.stop_attacking()
-	):
+	if Input.is_action_pressed("block"):
 		parent_state.change_state(block_state)
 	
 	player.set_rotation_target_to_lock_on_target()

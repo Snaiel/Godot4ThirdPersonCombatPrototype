@@ -2,6 +2,8 @@ class_name PlayerAttackState
 extends PlayerStateMachine
 
 
+@export var parry_state: PlayerParryState
+@export var block_state: PlayerBlockState
 @export var dizzy_finisher_state: PlayerStateMachine
 @export var finisher_from_damage_state: PlayerDizzyFinisherFromDamageState
 
@@ -25,6 +27,8 @@ func enter():
 	parent_state.previous_state is PlayerRunState or \
 	parent_state.previous_state is PlayerJumpState:
 		player.attack_component.attack()
+	elif parent_state.previous_state is PlayerBlockState:
+		player.attack_component.attack(false)
 
 
 func process_player():
@@ -36,10 +40,21 @@ func process_player():
 		parent_state.transition_to_default_state()
 		return
 	
+	if Input.is_action_just_pressed("block") and \
+	player.attack_component.stop_attacking():
+		parent_state.change_state(parry_state)
+		return
+	
+	if Input.is_action_pressed("block") and \
+	player.attack_component.stop_attacking():
+		parent_state.change_state(block_state)
+		return
+	
 	if Input.is_action_just_pressed("attack"):
 		if check_for_dizzy_finisher():
 			return
 		player.attack_component.attack()
+	
 
 
 func exit():

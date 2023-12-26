@@ -139,15 +139,18 @@ block_state = NodePath("../Block")
 parry_state = NodePath("../Parry")
 player = NodePath("../..")
 
-[node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("dizzy_finisher_state", "finisher_from_damage_state", "player")]
+[node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("parry_state", "block_state", "dizzy_finisher_state", "finisher_from_damage_state", "player")]
 script = ExtResource("8_bojn3")
+parry_state = NodePath("../Parry")
+block_state = NodePath("../Block")
 dizzy_finisher_state = NodePath("../DizzyFinisher")
 finisher_from_damage_state = NodePath("../DizzyFinisher/FromDamage")
 player = NodePath("../..")
 
-[node name="Block" type="Node" parent="StateMachine" node_paths=PackedStringArray("parry_state", "player")]
+[node name="Block" type="Node" parent="StateMachine" node_paths=PackedStringArray("parry_state", "attack_state", "player")]
 script = ExtResource("9_t1v34")
 parry_state = NodePath("../Parry")
+attack_state = NodePath("../Attack")
 player = NodePath("../..")
 
 [node name="Parry" type="Node" parent="StateMachine" node_paths=PackedStringArray("block_state", "dizzy_finisher_state", "player")]
