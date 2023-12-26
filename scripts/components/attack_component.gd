@@ -58,6 +58,7 @@ func thrust() -> void:
 		return
 	
 	attacking = true
+	_can_stop_attack = false
 	_attack_interrupted = false
 	
 	can_move.emit(false)

@@ -71,7 +71,7 @@ layers = 2
 surface_material_override/0 = ExtResource("4_ysu0o")
 
 [node name="Sword" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity") instance=ExtResource("5_vtx6o")]
-transform = Transform3D(-0.18487, -0.251436, 0.950054, 0.318492, -0.929873, -0.18412, 0.929724, 0.268546, 0.251986, -0.309665, 0.879604, -0.22967)
+transform = Transform3D(0.289746, -0.648549, 0.703869, -0.135114, -0.755767, -0.64075, 0.947519, 0.090552, -0.306609, -0.0974429, 0.996965, -0.468932)
 _entity = NodePath("../../../..")
 
 [node name="AnimationTree" parent="CharacterModel" index="2"]
@@ -103,7 +103,7 @@ parry_state = NodePath("../Parry")
 backstab_state = NodePath("../Backstab")
 player = NodePath("../..")
 
-[node name="Walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "dodge_state", "run_state", "jump_state", "attack_state", "block_state", "parry_state", "player")]
+[node name="Walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "dodge_state", "run_state", "jump_state", "attack_state", "block_state", "parry_state", "backstab_state", "player")]
 script = ExtResource("4_4fxcp")
 idle_state = NodePath("../Idle")
 dodge_state = NodePath("../Dodge")
@@ -112,9 +112,10 @@ jump_state = NodePath("../Jump")
 attack_state = NodePath("../Attack")
 block_state = NodePath("../Block")
 parry_state = NodePath("../Parry")
+backstab_state = NodePath("../Backstab")
 player = NodePath("../..")
 
-[node name="Run" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "walk_state", "jump_state", "dodge_state", "attack_state", "block_state", "parry_state", "player")]
+[node name="Run" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "walk_state", "jump_state", "dodge_state", "attack_state", "block_state", "parry_state", "backstab_state", "player")]
 script = ExtResource("6_nj3fe")
 idle_state = NodePath("../Idle")
 walk_state = NodePath("../Walk")
@@ -123,6 +124,7 @@ dodge_state = NodePath("../Dodge")
 attack_state = NodePath("../Attack")
 block_state = NodePath("../Block")
 parry_state = NodePath("../Parry")
+backstab_state = NodePath("../Backstab")
 player = NodePath("../..")
 
 [node name="Dodge" type="Node" parent="StateMachine" node_paths=PackedStringArray("run_state", "jump_state", "player")]

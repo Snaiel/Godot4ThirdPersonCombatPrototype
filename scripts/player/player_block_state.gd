@@ -5,6 +5,7 @@ extends PlayerStateMachine
 @export var parry_state: PlayerParryState
 @export var attack_state: PlayerAttackState
 
+
 func _ready():
 	super._ready()
 
@@ -26,7 +27,7 @@ func process_player():
 	if Input.is_action_just_pressed("attack"):
 		parent_state.change_state(attack_state)
 		return
-	
+
 	player.set_rotation_target_to_lock_on_target()
 
 

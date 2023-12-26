@@ -26,7 +26,7 @@ func _ready():
 
 
 func change_state(new_state: PlayerStateMachine) -> void:
-#	prints(current_state, new_state)
+	prints(current_state, new_state)
 	if not has_sub_states:
 		return
 	

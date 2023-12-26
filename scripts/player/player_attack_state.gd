@@ -20,7 +20,8 @@ func enter():
 		return
 	
 	player.movement_component.can_move = false
-	if parent_state.previous_state is PlayerBackstabState:
+	if parent_state.previous_state is PlayerBackstabState or \
+	Globals.backstab_system.backstab_victim != null:
 		player.attack_component.thrust()
 	elif parent_state.previous_state is PlayerIdleState or \
 	parent_state.previous_state is PlayerWalkState or \

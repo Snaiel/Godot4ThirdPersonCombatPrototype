@@ -9,6 +9,7 @@ extends PlayerStateMachine
 @export var attack_state: PlayerAttackState
 @export var block_state: PlayerBlockState
 @export var parry_state: PlayerParryState
+@export var backstab_state: PlayerBackstabState
 
 
 func enter() -> void:
@@ -43,6 +44,10 @@ func process_player() -> void:
 	
 	if Input.is_action_pressed("block"):
 		parent_state.change_state(block_state)
+		return
+	
+	if Globals.backstab_system.backstab_victim:
+		parent_state.change_state(backstab_state)
 		return
 	
 	
