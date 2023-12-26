@@ -38,6 +38,11 @@ func process_player():
 		parent_state.transition_to_default_state()
 		return
 	
+	if Input.is_action_just_pressed("attack"):
+		if check_for_dizzy_finisher():
+			return
+		player.attack_component.attack()
+	
 	if Input.is_action_just_pressed("block") and \
 	player.attack_component.stop_attacking():
 		parent_state.change_state(parry_state)
@@ -47,11 +52,6 @@ func process_player():
 	player.attack_component.stop_attacking():
 		parent_state.change_state(block_state)
 		return
-	
-	if Input.is_action_just_pressed("attack"):
-		if check_for_dizzy_finisher():
-			return
-		player.attack_component.attack()
 	
 
 

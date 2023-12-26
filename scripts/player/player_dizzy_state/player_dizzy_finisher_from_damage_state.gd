@@ -26,6 +26,8 @@ func enter():
 
 
 func process_player():
+	player.weapon.can_damage = true
+	
 	if _finished:
 		parent_state.parent_state.transition_to_default_state()
 		return
