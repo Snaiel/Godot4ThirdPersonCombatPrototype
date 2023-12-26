@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dujukbu10vbmm"]
+[gd_scene load_steps=33 format=3 uid="uid://dujukbu10vbmm"]
 
 [ext_resource type="Script" path="res://scripts/entities/player.gd" id="1_lgfyt"]
 [ext_resource type="Script" path="res://scripts/player/player_state_machine.gd" id="2_4ql4h"]
@@ -29,6 +29,7 @@
 [ext_resource type="Script" path="res://scripts/player/player_dizzy_state/player_dizzy_finisher_from_damage_state.gd" id="18_hlp8w"]
 [ext_resource type="Script" path="res://scripts/player/player_parried_by_enemy_state.gd" id="19_24iu4"]
 [ext_resource type="Script" path="res://scripts/player/player_parried_enemy_hit_state.gd" id="20_1olui"]
+[ext_resource type="Script" path="res://scripts/player/player_hit_by_enemy_state.gd" id="21_x55ju"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kr42x"]
 render_priority = 0
@@ -73,7 +74,7 @@ layers = 2
 surface_material_override/0 = ExtResource("4_ysu0o")
 
 [node name="Sword" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity") instance=ExtResource("5_vtx6o")]
-transform = Transform3D(0.289748, -0.64855, 0.703868, -0.135115, -0.755767, -0.64075, 0.947518, 0.0905526, -0.306611, -0.0974439, 0.996965, -0.468932)
+transform = Transform3D(0.027031, 0.0220744, 0.999391, 0.0518122, -0.998443, 0.0206522, 0.998291, 0.0512224, -0.0281328, -0.288508, 0.852497, 0.0551622)
 _entity = NodePath("../../../..")
 
 [node name="AnimationTree" parent="CharacterModel" index="2"]
@@ -193,9 +194,12 @@ player = NodePath("../../..")
 script = ExtResource("18_hlp8w")
 player = NodePath("../../..")
 
-[node name="ParriedByEnemy" type="Node" parent="StateMachine" node_paths=PackedStringArray("weapon", "player")]
+[node name="ParriedByEnemy" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("19_24iu4")
-weapon = NodePath("../../CharacterModel/Armature_004/GeneralSkeleton/Sword")
+player = NodePath("../..")
+
+[node name="HitByEnemy" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("21_x55ju")
 player = NodePath("../..")
 
 [node name="Collider" type="CollisionShape3D" parent="."]

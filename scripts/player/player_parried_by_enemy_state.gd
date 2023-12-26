@@ -2,8 +2,6 @@ class_name PlayerParriedByEnemyState
 extends PlayerStateMachine
 
 
-@export var weapon: Sword
-
 var _timer: Timer
 var _timer_length: float = 0.4
 
@@ -11,7 +9,7 @@ var _timer_length: float = 0.4
 func _ready():
 	super._ready()
 	
-	weapon.parried.connect(
+	player.weapon.parried.connect(
 		func():
 			parent_state.change_state(self)
 	)

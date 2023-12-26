@@ -25,26 +25,11 @@ var _secondary_movement_speed: float = 0.0
 var _secondary_movement_friction: float = 0.0
 var _secondary_movement_timer: Timer
 
-var _got_hit: bool = false
-var _got_hit_timer: Timer
-var _got_hit_pause: float = 0.8
-
 
 func _ready() -> void:
 	_secondary_movement_timer = Timer.new()
 	_secondary_movement_timer.timeout.connect(_reset_secondary_movement)
 	add_child(_secondary_movement_timer)
-	
-	_got_hit_timer = Timer.new()
-	_got_hit_timer.wait_time = _got_hit_pause
-	_got_hit_timer.autostart = false
-	_got_hit_timer.one_shot = true
-	_got_hit_timer.timeout.connect(
-		func():
-			_got_hit = false
-			can_move = true
-	)
-	add_child(_got_hit_timer)
 
 
 func _physics_process(delta: float) -> void:
@@ -55,9 +40,6 @@ func _physics_process(delta: float) -> void:
 #		print(_got_hit)
 #		prints(get_parent().name, desired_velocity, vertical_movement)
 #		print(_secondary_movement_direction, " ", _secondary_movement_speed, " ", _secondary_movement_friction)
-	
-	if _got_hit:
-		can_move = false
 	
 	if can_move:
 		if move_direction.length() > 0.05:
@@ -118,9 +100,9 @@ func set_secondary_movement(secondary_speed: float, time: float, friction: float
 	_secondary_movement_timer.start(time)
 
 
-func got_hit() -> void:
-	_got_hit = true
-	_got_hit_timer.start()
+func knockback(knockback_origin: Vector3) -> void:
+	var direction: Vector3 = target_entity.global_position.direction_to(knockback_origin)
+	set_secondary_movement(3, 5, 5, -direction)
 
 
 func _reset_secondary_movement() -> void:

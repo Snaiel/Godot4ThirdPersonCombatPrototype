@@ -67,7 +67,7 @@ func _physics_process(_delta: float) -> void:
 		_animation_input_dir = Vector3.FORWARD
 	
 	character.movement_animations.move(
-		_animation_input_dir, 
+		_animation_input_dir,
 		lock_on_target != null or Globals.backstab_system.backstab_victim, 
 		state_machine.current_state is PlayerRunState
 	)
@@ -107,12 +107,6 @@ func _on_lock_on_system_lock_on(target: LockOnComponent) -> void:
 		)
 
 
-func _knockback(incoming_weapon: Sword) -> void:
-	var opponent_position: Vector3 = incoming_weapon.get_entity().global_position
-	var direction: Vector3 = global_position.direction_to(opponent_position)
-	movement_component.set_secondary_movement(incoming_weapon.get_knockback(), 5, 5, -direction)
-
-
 func _on_hitbox_component_weapon_hit(incoming_weapon: Sword):
 	if parry_component.in_parry_window:
 		parry_component.reset_parry_cooldown()
@@ -121,14 +115,8 @@ func _on_hitbox_component_weapon_hit(incoming_weapon: Sword):
 		block_component.anim.play("parried")
 		incoming_weapon.get_parried()
 		if not dizzy_system.dizzy_victim:
-			_knockback(incoming_weapon)
+			movement_component.knockback(incoming_weapon.get_entity().global_position)
 		print("PARRIED")
 	elif block_component.blocking or parry_component.is_spamming():
-		_knockback(incoming_weapon)
+		movement_component.knockback(incoming_weapon.get_entity().global_position)
 		block_component.blocked()
-	elif not state_machine.current_state is PlayerParriedEnemyHitState:
-		print("HIT")
-		_knockback(incoming_weapon)
-		character.hit_and_death_animations.hit()
-		movement_component.got_hit()
-		attack_component.interrupt_attack()

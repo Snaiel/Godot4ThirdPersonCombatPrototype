@@ -108,24 +108,18 @@ func _physics_process(_delta: float) -> void:
 	)
 
 
-func _knockback(weapon: Sword) -> void:
-	var opponent_position: Vector3 = weapon.get_entity().global_position
-	var direction: Vector3 = global_position.direction_to(opponent_position)
-	_movement_component.set_secondary_movement(weapon.get_knockback(), 5, 5, -direction)
-
-
 func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 	if Globals.backstab_system.backstab_victim == _backstab_component:
 		_backstab_component.process_hit()
 		_health_component.decrement_health(weapon)
-		_knockback(weapon)
+		_movement_component.knockback(weapon.get_entity().global_position)
 		return
 	
 	if Globals.dizzy_system.dizzy_victim == _dizzy_component:
 		_dizzy_component.process_hit(weapon)
 		_health_component.decrement_health(weapon)
 		if _instability_component.full_instability_from_parry:
-			_knockback(weapon)
+			_movement_component.knockback(weapon.get_entity().global_position)
 		return
 	
 	var rng: float = RandomNumberGenerator.new().randf()
@@ -134,7 +128,7 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 	if 0.8 < rng and rng <= 1.0:
 		# 20% chance of parrying
 		
-		_knockback(weapon)
+		_movement_component.knockback(weapon.get_entity().global_position)
 		
 		_parry_component.in_parry_window = true
 		_attack_component.interrupt_attack()
@@ -149,13 +143,10 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 			func(): 
 				_attack_component.attack()
 		)
-		
-		return
-		
 	elif 0.4 <= rng and rng <= 0.8:
 		# 40% chance of blocking
 		
-		_knockback(weapon)
+		_movement_component.knockback(weapon.get_entity().global_position)
 		
 		_block_component.blocking = true
 		_block_component.blocked()
@@ -173,20 +164,20 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 				_instability_component.active = true
 				_health_component.enabled = true
 		)
+	else:
+		# 40% chance of being hit
 		
-		return
-	
-	_health_component.decrement_health(weapon)
-	_instability_component.process_hit()
-	
-	_attack_component.interrupt_attack()
-	
-	_movement_component.got_hit()
-	_character.hit_and_death_animations.hit()
-	_set_agent_target_to_target = true
-	_blackboard.set_value("got_hit", true)
-	
-	_knockback(weapon)
+		_health_component.decrement_health(weapon)
+		_instability_component.process_hit()
+		
+		_attack_component.interrupt_attack()
+		
+		_movement_component.got_hit()
+		_character.hit_and_death_animations.hit()
+		_set_agent_target_to_target = true
+		_blackboard.set_value("got_hit", true)
+		
+		_movement_component.knockback(weapon.get_entity().global_position)
 
 
 func _on_health_component_zero_health() -> void:
