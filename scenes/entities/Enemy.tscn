@@ -62,7 +62,7 @@ height = 1.8
 
 [node name="Enemy" type="CharacterBody3D" groups=["enemy"]]
 collision_layer = 8
-collision_mask = 3
+collision_mask = 11
 script = ExtResource("1_nrck3")
 
 [node name="CharacterModel" parent="." instance=ExtResource("2_0tr8h")]
