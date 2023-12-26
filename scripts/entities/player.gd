@@ -15,6 +15,7 @@ extends CharacterBody3D
 @export var attack_component: AttackComponent
 @export var parry_component: ParryComponent
 @export var fade_component: FadeComponent
+@export var weapon: Sword
 
 var input_direction: Vector3 = Vector3.ZERO
 var last_input_on_ground: Vector3 = Vector3.ZERO
@@ -106,27 +107,27 @@ func _on_lock_on_system_lock_on(target: LockOnComponent) -> void:
 		)
 
 
-func _knockback(weapon: Sword) -> void:
-	var opponent_position: Vector3 = weapon.get_entity().global_position
+func _knockback(incoming_weapon: Sword) -> void:
+	var opponent_position: Vector3 = incoming_weapon.get_entity().global_position
 	var direction: Vector3 = global_position.direction_to(opponent_position)
-	movement_component.set_secondary_movement(weapon.get_knockback(), 5, 5, -direction)
+	movement_component.set_secondary_movement(incoming_weapon.get_knockback(), 5, 5, -direction)
 
 
-func _on_hitbox_component_weapon_hit(weapon: Sword):
+func _on_hitbox_component_weapon_hit(incoming_weapon: Sword):
 	if parry_component.in_parry_window:
 		character.parry_animations.parry()
 		block_component.anim.stop()
 		block_component.anim.play("parried")
-		weapon.get_parried()
+		incoming_weapon.get_parried()
 		if not dizzy_system.dizzy_victim:
-			_knockback(weapon)
+			_knockback(incoming_weapon)
 		print("PARRIED")
 	elif block_component.blocking or parry_component.is_spamming():
-		_knockback(weapon)
+		_knockback(incoming_weapon)
 		block_component.blocked()
 	else:
 		print("HIT")
-		_knockback(weapon)
+		_knockback(incoming_weapon)
 		character.hit_and_death_animations.hit()
 		movement_component.got_hit()
 		attack_component.interrupt_attack()
