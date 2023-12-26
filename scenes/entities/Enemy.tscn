@@ -78,9 +78,6 @@ _entity = NodePath("../../../..")
 [node name="Area" parent="CharacterModel/Armature_004/GeneralSkeleton/Sword" index="1"]
 collision_mask = 2
 
-[node name="LockOnAttachment" parent="CharacterModel/Armature_004/GeneralSkeleton" index="3"]
-transform = Transform3D(0.281177, -0.345491, -0.895307, -0.266706, 0.86806, -0.418737, 0.92185, 0.356523, 0.151934, -0.00652961, 1.09129, 0.0476643)
-
 [node name="AnimationTree" parent="CharacterModel" index="2"]
 "parameters/Dizzy Finisher Which One/current_state" = ""
 "parameters/Dizzy Finisher Which One/current_index" = -1

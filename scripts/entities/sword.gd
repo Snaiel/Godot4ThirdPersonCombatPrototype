@@ -7,7 +7,7 @@ signal parried
 @export var _entity: CharacterBody3D
 @export var debug: bool = false
 
-@export var _damage: float = 10.0
+@export var _damage: float = 25.0
 @export var _knockback: float = 3.0
 @export var can_damage: bool = false
 
