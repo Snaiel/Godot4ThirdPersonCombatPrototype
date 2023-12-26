@@ -40,9 +40,11 @@ text = "DebugLabel"
 [node name="NoticeTriangles" type="Node2D" parent="."]
 
 [node name="NoticeTriangle" parent="NoticeTriangles" instance=ExtResource("4_rjkcx")]
+visible = false
 position = Vector2(31, 28)
 
 [node name="WellbeingWidgets" type="Node2D" parent="."]
 
 [node name="WellbeingWidget" parent="WellbeingWidgets" instance=ExtResource("5_5c8kv")]
+visible = false
 position = Vector2(105, 32)
