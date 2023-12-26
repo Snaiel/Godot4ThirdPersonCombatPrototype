@@ -115,6 +115,7 @@ func _knockback(weapon: Sword) -> void:
 func _on_hitbox_component_weapon_hit(weapon: Sword):
 	if parry_component.in_parry_window:
 		character.parry_animations.parry()
+		block_component.anim.stop()
 		block_component.anim.play("parried")
 		weapon.get_parried()
 		if not dizzy_system.dizzy_victim:
