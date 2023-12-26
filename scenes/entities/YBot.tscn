@@ -1087,7 +1087,7 @@ extra_cull_margin = 1.0
 extra_cull_margin = 1.0
 
 [node name="LockOnAttachment" type="BoneAttachment3D" parent="Armature_004/GeneralSkeleton" index="2"]
-transform = Transform3D(0.281176, -0.345492, -0.895308, -0.266706, 0.86806, -0.418737, 0.921851, 0.356522, 0.151932, -0.00652961, 1.09129, 0.0476643)
+transform = Transform3D(0.281177, -0.345491, -0.895307, -0.266706, 0.86806, -0.418737, 0.92185, 0.356523, 0.151934, -0.00652961, 1.09129, 0.0476643)
 bone_name = "UpperChest"
 bone_idx = 4
 

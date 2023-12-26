@@ -23,13 +23,10 @@ func enter():
 	if parent_state.previous_state is PlayerBackstabState or \
 	Globals.backstab_system.backstab_victim != null:
 		player.attack_component.thrust()
-	elif parent_state.previous_state is PlayerIdleState or \
-	parent_state.previous_state is PlayerWalkState or \
-	parent_state.previous_state is PlayerRunState or \
-	parent_state.previous_state is PlayerJumpState:
-		player.attack_component.attack()
 	elif parent_state.previous_state is PlayerBlockState:
 		player.attack_component.attack(false)
+	else:
+		player.attack_component.attack()
 
 
 func process_player():

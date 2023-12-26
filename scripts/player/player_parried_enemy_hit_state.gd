@@ -2,6 +2,7 @@ class_name PlayerParriedEnemyHitState
 extends PlayerStateMachine
 
 
+@export var attack_state: PlayerAttackState
 @export var block_state: PlayerBlockState
 @export var parry_state: PlayerParryState
 
@@ -14,7 +15,8 @@ func _ready():
 	
 	player.parry_component.parried_incoming_hit.connect(
 		func():
-			parent_state.change_state(self)
+			if Globals.dizzy_system.dizzy_victim == null:
+				parent_state.change_state(self)
 	)
 	
 	_timer = Timer.new()
@@ -35,6 +37,10 @@ func enter():
 
 
 func process_player():
+	if Input.is_action_just_pressed("attack"):
+		parent_state.change_state(attack_state)
+		return
+		
 	if Input.is_action_just_pressed("block"):
 		parent_state.change_state(parry_state)
 		return

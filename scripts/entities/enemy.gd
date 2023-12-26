@@ -164,7 +164,7 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 		_instability_component.active = false
 		_health_component.enabled = false
 		
-		_instability_component.increment_instability(5.0)
+		_instability_component.increment_instability(15.0)
 		
 		var timer: SceneTreeTimer = get_tree().create_timer(0.3)
 		timer.timeout.connect(

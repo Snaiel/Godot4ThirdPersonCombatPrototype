@@ -78,10 +78,10 @@ func increment_instability(value: float, from_parry: bool = false):
 func process_hit():
 	if not active:
 		return
-	increment_instability(15, false)
+	increment_instability(25, false)
 
 
 func _on_sword_parried():
 	if not active:
 		return
-	increment_instability(10, true)
+	increment_instability(35, true)
