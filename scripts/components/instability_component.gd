@@ -84,4 +84,4 @@ func process_hit():
 func _on_sword_parried():
 	if not active:
 		return
-	increment_instability(45, true)
+	increment_instability(10, true)

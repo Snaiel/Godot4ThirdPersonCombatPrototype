@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://cv8knl5vavfyy"]
+[gd_scene load_steps=48 format=3 uid="uid://cv8knl5vavfyy"]
 
 [ext_resource type="Script" path="res://scripts/entities/enemy.gd" id="1_nrck3"]
 [ext_resource type="PackedScene" uid="uid://x0oxbha36o2h" path="res://scenes/entities/YBot.tscn" id="2_0tr8h"]
@@ -43,6 +43,8 @@
 [ext_resource type="PackedScene" uid="uid://nc8fs0at3l7x" path="res://scenes/beehave/set_actions/SetLockedOnFalse.tscn" id="26_l0o05"]
 [ext_resource type="PackedScene" uid="uid://t7wqbcml070v" path="res://scenes/beehave/set_actions/SetLookedAroundFalse.tscn" id="27_2m2v4"]
 [ext_resource type="PackedScene" uid="uid://cw3sck872787g" path="res://scenes/beehave/set_actions/SetGotHitFalse.tscn" id="28_mcqya"]
+[ext_resource type="PackedScene" uid="uid://cfuiyhthukrn0" path="res://scenes/beehave/attacks/SingleRandomAttack.tscn" id="33_gbbqm"]
+[ext_resource type="Script" path="res://scripts/beehave/execute_expression.gd" id="34_eiv28"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i1ddg"]
 render_priority = 0
@@ -70,7 +72,7 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1,
 surface_material_override/0 = SubResource("ShaderMaterial_i1ddg")
 
 [node name="Sword" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity") instance=ExtResource("4_r63io")]
-transform = Transform3D(-0.18487, -0.251436, 0.950054, 0.318492, -0.929873, -0.18412, 0.929724, 0.268546, 0.251986, -0.309665, 0.879604, -0.22967)
+transform = Transform3D(0.289746, -0.648549, 0.703869, -0.135114, -0.755767, -0.64075, 0.947519, 0.090552, -0.306609, -0.0974429, 0.996965, -0.468932)
 _entity = NodePath("../../../..")
 
 [node name="Area" parent="CharacterModel/Armature_004/GeneralSkeleton/Sword" index="1"]
@@ -210,19 +212,6 @@ script = ExtResource("12_qw7d2")
 left_operand = "get_value(\"can_attack\")"
 right_operand = "true"
 
-[node name="ChooseAttack" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack"]
-script = ExtResource("23_4n8cs")
-
-[node name="SetAttackLevel1" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/ChooseAttack"]
-script = ExtResource("18_k7e7h")
-key = "\"attack_level\""
-value = "1"
-
-[node name="SetAttackLevel2" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/ChooseAttack"]
-script = ExtResource("18_k7e7h")
-key = "\"attack_level\""
-value = "2"
-
 [node name="AlwaysSucceed" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack"]
 script = ExtResource("24_maunq")
 
@@ -238,10 +227,59 @@ right_operand = "true"
 wait_id = 19094146
 wait_time = 0.5
 
-[node name="SetAttackTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack"]
-script = ExtResource("18_k7e7h")
-key = "\"attack\""
-value = "true"
+[node name="PerformAttack" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack"]
+script = ExtResource("23_4n8cs")
+
+[node name="SingleAttack" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack"]
+script = ExtResource("9_aj65e")
+
+[node name="PrintSingleAttack" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/SingleAttack"]
+script = ExtResource("34_eiv28")
+expression_string = "print(\"SINGLE ATTACK\")"
+
+[node name="SingleRandomAttack" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/SingleAttack" instance=ExtResource("33_gbbqm")]
+
+[node name="DoubleAttack" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack"]
+script = ExtResource("9_aj65e")
+
+[node name="PrintDoubleAttack" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/DoubleAttack"]
+script = ExtResource("34_eiv28")
+expression_string = "print(\"DOUBLE ATTACK\")"
+
+[node name="SingleRandomAttack" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/DoubleAttack" instance=ExtResource("33_gbbqm")]
+
+[node name="WaitBlock" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/DoubleAttack" instance=ExtResource("24_ac52a")]
+wait_id = 10658642
+wait_time = 0.8
+
+[node name="SetCanAttackTrue" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/DoubleAttack" instance=ExtResource("24_ugq3t")]
+
+[node name="SingleRandomAttack2" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/DoubleAttack" instance=ExtResource("33_gbbqm")]
+
+[node name="TripleAttack" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack"]
+script = ExtResource("9_aj65e")
+
+[node name="PrintTripleAttack" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack"]
+script = ExtResource("34_eiv28")
+expression_string = "print(\"TRIPLE ATTACK\")"
+
+[node name="SingleRandomAttack" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack" instance=ExtResource("33_gbbqm")]
+
+[node name="WaitBlock" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack" instance=ExtResource("24_ac52a")]
+wait_id = 35297727
+wait_time = 0.8
+
+[node name="SetCanAttackTrue" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack" instance=ExtResource("24_ugq3t")]
+
+[node name="SingleRandomAttack2" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack" instance=ExtResource("33_gbbqm")]
+
+[node name="WaitBlock2" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack" instance=ExtResource("24_ac52a")]
+wait_id = 94769640
+wait_time = 0.8
+
+[node name="SetCanAttackTrue2" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack" instance=ExtResource("24_ugq3t")]
+
+[node name="SingleRandomAttack3" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack" instance=ExtResource("33_gbbqm")]
 
 [node name="ActAggro" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget" instance=ExtResource("19_3laeb")]
 

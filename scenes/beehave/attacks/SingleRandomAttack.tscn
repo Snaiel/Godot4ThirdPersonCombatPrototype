@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfuiyhthukrn0"]
+
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="1_l52oy"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_random.gd" id="2_p3wfn"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_set.gd" id="3_p8eh8"]
+
+[node name="SingleRandomAttack" type="Node"]
+script = ExtResource("1_l52oy")
+
+[node name="ChooseAttack" type="Node" parent="."]
+script = ExtResource("2_p3wfn")
+
+[node name="SetAttackLevel1" type="Node" parent="ChooseAttack"]
+script = ExtResource("3_p8eh8")
+key = "\"attack_level\""
+value = "1"
+
+[node name="SetAttackLevel2" type="Node" parent="ChooseAttack"]
+script = ExtResource("3_p8eh8")
+key = "\"attack_level\""
+value = "2"
+
+[node name="SetAttackTrue" type="Node" parent="."]
+script = ExtResource("3_p8eh8")
+key = "\"attack\""
+value = "true"
