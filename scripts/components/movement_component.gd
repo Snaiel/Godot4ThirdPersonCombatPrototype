@@ -1,6 +1,7 @@
 class_name MovementComponent
 extends Node3D
 
+
 @export var debug: bool = false
 
 @export var speed: float = 0.0
@@ -31,7 +32,7 @@ var _got_hit_pause: float = 0.8
 
 func _ready() -> void:
 	_secondary_movement_timer = Timer.new()
-	_secondary_movement_timer.timeout.connect(_process_movement_timer)
+	_secondary_movement_timer.timeout.connect(_reset_secondary_movement)
 	add_child(_secondary_movement_timer)
 	
 	_got_hit_timer = Timer.new()
@@ -122,6 +123,6 @@ func got_hit() -> void:
 	_got_hit_timer.start()
 
 
-func _process_movement_timer() -> void:
+func _reset_secondary_movement() -> void:
 	_secondary_movement_speed = 0.0
 	_secondary_movement_friction = 0.0

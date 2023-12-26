@@ -80,9 +80,11 @@ func stop_attacking() -> bool:
 func interrupt_attack() -> void:
 	if attacking:
 		_attack_interrupted = true
+	
 	can_move.emit(true)
 	attacking = false
 	attack_level = 1
+	
 	_can_attack_again = false
 	_attack_animations.stop_attacking()
 	_weapon.can_damage = false
@@ -113,6 +115,8 @@ func _receive_rotation(flag: bool) -> void:
 
 
 func _receive_movement() -> void:
+	_can_stop_attack = false
+	
 	if _attack_interrupted:
 		return
 		
@@ -128,7 +132,6 @@ func _receive_movement() -> void:
 
 
 func _receive_can_damage(can_damage: bool) -> void:
-	_can_stop_attack = false
 	if not _attack_interrupted:
 		_weapon.can_damage = can_damage
 
