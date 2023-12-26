@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dujukbu10vbmm"]
+[gd_scene load_steps=32 format=3 uid="uid://dujukbu10vbmm"]
 
 [ext_resource type="Script" path="res://scripts/entities/player.gd" id="1_lgfyt"]
 [ext_resource type="Script" path="res://scripts/player/player_state_machine.gd" id="2_4ql4h"]
@@ -27,7 +27,8 @@
 [ext_resource type="Script" path="res://scripts/components/parry_component.gd" id="13_a73xb"]
 [ext_resource type="Script" path="res://scripts/player/player_dizzy_state/player_dizzy_finisher_state.gd" id="16_vyrl8"]
 [ext_resource type="Script" path="res://scripts/player/player_dizzy_state/player_dizzy_finisher_from_damage_state.gd" id="18_hlp8w"]
-[ext_resource type="Script" path="res://scripts/player/player_parried_state.gd" id="19_x1xtv"]
+[ext_resource type="Script" path="res://scripts/player/player_parried_by_enemy_state.gd" id="19_24iu4"]
+[ext_resource type="Script" path="res://scripts/player/player_parried_enemy_hit_state.gd" id="20_1olui"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kr42x"]
 render_priority = 0
@@ -162,6 +163,12 @@ block_state = NodePath("../Block")
 dizzy_finisher_state = NodePath("../DizzyFinisher")
 player = NodePath("../..")
 
+[node name="ParriedEnemyHit" type="Node" parent="StateMachine" node_paths=PackedStringArray("block_state", "parry_state", "player")]
+script = ExtResource("20_1olui")
+block_state = NodePath("../Block")
+parry_state = NodePath("../Parry")
+player = NodePath("../..")
+
 [node name="Backstab" type="Node" parent="StateMachine" node_paths=PackedStringArray("dodge_state", "jump_state", "attack_state", "block_state", "parry_state", "player")]
 script = ExtResource("11_i0t64")
 dodge_state = NodePath("../Dodge")
@@ -185,8 +192,8 @@ player = NodePath("../../..")
 script = ExtResource("18_hlp8w")
 player = NodePath("../../..")
 
-[node name="Parried" type="Node" parent="StateMachine" node_paths=PackedStringArray("weapon", "player")]
-script = ExtResource("19_x1xtv")
+[node name="ParriedByEnemy" type="Node" parent="StateMachine" node_paths=PackedStringArray("weapon", "player")]
+script = ExtResource("19_24iu4")
 weapon = NodePath("../../CharacterModel/Armature_004/GeneralSkeleton/Sword")
 player = NodePath("../..")
 
@@ -237,8 +244,9 @@ _weapon = NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Sword")
 movement_component = NodePath("../MovementComponent")
 character = NodePath("../CharacterModel")
 
-[node name="ParryComponent" type="Node3D" parent="." node_paths=PackedStringArray("block_component")]
+[node name="ParryComponent" type="Node3D" parent="." node_paths=PackedStringArray("hitbox_component", "block_component")]
 script = ExtResource("13_a73xb")
+hitbox_component = NodePath("../HitboxComponent")
 block_component = NodePath("../BlockComponent")
 
 [node name="FadeComponent" type="Node3D" parent="." node_paths=PackedStringArray("meshes", "entity")]

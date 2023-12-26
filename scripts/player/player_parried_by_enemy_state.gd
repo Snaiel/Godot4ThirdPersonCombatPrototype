@@ -1,4 +1,4 @@
-class_name PlayerParriedState
+class_name PlayerParriedByEnemyState
 extends PlayerStateMachine
 
 

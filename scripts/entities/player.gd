@@ -115,6 +115,7 @@ func _knockback(incoming_weapon: Sword) -> void:
 
 func _on_hitbox_component_weapon_hit(incoming_weapon: Sword):
 	if parry_component.in_parry_window:
+		parry_component.reset_parry_cooldown()
 		character.parry_animations.parry()
 		block_component.anim.stop()
 		block_component.anim.play("parried")
@@ -125,7 +126,7 @@ func _on_hitbox_component_weapon_hit(incoming_weapon: Sword):
 	elif block_component.blocking or parry_component.is_spamming():
 		_knockback(incoming_weapon)
 		block_component.blocked()
-	else:
+	elif not state_machine.current_state is PlayerParriedEnemyHitState:
 		print("HIT")
 		_knockback(incoming_weapon)
 		character.hit_and_death_animations.hit()

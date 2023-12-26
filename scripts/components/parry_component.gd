@@ -2,6 +2,10 @@ class_name ParryComponent
 extends Node3D
 
 
+signal parried_incoming_hit
+
+
+@export var hitbox_component: HitboxComponent
 @export var block_component: BlockComponent
 
 var in_parry_window: bool = false
@@ -20,6 +24,12 @@ var _parry_cooldown: float = 0.4
 
 
 func _ready() -> void:
+	hitbox_component.weapon_hit.connect(
+		func(_incoming_weapon: Sword):
+			if in_parry_window:
+				parried_incoming_hit.emit()
+	)
+	
 	_parry_timer = Timer.new()
 	_parry_timer.wait_time = _parry_interval[_parry_index]
 	_parry_timer.autostart = false
@@ -64,3 +74,7 @@ func parry() -> void:
 func is_spamming() -> bool:
 	return not _parry_cooldown_timer.is_stopped() and \
 	_parry_index > 0
+
+
+func reset_parry_cooldown() -> void:
+	_parry_cooldown_timer.stop()

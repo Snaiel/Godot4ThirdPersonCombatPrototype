@@ -149,8 +149,9 @@ _weapon = NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Sword")
 movement_component = NodePath("../MovementComponent")
 character = NodePath("../CharacterModel")
 
-[node name="ParryComponent" type="Node3D" parent="." node_paths=PackedStringArray("block_component")]
+[node name="ParryComponent" type="Node3D" parent="." node_paths=PackedStringArray("hitbox_component", "block_component")]
 script = ExtResource("17_hxpto")
+hitbox_component = NodePath("../HitboxComponent")
 block_component = NodePath("../BlockComponent")
 
 [node name="WellbeingComponent" type="Node3D" parent="." node_paths=PackedStringArray("lock_on_component", "backstab_component", "health_component", "instability_component")]
