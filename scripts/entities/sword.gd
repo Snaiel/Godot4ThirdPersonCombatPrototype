@@ -12,6 +12,10 @@ signal parried
 @export var can_damage: bool = false
 
 
+func _process(_delta):
+	if debug: print(can_damage)
+
+
 func get_entity() -> CharacterBody3D:
 	return _entity
 	
