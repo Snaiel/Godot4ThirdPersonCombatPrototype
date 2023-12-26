@@ -225,7 +225,7 @@ right_operand = "true"
 
 [node name="WaitBlock" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/AlwaysSucceed/WaitIfGotHit" instance=ExtResource("24_ac52a")]
 wait_id = 19094146
-wait_time = 0.5
+wait_time = 1.0
 
 [node name="PerformAttack" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack"]
 script = ExtResource("23_4n8cs")

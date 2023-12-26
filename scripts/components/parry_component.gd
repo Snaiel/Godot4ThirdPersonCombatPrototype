@@ -27,7 +27,7 @@ func _ready() -> void:
 	_parry_timer.timeout.connect(
 		func():
 			in_parry_window = false
-			print("parry window closed!")
+#			print("parry window closed!")
 	)
 	add_child(_parry_timer)
 	
@@ -39,7 +39,7 @@ func _ready() -> void:
 
 
 func parry() -> void:
-	prints('spamming?', is_spamming())
+#	prints('spamming?', is_spamming())
 	
 	if _parry_cooldown_timer.is_stopped():
 		_parry_index = 0
@@ -49,7 +49,7 @@ func parry() -> void:
 	if _parry_index > 3:
 		_parry_index = 3
 	
-	prints("parry interval:", _parry_interval[_parry_index])
+#	prints("parry interval:", _parry_interval[_parry_index])
 	
 	_parry_cooldown_timer.start()
 	if _parry_index == 3:
@@ -58,7 +58,7 @@ func parry() -> void:
 	in_parry_window = true
 	_parry_timer.start(_parry_interval[_parry_index])
 	
-	print("parry window open!")
+#	print("parry window open!")
 
 
 func is_spamming() -> bool:
