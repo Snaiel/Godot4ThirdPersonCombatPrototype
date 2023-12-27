@@ -57,3 +57,11 @@ func process_player() -> void:
 		player.rotation_component.rotate_towards_target = true
 	else:
 		player.rotation_component.rotate_towards_target = false
+
+
+func process_movement_animations() -> void:
+	player.character.movement_animations.move(
+		player.input_direction,
+		player.lock_on_target != null, 
+		true
+	)

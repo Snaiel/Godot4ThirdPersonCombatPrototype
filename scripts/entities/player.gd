@@ -76,7 +76,7 @@ func process_default_movement_animations() -> void:
 	character.movement_animations.move(
 		input_direction,
 		lock_on_target != null, 
-		state_machine.current_state is PlayerRunState
+		false
 	)
 
 
