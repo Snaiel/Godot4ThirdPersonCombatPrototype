@@ -2,7 +2,7 @@ class_name ParryComponent
 extends Node3D
 
 
-signal parried_incoming_hit
+signal parried_incoming_hit(incoming_weapon: Sword)
 
 
 @export var hitbox_component: HitboxComponent
@@ -25,9 +25,9 @@ var _parry_cooldown: float = 0.4
 
 func _ready() -> void:
 	hitbox_component.weapon_hit.connect(
-		func(_incoming_weapon: Sword):
+		func(incoming_weapon: Sword):
 			if in_parry_window:
-				parried_incoming_hit.emit()
+				parried_incoming_hit.emit(incoming_weapon)
 	)
 	
 	_parry_timer = Timer.new()
@@ -50,7 +50,6 @@ func _ready() -> void:
 
 func parry() -> void:
 #	prints('spamming?', is_spamming())
-	
 	if _parry_cooldown_timer.is_stopped():
 		_parry_index = 0
 	else:

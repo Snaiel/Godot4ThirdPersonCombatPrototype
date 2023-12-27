@@ -7,6 +7,7 @@ extends PlayerStateMachine
 
 @onready var dizzy_system: DizzySystem = Globals.dizzy_system
 
+
 func _ready():
 	super._ready()
 

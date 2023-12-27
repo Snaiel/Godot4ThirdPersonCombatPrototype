@@ -8,6 +8,15 @@ extends PlayerStateMachine
 
 func _ready():
 	super._ready()
+	
+	player.hitbox_component.weapon_hit.connect(
+		func(incoming_weapon: Sword):
+			if parent_state.current_state == self:
+				player.movement_component.knockback(
+					incoming_weapon.get_entity().global_position
+				)
+				player.block_component.blocked()
+	)
 
 
 func enter():

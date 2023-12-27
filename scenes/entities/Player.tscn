@@ -144,12 +144,11 @@ block_state = NodePath("../Block")
 parry_state = NodePath("../Parry")
 player = NodePath("../..")
 
-[node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("parry_state", "block_state", "dizzy_finisher_state", "finisher_from_damage_state", "player")]
+[node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("parry_state", "block_state", "dizzy_finisher_state", "player")]
 script = ExtResource("8_bojn3")
 parry_state = NodePath("../Parry")
 block_state = NodePath("../Block")
 dizzy_finisher_state = NodePath("../DizzyFinisher")
-finisher_from_damage_state = NodePath("../DizzyFinisher/FromDamage")
 player = NodePath("../..")
 
 [node name="Block" type="Node" parent="StateMachine" node_paths=PackedStringArray("parry_state", "attack_state", "player")]
@@ -164,11 +163,12 @@ block_state = NodePath("../Block")
 dizzy_finisher_state = NodePath("../DizzyFinisher")
 player = NodePath("../..")
 
-[node name="ParriedEnemyHit" type="Node" parent="StateMachine" node_paths=PackedStringArray("attack_state", "block_state", "parry_state", "player")]
+[node name="ParriedEnemyHit" type="Node" parent="StateMachine" node_paths=PackedStringArray("attack_state", "block_state", "parry_state", "dizzy_finisher_state", "player")]
 script = ExtResource("20_1olui")
 attack_state = NodePath("../Attack")
 block_state = NodePath("../Block")
 parry_state = NodePath("../Parry")
+dizzy_finisher_state = NodePath("../DizzyFinisher")
 player = NodePath("../..")
 
 [node name="Backstab" type="Node" parent="StateMachine" node_paths=PackedStringArray("dodge_state", "jump_state", "attack_state", "block_state", "parry_state", "player")]
@@ -259,7 +259,6 @@ script = ExtResource("11_kcojp")
 meshes = [NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Alpha_Joints"), NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Alpha_Surface"), NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Sword/Mesh")]
 entity = NodePath("..")
 
-[connection signal="weapon_hit" from="HitboxComponent" to="." method="_on_hitbox_component_weapon_hit"]
 [connection signal="weapon_hit" from="HitboxComponent" to="AttackComponent" method="_on_hitbox_component_weapon_hit"]
 
 [editable path="CharacterModel"]

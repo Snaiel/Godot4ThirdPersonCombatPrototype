@@ -105,18 +105,3 @@ func _on_lock_on_system_lock_on(target: LockOnComponent) -> void:
 			func():
 				locked_on_turning_in_place = false
 		)
-
-
-func _on_hitbox_component_weapon_hit(incoming_weapon: Sword):
-	if parry_component.in_parry_window:
-		parry_component.reset_parry_cooldown()
-		character.parry_animations.parry()
-		block_component.anim.stop()
-		block_component.anim.play("parried")
-		incoming_weapon.get_parried()
-		if not dizzy_system.dizzy_victim:
-			movement_component.knockback(incoming_weapon.get_entity().global_position)
-		print("PARRIED")
-	elif block_component.blocking or parry_component.is_spamming():
-		movement_component.knockback(incoming_weapon.get_entity().global_position)
-		block_component.blocked()

@@ -5,6 +5,9 @@ extends PlayerStateMachine
 @export var attack_state: PlayerAttackState
 @export var block_state: PlayerBlockState
 @export var parry_state: PlayerParryState
+@export var dizzy_finisher_state: PlayerDizzyFinisherState
+
+var _incoming_weapon: Sword
 
 var _timer: Timer
 var _timer_length: float = 0.5
@@ -14,7 +17,8 @@ func _ready():
 	super._ready()
 	
 	player.parry_component.parried_incoming_hit.connect(
-		func():
+		func(incoming_weapon: Sword):
+			_incoming_weapon = incoming_weapon
 			if Globals.dizzy_system.dizzy_victim == null:
 				parent_state.change_state(self)
 	)
@@ -33,10 +37,25 @@ func _ready():
 func enter():
 	player.movement_component.speed = 3
 	player.block_component.blocking = true
+	
+	player.parry_component.reset_parry_cooldown()
+	player.character.parry_animations.parry()
+	player.block_component.anim.stop()
+	player.block_component.anim.play("parried")
+	_incoming_weapon.get_parried()
+	if not player.dizzy_system.dizzy_victim:
+		player.movement_component.knockback(
+			_incoming_weapon.get_entity().global_position
+		)
+	
 	_timer.start()
 
 
 func process_player():
+	if Globals.dizzy_system.dizzy_victim:
+		parent_state.change_state(dizzy_finisher_state)
+		return
+	
 	if Input.is_action_just_pressed("attack"):
 		parent_state.change_state(attack_state)
 		return

@@ -4,8 +4,7 @@ extends PlayerStateMachine
 
 @export var parry_state: PlayerParryState
 @export var block_state: PlayerBlockState
-@export var dizzy_finisher_state: PlayerStateMachine
-@export var finisher_from_damage_state: PlayerDizzyFinisherFromDamageState
+@export var dizzy_finisher_state: PlayerDizzyFinisherState
 
 var _transition_to_dizzy_finisher: bool = false
 
@@ -68,5 +67,4 @@ func check_for_dizzy_finisher() -> bool:
 
 func transition_to_dizzy_finisher() -> void:
 	if _transition_to_dizzy_finisher:
-		dizzy_finisher_state.change_state(finisher_from_damage_state)
 		parent_state.change_state(dizzy_finisher_state)
