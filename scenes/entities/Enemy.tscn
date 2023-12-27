@@ -73,7 +73,7 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1,
 surface_material_override/0 = SubResource("ShaderMaterial_i1ddg")
 
 [node name="Sword" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity") instance=ExtResource("4_r63io")]
-transform = Transform3D(0.027031, 0.0220744, 0.999391, 0.0518122, -0.998443, 0.0206522, 0.998291, 0.0512224, -0.0281328, -0.288508, 0.852497, 0.0551622)
+transform = Transform3D(-0.162417, -0.738601, 0.654285, -0.167617, -0.6328, -0.755956, 0.972381, -0.232449, -0.021024, -0.0122747, 1.02773, -0.435306)
 _entity = NodePath("../../../..")
 
 [node name="Area" parent="CharacterModel/Armature_004/GeneralSkeleton/Sword" index="1"]
