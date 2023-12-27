@@ -46,5 +46,13 @@ func process_player():
 		parent_state.transition_to_previous_state()
 
 
+func process_movement_animations() -> void:
+	player.character.movement_animations.move(
+		player.input_direction,
+		true, 
+		false
+	)
+
+
 func exit():
 	pass

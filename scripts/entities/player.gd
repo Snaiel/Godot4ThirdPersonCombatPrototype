@@ -75,7 +75,7 @@ func set_rotation_target_to_lock_on_target() -> void:
 func process_default_movement_animations() -> void:
 	character.movement_animations.move(
 		input_direction,
-		lock_on_target != null or Globals.backstab_system.backstab_victim, 
+		lock_on_target != null, 
 		state_machine.current_state is PlayerRunState
 	)
 
