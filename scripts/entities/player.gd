@@ -26,8 +26,6 @@ var locked_on_turning_in_place: bool = false
 var holding_down_run: bool = false
 var _holding_down_run_timer: Timer
 
-var _animation_input_dir: Vector3
-
 @onready var dizzy_system: DizzySystem = Globals.dizzy_system
 
 
@@ -61,10 +59,6 @@ func _physics_process(_delta: float) -> void:
 	
 	movement_component.move_direction = rotation_component.move_direction	
 	
-	_animation_input_dir = input_direction
-	if locked_on_turning_in_place:
-		_animation_input_dir = Vector3.FORWARD
-	
 	# make sure the user is actually holding down
 	# the run key to make the player run
 	if Input.is_action_just_pressed("run"):
@@ -80,7 +74,7 @@ func set_rotation_target_to_lock_on_target() -> void:
 
 func process_default_movement_animations() -> void:
 	character.movement_animations.move(
-		_animation_input_dir,
+		input_direction,
 		lock_on_target != null or Globals.backstab_system.backstab_victim, 
 		state_machine.current_state is PlayerRunState
 	)
@@ -88,21 +82,3 @@ func process_default_movement_animations() -> void:
 
 func _on_lock_on_system_lock_on(target: LockOnComponent) -> void:
 	lock_on_target = target
-	
-	if input_direction.length() < 0.1 and \
-	target and \
-	rotation_component.get_lock_on_rotation_difference() > 0.1:
-		
-		var diff: float = rotation_component\
-			.get_lock_on_rotation_difference()
-		
-		locked_on_turning_in_place = true
-		
-		var duration: float = clamp(diff / PI * 0.18, 0.1, 0.18)
-		var pressed_lock_on_timer: SceneTreeTimer = get_tree()\
-			.create_timer(duration)
-		
-		pressed_lock_on_timer.timeout.connect(
-			func():
-				locked_on_turning_in_place = false
-		)
