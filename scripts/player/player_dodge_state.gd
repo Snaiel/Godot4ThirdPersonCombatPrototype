@@ -13,6 +13,7 @@ func _ready():
 func enter():
 	player.attack_component.interrupt_attack()
 	player.dodge_component.intent_to_dodge = true
+	player.hitbox_component.enabled = false
 
 
 func process_player():
@@ -44,5 +45,4 @@ func process_movement_animations() -> void:
 
 
 func exit():
-	pass
-
+	player.hitbox_component.enabled = true
