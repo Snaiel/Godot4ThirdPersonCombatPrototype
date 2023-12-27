@@ -68,6 +68,13 @@ func process_player_state_machine() -> void:
 	current_state.process_player_state_machine()
 
 
+func process_movement_animations_state_machine() -> void:
+	if has_sub_states:
+		current_state.process_movement_animations_state_machine()
+	else:
+		process_movement_animations()
+
+
 func exit_state_machine() -> void:
 	exit()
 	
@@ -83,6 +90,10 @@ func enter() -> void:
 
 func process_player() -> void:
 	pass
+
+
+func process_movement_animations() -> void:
+	player.process_default_movement_animations()
 
 
 func exit() -> void:

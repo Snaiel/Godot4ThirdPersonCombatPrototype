@@ -26,6 +26,8 @@ var locked_on_turning_in_place: bool = false
 var holding_down_run: bool = false
 var _holding_down_run_timer: Timer
 
+var _animation_input_dir: Vector3
+
 @onready var dizzy_system: DizzySystem = Globals.dizzy_system
 
 
@@ -49,6 +51,7 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	state_machine.process_player_state_machine()
+	state_machine.process_movement_animations_state_machine()
 	
 	# player inputs
 	input_direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
@@ -58,19 +61,13 @@ func _physics_process(_delta: float) -> void:
 	
 	movement_component.move_direction = rotation_component.move_direction	
 	
-	var _animation_input_dir: Vector3 = input_direction
+	_animation_input_dir = input_direction
 	if locked_on_turning_in_place or \
 	(
 		dodge_component.dodging and \
 		input_direction.length() < 0.1
 	):
 		_animation_input_dir = Vector3.FORWARD
-	
-	character.movement_animations.move(
-		_animation_input_dir,
-		lock_on_target != null or Globals.backstab_system.backstab_victim, 
-		state_machine.current_state is PlayerRunState
-	)
 	
 	# make sure the user is actually holding down
 	# the run key to make the player run
@@ -83,6 +80,14 @@ func _physics_process(_delta: float) -> void:
 
 func set_rotation_target_to_lock_on_target() -> void:
 	rotation_component.target = lock_on_target
+
+
+func process_default_movement_animations() -> void:
+	character.movement_animations.move(
+		_animation_input_dir,
+		lock_on_target != null or Globals.backstab_system.backstab_victim, 
+		state_machine.current_state is PlayerRunState
+	)
 
 
 func _on_lock_on_system_lock_on(target: LockOnComponent) -> void:
