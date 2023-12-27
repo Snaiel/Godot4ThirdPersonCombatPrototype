@@ -58,6 +58,14 @@ func process_player():
 	player.set_rotation_target_to_lock_on_target()
 
 
+func process_movement_animations() -> void:
+	player.character.movement_animations.move(
+		Vector3.ZERO,
+		player.lock_on_target != null, 
+		false
+	)
+
+
 func exit():
 	player.movement_component.can_move = true
 	_timer.stop()
