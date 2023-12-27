@@ -62,11 +62,7 @@ func _physics_process(_delta: float) -> void:
 	movement_component.move_direction = rotation_component.move_direction	
 	
 	_animation_input_dir = input_direction
-	if locked_on_turning_in_place or \
-	(
-		dodge_component.dodging and \
-		input_direction.length() < 0.1
-	):
+	if locked_on_turning_in_place:
 		_animation_input_dir = Vector3.FORWARD
 	
 	# make sure the user is actually holding down

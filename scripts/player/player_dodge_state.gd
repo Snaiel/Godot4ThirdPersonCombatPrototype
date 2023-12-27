@@ -31,6 +31,18 @@ func process_player():
 	player.set_rotation_target_to_lock_on_target()
 
 
+func process_movement_animations() -> void:
+	var _animation_input_dir: Vector3 = player.input_direction
+	if _animation_input_dir.length() < 0.1:
+		_animation_input_dir = Vector3.FORWARD
+	
+	player.character.movement_animations.move(
+		_animation_input_dir,
+		player.lock_on_target != null, 
+		false
+	)
+
+
 func exit():
 	pass
 
