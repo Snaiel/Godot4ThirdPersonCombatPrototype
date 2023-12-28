@@ -73,9 +73,16 @@ func set_rotation_target_to_lock_on_target() -> void:
 
 
 func process_default_movement_animations() -> void:
+	var dir: Vector3 = input_direction
+	var lock_on: bool = lock_on_target != null
+	
+	if movement_component.has_secondary_movement():
+		dir = Vector3.ZERO
+		lock_on = true
+	
 	character.movement_animations.move(
-		input_direction,
-		lock_on_target != null, 
+		dir,
+		lock_on, 
 		false
 	)
 

@@ -89,6 +89,10 @@ func _physics_process(delta: float) -> void:
 	target_entity.move_and_slide()
 
 
+func has_secondary_movement() -> bool:
+	return _secondary_movement_speed > 0
+
+
 func set_secondary_movement(secondary_speed: float, time: float, friction: float = 0.0, direction: Vector3 = Vector3.ZERO) -> void:
 	_secondary_movement_timer.stop()
 	_secondary_movement_friction = friction
