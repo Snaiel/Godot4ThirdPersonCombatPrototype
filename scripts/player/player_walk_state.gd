@@ -13,6 +13,7 @@ extends PlayerStateMachine
 
 
 func enter() -> void:
+	player.movement_component.can_move = true
 	player.movement_component.speed = 3
 
 

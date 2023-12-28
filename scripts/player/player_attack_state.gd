@@ -34,14 +34,14 @@ func process_player():
 		transition_to_dizzy_finisher()
 		return
 	
-	if not player.attack_component.attacking:
-		parent_state.transition_to_default_state()
-		return
-	
 	if Input.is_action_just_pressed("attack"):
 		if check_for_dizzy_finisher():
 			return
 		player.attack_component.attack()
+	
+	if not player.attack_component.attacking:
+		parent_state.transition_to_default_state()
+		return
 	
 	if Input.is_action_just_pressed("block") and \
 	player.attack_component.stop_attacking():
