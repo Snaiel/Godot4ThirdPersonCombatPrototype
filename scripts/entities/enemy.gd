@@ -42,11 +42,14 @@ func _ready() -> void:
 	
 	_notice_component.state_changed.connect(
 		func(new_state: String, target_to_target: bool):
-			if new_state == "aggro" and \
-			not _blackboard.get_value("got_hit", false):
-				_blackboard.set_value("interrupt_timers", true)
+			if new_state == "aggro":
+				_backstab_component.enabled = false
+				if _blackboard.get_value("got_hit", false):
+					_blackboard.set_value("interrupt_timers", true)
+				
 			_blackboard.set_value("notice_state", new_state)
 			_set_agent_target_to_target = target_to_target
+			
 			if _notice_component.position_to_check != Vector3.INF:
 				_agent.target_position = _notice_component.position_to_check
 #				prints(_agent.target_position, target.global_position)
@@ -205,6 +208,7 @@ func _on_health_component_zero_health() -> void:
 	_health_component.enabled = false
 	_lock_on_component.enabled = false
 	_backstab_component.enabled = false
+	_dizzy_component.enabled = false
 	
 	_blackboard.set_value("dead", true)
 	_blackboard.set_value("interrupt_timers", true)

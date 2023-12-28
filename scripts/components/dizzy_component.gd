@@ -8,6 +8,7 @@ extends Node3D
 
 @export_category("Configuration")
 @export var debug: bool = false
+@export var enabled: bool = true
 @export var entity: CharacterBody3D
 @export var lock_on_component: LockOnComponent
 @export var health_component: HealthComponent
@@ -51,6 +52,11 @@ func _ready():
 
 
 func _process(_delta):
+	if not enabled:
+		if dizzy_system.dizzy_victim == self:
+			dizzy_system.dizzy_victim = null
+		return
+	
 	if lock_on_component:
 		position = lock_on_component.position
 
