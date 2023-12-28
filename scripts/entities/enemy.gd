@@ -131,6 +131,9 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 	
 	var rng: float = RandomNumberGenerator.new().randf()
 	
+	if _blackboard.get_value("notice_state") != "aggro":
+		rng = 0.0
+	
 	if 0.8 < rng and rng <= 1.0:
 		# 20% chance of parrying
 		
