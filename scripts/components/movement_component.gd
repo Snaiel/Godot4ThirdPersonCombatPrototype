@@ -66,7 +66,6 @@ func _physics_process(delta: float) -> void:
 	
 	
 	if _secondary_movement_speed > 0.0 and target_entity.is_on_floor():
-		print("BRUIH")
 		desired_velocity.x = _secondary_movement_direction.x * _secondary_movement_speed
 		desired_velocity.z = _secondary_movement_direction.z * _secondary_movement_speed
 		_secondary_movement_speed -= _secondary_movement_friction * delta
@@ -78,7 +77,6 @@ func _physics_process(delta: float) -> void:
 	if not can_move and \
 	is_zero_approx(_secondary_movement_speed) and \
 	target_entity.is_on_floor():
-		print("lmao")
 		desired_velocity.x = lerp(desired_velocity.x, 0.0, 0.1)
 		desired_velocity.z = lerp(desired_velocity.z, 0.0, 0.1)
 

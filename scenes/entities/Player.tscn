@@ -77,9 +77,6 @@ surface_material_override/0 = ExtResource("4_ysu0o")
 transform = Transform3D(-0.16242, -0.738601, 0.654285, -0.167617, -0.632799, -0.755956, 0.972381, -0.232452, -0.0210232, -0.0122745, 1.02773, -0.435306)
 _entity = NodePath("../../../..")
 
-[node name="LockOnAttachment" parent="CharacterModel/Armature_004/GeneralSkeleton" index="3"]
-transform = Transform3D(0.101593, -0.415531, -0.903888, -0.29253, 0.855942, -0.426368, 0.950845, 0.30773, -0.0345977, -0.00820133, 1.0718, 0.0527072)
-
 [node name="AnimationTree" parent="CharacterModel" index="2"]
 "parameters/Dizzy Finisher Which One/current_state" = ""
 "parameters/Dizzy Finisher Which One/current_index" = -1
@@ -197,8 +194,9 @@ player = NodePath("../../..")
 script = ExtResource("18_hlp8w")
 player = NodePath("../../..")
 
-[node name="ParriedByEnemy" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+[node name="ParriedByEnemy" type="Node" parent="StateMachine" node_paths=PackedStringArray("attack_state", "player")]
 script = ExtResource("19_24iu4")
+attack_state = NodePath("../Attack")
 player = NodePath("../..")
 
 [node name="HitByEnemy" type="Node" parent="StateMachine" node_paths=PackedStringArray("attack_state", "player")]
