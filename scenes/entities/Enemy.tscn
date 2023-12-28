@@ -22,6 +22,7 @@
 [ext_resource type="Script" path="res://scripts/components/dizzy_component.gd" id="13_0wjwt"]
 [ext_resource type="PackedScene" uid="uid://q4ffp4qtwtt4" path="res://scenes/beehave/compare_actions/IsDeadTrue.tscn" id="14_7psle"]
 [ext_resource type="Script" path="res://scripts/components/wellbeing_component.gd" id="15_eaede"]
+[ext_resource type="PackedScene" uid="uid://dxqwv56gkjhbf" path="res://scenes/utilities/OffCameraNoticeTriangle.tscn" id="15_p4n0r"]
 [ext_resource type="PackedScene" uid="uid://clbe1nrax10m8" path="res://scenes/utilities/WellbeingWidget.tscn" id="15_qml0p"]
 [ext_resource type="PackedScene" uid="uid://dka5as0tjf4rh" path="res://scenes/beehave/set_actions/SetLookAtTargetFalse.tscn" id="16_08u5b"]
 [ext_resource type="PackedScene" uid="uid://b616qwvblkmpo" path="res://scenes/components/BlockComponent.tscn" id="16_ckq0d"]
@@ -44,7 +45,6 @@
 [ext_resource type="PackedScene" uid="uid://cw3sck872787g" path="res://scenes/beehave/set_actions/SetGotHitFalse.tscn" id="28_mcqya"]
 [ext_resource type="PackedScene" uid="uid://cfuiyhthukrn0" path="res://scenes/beehave/attacks/SingleRandomAttack.tscn" id="33_gbbqm"]
 [ext_resource type="Script" path="res://scripts/beehave/execute_expression.gd" id="34_eiv28"]
-[ext_resource type="PackedScene" uid="uid://w4lmg1vaut46" path="res://SetInterruptTimersFa;se.tscn" id="37_2v5yp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i1ddg"]
 render_priority = 0
@@ -72,14 +72,11 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1,
 surface_material_override/0 = SubResource("ShaderMaterial_i1ddg")
 
 [node name="Sword" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity") instance=ExtResource("4_r63io")]
-transform = Transform3D(-0.16242, -0.738601, 0.654285, -0.167617, -0.632799, -0.755956, 0.972381, -0.232452, -0.0210232, -0.0122745, 1.02773, -0.435306)
+transform = Transform3D(-0.188162, -0.24854, 0.95017, 0.291131, -0.938084, -0.187726, 0.937997, 0.241301, 0.24887, -0.362468, 0.876358, -0.159165)
 _entity = NodePath("../../../..")
 
 [node name="Area" parent="CharacterModel/Armature_004/GeneralSkeleton/Sword" index="1"]
 collision_mask = 2
-
-[node name="LockOnAttachment" parent="CharacterModel/Armature_004/GeneralSkeleton" index="3"]
-transform = Transform3D(0.101593, -0.415531, -0.903888, -0.29253, 0.855942, -0.426368, 0.950845, 0.30773, -0.0345977, -0.00820133, 1.0718, 0.0527072)
 
 [node name="AnimationTree" parent="CharacterModel" index="2"]
 "parameters/Dizzy Finisher Which One/current_state" = ""
@@ -140,6 +137,7 @@ lock_on_component = NodePath("../LockOnComponent")
 health_component = NodePath("../HealthComponent")
 
 [node name="NoticeComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("10_rxy6t")]
+off_camera_notice_triangle_scene = ExtResource("15_p4n0r")
 health_component = NodePath("../HealthComponent")
 
 [node name="AttackComponent" type="Node3D" parent="." node_paths=PackedStringArray("_attack_animations", "_movement_component", "_weapon")]
@@ -230,8 +228,6 @@ script = ExtResource("9_aj65e")
 
 [node name="IsStateAggro" parent="BeehaveTree/SelectorComposite/Aggro" instance=ExtResource("23_augt0")]
 
-[node name="SetInterruptTimersFalse" parent="BeehaveTree/SelectorComposite/Aggro" instance=ExtResource("37_2v5yp")]
-
 [node name="AggroTarget" type="Node" parent="BeehaveTree/SelectorComposite/Aggro"]
 script = ExtResource("8_wqauf")
 
@@ -242,6 +238,8 @@ script = ExtResource("9_aj65e")
 script = ExtResource("12_qw7d2")
 left_operand = "get_value(\"can_attack\")"
 right_operand = "true"
+
+[node name="SetInterruptTimersFalse" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack" instance=ExtResource("28_5hxv6")]
 
 [node name="PerformAttack" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack"]
 script = ExtResource("23_4n8cs")

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxqwv56gkjhbf"]
+
+[ext_resource type="Texture2D" uid="uid://wpnh4mtsljov" path="res://assets/off_camera_notice_triangle.png" id="1_o6s6d"]
+
+[node name="OffCameraNoticeTriangle" type="Sprite2D"]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("1_o6s6d")
+offset = Vector2(0, 120)
