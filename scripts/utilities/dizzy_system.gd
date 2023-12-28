@@ -2,7 +2,8 @@ class_name DizzySystem
 extends Node3D
 
 
-@export var finisher_distance: float = 1.2
+@export var finisher_distance: float = 1.5
+
 
 var dizzy_victim: DizzyComponent:
 	set(value):

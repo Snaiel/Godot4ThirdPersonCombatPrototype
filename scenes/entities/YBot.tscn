@@ -526,7 +526,7 @@ graph_offset = Vector2(-589.493, 22.4363)
 "nodes/Walk Forwards Trim/node" = SubResource("AnimationNodeTimeSeek_yj2l3")
 "nodes/Walk Forwards Trim/position" = Vector2(-380, 400)
 nodes/output/position = Vector2(540, 180)
-node_connections = [&"output", 0, &"Outward Slash and Walk Blend", &"Outward Slash Trim", 0, &"Outward Slash", &"Outward Slash Speed", 0, &"Outward Slash Trim", &"Walk Forwards Trim", 0, &"Walk Forwards", &"Walk Forwards Speed", 0, &"Walk Forwards Trim", &"Outward Slash and Walk Blend", 0, &"Outward Slash Speed", &"Outward Slash and Walk Blend", 1, &"Walk Forwards Speed"]
+node_connections = [&"output", 0, &"Outward Slash and Walk Blend", &"Outward Slash Speed", 0, &"Outward Slash Trim", &"Outward Slash Trim", 0, &"Outward Slash", &"Outward Slash and Walk Blend", 0, &"Outward Slash Speed", &"Outward Slash and Walk Blend", 1, &"Walk Forwards Speed", &"Walk Forwards Speed", 0, &"Walk Forwards Trim", &"Walk Forwards Trim", 0, &"Walk Forwards"]
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_01b7k"]
 
@@ -563,7 +563,7 @@ graph_offset = Vector2(-442.817, 215.416)
 "nodes/Walk Forwards Trim/node" = SubResource("AnimationNodeTimeSeek_7i8xv")
 "nodes/Walk Forwards Trim/position" = Vector2(-280, 420)
 nodes/output/position = Vector2(720, 160)
-node_connections = [&"output", 0, &"Outward Slash and Walk Blend", &"Outward Slash and Walk Blend", 0, &"Outward Slash Speed", &"Outward Slash and Walk Blend", 1, &"Walk Forwards Speed", &"Walk Forwards Speed", 0, &"Walk Forwards Trim", &"Walk Forwards Trim", 0, &"Walk Forwards", &"Outward Slash Speed", 0, &"Outward Slash Trim", &"Outward Slash Trim", 0, &"Outward Slash"]
+node_connections = [&"output", 0, &"Outward Slash and Walk Blend", &"Outward Slash Speed", 0, &"Outward Slash Trim", &"Outward Slash Trim", 0, &"Outward Slash", &"Outward Slash and Walk Blend", 0, &"Outward Slash Speed", &"Outward Slash and Walk Blend", 1, &"Walk Forwards Speed", &"Walk Forwards Speed", 0, &"Walk Forwards Trim", &"Walk Forwards Trim", 0, &"Walk Forwards"]
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_soxnx"]
 
@@ -1130,7 +1130,7 @@ extra_cull_margin = 1.0
 extra_cull_margin = 1.0
 
 [node name="LockOnAttachment" type="BoneAttachment3D" parent="Armature_004/GeneralSkeleton" index="2"]
-transform = Transform3D(0.101594, -0.41553, -0.903888, -0.29253, 0.855942, -0.426368, 0.950845, 0.30773, -0.0345966, -0.00820125, 1.0718, 0.0527072)
+transform = Transform3D(0.101593, -0.415531, -0.903888, -0.29253, 0.855942, -0.426368, 0.950845, 0.30773, -0.0345977, -0.00820133, 1.0718, 0.0527072)
 bone_name = "UpperChest"
 bone_idx = 4
 

@@ -84,6 +84,7 @@ func _physics_process(_delta: float) -> void:
 	_blackboard.set_value("target_dir_angle", target_dir_angle)
 	
 #	if debug: print(_blackboard.get_value("can_move"))
+#	if debug: print(global_position.distance_to(Globals.player.global_position))
 	
 	_rotation_component.look_at_target = _blackboard.get_value(
 		"look_at_target",
@@ -179,9 +180,12 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 		
 		_character.hit_and_death_animations.hit()
 		_set_agent_target_to_target = true
-		_blackboard.set_value("got_hit", true)
 		
-		_movement_component.knockback(weapon.get_entity().global_position)
+		_blackboard.set_value("got_hit", true)
+		_blackboard.set_value("interrupt_timers", true)
+		
+		if Globals.dizzy_system.dizzy_victim != _dizzy_component:
+			_movement_component.knockback(weapon.get_entity().global_position)
 
 
 func _on_health_component_zero_health() -> void:

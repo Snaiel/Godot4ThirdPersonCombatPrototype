@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://34ehm7k44ywn"]
+
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_set.gd" id="1_rw880"]
+
+[node name="SetInterruptTimersFalse" type="Node"]
+script = ExtResource("1_rw880")
+key = "\"interrupt_timers\""
+value = "false"

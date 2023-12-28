@@ -64,6 +64,7 @@ func _physics_process(delta: float) -> void:
 				vertical_movement = false
 				can_disable_vertical_movement = false
 	
+	
 	if _secondary_movement_speed > 0.0 and target_entity.is_on_floor():
 		desired_velocity.x = _secondary_movement_direction.x * _secondary_movement_speed
 		desired_velocity.z = _secondary_movement_direction.z * _secondary_movement_speed
@@ -71,7 +72,7 @@ func _physics_process(delta: float) -> void:
 	
 	if _secondary_movement_speed < 0.0:
 		_secondary_movement_speed = 0
-		
+	
 	
 	if not can_move and target_entity.is_on_floor():
 		desired_velocity.x = lerp(desired_velocity.x, 0.0, 0.1)

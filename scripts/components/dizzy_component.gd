@@ -78,15 +78,29 @@ func _on_instability_component_full_instability():
 		character.dizzy_animations.dizzy_from_parry()
 		_dizzy_timer.start(dizzy_from_parry_length)
 		blackboard.set_value("look_at_target", true)
+		_from_parry_knockback()
 	else:
 		character.dizzy_animations.dizzy_from_damage()
 		_dizzy_timer.start(dizzy_from_damage_length)
 		blackboard.set_value("look_at_target", false)
 		entity.look_at(player.global_position)
+		_from_damage_knockback()
 	
 	if attack_component:
 		attack_component.interrupt_attack()
-	
+
+
+func _from_parry_knockback() -> void:
+	var opponent_position: Vector3 = player.global_position
+	var direction: Vector3 = global_position.direction_to(opponent_position)
+	var distance: float = entity.global_position.distance_to(opponent_position)
+	var weight: float = clamp(distance, 0.0, 2.0)
+	weight = inverse_lerp(2.0, 0.0, weight)
+	weight = lerp(0.0, 5.0, weight)
+	movement_component.set_secondary_movement(weight, 5, 10, -direction)
+
+
+func _from_damage_knockback() -> void:
 	var opponent_position: Vector3 = player.global_position
 	var direction: Vector3 = global_position.direction_to(opponent_position)
 	movement_component.set_secondary_movement(5, 5, 10, -direction)
