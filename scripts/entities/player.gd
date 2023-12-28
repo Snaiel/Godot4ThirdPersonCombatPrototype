@@ -57,7 +57,7 @@ func _physics_process(_delta: float) -> void:
 
 	last_input_on_ground = input_direction if is_on_floor() else last_input_on_ground
 	
-	movement_component.move_direction = rotation_component.move_direction	
+	movement_component.move_direction = rotation_component.move_direction
 	
 	# make sure the user is actually holding down
 	# the run key to make the player run
