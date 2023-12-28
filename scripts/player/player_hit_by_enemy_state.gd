@@ -3,8 +3,12 @@ extends PlayerStateMachine
 
 
 @export var attack_state: PlayerAttackState
+@export var block_state: PlayerBlockState
+@export var parry_state: PlayerParryState
 
 var _incoming_weapon: Sword
+
+var _can_block_or_parry: bool = false
 
 var _timer: Timer
 var _timer_length: float = 0.8
@@ -39,6 +43,8 @@ func _ready():
 
 
 func enter():
+	_can_block_or_parry = false
+	
 	player.movement_component.can_move = false
 	player.movement_component.knockback(
 		_incoming_weapon.get_entity().global_position
@@ -52,6 +58,18 @@ func enter():
 
 
 func process_player():
+	if _timer.time_left <= 0.25:
+		_can_block_or_parry = true
+	
+	if _can_block_or_parry:
+		if Input.is_action_just_pressed("block"):
+			parent_state.change_state(parry_state)
+			return
+		
+		if Input.is_action_pressed("block"):
+			parent_state.change_state(block_state)
+			return
+	
 	if Input.is_action_just_pressed("attack"):
 		_pressed_attack = true
 	

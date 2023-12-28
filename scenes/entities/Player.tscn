@@ -199,9 +199,11 @@ script = ExtResource("19_24iu4")
 attack_state = NodePath("../Attack")
 player = NodePath("../..")
 
-[node name="HitByEnemy" type="Node" parent="StateMachine" node_paths=PackedStringArray("attack_state", "player")]
+[node name="HitByEnemy" type="Node" parent="StateMachine" node_paths=PackedStringArray("attack_state", "block_state", "parry_state", "player")]
 script = ExtResource("21_x55ju")
 attack_state = NodePath("../Attack")
+block_state = NodePath("../Block")
+parry_state = NodePath("../Parry")
 player = NodePath("../..")
 
 [node name="Collider" type="CollisionShape3D" parent="."]
