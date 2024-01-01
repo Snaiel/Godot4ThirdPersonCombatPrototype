@@ -26,22 +26,41 @@ func _ready():
 
 
 func enter() -> void:
-	notice_component.notice_triangle_background_sprite.self_modulate.a = 0
 	_expand_x = 0
 	_check_to_leave_aggro = false
 	_can_start_aggro_timer = true
+	
+	notice_component\
+		.notice_triangle_background_sprite\
+		.self_modulate\
+		.a = 0
+	notice_component\
+		.off_camera_notice_triangle\
+		.background_sprite\
+		.self_modulate\
+		.a = 0
 
 
 func physics_process(delta) -> void:
 	notice_component.notice_triangle_sprite.visible = true
+	notice_component.off_camera_notice_triangle.visible = true
+	
+	notice_component.off_camera_notice_triangle.process_mask_offsets(1.0)
 	
 	_expand_scale = notice_component.expand_curve.sample(_expand_x)
 	
 	notice_component.notice_triangle_sprite.scale = \
 		notice_component.original_triangle_scale * \
 		Vector2(_expand_scale, _expand_scale)
-		
+	
+	print(notice_component.off_camera_notice_triangle.inner_sprite.self_modulate)
+	
+	notice_component\
+		.off_camera_notice_triangle\
+		.process_scale(_expand_scale)
+	
 	_expand_x += 3.0 * delta
+	_expand_x = clamp(_expand_x, 0.0, 1.0)
 	
 	if _expand_x >= 0.5:
 		# make the entire triangle red
@@ -54,6 +73,12 @@ func physics_process(delta) -> void:
 				0.2
 			)
 		
+		notice_component\
+			.off_camera_notice_triangle\
+			.process_colour(
+				notice_component.aggro_color
+			)
+		
 		if _expand_x >= 1.0:
 			notice_component.notice_triangle_sprite.modulate.a = \
 			lerp(
@@ -64,6 +89,10 @@ func physics_process(delta) -> void:
 				0.0,
 				0.1
 			)
+			
+			notice_component\
+				.off_camera_notice_triangle\
+				.process_alpha(0.0)
 	
 	if not notice_component.inside_outer_threshold():
 		

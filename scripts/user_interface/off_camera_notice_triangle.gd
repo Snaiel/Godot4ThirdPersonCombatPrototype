@@ -60,6 +60,20 @@ func process_colour(colour: Color) -> void:
 		colour,
 		0.2
 	)
+	
+	inner_sprite.self_modulate = lerp(
+		inner_sprite.self_modulate,
+		colour,
+		0.2
+	)
+
+
+func process_alpha(alpha: float) -> void:
+	modulate.a = lerp(
+		modulate.a,
+		alpha,
+		0.1
+	)
 
 
 func get_off_cam_inside_offset(value: float) -> float:
