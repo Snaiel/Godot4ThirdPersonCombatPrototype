@@ -139,6 +139,7 @@ lock_on_component = NodePath("../LockOnComponent")
 health_component = NodePath("../HealthComponent")
 
 [node name="NoticeComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("10_rxy6t")]
+debug = false
 health_component = NodePath("../HealthComponent")
 
 [node name="AttackComponent" type="Node3D" parent="." node_paths=PackedStringArray("_attack_animations", "_movement_component", "_weapon")]

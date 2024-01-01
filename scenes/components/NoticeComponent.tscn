@@ -14,7 +14,6 @@
 [node name="NoticeComponent" type="Node3D" node_paths=PackedStringArray("initial_state", "aggro_state")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 script = ExtResource("1_611qe")
-debug = null
 notice_triangle_scene = ExtResource("2_2dsee")
 off_camera_notice_triangle_scene = ExtResource("3_i1p7x")
 initial_state = NodePath("Idle")

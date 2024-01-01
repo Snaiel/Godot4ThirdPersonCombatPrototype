@@ -92,7 +92,7 @@ func _physics_process(delta) -> void:
 			entity.global_position.direction_to(player.global_position)
 		)
 	)
-
+	
 	# the distance between the entity and the player
 	distance_to_player = entity.global_position.distance_to(
 		player.global_position
@@ -101,6 +101,8 @@ func _physics_process(delta) -> void:
 	notice_triangle_sprite.position = camera.unproject_position(global_position)
 	
 	off_camera_notice_triangle.debug = debug
+	off_camera_notice_triangle.visible = not in_camera_frustum() and \
+		not current_state is NoticeComponentIdleState
 	off_camera_notice_triangle.process_desired_rotation(entity)
 	
 	current_state.physics_process(delta)

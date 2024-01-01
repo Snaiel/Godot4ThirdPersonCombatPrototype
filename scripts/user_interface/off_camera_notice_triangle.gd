@@ -45,8 +45,6 @@ func process_desired_rotation(entity: Node3D) -> void:
 	
 	var desired_rotation: float = -r + 180
 	rotation_degrees = desired_rotation
-	
-	visible = debug
 
 
 func process_scale(expand_scale: float) -> void:
