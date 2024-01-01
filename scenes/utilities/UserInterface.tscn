@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b075d85nmca7s"]
+[gd_scene load_steps=7 format=3 uid="uid://b075d85nmca7s"]
 
 [ext_resource type="Script" path="res://scripts/utilities/user_interface.gd" id="1_2nhxu"]
 [ext_resource type="Texture2D" uid="uid://dishehhur7io2" path="res://assets/white_dot.png" id="1_v2w42"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://dt6i863shdkev" path="res://scenes/utilities/NoticeTriangle.tscn" id="4_rjkcx"]
 [ext_resource type="PackedScene" uid="uid://clbe1nrax10m8" path="res://scenes/utilities/WellbeingWidget.tscn" id="5_5c8kv"]
 [ext_resource type="PackedScene" uid="uid://dxqwv56gkjhbf" path="res://scenes/utilities/OffCameraNoticeTriangle.tscn" id="6_for7l"]
-[ext_resource type="Texture2D" uid="uid://wpnh4mtsljov" path="res://assets/off_camera_notice_triangle.png" id="6_gow0o"]
 
 [node name="UserInterface" type="Control"]
 layout_mode = 3
@@ -42,6 +41,7 @@ text = "DebugLabel"
 [node name="NoticeTriangles" type="Node2D" parent="."]
 
 [node name="NoticeTriangle" parent="NoticeTriangles" instance=ExtResource("4_rjkcx")]
+visible = false
 position = Vector2(31, 28)
 
 [node name="WellbeingWidgets" type="Node2D" parent="."]
@@ -54,13 +54,7 @@ position = Vector2(105, 32)
 position = Vector2(569, 447)
 
 [node name="OffCameraNoticeTriangle" parent="OffCameraNoticeTriangles" instance=ExtResource("6_for7l")]
-
-[node name="OffCameraNoticeTriangle2" type="Sprite2D" parent="OffCameraNoticeTriangles"]
 visible = false
-rotation = -0.242601
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("6_gow0o")
-offset = Vector2(0, 120)
 
 [node name="DebugWhiteDot" type="Sprite2D" parent="."]
 visible = false

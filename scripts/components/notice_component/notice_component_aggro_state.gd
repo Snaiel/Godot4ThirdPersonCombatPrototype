@@ -43,7 +43,6 @@ func enter() -> void:
 
 func physics_process(delta) -> void:
 	notice_component.notice_triangle_sprite.visible = true
-	notice_component.off_camera_notice_triangle.visible = true
 	
 	notice_component.off_camera_notice_triangle.process_mask_offsets(1.0)
 	
@@ -52,8 +51,6 @@ func physics_process(delta) -> void:
 	notice_component.notice_triangle_sprite.scale = \
 		notice_component.original_triangle_scale * \
 		Vector2(_expand_scale, _expand_scale)
-	
-	print(notice_component.off_camera_notice_triangle.inner_sprite.self_modulate)
 	
 	notice_component\
 		.off_camera_notice_triangle\
