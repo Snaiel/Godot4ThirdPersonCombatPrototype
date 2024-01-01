@@ -42,8 +42,7 @@ var notice_triangle_inner_sprite: Sprite2D
 var notice_triangle_background_sprite: Sprite2D
 var notice_triangle_mask: Sprite2D
 
-var off_camera_notice_triangle_sprite: Sprite2D
-
+var off_camera_notice_triangle: OffCameraNoticeTriangle
 
 var original_triangle_scale: Vector2
 
@@ -63,9 +62,8 @@ func _ready() -> void:
 	notice_triangle_background_sprite = notice_triangle_sprite.get_node("BackgroundTriangle")
 	notice_triangle_mask = notice_triangle_sprite.get_node("TriangleMask")
 	
-	off_camera_notice_triangle_sprite = off_camera_notice_triangle_scene.instantiate()
-	Globals.user_interface.off_camera_notice_triangles.add_child(off_camera_notice_triangle_sprite)
-	
+	off_camera_notice_triangle = off_camera_notice_triangle_scene.instantiate()
+	Globals.user_interface.off_camera_notice_triangles.add_child(off_camera_notice_triangle)
 	
 	health_component.zero_health.connect(
 		func():
@@ -102,42 +100,8 @@ func _physics_process(delta) -> void:
 	
 	notice_triangle_sprite.position = camera.unproject_position(global_position)
 	
-	
-	var r = rad_to_deg(
-		Vector3.FORWARD\
-			.rotated(
-				Vector3.UP,
-				deg_to_rad(Globals.camera_controller.rotation_degrees.y)
-			)\
-			.signed_angle_to(
-				player\
-					.global_position\
-					.direction_to(
-						entity.global_position
-					),
-				Vector3.UP
-			)
-	)
-	
-	var desired_rotation: float = -r + 180
-	
-	off_camera_notice_triangle_sprite.rotation_degrees = desired_rotation
-	
-	if debug: 
-		prints(
-			r,
-			desired_rotation,
-			Globals.camera_controller.rotation_degrees.y,
-			wrapf(
-				Globals.camera_controller.global_rotation.y,
-				0.0,
-				2 * PI
-			),
-			PI
-		)
-		
-	else:
-		off_camera_notice_triangle_sprite.visible = false
+	off_camera_notice_triangle.debug = debug
+	off_camera_notice_triangle.process_desired_rotation(entity)
 	
 	current_state.physics_process(delta)
 

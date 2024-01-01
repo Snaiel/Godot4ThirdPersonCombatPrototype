@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://cv8knl5vavfyy"]
+[gd_scene load_steps=47 format=3 uid="uid://cv8knl5vavfyy"]
 
 [ext_resource type="Script" path="res://scripts/entities/enemy.gd" id="1_nrck3"]
 [ext_resource type="PackedScene" uid="uid://x0oxbha36o2h" path="res://scenes/entities/YBot.tscn" id="2_0tr8h"]
@@ -22,7 +22,6 @@
 [ext_resource type="Script" path="res://scripts/components/dizzy_component.gd" id="13_0wjwt"]
 [ext_resource type="PackedScene" uid="uid://q4ffp4qtwtt4" path="res://scenes/beehave/compare_actions/IsDeadTrue.tscn" id="14_7psle"]
 [ext_resource type="Script" path="res://scripts/components/wellbeing_component.gd" id="15_eaede"]
-[ext_resource type="PackedScene" uid="uid://dxqwv56gkjhbf" path="res://scenes/utilities/OffCameraNoticeTriangle.tscn" id="15_p4n0r"]
 [ext_resource type="PackedScene" uid="uid://clbe1nrax10m8" path="res://scenes/utilities/WellbeingWidget.tscn" id="15_qml0p"]
 [ext_resource type="PackedScene" uid="uid://dka5as0tjf4rh" path="res://scenes/beehave/set_actions/SetLookAtTargetFalse.tscn" id="16_08u5b"]
 [ext_resource type="PackedScene" uid="uid://b616qwvblkmpo" path="res://scenes/components/BlockComponent.tscn" id="16_ckq0d"]
@@ -140,7 +139,6 @@ lock_on_component = NodePath("../LockOnComponent")
 health_component = NodePath("../HealthComponent")
 
 [node name="NoticeComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("10_rxy6t")]
-off_camera_notice_triangle_scene = ExtResource("15_p4n0r")
 health_component = NodePath("../HealthComponent")
 
 [node name="AttackComponent" type="Node3D" parent="." node_paths=PackedStringArray("_attack_animations", "_movement_component", "_weapon")]

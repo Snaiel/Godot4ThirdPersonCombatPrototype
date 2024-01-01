@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://da664p5ek0cgr"]
+[gd_scene load_steps=11 format=3 uid="uid://da664p5ek0cgr"]
 
 [ext_resource type="Script" path="res://scripts/components/notice_component/notice_component.gd" id="1_611qe"]
 [ext_resource type="PackedScene" uid="uid://dt6i863shdkev" path="res://scenes/utilities/NoticeTriangle.tscn" id="2_2dsee"]
+[ext_resource type="PackedScene" uid="uid://dxqwv56gkjhbf" path="res://scenes/utilities/OffCameraNoticeTriangle.tscn" id="3_i1p7x"]
 [ext_resource type="Curve" uid="uid://bxbb6mv0mtdp0" path="res://resources/notice_value_curve.tres" id="3_ibel0"]
 [ext_resource type="Script" path="res://scripts/components/notice_component/notice_component_idle_state.gd" id="3_uu8gw"]
 [ext_resource type="Script" path="res://scripts/components/notice_component/notice_component_getting_suspicious_state.gd" id="4_xr38t"]
@@ -13,7 +14,9 @@
 [node name="NoticeComponent" type="Node3D" node_paths=PackedStringArray("initial_state", "aggro_state")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 script = ExtResource("1_611qe")
+debug = null
 notice_triangle_scene = ExtResource("2_2dsee")
+off_camera_notice_triangle_scene = ExtResource("3_i1p7x")
 initial_state = NodePath("Idle")
 aggro_state = NodePath("Aggro")
 notice_val_curve = ExtResource("3_ibel0")

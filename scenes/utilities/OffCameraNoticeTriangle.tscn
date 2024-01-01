@@ -1,12 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://dxqwv56gkjhbf"]
+[gd_scene load_steps=5 format=3 uid="uid://dxqwv56gkjhbf"]
 
 [ext_resource type="Texture2D" uid="uid://wpnh4mtsljov" path="res://assets/off_camera_notice_triangle.png" id="1_o6s6d"]
+[ext_resource type="Texture2D" uid="uid://c268v7d4kf6e5" path="res://assets/triangle_small.png" id="2_1um8j"]
+[ext_resource type="Script" path="res://scripts/user_interface/off_camera_notice_triangle.gd" id="2_3xtvg"]
 [ext_resource type="Texture2D" uid="uid://b80p5j73bgwl1" path="res://assets/square.png" id="3_n5f3i"]
 
 [node name="OffCameraNoticeTriangle" type="Sprite2D"]
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("1_o6s6d")
 offset = Vector2(0, 120)
+script = ExtResource("2_3xtvg")
 
 [node name="BackgroundTriangleMask" type="Sprite2D" parent="."]
 clip_children = 1
@@ -15,11 +18,11 @@ scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_n5f3i")
 offset = Vector2(0, 45.1)
 
-[node name="BackgroundTriangle" type="Polygon2D" parent="BackgroundTriangleMask"]
+[node name="BackgroundTriangle" type="Sprite2D" parent="BackgroundTriangleMask"]
 self_modulate = Color(0.196078, 0.196078, 0.196078, 1)
-position = Vector2(0, -618.75)
+position = Vector2(0, 6.24988)
 scale = Vector2(5, 5)
-polygon = PackedVector2Array(-6.25, 118.75, 6.25, 118.75, 0, 130, -6.25, 118.75)
+texture = ExtResource("2_1um8j")
 
 [node name="InsideTriangleMask" type="Sprite2D" parent="."]
 clip_children = 1
@@ -28,8 +31,8 @@ scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_n5f3i")
 offset = Vector2(0, -54.635)
 
-[node name="InsideTriangle" type="Polygon2D" parent="InsideTriangleMask"]
+[node name="InsideTriangle" type="Sprite2D" parent="InsideTriangleMask"]
 self_modulate = Color(0.870588, 0.756863, 0.137255, 1)
-position = Vector2(0, -618.75)
+position = Vector2(0, 6.24988)
 scale = Vector2(5, 5)
-polygon = PackedVector2Array(-6.25, 118.75, 6.25, 118.75, 0, 130, -6.25, 118.75)
+texture = ExtResource("2_1um8j")

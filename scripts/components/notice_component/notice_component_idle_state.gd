@@ -13,6 +13,8 @@ func enter() -> void:
 
 
 func physics_process(_delta) -> void:
+	notice_component.off_camera_notice_triangle.process_mask_offsets(0.0)
+		
 	if notice_component.inside_inner_threshold():
 		notice_component.transition_to_aggro()
 		return
