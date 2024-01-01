@@ -101,3 +101,8 @@ block={
 3d_physics/layer_3="weapon"
 3d_physics/layer_4="enemy"
 3d_physics/layer_5="lock_on"
+
+[rendering]
+
+anti_aliasing/quality/msaa_2d=3
+anti_aliasing/quality/msaa_3d=3
