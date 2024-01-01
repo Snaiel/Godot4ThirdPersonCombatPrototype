@@ -26,6 +26,9 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var _parry_component: ParryComponent = $ParryComponent
 @onready var _agent: NavigationAgent3D = $NavigationAgent3D
 
+@onready var skeleton: Skeleton3D = $CharacterModel/Armature_004/GeneralSkeleton
+
+
 var _set_agent_target_to_target: bool = false
 
 var _default_move_speed: float

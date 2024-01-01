@@ -7,12 +7,15 @@ extends RotationComponent
 @export var blackboard: Blackboard
 @export var agent: NavigationAgent3D
 
+var npc: Enemy
+
 var _target_look: float
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	npc = entity as Enemy
 	looking_direction = looking_direction.rotated(Vector3.UP, entity.rotation.y).normalized()
+
 
 func _physics_process(_delta: float) -> void:
 	var _input_direction: Vector3 = blackboard.get_value("input_direction", Vector3.ZERO)
@@ -52,7 +55,7 @@ func _physics_process(_delta: float) -> void:
 				Vector3.UP,
 				_target_look + sign(move_direction.x) * 0.02
 			).normalized()
-	
+		
 	elif _input_direction.length() > 0.2:
 		
 		looking_direction = lerp(

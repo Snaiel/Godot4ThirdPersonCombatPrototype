@@ -29,6 +29,8 @@ func _physics_process(delta: float) -> void:
 	var _velocity: Vector3 = player.velocity
 	
 	move_direction = _input_direction.normalized()
+	
+	player.skeleton.clear_bones_global_pose_override()
 
 	if rotate_towards_target and target:
 		_freelook_turn = false
@@ -57,7 +59,40 @@ func _physics_process(delta: float) -> void:
 				Vector3.UP,
 				_target_look + sign(move_direction.x) * 0.13
 			).normalized()
-
+		
+#		player.skeleton.set_bone_pose_rotation(
+#			5,
+#			Quaternion(
+#				Vector3.LEFT,
+#				0.0
+#			)
+#		)
+#		player.skeleton.set_bone_pose_rotation(
+#			6,
+#			Quaternion(
+#				Vector3.LEFT,
+#				0.0
+#			)
+#		)
+		
+		var neck_bone_idx: int = player.skeleton.find_bone("Head")
+		var pose: Transform3D = player.skeleton.get_bone_global_pose(
+			neck_bone_idx
+		)
+	
+		pose = pose.looking_at(
+			player.skeleton.to_local(target.global_position),
+			Vector3.UP,
+			true
+		)
+	
+		player.skeleton.set_bone_global_pose_override(
+			neck_bone_idx,
+			pose,
+			0.8,
+			true
+		)
+		
 	elif _input_direction.length() > 0.2:
 		# get the rotation based on the current velocity direction
 		_freelook_turn = true
