@@ -31,7 +31,7 @@ clip_children = 1
 position = Vector2(0, 123.75)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_n5f3i")
-offset = Vector2(0, -54.635)
+offset = Vector2(0, -33.7)
 
 [node name="InsideTriangle" type="Sprite2D" parent="InsideTriangleMask"]
 self_modulate = Color(0.870588, 0.756863, 0.137255, 1)

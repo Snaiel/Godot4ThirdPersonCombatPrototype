@@ -82,6 +82,8 @@ func physics_process(delta) -> void:
 		notice_component.original_triangle_scale * \
 		Vector2(_expand_scale, _expand_scale)
 	
+	notice_component.off_camera_notice_triangle.process_scale(_expand_scale)
+	
 	_expand_x += 3.0 * delta
 	_expand_x = clamp(_expand_x, 0.0, 1.0)
 	
@@ -95,6 +97,9 @@ func physics_process(delta) -> void:
 				notice_component.suspicion_color,
 				0.2
 			)
+		notice_component.off_camera_notice_triangle.process_colour(
+			notice_component.suspicion_color
+		)
 	
 	if _can_start_suspicion_timer:
 		_can_start_suspicion_timer = false
