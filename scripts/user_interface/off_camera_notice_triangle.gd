@@ -8,9 +8,9 @@ var _original_scales: Array[Vector2] = []
 
 @onready var triangle_arc_base: Sprite2D = $TriangleArcBase
 @onready var inner_mask: Sprite2D = $InsideTriangleMask
-@onready var inner_sprite: Sprite2D = $InsideTriangleMask/InsideTriangle
+@onready var inner_triangle: Sprite2D = $InsideTriangleMask/InsideTriangle
 @onready var background_mask: Sprite2D = $BackgroundTriangleMask
-@onready var background_sprite: Sprite2D = $BackgroundTriangleMask/BackgroundTriangle
+@onready var background_triangle: Sprite2D = $BackgroundTriangleMask/BackgroundTriangle
 
 @onready var player: Player = Globals.player
 @onready var camera_controller: CameraController = Globals.camera_controller
@@ -59,8 +59,8 @@ func process_colour(colour: Color) -> void:
 		0.2
 	)
 	
-	inner_sprite.self_modulate = lerp(
-		inner_sprite.self_modulate,
+	inner_triangle.self_modulate = lerp(
+		inner_triangle.self_modulate,
 		colour,
 		0.2
 	)

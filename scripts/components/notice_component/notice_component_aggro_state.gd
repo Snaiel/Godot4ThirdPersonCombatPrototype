@@ -31,27 +31,28 @@ func enter() -> void:
 	_can_start_aggro_timer = true
 	
 	notice_component\
-		.notice_triangle_background_sprite\
+		.notice_triangle\
+		.background_triangle\
 		.self_modulate\
 		.a = 0
 	notice_component\
 		.off_camera_notice_triangle\
-		.background_sprite\
+		.background_triangle\
 		.self_modulate\
 		.a = 0
 
 
 func physics_process(delta) -> void:
-	notice_component.notice_triangle_sprite.visible = true
+	notice_component.notice_triangle.visible = true
 	
+	notice_component.notice_triangle.process_mask_offset(1.0)
 	notice_component.off_camera_notice_triangle.process_mask_offsets(1.0)
 	
 	_expand_scale = notice_component.expand_curve.sample(_expand_x)
 	
-	notice_component.notice_triangle_sprite.scale = \
-		notice_component.original_triangle_scale * \
-		Vector2(_expand_scale, _expand_scale)
-	
+	notice_component\
+		.notice_triangle\
+		.process_scale(_expand_scale)
 	notice_component\
 		.off_camera_notice_triangle\
 		.process_scale(_expand_scale)
@@ -61,15 +62,11 @@ func physics_process(delta) -> void:
 	
 	if _expand_x >= 0.5:
 		# make the entire triangle red
-		notice_component.notice_triangle_sprite.self_modulate = \
-			lerp(
-				notice_component
-					.notice_triangle_sprite
-					.self_modulate,
-				notice_component.aggro_color,
-				0.2
+		notice_component\
+			.notice_triangle\
+			.process_colour(
+				notice_component.aggro_color
 			)
-		
 		notice_component\
 			.off_camera_notice_triangle\
 			.process_colour(
@@ -77,16 +74,9 @@ func physics_process(delta) -> void:
 			)
 		
 		if _expand_x >= 1.0:
-			notice_component.notice_triangle_sprite.modulate.a = \
-			lerp(
-				notice_component
-					.notice_triangle_sprite
-					.modulate
-					.a,
-				0.0,
-				0.1
-			)
-			
+			notice_component\
+				.notice_triangle\
+				.process_alpha(0.0)
 			notice_component\
 				.off_camera_notice_triangle\
 				.process_alpha(0.0)
@@ -100,7 +90,7 @@ func physics_process(delta) -> void:
 			_can_start_aggro_timer = false
 	
 	if not notice_component.in_camera_frustum():
-		notice_component.notice_triangle_sprite.visible = false
+		notice_component.notice_triangle.visible = false
 
 
 func exit() -> void:

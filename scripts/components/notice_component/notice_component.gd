@@ -37,14 +37,8 @@ var previous_state: NoticeComponentState
 var angle_to_player: float
 var distance_to_player: float
 
-var notice_triangle_sprite: Sprite2D
-var notice_triangle_inner_sprite: Sprite2D
-var notice_triangle_background_sprite: Sprite2D
-var notice_triangle_mask: Sprite2D
-
+var notice_triangle: NoticeTriangle
 var off_camera_notice_triangle: OffCameraNoticeTriangle
-
-var original_triangle_scale: Vector2
 
 var _disabled: bool = false
 
@@ -54,13 +48,8 @@ var _disabled: bool = false
 
 
 func _ready() -> void:
-	notice_triangle_sprite = notice_triangle_scene.instantiate()
-	Globals.user_interface.notice_triangles.add_child(notice_triangle_sprite)
-	original_triangle_scale = notice_triangle_sprite.scale
-	
-	notice_triangle_inner_sprite = notice_triangle_sprite.get_node("TriangleMask/InsideTriangle")
-	notice_triangle_background_sprite = notice_triangle_sprite.get_node("BackgroundTriangle")
-	notice_triangle_mask = notice_triangle_sprite.get_node("TriangleMask")
+	notice_triangle = notice_triangle_scene.instantiate()
+	Globals.user_interface.notice_triangles.add_child(notice_triangle)
 	
 	off_camera_notice_triangle = off_camera_notice_triangle_scene.instantiate()
 	Globals.user_interface.off_camera_notice_triangles.add_child(off_camera_notice_triangle)
@@ -68,7 +57,7 @@ func _ready() -> void:
 	health_component.zero_health.connect(
 		func():
 			current_state.exit()
-			notice_triangle_sprite.visible = false
+			notice_triangle.visible = false
 			_disabled = true
 	)
 	
@@ -80,8 +69,6 @@ func _ready() -> void:
 
 func _physics_process(delta) -> void:
 	current_state.debug = debug
-	
-#	if debug: prints(angle_to_player, distance_to_player, get_notice_value())
 	
 	if _disabled:
 		return
@@ -98,7 +85,7 @@ func _physics_process(delta) -> void:
 		player.global_position
 	)
 	
-	notice_triangle_sprite.position = camera.unproject_position(global_position)
+	notice_triangle.position = camera.unproject_position(global_position)
 	
 	off_camera_notice_triangle.debug = debug
 	off_camera_notice_triangle.visible = not in_camera_frustum() and \
@@ -150,10 +137,6 @@ func inside_outer_threshold() -> bool:
 		_can_see_target(player)
 
 
-func get_mask_offset(value: float) -> float:
-	return -62.0 * value + 80.0
-
-
 func get_notice_value() -> float:
 	var normalized_distance: float = inverse_lerp(
 		outer_distance, 
@@ -170,7 +153,6 @@ func get_notice_value() -> float:
 	normalized_angle = clamp(normalized_angle, 0.0, 1.0)
 	
 	var notice_value: float = (normalized_distance + normalized_angle) / 2.0
-#	prints(normalized_distance, normalized_angle, notice_value)
 	
 	notice_value = notice_val_curve.sample(notice_value)
 	notice_value = lerp(min_notice_step, max_notice_step, notice_value)
@@ -183,9 +165,7 @@ func in_camera_frustum() -> bool:
 
 
 func transition_to_aggro() -> void:
-	notice_triangle_mask.offset.y = get_mask_offset(1.0)
-	notice_triangle_inner_sprite.self_modulate = aggro_color
-	notice_triangle_sprite.self_modulate = aggro_color
+	notice_triangle.process_mask_offset(1.0)
 	change_state(aggro_state)
 
 

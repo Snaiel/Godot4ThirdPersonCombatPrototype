@@ -72,16 +72,11 @@ func enter() -> void:
 
 
 func physics_process(delta) -> void:
-#	if notice_component.debug: prints(_before_getting_aggro_timer.time_left)
-	
-	notice_component.notice_triangle_sprite.visible = true
+	notice_component.notice_triangle.visible = true
 	
 	_expand_scale = notice_component.expand_curve.sample(_expand_x)
 	
-	notice_component.notice_triangle_sprite.scale = \
-		notice_component.original_triangle_scale * \
-		Vector2(_expand_scale, _expand_scale)
-	
+	notice_component.notice_triangle.process_scale(_expand_scale)
 	notice_component.off_camera_notice_triangle.process_scale(_expand_scale)
 	
 	_expand_x += 3.0 * delta
@@ -89,14 +84,9 @@ func physics_process(delta) -> void:
 	
 	if _expand_x >= 0.5:
 		# make the entire triangle yellow
-		notice_component.notice_triangle_sprite.self_modulate = \
-			lerp(
-				notice_component
-					.notice_triangle_sprite
-					.self_modulate,
-				notice_component.suspicion_color,
-				0.2
-			)
+		notice_component.notice_triangle.process_colour(
+			notice_component.suspicion_color
+		)
 		notice_component.off_camera_notice_triangle.process_colour(
 			notice_component.suspicion_color
 		)
@@ -117,7 +107,7 @@ func physics_process(delta) -> void:
 		notice_component.change_state(idle_state)
 	
 	if not notice_component.in_camera_frustum():
-		notice_component.notice_triangle_sprite.visible = false
+		notice_component.notice_triangle.visible = false
 
 
 func exit() -> void:

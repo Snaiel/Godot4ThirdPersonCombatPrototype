@@ -1,12 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://dt6i863shdkev"]
+[gd_scene load_steps=4 format=3 uid="uid://dt6i863shdkev"]
 
 [ext_resource type="Texture2D" uid="uid://cpgs22n7hg7yf" path="res://assets/triangle.png" id="1_rgvvu"]
+[ext_resource type="Script" path="res://scripts/user_interface/notice_triangle.gd" id="2_1md1s"]
 [ext_resource type="Texture2D" uid="uid://b80p5j73bgwl1" path="res://assets/square.png" id="2_816p2"]
 
 [node name="NoticeTriangle" type="Sprite2D"]
 scale = Vector2(0.18, 0.18)
 texture = ExtResource("1_rgvvu")
 offset = Vector2(0, -40)
+script = ExtResource("2_1md1s")
 
 [node name="BackgroundTriangle" type="Sprite2D" parent="."]
 self_modulate = Color(0.196078, 0.196078, 0.196078, 1)
