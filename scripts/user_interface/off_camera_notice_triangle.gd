@@ -1,5 +1,5 @@
 class_name OffCameraNoticeTriangle
-extends Sprite2D
+extends Node2D
 
 
 var debug: bool = false

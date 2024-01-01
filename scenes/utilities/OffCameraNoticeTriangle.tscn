@@ -1,15 +1,17 @@
 [gd_scene load_steps=5 format=3 uid="uid://dxqwv56gkjhbf"]
 
-[ext_resource type="Texture2D" uid="uid://wpnh4mtsljov" path="res://assets/off_camera_notice_triangle.png" id="1_o6s6d"]
 [ext_resource type="Texture2D" uid="uid://c268v7d4kf6e5" path="res://assets/triangle_small.png" id="2_1um8j"]
 [ext_resource type="Script" path="res://scripts/user_interface/off_camera_notice_triangle.gd" id="2_3xtvg"]
+[ext_resource type="Texture2D" uid="uid://wpnh4mtsljov" path="res://assets/off_camera_notice_triangle.png" id="2_tyld2"]
 [ext_resource type="Texture2D" uid="uid://b80p5j73bgwl1" path="res://assets/square.png" id="3_n5f3i"]
 
-[node name="OffCameraNoticeTriangle" type="Sprite2D"]
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("1_o6s6d")
-offset = Vector2(0, 120)
+[node name="OffCameraNoticeTriangle" type="Node2D"]
 script = ExtResource("2_3xtvg")
+
+[node name="TriangleArcBase" type="Sprite2D" parent="."]
+position = Vector2(0, 122)
+scale = Vector2(1.05, 1.05)
+texture = ExtResource("2_tyld2")
 
 [node name="BackgroundTriangleMask" type="Sprite2D" parent="."]
 clip_children = 1
