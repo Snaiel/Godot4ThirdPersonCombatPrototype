@@ -9,11 +9,18 @@ var _notice_val: float
 
 
 func enter() -> void:
-	notice_component.notice_triangle_inner_sprite.visible = false
 	_notice_val = 0.0
+	
+	notice_component.notice_triangle_inner_sprite.visible = false
 	notice_component.notice_triangle_inner_sprite.self_modulate = \
 		notice_component.aggro_color
 	notice_component.notice_triangle_background_sprite.self_modulate = \
+		notice_component.suspicion_color
+	
+	notice_component.off_camera_notice_triangle.inner_sprite.visible = false
+	notice_component.off_camera_notice_triangle.inner_sprite.self_modulate = \
+		notice_component.aggro_color
+	notice_component.off_camera_notice_triangle.background_sprite.self_modulate = \
 		notice_component.suspicion_color
 
 
@@ -24,6 +31,9 @@ func physics_process(delta) -> void:
 	# change the offset of the mask to reflect on the meter in the triangle
 	var mask_offset: float = notice_component.get_mask_offset(_notice_val)
 	notice_component.notice_triangle_mask.offset.y = mask_offset
+	
+	notice_component.off_camera_notice_triangle.inner_sprite.visible = true
+	notice_component.off_camera_notice_triangle.process_mask_offsets(_notice_val)
 	
 	if notice_component.inside_inner_threshold():
 		notice_component.transition_to_aggro()
