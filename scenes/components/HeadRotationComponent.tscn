@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://7qijntg00gi5"]
+
+[ext_resource type="Script" path="res://scripts/components/head_rotation_component.gd" id="1_2l355"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_hnxoy"]
+radius = 0.05
+height = 0.1
+
+[node name="HeadRotationComponent" type="Node3D"]
+script = ExtResource("1_2l355")
+
+[node name="Target" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.62, -5)
+mesh = SubResource("SphereMesh_hnxoy")

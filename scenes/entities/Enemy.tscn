@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://cv8knl5vavfyy"]
+[gd_scene load_steps=48 format=3 uid="uid://cv8knl5vavfyy"]
 
 [ext_resource type="Script" path="res://scripts/entities/enemy.gd" id="1_nrck3"]
 [ext_resource type="PackedScene" uid="uid://x0oxbha36o2h" path="res://scenes/entities/YBot.tscn" id="2_0tr8h"]
@@ -7,6 +7,7 @@
 [ext_resource type="Shader" path="res://shaders/fade.gdshader" id="3_cvrsu"]
 [ext_resource type="Script" path="res://scripts/components/npc_rotation_component.gd" id="3_sltme"]
 [ext_resource type="PackedScene" uid="uid://b78ctcv6lulvi" path="res://scenes/utilities/Sword.tscn" id="4_r63io"]
+[ext_resource type="PackedScene" uid="uid://7qijntg00gi5" path="res://scenes/components/HeadRotationComponent.tscn" id="6_b30i3"]
 [ext_resource type="PackedScene" uid="uid://ia1adrmqd0lf" path="res://scenes/components/LockOnComponent.tscn" id="6_nxetg"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="7_6a3a7"]
 [ext_resource type="Script" path="res://scripts/components/movement_component.gd" id="7_dfa2r"]
@@ -98,6 +99,10 @@ movement_component = NodePath("../MovementComponent")
 blackboard = NodePath("../Blackboard")
 agent = NodePath("../NavigationAgent3D")
 entity = NodePath("..")
+
+[node name="HeadRotationComponent" parent="." node_paths=PackedStringArray("skeleton", "rotation_component") instance=ExtResource("6_b30i3")]
+skeleton = NodePath("../CharacterModel/Armature_004/GeneralSkeleton")
+rotation_component = NodePath("../EnemyRotationComponent")
 
 [node name="MovementComponent" type="Node3D" parent="." node_paths=PackedStringArray("target_entity", "rotation_component")]
 script = ExtResource("7_dfa2r")

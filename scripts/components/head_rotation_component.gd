@@ -6,7 +6,7 @@ extends Node3D
 @export var head_idx: int = 6
 @export var rotation_component: RotationComponent
 
-@onready var target: Node3D = $LookAtTarget
+@onready var target: Node3D = $Target
 
 var _default_target_pos: Vector3
 

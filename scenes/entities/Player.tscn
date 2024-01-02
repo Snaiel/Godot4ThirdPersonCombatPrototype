@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dujukbu10vbmm"]
+[gd_scene load_steps=34 format=3 uid="uid://dujukbu10vbmm"]
 
 [ext_resource type="Script" path="res://scripts/entities/player.gd" id="1_lgfyt"]
 [ext_resource type="Script" path="res://scripts/player/player_state_machine.gd" id="2_4ql4h"]
@@ -30,7 +30,7 @@
 [ext_resource type="Script" path="res://scripts/player/player_parried_by_enemy_state.gd" id="19_24iu4"]
 [ext_resource type="Script" path="res://scripts/player/player_parried_enemy_hit_state.gd" id="20_1olui"]
 [ext_resource type="Script" path="res://scripts/player/player_hit_by_enemy_state.gd" id="21_x55ju"]
-[ext_resource type="Script" path="res://scripts/components/head_rotation_component.gd" id="23_315qx"]
+[ext_resource type="PackedScene" uid="uid://7qijntg00gi5" path="res://scenes/components/HeadRotationComponent.tscn" id="23_0vsx7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kr42x"]
 render_priority = 0
@@ -45,10 +45,6 @@ shader_parameter/alpha_clip = 0.0
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lnhvg"]
 radius = 0.3
 height = 1.8
-
-[sub_resource type="SphereMesh" id="SphereMesh_hnxoy"]
-radius = 0.05
-height = 0.1
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("state_machine", "character", "movement_component", "hitbox_component", "jump_component", "block_component", "dodge_component", "rotation_component", "attack_component", "parry_component", "fade_component", "weapon") groups=["player"]]
 collision_layer = 2
@@ -277,14 +273,9 @@ shape = SubResource("CapsuleShape3D_lnhvg")
 script = ExtResource("4_y1oi3")
 entity = NodePath("..")
 
-[node name="HeadRotationComponent" type="Node3D" parent="." node_paths=PackedStringArray("skeleton", "rotation_component")]
-script = ExtResource("23_315qx")
+[node name="HeadRotationComponent" parent="." node_paths=PackedStringArray("skeleton", "rotation_component") instance=ExtResource("23_0vsx7")]
 skeleton = NodePath("../CharacterModel/Armature_004/GeneralSkeleton")
 rotation_component = NodePath("../PlayerRotationComponent")
-
-[node name="LookAtTarget" type="MeshInstance3D" parent="HeadRotationComponent"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.62, -5)
-mesh = SubResource("SphereMesh_hnxoy")
 
 [node name="MovementComponent" type="Node3D" parent="." node_paths=PackedStringArray("target_entity", "rotation_component")]
 script = ExtResource("3_pph25")
