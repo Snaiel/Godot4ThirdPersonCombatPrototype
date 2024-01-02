@@ -1,21 +1,19 @@
 class_name PlayerRotationComponent
 extends RotationComponent
 
+
 var player: Player
-
 var can_rotate: bool = true
-
-var _camera_controller: CameraController
 
 var _target_look: float
 var _freelook_turn: bool = true
 var _turn_all_the_way: bool = false
 
+@onready var _camera_controller: CameraController = Globals.camera_controller
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
 	player = entity as Player
-	_camera_controller = player.camera_controller
 	_target_look = _camera_controller.rotation.y
 	
 	looking_direction = looking_direction.rotated(Vector3.UP, _camera_controller.rotation.y).normalized()

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://1elkqdybiiu1"]
+
+[ext_resource type="Script" path="res://scripts/components/attack_component.gd" id="1_8speg"]
+
+[node name="AttackComponent" type="Node3D" node_paths=PackedStringArray("_attack_animations", "_movement_component", "_weapon")]
+script = ExtResource("1_8speg")
+_attack_animations = NodePath("")
+_movement_component = NodePath("")
+_weapon = NodePath("")

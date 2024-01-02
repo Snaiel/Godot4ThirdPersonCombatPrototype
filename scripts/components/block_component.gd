@@ -17,7 +17,7 @@ func _physics_process(_delta: float) -> void:
 	character.block_animations.process_block(blocking)
 	
 	if blocking:
-		if movement_component.target_entity.is_on_floor():
+		if movement_component.entity.is_on_floor():
 			movement_component.speed = walk_speed_while_blocking
 		_mesh.transparency = lerp(
 			_mesh.transparency,

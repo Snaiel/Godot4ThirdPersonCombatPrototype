@@ -28,6 +28,10 @@ var _damage_dizzy_timer_pause: float = 1.5
 
 func _ready():
 	
+	instability_component.full_instability.connect(
+		_on_instability_component_full_instability
+	)
+	
 	health_component.zero_health.connect(
 		func():
 			dizzy_system.dizzy_victim = null

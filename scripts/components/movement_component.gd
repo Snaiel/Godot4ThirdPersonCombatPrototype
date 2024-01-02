@@ -3,12 +3,9 @@ extends Node3D
 
 
 @export var debug: bool = false
-
 @export var speed: float = 0.0
-
-@export var target_entity: CharacterBody3D
+@export var entity: CharacterBody3D
 @export var rotation_component: RotationComponent
-
 @export var gravity: float = 20.0
 
 var looking_direction: Vector3 = Vector3.FORWARD
@@ -43,10 +40,10 @@ func _physics_process(delta: float) -> void:
 	
 	if can_move:
 		if move_direction.length() > 0.05:
-			var weight: float = 0.2 if target_entity.is_on_floor() else 0.1
+			var weight: float = 0.2 if entity.is_on_floor() else 0.1
 			desired_velocity.z = lerp(desired_velocity.z, move_direction.z * speed, weight)
 			desired_velocity.x = lerp(desired_velocity.x, move_direction.x * speed, weight)
-		elif target_entity.is_on_floor():
+		elif entity.is_on_floor():
 			# if coming from a jump, quickly come to a stop.
 			# otherwise, if just going from walking/runnning to a stop,
 			# come to a gentle stop
@@ -65,7 +62,7 @@ func _physics_process(delta: float) -> void:
 				can_disable_vertical_movement = false
 	
 	
-	if _secondary_movement_speed > 0.0 and target_entity.is_on_floor():
+	if _secondary_movement_speed > 0.0 and entity.is_on_floor():
 		desired_velocity.x = _secondary_movement_direction.x * _secondary_movement_speed
 		desired_velocity.z = _secondary_movement_direction.z * _secondary_movement_speed
 		_secondary_movement_speed -= _secondary_movement_friction * delta
@@ -76,17 +73,17 @@ func _physics_process(delta: float) -> void:
 	
 	if not can_move and \
 	is_zero_approx(_secondary_movement_speed) and \
-	target_entity.is_on_floor():
+	entity.is_on_floor():
 		desired_velocity.x = lerp(desired_velocity.x, 0.0, 0.1)
 		desired_velocity.z = lerp(desired_velocity.z, 0.0, 0.1)
 
-	if not target_entity.is_on_floor():
+	if not entity.is_on_floor():
 		desired_velocity.y -= gravity * delta
 	elif not vertical_movement:
 		desired_velocity.y = 0
 
-	target_entity.velocity = desired_velocity
-	target_entity.move_and_slide()
+	entity.velocity = desired_velocity
+	entity.move_and_slide()
 
 
 func has_secondary_movement() -> bool:
@@ -108,7 +105,7 @@ func set_secondary_movement(secondary_speed: float, time: float, friction: float
 
 
 func knockback(knockback_origin: Vector3) -> void:
-	var direction: Vector3 = target_entity.global_position.direction_to(knockback_origin)
+	var direction: Vector3 = entity.global_position.direction_to(knockback_origin)
 	set_secondary_movement(3, 5, 5, -direction)
 
 

@@ -3,16 +3,11 @@
 [ext_resource type="Script" path="res://scripts/entities/player.gd" id="1_lgfyt"]
 [ext_resource type="Script" path="res://scripts/player/player_state_machine.gd" id="2_4ql4h"]
 [ext_resource type="Shader" path="res://shaders/fade.gdshader" id="3_iqmy4"]
-[ext_resource type="Script" path="res://scripts/components/attack_component.gd" id="3_nq7ea"]
 [ext_resource type="Script" path="res://scripts/player/player_idle_state.gd" id="3_pk0l8"]
-[ext_resource type="Script" path="res://scripts/components/movement_component.gd" id="3_pph25"]
 [ext_resource type="Script" path="res://scripts/player/player_walk_state.gd" id="4_4fxcp"]
-[ext_resource type="Script" path="res://scripts/components/player_rotation_component.gd" id="4_y1oi3"]
 [ext_resource type="Material" uid="uid://dp5o22jl53pqh" path="res://materials/player_shader_mat.tres" id="4_ysu0o"]
-[ext_resource type="Script" path="res://scripts/components/jump_component.gd" id="5_20kj8"]
 [ext_resource type="PackedScene" uid="uid://x0oxbha36o2h" path="res://scenes/entities/YBot.tscn" id="5_gusos"]
 [ext_resource type="PackedScene" uid="uid://b78ctcv6lulvi" path="res://scenes/utilities/Sword.tscn" id="5_vtx6o"]
-[ext_resource type="Script" path="res://scripts/components/dodge_component.gd" id="6_66sk2"]
 [ext_resource type="Script" path="res://scripts/player/player_run_state.gd" id="6_nj3fe"]
 [ext_resource type="Script" path="res://scripts/player/player_dodge_state.gd" id="7_e0tbh"]
 [ext_resource type="PackedScene" uid="uid://cko2lhqdu4n44" path="res://scenes/components/HitboxComponent.tscn" id="8_2xenc"]
@@ -22,15 +17,20 @@
 [ext_resource type="PackedScene" uid="uid://b616qwvblkmpo" path="res://scenes/components/BlockComponent.tscn" id="10_hjlwj"]
 [ext_resource type="Script" path="res://scripts/player/player_parry_state.gd" id="10_xd0pu"]
 [ext_resource type="Script" path="res://scripts/player/player_backstab_state.gd" id="11_i0t64"]
-[ext_resource type="Script" path="res://scripts/components/fade_component.gd" id="11_kcojp"]
 [ext_resource type="Script" path="res://scripts/player/player_dizzy_state/player_dizzy_finisher_from_parry_state.gd" id="12_ull0x"]
-[ext_resource type="Script" path="res://scripts/components/parry_component.gd" id="13_a73xb"]
 [ext_resource type="Script" path="res://scripts/player/player_dizzy_state/player_dizzy_finisher_state.gd" id="16_vyrl8"]
 [ext_resource type="Script" path="res://scripts/player/player_dizzy_state/player_dizzy_finisher_from_damage_state.gd" id="18_hlp8w"]
 [ext_resource type="Script" path="res://scripts/player/player_parried_by_enemy_state.gd" id="19_24iu4"]
 [ext_resource type="Script" path="res://scripts/player/player_parried_enemy_hit_state.gd" id="20_1olui"]
 [ext_resource type="Script" path="res://scripts/player/player_hit_by_enemy_state.gd" id="21_x55ju"]
+[ext_resource type="PackedScene" uid="uid://bgb0pw8dklo4j" path="res://scenes/components/PlayerRotationComponent.tscn" id="22_23hj7"]
 [ext_resource type="PackedScene" uid="uid://7qijntg00gi5" path="res://scenes/components/HeadRotationComponent.tscn" id="23_0vsx7"]
+[ext_resource type="PackedScene" uid="uid://k5h6f26p6mgf" path="res://scenes/components/MovementComponent.tscn" id="24_mwhws"]
+[ext_resource type="PackedScene" uid="uid://b1tn0d24q1ec1" path="res://scenes/components/JumpComponent.tscn" id="26_w2wp7"]
+[ext_resource type="PackedScene" uid="uid://bx034hx24dlel" path="res://scenes/components/DodgeComponent.tscn" id="27_7sekg"]
+[ext_resource type="PackedScene" uid="uid://1elkqdybiiu1" path="res://scenes/components/AttackComponent.tscn" id="28_no1kf"]
+[ext_resource type="PackedScene" uid="uid://bg5d27eyqwsfd" path="res://scenes/components/ParryComponent.tscn" id="30_ceaq1"]
+[ext_resource type="PackedScene" uid="uid://mmj6qxe250co" path="res://scenes/components/FadeComponent.tscn" id="31_y5b1e"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kr42x"]
 render_priority = 0
@@ -269,17 +269,16 @@ player = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 shape = SubResource("CapsuleShape3D_lnhvg")
 
-[node name="PlayerRotationComponent" type="Node3D" parent="." node_paths=PackedStringArray("entity")]
-script = ExtResource("4_y1oi3")
+[node name="PlayerRotationComponent" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("22_23hj7")]
 entity = NodePath("..")
 
 [node name="HeadRotationComponent" parent="." node_paths=PackedStringArray("skeleton", "rotation_component") instance=ExtResource("23_0vsx7")]
 skeleton = NodePath("../CharacterModel/Armature_004/GeneralSkeleton")
 rotation_component = NodePath("../PlayerRotationComponent")
 
-[node name="MovementComponent" type="Node3D" parent="." node_paths=PackedStringArray("target_entity", "rotation_component")]
-script = ExtResource("3_pph25")
-target_entity = NodePath("..")
+[node name="MovementComponent" parent="." node_paths=PackedStringArray("entity", "rotation_component") instance=ExtResource("24_mwhws")]
+speed = 3.0
+entity = NodePath("..")
 rotation_component = NodePath("../PlayerRotationComponent")
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("8_2xenc")]
@@ -288,26 +287,17 @@ collision_layer = 2
 entity = NodePath("..")
 groups = Array[String](["enemy"])
 
-[node name="JumpComponent" type="Node3D" parent="." node_paths=PackedStringArray("entity", "animations", "movement_component")]
-script = ExtResource("5_20kj8")
+[node name="JumpComponent" parent="." node_paths=PackedStringArray("entity", "animations", "movement_component") instance=ExtResource("26_w2wp7")]
 entity = NodePath("..")
 animations = NodePath("../CharacterModel")
 movement_component = NodePath("../MovementComponent")
 
-[node name="JumpRaycast" type="RayCast3D" parent="JumpComponent"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-target_position = Vector3(0, -2, 0)
-
-[node name="DodgeComponent" type="Node3D" parent="." node_paths=PackedStringArray("entity", "movement_component", "jump_component")]
-script = ExtResource("6_66sk2")
-dodge_strength = 8.0
-_in_air_buffer = 0.1
+[node name="DodgeComponent" parent="." node_paths=PackedStringArray("entity", "movement_component", "jump_component") instance=ExtResource("27_7sekg")]
 entity = NodePath("..")
 movement_component = NodePath("../MovementComponent")
 jump_component = NodePath("../JumpComponent")
 
-[node name="AttackComponent" type="Node3D" parent="." node_paths=PackedStringArray("_attack_animations", "_movement_component", "_weapon")]
-script = ExtResource("3_nq7ea")
+[node name="AttackComponent" parent="." node_paths=PackedStringArray("_attack_animations", "_movement_component", "_weapon") instance=ExtResource("28_no1kf")]
 _attack_animations = NodePath("../CharacterModel/AttackAnimations")
 _movement_component = NodePath("../MovementComponent")
 _weapon = NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Sword")
@@ -316,17 +306,13 @@ _weapon = NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Sword")
 movement_component = NodePath("../MovementComponent")
 character = NodePath("../CharacterModel")
 
-[node name="ParryComponent" type="Node3D" parent="." node_paths=PackedStringArray("hitbox_component", "block_component")]
-script = ExtResource("13_a73xb")
+[node name="ParryComponent" parent="." node_paths=PackedStringArray("hitbox_component", "block_component") instance=ExtResource("30_ceaq1")]
 hitbox_component = NodePath("../HitboxComponent")
 block_component = NodePath("../BlockComponent")
 
-[node name="FadeComponent" type="Node3D" parent="." node_paths=PackedStringArray("meshes", "entity")]
-script = ExtResource("11_kcojp")
+[node name="FadeComponent" parent="." node_paths=PackedStringArray("meshes", "entity") instance=ExtResource("31_y5b1e")]
 meshes = [NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Alpha_Joints"), NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Alpha_Surface"), NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Sword/Mesh")]
 entity = NodePath("..")
-
-[connection signal="weapon_hit" from="HitboxComponent" to="AttackComponent" method="_on_hitbox_component_weapon_hit"]
 
 [editable path="CharacterModel"]
 [editable path="CharacterModel/Armature_004/GeneralSkeleton/Sword"]

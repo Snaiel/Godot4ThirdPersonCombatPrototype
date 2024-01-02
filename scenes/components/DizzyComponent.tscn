@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://hnb8xok6xlar"]
+
+[ext_resource type="Script" path="res://scripts/components/dizzy_component.gd" id="1_t6npo"]
+
+[node name="DizzyComponent" type="Node3D" node_paths=PackedStringArray("entity", "lock_on_component", "health_component", "movement_component", "attack_component", "instability_component", "character", "blackboard")]
+script = ExtResource("1_t6npo")
+entity = NodePath("")
+lock_on_component = NodePath("")
+health_component = NodePath("")
+movement_component = NodePath("")
+attack_component = NodePath("")
+instability_component = NodePath("")
+character = NodePath("")
+blackboard = NodePath("")

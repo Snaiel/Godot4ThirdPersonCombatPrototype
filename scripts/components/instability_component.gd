@@ -9,6 +9,7 @@ signal full_instability
 @export_category("Configuration")
 @export var active: bool = true
 @export var hitbox: HitboxComponent
+@export var weapon: Sword
 
 @export_category("Instability")
 @export var max_instability: float = 100.0
@@ -37,6 +38,13 @@ func _ready():
 			_reduce_instability = true
 	)
 	add_child(_instability_reduction_pause_timer)
+	
+	weapon.parried.connect(
+		func():
+			if not active:
+				return
+			increment_instability(35, true)
+	)
 
 
 func _physics_process(_delta):
@@ -79,9 +87,3 @@ func process_hit():
 	if not active:
 		return
 	increment_instability(25, false)
-
-
-func _on_sword_parried():
-	if not active:
-		return
-	increment_instability(35, true)

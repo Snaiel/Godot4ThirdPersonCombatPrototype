@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://207cuag4hgs7"]
+
+[ext_resource type="Script" path="res://scripts/components/backstab_component.gd" id="1_lcgvb"]
+
+[node name="BackstabComponent" type="Node3D" node_paths=PackedStringArray("entity", "lock_on_component", "health_component")]
+script = ExtResource("1_lcgvb")
+entity = NodePath("")
+lock_on_component = NodePath("")
+health_component = NodePath("")

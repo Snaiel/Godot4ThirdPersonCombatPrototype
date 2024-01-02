@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgb0pw8dklo4j"]
+
+[ext_resource type="Script" path="res://scripts/components/player_rotation_component.gd" id="1_fulxd"]
+
+[node name="PlayerRotationComponent" type="Node3D" node_paths=PackedStringArray("entity")]
+script = ExtResource("1_fulxd")
+entity = NodePath("")

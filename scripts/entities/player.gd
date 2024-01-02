@@ -5,7 +5,6 @@ extends CharacterBody3D
 @export_category("Mechanisms")
 @export var state_machine: PlayerStateMachine
 @export var character: CharacterAnimations
-@export var camera_controller: CameraController
 @export var movement_component: MovementComponent
 @export var hitbox_component: HitboxComponent
 @export var jump_component: JumpComponent
