@@ -13,6 +13,7 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var _blackboard: Blackboard = $Blackboard
 @onready var _character: CharacterAnimations = $CharacterModel
 @onready var _rotation_component: RotationComponent = $EnemyRotationComponent
+@onready var _head_rotation_component: HeadRotationComponent = $HeadRotationComponent
 @onready var _movement_component: MovementComponent = $MovementComponent
 @onready var _lock_on_component: LockOnComponent = $LockOnComponent
 @onready var _hitbox_component: HitboxComponent = $HitboxComponent
@@ -212,6 +213,7 @@ func _on_health_component_zero_health() -> void:
 	_lock_on_component.enabled = false
 	_backstab_component.enabled = false
 	_dizzy_component.enabled = false
+	_head_rotation_component.enabled = false
 	
 	_blackboard.set_value("dead", true)
 	_blackboard.set_value("interrupt_timers", true)

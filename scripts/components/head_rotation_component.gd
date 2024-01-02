@@ -2,6 +2,7 @@ class_name HeadRotationComponent
 extends Node3D
 
 
+@export var enabled: bool = true
 @export var skeleton: Skeleton3D
 @export var head_idx: int = 6
 @export var rotation_component: RotationComponent
@@ -17,6 +18,9 @@ func _ready():
 
 func _process(_delta):
 	skeleton.clear_bones_global_pose_override()
+	
+	if not enabled:
+		return
 	
 	if rotation_component.rotate_towards_target and rotation_component.target:
 		target.global_position = lerp(
