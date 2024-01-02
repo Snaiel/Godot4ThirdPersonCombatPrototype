@@ -48,11 +48,7 @@ func _ready():
 	_come_out_of_damage_dizzy_timer.wait_time = _damage_dizzy_timer_pause
 	_come_out_of_damage_dizzy_timer.autostart = false
 	_come_out_of_damage_dizzy_timer.one_shot = true
-	_come_out_of_damage_dizzy_timer.timeout.connect(
-		func():
-			character.root_motion_enabled = true
-			blackboard.set_value("dizzy", false)
-	)
+	_come_out_of_damage_dizzy_timer.timeout.connect(_back_to_normal)
 	add_child(_come_out_of_damage_dizzy_timer)
 
 
@@ -128,7 +124,12 @@ func _come_out_of_dizzy() -> void:
 	instability_component.come_out_of_full_instability(0.7)
 	
 	if instability_component.full_instability_from_parry:
-		blackboard.set_value("dizzy", false)
-		character.root_motion_enabled = true
+		_back_to_normal()
 	else:
 		_come_out_of_damage_dizzy_timer.start()
+
+
+func _back_to_normal() -> void:
+	blackboard.set_value("interrupt_timers", false)
+	blackboard.set_value("dizzy", false)
+	character.root_motion_enabled = true
