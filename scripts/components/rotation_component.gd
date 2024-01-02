@@ -1,10 +1,10 @@
 class_name RotationComponent
 extends Node3D
 
-@export var look_at_target: bool = false
 @export var entity: CharacterBody3D
-@export var target: Node3D
 
+var target: Node3D
+var rotate_towards_target: bool = false
 var move_direction: Vector3 = Vector3.ZERO
 var looking_direction: Vector3 = Vector3.FORWARD
 var target_look: float

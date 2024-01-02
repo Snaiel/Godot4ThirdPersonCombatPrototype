@@ -17,18 +17,20 @@ func _ready() -> void:
 	looking_direction = looking_direction.rotated(Vector3.UP, entity.rotation.y).normalized()
 
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	super._physics_process(delta)
+	
 	var _input_direction: Vector3 = blackboard.get_value("input_direction", Vector3.ZERO)
 	var _can_move: bool = movement_component.can_move
 	var _velocity: Vector3 = movement_component.desired_velocity
 
-#	print(_blackboard.has_value("look_at_target"))
+#	print(_blackboard.has_value("rotate_towards_target"))
 	move_direction = _input_direction
 	
 	if debug:
 		pass
 
-	if look_at_target:
+	if rotate_towards_target:
 		# get the angle towards the lock on target and
 		# smoothyl rotate the player towards it
 		var _next_location: Vector3 = agent.get_next_path_position()

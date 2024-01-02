@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_set.gd" id="1_thjrg"]
 
-[node name="SetLookAtTargetTrue" type="Node"]
+[node name="SetRotateTowardsTargetTrue" type="Node"]
 script = ExtResource("1_thjrg")
-key = "\"look_at_target\""
+key = "\"rotate_towards_target\""
 value = "true"

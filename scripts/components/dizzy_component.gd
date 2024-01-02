@@ -83,12 +83,12 @@ func _on_instability_component_full_instability():
 	if instability_component.full_instability_from_parry:
 		character.dizzy_animations.dizzy_from_parry()
 		_dizzy_timer.start(dizzy_from_parry_length)
-		blackboard.set_value("look_at_target", true)
+		blackboard.set_value("rotate_towards_target", true)
 		_from_parry_knockback()
 	else:
 		character.dizzy_animations.dizzy_from_damage()
 		_dizzy_timer.start(dizzy_from_damage_length)
-		blackboard.set_value("look_at_target", false)
+		blackboard.set_value("rotate_towards_target", false)
 		entity.look_at(player.global_position)
 		_from_damage_knockback()
 	

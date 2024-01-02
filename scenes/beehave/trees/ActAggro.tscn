@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://cij3tna3vvi65"]
 
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="1_5577v"]
-[ext_resource type="PackedScene" uid="uid://cryed6dtlo286" path="res://scenes/beehave/set_actions/SetLookAtTargetTrue.tscn" id="2_604vf"]
+[ext_resource type="PackedScene" uid="uid://cryed6dtlo286" path="res://scenes/beehave/set_actions/SetRotateTowardsTargetTrue.tscn" id="2_604vf"]
 [ext_resource type="PackedScene" uid="uid://b2vrwljrc7cpp" path="res://scenes/beehave/set_actions/SetLockedOnTrue.tscn" id="3_5engx"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="3_j8m5m"]
 [ext_resource type="Script" path="res://scripts/beehave/close_to_target.gd" id="4_fuagw"]

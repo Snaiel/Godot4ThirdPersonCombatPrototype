@@ -92,8 +92,8 @@ func _physics_process(_delta: float) -> void:
 #	if debug: print(_blackboard.get_value("can_move"))
 #	if debug: print(global_position.distance_to(Globals.player.global_position))
 	
-	_rotation_component.look_at_target = _blackboard.get_value(
-		"look_at_target",
+	_rotation_component.rotate_towards_target = _blackboard.get_value(
+		"rotate_towards_target",
 		false
 	)
 	
