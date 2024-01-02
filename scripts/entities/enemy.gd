@@ -205,6 +205,8 @@ func _on_health_component_zero_health() -> void:
 	if _dead:
 		return
 	
+	_character.root_motion_enabled = false
+	
 	death.emit(self)
 	_dead = true
 	

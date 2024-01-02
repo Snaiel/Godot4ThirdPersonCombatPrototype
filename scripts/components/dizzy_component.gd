@@ -50,6 +50,7 @@ func _ready():
 	_come_out_of_damage_dizzy_timer.one_shot = true
 	_come_out_of_damage_dizzy_timer.timeout.connect(
 		func():
+			character.root_motion_enabled = true
 			blackboard.set_value("dizzy", false)
 	)
 	add_child(_come_out_of_damage_dizzy_timer)
@@ -67,6 +68,7 @@ func _process(_delta):
 
 func process_hit(weapon: Sword):
 	if dizzy_system.dizzy_victim == self and weapon.get_entity() == player:
+		character.root_motion_enabled = false
 		health_component.deal_max_damage = true
 		dizzy_system.dizzy_victim_killed = true
 
@@ -85,6 +87,7 @@ func _on_instability_component_full_instability():
 	dizzy_system.dizzy_victim_killed = false
 	
 	if instability_component.full_instability_from_parry:
+		character.root_motion_enabled = false
 		character.dizzy_animations.dizzy_from_parry()
 		_dizzy_timer.start(dizzy_from_parry_length)
 		blackboard.set_value("rotate_towards_target", true)
@@ -126,5 +129,6 @@ func _come_out_of_dizzy() -> void:
 	
 	if instability_component.full_instability_from_parry:
 		blackboard.set_value("dizzy", false)
+		character.root_motion_enabled = true
 	else:
 		_come_out_of_damage_dizzy_timer.start()
