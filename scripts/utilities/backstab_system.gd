@@ -5,15 +5,11 @@ extends Node3D
 signal current_victim(victim: BackstabComponent)
 
 var backstab_victim: BackstabComponent
-var attack_component: AttackComponent
 
 var _current_dist_to_player: float = 10
 var _can_switch_victim: bool = true
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	Globals.backstab_system = self
-
+@onready var _player_attack_component: AttackComponent = Globals.player.attack_component
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta) -> void:
@@ -51,7 +47,7 @@ func set_backstab_victim(victim: BackstabComponent, dist: float) -> void:
 	if not lock_on_system_target and dist > _current_dist_to_player - 0.02:
 		return
 	
-	if not backstab_victim and attack_component.attacking:
+	if not backstab_victim and _player_attack_component.attacking:
 		return
 	
 	if not victim.health_component.is_alive():

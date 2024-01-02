@@ -29,13 +29,11 @@ var _holding_down_run_timer: Timer
 
 
 func _ready() -> void:
-	Globals.backstab_system.attack_component = attack_component
-
 	attack_component.can_rotate.connect(
 		func(flag: bool):
 			rotation_component.can_rotate = flag
 	)
-
+	
 	_holding_down_run_timer = Timer.new()
 	_holding_down_run_timer.timeout.connect(
 		func():

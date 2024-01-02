@@ -3,6 +3,7 @@ extends CameraControllerStateMachine
 
 
 @export var dizzy_finisher_state: CameraControllerDizzyFinisherState
+@export var backstab_state: CameraControllerBackstabState
 
 
 func process_camera() -> void:
@@ -11,6 +12,12 @@ func process_camera() -> void:
 	dizzy_victim != null:
 		parent_state.change_state(
 			dizzy_finisher_state
+		)
+	
+	if Globals.backstab_system.backstab_victim != null and \
+	player.state_machine.current_state is PlayerAttackState:
+		parent_state.change_state(
+			backstab_state
 		)
 	
 	camera.fov = move_toward(

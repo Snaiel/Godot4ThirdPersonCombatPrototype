@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cy5wvw01aul4m"]
+[gd_scene load_steps=11 format=3 uid="uid://cy5wvw01aul4m"]
 
 [ext_resource type="Script" path="res://scripts/camera_controller/camera_controller.gd" id="1_axdd4"]
 [ext_resource type="Script" path="res://scripts/camera_controller/camera_controller_normal_state.gd" id="2_06p3n"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/camera_controller/dizzy_finisher/camera_controller_dizzy_finisher_state.gd" id="6_w114i"]
 [ext_resource type="Script" path="res://scripts/camera_controller/dizzy_finisher/camera_controller_dizzy_finisher_from_parry_state.gd" id="6_ws6gk"]
 [ext_resource type="Script" path="res://scripts/camera_controller/dizzy_finisher/camera_controller_dizzy_finisher_from_damage_state.gd" id="8_bo7s0"]
+[ext_resource type="Script" path="res://scripts/camera_controller/camera_controller_backstab_state.gd" id="9_xlmhn"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_gxheq"]
 margin = 0.2
@@ -25,9 +26,10 @@ script = ExtResource("2_abkhv")
 camera_controller = NodePath("..")
 camera = NodePath("../Camera3D")
 
-[node name="Normal" type="Node" parent="StateMachine" node_paths=PackedStringArray("dizzy_finisher_state", "camera_controller", "camera")]
+[node name="Normal" type="Node" parent="StateMachine" node_paths=PackedStringArray("dizzy_finisher_state", "backstab_state", "camera_controller", "camera")]
 script = ExtResource("2_06p3n")
 dizzy_finisher_state = NodePath("../DizzyFinisher")
+backstab_state = NodePath("../Backstab")
 camera_controller = NodePath("../..")
 camera = NodePath("../../Camera3D")
 
@@ -61,3 +63,9 @@ script = ExtResource("8_bo7s0")
 normal_state = NodePath("../../Normal")
 camera_controller = NodePath("../../..")
 camera = NodePath("../../../Camera3D")
+
+[node name="Backstab" type="Node" parent="StateMachine" node_paths=PackedStringArray("normal_state", "camera_controller", "camera")]
+script = ExtResource("9_xlmhn")
+normal_state = NodePath("../Normal")
+camera_controller = NodePath("../..")
+camera = NodePath("../../Camera3D")
