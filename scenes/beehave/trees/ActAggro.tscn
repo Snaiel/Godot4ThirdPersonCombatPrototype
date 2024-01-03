@@ -66,6 +66,10 @@ wait_time = 2.0
 [node name="Chase" type="Node" parent="StayOrChase"]
 script = ExtResource("1_5577v")
 
+[node name="CloseEnoughToTarget" type="Node" parent="StayOrChase/Chase"]
+script = ExtResource("4_fuagw")
+target_range = 15.0
+
 [node name="ResetWait" type="Node" parent="StayOrChase/Chase"]
 script = ExtResource("5_p35gd")
 wait_id = 61967809

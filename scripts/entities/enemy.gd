@@ -30,8 +30,6 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var skeleton: Skeleton3D = $CharacterModel/Armature_004/GeneralSkeleton
 
 
-var _set_agent_target_to_target: bool = false
-
 var _default_move_speed: float
 var _dead: bool = false
 
@@ -45,24 +43,21 @@ func _ready() -> void:
 	_blackboard.set_value("move_speed", _default_move_speed)
 	
 	_notice_component.state_changed.connect(
-		func(new_state: String, target_to_target: bool):
+		func(new_state: String):
 			if new_state == "aggro":
 				_backstab_component.enabled = false
-				if _blackboard.get_value("got_hit", false):
-					_blackboard.set_value("interrupt_timers", true)
+				_blackboard.set_value("interrupt_timers", true)
+#				if _blackboard.get_value("got_hit", false):
+#					_blackboard.set_value("interrupt_timers", true)
 				
 			_blackboard.set_value("notice_state", new_state)
-			_set_agent_target_to_target = target_to_target
 			
 			if _notice_component.position_to_check != Vector3.INF:
-				_agent.target_position = _notice_component.position_to_check
-#				prints(_agent.target_position, target.global_position)
+				_blackboard.set_value(
+					"agent_target_position",
+					_notice_component.position_to_check
+				)
 	)
-	
-#	_character.hit_and_death_animations.hit_finished.connect(
-#		func():
-#			_blackboard.set_value("got_hit", false)
-#	)
 	
 	_blackboard.set_value("can_attack", true)	
 	
@@ -70,6 +65,7 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
+	## Debug Components
 	_rotation_component.debug = debug
 	_movement_component.debug = debug
 	_backstab_component.debug = debug
@@ -78,21 +74,44 @@ func _physics_process(_delta: float) -> void:
 	
 	_blackboard.set_value("debug", debug)
 	
-	if _set_agent_target_to_target:
-		_agent.target_position = target.global_position
 	
+	## Target Operations	
+	var player_dist: float = global_position.distance_to(target.global_position)
 	var target_dist: float = _agent.distance_to_target()
 	var target_dir: Vector3 = global_position.direction_to(_agent.target_position)
 	var target_dir_angle: float = target_dir.angle_to(Vector3.FORWARD.rotated(Vector3.UP, global_rotation.y))
 	
+	_blackboard.set_value("player_dist", player_dist)
 	_blackboard.set_value("target", target)
 	_blackboard.set_value("target_dist", target_dist)
 	_blackboard.set_value("target_dir", target_dir)
 	_blackboard.set_value("target_dir_angle", target_dir_angle)
 	
-#	if debug: print(_blackboard.get_value("can_move"))
-#	if debug: print(global_position.distance_to(Globals.player.global_position))
+	if _blackboard.get_value("investigate_last_agent_position"):
+		_blackboard.set_value("can_set_investigate_last_agent_position", false)
+		_blackboard.set_value("investigate_last_agent_position", false)
+		_blackboard.set_value(
+			"agent_target_position",
+			target.global_position
+		)
 	
+	_agent.target_position = _blackboard.get_value(
+		"agent_target_position",
+		target.global_position
+	)
+	
+	
+	## Debug Prints
+	if debug:
+		prints(
+			_notice_component.current_state,
+			_blackboard.get_value(
+				"agent_target_position"
+			)
+		)
+	
+	
+	## Component Management
 	_rotation_component.rotate_towards_target = _blackboard.get_value(
 		"rotate_towards_target",
 		false
@@ -107,12 +126,16 @@ func _physics_process(_delta: float) -> void:
 		_default_move_speed
 	)
 	
+	
+	## Attacking
 	if _blackboard.get_value("can_attack", false) and _blackboard.get_value("attack", false):
 		_blackboard.set_value("can_attack", false)
 		_blackboard.set_value("attack", false)
 		_attack_component.attack_level = _blackboard.get_value("attack_level", 1)
 		_attack_component.attack()
 	
+	
+	## Character Animations
 	_character.anim_tree["parameters/Lock On Walk/4/TimeScale/scale"] = 0.5
 	_character.anim_tree["parameters/Lock On Walk/5/TimeScale/scale"] = 0.5	
 	_character.movement_animations.move(
@@ -121,7 +144,9 @@ func _physics_process(_delta: float) -> void:
 		false
 	)
 	
-	if _rotation_component.rotate_towards_target and \
+	
+	## Head Rotation Component
+	if _blackboard.get_value("agent_target_position") == null and \
 	_rotation_component.target != null:
 		_head_rotation_component.desired_target_pos = \
 			_rotation_component.target.global_position
@@ -199,7 +224,7 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 		_attack_component.interrupt_attack()
 		
 		_character.hit_and_death_animations.hit()
-		_set_agent_target_to_target = true
+#		_set_agent_target_to_target = true
 		
 		_blackboard.set_value("got_hit", true)
 		_blackboard.set_value("interrupt_timers", true)

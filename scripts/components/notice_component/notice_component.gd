@@ -2,7 +2,7 @@ class_name NoticeComponent
 extends Node3D
 
 
-signal state_changed(new_state: String, set_agent_target_to_target: bool)
+signal state_changed(new_state: String)
 
 @export_category("Configuration")
 @export var debug: bool
@@ -104,7 +104,6 @@ func change_state(new_state: NoticeComponentState) -> void:
 	current_state = new_state
 	
 	var new_state_string: String
-	var agent_target_to_target: bool = false
 	
 	if new_state is NoticeComponentIdleState:
 		new_state_string = "idle"
@@ -116,9 +115,8 @@ func change_state(new_state: NoticeComponentState) -> void:
 		new_state_string = "getting_aggro"
 	elif new_state is NoticeComponentAggroState:
 		new_state_string = "aggro"
-		agent_target_to_target = true
 	
-	state_changed.emit(new_state_string, agent_target_to_target)
+	state_changed.emit(new_state_string)
 
 
 func get_position_to_check() -> Vector3:

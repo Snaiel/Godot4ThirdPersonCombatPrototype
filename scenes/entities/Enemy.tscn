@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://cv8knl5vavfyy"]
+[gd_scene load_steps=54 format=3 uid="uid://cv8knl5vavfyy"]
 
 [ext_resource type="Script" path="res://scripts/entities/enemy.gd" id="1_nrck3"]
 [ext_resource type="PackedScene" uid="uid://x0oxbha36o2h" path="res://scenes/entities/YBot.tscn" id="2_0tr8h"]
@@ -29,7 +29,6 @@
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_reactive.gd" id="17_sr624"]
 [ext_resource type="PackedScene" uid="uid://csbpq6cbn8rvn" path="res://scenes/beehave/compare_actions/IsStateSuspicious.tscn" id="18_e0yjj"]
 [ext_resource type="PackedScene" uid="uid://bg5d27eyqwsfd" path="res://scenes/components/ParryComponent.tscn" id="18_pmwql"]
-[ext_resource type="PackedScene" uid="uid://cij3tna3vvi65" path="res://scenes/beehave/trees/ActAggro.tscn" id="19_3laeb"]
 [ext_resource type="PackedScene" uid="uid://cce0kkdsdv4rt" path="res://scenes/components/WellbeingComponent.tscn" id="19_ds4io"]
 [ext_resource type="PackedScene" uid="uid://c4jualprb4d24" path="res://scenes/beehave/compare_actions/IsStateGettingSuspicious.tscn" id="19_l4d6w"]
 [ext_resource type="PackedScene" uid="uid://cryed6dtlo286" path="res://scenes/beehave/set_actions/SetRotateTowardsTargetTrue.tscn" id="20_1isai"]
@@ -44,6 +43,14 @@
 [ext_resource type="PackedScene" uid="uid://cw3sck872787g" path="res://scenes/beehave/set_actions/SetGotHitFalse.tscn" id="28_mcqya"]
 [ext_resource type="PackedScene" uid="uid://cfuiyhthukrn0" path="res://scenes/beehave/attacks/SingleRandomAttack.tscn" id="33_gbbqm"]
 [ext_resource type="Script" path="res://scripts/beehave/execute_expression.gd" id="34_eiv28"]
+[ext_resource type="Script" path="res://scripts/beehave/reset_wait.gd" id="38_tf3tw"]
+[ext_resource type="Script" path="res://scripts/beehave/wait.gd" id="39_aaww2"]
+[ext_resource type="PackedScene" uid="uid://b4vbjom07vuli" path="res://scenes/beehave/set_actions/SetWalkSpeed.tscn" id="40_6x0m4"]
+[ext_resource type="PackedScene" uid="uid://rnknofcns6ch" path="res://scenes/beehave/inputs/InputLeft.tscn" id="41_aqpna"]
+[ext_resource type="PackedScene" uid="uid://bpmbb56ftoyja" path="res://scenes/beehave/inputs/InputRight.tscn" id="42_5ucrb"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_set.gd" id="43_dysgc"]
+[ext_resource type="PackedScene" uid="uid://d1wjh32ysekoi" path="res://scenes/beehave/set_actions/SetRunSpeed.tscn" id="44_a2t2c"]
+[ext_resource type="PackedScene" uid="uid://ppcsagqgu032" path="res://scenes/beehave/inputs/InputForwards.tscn" id="45_kskia"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i1ddg"]
 render_priority = 0
@@ -224,6 +231,8 @@ script = ExtResource("9_aj65e")
 
 [node name="IsStateAggro" parent="BeehaveTree/SelectorComposite/Aggro" instance=ExtResource("23_augt0")]
 
+[node name="SetInterruptTimersFalse" parent="BeehaveTree/SelectorComposite/Aggro" instance=ExtResource("28_5hxv6")]
+
 [node name="AggroTarget" type="Node" parent="BeehaveTree/SelectorComposite/Aggro"]
 script = ExtResource("8_wqauf")
 
@@ -234,8 +243,6 @@ script = ExtResource("9_aj65e")
 script = ExtResource("12_qw7d2")
 left_operand = "get_value(\"can_attack\")"
 right_operand = "true"
-
-[node name="SetInterruptTimersFalse" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack" instance=ExtResource("28_5hxv6")]
 
 [node name="PerformAttack" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack"]
 script = ExtResource("23_4n8cs")
@@ -291,7 +298,115 @@ wait_time = 0.8
 
 [node name="SingleRandomAttack3" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack" instance=ExtResource("33_gbbqm")]
 
-[node name="ActAggro" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget" instance=ExtResource("19_3laeb")]
+[node name="ActAggro" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget"]
+script = ExtResource("9_aj65e")
+
+[node name="SetLookAtTargetTrue" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro" instance=ExtResource("20_1isai")]
+
+[node name="SetLockedOnTrue" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro" instance=ExtResource("21_dq1l1")]
+
+[node name="StayOrChase" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro"]
+script = ExtResource("8_wqauf")
+
+[node name="SquareUpIfClose" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase"]
+script = ExtResource("9_aj65e")
+
+[node name="PlayerDistLessThan" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/SquareUpIfClose"]
+script = ExtResource("12_qw7d2")
+left_operand = "get_value(\"player_dist\")"
+operator = 3
+right_operand = "2.5"
+
+[node name="SetAgentTargetPositionNull" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/SquareUpIfClose"]
+script = ExtResource("43_dysgc")
+key = "\"agent_target_position\""
+value = "null"
+
+[node name="SetCanInvestigateLastAgentPositionTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/SquareUpIfClose"]
+script = ExtResource("43_dysgc")
+key = "\"can_set_investigate_last_agent_position\""
+value = "true"
+
+[node name="ResetWaitBeforeChase" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/SquareUpIfClose"]
+script = ExtResource("38_tf3tw")
+wait_id = 23169934
+
+[node name="InputNone" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/SquareUpIfClose" instance=ExtResource("17_6rhnw")]
+
+[node name="Wait" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/SquareUpIfClose"]
+script = ExtResource("39_aaww2")
+time = 1.0
+wait_id = 61967809
+
+[node name="SquareUp" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/SquareUpIfClose"]
+script = ExtResource("9_aj65e")
+
+[node name="WalkSpeed" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/SquareUpIfClose/SquareUp" instance=ExtResource("40_6x0m4")]
+
+[node name="Strafe" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/SquareUpIfClose/SquareUp"]
+script = ExtResource("23_4n8cs")
+
+[node name="InputLeft" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/SquareUpIfClose/SquareUp/Strafe" instance=ExtResource("41_aqpna")]
+
+[node name="InputRight" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/SquareUpIfClose/SquareUp/Strafe" instance=ExtResource("42_5ucrb")]
+
+[node name="WaitBlock" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/SquareUpIfClose/SquareUp" instance=ExtResource("24_ac52a")]
+wait_id = 23245375
+wait_time = 2.0
+
+[node name="SetCanAttackTrue" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/SquareUpIfClose/SquareUp" instance=ExtResource("24_ugq3t")]
+
+[node name="Chase" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase"]
+script = ExtResource("9_aj65e")
+
+[node name="PlayerDistLessThan" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Chase"]
+script = ExtResource("12_qw7d2")
+left_operand = "get_value(\"player_dist\")"
+operator = 3
+right_operand = "15"
+
+[node name="SetAgentTargetPositionNull" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Chase"]
+script = ExtResource("43_dysgc")
+key = "\"agent_target_position\""
+value = "null"
+
+[node name="SetCanInvestigateLastAgentPositionTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Chase"]
+script = ExtResource("43_dysgc")
+key = "\"can_set_investigate_last_agent_position\""
+value = "true"
+
+[node name="ResetWait" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Chase"]
+script = ExtResource("38_tf3tw")
+wait_id = 61967809
+
+[node name="InputNone" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Chase" instance=ExtResource("17_6rhnw")]
+
+[node name="SetRunSpeed" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Chase" instance=ExtResource("44_a2t2c")]
+
+[node name="WaitBeforeChase" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Chase"]
+script = ExtResource("39_aaww2")
+time = 2.0
+wait_id = 23169934
+
+[node name="InputForwards" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Chase" instance=ExtResource("45_kskia")]
+
+[node name="Investigate" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase"]
+script = ExtResource("8_wqauf")
+
+[node name="LastAgentPosition" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Investigate"]
+script = ExtResource("9_aj65e")
+
+[node name="IsCanSetInvestigateLastAgentPositionTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Investigate/LastAgentPosition"]
+script = ExtResource("12_qw7d2")
+left_operand = "get_value(\"can_set_investigate_last_agent_position\")"
+right_operand = "true"
+
+[node name="SetInvestigateLastAgentPositionFalse" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Investigate/LastAgentPosition"]
+script = ExtResource("43_dysgc")
+key = "\"investigate_last_agent_position\""
+value = "true"
+
+[node name="InvestigateLastPosition" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Investigate" instance=ExtResource("17_4we3r")]
 
 [node name="Suspicious" type="Node" parent="BeehaveTree/SelectorComposite"]
 script = ExtResource("9_aj65e")
