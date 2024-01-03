@@ -30,9 +30,9 @@ func process_player():
 		return
 	
 	if Input.is_action_just_pressed("attack"):
-		parent_state.change_state(attack_state)
 		player.rotation_component.rotate_towards_target = true
-		return
+		player.attack_component.thrust()
+		player.hitbox_component.enabled = false
 	
 	if Input.is_action_just_pressed("block"):
 		parent_state.change_state(parry_state)
@@ -55,4 +55,4 @@ func process_movement_animations() -> void:
 
 
 func exit():
-	pass
+	player.hitbox_component.enabled = true
