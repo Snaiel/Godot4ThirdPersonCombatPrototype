@@ -120,6 +120,13 @@ func _physics_process(_delta: float) -> void:
 		_blackboard.get_value("locked_on", false), 
 		false
 	)
+	
+	if _rotation_component.rotate_towards_target and \
+	_rotation_component.target != null:
+		_head_rotation_component.desired_target_pos = \
+			_rotation_component.target.global_position
+	else:
+		_head_rotation_component.desired_target_pos = Vector3.INF
 
 
 func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:

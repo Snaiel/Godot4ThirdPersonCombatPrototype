@@ -11,6 +11,7 @@ extends CharacterBody3D
 @export var block_component: BlockComponent
 @export var dodge_component: DodgeComponent
 @export var rotation_component: PlayerRotationComponent
+@export var head_rotation_component: HeadRotationComponent
 @export var attack_component: AttackComponent
 @export var parry_component: ParryComponent
 @export var fade_component: FadeComponent
@@ -26,6 +27,7 @@ var holding_down_run: bool = false
 var _holding_down_run_timer: Timer
 
 @onready var dizzy_system: DizzySystem = Globals.dizzy_system
+@onready var backstab_system: BackstabSystem = Globals.backstab_system
 
 
 func _ready() -> void:
@@ -63,6 +65,16 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_released("run"):
 		_holding_down_run_timer.stop()
 		holding_down_run = false
+	
+	if rotation_component.rotate_towards_target and \
+	rotation_component.target != null:
+		head_rotation_component.desired_target_pos = \
+			rotation_component.target.global_position
+	elif backstab_system.backstab_victim != null:
+		head_rotation_component.desired_target_pos = \
+			backstab_system.backstab_victim.global_position
+	else:
+		head_rotation_component.desired_target_pos = Vector3.INF
 
 
 func set_rotation_target_to_lock_on_target() -> void:

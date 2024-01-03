@@ -8,32 +8,34 @@ extends Node3D
 @export var head_idx: int = 6
 @export var rotation_component: RotationComponent
 
-@onready var target: Node3D = $Target
+var desired_target_pos: Vector3 = Vector3.INF
 
 var _default_target_pos: Vector3
 
+@onready var _target: Node3D = $Target
+
 
 func _ready():
-	_default_target_pos = target.position
+	_default_target_pos = _target.position
 
 
 func _process(_delta):
 	skeleton.clear_bones_global_pose_override()
 	
-	target.visible = target_visible
+	_target.visible = target_visible
 	
 	if not enabled:
 		return
 	
-	if rotation_component.rotate_towards_target and rotation_component.target:
-		target.global_position = lerp(
-			target.global_position,
-			rotation_component.target.global_position,
+	if desired_target_pos != Vector3.INF:
+		_target.global_position = lerp(
+			_target.global_position,
+			desired_target_pos,
 			0.2
 		)
 	else:
-		target.position = lerp(
-			target.position,
+		_target.position = lerp(
+			_target.position,
 			_default_target_pos,
 			0.2
 		)
@@ -43,7 +45,7 @@ func _process(_delta):
 	)
 
 	pose = pose.looking_at(
-		skeleton.to_local(target.global_position),
+		skeleton.to_local(_target.global_position),
 		Vector3.UP,
 		true
 	)
