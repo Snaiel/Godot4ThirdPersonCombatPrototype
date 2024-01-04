@@ -230,10 +230,6 @@ script = ExtResource("9_aj65e")
 
 [node name="IsStateAggro" parent="BeehaveTree/SelectorComposite/Aggro" instance=ExtResource("23_augt0")]
 
-[node name="LeafExecuteExpression" type="Node" parent="BeehaveTree/SelectorComposite/Aggro"]
-script = ExtResource("34_eiv28")
-expression_string = "print(\"AGGR\")"
-
 [node name="SetInterruptTimersFalse" parent="BeehaveTree/SelectorComposite/Aggro" instance=ExtResource("28_5hxv6")]
 
 [node name="AggroTarget" type="Node" parent="BeehaveTree/SelectorComposite/Aggro"]

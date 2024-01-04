@@ -46,9 +46,8 @@ func _ready() -> void:
 		func(new_state: String):
 			if new_state == "aggro":
 				_backstab_component.enabled = false
-				_blackboard.set_value("interrupt_timers", true)
-#				if _blackboard.get_value("got_hit", false):
-#					_blackboard.set_value("interrupt_timers", true)
+				if _blackboard.get_value("got_hit", false) == false:
+					_blackboard.set_value("interrupt_timers", true)
 				
 			_blackboard.set_value("notice_state", new_state)
 			
