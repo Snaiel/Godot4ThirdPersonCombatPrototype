@@ -46,37 +46,31 @@ script = ExtResource("2_4t6t0")
 [node name="InputNone" parent="StayIfClose/LookAround/CheckOutArea" instance=ExtResource("4_d3e5r")]
 
 [node name="WaitBlock" parent="StayIfClose/LookAround/CheckOutArea" instance=ExtResource("7_gyiuy")]
-wait_id = 77812432
 wait_time = 2.0
 
 [node name="InputLeft" parent="StayIfClose/LookAround/CheckOutArea" instance=ExtResource("8_n7c65")]
 
 [node name="WaitBlock2" parent="StayIfClose/LookAround/CheckOutArea" instance=ExtResource("7_gyiuy")]
-wait_id = 64776828
 wait_time = 1.0
 
 [node name="InputNone2" parent="StayIfClose/LookAround/CheckOutArea" instance=ExtResource("4_d3e5r")]
 
 [node name="WaitBlock3" parent="StayIfClose/LookAround/CheckOutArea" instance=ExtResource("7_gyiuy")]
-wait_id = 48743948
 wait_time = 5.0
 
 [node name="InputRight" parent="StayIfClose/LookAround/CheckOutArea" instance=ExtResource("9_pe7t2")]
 
 [node name="WaitBlock4" parent="StayIfClose/LookAround/CheckOutArea" instance=ExtResource("7_gyiuy")]
-wait_id = 29930884
 wait_time = 2.0
 
 [node name="InputNone3" parent="StayIfClose/LookAround/CheckOutArea" instance=ExtResource("4_d3e5r")]
 
 [node name="WaitBlock5" parent="StayIfClose/LookAround/CheckOutArea" instance=ExtResource("7_gyiuy")]
-wait_id = 40922584
 wait_time = 5.0
 
 [node name="InputLeft2" parent="StayIfClose/LookAround/CheckOutArea" instance=ExtResource("8_n7c65")]
 
 [node name="WaitBlock6" parent="StayIfClose/LookAround/CheckOutArea" instance=ExtResource("7_gyiuy")]
-wait_id = 67583776
 wait_time = 1.0
 
 [node name="SetLookedAroundTrue" type="Node" parent="StayIfClose/LookAround/CheckOutArea"]

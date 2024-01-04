@@ -37,7 +37,7 @@ var _dead: bool = false
 func _ready() -> void:
 	target = Globals.player
 	_agent.target_position = target.global_position	
-	_rotation_component.target = target
+#	_rotation_component.target = target
 	
 	_default_move_speed = _movement_component.speed
 	_blackboard.set_value("move_speed", _default_move_speed)
@@ -59,8 +59,15 @@ func _ready() -> void:
 				)
 	)
 	
-	_blackboard.set_value("can_attack", true)	
+	_notice_component.perceives_player.connect(
+		func(flag: bool):
+			if flag and \
+			_blackboard.get_value("notice_state") == "aggro":
+				print("BRUH")
+				_blackboard.set_value("interrupt_timers", true)
+	)
 	
+	_blackboard.set_value("can_attack", true)	
 	_blackboard.set_value("dead", false)
 
 
@@ -107,6 +114,9 @@ func _physics_process(_delta: float) -> void:
 			_notice_component.current_state,
 			_blackboard.get_value(
 				"agent_target_position"
+			),
+			_blackboard.get_value(
+				"interrupt_timers"
 			)
 		)
 	
@@ -248,6 +258,7 @@ func _on_health_component_zero_health() -> void:
 	_backstab_component.enabled = false
 	_dizzy_component.enabled = false
 	_head_rotation_component.enabled = false
+	_notice_component.enabled = false
 	
 	_blackboard.set_value("dead", true)
 	_blackboard.set_value("interrupt_timers", true)

@@ -145,8 +145,7 @@ entity = NodePath("..")
 lock_on_component = NodePath("../LockOnComponent")
 health_component = NodePath("../HealthComponent")
 
-[node name="NoticeComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("10_rxy6t")]
-health_component = NodePath("../HealthComponent")
+[node name="NoticeComponent" parent="." instance=ExtResource("10_rxy6t")]
 
 [node name="AttackComponent" parent="." node_paths=PackedStringArray("_attack_animations", "_movement_component", "_weapon") instance=ExtResource("16_hpgg5")]
 _attack_animations = NodePath("../CharacterModel/AttackAnimations")
@@ -230,6 +229,10 @@ expression_string = "print(\"WAIT DONE\")"
 script = ExtResource("9_aj65e")
 
 [node name="IsStateAggro" parent="BeehaveTree/SelectorComposite/Aggro" instance=ExtResource("23_augt0")]
+
+[node name="LeafExecuteExpression" type="Node" parent="BeehaveTree/SelectorComposite/Aggro"]
+script = ExtResource("34_eiv28")
+expression_string = "print(\"AGGR\")"
 
 [node name="SetInterruptTimersFalse" parent="BeehaveTree/SelectorComposite/Aggro" instance=ExtResource("28_5hxv6")]
 
@@ -408,6 +411,27 @@ value = "true"
 
 [node name="InvestigateLastPosition" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Investigate" instance=ExtResource("17_4we3r")]
 
+[node name="WaitBlock" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Investigate/InvestigateLastPosition/StayIfClose/LookAround/CheckOutArea" index="2"]
+wait_id = 46595952
+
+[node name="WaitBlock2" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Investigate/InvestigateLastPosition/StayIfClose/LookAround/CheckOutArea" index="4"]
+wait_id = 69733578
+
+[node name="WaitBlock3" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Investigate/InvestigateLastPosition/StayIfClose/LookAround/CheckOutArea" index="6"]
+wait_id = 51816124
+
+[node name="WaitBlock4" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Investigate/InvestigateLastPosition/StayIfClose/LookAround/CheckOutArea" index="8"]
+wait_id = 68693030
+
+[node name="WaitBlock5" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Investigate/InvestigateLastPosition/StayIfClose/LookAround/CheckOutArea" index="10"]
+wait_id = 31300344
+
+[node name="WaitBlock6" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Investigate/InvestigateLastPosition/StayIfClose/LookAround/CheckOutArea" index="12"]
+wait_id = 48134024
+
+[node name="Wait" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Investigate/InvestigateLastPosition/MoveToTarget" index="1"]
+wait_id = 82140480
+
 [node name="Suspicious" type="Node" parent="BeehaveTree/SelectorComposite"]
 script = ExtResource("9_aj65e")
 
@@ -423,6 +447,27 @@ script = ExtResource("17_sr624")
 [node name="SetLookAtTargetTrue" parent="BeehaveTree/SelectorComposite/Suspicious" instance=ExtResource("20_1isai")]
 
 [node name="CheckSuspicion" parent="BeehaveTree/SelectorComposite/Suspicious" instance=ExtResource("17_4we3r")]
+
+[node name="WaitBlock" parent="BeehaveTree/SelectorComposite/Suspicious/CheckSuspicion/StayIfClose/LookAround/CheckOutArea" index="2"]
+wait_id = 96447004
+
+[node name="WaitBlock2" parent="BeehaveTree/SelectorComposite/Suspicious/CheckSuspicion/StayIfClose/LookAround/CheckOutArea" index="4"]
+wait_id = 29712614
+
+[node name="WaitBlock3" parent="BeehaveTree/SelectorComposite/Suspicious/CheckSuspicion/StayIfClose/LookAround/CheckOutArea" index="6"]
+wait_id = 60900737
+
+[node name="WaitBlock4" parent="BeehaveTree/SelectorComposite/Suspicious/CheckSuspicion/StayIfClose/LookAround/CheckOutArea" index="8"]
+wait_id = 54819208
+
+[node name="WaitBlock5" parent="BeehaveTree/SelectorComposite/Suspicious/CheckSuspicion/StayIfClose/LookAround/CheckOutArea" index="10"]
+wait_id = 75627888
+
+[node name="WaitBlock6" parent="BeehaveTree/SelectorComposite/Suspicious/CheckSuspicion/StayIfClose/LookAround/CheckOutArea" index="12"]
+wait_id = 31695564
+
+[node name="Wait" parent="BeehaveTree/SelectorComposite/Suspicious/CheckSuspicion/MoveToTarget" index="1"]
+wait_id = 10868496
 
 [node name="Idle" type="Node" parent="BeehaveTree/SelectorComposite"]
 script = ExtResource("9_aj65e")
@@ -446,3 +491,5 @@ script = ExtResource("12_q7h63")
 
 [editable path="CharacterModel"]
 [editable path="CharacterModel/Armature_004/GeneralSkeleton/Sword"]
+[editable path="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Investigate/InvestigateLastPosition"]
+[editable path="BeehaveTree/SelectorComposite/Suspicious/CheckSuspicion"]

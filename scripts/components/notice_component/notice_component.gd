@@ -3,12 +3,14 @@ extends Node3D
 
 
 signal state_changed(new_state: String)
+signal perceives_player(flag: bool)
+
 
 @export_category("Configuration")
 @export var debug: bool
+@export var enabled: bool = true
 @export var notice_triangle_scene: PackedScene
 @export var off_camera_notice_triangle_scene: PackedScene
-@export var health_component: HealthComponent
 @export var initial_state: NoticeComponentState
 @export var aggro_state: NoticeComponentAggroState
 
@@ -40,7 +42,7 @@ var distance_to_player: float
 var notice_triangle: NoticeTriangle
 var off_camera_notice_triangle: OffCameraNoticeTriangle
 
-var _disabled: bool = false
+var _is_inside_outer_threshold: bool = false
 
 @onready var entity: CharacterBody3D = get_parent()
 @onready var player: Player = Globals.player
@@ -54,13 +56,6 @@ func _ready() -> void:
 	off_camera_notice_triangle = off_camera_notice_triangle_scene.instantiate()
 	Globals.user_interface.off_camera_notice_triangles.add_child(off_camera_notice_triangle)
 	
-	health_component.zero_health.connect(
-		func():
-			current_state.exit()
-			notice_triangle.visible = false
-			_disabled = true
-	)
-	
 	current_state = initial_state
 	current_state.enter()
 	
@@ -70,7 +65,7 @@ func _ready() -> void:
 func _physics_process(delta) -> void:
 	current_state.debug = debug
 	
-	if _disabled:
+	if not enabled:
 		return
 	
 	# the angle of the player relative to where the entity is facing
@@ -91,6 +86,15 @@ func _physics_process(delta) -> void:
 	off_camera_notice_triangle.visible = not in_camera_frustum() and \
 		not current_state is NoticeComponentIdleState
 	off_camera_notice_triangle.process_desired_rotation(entity)
+	
+	
+	if inside_outer_threshold() and not _is_inside_outer_threshold:
+		_is_inside_outer_threshold = true
+		perceives_player.emit(true)
+	elif not inside_outer_threshold() and _is_inside_outer_threshold:
+		_is_inside_outer_threshold = false
+		perceives_player.emit(false)
+	
 	
 	current_state.physics_process(delta)
 
