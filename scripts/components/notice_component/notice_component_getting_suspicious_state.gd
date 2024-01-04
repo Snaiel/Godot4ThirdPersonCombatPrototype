@@ -30,6 +30,33 @@ func enter() -> void:
 	_notice_val = 0.0
 	_back_to_idle_timer.start()
 	_can_go_back_to_idle = false
+	
+	notice_component\
+		.notice_triangle\
+		.visible = true
+	notice_component\
+		.off_camera_notice_triangle\
+		.visible = true
+	
+	notice_component\
+		.notice_triangle\
+		.modulate\
+		.a = 1.0
+	notice_component\
+		.off_camera_notice_triangle\
+		.modulate\
+		.a = 1.0
+	
+	notice_component\
+		.notice_triangle\
+		.background_triangle\
+		.self_modulate\
+		.a = 1.0
+	notice_component\
+		.off_camera_notice_triangle\
+		.background_triangle\
+		.self_modulate\
+		.a = 1.0
 
 
 func physics_process(delta) -> void:

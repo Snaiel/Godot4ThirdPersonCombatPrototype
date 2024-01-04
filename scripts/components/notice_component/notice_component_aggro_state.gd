@@ -82,7 +82,7 @@ func physics_process(delta) -> void:
 				.process_alpha(0.0)
 	
 	if not notice_component.inside_outer_threshold():
-		
+		prints(_can_start_aggro_timer, _aggro_timer.time_left, _check_to_leave_aggro)
 		if _check_to_leave_aggro:
 			notice_component.change_state(idle_state)
 		elif _can_start_aggro_timer:
@@ -90,6 +90,7 @@ func physics_process(delta) -> void:
 			_can_start_aggro_timer = false
 		
 	elif not _aggro_timer.is_stopped():
+		_can_start_aggro_timer = true
 		_aggro_timer.stop()
 	
 	if not notice_component.in_camera_frustum():
