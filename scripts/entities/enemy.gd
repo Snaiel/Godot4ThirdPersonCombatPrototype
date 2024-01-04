@@ -112,7 +112,7 @@ func _physics_process(_delta: float) -> void:
 		prints(
 			_notice_component.current_state,
 			_blackboard.get_value(
-				"agent_target_position"
+				"can_attack"
 			),
 			_blackboard.get_value(
 				"interrupt_timers"

@@ -243,6 +243,12 @@ script = ExtResource("12_qw7d2")
 left_operand = "get_value(\"can_attack\")"
 right_operand = "true"
 
+[node name="PlayerDistLessThan" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack"]
+script = ExtResource("12_qw7d2")
+left_operand = "get_value(\"player_dist\")"
+operator = 3
+right_operand = "2.5"
+
 [node name="PerformAttack" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack"]
 script = ExtResource("23_4n8cs")
 
