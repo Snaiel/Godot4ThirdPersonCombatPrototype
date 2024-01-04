@@ -31,13 +31,13 @@ func _process(_delta):
 		_target.global_position = lerp(
 			_target.global_position,
 			desired_target_pos,
-			0.2
+			0.02
 		)
 	else:
 		_target.position = lerp(
 			_target.position,
 			_default_target_pos,
-			0.2
+			0.02
 		)
 	
 	var pose: Transform3D = skeleton.get_bone_global_pose(
