@@ -60,6 +60,7 @@ func _ready() -> void:
 	
 	_notice_component.perceives_player.connect(
 		func(flag: bool):
+			_blackboard.set_value("perceives_player", flag)
 			if flag and \
 			_blackboard.get_value("notice_state") == "aggro":
 				print("BRUH")
@@ -112,7 +113,7 @@ func _physics_process(_delta: float) -> void:
 		prints(
 			_notice_component.current_state,
 			_blackboard.get_value(
-				"can_attack"
+				"agent_target_position"
 			),
 			_blackboard.get_value(
 				"interrupt_timers"

@@ -88,6 +88,9 @@ func physics_process(delta) -> void:
 		elif _can_start_aggro_timer:
 			_aggro_timer.start()
 			_can_start_aggro_timer = false
+		
+	elif not _aggro_timer.is_stopped():
+		_aggro_timer.stop()
 	
 	if not notice_component.in_camera_frustum():
 		notice_component.notice_triangle.visible = false

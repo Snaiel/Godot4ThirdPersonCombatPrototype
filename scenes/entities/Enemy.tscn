@@ -249,6 +249,11 @@ left_operand = "get_value(\"player_dist\")"
 operator = 3
 right_operand = "2.5"
 
+[node name="IsPerceivesPlayerTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack"]
+script = ExtResource("12_qw7d2")
+left_operand = "get_value(\"perceives_player\")"
+right_operand = "true"
+
 [node name="PerformAttack" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack"]
 script = ExtResource("23_4n8cs")
 
@@ -322,6 +327,11 @@ left_operand = "get_value(\"player_dist\")"
 operator = 3
 right_operand = "2.5"
 
+[node name="IsPerceivesPlayerTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/SquareUpIfClose"]
+script = ExtResource("12_qw7d2")
+left_operand = "get_value(\"perceives_player\")"
+right_operand = "true"
+
 [node name="SetAgentTargetPositionNull" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/SquareUpIfClose"]
 script = ExtResource("43_dysgc")
 key = "\"agent_target_position\""
@@ -364,16 +374,10 @@ wait_time = 2.0
 [node name="Chase" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase"]
 script = ExtResource("9_aj65e")
 
-[node name="PlayerDistLessThan" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Chase"]
+[node name="IsPerceivesPlayerTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Chase"]
 script = ExtResource("12_qw7d2")
-left_operand = "get_value(\"player_dist\")"
-operator = 3
-right_operand = "15"
-
-[node name="SetAgentTargetPositionNull" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Chase"]
-script = ExtResource("43_dysgc")
-key = "\"agent_target_position\""
-value = "null"
+left_operand = "get_value(\"perceives_player\")"
+right_operand = "true"
 
 [node name="SetCanInvestigateLastAgentPositionTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Chase"]
 script = ExtResource("43_dysgc")
