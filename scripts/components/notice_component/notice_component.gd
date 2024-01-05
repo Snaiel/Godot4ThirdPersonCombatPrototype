@@ -5,6 +5,7 @@ extends Node3D
 @export_category("Configuration")
 @export var debug: bool
 @export var enabled: bool = true
+@export var entity: Enemy
 @export var notice_triangle_scene: PackedScene
 @export var off_camera_notice_triangle_scene: PackedScene
 @export var initial_state: NoticeComponentState
@@ -28,8 +29,6 @@ extends Node3D
 @export var background_color: Color
 @export var expand_curve: Curve
 
-var position_to_check: Vector3
-
 var current_state: NoticeComponentState
 var previous_state: NoticeComponentState
 
@@ -41,7 +40,6 @@ var off_camera_notice_triangle: OffCameraNoticeTriangle
 
 var _is_inside_outer_threshold: bool = false
 
-@onready var entity: CharacterBody3D = get_parent()
 @onready var player: Player = Globals.player
 @onready var camera: Camera3D = Globals.camera_controller.cam
 
@@ -55,8 +53,6 @@ func _ready() -> void:
 	
 	current_state = initial_state
 	current_state.enter()
-	
-	position_to_check = Vector3.INF
 
 
 func _physics_process(delta) -> void:
@@ -120,16 +116,6 @@ func change_state(new_state: NoticeComponentState) -> void:
 		new_state_string = "aggro"
 	
 	blackboard.set_value("notice_state", new_state_string)
-	
-	if position_to_check != Vector3.INF:
-		blackboard.set_value(
-			"agent_target_position",
-			position_to_check
-		)
-
-
-func get_position_to_check() -> Vector3:
-	return position_to_check
 
 
 func inside_inner_threshold() -> bool:

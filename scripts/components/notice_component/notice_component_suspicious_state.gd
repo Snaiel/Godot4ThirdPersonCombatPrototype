@@ -53,14 +53,10 @@ func enter() -> void:
 	if notice_component.previous_state is NoticeComponentGettingAggroState:
 		_expand_x = 1.0
 	else:
-		notice_component.position_to_check = notice_component.player.global_position
-	
-#	prints(
-#		notice_component.distance_to_player,
-#		notice_component.outer_distance,
-#		before_getting_aggro_dist_threshold * \
-#			notice_component.outer_distance
-#	)
+		notice_component.blackboard.set_value(
+			"agent_target_position",
+			notice_component.entity.target.global_position
+		)
 	
 	if notice_component.distance_to_player > \
 		before_getting_aggro_dist_threshold * \

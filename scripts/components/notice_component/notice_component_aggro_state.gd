@@ -26,14 +26,17 @@ func _ready():
 
 
 func enter() -> void:
-	notice_component.position_to_check = Vector3.INF
 	
 	notice_component.blackboard.set_value(
 		"agent_target_position",
 		null
 	)
+	
 	if notice_component.blackboard.get_value("got_hit", false) == false:
-		notice_component.blackboard.set_value("interrupt_timers", true)
+		notice_component.blackboard.set_value(
+			"interrupt_timers",
+			true
+		)
 	
 	_expand_x = 0
 	_check_to_leave_aggro = false
