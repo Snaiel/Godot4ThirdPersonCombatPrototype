@@ -86,6 +86,10 @@ func _physics_process(delta) -> void:
 		blackboard.set_value("perceives_player", true)
 		if current_state is NoticeComponentAggroState:
 			blackboard.set_value("interrupt_timers", true)
+			blackboard.set_value(
+				"agent_target_position",
+				null
+			)
 	elif not inside_outer_threshold() and _is_inside_outer_threshold:
 		_is_inside_outer_threshold = false
 		blackboard.set_value("perceives_player", false)
