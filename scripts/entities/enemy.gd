@@ -42,35 +42,6 @@ func _ready() -> void:
 	_default_move_speed = _movement_component.speed
 	_blackboard.set_value("move_speed", _default_move_speed)
 	
-	_notice_component.state_changed.connect(
-		func(new_state: String):
-			if new_state == "aggro":
-				_blackboard.set_value(
-					"agent_target_position",
-					null
-				)
-				if _blackboard.get_value("got_hit", false) == false:
-					_blackboard.set_value("interrupt_timers", true)
-				
-			_blackboard.set_value("notice_state", new_state)
-			
-			if _notice_component.position_to_check != Vector3.INF:
-				_blackboard.set_value(
-					"agent_target_position",
-					_notice_component.position_to_check
-				)
-	)
-	
-	_notice_component.perceives_player.connect(
-		func(flag: bool):
-			_blackboard.set_value("perceives_player", flag)
-			_backstab_component.enabled = not flag
-			
-			if flag and \
-			_blackboard.get_value("notice_state") == "aggro":
-				_blackboard.set_value("interrupt_timers", true)
-	)
-	
 	_blackboard.set_value("can_attack", true)	
 	_blackboard.set_value("dead", false)
 
@@ -144,6 +115,11 @@ func _physics_process(_delta: float) -> void:
 	_movement_component.speed = _blackboard.get_value(
 		"move_speed",
 		_default_move_speed
+	)
+	
+	_backstab_component.enabled = _blackboard.get_value(
+		"perceives_player",
+		false
 	)
 	
 	

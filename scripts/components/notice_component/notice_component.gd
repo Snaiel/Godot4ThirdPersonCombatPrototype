@@ -2,10 +2,6 @@ class_name NoticeComponent
 extends Node3D
 
 
-signal state_changed(new_state: String)
-signal perceives_player(flag: bool)
-
-
 @export_category("Configuration")
 @export var debug: bool
 @export var enabled: bool = true
@@ -13,6 +9,7 @@ signal perceives_player(flag: bool)
 @export var off_camera_notice_triangle_scene: PackedScene
 @export var initial_state: NoticeComponentState
 @export var aggro_state: NoticeComponentAggroState
+@export var blackboard: Blackboard
 
 @export_category("Notice Thresholds")
 @export var inner_angle: float = 50.0
@@ -90,10 +87,12 @@ func _physics_process(delta) -> void:
 	
 	if inside_outer_threshold() and not _is_inside_outer_threshold:
 		_is_inside_outer_threshold = true
-		perceives_player.emit(true)
+		blackboard.set_value("perceives_player", true)
+		if current_state is NoticeComponentAggroState:
+			blackboard.set_value("interrupt_timers", true)
 	elif not inside_outer_threshold() and _is_inside_outer_threshold:
 		_is_inside_outer_threshold = false
-		perceives_player.emit(false)
+		blackboard.set_value("perceives_player", false)
 	
 	
 	current_state.physics_process(delta)
@@ -120,7 +119,13 @@ func change_state(new_state: NoticeComponentState) -> void:
 	elif new_state is NoticeComponentAggroState:
 		new_state_string = "aggro"
 	
-	state_changed.emit(new_state_string)
+	blackboard.set_value("notice_state", new_state_string)
+	
+	if position_to_check != Vector3.INF:
+		blackboard.set_value(
+			"agent_target_position",
+			position_to_check
+		)
 
 
 func get_position_to_check() -> Vector3:
