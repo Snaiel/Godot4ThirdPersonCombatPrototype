@@ -10,6 +10,11 @@ func enter() -> void:
 	notice_component.notice_triangle.visible = false
 	notice_component.notice_triangle.self_modulate = Color.WHITE
 	notice_component.notice_triangle.inner_triangle.self_modulate = notice_component.suspicion_color
+	
+	notice_component.blackboard.set_value(
+		"agent_target_position",
+		null
+	)
 
 
 func physics_process(_delta) -> void:
