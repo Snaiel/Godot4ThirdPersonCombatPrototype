@@ -121,6 +121,12 @@ func _physics_process(_delta: float) -> void:
 			),
 			_blackboard.get_value(
 				"interrupt_timers"
+			),
+			_blackboard.get_value(
+				"locked_on"
+			),
+			_blackboard.get_value(
+				"notice_state"
 			)
 		)
 	

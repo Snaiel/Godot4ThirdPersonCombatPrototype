@@ -9,7 +9,7 @@ extends Leaf
 
 func tick(_actor: Node, blackboard: Blackboard) -> int:
 	if not enabled:
-		pass
+		return FAILURE
 	
 	_expression.execute([], blackboard)
 	
