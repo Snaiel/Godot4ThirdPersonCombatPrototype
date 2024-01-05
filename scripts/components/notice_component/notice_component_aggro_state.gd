@@ -26,6 +26,8 @@ func _ready():
 
 
 func enter() -> void:
+	notice_component.position_to_check = Vector3.INF
+	
 	_expand_x = 0
 	_check_to_leave_aggro = false
 	_can_start_aggro_timer = true

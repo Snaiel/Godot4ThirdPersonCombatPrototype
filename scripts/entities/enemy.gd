@@ -45,6 +45,10 @@ func _ready() -> void:
 	_notice_component.state_changed.connect(
 		func(new_state: String):
 			if new_state == "aggro":
+				_blackboard.set_value(
+					"agent_target_position",
+					null
+				)
 				if _blackboard.get_value("got_hit", false) == false:
 					_blackboard.set_value("interrupt_timers", true)
 				
@@ -59,7 +63,6 @@ func _ready() -> void:
 	
 	_notice_component.perceives_player.connect(
 		func(flag: bool):
-			prints("HELLO", flag)
 			_blackboard.set_value("perceives_player", flag)
 			_backstab_component.enabled = not flag
 			
