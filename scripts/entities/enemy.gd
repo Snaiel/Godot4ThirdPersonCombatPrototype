@@ -39,6 +39,11 @@ func _ready() -> void:
 	_agent.target_position = target.global_position	
 #	_rotation_component.target = target
 	
+	_attack_component.can_move.connect(
+		func(flag: bool):
+			_blackboard.set_value("can_move", flag)
+	)
+	
 	_default_move_speed = _movement_component.speed
 	_blackboard.set_value("move_speed", _default_move_speed)
 	
@@ -87,14 +92,10 @@ func _physics_process(_delta: float) -> void:
 	
 	
 	## Debug Prints
-	if debug:
-		prints(
-			_notice_component.current_state,
-			_blackboard.get_value(
-				"perceives_player"
-			),
-			_backstab_component.enabled
-		)
+#	if debug:
+#		prints(
+#			_movement_component.can_move
+#		)
 	
 	## Component Management
 	_rotation_component.rotate_towards_target = _blackboard.get_value(
