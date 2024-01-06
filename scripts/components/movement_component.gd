@@ -3,6 +3,7 @@ extends Node3D
 
 
 @export var debug: bool = false
+@export var enabled: bool = true
 @export var speed: float = 0.0
 @export var entity: CharacterBody3D
 @export var rotation_component: RotationComponent
@@ -30,6 +31,9 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if not enabled:
+		return
+	
 	move_direction = rotation_component.move_direction
 	looking_direction = rotation_component.looking_direction
 	

@@ -13,6 +13,7 @@ extends Node3D
 @export var lock_on_component: LockOnComponent
 @export var health_component: HealthComponent
 @export var movement_component: MovementComponent
+@export var root_motion_component: RootMotionComponent
 @export var attack_component: AttackComponent
 @export var instability_component: InstabilityComponent
 @export var character: CharacterAnimations
@@ -64,7 +65,7 @@ func _process(_delta):
 
 func process_hit(weapon: Sword):
 	if dizzy_system.dizzy_victim == self and weapon.get_entity() == player:
-		character.root_motion_enabled = false
+		root_motion_component.enabled = true
 		health_component.deal_max_damage = true
 		dizzy_system.dizzy_victim_killed = true
 
@@ -83,7 +84,7 @@ func _on_instability_component_full_instability():
 	dizzy_system.dizzy_victim_killed = false
 	
 	if instability_component.full_instability_from_parry:
-		character.root_motion_enabled = false
+		root_motion_component.enabled = true
 		character.dizzy_animations.dizzy_from_parry()
 		_dizzy_timer.start(dizzy_from_parry_length)
 		blackboard.set_value("rotate_towards_target", true)
@@ -132,4 +133,4 @@ func _come_out_of_dizzy() -> void:
 func _back_to_normal() -> void:
 	blackboard.set_value("interrupt_timers", false)
 	blackboard.set_value("dizzy", false)
-	character.root_motion_enabled = true
+	root_motion_component.enabled = false

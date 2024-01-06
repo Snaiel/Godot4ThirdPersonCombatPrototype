@@ -15,6 +15,7 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var _rotation_component: RotationComponent = $EnemyRotationComponent
 @onready var _head_rotation_component: HeadRotationComponent = $HeadRotationComponent
 @onready var _movement_component: MovementComponent = $MovementComponent
+@onready var _root_motion_component: RootMotionComponent = $RootMotionComponent
 @onready var _lock_on_component: LockOnComponent = $LockOnComponent
 @onready var _hitbox_component: HitboxComponent = $HitboxComponent
 @onready var _health_component: HealthComponent = $HealthComponent
@@ -234,7 +235,7 @@ func _on_health_component_zero_health() -> void:
 	if _dead:
 		return
 	
-	_character.root_motion_enabled = false
+	_root_motion_component.enabled = true
 	
 	death.emit(self)
 	_dead = true
