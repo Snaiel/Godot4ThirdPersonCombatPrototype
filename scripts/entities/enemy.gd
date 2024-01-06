@@ -87,11 +87,14 @@ func _physics_process(_delta: float) -> void:
 	
 	
 	## Debug Prints
-#	if debug:
-#		prints(
-#			_notice_component.current_state,
-#			_agent.is_target_reachable()
-#		)
+	if debug:
+		prints(
+			_notice_component.current_state,
+			_blackboard.get_value(
+				"perceives_player"
+			),
+			_backstab_component.enabled
+		)
 	
 	## Component Management
 	_rotation_component.rotate_towards_target = _blackboard.get_value(
@@ -108,7 +111,7 @@ func _physics_process(_delta: float) -> void:
 		_default_move_speed
 	)
 	
-	_backstab_component.enabled = _blackboard.get_value(
+	_backstab_component.enabled = not _blackboard.get_value(
 		"perceives_player",
 		false
 	)
