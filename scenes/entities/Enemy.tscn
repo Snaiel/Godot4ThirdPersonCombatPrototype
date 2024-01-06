@@ -357,6 +357,30 @@ script = ExtResource("9_aj65e")
 [node name="StayOrChase" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro"]
 script = ExtResource("8_wqauf")
 
+[node name="Unreachable" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase"]
+script = ExtResource("9_aj65e")
+
+[node name="IsTargetReachableFalse" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Unreachable"]
+script = ExtResource("12_qw7d2")
+left_operand = "get_value(\"target_reachable\")"
+right_operand = "false"
+
+[node name="SequenceComposite" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Unreachable"]
+script = ExtResource("9_aj65e")
+
+[node name="WalkSpeed" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Unreachable/SequenceComposite" instance=ExtResource("40_6x0m4")]
+
+[node name="Strafe" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Unreachable/SequenceComposite"]
+script = ExtResource("23_4n8cs")
+
+[node name="InputLeft" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Unreachable/SequenceComposite/Strafe" instance=ExtResource("41_aqpna")]
+
+[node name="InputRight" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Unreachable/SequenceComposite/Strafe" instance=ExtResource("42_5ucrb")]
+
+[node name="WaitBlock" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Unreachable/SequenceComposite" instance=ExtResource("24_ac52a")]
+wait_id = 65281962
+wait_time = 2.0
+
 [node name="SquareUpIfClose" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase"]
 script = ExtResource("9_aj65e")
 
@@ -411,6 +435,11 @@ script = ExtResource("9_aj65e")
 [node name="IsPerceivesPlayerTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Chase"]
 script = ExtResource("12_qw7d2")
 left_operand = "get_value(\"perceives_player\")"
+right_operand = "true"
+
+[node name="IsTargetReachableTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Chase"]
+script = ExtResource("12_qw7d2")
+left_operand = "get_value(\"target_reachable\")"
 right_operand = "true"
 
 [node name="SetCanInvestigateLastAgentPositionTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Chase"]

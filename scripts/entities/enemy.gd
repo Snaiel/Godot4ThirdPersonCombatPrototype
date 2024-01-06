@@ -56,8 +56,10 @@ func _physics_process(_delta: float) -> void:
 	
 	_blackboard.set_value("debug", debug)
 	
+	_agent.debug_enabled = debug
 	
-	## Target Operations	
+	
+	## Target Operations
 	var player_dist: float = global_position.distance_to(target.global_position)
 	var target_dist: float = _agent.distance_to_target()
 	var target_dir: Vector3 = global_position.direction_to(_agent.target_position)
@@ -68,6 +70,7 @@ func _physics_process(_delta: float) -> void:
 	_blackboard.set_value("target_dist", target_dist)
 	_blackboard.set_value("target_dir", target_dir)
 	_blackboard.set_value("target_dir_angle", target_dir_angle)
+	call_deferred("_set_target_reachable")
 	
 	if _blackboard.get_value("investigate_last_agent_position"):
 		_blackboard.set_value("can_set_investigate_last_agent_position", false)
@@ -84,23 +87,11 @@ func _physics_process(_delta: float) -> void:
 	
 	
 	## Debug Prints
-	if debug:
-		prints(
-			_notice_component.current_state,
-			_blackboard.get_value(
-				"agent_target_position"
-			),
-			_blackboard.get_value(
-				"interrupt_timers"
-			),
-			_blackboard.get_value(
-				"locked_on"
-			),
-			_blackboard.get_value(
-				"notice_state"
-			)
-		)
-	
+#	if debug:
+#		prints(
+#			_notice_component.current_state,
+#			_agent.is_target_reachable()
+#		)
 	
 	## Component Management
 	_rotation_component.rotate_towards_target = _blackboard.get_value(
@@ -148,6 +139,12 @@ func _physics_process(_delta: float) -> void:
 			_rotation_component.target.global_position
 	else:
 		_head_rotation_component.desired_target_pos = Vector3.INF
+
+
+func _set_target_reachable():
+	await get_tree().physics_frame
+	var target_reachable: bool = _agent.is_target_reachable()
+	_blackboard.set_value("target_reachable", target_reachable)
 
 
 func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:

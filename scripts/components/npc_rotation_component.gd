@@ -33,7 +33,11 @@ func _physics_process(delta: float) -> void:
 	if rotate_towards_target:
 		# get the angle towards the lock on target and
 		# smoothyl rotate the player towards it
-		var _next_location: Vector3 = agent.get_next_path_position()
+		var _next_location: Vector3
+		if blackboard.get_value("target_reachable"):
+			_next_location = agent.get_next_path_position()
+		else:
+			_next_location = npc.target.global_position
 		looking_direction = entity.global_position.direction_to(_next_location)
 		_target_look = atan2(-looking_direction.x, -looking_direction.z)
 		
