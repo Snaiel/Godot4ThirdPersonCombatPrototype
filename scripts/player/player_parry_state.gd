@@ -22,6 +22,7 @@ func _ready():
 func enter():
 	player.parry_component.parry()
 	player.block_component.blocking = true
+	player.attack_component.interrupt_attack()
 
 
 func process_player():
