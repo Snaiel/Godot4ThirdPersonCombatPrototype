@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8qyy3wuwlus6"]
+
+[ext_resource type="Script" path="res://scripts/components/motion/root_motion_component.gd" id="1_esfc1"]
+
+[node name="RootMotionComponent" type="Node3D" node_paths=PackedStringArray("entity", "character", "movement_component")]
+script = ExtResource("1_esfc1")
+entity = NodePath("")
+character = NodePath("")
+movement_component = NodePath("")

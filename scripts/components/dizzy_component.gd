@@ -9,11 +9,9 @@ extends Node3D
 @export_category("Configuration")
 @export var debug: bool = false
 @export var enabled: bool = true
-@export var entity: CharacterBody3D
+@export var entity: Enemy
 @export var lock_on_component: LockOnComponent
 @export var health_component: HealthComponent
-@export var movement_component: MovementComponent
-@export var root_motion_component: RootMotionComponent
 @export var attack_component: AttackComponent
 @export var instability_component: InstabilityComponent
 @export var character: CharacterAnimations
@@ -65,7 +63,7 @@ func _process(_delta):
 
 func process_hit(weapon: Sword):
 	if dizzy_system.dizzy_victim == self and weapon.get_entity() == player:
-		root_motion_component.enabled = true
+		entity.set_root_motion(true)
 		health_component.deal_max_damage = true
 		dizzy_system.dizzy_victim_killed = true
 
@@ -84,7 +82,7 @@ func _on_instability_component_full_instability():
 	dizzy_system.dizzy_victim_killed = false
 	
 	if instability_component.full_instability_from_parry:
-		root_motion_component.enabled = true
+		entity.set_root_motion(true)
 		character.dizzy_animations.dizzy_from_parry()
 		_dizzy_timer.start(dizzy_from_parry_length)
 		blackboard.set_value("rotate_towards_target", true)
@@ -107,13 +105,23 @@ func _from_parry_knockback() -> void:
 	var weight: float = clamp(distance, 0.0, 2.0)
 	weight = inverse_lerp(2.0, 0.0, weight)
 	weight = lerp(0.0, 5.0, weight)
-	movement_component.set_secondary_movement(weight, 5, 10, -direction)
+	entity.active_motion_component.set_secondary_movement(
+		weight,
+		5,
+		10,
+		-direction
+	)
 
 
 func _from_damage_knockback() -> void:
 	var opponent_position: Vector3 = player.global_position
 	var direction: Vector3 = global_position.direction_to(opponent_position)
-	movement_component.set_secondary_movement(5, 5, 10, -direction)
+	entity.active_motion_component.set_secondary_movement(
+		5,
+		5,
+		10,
+		-direction
+	)
 
 
 func _come_out_of_dizzy() -> void:
@@ -133,4 +141,4 @@ func _come_out_of_dizzy() -> void:
 func _back_to_normal() -> void:
 	blackboard.set_value("interrupt_timers", false)
 	blackboard.set_value("dizzy", false)
-	root_motion_component.enabled = false
+	entity.set_root_motion(false)

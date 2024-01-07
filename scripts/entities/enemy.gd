@@ -1,14 +1,14 @@
 class_name Enemy
 extends CharacterBody3D
 
+
 signal death(enemy)
+
 
 @export var target: Node3D
 @export var debug: bool = false
-@export var friction: float = 0.05
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
+var active_motion_component: MotionComponent
 
 @onready var _blackboard: Blackboard = $Blackboard
 @onready var _character: CharacterAnimations = $CharacterModel
@@ -44,6 +44,8 @@ func _ready() -> void:
 		func(flag: bool):
 			_blackboard.set_value("can_move", flag)
 	)
+	
+	active_motion_component = _movement_component
 	
 	_default_move_speed = _movement_component.speed
 	_blackboard.set_value("move_speed", _default_move_speed)
@@ -146,6 +148,17 @@ func _physics_process(_delta: float) -> void:
 		_head_rotation_component.desired_target_pos = Vector3.INF
 
 
+func set_root_motion(flag: bool) -> void:
+	if flag:
+		active_motion_component = _root_motion_component
+		_root_motion_component.enabled = true
+		_movement_component.enabled = false
+	else:
+		active_motion_component = _movement_component
+		_root_motion_component.enabled = false
+		_movement_component.enabled = true
+
+
 func _set_target_reachable():
 	await get_tree().physics_frame
 	var target_reachable: bool = _agent.is_target_reachable()
@@ -156,14 +169,14 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 	if Globals.backstab_system.backstab_victim == _backstab_component:
 		_backstab_component.process_hit()
 		_health_component.decrement_health(weapon)
-		_movement_component.knockback(weapon.get_entity().global_position)
+		active_motion_component.knockback(weapon.get_entity().global_position)
 		return
 	
 	if Globals.dizzy_system.dizzy_victim == _dizzy_component:
 		_dizzy_component.process_hit(weapon)
 		_health_component.decrement_health(weapon)
 		if _instability_component.full_instability_from_parry:
-			_movement_component.knockback(weapon.get_entity().global_position)
+			active_motion_component.knockback(weapon.get_entity().global_position)
 		return
 	
 	
@@ -177,7 +190,7 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 	if 0.8 < rng and rng <= 1.0:
 		# 20% chance of parrying
 		
-		_movement_component.knockback(weapon.get_entity().global_position)
+		active_motion_component.knockback(weapon.get_entity().global_position)
 		
 		_parry_component.in_parry_window = true
 		_attack_component.interrupt_attack()
@@ -195,7 +208,7 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 	elif 0.4 <= rng and rng <= 0.8:
 		# 40% chance of blocking
 		
-		_movement_component.knockback(weapon.get_entity().global_position)
+		active_motion_component.knockback(weapon.get_entity().global_position)
 		
 		_block_component.blocking = true
 		_block_component.blocked()
@@ -228,7 +241,7 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 		_blackboard.set_value("interrupt_timers", true)
 		
 		if Globals.dizzy_system.dizzy_victim != _dizzy_component:
-			_movement_component.knockback(weapon.get_entity().global_position)
+			active_motion_component.knockback(weapon.get_entity().global_position)
 
 
 func _on_health_component_zero_health() -> void:
