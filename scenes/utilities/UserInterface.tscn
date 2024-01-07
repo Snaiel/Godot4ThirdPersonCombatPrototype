@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b075d85nmca7s"]
+[gd_scene load_steps=8 format=3 uid="uid://b075d85nmca7s"]
 
 [ext_resource type="Script" path="res://scripts/utilities/user_interface.gd" id="1_2nhxu"]
 [ext_resource type="Texture2D" uid="uid://dishehhur7io2" path="res://assets/white_dot.png" id="1_v2w42"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dt6i863shdkev" path="res://scenes/utilities/NoticeTriangle.tscn" id="4_rjkcx"]
 [ext_resource type="PackedScene" uid="uid://clbe1nrax10m8" path="res://scenes/utilities/WellbeingWidget.tscn" id="5_5c8kv"]
 [ext_resource type="PackedScene" uid="uid://dxqwv56gkjhbf" path="res://scenes/utilities/OffCameraNoticeTriangle.tscn" id="6_for7l"]
+[ext_resource type="Script" path="res://scripts/user_interface/player_health_bar.gd" id="7_d0aas"]
 
 [node name="UserInterface" type="Control"]
 layout_mode = 3
@@ -68,11 +69,18 @@ anchor_top = 0.92
 anchor_right = 0.05
 anchor_bottom = 0.92
 grow_vertical = 0
+script = ExtResource("7_d0aas")
 
 [node name="Background" type="Polygon2D" parent="PlayerHealthBar"]
 self_modulate = Color(0.196078, 0.196078, 0.196078, 1)
-polygon = PackedVector2Array(0, -8, 0, 8, 200, 8, 200, -8)
+polygon = PackedVector2Array(0, -8, 0, 8, 100, 8, 100, -8)
+
+[node name="DelayBar" type="Polygon2D" parent="PlayerHealthBar"]
+self_modulate = Color(0.556863, 0.556863, 0.556863, 1)
+position = Vector2(4, 0)
+polygon = PackedVector2Array(0, -4, 0, 4, 92, 4, 92, -4)
 
 [node name="Health" type="Polygon2D" parent="PlayerHealthBar"]
 self_modulate = Color(0.662745, 0.105882, 0.105882, 1)
-polygon = PackedVector2Array(4, -4, 4, 4, 196, 4, 196, -4)
+position = Vector2(4, 0)
+polygon = PackedVector2Array(0, -4, 0, 4, 92, 4, 92, -4)

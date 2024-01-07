@@ -7,6 +7,7 @@ extends CharacterBody3D
 @export var character: CharacterAnimations
 @export var movement_component: MovementComponent
 @export var hitbox_component: HitboxComponent
+@export var health_component: HealthComponent
 @export var jump_component: JumpComponent
 @export var block_component: BlockComponent
 @export var dodge_component: DodgeComponent
@@ -31,6 +32,8 @@ var _holding_down_run_timer: Timer
 
 
 func _ready() -> void:
+	hitbox_component.weapon_hit.connect(_on_hitbox_component_weapon_hit)
+	
 	attack_component.can_rotate.connect(
 		func(flag: bool):
 			rotation_component.can_rotate = flag
@@ -98,3 +101,12 @@ func process_default_movement_animations() -> void:
 
 func _on_lock_on_system_lock_on(target: LockOnComponent) -> void:
 	lock_on_target = target
+
+
+func _on_hitbox_component_weapon_hit(incoming_weapon: Sword) -> void:
+	if state_machine.current_state is PlayerParryState or \
+	state_machine.current_state is PlayerParriedEnemyHitState or \
+	state_machine.current_state is PlayerBlockState:
+		return
+	
+	health_component.decrement_health(incoming_weapon)

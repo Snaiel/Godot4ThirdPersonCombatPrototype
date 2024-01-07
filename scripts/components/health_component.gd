@@ -10,27 +10,23 @@ signal zero_health
 
 @export_category("Health")
 @export var max_health: float = 100.0
+@export var health: float = max_health:
+	set(value):
+		health = clamp(value, 0.0, max_health)
 
 @export_category("Particles")
 @export var blood_scene: PackedScene
 
 var deal_max_damage: bool = false
 
-var _health: float:
-	set(value):
-		_health = clamp(value, 0.0, max_health)
 
 
 func _ready() -> void:
-	_health = max_health
-
-
-func get_health() -> float:
-	return _health
+	health = max_health
 
 
 func is_alive() -> bool:
-	return _health > 0
+	return health > 0
 
 
 func decrement_health(weapon: Sword) -> void:
@@ -45,12 +41,12 @@ func decrement_health(weapon: Sword) -> void:
 		blood_particle.restart()
 	
 	if deal_max_damage:
-		_health = 0
+		health = 0
 		deal_max_damage = false
 	else:
-		_health -= weapon.get_damage()
+		health -= weapon.get_damage()
 	
 	took_damage.emit()
 	
-	if _health <= 0:
+	if health <= 0:
 		zero_health.emit()
