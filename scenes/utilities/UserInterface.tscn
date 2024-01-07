@@ -84,3 +84,41 @@ polygon = PackedVector2Array(0, -4, 0, 4, 92, 4, 92, -4)
 self_modulate = Color(0.662745, 0.105882, 0.105882, 1)
 position = Vector2(4, 0)
 polygon = PackedVector2Array(0, -4, 0, 4, 92, 4, 92, -4)
+
+[node name="PlayerInstabilityBar" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.875
+anchor_right = 0.5
+anchor_bottom = 0.875
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Glare" type="Node2D" parent="PlayerInstabilityBar"]
+position = Vector2(0, -4)
+
+[node name="Layer1" type="Polygon2D" parent="PlayerInstabilityBar/Glare"]
+self_modulate = Color(1, 0.235294, 0, 0.784314)
+polygon = PackedVector2Array(-96, -10, 96, -10, 136, 0, 96, 10, -96, 10, -136, 0)
+
+[node name="Layer2" type="Polygon2D" parent="PlayerInstabilityBar/Glare"]
+self_modulate = Color(1, 0.235294, 0, 0.588235)
+polygon = PackedVector2Array(-96, -10, 96, -10, 144, 0, 96, 10, -96, 10, -144, 0)
+
+[node name="Layer3" type="Polygon2D" parent="PlayerInstabilityBar/Glare"]
+self_modulate = Color(1, 0.235294, 0, 0.588235)
+polygon = PackedVector2Array(-96, -10, 96, -10, 160, 0, 96, 10, -96, 10, -160, 0)
+
+[node name="Background" type="Polygon2D" parent="PlayerInstabilityBar"]
+self_modulate = Color(0.196078, 0.196078, 0.196078, 1)
+position = Vector2(0, -4)
+polygon = PackedVector2Array(-96, -8, 96, -8, 128, 0, 96, 8, -96, 8, -128, 0)
+
+[node name="Instability" type="Polygon2D" parent="PlayerInstabilityBar"]
+self_modulate = Color(0.854902, 0.721569, 0, 1)
+position = Vector2(0, -4)
+polygon = PackedVector2Array(-116, 0, -96, -4, 96, -4, 116, 0, 96, 4, -96, 4)
+
+[node name="Middle" type="Polygon2D" parent="PlayerInstabilityBar"]
+position = Vector2(0, -4)
+polygon = PackedVector2Array(-2, -6, 2, -6, 2, 6, -2, 6)
