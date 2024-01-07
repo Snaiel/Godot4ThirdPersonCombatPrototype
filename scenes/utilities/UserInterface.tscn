@@ -47,7 +47,6 @@ position = Vector2(31, 28)
 [node name="WellbeingWidgets" type="Node2D" parent="."]
 
 [node name="WellbeingWidget" parent="WellbeingWidgets" instance=ExtResource("5_5c8kv")]
-visible = false
 position = Vector2(105, 32)
 
 [node name="OffCameraNoticeTriangles" type="Node2D" parent="."]
@@ -61,3 +60,19 @@ visible = false
 position = Vector2(560, 396)
 scale = Vector2(0.02, 0.02)
 texture = ExtResource("1_v2w42")
+
+[node name="PlayerHealthBar" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.05
+anchor_top = 0.92
+anchor_right = 0.05
+anchor_bottom = 0.92
+grow_vertical = 0
+
+[node name="Background" type="Polygon2D" parent="PlayerHealthBar"]
+self_modulate = Color(0.196078, 0.196078, 0.196078, 1)
+polygon = PackedVector2Array(0, -8, 0, 8, 200, 8, 200, -8)
+
+[node name="Health" type="Polygon2D" parent="PlayerHealthBar"]
+self_modulate = Color(0.662745, 0.105882, 0.105882, 1)
+polygon = PackedVector2Array(4, -4, 4, 4, 196, 4, 196, -4)

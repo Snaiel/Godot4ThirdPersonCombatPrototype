@@ -1238,6 +1238,7 @@ parameters/Parry/blend_amount = 0
 "parameters/Walking Lock On/current_index" = 0
 
 [node name="RootMotionView" type="RootMotionView" parent="." index="3"]
+visible = false
 animation_path = NodePath("../AnimationTree")
 
 [node name="MovementAnimations" type="Node3D" parent="." index="4" node_paths=PackedStringArray("parent_animations", "anim_tree")]
