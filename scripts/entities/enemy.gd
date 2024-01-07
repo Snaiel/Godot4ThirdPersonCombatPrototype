@@ -37,8 +37,7 @@ var _dead: bool = false
 
 func _ready() -> void:
 	target = Globals.player
-	_agent.target_position = target.global_position	
-#	_rotation_component.target = target
+	_agent.target_position = target.global_position
 	
 	_attack_component.can_move.connect(
 		func(flag: bool):
@@ -97,7 +96,8 @@ func _physics_process(_delta: float) -> void:
 	## Debug Prints
 #	if debug:
 #		prints(
-#			_movement_component.can_move
+#			_blackboard.get_value("agent_target_position"),
+#			_rotation_component.target
 #		)
 	
 	## Component Management
@@ -141,9 +141,9 @@ func _physics_process(_delta: float) -> void:
 	
 	## Head Rotation Component
 	if _blackboard.get_value("agent_target_position") == null and \
-	_rotation_component.target != null:
+	_blackboard.get_value("rotate_towards_target"):
 		_head_rotation_component.desired_target_pos = \
-			_rotation_component.target.global_position
+			target.global_position
 	else:
 		_head_rotation_component.desired_target_pos = Vector3.INF
 
