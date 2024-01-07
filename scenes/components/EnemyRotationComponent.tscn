@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bjbif8ix55ckv"]
 
-[ext_resource type="Script" path="res://scripts/components/npc_rotation_component.gd" id="1_tqgli"]
+[ext_resource type="Script" path="res://scripts/components/rotation/npc_rotation_component.gd" id="1_tqgli"]
 
 [node name="EnemyRotationComponent" type="Node3D" node_paths=PackedStringArray("movement_component", "blackboard", "agent", "entity")]
 script = ExtResource("1_tqgli")

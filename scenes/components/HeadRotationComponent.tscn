@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://7qijntg00gi5"]
 
-[ext_resource type="Script" path="res://scripts/components/head_rotation_component.gd" id="1_2l355"]
+[ext_resource type="Script" path="res://scripts/components/rotation/head_rotation_component.gd" id="1_2l355"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_hnxoy"]
 radius = 0.05
