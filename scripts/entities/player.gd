@@ -8,6 +8,7 @@ extends CharacterBody3D
 @export var movement_component: MovementComponent
 @export var hitbox_component: HitboxComponent
 @export var health_component: HealthComponent
+@export var instability_component: InstabilityComponent
 @export var jump_component: JumpComponent
 @export var block_component: BlockComponent
 @export var dodge_component: DodgeComponent
@@ -110,3 +111,4 @@ func _on_hitbox_component_weapon_hit(incoming_weapon: Sword) -> void:
 		return
 	
 	health_component.decrement_health(incoming_weapon)
+	instability_component.process_hit()

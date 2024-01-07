@@ -13,6 +13,9 @@ signal full_instability
 
 @export_category("Instability")
 @export var max_instability: float = 100.0
+@export var instability: float = 0.0:
+	set(value):
+		instability = clamp(value, 0.0, max_instability)
 
 @export_category("Instability Reduction")
 var reduction_pause_length: float = 2.0
@@ -23,9 +26,7 @@ var full_instability_from_parry: bool = false
 var _instability_reduction_pause_timer: Timer
 var _reduce_instability: bool = false
 
-var _instability: float = 0.0:
-	set(value):
-		_instability = clamp(value, 0.0, max_instability)
+
 
 
 func _ready():
@@ -49,34 +50,30 @@ func _ready():
 
 func _physics_process(_delta):
 	if _reduce_instability:
-		_instability -= reduction_rate
+		instability -= reduction_rate
 
 
 func come_out_of_full_instability(multiplier: float) -> void:
 	_reduce_instability = true
-	_instability = _instability * multiplier
+	instability = instability * multiplier
 
 
 func is_full_instability() -> bool:
-	return _instability >= max_instability
-
-
-func get_instability() -> float:
-	return _instability
+	return instability >= max_instability
 
 
 func increment_instability(value: float, from_parry: bool = false):
 	if is_full_instability():
 		return
 	
-	_instability += value
+	instability += value
 	
 	_reduce_instability = false
 	_instability_reduction_pause_timer.stop()
 	
 	instability_increased.emit()
 	
-	if is_equal_approx(_instability, max_instability):
+	if is_equal_approx(instability, max_instability):
 		full_instability_from_parry = from_parry
 		full_instability.emit()
 	else:

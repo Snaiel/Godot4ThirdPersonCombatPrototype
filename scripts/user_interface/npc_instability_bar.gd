@@ -36,5 +36,6 @@ func process_instability(instability: float) -> void:
 	else:
 		glare.visible = false
 
+
 func instability_increased(_instability: float) -> void:
 	instability_bar_visible = true

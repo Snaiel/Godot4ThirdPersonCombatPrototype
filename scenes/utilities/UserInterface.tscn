@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b075d85nmca7s"]
+[gd_scene load_steps=10 format=3 uid="uid://b075d85nmca7s"]
 
 [ext_resource type="Script" path="res://scripts/utilities/user_interface.gd" id="1_2nhxu"]
 [ext_resource type="Texture2D" uid="uid://dishehhur7io2" path="res://assets/white_dot.png" id="1_v2w42"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://clbe1nrax10m8" path="res://scenes/utilities/WellbeingWidget.tscn" id="5_5c8kv"]
 [ext_resource type="PackedScene" uid="uid://dxqwv56gkjhbf" path="res://scenes/utilities/OffCameraNoticeTriangle.tscn" id="6_for7l"]
 [ext_resource type="Script" path="res://scripts/user_interface/player_health_bar.gd" id="7_d0aas"]
+[ext_resource type="Script" path="res://scripts/user_interface/player_instability_bar.gd" id="8_gg83b"]
+[ext_resource type="Gradient" uid="uid://ch0fcpiyhmlkr" path="res://resources/instability_colour_gradient.tres" id="9_vla3l"]
 
 [node name="UserInterface" type="Control"]
 layout_mode = 3
@@ -93,6 +95,8 @@ anchor_right = 0.5
 anchor_bottom = 0.875
 grow_horizontal = 2
 grow_vertical = 0
+script = ExtResource("8_gg83b")
+color_gradient = ExtResource("9_vla3l")
 
 [node name="Glare" type="Node2D" parent="PlayerInstabilityBar"]
 position = Vector2(0, -4)
@@ -121,4 +125,4 @@ polygon = PackedVector2Array(-116, 0, -96, -4, 96, -4, 116, 0, 96, 4, -96, 4)
 
 [node name="Middle" type="Polygon2D" parent="PlayerInstabilityBar"]
 position = Vector2(0, -4)
-polygon = PackedVector2Array(-2, -6, 2, -6, 2, 6, -2, 6)
+polygon = PackedVector2Array(-2, -5, 0, -6, 2, -5, 2, 5, 0, 6, -2, 5)

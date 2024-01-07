@@ -41,16 +41,16 @@ func _ready():
 	_instability_bar.max_instability = instability_component.max_instability
 	instability_component.instability_increased.connect(
 		func():
-#			print(instability_component.get_instability())
+#			print(instability_component.instability())
 			_instability_bar.instability_increased(
-				instability_component.get_instability()
+				instability_component.instability
 			)
 	)
 
 
 func _process(_delta):
 	_health_bar.process_health(health_component.health)
-	_instability_bar.process_instability(instability_component.get_instability())
+	_instability_bar.process_instability(instability_component.instability)
 	
 	if _lock_on_system.target == lock_on_component or \
 		_health_bar.health_bar_visible or \
@@ -63,7 +63,7 @@ func _process(_delta):
 		_visible = false
 	
 	if not _instability_bar.instability_bar_visible or \
-		is_zero_approx(instability_component.get_instability()) or \
+		is_zero_approx(instability_component.instability) or \
 		is_zero_approx(health_component.health):
 		_instability_bar.instability_bar_visible = false
 		_instability_bar.visible = false
