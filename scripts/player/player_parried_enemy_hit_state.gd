@@ -38,6 +38,8 @@ func enter():
 	player.movement_component.speed = 3
 	player.block_component.blocking = true
 	
+	player.instability_component.process_parry()
+	
 	player.parry_component.reset_parry_cooldown()
 	player.character.parry_animations.parry()
 	player.block_component.anim.stop()

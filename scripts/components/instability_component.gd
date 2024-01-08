@@ -89,3 +89,9 @@ func process_hit():
 	if not active:
 		return
 	increment_instability(25, false)
+
+
+func process_parry():
+	if not active:
+		return
+	increment_instability(15, false)
