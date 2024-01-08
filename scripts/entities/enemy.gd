@@ -202,6 +202,9 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 		
 		weapon.get_parried()
 		
+		_blackboard.set_value("can_attack", false)
+		_blackboard.set_value("attack", false)
+		
 		var timer: SceneTreeTimer = get_tree().create_timer(0.2)
 		timer.timeout.connect(
 			func(): 
