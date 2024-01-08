@@ -190,8 +190,6 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 	if 0.8 < rng and rng <= 1.0:
 		# 20% chance of parrying
 		
-		_instability_component.process_parry()
-		
 		active_motion_component.knockback(weapon.get_entity().global_position)
 		
 		_parry_component.in_parry_window = true
@@ -199,6 +197,8 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 		
 		_character.parry_animations.parry()
 		_block_component.anim.play("parried")
+		
+		_instability_component.process_parry()
 		
 		weapon.get_parried()
 		
@@ -216,16 +216,16 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 		_block_component.blocked()
 		_attack_component.interrupt_attack()
 		
-		_instability_component.active = false
-		_health_component.enabled = false
+		_instability_component.process_block()
 		
-		_instability_component.increment_instability(15.0)
+		_instability_component.enabled = false
+		_health_component.enabled = false
 		
 		var timer: SceneTreeTimer = get_tree().create_timer(0.3)
 		timer.timeout.connect(
 			func(): 
 				_block_component.blocking = false
-				_instability_component.active = true
+				_instability_component.enabled = true
 				_health_component.enabled = true
 		)
 	else:

@@ -7,7 +7,7 @@ signal full_instability
 
 
 @export_category("Configuration")
-@export var active: bool = true
+@export var enabled: bool = true
 @export var hitbox: HitboxComponent
 @export var weapon: Sword
 @export var receive_weapon_parried: bool = true
@@ -43,7 +43,7 @@ func _ready():
 	
 	weapon.parried.connect(
 		func():
-			if not active:
+			if not enabled:
 				return
 			
 			if not receive_weapon_parried:
@@ -86,12 +86,18 @@ func increment_instability(value: float, from_parry: bool = false):
 
 
 func process_hit():
-	if not active:
+	if not enabled:
 		return
 	increment_instability(25, false)
 
 
-func process_parry():
-	if not active:
+func process_block():
+	if not enabled:
 		return
 	increment_instability(15, false)
+
+
+func process_parry():
+	if not enabled:
+		return
+	increment_instability(8, false)
