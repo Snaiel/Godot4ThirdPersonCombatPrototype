@@ -35,7 +35,7 @@
 [ext_resource type="PackedScene" uid="uid://1elkqdybiiu1" path="res://scenes/components/AttackComponent.tscn" id="28_no1kf"]
 [ext_resource type="PackedScene" uid="uid://bg5d27eyqwsfd" path="res://scenes/components/ParryComponent.tscn" id="30_ceaq1"]
 [ext_resource type="PackedScene" uid="uid://mmj6qxe250co" path="res://scenes/components/FadeComponent.tscn" id="31_y5b1e"]
-[ext_resource type="Script" path="res://scripts/components/health_charge_component.gd" id="35_ul56s"]
+[ext_resource type="PackedScene" uid="uid://cbs5mcpj3x6im" path="res://scenes/components/HealthChargeComponent.tscn" id="36_ay03g"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kr42x"]
 render_priority = 0
@@ -83,7 +83,7 @@ layers = 2
 surface_material_override/0 = ExtResource("4_ysu0o")
 
 [node name="Sword" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity") instance=ExtResource("5_vtx6o")]
-transform = Transform3D(-0.18487, -0.251436, 0.950054, 0.318492, -0.929873, -0.18412, 0.929724, 0.268546, 0.251986, -0.323746, 0.879604, -0.227787)
+transform = Transform3D(0.410248, -0.260808, 0.873885, 0.293906, -0.869299, -0.397414, 0.863317, 0.419879, -0.279975, -0.284044, 0.883924, -0.0662375)
 _entity = NodePath("../../../..")
 
 [node name="AnimationTree" parent="CharacterModel" index="2"]
@@ -94,13 +94,13 @@ _entity = NodePath("../../../..")
 "parameters/Dizzy Which One/current_state" = ""
 "parameters/Dizzy Which One/current_index" = -1
 
-[node name="JumpAnimations" parent="CharacterModel" index="5"]
+[node name="JumpAnimations" parent="CharacterModel" index="6"]
 debug = true
 
-[node name="AttackAnimations" parent="CharacterModel" index="6"]
+[node name="AttackAnimations" parent="CharacterModel" index="7"]
 debug = true
 
-[node name="DrinkAnimations" parent="CharacterModel" index="11"]
+[node name="DrinkAnimations" parent="CharacterModel" index="12"]
 debug = true
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("player")]
@@ -282,8 +282,8 @@ block_component = NodePath("../BlockComponent")
 meshes = [NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Alpha_Joints"), NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Alpha_Surface"), NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Sword/Mesh")]
 entity = NodePath("..")
 
-[node name="HealthChargeComponent" type="Node3D" parent="." node_paths=PackedStringArray("character", "health_component")]
-script = ExtResource("35_ul56s")
+[node name="HealthChargeComponent" parent="." node_paths=PackedStringArray("entity", "character", "health_component") instance=ExtResource("36_ay03g")]
+entity = NodePath("..")
 character = NodePath("../CharacterModel")
 health_component = NodePath("../HealthComponent")
 

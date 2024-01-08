@@ -1,0 +1,131 @@
+[gd_scene load_steps=16 format=3 uid="uid://cbs5mcpj3x6im"]
+
+[ext_resource type="Script" path="res://scripts/components/health_charge_component.gd" id="1_4typu"]
+[ext_resource type="Texture2D" uid="uid://dyeohhs3ktuna" path="res://assets/chevron-double-up.png" id="2_be1v1"]
+
+[sub_resource type="Curve" id="Curve_svo57"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.815972, 0.663158), -1.47248, -1.47248, 0, 0, Vector2(1, 0), -3.11579, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ka6ur"]
+curve = SubResource("Curve_svo57")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_a20yy"]
+emission_shape = 1
+emission_sphere_radius = 0.5
+direction = Vector3(0, 1, 0)
+spread = 60.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.1
+initial_velocity_max = 0.2
+scale_min = 0.2
+scale_curve = SubResource("CurveTexture_ka6ur")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_no4lw"]
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.419608, 0.807843, 0.152941, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_dep48"]
+material = SubResource("StandardMaterial3D_no4lw")
+radius = 0.01
+height = 0.02
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_krpnc"]
+emission_shape = 1
+emission_sphere_radius = 0.5
+direction = Vector3(0, 1, 0)
+spread = 60.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.1
+initial_velocity_max = 0.2
+scale_min = 0.2
+scale_max = 0.6
+scale_curve = SubResource("CurveTexture_ka6ur")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hmb0m"]
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.152941, 0.776471, 0.807843, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_pj3xc"]
+material = SubResource("StandardMaterial3D_hmb0m")
+radius = 0.01
+height = 0.02
+
+[sub_resource type="Gradient" id="Gradient_xw6cq"]
+offsets = PackedFloat32Array(0, 0.521401, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_snh6u"]
+gradient = SubResource("Gradient_xw6cq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kl8bx"]
+emission_shape = 1
+emission_sphere_radius = 0.5
+direction = Vector3(0, 0, 0)
+gravity = Vector3(0, 0.05, 0)
+color = Color(0.541176, 1, 0.0823529, 1)
+color_ramp = SubResource("GradientTexture1D_snh6u")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aj284"]
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("2_be1v1")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_d8f4w"]
+material = SubResource("StandardMaterial3D_aj284")
+size = Vector2(0.1, 0.1)
+
+[node name="HealthChargeComponent" type="Node3D" node_paths=PackedStringArray("entity", "character", "health_component")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.173562, 0)
+script = ExtResource("1_4typu")
+entity = NodePath("")
+character = NodePath("")
+health_component = NodePath("")
+
+[node name="GreenSpeckles" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 256
+lifetime = 2.0
+one_shot = true
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_a20yy")
+draw_pass_1 = SubResource("SphereMesh_dep48")
+
+[node name="BlueSpeckles" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 128
+lifetime = 2.0
+one_shot = true
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_krpnc")
+draw_pass_1 = SubResource("SphereMesh_pj3xc")
+
+[node name="Chevrons" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 64
+one_shot = true
+explosiveness = 0.5
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_kl8bx")
+draw_pass_1 = SubResource("QuadMesh_d8f4w")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.222182)
+light_color = Color(0.580392, 0.898039, 0.192157, 1)
+light_energy = 0.2
+light_size = 0.5
+omni_range = 3.0
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.233247)
+light_color = Color(0.580392, 0.898039, 0.192157, 1)
+light_energy = 0.2
+light_size = 0.5
+omni_range = 3.0
