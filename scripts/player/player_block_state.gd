@@ -32,21 +32,23 @@ func _ready():
 					incoming_weapon.get_entity().global_position
 				)
 				
-				player.block_component.blocked()
-				player.instability_component.process_block()
-				
 				_can_reduce_instability = false
 				_pause_before_reducing_instability_timer.start()
+				
+				player.block_component.blocked()
+				player.instability_component.process_block()
 	)
 
 
 func enter():
 	player.block_component.blocking = true
 	player.attack_component.interrupt_attack()
+	
+	_can_reduce_instability = false
+	_pause_before_reducing_instability_timer.start()
 
 
 func process_player():
-	prints(_can_reduce_instability)
 	if Input.is_action_just_pressed("block"):
 		parent_state.change_state(parry_state)
 		return
@@ -68,3 +70,4 @@ func process_player():
 
 func exit():
 	player.block_component.blocking = false
+	_pause_before_reducing_instability_timer.stop()
