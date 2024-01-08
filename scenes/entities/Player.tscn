@@ -305,6 +305,8 @@ groups = Array[String](["enemy"])
 [node name="InstabilityComponent" parent="." node_paths=PackedStringArray("hitbox", "weapon") instance=ExtResource("26_nvu4k")]
 hitbox = NodePath("../HitboxComponent")
 weapon = NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Sword")
+receive_weapon_parried = false
+max_instability = 200.0
 
 [node name="HealthComponent" parent="." instance=ExtResource("26_ypb3h")]
 max_health = 300.0

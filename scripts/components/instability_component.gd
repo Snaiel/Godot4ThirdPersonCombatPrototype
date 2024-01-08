@@ -10,6 +10,7 @@ signal full_instability
 @export var active: bool = true
 @export var hitbox: HitboxComponent
 @export var weapon: Sword
+@export var receive_weapon_parried: bool = true
 
 @export_category("Instability")
 @export var max_instability: float = 100.0
@@ -44,6 +45,10 @@ func _ready():
 		func():
 			if not active:
 				return
+			
+			if not receive_weapon_parried:
+				return
+			
 			increment_instability(35, true)
 	)
 
