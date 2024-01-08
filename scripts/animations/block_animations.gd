@@ -19,23 +19,9 @@ func process_block(blocking: bool) -> void:
 			1.0, 
 			0.2
 		)
-		anim_tree["parameters/Free Jog Or Walk/blend_amount"] = lerp(
-			float(anim_tree["parameters/Free Jog Or Walk/blend_amount"]),
-			1.0,
-			0.2
-		)
-		anim_tree["parameters/Free Walk Speed/scale"] = 0.5
-		anim_tree["parameters/Lock On Walk Speed/scale"] = 0.5
 	else:
 		anim_tree["parameters/Blocking/blend_amount"] = lerp(
 			float(anim_tree["parameters/Blocking/blend_amount"]), 
 			0.0, 
 			0.1
 		)
-		anim_tree["parameters/Free Jog Or Walk/blend_amount"] = lerp(
-			float(anim_tree["parameters/Free Jog Or Walk/blend_amount"]),
-			0.0,
-			0.1
-		)
-		anim_tree["parameters/Free Walk Speed/scale"] = _temp_speed
-		anim_tree["parameters/Lock On Walk Speed/scale"] = _temp_speed

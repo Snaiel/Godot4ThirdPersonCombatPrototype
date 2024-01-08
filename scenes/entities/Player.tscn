@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dujukbu10vbmm"]
+[gd_scene load_steps=39 format=3 uid="uid://dujukbu10vbmm"]
 
 [ext_resource type="Script" path="res://scripts/entities/player.gd" id="1_lgfyt"]
 [ext_resource type="Script" path="res://scripts/player/player_state_machine.gd" id="2_4ql4h"]
@@ -24,6 +24,7 @@
 [ext_resource type="Script" path="res://scripts/player/player_parried_enemy_hit_state.gd" id="20_1olui"]
 [ext_resource type="Script" path="res://scripts/player/player_hit_by_enemy_state.gd" id="21_x55ju"]
 [ext_resource type="PackedScene" uid="uid://bgb0pw8dklo4j" path="res://scenes/components/PlayerRotationComponent.tscn" id="22_23hj7"]
+[ext_resource type="Script" path="res://scripts/player/player_drink_state.gd" id="22_47iaw"]
 [ext_resource type="PackedScene" uid="uid://7qijntg00gi5" path="res://scenes/components/HeadRotationComponent.tscn" id="23_0vsx7"]
 [ext_resource type="PackedScene" uid="uid://k5h6f26p6mgf" path="res://scenes/components/MovementComponent.tscn" id="24_mwhws"]
 [ext_resource type="PackedScene" uid="uid://bp3sx3yshrcdb" path="res://scenes/components/InstabilityComponent.tscn" id="26_nvu4k"]
@@ -34,6 +35,7 @@
 [ext_resource type="PackedScene" uid="uid://1elkqdybiiu1" path="res://scenes/components/AttackComponent.tscn" id="28_no1kf"]
 [ext_resource type="PackedScene" uid="uid://bg5d27eyqwsfd" path="res://scenes/components/ParryComponent.tscn" id="30_ceaq1"]
 [ext_resource type="PackedScene" uid="uid://mmj6qxe250co" path="res://scenes/components/FadeComponent.tscn" id="31_y5b1e"]
+[ext_resource type="Script" path="res://scripts/components/health_charge_component.gd" id="35_ul56s"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kr42x"]
 render_priority = 0
@@ -81,7 +83,7 @@ layers = 2
 surface_material_override/0 = ExtResource("4_ysu0o")
 
 [node name="Sword" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity") instance=ExtResource("5_vtx6o")]
-transform = Transform3D(-0.18487, -0.251436, 0.950054, 0.318492, -0.929873, -0.18412, 0.929724, 0.268546, 0.251986, -0.309994, 0.879604, -0.216823)
+transform = Transform3D(-0.18487, -0.251436, 0.950054, 0.318492, -0.929873, -0.18412, 0.929724, 0.268546, 0.251986, -0.323746, 0.879604, -0.227787)
 _entity = NodePath("../../../..")
 
 [node name="AnimationTree" parent="CharacterModel" index="2"]
@@ -96,6 +98,9 @@ _entity = NodePath("../../../..")
 debug = true
 
 [node name="AttackAnimations" parent="CharacterModel" index="6"]
+debug = true
+
+[node name="DrinkAnimations" parent="CharacterModel" index="11"]
 debug = true
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("player")]
@@ -213,6 +218,11 @@ block_state = NodePath("../Block")
 parry_state = NodePath("../Parry")
 player = NodePath("../..")
 
+[node name="Drink" type="Node" parent="StateMachine" node_paths=PackedStringArray("health_charge_component", "player")]
+script = ExtResource("22_47iaw")
+health_charge_component = NodePath("../../HealthChargeComponent")
+player = NodePath("../..")
+
 [node name="Collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 shape = SubResource("CapsuleShape3D_lnhvg")
@@ -242,7 +252,6 @@ receive_weapon_parried = false
 max_instability = 200.0
 
 [node name="HealthComponent" parent="." instance=ExtResource("26_ypb3h")]
-max_health = 300.0
 blood_scene = ExtResource("27_63iim")
 
 [node name="JumpComponent" parent="." node_paths=PackedStringArray("entity", "animations", "movement_component") instance=ExtResource("26_w2wp7")]
@@ -272,6 +281,11 @@ block_component = NodePath("../BlockComponent")
 [node name="FadeComponent" parent="." node_paths=PackedStringArray("meshes", "entity") instance=ExtResource("31_y5b1e")]
 meshes = [NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Alpha_Joints"), NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Alpha_Surface"), NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Sword/Mesh")]
 entity = NodePath("..")
+
+[node name="HealthChargeComponent" type="Node3D" parent="." node_paths=PackedStringArray("character", "health_component")]
+script = ExtResource("35_ul56s")
+character = NodePath("../CharacterModel")
+health_component = NodePath("../HealthComponent")
 
 [editable path="CharacterModel"]
 [editable path="CharacterModel/Armature_004/GeneralSkeleton/Sword"]

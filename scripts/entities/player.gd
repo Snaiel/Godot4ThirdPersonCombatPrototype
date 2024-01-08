@@ -28,6 +28,8 @@ var locked_on_turning_in_place: bool = false
 var holding_down_run: bool = false
 var _holding_down_run_timer: Timer
 
+@onready var drink_state: PlayerDrinkState = $StateMachine/Drink
+
 @onready var dizzy_system: DizzySystem = Globals.dizzy_system
 @onready var backstab_system: BackstabSystem = Globals.backstab_system
 
@@ -74,6 +76,10 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_released("run"):
 		_holding_down_run_timer.stop()
 		holding_down_run = false
+	
+	if Input.is_action_just_pressed("consume_item") and \
+	not state_machine.current_state is PlayerDrinkState:
+		state_machine.change_state(drink_state)
 	
 	if rotation_component.rotate_towards_target and \
 	rotation_component.target != null:
