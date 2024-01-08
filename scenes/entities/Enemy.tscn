@@ -132,6 +132,10 @@ entity = NodePath("..")
 groups = Array[String](["player"])
 
 [node name="DizzyComponent" parent="." node_paths=PackedStringArray("entity", "lock_on_component", "health_component", "attack_component", "instability_component", "character", "blackboard") instance=ExtResource("10_nld3f")]
+dizzy_from_parry_length = null
+dizzy_from_damage_length = null
+debug = null
+enabled = null
 entity = NodePath("..")
 lock_on_component = NodePath("../LockOnComponent")
 health_component = NodePath("../HealthComponent")

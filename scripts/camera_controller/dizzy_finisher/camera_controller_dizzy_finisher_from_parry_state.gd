@@ -55,7 +55,7 @@ func process_camera() -> void:
 		_recently_had_dizzy_victim = true
 		_recently_killed_dizzy_victim = true
 		
-	elif not dizzy_system.dizzy_victim_killed:
+	elif not dizzy_system.victim_being_killed:
 		_dizzy_behaviour = false
 		
 	elif _recently_killed_dizzy_victim:

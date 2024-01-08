@@ -47,6 +47,11 @@ func _ready() -> void:
 	)
 	add_child(_holding_down_run_timer)
 	
+	dizzy_system.dizzy_victim_killed.connect(
+		func():
+			instability_component.instability = 0.0
+	)
+	
 	state_machine.enter_state_machine()
 
 

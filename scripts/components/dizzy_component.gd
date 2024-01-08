@@ -65,7 +65,7 @@ func process_hit(weapon: Sword):
 	if dizzy_system.dizzy_victim == self and weapon.get_entity() == player:
 		entity.set_root_motion(true)
 		health_component.deal_max_damage = true
-		dizzy_system.dizzy_victim_killed = true
+		dizzy_system.dizzy_victim_killed.emit()
 
 
 func _on_instability_component_full_instability():
@@ -79,7 +79,6 @@ func _on_instability_component_full_instability():
 		return
 	
 	dizzy_system.dizzy_victim = self
-	dizzy_system.dizzy_victim_killed = false
 	
 	if instability_component.full_instability_from_parry:
 		entity.set_root_motion(true)

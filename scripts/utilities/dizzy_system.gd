@@ -2,6 +2,9 @@ class_name DizzySystem
 extends Node3D
 
 
+signal dizzy_victim_killed
+
+
 @export var finisher_distance: float = 1.5
 
 
@@ -25,8 +28,6 @@ var can_kill_victim: bool = false
 # has pressed the attack button to execute them.
 # it will be false once the attack animation concludes.
 var victim_being_killed: bool = false
-
-var dizzy_victim_killed: bool = false
 
 @onready var player: Player = Globals.player
 
