@@ -11,6 +11,9 @@ var _max_instability: float
 
 var _default_instability_scale_x: float
 
+var _disappear_pause_timer: Timer
+var _disappear_pause_length: float = 0.5
+
 @onready var _instability_bar: Node2D = $Instability
 @onready var _glare: Node2D = $Glare
 
@@ -18,12 +21,28 @@ var _default_instability_scale_x: float
 
 
 func _ready():
+	visible = false
+	
 	_default_instability_scale_x = _instability_bar.scale.x
 	_max_instability = _player.instability_component.max_instability
-
+	
+	_disappear_pause_timer = Timer.new()
+	_disappear_pause_timer.wait_time = _disappear_pause_length
+	_disappear_pause_timer.autostart = false
+	_disappear_pause_timer.one_shot = true
+	_disappear_pause_timer.timeout.connect(
+		func():
+			visible = false
+	)
+	add_child(_disappear_pause_timer)
 
 func _process(_delta):
 	_instability = _player.instability_component.instability
+	
+	if _instability > 0:
+		visible = true
+	elif _disappear_pause_timer.is_stopped():
+		_disappear_pause_timer.start()
 	
 	var instability_percentage = _instability / _max_instability
 	
