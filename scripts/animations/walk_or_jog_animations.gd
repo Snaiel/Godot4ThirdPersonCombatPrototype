@@ -3,7 +3,11 @@ extends BaseAnimations
 
 
 var _walk: bool = true
+var _default_walk_speed: float
 
+
+func _ready():
+	_default_walk_speed = anim_tree["parameters/Free Walk Speed/scale"]
 
 func _physics_process(_delta):
 	if _walk:
@@ -18,7 +22,10 @@ func _physics_process(_delta):
 			0.0,
 			0.1
 		)
-		
+
+
+func reset_walk_speed() -> void:
+	set_walk_speed(_default_walk_speed)
 
 
 func set_walk_speed(speed: float):

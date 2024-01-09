@@ -7,11 +7,6 @@ signal finished
 
 
 var _blend_drinking: bool = false
-var _temp_walk_speed: float
-
-
-func _ready():
-	_temp_walk_speed = anim_tree["parameters/Free Walk Speed/scale"]
 
 
 func _physics_process(_delta):
@@ -42,7 +37,7 @@ func receive_gain_health() -> void:
 
 
 func receive_finished() -> void:
-	parent_animations.walk_or_jog_animations.set_walk_speed(_temp_walk_speed)
+	parent_animations.walk_or_jog_animations.reset_walk_speed()
 	parent_animations.walk_or_jog_animations.to_jogging()
 	_blend_drinking = false
 	finished.emit()

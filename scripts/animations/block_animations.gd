@@ -3,6 +3,7 @@ extends BaseAnimations
 
 
 var _temp_speed: float
+var _previous_value: bool
 
 
 func _ready() -> void:
@@ -19,9 +20,17 @@ func process_block(blocking: bool) -> void:
 			1.0, 
 			0.2
 		)
+		if _previous_value == false:
+			parent_animations.walk_or_jog_animations.set_walk_speed(0.5)
+			parent_animations.walk_or_jog_animations.to_walking()
 	else:
 		anim_tree["parameters/Blocking/blend_amount"] = lerp(
 			float(anim_tree["parameters/Blocking/blend_amount"]), 
 			0.0, 
 			0.1
 		)
+		if _previous_value == true:
+			parent_animations.walk_or_jog_animations.reset_walk_speed()
+			parent_animations.walk_or_jog_animations.to_jogging()
+	
+	_previous_value = blocking

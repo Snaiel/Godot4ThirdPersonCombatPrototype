@@ -94,15 +94,6 @@ _entity = NodePath("../../../..")
 "parameters/Dizzy Which One/current_state" = ""
 "parameters/Dizzy Which One/current_index" = -1
 
-[node name="JumpAnimations" parent="CharacterModel" index="6"]
-debug = true
-
-[node name="AttackAnimations" parent="CharacterModel" index="7"]
-debug = true
-
-[node name="DrinkAnimations" parent="CharacterModel" index="12"]
-debug = true
-
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("2_4ql4h")
 player = NodePath("..")
