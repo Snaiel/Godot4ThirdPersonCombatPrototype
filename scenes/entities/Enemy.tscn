@@ -85,6 +85,12 @@ _entity = NodePath("../../../..")
 [node name="Area" parent="CharacterModel/Armature_004/GeneralSkeleton/Sword" index="1"]
 collision_mask = 2
 
+[node name="LockOnAttachment" parent="CharacterModel/Armature_004/GeneralSkeleton" index="3"]
+transform = Transform3D(0.996712, 0.0127535, -0.0800123, -0.0132948, 0.999892, -0.00623629, 0.0799241, 0.00727953, 0.996774, -0.0149768, 1.34118, -0.0582559)
+
+[node name="HeadAttachment" parent="CharacterModel/Armature_004/GeneralSkeleton" index="4"]
+transform = Transform3D(0.99746, -0.0599814, 0.0384181, 0.0522882, 0.982837, 0.176911, -0.0483702, -0.174453, 0.983477, -0.0186634, 1.59724, -0.0287162)
+
 [node name="AnimationTree" parent="CharacterModel" index="2"]
 "parameters/Dizzy Finisher Which One/current_state" = ""
 "parameters/Dizzy Finisher Which One/current_index" = -1
@@ -103,9 +109,10 @@ blackboard = NodePath("../Blackboard")
 agent = NodePath("../NavigationAgent3D")
 entity = NodePath("..")
 
-[node name="HeadRotationComponent" parent="." node_paths=PackedStringArray("skeleton", "rotation_component") instance=ExtResource("6_b30i3")]
+[node name="HeadRotationComponent" parent="." node_paths=PackedStringArray("skeleton", "rotation_component", "head_attachment_target") instance=ExtResource("6_b30i3")]
 skeleton = NodePath("../CharacterModel/Armature_004/GeneralSkeleton")
 rotation_component = NodePath("../EnemyRotationComponent")
+head_attachment_target = NodePath("../CharacterModel/Armature_004/GeneralSkeleton/HeadAttachment/HeadAttachmentTarget")
 
 [node name="MovementComponent" parent="." node_paths=PackedStringArray("entity", "rotation_component") instance=ExtResource("7_7x753")]
 speed = 3.0

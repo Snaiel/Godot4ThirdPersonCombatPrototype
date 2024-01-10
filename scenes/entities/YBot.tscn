@@ -1,4 +1,4 @@
-[gd_scene load_steps=148 format=3 uid="uid://x0oxbha36o2h"]
+[gd_scene load_steps=149 format=3 uid="uid://x0oxbha36o2h"]
 
 [ext_resource type="PackedScene" uid="uid://q3eag1ltsb0y" path="res://models/ybot.blend" id="1_ml8ck"]
 [ext_resource type="Script" path="res://scripts/animations/character_animations.gd" id="2_l62dg"]
@@ -14,6 +14,10 @@
 [ext_resource type="Script" path="res://scripts/animations/dizzy_animations.gd" id="11_to7pc"]
 [ext_resource type="Script" path="res://scripts/animations/drink_animations.gd" id="13_yftnk"]
 [ext_resource type="Script" path="res://scripts/animations/walk_or_jog_animations.gd" id="14_s7odg"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_6ubw0"]
+radius = 0.05
+height = 0.1
 
 [sub_resource type="Animation" id="Animation_263e4"]
 resource_name = "Y Bot"
@@ -1158,6 +1162,15 @@ bone_idx = 4
 
 [node name="AttachmentPoint" type="Node3D" parent="Armature_004/GeneralSkeleton/LockOnAttachment" index="0"]
 transform = Transform3D(1, 2.09768e-20, 0, 2.09768e-20, 1, 0, 0, 0, 1, 0, 0, 0.05)
+
+[node name="HeadAttachment" type="BoneAttachment3D" parent="Armature_004/GeneralSkeleton" index="3"]
+transform = Transform3D(0.99746, -0.0599814, 0.0384181, 0.0522882, 0.982837, 0.176911, -0.0483702, -0.174453, 0.983477, -0.0186634, 1.59724, -0.0287162)
+bone_name = "Head"
+bone_idx = 6
+
+[node name="HeadAttachmentTarget" type="MeshInstance3D" parent="Armature_004/GeneralSkeleton/HeadAttachment" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+mesh = SubResource("SphereMesh_6ubw0")
 
 [node name="AnimationPlayer" parent="." index="1"]
 libraries = {

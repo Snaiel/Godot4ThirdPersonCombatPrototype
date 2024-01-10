@@ -86,6 +86,12 @@ surface_material_override/0 = ExtResource("4_ysu0o")
 transform = Transform3D(0.410248, -0.260808, 0.873885, 0.293906, -0.869299, -0.397414, 0.863317, 0.419879, -0.279975, -0.284044, 0.883924, -0.0662375)
 _entity = NodePath("../../../..")
 
+[node name="LockOnAttachment" parent="CharacterModel/Armature_004/GeneralSkeleton" index="3"]
+transform = Transform3D(0.996712, 0.0127535, -0.0800123, -0.0132948, 0.999892, -0.00623629, 0.0799241, 0.00727953, 0.996774, -0.0149768, 1.34118, -0.0582559)
+
+[node name="HeadAttachment" parent="CharacterModel/Armature_004/GeneralSkeleton" index="4"]
+transform = Transform3D(0.99746, -0.0599814, 0.0384181, 0.0522882, 0.982837, 0.176911, -0.0483702, -0.174453, 0.983477, -0.0186634, 1.59724, -0.0287162)
+
 [node name="AnimationTree" parent="CharacterModel" index="2"]
 "parameters/Dizzy Finisher Which One/current_state" = ""
 "parameters/Dizzy Finisher Which One/current_index" = -1
@@ -221,11 +227,12 @@ shape = SubResource("CapsuleShape3D_lnhvg")
 [node name="PlayerRotationComponent" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("22_23hj7")]
 entity = NodePath("..")
 
-[node name="HeadRotationComponent" parent="." node_paths=PackedStringArray("skeleton", "rotation_component") instance=ExtResource("23_0vsx7")]
+[node name="HeadRotationComponent" parent="." node_paths=PackedStringArray("skeleton", "rotation_component", "head_attachment_target") instance=ExtResource("23_0vsx7")]
 debug = true
 target_visible = true
 skeleton = NodePath("../CharacterModel/Armature_004/GeneralSkeleton")
 rotation_component = NodePath("../PlayerRotationComponent")
+head_attachment_target = NodePath("../CharacterModel/Armature_004/GeneralSkeleton/HeadAttachment/HeadAttachmentTarget")
 
 [node name="MovementComponent" parent="." node_paths=PackedStringArray("entity", "rotation_component") instance=ExtResource("24_mwhws")]
 speed = 3.0

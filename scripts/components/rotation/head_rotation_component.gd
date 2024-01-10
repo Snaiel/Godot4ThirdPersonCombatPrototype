@@ -8,10 +8,12 @@ extends Node3D
 @export var skeleton: Skeleton3D
 @export var head_idx: int = 6
 @export var rotation_component: RotationComponent
+@export var head_attachment_target: Node3D
 
 var desired_target_pos: Vector3 = Vector3.INF
 
 var _default_target_pos: Vector3
+var _last_enabled_value: bool = enabled
 
 @onready var _target: Node3D = $Target
 
@@ -29,26 +31,23 @@ func _physics_process(_delta):
 		head_idx
 	)
 	
-	if enabled:
-		if desired_target_pos != Vector3.INF:
-			_target.global_position = lerp(
-				_target.global_position,
-				desired_target_pos,
-				0.02
-			)
-		else:
-			_target.position = lerp(
-				_target.position,
-				_default_target_pos,
-				0.02
-			)
+	if not enabled:
+		_target.global_position = head_attachment_target.global_position
+		return
+	
+	if desired_target_pos != Vector3.INF:
+		_target.global_position = lerp(
+			_target.global_position,
+			desired_target_pos,
+			0.02
+		)
 	else:
 		_target.position = lerp(
 			_target.position,
-			Vector3.FORWARD * pose.basis.get_rotation_quaternion(),
-			0.15
+			_default_target_pos,
+			0.01
 		)
-
+	
 	pose = pose.looking_at(
 		skeleton.to_local(_target.global_position),
 		Vector3.UP,
@@ -61,3 +60,5 @@ func _physics_process(_delta):
 		0.8,
 		true
 	)
+	
+	_last_enabled_value = enabled
