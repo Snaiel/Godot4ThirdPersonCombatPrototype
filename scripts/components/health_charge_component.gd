@@ -8,6 +8,11 @@ signal finished_drinking
 @export var character: CharacterAnimations
 @export var health_component: HealthComponent
 @export var recovery_amount: float = 60.0
+@export var max_charges: int = 8
+
+var current_charges: int = max_charges:
+	set(value):
+		current_charges = clampi(value, 0, max_charges)
 
 var _show_light: bool = false
 var _desired_light_energy: float
@@ -31,6 +36,10 @@ func _ready():
 	
 	character.drink_animations.gain_health.connect(
 		func():
+			if current_charges == 0:
+				return
+			
+			current_charges -= 1
 			health_component.health += recovery_amount
 			for particle in particles:
 				particle.restart()

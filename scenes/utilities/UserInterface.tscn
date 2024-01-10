@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b075d85nmca7s"]
+[gd_scene load_steps=14 format=3 uid="uid://b075d85nmca7s"]
 
 [ext_resource type="Script" path="res://scripts/utilities/user_interface.gd" id="1_2nhxu"]
 [ext_resource type="Texture2D" uid="uid://dishehhur7io2" path="res://assets/white_dot.png" id="1_v2w42"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scripts/user_interface/player_health_bar.gd" id="7_d0aas"]
 [ext_resource type="Script" path="res://scripts/user_interface/player_instability_bar.gd" id="8_gg83b"]
 [ext_resource type="Gradient" uid="uid://ch0fcpiyhmlkr" path="res://resources/instability_colour_gradient.tres" id="9_vla3l"]
+[ext_resource type="Script" path="res://scripts/user_interface/player_health_charges.gd" id="10_3s5wg"]
 [ext_resource type="Texture2D" uid="uid://b80p5j73bgwl1" path="res://assets/square.png" id="10_nh3cc"]
 [ext_resource type="Texture2D" uid="uid://byhp3ghf2qiij" path="res://assets/flask.svg" id="11_dmhdx"]
 
@@ -134,7 +135,7 @@ polygon = PackedVector2Array(-116, 0, -96, -4, 96, -4, 116, 0, 96, 4, -96, 4)
 position = Vector2(0, -4)
 polygon = PackedVector2Array(-2, -5, 0, -6, 2, -5, 2, 5, 0, 6, -2, 5)
 
-[node name="HealthCharges" type="Control" parent="."]
+[node name="PlayerHealthCharges" type="Control" parent="."]
 layout_mode = 1
 anchor_left = 0.92
 anchor_top = 0.92
@@ -142,20 +143,21 @@ anchor_right = 0.92
 anchor_bottom = 0.92
 grow_horizontal = 0
 grow_vertical = 0
+script = ExtResource("10_3s5wg")
 
-[node name="Background" type="Sprite2D" parent="HealthCharges"]
+[node name="Background" type="Sprite2D" parent="PlayerHealthCharges"]
 self_modulate = Color(0.196078, 0.196078, 0.196078, 1)
 position = Vector2(-40, -40)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("10_nh3cc")
 
-[node name="Flask" type="Sprite2D" parent="HealthCharges"]
+[node name="Flask" type="Sprite2D" parent="PlayerHealthCharges"]
 self_modulate = Color(0.541176, 1, 0.0823529, 1)
 position = Vector2(-40, -40)
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("11_dmhdx")
 
-[node name="Label" type="Label" parent="HealthCharges"]
+[node name="Label" type="Label" parent="PlayerHealthCharges"]
 layout_mode = 0
 offset_left = -32.0
 offset_top = -80.0

@@ -17,6 +17,8 @@ extends CharacterBody3D
 @export var attack_component: AttackComponent
 @export var parry_component: ParryComponent
 @export var fade_component: FadeComponent
+@export var health_charge_component: HealthChargeComponent
+
 @export var weapon: Sword
 
 var input_direction: Vector3 = Vector3.ZERO
