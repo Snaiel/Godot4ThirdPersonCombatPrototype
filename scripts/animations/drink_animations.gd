@@ -27,12 +27,16 @@ func _physics_process(_delta):
 func drink() -> void:
 	parent_animations.walk_or_jog_animations.set_walk_speed(0.5)
 	parent_animations.walk_or_jog_animations.to_walking()
+	parent_animations.walk_or_jog_animations.can_change_state = false
+	parent_animations.walk_or_jog_animations.can_change_speed = false
 	_blend_drinking = true
 	anim_tree["parameters/Drinking Trim/seek_request"] = 1.5
 	anim_tree["parameters/Drinking Speed/scale"] = 1.5
 
 
 func receive_gain_health() -> void:
+	parent_animations.walk_or_jog_animations.can_change_state = true
+	parent_animations.walk_or_jog_animations.can_change_speed = true
 	gain_health.emit()
 
 

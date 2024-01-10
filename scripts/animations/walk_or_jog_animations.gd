@@ -2,6 +2,9 @@ class_name WalkOrJogAnimations
 extends BaseAnimations
 
 
+var can_change_state: bool = true
+var can_change_speed: bool = true
+
 var _walk: bool = true
 var _default_walk_speed: float
 
@@ -10,6 +13,13 @@ func _ready():
 	_default_walk_speed = anim_tree["parameters/Free Walk Speed/scale"]
 
 func _physics_process(_delta):
+#	if debug:
+#		prints(
+#			_walk,
+#			anim_tree["parameters/Free Jog Or Walk/blend_amount"],
+#			anim_tree["parameters/Free Walk Speed/scale"]
+#		)
+	
 	if _walk:
 		anim_tree["parameters/Free Jog Or Walk/blend_amount"] = lerp(
 			float(anim_tree["parameters/Free Jog Or Walk/blend_amount"]),
@@ -29,13 +39,21 @@ func reset_walk_speed() -> void:
 
 
 func set_walk_speed(speed: float):
+	if not can_change_speed:
+		return
 	anim_tree["parameters/Free Walk Speed/scale"] = speed
 	anim_tree["parameters/Lock On Walk Speed/scale"] = speed
 
 
 func to_walking() -> void:
+	if not can_change_state:
+		return
+	print("WALK")
 	_walk = true
 
 
 func to_jogging() -> void:
+	if not can_change_state:
+		return
+	print("JOG")
 	_walk = false

@@ -222,8 +222,6 @@ shape = SubResource("CapsuleShape3D_lnhvg")
 entity = NodePath("..")
 
 [node name="HeadRotationComponent" parent="." node_paths=PackedStringArray("skeleton", "rotation_component") instance=ExtResource("23_0vsx7")]
-debug = true
-target_visible = true
 skeleton = NodePath("../CharacterModel/Armature_004/GeneralSkeleton")
 rotation_component = NodePath("../PlayerRotationComponent")
 
