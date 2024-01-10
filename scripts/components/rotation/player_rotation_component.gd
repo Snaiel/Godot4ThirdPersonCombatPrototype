@@ -5,7 +5,6 @@ extends RotationComponent
 var player: Player
 var can_rotate: bool = true
 
-var _target_look: float
 var _freelook_turn: bool = true
 var _turn_all_the_way: bool = false
 
@@ -14,7 +13,7 @@ var _turn_all_the_way: bool = false
 
 func _ready() -> void:
 	player = entity as Player
-	_target_look = _camera_controller.rotation.y
+	target_look = _camera_controller.rotation.y
 	
 	looking_direction = looking_direction.rotated(Vector3.UP, _camera_controller.rotation.y).normalized()
 
@@ -35,9 +34,9 @@ func _physics_process(delta: float) -> void:
 		# get the angle towards the lock on target and
 		# smoothly rotate the player towards it
 		looking_direction = player.global_position.direction_to(target.global_position)
-		_target_look = atan2(-looking_direction.x, -looking_direction.z)
+		target_look = atan2(-looking_direction.x, -looking_direction.z)
 
-		var rotation_difference: float = abs(player.rotation.y - _target_look)
+		var rotation_difference: float = abs(player.rotation.y - target_look)
 
 		# This makes the rotation smoother when the player is locked
 		# on and transitions from sprinting to walking
@@ -47,14 +46,14 @@ func _physics_process(delta: float) -> void:
 		else:
 			rotation_weight = 0.1
 
-		player.rotation.y = lerp_angle(player.rotation.y, _target_look, rotation_weight)
+		player.rotation.y = lerp_angle(player.rotation.y, target_look, rotation_weight)
 
 		# change move direction so it orbits the locked on target
 		# (not a perfect orbit, needs tuning but not unplayable)
 		if move_direction.length() > 0.2:
 			move_direction = move_direction.rotated(
 				Vector3.UP,
-				_target_look + sign(move_direction.x) * 0.13
+				target_look + sign(move_direction.x) * 0.13
 			).normalized()
 		
 	elif _input_direction.length() > 0.2:
@@ -73,7 +72,7 @@ func _physics_process(delta: float) -> void:
 			looking_direction = looking_direction.rotated(Vector3.UP, _camera_controller.rotation.y).normalized()
 		
 		# retrieve desired angle from looking direction
-		_target_look = atan2(-looking_direction.x, -looking_direction.z)
+		target_look = atan2(-looking_direction.x, -looking_direction.z)
 
 
 		# swivel the camera in the opposite direction so
@@ -135,20 +134,20 @@ func _physics_process(delta: float) -> void:
 		
 		# Makes sure the player is rotated fully to the desired direction
 		# even if pressed for a short period of time
-		if abs(player.rotation.y - _target_look) < 0.01:
+		if abs(player.rotation.y - target_look) < 0.01:
 			_freelook_turn = false
-		player.rotation.y = lerp_angle(player.rotation.y, _target_look, 0.1)
+		player.rotation.y = lerp_angle(player.rotation.y, target_look, 0.1)
 	
 	# if coming from a jump standing still,
 	# rotate slowly during input. don't turn all the way
 	if _freelook_turn and not _turn_all_the_way:
 		_freelook_turn = false
-		player.rotation.y = lerp_angle(player.rotation.y, _target_look, 0.03)		
+		player.rotation.y = lerp_angle(player.rotation.y, target_look, 0.03)		
 
 
 func get_lock_on_rotation_difference() -> float:
 	var _looking_direction: Vector3 = -player.global_position.direction_to(
 		player.lock_on_target.global_position
 	)
-	_target_look = atan2(_looking_direction.x, _looking_direction.z)
-	return abs(player.rotation.y - _target_look)
+	target_look = atan2(_looking_direction.x, _looking_direction.z)
+	return abs(player.rotation.y - target_look)

@@ -9,8 +9,6 @@ extends RotationComponent
 
 var npc: Enemy
 
-var _target_look: float
-
 
 func _ready() -> void:
 	npc = entity as Enemy
@@ -39,10 +37,10 @@ func _physics_process(delta: float) -> void:
 		else:
 			_next_location = npc.target.global_position
 		looking_direction = entity.global_position.direction_to(_next_location)
-		_target_look = atan2(-looking_direction.x, -looking_direction.z)
+		target_look = atan2(-looking_direction.x, -looking_direction.z)
 		
 
-		var rotation_difference: float = abs(entity.rotation.y - _target_look)
+		var rotation_difference: float = abs(entity.rotation.y - target_look)
 
 		# This makes the rotation smoother when the player is locked
 		# on and transitions from sprinting to walking
@@ -52,14 +50,14 @@ func _physics_process(delta: float) -> void:
 		else:
 			rotation_weight = 0.1
 
-		entity.rotation.y = lerp_angle(entity.rotation.y, _target_look, rotation_weight)
+		entity.rotation.y = lerp_angle(entity.rotation.y, target_look, rotation_weight)
 
 		# change move direction so it orbits the locked on target
 		# (not a perfect orbit, needs tuning but not unplayable)
 		if move_direction.length() > 0.2:
 			move_direction = move_direction.rotated(
 				Vector3.UP,
-				_target_look + sign(move_direction.x) * 0.02
+				target_look + sign(move_direction.x) * 0.02
 			).normalized()
 		
 	elif _input_direction.length() > 0.2:
@@ -76,8 +74,8 @@ func _physics_process(delta: float) -> void:
 			0.15
 		)
 		
-		_target_look = atan2(-looking_direction.x, -looking_direction.z)
-		entity.rotation.y = lerp_angle(entity.rotation.y, _target_look, 0.1)
+		target_look = atan2(-looking_direction.x, -looking_direction.z)
+		entity.rotation.y = lerp_angle(entity.rotation.y, target_look, 0.1)
 		
 		move_direction = Vector3.ZERO
 		

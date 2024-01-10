@@ -31,7 +31,7 @@ func _physics_process(_delta):
 		head_idx
 	)
 	
-	if debug: print(_override_amount)
+#	if debug: print(_override_amount)
 	
 	if enabled:
 		if desired_target_pos != Vector3.INF:
