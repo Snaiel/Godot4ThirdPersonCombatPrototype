@@ -13,7 +13,7 @@ extends Node3D
 var desired_target_pos: Vector3 = Vector3.INF
 
 var _default_target_pos: Vector3
-var _last_enabled_value: bool = enabled
+var _override_amount: float = 0.8
 
 @onready var _target: Node3D = $Target
 
@@ -31,21 +31,33 @@ func _physics_process(_delta):
 		head_idx
 	)
 	
-	if not enabled:
-		_target.global_position = head_attachment_target.global_position
-		return
+	if debug: print(_override_amount)
 	
-	if desired_target_pos != Vector3.INF:
-		_target.global_position = lerp(
-			_target.global_position,
-			desired_target_pos,
+	if enabled:
+		if desired_target_pos != Vector3.INF:
+			_target.global_position = lerp(
+				_target.global_position,
+				desired_target_pos,
+				0.02
+			)
+		else:
+			_target.position = lerp(
+				_target.position,
+				_default_target_pos,
+				0.02
+			)
+		
+		_override_amount = lerp(
+			_override_amount,
+			0.8,
 			0.02
 		)
+		
 	else:
-		_target.position = lerp(
-			_target.position,
-			_default_target_pos,
-			0.01
+		_override_amount = lerp(
+			_override_amount,
+			0.0,
+			0.1
 		)
 	
 	pose = pose.looking_at(
@@ -57,8 +69,6 @@ func _physics_process(_delta):
 	skeleton.set_bone_global_pose_override(
 		head_idx,
 		pose,
-		0.8,
+		_override_amount,
 		true
 	)
-	
-	_last_enabled_value = enabled
