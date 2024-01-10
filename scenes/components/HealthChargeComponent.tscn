@@ -82,12 +82,9 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_aj284")
 size = Vector2(0.1, 0.1)
 
-[node name="HealthChargeComponent" type="Node3D" node_paths=PackedStringArray("entity", "character", "health_component")]
+[node name="HealthChargeComponent" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.173562, 0)
 script = ExtResource("1_4typu")
-entity = NodePath("")
-character = NodePath("")
-health_component = NodePath("")
 
 [node name="GreenSpeckles" type="GPUParticles3D" parent="."]
 emitting = false

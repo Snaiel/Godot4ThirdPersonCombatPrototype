@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b075d85nmca7s"]
+[gd_scene load_steps=13 format=3 uid="uid://b075d85nmca7s"]
 
 [ext_resource type="Script" path="res://scripts/utilities/user_interface.gd" id="1_2nhxu"]
 [ext_resource type="Texture2D" uid="uid://dishehhur7io2" path="res://assets/white_dot.png" id="1_v2w42"]
@@ -9,6 +9,11 @@
 [ext_resource type="Script" path="res://scripts/user_interface/player_health_bar.gd" id="7_d0aas"]
 [ext_resource type="Script" path="res://scripts/user_interface/player_instability_bar.gd" id="8_gg83b"]
 [ext_resource type="Gradient" uid="uid://ch0fcpiyhmlkr" path="res://resources/instability_colour_gradient.tres" id="9_vla3l"]
+[ext_resource type="Texture2D" uid="uid://b80p5j73bgwl1" path="res://assets/square.png" id="10_nh3cc"]
+[ext_resource type="Texture2D" uid="uid://byhp3ghf2qiij" path="res://assets/flask.svg" id="11_dmhdx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vd688"]
+font_size = 20
 
 [node name="UserInterface" type="Control"]
 layout_mode = 3
@@ -50,6 +55,7 @@ position = Vector2(31, 28)
 [node name="WellbeingWidgets" type="Node2D" parent="."]
 
 [node name="WellbeingWidget" parent="WellbeingWidgets" instance=ExtResource("5_5c8kv")]
+visible = false
 position = Vector2(105, 32)
 
 [node name="OffCameraNoticeTriangles" type="Node2D" parent="."]
@@ -75,16 +81,17 @@ script = ExtResource("7_d0aas")
 
 [node name="Background" type="Polygon2D" parent="PlayerHealthBar"]
 self_modulate = Color(0.196078, 0.196078, 0.196078, 1)
+position = Vector2(0, -8)
 polygon = PackedVector2Array(0, -8, 0, 8, 100, 8, 100, -8)
 
 [node name="DelayBar" type="Polygon2D" parent="PlayerHealthBar"]
 self_modulate = Color(0.556863, 0.556863, 0.556863, 1)
-position = Vector2(4, 0)
+position = Vector2(4, -8)
 polygon = PackedVector2Array(0, -4, 0, 4, 92, 4, 92, -4)
 
 [node name="Health" type="Polygon2D" parent="PlayerHealthBar"]
 self_modulate = Color(0.662745, 0.105882, 0.105882, 1)
-position = Vector2(4, 0)
+position = Vector2(4, -8)
 polygon = PackedVector2Array(0, -4, 0, 4, 92, 4, 92, -4)
 
 [node name="PlayerInstabilityBar" type="Control" parent="."]
@@ -126,3 +133,35 @@ polygon = PackedVector2Array(-116, 0, -96, -4, 96, -4, 116, 0, 96, 4, -96, 4)
 [node name="Middle" type="Polygon2D" parent="PlayerInstabilityBar"]
 position = Vector2(0, -4)
 polygon = PackedVector2Array(-2, -5, 0, -6, 2, -5, 2, 5, 0, 6, -2, 5)
+
+[node name="HealthCharges" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.92
+anchor_top = 0.92
+anchor_right = 0.92
+anchor_bottom = 0.92
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Background" type="Sprite2D" parent="HealthCharges"]
+self_modulate = Color(0.196078, 0.196078, 0.196078, 1)
+position = Vector2(-40, -40)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("10_nh3cc")
+
+[node name="Flask" type="Sprite2D" parent="HealthCharges"]
+self_modulate = Color(0.541176, 1, 0.0823529, 1)
+position = Vector2(-40, -40)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("11_dmhdx")
+
+[node name="Label" type="Label" parent="HealthCharges"]
+layout_mode = 0
+offset_left = -32.0
+offset_top = -80.0
+offset_bottom = -47.0
+text = "8
+"
+label_settings = SubResource("LabelSettings_vd688")
+horizontal_alignment = 1
+vertical_alignment = 1
