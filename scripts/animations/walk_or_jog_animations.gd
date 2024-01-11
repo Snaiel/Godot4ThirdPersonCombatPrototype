@@ -48,12 +48,10 @@ func set_walk_speed(speed: float):
 func to_walking() -> void:
 	if not can_change_state:
 		return
-	print("WALK")
 	_walk = true
 
 
 func to_jogging() -> void:
 	if not can_change_state:
 		return
-	print("JOG")
 	_walk = false
