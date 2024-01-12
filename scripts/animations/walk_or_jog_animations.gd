@@ -41,6 +41,7 @@ func reset_walk_speed() -> void:
 func set_walk_speed(speed: float):
 	if not can_change_speed:
 		return
+	
 	anim_tree["parameters/Free Walk Speed/scale"] = speed
 	anim_tree["parameters/Lock On Walk Speed/scale"] = speed
 
@@ -48,10 +49,12 @@ func set_walk_speed(speed: float):
 func to_walking() -> void:
 	if not can_change_state:
 		return
+	
 	_walk = true
 
 
 func to_jogging() -> void:
 	if not can_change_state:
 		return
+	
 	_walk = false

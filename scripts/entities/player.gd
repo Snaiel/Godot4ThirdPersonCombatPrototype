@@ -61,6 +61,8 @@ func _ready() -> void:
 	)
 	
 	state_machine.enter_state_machine()
+	
+	character.walk_or_jog_animations.to_jogging()
 
 
 func _physics_process(_delta: float) -> void:
