@@ -1081,7 +1081,7 @@ script = ExtResource("2_l62dg")
 
 [node name="GeneralSkeleton" parent="Armature_004" index="0"]
 bones/0/position = Vector3(-0.0137523, -1.30694e-09, -0.0109634)
-bones/1/position = Vector3(-0.0144177, 0.991536, -0.00980786)
+bones/1/position = Vector3(5.56486e-07, 0.991537, -9.59733e-08)
 bones/1/rotation = Quaternion(0.00864479, -0.0682125, -0.012662, 0.997553)
 bones/2/rotation = Quaternion(-0.00248763, 0.00453785, -0.000748007, 0.999986)
 bones/3/rotation = Quaternion(-0.0014153, 0.0118301, 0.00355048, 0.999923)
@@ -1094,7 +1094,7 @@ bones/10/rotation = Quaternion(0.570168, -0.418221, 0.570167, 0.418221)
 bones/11/rotation = Quaternion(-0.0665461, 0.659674, 0.0898808, 0.743185)
 bones/12/rotation = Quaternion(0.0301452, 0.210229, -0.0458172, 0.976113)
 bones/13/rotation = Quaternion(-0.0715887, 0.828261, 0.251879, 0.495394)
-bones/14/rotation = Quaternion(0.0187419, 0.0732204, 0.0579803, 0.995453)
+bones/14/rotation = Quaternion(0.018742, 0.0732204, 0.0579803, 0.995452)
 bones/15/rotation = Quaternion(-1.49012e-08, 4.47035e-08, -2.98023e-08, 1)
 bones/16/rotation = Quaternion(0.372518, -5.06639e-07, -0.0449555, 0.926935)
 bones/17/rotation = Quaternion(0.372519, -2.08616e-07, -0.0449555, 0.926935)
@@ -1152,7 +1152,7 @@ extra_cull_margin = 1.0
 extra_cull_margin = 1.0
 
 [node name="LockOnAttachment" type="BoneAttachment3D" parent="Armature_004/GeneralSkeleton" index="2"]
-transform = Transform3D(0.996712, 0.0127535, -0.0800123, -0.0132948, 0.999892, -0.00623629, 0.0799241, 0.00727953, 0.996774, -0.0149768, 1.34118, -0.0582559)
+transform = Transform3D(0.996712, 0.0127535, -0.0800122, -0.0132948, 0.999892, -0.00623627, 0.079924, 0.00727952, 0.996774, -0.000558525, 1.34118, -0.0484482)
 bone_name = "UpperChest"
 bone_idx = 4
 

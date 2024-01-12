@@ -5,7 +5,7 @@ extends Control
 var counter: int
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if counter > 0:
 		modulate.a = lerp(
 			modulate.a,
