@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+<svg width="32px" height="32px" viewBox="0 0 48 48" id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <style>
+            .cls-1{
+                fill: none;
+                stroke: white;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+                stroke-width: 3;
+            }
+        </style>
+    </defs>
+    <path class="cls-1" d="M40.5,5.5H7.5a2,2,0,0,0-2,2v33a2,2,0,0,0,2,2h33a2,2,0,0,0,2-2V7.5A2,2,0,0,0,40.5,5.5Z"/>
+    <line class="cls-1" x1="17.25" y1="33" x2="30.75" y2="33"/>
+    <line class="cls-1" x1="17.25" y1="15" x2="30.75" y2="15"/>
+    <line class="cls-1" x1="17.25" y1="24" x2="26.05" y2="24"/>
+    <line class="cls-1" x1="17.25" y1="15" x2="17.25" y2="33"/>
+</svg>

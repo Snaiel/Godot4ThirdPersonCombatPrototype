@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b075d85nmca7s"]
+[gd_scene load_steps=17 format=3 uid="uid://b075d85nmca7s"]
 
 [ext_resource type="Script" path="res://scripts/utilities/user_interface.gd" id="1_2nhxu"]
 [ext_resource type="Texture2D" uid="uid://dishehhur7io2" path="res://assets/white_dot.png" id="1_v2w42"]
@@ -12,9 +12,14 @@
 [ext_resource type="Script" path="res://scripts/user_interface/player_health_charges.gd" id="10_3s5wg"]
 [ext_resource type="Texture2D" uid="uid://b80p5j73bgwl1" path="res://assets/square.png" id="10_nh3cc"]
 [ext_resource type="Texture2D" uid="uid://byhp3ghf2qiij" path="res://assets/flask.svg" id="11_dmhdx"]
+[ext_resource type="Texture2D" uid="uid://06ykk08io3p2" path="res://assets/letter-uppercase-square-e.svg" id="13_440m2"]
+[ext_resource type="Script" path="res://scripts/user_interface/interaction_hints.gd" id="13_mkuun"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vd688"]
 font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_u65vg"]
+font_size = 14
 
 [node name="UserInterface" type="Control"]
 layout_mode = 3
@@ -168,4 +173,34 @@ text = "8
 "
 label_settings = SubResource("LabelSettings_vd688")
 horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InteractionHints" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.94
+anchor_right = 0.5
+anchor_bottom = 0.94
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("13_mkuun")
+
+[node name="CheckpointHint" type="Control" parent="InteractionHints"]
+anchors_preset = 0
+offset_left = -70.0
+offset_right = -70.0
+pivot_offset = Vector2(70, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="InteractionHints/CheckpointHint"]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("13_440m2")
+
+[node name="Label" type="Label" parent="InteractionHints/CheckpointHint"]
+layout_mode = 0
+offset_left = 14.275
+offset_top = -12.855
+offset_right = 386.275
+offset_bottom = 13.145
+text = ":  Recover at checkpoint"
+label_settings = SubResource("LabelSettings_u65vg")
 vertical_alignment = 1

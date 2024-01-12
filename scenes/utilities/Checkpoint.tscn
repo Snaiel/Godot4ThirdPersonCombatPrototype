@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://k32oq3ivgjxf"]
+[gd_scene load_steps=12 format=3 uid="uid://k32oq3ivgjxf"]
 
 [ext_resource type="Texture2D" uid="uid://ceqnrmp0444y5" path="res://assets/location-check-svgrepo-com.svg" id="1_duys1"]
+[ext_resource type="Script" path="res://scripts/utilities/checkpoint.gd" id="1_oer0l"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r0e4m"]
 albedo_color = Color(0.243137, 0.243137, 0.243137, 1)
@@ -51,6 +52,7 @@ height = 0.04
 
 [node name="Checkpoint" type="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375, 0)
+script = ExtResource("1_oer0l")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CylinderMesh_5621l")

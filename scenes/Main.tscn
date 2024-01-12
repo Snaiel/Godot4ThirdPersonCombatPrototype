@@ -217,8 +217,16 @@ shape = SubResource("BoxShape3D_sh5lt")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99771, 0)
 component_owner = NodePath("..")
 
-[node name="Checkpoint" parent="World/NavigationRegion3D" instance=ExtResource("5_6d1b6")]
+[node name="Checkpoints" type="Node3D" parent="World/NavigationRegion3D"]
+
+[node name="Checkpoint" parent="World/NavigationRegion3D/Checkpoints" instance=ExtResource("5_6d1b6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.08317, 1.3725, 26.7378)
+
+[node name="Checkpoint2" parent="World/NavigationRegion3D/Checkpoints" instance=ExtResource("5_6d1b6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7156, 1.3725, 27.2652)
+
+[node name="Checkpoint3" parent="World/NavigationRegion3D/Checkpoints" instance=ExtResource("5_6d1b6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.0802, 1.3725, 28.4993)
 
 [node name="BackstabSystem" type="Node3D" parent="."]
 script = ExtResource("5_thw20")

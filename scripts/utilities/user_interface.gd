@@ -15,6 +15,7 @@ var _saved_dizzy_victim: DizzyComponent
 @onready var notice_triangles: Node2D = $NoticeTriangles
 @onready var off_camera_notice_triangles: Node2D = $OffCameraNoticeTriangles
 @onready var wellbeing_widgets: Node2D = $WellbeingWidgets
+@onready var interaction_hints: InteractionHints = $InteractionHints
 
 @onready var _lock_on_texture: TextureRect = $LockOn
 @onready var _crosshair: Sprite2D = $Crosshair
