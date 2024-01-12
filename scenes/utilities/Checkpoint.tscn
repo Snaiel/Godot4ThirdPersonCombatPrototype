@@ -1,0 +1,83 @@
+[gd_scene load_steps=11 format=3 uid="uid://k32oq3ivgjxf"]
+
+[ext_resource type="Texture2D" uid="uid://ceqnrmp0444y5" path="res://assets/location-check-svgrepo-com.svg" id="1_duys1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r0e4m"]
+albedo_color = Color(0.243137, 0.243137, 0.243137, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_5621l"]
+material = SubResource("StandardMaterial3D_r0e4m")
+top_radius = 0.2
+bottom_radius = 0.4
+height = 0.8
+radial_segments = 6
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sra6k"]
+radius = 0.2
+height = 1.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aiul3"]
+radius = 0.4
+height = 1.0
+
+[sub_resource type="Curve" id="Curve_aah8i"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.135417, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.91579, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_hld0h"]
+curve = SubResource("Curve_aah8i")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_a1a52"]
+emission_shape = 1
+emission_sphere_radius = 0.5
+direction = Vector3(0, 1, 0)
+spread = 10.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.1
+initial_velocity_max = 0.5
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_hld0h")
+color = Color(0.121569, 0.537255, 0.717647, 1)
+hue_variation_min = -0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yme5i"]
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_pwcdx"]
+material = SubResource("StandardMaterial3D_yme5i")
+radius = 0.02
+height = 0.04
+
+[node name="Checkpoint" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_5621l")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_sra6k")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.300549, 0)
+shape = SubResource("CapsuleShape3D_aiul3")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.809058, 0)
+modulate = Color(0.0784314, 0.654902, 0.854902, 1)
+billboard = 1
+texture = ExtResource("1_duys1")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.835, 0)
+light_color = Color(0.352941, 0.701961, 0.792157, 1)
+light_energy = 3.0
+light_size = 1.0
+omni_range = 6.0
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.273792, 0)
+amount = 128
+lifetime = 4.0
+process_material = SubResource("ParticleProcessMaterial_a1a52")
+draw_pass_1 = SubResource("SphereMesh_pwcdx")

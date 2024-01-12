@@ -87,6 +87,9 @@ surface_material_override/0 = ExtResource("4_ysu0o")
 transform = Transform3D(0.410248, -0.260808, 0.873885, 0.293906, -0.869299, -0.397414, 0.863317, 0.419879, -0.279975, -0.284044, 0.883924, -0.0662375)
 _entity = NodePath("../../../..")
 
+[node name="LockOnAttachment" parent="CharacterModel/Armature_004/GeneralSkeleton" index="3"]
+transform = Transform3D(0.996712, 0.0127535, -0.0800123, -0.0132948, 0.999892, -0.00623629, 0.0799241, 0.00727953, 0.996774, -0.0149768, 1.34118, -0.0582559)
+
 [node name="AnimationTree" parent="CharacterModel" index="2"]
 "parameters/Dizzy Finisher Which One/current_state" = ""
 "parameters/Dizzy Finisher Which One/current_index" = -1
