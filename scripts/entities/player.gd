@@ -6,6 +6,7 @@ extends CharacterBody3D
 @export var state_machine: PlayerStateMachine
 @export var character: CharacterAnimations
 @export var movement_component: MovementComponent
+@export var root_motion_component: RootMotionComponent
 @export var hitbox_component: HitboxComponent
 @export var health_component: HealthComponent
 @export var instability_component: InstabilityComponent
@@ -21,6 +22,8 @@ extends CharacterBody3D
 
 @export var weapon: Sword
 
+var active_motion_component: MotionComponent
+
 var input_direction: Vector3 = Vector3.ZERO
 var last_input_on_ground: Vector3 = Vector3.ZERO
 
@@ -31,6 +34,7 @@ var holding_down_run: bool = false
 var _holding_down_run_timer: Timer
 
 @onready var drink_state: PlayerDrinkState = $StateMachine/Drink
+@onready var checkpoint_state: PlayerCheckpointState = $StateMachine/Checkpoint
 
 @onready var dizzy_system: DizzySystem = Globals.dizzy_system
 @onready var backstab_system: BackstabSystem = Globals.backstab_system
@@ -71,6 +75,7 @@ func _physics_process(_delta: float) -> void:
 	
 	movement_component.move_direction = rotation_component.move_direction
 	
+	
 	# make sure the user is actually holding down
 	# the run key to make the player run
 	if Input.is_action_just_pressed("run"):
@@ -79,9 +84,15 @@ func _physics_process(_delta: float) -> void:
 		_holding_down_run_timer.stop()
 		holding_down_run = false
 	
+	
 	if Input.is_action_just_pressed("consume_item") and \
 	not state_machine.current_state is PlayerDrinkState:
 		state_machine.change_state(drink_state)
+	
+	if Input.is_action_just_pressed("interact") and \
+	not state_machine.current_state is PlayerCheckpointState:
+		state_machine.change_state(checkpoint_state)
+	
 	
 	if rotation_component.rotate_towards_target and \
 	rotation_component.target != null:
@@ -111,6 +122,17 @@ func process_default_movement_animations() -> void:
 		lock_on, 
 		false
 	)
+
+
+func set_root_motion(flag: bool) -> void:
+	if flag:
+		active_motion_component = root_motion_component
+		root_motion_component.enabled = true
+		movement_component.enabled = false
+	else:
+		active_motion_component = movement_component
+		root_motion_component.enabled = false
+		movement_component.enabled = true
 
 
 func _on_lock_on_system_lock_on(target: LockOnComponent) -> void:

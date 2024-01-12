@@ -18,5 +18,13 @@ func process_player() -> void:
 	pass
 
 
+#func process_movement_animations() -> void:
+#	player.character.movement_animations.move(
+#		player.input_direction,
+#		player.lock_on_target != null, 
+#		false
+#	)
+
+
 func exit() -> void:
 	pass

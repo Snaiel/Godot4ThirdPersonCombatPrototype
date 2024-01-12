@@ -11,6 +11,7 @@ extends Node3D
 @onready var hit_and_death_animations: HitAndDeathAnimations = $HitAndDeathAnimations
 @onready var dizzy_animations: DizzyAnimations = $DizzyAnimations
 @onready var drink_animations: DrinkAnimations = $DrinkAnimations
+@onready var sitting_animations: SittingAnimations = $SittingAnimations
 
 @onready var anim_tree: AnimationTree = $AnimationTree
 

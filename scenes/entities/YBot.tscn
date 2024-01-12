@@ -1,4 +1,4 @@
-[gd_scene load_steps=148 format=3 uid="uid://x0oxbha36o2h"]
+[gd_scene load_steps=157 format=3 uid="uid://x0oxbha36o2h"]
 
 [ext_resource type="PackedScene" uid="uid://q3eag1ltsb0y" path="res://models/ybot.blend" id="1_ml8ck"]
 [ext_resource type="Script" path="res://scripts/animations/character_animations.gd" id="2_l62dg"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://scripts/animations/dizzy_animations.gd" id="11_to7pc"]
 [ext_resource type="Script" path="res://scripts/animations/drink_animations.gd" id="13_yftnk"]
 [ext_resource type="Script" path="res://scripts/animations/walk_or_jog_animations.gd" id="14_s7odg"]
+[ext_resource type="Script" path="res://scripts/animations/sitting_animations.gd" id="15_rxgn1"]
 
 [sub_resource type="Animation" id="Animation_263e4"]
 resource_name = "Y Bot"
@@ -917,6 +918,24 @@ input_1/name = "not_locked_on"
 input_1/auto_advance = false
 input_1/reset = true
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ngpt6"]
+animation = &"interaction_animations_1/Standing Up"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_51bq6"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_4gqu1"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8iqfy"]
+animation = &"interaction_animations_1/Sitting Idle"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_ck517"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_gb1jp"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_typ75"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_ucpww"]
+
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_ox7cf"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g8521"]
@@ -932,7 +951,6 @@ input_1/auto_advance = false
 input_1/reset = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_pvyc3"]
-graph_offset = Vector2(-2064.64, 244.932)
 nodes/Attack/node = SubResource("AnimationNodeTransition_gr1qy")
 nodes/Attack/position = Vector2(860, 1160)
 "nodes/Attack Forward Thrust/node" = SubResource("AnimationNodeBlendTree_ws83a")
@@ -958,53 +976,53 @@ nodes/Blocking/position = Vector2(2040, 680)
 "nodes/Blocking Trim/node" = SubResource("AnimationNodeTimeSeek_qy2by")
 "nodes/Blocking Trim/position" = Vector2(1660, 920)
 nodes/Death/node = SubResource("AnimationNodeBlend2_3rnpj")
-nodes/Death/position = Vector2(8320, 1460)
+nodes/Death/position = Vector2(10020, 1680)
 "nodes/Death 1 Speed/node" = SubResource("AnimationNodeTimeScale_era1v")
-"nodes/Death 1 Speed/position" = Vector2(7780, 1600)
+"nodes/Death 1 Speed/position" = Vector2(9480, 1820)
 "nodes/Death 1 Trim/node" = SubResource("AnimationNodeTimeSeek_jbigd")
-"nodes/Death 1 Trim/position" = Vector2(7560, 1600)
+"nodes/Death 1 Trim/position" = Vector2(9260, 1820)
 "nodes/Death 2 Speed/node" = SubResource("AnimationNodeTimeScale_2xovq")
-"nodes/Death 2 Speed/position" = Vector2(7780, 1780)
+"nodes/Death 2 Speed/position" = Vector2(9480, 2000)
 "nodes/Death 2 Trim/node" = SubResource("AnimationNodeTimeSeek_5gs3k")
-"nodes/Death 2 Trim/position" = Vector2(7560, 1780)
+"nodes/Death 2 Trim/position" = Vector2(9260, 2000)
 "nodes/Death Animation/node" = SubResource("AnimationNodeAnimation_vsvsm")
-"nodes/Death Animation/position" = Vector2(7220, 1600)
+"nodes/Death Animation/position" = Vector2(8920, 1820)
 "nodes/Death Backstab Animation/node" = SubResource("AnimationNodeAnimation_l3xmt")
-"nodes/Death Backstab Animation/position" = Vector2(7160, 1780)
+"nodes/Death Backstab Animation/position" = Vector2(8860, 2000)
 "nodes/Death Which One/node" = SubResource("AnimationNodeTransition_vq7r5")
-"nodes/Death Which One/position" = Vector2(8080, 1680)
+"nodes/Death Which One/position" = Vector2(9780, 1900)
 nodes/Dizzy/node = SubResource("AnimationNodeBlend2_myeho")
-nodes/Dizzy/position = Vector2(7000, 1260)
+nodes/Dizzy/position = Vector2(8700, 1480)
 "nodes/Dizzy Finisher/node" = SubResource("AnimationNodeBlend2_vbytd")
-"nodes/Dizzy Finisher/position" = Vector2(5560, 1120)
+"nodes/Dizzy Finisher/position" = Vector2(7260, 1340)
 "nodes/Dizzy Finisher From Damage Animation/node" = SubResource("AnimationNodeAnimation_wtbwl")
-"nodes/Dizzy Finisher From Damage Animation/position" = Vector2(3940, 1440)
+"nodes/Dizzy Finisher From Damage Animation/position" = Vector2(5640, 1660)
 "nodes/Dizzy Finisher From Damage Speed/node" = SubResource("AnimationNodeTimeScale_yiouf")
-"nodes/Dizzy Finisher From Damage Speed/position" = Vector2(4820, 1440)
+"nodes/Dizzy Finisher From Damage Speed/position" = Vector2(6520, 1660)
 "nodes/Dizzy Finisher From Damage Trim/node" = SubResource("AnimationNodeTimeSeek_ijgrp")
-"nodes/Dizzy Finisher From Damage Trim/position" = Vector2(4440, 1440)
+"nodes/Dizzy Finisher From Damage Trim/position" = Vector2(6140, 1660)
 "nodes/Dizzy Finisher From Parry Animation/node" = SubResource("AnimationNodeAnimation_ovki7")
-"nodes/Dizzy Finisher From Parry Animation/position" = Vector2(4060, 1240)
+"nodes/Dizzy Finisher From Parry Animation/position" = Vector2(5760, 1460)
 "nodes/Dizzy Finisher From Parry Speed/node" = SubResource("AnimationNodeTimeScale_5d1rd")
-"nodes/Dizzy Finisher From Parry Speed/position" = Vector2(4840, 1240)
+"nodes/Dizzy Finisher From Parry Speed/position" = Vector2(6540, 1460)
 "nodes/Dizzy Finisher From Parry Trim/node" = SubResource("AnimationNodeTimeSeek_e48q0")
-"nodes/Dizzy Finisher From Parry Trim/position" = Vector2(4480, 1240)
+"nodes/Dizzy Finisher From Parry Trim/position" = Vector2(6180, 1460)
 "nodes/Dizzy Finisher Which One/node" = SubResource("AnimationNodeTransition_oldk3")
-"nodes/Dizzy Finisher Which One/position" = Vector2(5220, 1300)
+"nodes/Dizzy Finisher Which One/position" = Vector2(6920, 1520)
 "nodes/Dizzy From Damage/node" = SubResource("AnimationNodeTransition_ykc1s")
-"nodes/Dizzy From Damage/position" = Vector2(6340, 1720)
+"nodes/Dizzy From Damage/position" = Vector2(8040, 1940)
 "nodes/Dizzy Idle Animation/node" = SubResource("AnimationNodeAnimation_y1xna")
-"nodes/Dizzy Idle Animation/position" = Vector2(6240, 1420)
+"nodes/Dizzy Idle Animation/position" = Vector2(7940, 1640)
 "nodes/Dizzy Kneeling Animation/node" = SubResource("AnimationNodeAnimation_byhug")
-"nodes/Dizzy Kneeling Animation/position" = Vector2(5340, 1580)
+"nodes/Dizzy Kneeling Animation/position" = Vector2(7040, 1800)
 "nodes/Dizzy Kneeling Speed/node" = SubResource("AnimationNodeTimeScale_74xre")
-"nodes/Dizzy Kneeling Speed/position" = Vector2(5960, 1580)
+"nodes/Dizzy Kneeling Speed/position" = Vector2(7660, 1800)
 "nodes/Dizzy Kneeling Trim/node" = SubResource("AnimationNodeTimeSeek_6ghbn")
-"nodes/Dizzy Kneeling Trim/position" = Vector2(5720, 1580)
+"nodes/Dizzy Kneeling Trim/position" = Vector2(7420, 1800)
 "nodes/Dizzy Which One/node" = SubResource("AnimationNodeTransition_ijofm")
-"nodes/Dizzy Which One/position" = Vector2(6720, 1500)
+"nodes/Dizzy Which One/position" = Vector2(8420, 1720)
 nodes/Drinking/node = SubResource("AnimationNodeBlend2_mmhk1")
-nodes/Drinking/position = Vector2(4104.55, 808.035)
+nodes/Drinking/position = Vector2(4160, 840)
 "nodes/Drinking Animation/node" = SubResource("AnimationNodeAnimation_k2n4d")
 "nodes/Drinking Animation/position" = Vector2(3200, 1040)
 "nodes/Drinking Speed/node" = SubResource("AnimationNodeTimeScale_c32ii")
@@ -1034,15 +1052,15 @@ nodes/Drinking/position = Vector2(4104.55, 808.035)
 "nodes/Jump and Fall Blend/node" = SubResource("AnimationNodeBlend2_tbxkj")
 "nodes/Jump and Fall Blend/position" = Vector2(220, 540)
 "nodes/Kneel to Stand Animation/node" = SubResource("AnimationNodeAnimation_q2sun")
-"nodes/Kneel to Stand Animation/position" = Vector2(5280, 1980)
+"nodes/Kneel to Stand Animation/position" = Vector2(6980, 2200)
 "nodes/Kneel to Stand Speed/node" = SubResource("AnimationNodeTimeScale_fk50i")
-"nodes/Kneel to Stand Speed/position" = Vector2(5980, 1980)
+"nodes/Kneel to Stand Speed/position" = Vector2(7680, 2200)
 "nodes/Kneel to Stand Trim/node" = SubResource("AnimationNodeTimeSeek_j2ebb")
-"nodes/Kneel to Stand Trim/position" = Vector2(5700, 1980)
+"nodes/Kneel to Stand Trim/position" = Vector2(7400, 2200)
 "nodes/Kneeling Idle Animation/node" = SubResource("AnimationNodeAnimation_eecak")
-"nodes/Kneeling Idle Animation/position" = Vector2(5600, 1780)
+"nodes/Kneeling Idle Animation/position" = Vector2(7300, 2000)
 "nodes/Kneeling Idle Speed/node" = SubResource("AnimationNodeTimeScale_02gek")
-"nodes/Kneeling Idle Speed/position" = Vector2(5980, 1780)
+"nodes/Kneeling Idle Speed/position" = Vector2(7680, 2000)
 "nodes/Lock On Idle/node" = SubResource("AnimationNodeAnimation_baww8")
 "nodes/Lock On Idle/position" = Vector2(-2220, -160)
 "nodes/Lock On Movement/node" = SubResource("AnimationNodeBlend2_sq418")
@@ -1067,83 +1085,99 @@ nodes/Parry/position = Vector2(3000, 740)
 "nodes/Running Lock On/position" = Vector2(-940, 460)
 "nodes/Running Lock On Look Direction/node" = SubResource("AnimationNodeBlendSpace2D_q7vgs")
 "nodes/Running Lock On Look Direction/position" = Vector2(-1380, 460)
+"nodes/Sit to Stand Animation/node" = SubResource("AnimationNodeAnimation_ngpt6")
+"nodes/Sit to Stand Animation/position" = Vector2(4180, 1480)
+"nodes/Sit to Stand Speed/node" = SubResource("AnimationNodeTimeScale_51bq6")
+"nodes/Sit to Stand Speed/position" = Vector2(4840, 1500)
+"nodes/Sit to Stand Trim/node" = SubResource("AnimationNodeTimeSeek_4gqu1")
+"nodes/Sit to Stand Trim/position" = Vector2(4600, 1500)
+nodes/Sitting/node = SubResource("AnimationNodeBlend2_ucpww")
+nodes/Sitting/position = Vector2(5480, 1060)
+"nodes/Sitting Idle Animation/node" = SubResource("AnimationNodeAnimation_8iqfy")
+"nodes/Sitting Idle Animation/position" = Vector2(4200, 1280)
+"nodes/Sitting Idle Speed/node" = SubResource("AnimationNodeTimeScale_ck517")
+"nodes/Sitting Idle Speed/position" = Vector2(4840, 1280)
+"nodes/Sitting Idle Trim/node" = SubResource("AnimationNodeTimeSeek_gb1jp")
+"nodes/Sitting Idle Trim/position" = Vector2(4600, 1280)
+"nodes/Sitting or Standing/node" = SubResource("AnimationNodeBlend2_typ75")
+"nodes/Sitting or Standing/position" = Vector2(5180, 1360)
 "nodes/Vertical Movement/node" = SubResource("AnimationNodeBlend2_ox7cf")
 "nodes/Vertical Movement/position" = Vector2(580, 360)
 "nodes/Walk Forward/node" = SubResource("AnimationNodeAnimation_g8521")
 "nodes/Walk Forward/position" = Vector2(-2740, 660)
 "nodes/Walking Lock On/node" = SubResource("AnimationNodeTransition_0mwvr")
 "nodes/Walking Lock On/position" = Vector2(-1223.12, 6.67313)
-nodes/output/position = Vector2(9060, 1160)
-node_connections = [&"output", 0, &"Death", &"Attack", 0, &"Attack Inward Slash", &"Attack", 1, &"Attack Inward Slash Copy", &"Attack", 2, &"Attack Outward Slash", &"Attack", 3, &"Attack Outward Slash Copy", &"Attack", 4, &"Attack Forward Thrust", &"Attack", 5, &"Attack Quick Slash", &"Attacking", 0, &"Vertical Movement", &"Attacking", 1, &"Attack", &"Blocking", 0, &"Attacking", &"Blocking", 1, &"Blocking Speed", &"Blocking Speed", 0, &"Blocking Trim", &"Blocking Trim", 0, &"Blocking Animation", &"Death", 0, &"Dizzy", &"Death", 1, &"Death Which One", &"Death 1 Speed", 0, &"Death 1 Trim", &"Death 1 Trim", 0, &"Death Animation", &"Death 2 Speed", 0, &"Death 2 Trim", &"Death 2 Trim", 0, &"Death Backstab Animation", &"Death Which One", 0, &"Death 1 Speed", &"Death Which One", 1, &"Death 2 Speed", &"Dizzy", 0, &"Dizzy Finisher", &"Dizzy", 1, &"Dizzy Which One", &"Dizzy Finisher", 0, &"Drinking", &"Dizzy Finisher", 1, &"Dizzy Finisher Which One", &"Dizzy Finisher From Damage Speed", 0, &"Dizzy Finisher From Damage Trim", &"Dizzy Finisher From Damage Trim", 0, &"Dizzy Finisher From Damage Animation", &"Dizzy Finisher From Parry Speed", 0, &"Dizzy Finisher From Parry Trim", &"Dizzy Finisher From Parry Trim", 0, &"Dizzy Finisher From Parry Animation", &"Dizzy Finisher Which One", 0, &"Dizzy Finisher From Parry Speed", &"Dizzy Finisher Which One", 1, &"Dizzy Finisher From Damage Speed", &"Dizzy From Damage", 0, &"Dizzy Kneeling Speed", &"Dizzy From Damage", 1, &"Kneeling Idle Speed", &"Dizzy From Damage", 2, &"Kneel to Stand Speed", &"Dizzy Kneeling Speed", 0, &"Dizzy Kneeling Trim", &"Dizzy Kneeling Trim", 0, &"Dizzy Kneeling Animation", &"Dizzy Which One", 0, &"Dizzy Idle Animation", &"Dizzy Which One", 1, &"Dizzy From Damage", &"Drinking", 0, &"Parry", &"Drinking", 1, &"Drinking Speed", &"Drinking Speed", 0, &"Drinking Trim", &"Drinking Trim", 0, &"Drinking Animation", &"Free Jog Or Walk", 0, &"Free Jog Speed", &"Free Jog Or Walk", 1, &"Free Walk Speed", &"Free Jog Speed", 0, &"Jog Forward", &"Free Movement", 0, &"Free Idle", &"Free Movement", 1, &"Free Jog Or Walk", &"Free Walk Speed", 0, &"Walk Forward", &"Jump Handler", 0, &"Jump 1", &"Jump Handler", 1, &"Jump 2", &"Jump and Fall Blend", 0, &"Jump Handler", &"Jump and Fall Blend", 1, &"Fall Animation", &"Kneel to Stand Speed", 0, &"Kneel to Stand Trim", &"Kneel to Stand Trim", 0, &"Kneel to Stand Animation", &"Kneeling Idle Speed", 0, &"Kneeling Idle Animation", &"Lock On Movement", 0, &"Lock On Idle", &"Lock On Movement", 1, &"Lock On Walk Speed", &"Lock On Walk Speed", 0, &"Lock On Walk", &"Movement", 0, &"Walking Lock On", &"Movement", 1, &"Running Lock On", &"Parry", 0, &"Blocking", &"Parry", 1, &"Parry Speed", &"Parry Speed", 0, &"Parry Trim", &"Parry Trim", 0, &"Parry Animation", &"Running Lock On", 0, &"Running Lock On Look Direction", &"Running Lock On", 1, &"Run Forwards", &"Vertical Movement", 0, &"Movement", &"Vertical Movement", 1, &"Jump and Fall Blend", &"Walking Lock On", 0, &"Lock On Movement", &"Walking Lock On", 1, &"Free Movement"]
+nodes/output/position = Vector2(10760, 1380)
+node_connections = [&"output", 0, &"Death", &"Attack", 0, &"Attack Inward Slash", &"Attack", 1, &"Attack Inward Slash Copy", &"Attack", 2, &"Attack Outward Slash", &"Attack", 3, &"Attack Outward Slash Copy", &"Attack", 4, &"Attack Forward Thrust", &"Attack", 5, &"Attack Quick Slash", &"Attacking", 0, &"Vertical Movement", &"Attacking", 1, &"Attack", &"Blocking", 0, &"Attacking", &"Blocking", 1, &"Blocking Speed", &"Blocking Speed", 0, &"Blocking Trim", &"Blocking Trim", 0, &"Blocking Animation", &"Death", 0, &"Dizzy", &"Death", 1, &"Death Which One", &"Death 1 Speed", 0, &"Death 1 Trim", &"Death 1 Trim", 0, &"Death Animation", &"Death 2 Speed", 0, &"Death 2 Trim", &"Death 2 Trim", 0, &"Death Backstab Animation", &"Death Which One", 0, &"Death 1 Speed", &"Death Which One", 1, &"Death 2 Speed", &"Dizzy", 0, &"Dizzy Finisher", &"Dizzy", 1, &"Dizzy Which One", &"Dizzy Finisher", 0, &"Sitting", &"Dizzy Finisher", 1, &"Dizzy Finisher Which One", &"Dizzy Finisher From Damage Speed", 0, &"Dizzy Finisher From Damage Trim", &"Dizzy Finisher From Damage Trim", 0, &"Dizzy Finisher From Damage Animation", &"Dizzy Finisher From Parry Speed", 0, &"Dizzy Finisher From Parry Trim", &"Dizzy Finisher From Parry Trim", 0, &"Dizzy Finisher From Parry Animation", &"Dizzy Finisher Which One", 0, &"Dizzy Finisher From Parry Speed", &"Dizzy Finisher Which One", 1, &"Dizzy Finisher From Damage Speed", &"Dizzy From Damage", 0, &"Dizzy Kneeling Speed", &"Dizzy From Damage", 1, &"Kneeling Idle Speed", &"Dizzy From Damage", 2, &"Kneel to Stand Speed", &"Dizzy Kneeling Speed", 0, &"Dizzy Kneeling Trim", &"Dizzy Kneeling Trim", 0, &"Dizzy Kneeling Animation", &"Dizzy Which One", 0, &"Dizzy Idle Animation", &"Dizzy Which One", 1, &"Dizzy From Damage", &"Drinking", 0, &"Parry", &"Drinking", 1, &"Drinking Speed", &"Drinking Speed", 0, &"Drinking Trim", &"Drinking Trim", 0, &"Drinking Animation", &"Free Jog Or Walk", 0, &"Free Jog Speed", &"Free Jog Or Walk", 1, &"Free Walk Speed", &"Free Jog Speed", 0, &"Jog Forward", &"Free Movement", 0, &"Free Idle", &"Free Movement", 1, &"Free Jog Or Walk", &"Free Walk Speed", 0, &"Walk Forward", &"Jump Handler", 0, &"Jump 1", &"Jump Handler", 1, &"Jump 2", &"Jump and Fall Blend", 0, &"Jump Handler", &"Jump and Fall Blend", 1, &"Fall Animation", &"Kneel to Stand Speed", 0, &"Kneel to Stand Trim", &"Kneel to Stand Trim", 0, &"Kneel to Stand Animation", &"Kneeling Idle Speed", 0, &"Kneeling Idle Animation", &"Lock On Movement", 0, &"Lock On Idle", &"Lock On Movement", 1, &"Lock On Walk Speed", &"Lock On Walk Speed", 0, &"Lock On Walk", &"Movement", 0, &"Walking Lock On", &"Movement", 1, &"Running Lock On", &"Parry", 0, &"Blocking", &"Parry", 1, &"Parry Speed", &"Parry Speed", 0, &"Parry Trim", &"Parry Trim", 0, &"Parry Animation", &"Running Lock On", 0, &"Running Lock On Look Direction", &"Running Lock On", 1, &"Run Forwards", &"Sit to Stand Speed", 0, &"Sit to Stand Trim", &"Sit to Stand Trim", 0, &"Sit to Stand Animation", &"Sitting", 0, &"Drinking", &"Sitting", 1, &"Sitting or Standing", &"Sitting Idle Speed", 0, &"Sitting Idle Trim", &"Sitting Idle Trim", 0, &"Sitting Idle Animation", &"Sitting or Standing", 0, &"Sitting Idle Speed", &"Sitting or Standing", 1, &"Sit to Stand Speed", &"Vertical Movement", 0, &"Movement", &"Vertical Movement", 1, &"Jump and Fall Blend", &"Walking Lock On", 0, &"Lock On Movement", &"Walking Lock On", 1, &"Free Movement"]
 
 [node name="YBot" instance=ExtResource("1_ml8ck")]
 script = ExtResource("2_l62dg")
 
 [node name="GeneralSkeleton" parent="Armature_004" index="0"]
-bones/0/position = Vector3(-0.0137523, -1.30694e-09, -0.0109634)
-bones/1/position = Vector3(5.56486e-07, 0.991537, -9.59733e-08)
-bones/1/rotation = Quaternion(0.00864479, -0.0682125, -0.012662, 0.997553)
-bones/2/rotation = Quaternion(-0.00248763, 0.00453785, -0.000748007, 0.999986)
-bones/3/rotation = Quaternion(-0.0014153, 0.0118301, 0.00355048, 0.999923)
-bones/4/rotation = Quaternion(-0.00134935, 0.011839, 0.00351034, 0.999923)
-bones/5/rotation = Quaternion(-0.0536742, 0.00681074, 0.0241003, 0.998244)
-bones/6/rotation = Quaternion(-0.035862, 0.0543978, 0.0167766, 0.997734)
-bones/8/rotation = Quaternion(-0.540628, -0.445447, -0.548932, 0.456039)
-bones/9/rotation = Quaternion(0.193508, 0.822368, -0.417898, -0.334106)
-bones/10/rotation = Quaternion(0.570168, -0.418221, 0.570167, 0.418221)
-bones/11/rotation = Quaternion(-0.0665461, 0.659674, 0.0898808, 0.743185)
-bones/12/rotation = Quaternion(0.0301452, 0.210229, -0.0458172, 0.976113)
-bones/13/rotation = Quaternion(-0.0715887, 0.828261, 0.251879, 0.495394)
-bones/14/rotation = Quaternion(0.018742, 0.0732204, 0.0579803, 0.995452)
-bones/15/rotation = Quaternion(-1.49012e-08, 4.47035e-08, -2.98023e-08, 1)
-bones/16/rotation = Quaternion(0.372518, -5.06639e-07, -0.0449555, 0.926935)
-bones/17/rotation = Quaternion(0.372519, -2.08616e-07, -0.0449555, 0.926935)
-bones/18/rotation = Quaternion(0.189758, -1.3411e-07, -0.0228999, 0.981564)
+bones/0/position = Vector3(-0.00362124, 9.84574e-09, 0.082592)
+bones/1/position = Vector3(1.27141e-06, 0.983349, -9.85621e-08)
+bones/1/rotation = Quaternion(0.0793185, 0.0393746, 0.0357914, 0.995428)
+bones/2/rotation = Quaternion(-0.00529486, 0.00137936, 0.00361292, 0.999978)
+bones/3/rotation = Quaternion(-0.0107172, 0.00341815, 0.00930452, 0.999893)
+bones/4/rotation = Quaternion(-0.0107172, 0.00341814, 0.0093045, 0.999894)
+bones/5/rotation = Quaternion(0.048611, -0.000210558, 0.00936325, 0.998774)
+bones/6/rotation = Quaternion(-0.0125305, 0.0219006, -0.0699274, 0.997233)
+bones/8/rotation = Quaternion(-0.480362, -0.502073, -0.563483, 0.446836)
+bones/9/rotation = Quaternion(-0.0228682, 0.790537, -0.601677, -0.111862)
+bones/10/rotation = Quaternion(0.179464, -0.684122, 0.179548, 0.683763)
+bones/11/rotation = Quaternion(0.0379571, 0.816594, 0.0307092, 0.575144)
+bones/12/rotation = Quaternion(-0.0719313, -0.0399651, -0.0397085, 0.995817)
+bones/13/rotation = Quaternion(-0.176774, 0.706983, 0.164766, 0.664664)
+bones/14/rotation = Quaternion(-2.98023e-08, -1.49012e-08, -2.22045e-16, 1)
+bones/15/rotation = Quaternion(0, -2.98023e-08, -2.98023e-08, 1)
+bones/16/rotation = Quaternion(0.146187, -0.00689821, 0.0184704, 0.989061)
+bones/17/rotation = Quaternion(0.224723, -0.000627923, -0.00790665, 0.97439)
+bones/18/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
 bones/19/rotation = Quaternion(-2.98023e-08, -5.96046e-08, -2.98023e-08, 1)
-bones/20/rotation = Quaternion(0.372389, -4.32134e-07, -0.0449398, 0.926988)
-bones/21/rotation = Quaternion(0.372648, -2.5332e-07, -0.0449711, 0.926883)
-bones/22/rotation = Quaternion(0.189758, -1.04308e-07, -0.0229, 0.981564)
+bones/20/rotation = Quaternion(0.172907, -0.00396024, -0.0234889, 0.98465)
+bones/21/rotation = Quaternion(0.177208, -0.000856176, 0.0121067, 0.984098)
+bones/22/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
 bones/23/rotation = Quaternion(-1.49012e-08, 1.49012e-08, 1.49012e-08, 1)
-bones/24/rotation = Quaternion(0.372518, -5.06639e-07, -0.0449555, 0.926935)
-bones/25/rotation = Quaternion(0.372519, -2.23517e-07, -0.0449556, 0.926935)
-bones/26/rotation = Quaternion(0.189758, -1.3411e-07, -0.0228999, 0.981564)
+bones/24/rotation = Quaternion(0.247719, -0.018962, -0.040966, 0.96778)
+bones/25/rotation = Quaternion(0.238994, 0.00112815, 0.026683, 0.970654)
+bones/26/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
 bones/27/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
-bones/28/rotation = Quaternion(0.368155, 0.0133769, -0.0777156, 0.926414)
-bones/29/rotation = Quaternion(0.376408, 0.013377, -0.0121382, 0.926278)
-bones/30/rotation = Quaternion(0.189758, -1.04308e-07, -0.0228999, 0.981564)
+bones/28/rotation = Quaternion(0.199435, -0.0298086, -0.0390037, 0.978681)
+bones/29/rotation = Quaternion(0.290168, 0.00564619, 0.0594859, 0.955108)
+bones/30/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
 bones/31/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
-bones/32/rotation = Quaternion(0.602228, -0.418319, -0.48648, -0.475046)
-bones/33/rotation = Quaternion(-0.111818, 0.804382, -0.50463, 0.292944)
-bones/34/rotation = Quaternion(0.177108, 0.684568, -0.177108, 0.684568)
-bones/35/rotation = Quaternion(-0.0622413, -0.704303, -0.0915791, 0.70121)
-bones/36/rotation = Quaternion(-0.0593177, 0.0133609, 0.0498731, 0.996903)
-bones/37/rotation = Quaternion(-0.0840466, -0.740054, -0.080493, 0.662403)
-bones/38/rotation = Quaternion(0.0567665, -0.0102498, 0.0221859, 0.998088)
+bones/32/rotation = Quaternion(0.435303, -0.543424, -0.568674, -0.437963)
+bones/33/rotation = Quaternion(-0.0111097, 0.821084, -0.568333, 0.0519173)
+bones/34/rotation = Quaternion(0.192499, 0.680606, -0.192619, 0.68016)
+bones/35/rotation = Quaternion(0.083467, -0.852402, 0.0603715, 0.51264)
+bones/36/rotation = Quaternion(-0.0824434, 0.0231093, 0.0473934, 0.9952)
+bones/37/rotation = Quaternion(-0.195493, -0.694655, -0.175604, 0.669626)
+bones/38/rotation = Quaternion(-2.98023e-08, -1.49012e-08, -2.22045e-16, 1)
 bones/39/rotation = Quaternion(4.47035e-08, 4.47035e-08, 0, 1)
-bones/40/rotation = Quaternion(0.126161, 2.68221e-07, 0.0153749, 0.991891)
-bones/41/rotation = Quaternion(0.126161, -1.49012e-08, 0.0153747, 0.991891)
-bones/42/rotation = Quaternion(0.0632086, 1.04308e-07, 0.00770295, 0.997971)
+bones/40/rotation = Quaternion(0.100476, 0.00604519, 0.0353278, 0.994294)
+bones/41/rotation = Quaternion(0.177943, 0.000554085, 0.0109794, 0.983979)
+bones/42/rotation = Quaternion(-1.49012e-08, 0, 1.49012e-08, 1)
 bones/43/rotation = Quaternion(-1.49012e-08, 0, 1.49012e-08, 1)
-bones/44/rotation = Quaternion(0.126161, 2.68221e-07, 0.0153749, 0.991891)
-bones/45/rotation = Quaternion(0.126161, -1.49012e-08, 0.0153747, 0.991891)
-bones/46/rotation = Quaternion(0.0632086, 1.04308e-07, 0.00770292, 0.997971)
+bones/44/rotation = Quaternion(0.145398, 0.00493401, 0.0551627, 0.987822)
+bones/45/rotation = Quaternion(0.178967, 0.00126611, -0.00903678, 0.983813)
+bones/46/rotation = Quaternion(-1.49012e-08, 0, 1.49012e-08, 1)
 bones/47/rotation = Quaternion(-1.49012e-08, 1.49012e-08, 1.49012e-08, 1)
-bones/48/rotation = Quaternion(0.126161, 2.68221e-07, 0.0153749, 0.991891)
-bones/49/rotation = Quaternion(0.126161, -1.49012e-08, 0.0153747, 0.991891)
-bones/50/rotation = Quaternion(0.0632086, 1.04308e-07, 0.00770295, 0.997971)
+bones/48/rotation = Quaternion(0.205466, -0.00239735, 0.0669836, 0.976366)
+bones/49/rotation = Quaternion(0.253928, -0.000615645, -0.0339063, 0.966628)
+bones/50/rotation = Quaternion(-1.49012e-08, 0, 1.49012e-08, 1)
 bones/51/rotation = Quaternion(-1.49012e-08, 0, 1.49012e-08, 1)
-bones/52/rotation = Quaternion(0.126161, 2.68221e-07, 0.0153749, 0.991891)
-bones/53/rotation = Quaternion(0.126161, -1.49012e-08, 0.0153747, 0.991891)
-bones/54/rotation = Quaternion(0.0632086, 1.04308e-07, 0.00770295, 0.997971)
+bones/52/rotation = Quaternion(0.228231, 0.0200246, 0.10075, 0.968173)
+bones/53/rotation = Quaternion(0.379176, -0.00616799, -0.0914493, 0.920774)
+bones/54/rotation = Quaternion(-1.49012e-08, 0, 1.49012e-08, 1)
 bones/55/rotation = Quaternion(-1.49012e-08, 0, 1.49012e-08, 1)
-bones/56/rotation = Quaternion(-0.0433587, -0.071552, -0.993206, 0.0808814)
-bones/57/rotation = Quaternion(-0.0184651, 0.98052, -0.180108, 0.0761631)
-bones/58/rotation = Quaternion(-0.0574451, 0.628914, -0.772517, 0.0662188)
-bones/59/rotation = Quaternion(1.811e-09, 1, 0, 4.77445e-09)
-bones/61/rotation = Quaternion(-0.0793556, 0.0738369, 0.991495, 0.0720311)
-bones/62/rotation = Quaternion(-0.0174056, 0.986367, -0.1405, 0.0838879)
-bones/63/rotation = Quaternion(0.0658255, 0.646174, -0.760118, -0.018634)
-bones/64/rotation = Quaternion(-1.48173e-09, 1, 0, 1.48173e-09)
+bones/56/rotation = Quaternion(0.0916234, -0.136938, -0.986273, 0.0108784)
+bones/57/rotation = Quaternion(0.00536848, 0.983633, -0.180025, 0.00539638)
+bones/58/rotation = Quaternion(-0.00187887, 0.639695, -0.755549, 0.141184)
+bones/59/rotation = Quaternion(0.000285374, 0.998431, 0.0559964, -0.000685229)
+bones/61/rotation = Quaternion(-0.0416612, 0.136622, 0.989256, 0.0311774)
+bones/62/rotation = Quaternion(-0.00692519, 0.983343, -0.181629, 4.67383e-06)
+bones/63/rotation = Quaternion(-0.114704, 0.602229, -0.779847, -0.126499)
+bones/64/rotation = Quaternion(0.000958421, 0.999997, 0.00132474, -0.00183393)
 
 [node name="Alpha_Joints" parent="Armature_004/GeneralSkeleton" index="0"]
 extra_cull_margin = 1.0
@@ -1152,7 +1186,7 @@ extra_cull_margin = 1.0
 extra_cull_margin = 1.0
 
 [node name="LockOnAttachment" type="BoneAttachment3D" parent="Armature_004/GeneralSkeleton" index="2"]
-transform = Transform3D(0.996712, 0.0127535, -0.0800122, -0.0132948, 0.999892, -0.00623627, 0.079924, 0.00727952, 0.996774, -0.000558525, 1.34118, -0.0484482)
+transform = Transform3D(0.98888, -0.113892, 0.0956259, 0.12344, 0.987229, -0.100703, -0.0829354, 0.111387, 0.99031, -0.0348298, 1.3337, 0.0914472)
 bone_name = "UpperChest"
 bone_idx = 4
 
@@ -1259,6 +1293,12 @@ parameters/Parry/blend_amount = 0
 "parameters/Running Lock On/transition_request" = ""
 "parameters/Running Lock On/current_index" = 0
 "parameters/Running Lock On Look Direction/blend_position" = Vector2(0, 0)
+"parameters/Sit to Stand Speed/scale" = 1.0
+"parameters/Sit to Stand Trim/seek_request" = -1.0
+parameters/Sitting/blend_amount = 0
+"parameters/Sitting Idle Speed/scale" = 1.0
+"parameters/Sitting Idle Trim/seek_request" = -1.0
+"parameters/Sitting or Standing/blend_amount" = 0
 "parameters/Vertical Movement/blend_amount" = 0.0
 "parameters/Walking Lock On/current_state" = "locked_on"
 "parameters/Walking Lock On/transition_request" = ""
@@ -1310,5 +1350,10 @@ anim_tree = NodePath("../AnimationTree")
 
 [node name="DrinkAnimations" type="Node3D" parent="." index="12" node_paths=PackedStringArray("parent_animations", "anim_tree")]
 script = ExtResource("13_yftnk")
+parent_animations = NodePath("..")
+anim_tree = NodePath("../AnimationTree")
+
+[node name="SittingAnimations" type="Node3D" parent="." index="13" node_paths=PackedStringArray("parent_animations", "anim_tree")]
+script = ExtResource("15_rxgn1")
 parent_animations = NodePath("..")
 anim_tree = NodePath("../AnimationTree")

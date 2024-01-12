@@ -79,14 +79,14 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1,
 surface_material_override/0 = SubResource("ShaderMaterial_i1ddg")
 
 [node name="Sword" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity") instance=ExtResource("4_r63io")]
-transform = Transform3D(0.410248, -0.260808, 0.873885, 0.293906, -0.869299, -0.397414, 0.863317, 0.419879, -0.279975, -0.284044, 0.883924, -0.0662375)
+transform = Transform3D(0.945671, 0.301914, 0.120638, 0.0288813, 0.291577, -0.956111, -0.323839, 0.907651, 0.267017, -0.149396, 0.126253, -0.0558241)
 _entity = NodePath("../../../..")
 
 [node name="Area" parent="CharacterModel/Armature_004/GeneralSkeleton/Sword" index="1"]
 collision_mask = 2
 
 [node name="LockOnAttachment" parent="CharacterModel/Armature_004/GeneralSkeleton" index="3"]
-transform = Transform3D(0.996712, 0.0127535, -0.0800123, -0.0132948, 0.999892, -0.00623629, 0.0799241, 0.00727953, 0.996774, -0.0149768, 1.34118, -0.0582559)
+transform = Transform3D(0.998118, 0.0528233, -0.0311465, -0.053765, 0.998096, -0.0302142, 0.0294912, 0.0318318, 0.999058, 0.0112773, 0.376828, -0.281875)
 
 [node name="AnimationTree" parent="CharacterModel" index="2"]
 "parameters/Dizzy Finisher Which One/current_state" = ""

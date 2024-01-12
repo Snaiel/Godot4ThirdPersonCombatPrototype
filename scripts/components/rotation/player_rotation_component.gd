@@ -21,6 +21,9 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	
+	if not can_rotate:
+		return
+	
 	var _input_direction: Vector3 = player.input_direction
 	var _last_input_on_ground: Vector3 = player.last_input_on_ground
 	var _can_move: bool = player.movement_component.can_move
