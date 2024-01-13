@@ -38,6 +38,7 @@ var _holding_down_run_timer: Timer
 
 @onready var dizzy_system: DizzySystem = Globals.dizzy_system
 @onready var backstab_system: BackstabSystem = Globals.backstab_system
+@onready var checkpoint_system: CheckpointSystem = Globals.checkpoint_system
 
 
 func _ready() -> void:
@@ -92,7 +93,8 @@ func _physics_process(_delta: float) -> void:
 		state_machine.change_state(drink_state)
 	
 	if Input.is_action_just_pressed("interact") and \
-	not state_machine.current_state is PlayerCheckpointState:
+	not state_machine.current_state is PlayerCheckpointState and \
+	checkpoint_system.at_checkpoint:
 		state_machine.change_state(checkpoint_state)
 	
 	

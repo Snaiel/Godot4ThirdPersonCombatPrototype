@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cfip2n0nvr8n3"]
+[gd_scene load_steps=20 format=3 uid="uid://cfip2n0nvr8n3"]
 
 [ext_resource type="Script" path="res://scripts/utilities/level.gd" id="1_du374"]
 [ext_resource type="Material" uid="uid://qml1qedtuxl6" path="res://materials/grid.tres" id="2_5uhq1"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://scripts/utilities/backstab_system.gd" id="5_thw20"]
 [ext_resource type="Script" path="res://scripts/utilities/dizzy_system.gd" id="6_mckri"]
 [ext_resource type="Script" path="res://scripts/utilities/lock_on_system.gd" id="6_tdxnb"]
+[ext_resource type="Script" path="res://scripts/utilities/checkpoint_system.gd" id="9_3tuum"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_co0qk"]
 sky_top_color = Color(0.384314, 0.454902, 0.54902, 1)
@@ -39,7 +40,7 @@ size = Vector3(1, 5, 5)
 [sub_resource type="SphereShape3D" id="SphereShape3D_bb732"]
 radius = 10.0
 
-[node name="Main" type="Node3D" node_paths=PackedStringArray("player", "user_interface", "camera_controller", "lock_on_system", "backstab_system", "dizzy_system")]
+[node name="Main" type="Node3D" node_paths=PackedStringArray("player", "user_interface", "camera_controller", "lock_on_system", "backstab_system", "dizzy_system", "checkpoint_system")]
 script = ExtResource("1_du374")
 player = NodePath("Player")
 user_interface = NodePath("UserInterface")
@@ -47,6 +48,7 @@ camera_controller = NodePath("CameraController")
 lock_on_system = NodePath("LockOnSystem")
 backstab_system = NodePath("BackstabSystem")
 dizzy_system = NodePath("DizzySystem")
+checkpoint_system = NodePath("CheckpointSystem")
 
 [node name="UserInterface" parent="." node_paths=PackedStringArray("dizzy_system") instance=ExtResource("3_hlhuw")]
 dizzy_system = NodePath("../DizzySystem")
@@ -246,6 +248,9 @@ shape = SubResource("SphereShape3D_bb732")
 
 [node name="ChangeTargetTimer" type="Timer" parent="LockOnSystem"]
 wait_time = 0.5
+
+[node name="CheckpointSystem" type="Node" parent="."]
+script = ExtResource("9_3tuum")
 
 [node name="CameraController" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_s2v7n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.6934, 0)

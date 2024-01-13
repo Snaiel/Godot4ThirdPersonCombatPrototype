@@ -4,6 +4,8 @@ extends Control
 
 var counter: int
 
+@onready var checkpoint_hint = $CheckpointHint
+
 
 func _physics_process(_delta):
 	if counter > 0:
