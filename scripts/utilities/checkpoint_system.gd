@@ -2,10 +2,12 @@ class_name CheckpointSystem
 extends Node
 
 
+var near_checkpoint: bool = false
 var at_checkpoint: bool = false
 
 var _counter: int = 0
 
+@onready var player: Player = Globals.player
 @onready var interaction_hints: InteractionHints = Globals\
 	.user_interface\
 	.hud\
@@ -14,11 +16,16 @@ var _counter: int = 0
 
 func _process(_delta):
 	if _counter > 0:
-		at_checkpoint = true
+		near_checkpoint = true
 		interaction_hints.checkpoint_hint.visible = true
 	else:
-		at_checkpoint = false
+		near_checkpoint = false
 		interaction_hints.checkpoint_hint.visible = false
+	
+	if player.character.sitting_animations.sitting_idle:
+		at_checkpoint = true
+	else:
+		at_checkpoint = false
 
 
 func player_close_to_checkpoint() -> void:

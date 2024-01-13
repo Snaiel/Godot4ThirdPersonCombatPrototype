@@ -2,6 +2,8 @@ class_name HeadsUpDisplay
 extends Control
 
 
+@export var enabled: bool = true
+
 var _lock_on_target: LockOnComponent = null
 
 var _backstab_victim: BackstabComponent = null
@@ -37,7 +39,7 @@ func _ready() -> void:
 	)
 
 
-func _process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	
 	_process_lock_on()
 	_process_backstab()
@@ -58,6 +60,19 @@ func _process(_delta: float) -> void:
 		)
 	
 	_lock_on_texture.visible = _lock_on_target != null
+	
+	if enabled:
+		modulate.a = lerp(
+			modulate.a,
+			1.0,
+			0.1
+		)
+	else:
+		modulate.a = lerp(
+			modulate.a,
+			0.0,
+			0.1
+		)
 
 
 func _on_lock_on_system_lock_on(target: LockOnComponent) -> void:

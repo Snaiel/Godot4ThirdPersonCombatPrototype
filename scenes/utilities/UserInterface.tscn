@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b075d85nmca7s"]
+[gd_scene load_steps=20 format=3 uid="uid://b075d85nmca7s"]
 
 [ext_resource type="Script" path="res://scripts/utilities/user_interface.gd" id="1_2nhxu"]
 [ext_resource type="Texture2D" uid="uid://dishehhur7io2" path="res://assets/white_dot.png" id="1_v2w42"]
@@ -15,6 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://byhp3ghf2qiij" path="res://assets/flask.svg" id="11_dmhdx"]
 [ext_resource type="Texture2D" uid="uid://06ykk08io3p2" path="res://assets/letter-uppercase-square-e.svg" id="13_440m2"]
 [ext_resource type="Script" path="res://scripts/user_interface/interaction_hints.gd" id="13_mkuun"]
+[ext_resource type="Texture2D" uid="uid://c42vaoia0lped" path="res://assets/checkpoint_menu_background.png" id="16_no8c8"]
+[ext_resource type="Script" path="res://scripts/user_interface/checkpoint_interface.gd" id="16_xyxjr"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vd688"]
 font_size = 20
@@ -49,7 +51,8 @@ texture = ExtResource("1_v2w42")
 
 [node name="HUD" type="Control" parent="."]
 anchors_preset = 0
-offset_right = 40.0
+offset_left = -1.0
+offset_right = 39.0
 offset_bottom = 40.0
 script = ExtResource("3_bcps2")
 
@@ -227,3 +230,88 @@ offset_bottom = 13.145
 text = ":  Recover at checkpoint"
 label_settings = SubResource("LabelSettings_u65vg")
 vertical_alignment = 1
+
+[node name="CheckpointInterface" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("16_xyxjr")
+
+[node name="Background" type="TextureRect" parent="CheckpointInterface"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_no8c8")
+expand_mode = 3
+
+[node name="Buttons" type="VBoxContainer" parent="CheckpointInterface"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.1
+anchor_right = 0.05
+anchor_bottom = 0.1
+offset_right = 120.0
+offset_bottom = 66.0
+theme_override_constants/separation = 5
+
+[node name="Recover" type="Button" parent="CheckpointInterface/Buttons"]
+layout_mode = 2
+text = "Recover"
+alignment = 0
+
+[node name="Return" type="Button" parent="CheckpointInterface/Buttons"]
+layout_mode = 2
+text = "Return
+"
+alignment = 0
+
+[node name="Attributes" type="TextureRect" parent="CheckpointInterface"]
+self_modulate = Color(0, 0, 0, 0.196078)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.45
+anchor_top = 0.15
+anchor_right = 0.85
+anchor_bottom = 0.5
+offset_right = 0.159973
+offset_bottom = 0.0999756
+texture = ExtResource("10_nh3cc")
+
+[node name="Health" type="VBoxContainer" parent="CheckpointInterface/Attributes"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.1
+anchor_bottom = 0.1
+theme_override_constants/separation = 10
+
+[node name="HealthLabel" type="Label" parent="CheckpointInterface/Attributes/Health"]
+layout_mode = 2
+text = "Health
+"
+
+[node name="PlayerHealthBar" type="Control" parent="CheckpointInterface/Attributes/Health"]
+layout_mode = 2
+script = ExtResource("7_d0aas")
+
+[node name="Background" type="Polygon2D" parent="CheckpointInterface/Attributes/Health/PlayerHealthBar"]
+self_modulate = Color(0.196078, 0.196078, 0.196078, 1)
+polygon = PackedVector2Array(0, -8, 0, 8, 100, 8, 100, -8)
+
+[node name="DelayBar" type="Polygon2D" parent="CheckpointInterface/Attributes/Health/PlayerHealthBar"]
+self_modulate = Color(0.556863, 0.556863, 0.556863, 1)
+position = Vector2(4, 0)
+polygon = PackedVector2Array(0, -4, 0, 4, 92, 4, 92, -4)
+
+[node name="Health" type="Polygon2D" parent="CheckpointInterface/Attributes/Health/PlayerHealthBar"]
+self_modulate = Color(0.662745, 0.105882, 0.105882, 1)
+position = Vector2(4, 0)
+polygon = PackedVector2Array(0, -4, 0, 4, 92, 4, 92, -4)
