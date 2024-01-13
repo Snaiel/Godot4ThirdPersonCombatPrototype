@@ -4,12 +4,17 @@ extends Control
 
 @export var enabled: bool = false
 
+@onready var recover_button: Button = $Buttons/Recover
+@onready var return_button: Button = $Buttons/Return
+
 
 func _ready():
 	modulate.a = 0.0
+	visible = false
 
 
 func _physics_process(_delta):
+	
 	if enabled:
 		modulate.a = lerp(
 			modulate.a,
@@ -22,8 +27,3 @@ func _physics_process(_delta):
 			0.0,
 			0.1
 		)
-	
-	if is_zero_approx(modulate.a):
-		visible = false
-	else:
-		visible = true

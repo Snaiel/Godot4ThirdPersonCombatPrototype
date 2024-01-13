@@ -263,11 +263,17 @@ theme_override_constants/separation = 5
 
 [node name="Recover" type="Button" parent="CheckpointInterface/Buttons"]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../Return")
+focus_next = NodePath("../Return")
+focus_previous = NodePath("../Return")
 text = "Recover"
 alignment = 0
 
 [node name="Return" type="Button" parent="CheckpointInterface/Buttons"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../Recover")
+focus_next = NodePath("../Recover")
+focus_previous = NodePath("../Recover")
 text = "Return
 "
 alignment = 0
