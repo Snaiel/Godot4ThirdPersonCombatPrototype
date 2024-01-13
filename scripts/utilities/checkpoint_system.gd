@@ -8,6 +8,7 @@ var _counter: int = 0
 
 @onready var interaction_hints: InteractionHints = Globals\
 	.user_interface\
+	.hud\
 	.interaction_hints
 
 

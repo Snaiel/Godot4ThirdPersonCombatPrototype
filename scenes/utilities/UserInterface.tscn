@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://b075d85nmca7s"]
+[gd_scene load_steps=18 format=3 uid="uid://b075d85nmca7s"]
 
 [ext_resource type="Script" path="res://scripts/utilities/user_interface.gd" id="1_2nhxu"]
 [ext_resource type="Texture2D" uid="uid://dishehhur7io2" path="res://assets/white_dot.png" id="1_v2w42"]
+[ext_resource type="Script" path="res://scripts/user_interface/heads_up_display.gd" id="3_bcps2"]
 [ext_resource type="Texture2D" uid="uid://b1oqk2tqilbw" path="res://assets/crosshair.svg" id="3_etq2v"]
 [ext_resource type="PackedScene" uid="uid://dt6i863shdkev" path="res://scenes/utilities/NoticeTriangle.tscn" id="4_rjkcx"]
 [ext_resource type="PackedScene" uid="uid://clbe1nrax10m8" path="res://scenes/utilities/WellbeingWidget.tscn" id="5_5c8kv"]
@@ -31,18 +32,6 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_2nhxu")
 
-[node name="Crosshair" type="Sprite2D" parent="."]
-position = Vector2(37, 58)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("3_etq2v")
-
-[node name="LockOn" type="TextureRect" parent="."]
-layout_mode = 1
-offset_right = 10.0
-offset_bottom = 10.0
-texture = ExtResource("1_v2w42")
-expand_mode = 1
-
 [node name="DebugLabel" type="Label" parent="."]
 visible = false
 layout_mode = 0
@@ -52,119 +41,149 @@ offset_right = 116.0
 offset_bottom = 47.0
 text = "DebugLabel"
 
-[node name="NoticeTriangles" type="Node2D" parent="."]
-
-[node name="NoticeTriangle" parent="NoticeTriangles" instance=ExtResource("4_rjkcx")]
-visible = false
-position = Vector2(31, 28)
-
-[node name="WellbeingWidgets" type="Node2D" parent="."]
-
-[node name="WellbeingWidget" parent="WellbeingWidgets" instance=ExtResource("5_5c8kv")]
-visible = false
-position = Vector2(105, 32)
-
-[node name="OffCameraNoticeTriangles" type="Node2D" parent="."]
-position = Vector2(569, 447)
-
-[node name="OffCameraNoticeTriangle" parent="OffCameraNoticeTriangles" instance=ExtResource("6_for7l")]
-visible = false
-
 [node name="DebugWhiteDot" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(560, 396)
 scale = Vector2(0.02, 0.02)
 texture = ExtResource("1_v2w42")
 
-[node name="PlayerHealthBar" type="Control" parent="."]
+[node name="HUD" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_bcps2")
+
+[node name="Crosshair" type="Sprite2D" parent="HUD"]
+position = Vector2(37, 58)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_etq2v")
+
+[node name="LockOn" type="TextureRect" parent="HUD"]
+layout_mode = 1
+offset_right = 10.0
+offset_bottom = 10.0
+texture = ExtResource("1_v2w42")
+expand_mode = 1
+
+[node name="NoticeTriangles" type="Node2D" parent="HUD"]
+
+[node name="NoticeTriangle" parent="HUD/NoticeTriangles" instance=ExtResource("4_rjkcx")]
+visible = false
+position = Vector2(31, 28)
+
+[node name="WellbeingWidgets" type="Node2D" parent="HUD"]
+
+[node name="WellbeingWidget" parent="HUD/WellbeingWidgets" instance=ExtResource("5_5c8kv")]
+visible = false
+position = Vector2(105, 32)
+
+[node name="OffCameraNoticeTriangles" type="Node2D" parent="HUD"]
+position = Vector2(569, 447)
+
+[node name="OffCameraNoticeTriangle" parent="HUD/OffCameraNoticeTriangles" instance=ExtResource("6_for7l")]
+visible = false
+
+[node name="PlayerHealthBar" type="Control" parent="HUD"]
 layout_mode = 1
 anchor_left = 0.05
 anchor_top = 0.92
 anchor_right = 0.05
 anchor_bottom = 0.92
+offset_left = 46.0
+offset_top = 460.0
+offset_right = 46.0
+offset_bottom = 460.0
 grow_vertical = 0
 script = ExtResource("7_d0aas")
 
-[node name="Background" type="Polygon2D" parent="PlayerHealthBar"]
+[node name="Background" type="Polygon2D" parent="HUD/PlayerHealthBar"]
 self_modulate = Color(0.196078, 0.196078, 0.196078, 1)
 position = Vector2(0, -8)
 polygon = PackedVector2Array(0, -8, 0, 8, 100, 8, 100, -8)
 
-[node name="DelayBar" type="Polygon2D" parent="PlayerHealthBar"]
+[node name="DelayBar" type="Polygon2D" parent="HUD/PlayerHealthBar"]
 self_modulate = Color(0.556863, 0.556863, 0.556863, 1)
 position = Vector2(4, -8)
 polygon = PackedVector2Array(0, -4, 0, 4, 92, 4, 92, -4)
 
-[node name="Health" type="Polygon2D" parent="PlayerHealthBar"]
+[node name="Health" type="Polygon2D" parent="HUD/PlayerHealthBar"]
 self_modulate = Color(0.662745, 0.105882, 0.105882, 1)
 position = Vector2(4, -8)
 polygon = PackedVector2Array(0, -4, 0, 4, 92, 4, 92, -4)
 
-[node name="PlayerInstabilityBar" type="Control" parent="."]
+[node name="PlayerInstabilityBar" type="Control" parent="HUD"]
 layout_mode = 1
 anchor_left = 0.5
 anchor_top = 0.875
 anchor_right = 0.5
 anchor_bottom = 0.875
+offset_left = 460.0
+offset_top = 437.5
+offset_right = 460.0
+offset_bottom = 437.5
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("8_gg83b")
 color_gradient = ExtResource("9_vla3l")
 
-[node name="Glare" type="Node2D" parent="PlayerInstabilityBar"]
+[node name="Glare" type="Node2D" parent="HUD/PlayerInstabilityBar"]
 position = Vector2(0, -4)
 
-[node name="Layer1" type="Polygon2D" parent="PlayerInstabilityBar/Glare"]
+[node name="Layer1" type="Polygon2D" parent="HUD/PlayerInstabilityBar/Glare"]
 self_modulate = Color(1, 0.235294, 0, 0.784314)
 polygon = PackedVector2Array(-96, -10, 96, -10, 136, 0, 96, 10, -96, 10, -136, 0)
 
-[node name="Layer2" type="Polygon2D" parent="PlayerInstabilityBar/Glare"]
+[node name="Layer2" type="Polygon2D" parent="HUD/PlayerInstabilityBar/Glare"]
 self_modulate = Color(1, 0.235294, 0, 0.588235)
 polygon = PackedVector2Array(-96, -10, 96, -10, 144, 0, 96, 10, -96, 10, -144, 0)
 
-[node name="Layer3" type="Polygon2D" parent="PlayerInstabilityBar/Glare"]
+[node name="Layer3" type="Polygon2D" parent="HUD/PlayerInstabilityBar/Glare"]
 self_modulate = Color(1, 0.235294, 0, 0.588235)
 polygon = PackedVector2Array(-96, -10, 96, -10, 160, 0, 96, 10, -96, 10, -160, 0)
 
-[node name="Background" type="Polygon2D" parent="PlayerInstabilityBar"]
+[node name="Background" type="Polygon2D" parent="HUD/PlayerInstabilityBar"]
 self_modulate = Color(0.196078, 0.196078, 0.196078, 1)
 position = Vector2(0, -4)
 polygon = PackedVector2Array(-96, -8, 96, -8, 128, 0, 96, 8, -96, 8, -128, 0)
 
-[node name="Instability" type="Polygon2D" parent="PlayerInstabilityBar"]
+[node name="Instability" type="Polygon2D" parent="HUD/PlayerInstabilityBar"]
 self_modulate = Color(0.854902, 0.721569, 0, 1)
 position = Vector2(0, -4)
 polygon = PackedVector2Array(-116, 0, -96, -4, 96, -4, 116, 0, 96, 4, -96, 4)
 
-[node name="Middle" type="Polygon2D" parent="PlayerInstabilityBar"]
+[node name="Middle" type="Polygon2D" parent="HUD/PlayerInstabilityBar"]
 position = Vector2(0, -4)
 polygon = PackedVector2Array(-2, -5, 0, -6, 2, -5, 2, 5, 0, 6, -2, 5)
 
-[node name="PlayerHealthCharges" type="Control" parent="."]
+[node name="PlayerHealthCharges" type="Control" parent="HUD"]
 layout_mode = 1
 anchor_left = 0.92
 anchor_top = 0.92
 anchor_right = 0.92
 anchor_bottom = 0.92
+offset_left = 846.4
+offset_top = 460.0
+offset_right = 846.4
+offset_bottom = 460.0
 grow_horizontal = 0
 grow_vertical = 0
 script = ExtResource("10_3s5wg")
 flask_color = Color(0.419608, 0.768627, 0.0705882, 1)
 no_charges_color = Color(0.380392, 0.454902, 0.321569, 1)
 
-[node name="Background" type="Sprite2D" parent="PlayerHealthCharges"]
+[node name="Background" type="Sprite2D" parent="HUD/PlayerHealthCharges"]
 self_modulate = Color(0.196078, 0.196078, 0.196078, 1)
 position = Vector2(-40, -40)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("10_nh3cc")
 
-[node name="Flask" type="Sprite2D" parent="PlayerHealthCharges"]
+[node name="Flask" type="Sprite2D" parent="HUD/PlayerHealthCharges"]
 self_modulate = Color(0.419608, 0.768627, 0.0705882, 1)
 position = Vector2(-40, -40)
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("11_dmhdx")
 
-[node name="Label" type="Label" parent="PlayerHealthCharges"]
+[node name="Label" type="Label" parent="HUD/PlayerHealthCharges"]
 layout_mode = 0
 offset_left = -32.0
 offset_top = -80.0
@@ -175,27 +194,31 @@ label_settings = SubResource("LabelSettings_vd688")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="InteractionHints" type="Control" parent="."]
+[node name="InteractionHints" type="Control" parent="HUD"]
 layout_mode = 1
 anchor_left = 0.5
 anchor_top = 0.94
 anchor_right = 0.5
 anchor_bottom = 0.94
+offset_left = 460.0
+offset_top = 470.0
+offset_right = 460.0
+offset_bottom = 470.0
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("13_mkuun")
 
-[node name="CheckpointHint" type="Control" parent="InteractionHints"]
+[node name="CheckpointHint" type="Control" parent="HUD/InteractionHints"]
 anchors_preset = 0
 offset_left = -70.0
 offset_right = -70.0
 pivot_offset = Vector2(70, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="InteractionHints/CheckpointHint"]
+[node name="Sprite2D" type="Sprite2D" parent="HUD/InteractionHints/CheckpointHint"]
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("13_440m2")
 
-[node name="Label" type="Label" parent="InteractionHints/CheckpointHint"]
+[node name="Label" type="Label" parent="HUD/InteractionHints/CheckpointHint"]
 layout_mode = 0
 offset_left = 14.275
 offset_top = -12.855

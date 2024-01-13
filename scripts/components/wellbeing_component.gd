@@ -26,7 +26,7 @@ var _visible: bool = false
 
 func _ready():
 	_well_being_widget = wellbeing_widget_scene.instantiate()
-	Globals.user_interface.wellbeing_widgets.add_child(_well_being_widget)
+	Globals.user_interface.hud.wellbeing_widgets.add_child(_well_being_widget)
 	
 	_health_bar = _well_being_widget.health_bar
 	_health_bar.default_health = health_component.max_health
