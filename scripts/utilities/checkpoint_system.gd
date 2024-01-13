@@ -22,9 +22,19 @@ func _process(_delta):
 
 func player_close_to_checkpoint() -> void:
 	_counter += 1
-	interaction_hints.counter += 1
+	if _counter == 1:
+		interaction_hints.counter += 1
 
 
 func player_far_from_checkpoint() -> void:
 	_counter -= 1
+	if _counter == 0:
+		interaction_hints.counter -= 1
+
+
+func disable_hint() -> void:
 	interaction_hints.counter -= 1
+
+
+func enable_hint() -> void:
+	interaction_hints.counter += 1

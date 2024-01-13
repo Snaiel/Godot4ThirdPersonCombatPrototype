@@ -15,6 +15,7 @@ func enter():
 	player.rotation_component.can_rotate = false
 	player.character.sitting_animations.sit_down()
 	player.set_root_motion(true)
+	player.checkpoint_system.disable_hint()
 
 
 func process_player():
@@ -34,3 +35,4 @@ func process_movement_animations() -> void:
 func exit():
 	player.set_root_motion(false)
 	player.rotation_component.can_rotate = true
+	player.checkpoint_system.enable_hint()
