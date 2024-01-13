@@ -1,9 +1,11 @@
 class_name LockOnSystem
 extends Node3D
 
+
 signal lock_on(target: LockOnComponent)
 
-@export var player: Player
+
+@export var enabled: bool = true
 @export var retain_distance: float = 25.0
 
 @export_category("Enemies")
@@ -23,6 +25,7 @@ var _targets_nearby: Array[LockOnComponent]
 @onready var _change_target_timer: Timer = $ChangeTargetTimer
 @onready var _enemy_detection_sphere: CollisionShape3D = $EnemyDetectionSphere
 
+@onready var _player: Player = Globals.player
 @onready var _dizzy_system: DizzySystem = Globals.dizzy_system
 @onready var _backstab_system: BackstabSystem = Globals.backstab_system
 
@@ -33,12 +36,14 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-#	print(target)
 	
-	position = player.position
+	if not enabled:
+		return
+	
+	position = _player.position
 	
 	if target:
-		var distance: float = player.global_position.distance_to(target.global_position)
+		var distance: float = _player.global_position.distance_to(target.global_position)
 		if distance > retain_distance:
 			target = null
 			lock_on.emit(target)
@@ -65,6 +70,10 @@ func _physics_process(_delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
+	
+	if not enabled:
+		return
+	
 	# change target with mouse
 	if event is InputEventMouseMotion and target:
 		event = event as InputEventMouseMotion

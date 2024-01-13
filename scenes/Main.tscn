@@ -235,11 +235,10 @@ script = ExtResource("5_thw20")
 [node name="DizzySystem" type="Node3D" parent="."]
 script = ExtResource("6_mckri")
 
-[node name="LockOnSystem" type="Area3D" parent="." node_paths=PackedStringArray("player", "potential_target")]
+[node name="LockOnSystem" type="Area3D" parent="." node_paths=PackedStringArray("potential_target")]
 collision_layer = 0
 collision_mask = 16
 script = ExtResource("6_tdxnb")
-player = NodePath("../Player")
 potential_target = NodePath("../Enemies/Enemy")
 
 [node name="EnemyDetectionSphere" type="CollisionShape3D" parent="LockOnSystem"]
@@ -251,9 +250,8 @@ wait_time = 0.5
 [node name="CheckpointSystem" type="Node" parent="."]
 script = ExtResource("9_3tuum")
 
-[node name="CameraController" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_s2v7n")]
+[node name="CameraController" parent="." instance=ExtResource("2_s2v7n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.6934, 0)
-player = NodePath("../Player")
 not_running_spin_speed = 3.5
 running_spin_speed = 4.0
 

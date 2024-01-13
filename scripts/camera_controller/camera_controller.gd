@@ -2,7 +2,7 @@ class_name CameraController
 extends SpringArm3D
 
 
-@export var player: Player
+@export var enabled: bool = true
 
 @export_category("Camera Settings")
 @export var camera_distance: float = 2.0
@@ -30,6 +30,7 @@ extends SpringArm3D
 
 var looking_around: bool
 
+@onready var player: Player = Globals.player
 @onready var dizzy_system: DizzySystem = Globals.dizzy_system
 @onready var cam: Camera3D = $Camera3D
 @onready var state_machine: CameraControllerStateMachine = $StateMachine
@@ -64,10 +65,18 @@ func _physics_process(_delta: float) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 #	print(state_machine.current_state)
+	
+	if not enabled:
+		return
+	
 	state_machine.process_camera_state_machine()
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	
+	if not enabled:
+		return
+	
 	state_machine.process_unhandled_input_state_machine(event)
 
 
