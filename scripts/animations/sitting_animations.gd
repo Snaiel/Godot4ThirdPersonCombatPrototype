@@ -60,7 +60,7 @@ func sit_down() -> void:
 	_ignore_method_calls = true
 	
 	anim_tree["parameters/Sitting or Standing/blend_amount"] = 1.0
-	anim_tree["parameters/Sit to Stand Speed/scale"] = -1.0
+	anim_tree["parameters/Sit to Stand Speed/scale"] = -1.5
 	anim_tree["parameters/Sit to Stand Trim/seek_request"] = 5.0
 	
 	_active = true
@@ -84,13 +84,13 @@ func stand_up() -> void:
 	_ignore_method_calls = true
 	
 	anim_tree["parameters/Sitting or Standing/blend_amount"] = 0.0
-	anim_tree["parameters/Sit to Stand Speed/scale"] = 1.0
+	anim_tree["parameters/Sit to Stand Speed/scale"] = 2
 	anim_tree["parameters/Sit to Stand Trim/seek_request"] = 0.0
 	
 	_active = true
 	_transitioning = true
 	
-	var timer: SceneTreeTimer = get_tree().create_timer(3.0)
+	var timer: SceneTreeTimer = get_tree().create_timer(2.0)
 	timer.timeout.connect(
 		func():
 			_ignore_method_calls = false
