@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b075d85nmca7s"]
+[gd_scene load_steps=23 format=3 uid="uid://b075d85nmca7s"]
 
 [ext_resource type="Script" path="res://scripts/utilities/user_interface.gd" id="1_2nhxu"]
 [ext_resource type="Texture2D" uid="uid://dishehhur7io2" path="res://assets/white_dot.png" id="1_v2w42"]
@@ -23,6 +23,33 @@ font_size = 20
 
 [sub_resource type="LabelSettings" id="LabelSettings_u65vg"]
 font_size = 14
+
+[sub_resource type="Gradient" id="Gradient_y7w55"]
+offsets = PackedFloat32Array(0.657993, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_lwsqe"]
+gradient = SubResource("Gradient_y7w55")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_208hi"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 2.0
+emission_ring_radius = 2.0
+emission_ring_inner_radius = 0.0
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 1)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 70.0
+initial_velocity_max = 130.0
+orbit_velocity_min = -0.05
+orbit_velocity_max = 0.05
+scale_min = 0.05
+scale_max = 0.1
+color = Color(0.454902, 0.819608, 1, 1)
+color_ramp = SubResource("GradientTexture1D_lwsqe")
+hue_variation_min = -0.2
 
 [node name="UserInterface" type="Control"]
 layout_mode = 3
@@ -240,7 +267,36 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("16_xyxjr")
 
-[node name="Background" type="TextureRect" parent="CheckpointInterface"]
+[node name="RecoverParticles" type="GPUParticles2D" parent="CheckpointInterface"]
+position = Vector2(431, 273)
+emitting = false
+amount = 256
+process_material = SubResource("ParticleProcessMaterial_208hi")
+texture = ExtResource("1_v2w42")
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+randomness = 0.5
+
+[node name="Fade" type="TextureRect" parent="CheckpointInterface"]
+self_modulate = Color(0, 0, 0, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_nh3cc")
+
+[node name="Menu" type="Control" parent="CheckpointInterface"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="CheckpointInterface/Menu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -250,18 +306,18 @@ grow_vertical = 2
 texture = ExtResource("16_no8c8")
 expand_mode = 3
 
-[node name="Buttons" type="VBoxContainer" parent="CheckpointInterface"]
+[node name="Buttons" type="VBoxContainer" parent="CheckpointInterface/Menu"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.05
 anchor_top = 0.1
 anchor_right = 0.05
 anchor_bottom = 0.1
-offset_right = 120.0
-offset_bottom = 66.0
+offset_right = 150.0
+offset_bottom = 67.0
 theme_override_constants/separation = 5
 
-[node name="Recover" type="Button" parent="CheckpointInterface/Buttons"]
+[node name="Recover" type="Button" parent="CheckpointInterface/Menu/Buttons"]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../Return")
 focus_next = NodePath("../Return")
@@ -269,7 +325,7 @@ focus_previous = NodePath("../Return")
 text = "Recover"
 alignment = 0
 
-[node name="Return" type="Button" parent="CheckpointInterface/Buttons"]
+[node name="Return" type="Button" parent="CheckpointInterface/Menu/Buttons"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Recover")
 focus_next = NodePath("../Recover")
@@ -278,7 +334,7 @@ text = "Return
 "
 alignment = 0
 
-[node name="Attributes" type="TextureRect" parent="CheckpointInterface"]
+[node name="Attributes" type="TextureRect" parent="CheckpointInterface/Menu"]
 self_modulate = Color(0, 0, 0, 0.196078)
 layout_mode = 1
 anchors_preset = -1
@@ -286,11 +342,9 @@ anchor_left = 0.45
 anchor_top = 0.15
 anchor_right = 0.85
 anchor_bottom = 0.5
-offset_right = 0.159973
-offset_bottom = 0.0999756
 texture = ExtResource("10_nh3cc")
 
-[node name="Health" type="VBoxContainer" parent="CheckpointInterface/Attributes"]
+[node name="Health" type="VBoxContainer" parent="CheckpointInterface/Menu/Attributes"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.1
@@ -299,25 +353,25 @@ anchor_right = 0.1
 anchor_bottom = 0.1
 theme_override_constants/separation = 10
 
-[node name="HealthLabel" type="Label" parent="CheckpointInterface/Attributes/Health"]
+[node name="HealthLabel" type="Label" parent="CheckpointInterface/Menu/Attributes/Health"]
 layout_mode = 2
 text = "Health
 "
 
-[node name="PlayerHealthBar" type="Control" parent="CheckpointInterface/Attributes/Health"]
+[node name="PlayerHealthBar" type="Control" parent="CheckpointInterface/Menu/Attributes/Health"]
 layout_mode = 2
 script = ExtResource("7_d0aas")
 
-[node name="Background" type="Polygon2D" parent="CheckpointInterface/Attributes/Health/PlayerHealthBar"]
+[node name="Background" type="Polygon2D" parent="CheckpointInterface/Menu/Attributes/Health/PlayerHealthBar"]
 self_modulate = Color(0.196078, 0.196078, 0.196078, 1)
 polygon = PackedVector2Array(0, -8, 0, 8, 100, 8, 100, -8)
 
-[node name="DelayBar" type="Polygon2D" parent="CheckpointInterface/Attributes/Health/PlayerHealthBar"]
+[node name="DelayBar" type="Polygon2D" parent="CheckpointInterface/Menu/Attributes/Health/PlayerHealthBar"]
 self_modulate = Color(0.556863, 0.556863, 0.556863, 1)
 position = Vector2(4, 0)
 polygon = PackedVector2Array(0, -4, 0, 4, 92, 4, 92, -4)
 
-[node name="Health" type="Polygon2D" parent="CheckpointInterface/Attributes/Health/PlayerHealthBar"]
+[node name="Health" type="Polygon2D" parent="CheckpointInterface/Menu/Attributes/Health/PlayerHealthBar"]
 self_modulate = Color(0.662745, 0.105882, 0.105882, 1)
 position = Vector2(4, 0)
 polygon = PackedVector2Array(0, -4, 0, 4, 92, 4, 92, -4)

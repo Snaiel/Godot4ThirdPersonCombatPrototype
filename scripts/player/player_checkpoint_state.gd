@@ -13,6 +13,12 @@ var _exiting: bool = false
 func _ready():
 	super._ready()
 	
+	player.character.sitting_animations.sat_down.connect(
+		func():
+			user_interface.checkpoint_interface.show_menu = true
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	)
+	
 	player.character.sitting_animations.finished.connect(
 		func():
 			parent_state.transition_to_default_state()
@@ -43,10 +49,7 @@ func enter():
 
 
 func process_player():
-	if player.character.sitting_animations.sitting_idle and \
-	not _exiting:
-		user_interface.checkpoint_interface.enabled = true
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	pass
 	
 
 func process_movement_animations() -> void:
@@ -74,7 +77,7 @@ func exit():
 func _stand_up() -> void:
 	player.character.sitting_animations.stand_up()
 	
-	user_interface.checkpoint_interface.enabled = false
+	user_interface.checkpoint_interface.show_menu = false
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	_exiting = true

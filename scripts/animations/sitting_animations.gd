@@ -2,6 +2,7 @@ class_name SittingAnimations
 extends BaseAnimations
 
 
+signal sat_down
 signal finished
 
 
@@ -11,6 +12,8 @@ var _active: bool = false
 var _transitioning: bool = false
 var _ignore_method_calls: bool = false
 var _previous_sitting_blend: float = 0.0
+
+var _can_emit_sat_down: bool = false
 
 
 func _ready():
@@ -46,6 +49,9 @@ func _physics_process(_delta):
 	
 	if float(anim_tree["parameters/Sitting or Standing/blend_amount"]) < 0.1:
 		sitting_idle = true
+		if _can_emit_sat_down:
+			_can_emit_sat_down = false
+			sat_down.emit()
 	else:
 		sitting_idle = false
 	
@@ -58,6 +64,7 @@ func _physics_process(_delta):
 
 func sit_down() -> void:
 	_ignore_method_calls = true
+	_can_emit_sat_down = true
 	
 	anim_tree["parameters/Sitting or Standing/blend_amount"] = 1.0
 	anim_tree["parameters/Sit to Stand Speed/scale"] = -1.5

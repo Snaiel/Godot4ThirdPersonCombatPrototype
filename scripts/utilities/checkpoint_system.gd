@@ -4,6 +4,10 @@ extends Node
 
 @export var enemies: Node
 
+var closest_checkpoint: Checkpoint
+
+var checkpoints: Array[Checkpoint]
+
 var near_checkpoint: bool = false
 var at_checkpoint: bool = false
 
@@ -27,9 +31,10 @@ func _ready():
 	_packed_enemies = PackedScene.new()
 	_packed_enemies.pack(enemies)
 	
-	checkpoint_interface.recover_button.pressed.connect(
+	checkpoint_interface.perform_recovery.connect(
 		_recover
 	)
+
 
 func _process(_delta):
 	if _counter > 0:
@@ -43,6 +48,21 @@ func _process(_delta):
 		at_checkpoint = true
 	else:
 		at_checkpoint = false
+	
+	if closest_checkpoint == null:
+		closest_checkpoint = checkpoints[0]
+	
+	for checkpoint in checkpoints:
+		var current_closest_checkpoint_dist: float = closest_checkpoint.global_position.distance_to(
+			player.global_position
+		)
+		
+		var checkpoint_dist: float = checkpoint.global_position.distance_to(
+			player.global_position
+		)
+		
+		if checkpoint_dist < current_closest_checkpoint_dist:
+			closest_checkpoint = checkpoint
 
 
 func player_close_to_checkpoint() -> void:

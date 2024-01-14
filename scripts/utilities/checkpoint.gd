@@ -11,18 +11,21 @@ var _player_angle: float
 var _show_hint: bool
 var _previous_show_hint_value: bool = _show_hint
 
-@onready var player: Player = Globals.player
-@onready var checkpoint_system: CheckpointSystem = Globals.checkpoint_system
+@onready var _recovery_particles: GPUParticles3D = $RecoveryParticles
+@onready var _player: Player = Globals.player
+@onready var _checkpoint_system: CheckpointSystem = Globals.checkpoint_system
 
 
 func _process(_delta):
+	_checkpoint_system.checkpoints.append(self)
+	
 	_dist_to_player = global_position.distance_to(
-		player.global_position
+		_player.global_position
 	)
 	
 	_player_angle = rad_to_deg(
-			Vector3.FORWARD.rotated(Vector3.UP, player.global_rotation.y).angle_to(
-				player.global_position.direction_to(global_position)
+			Vector3.FORWARD.rotated(Vector3.UP, _player.global_rotation.y).angle_to(
+				_player.global_position.direction_to(global_position)
 		)
 	)
 	
@@ -34,9 +37,13 @@ func _process(_delta):
 	
 	if _show_hint == true and \
 	_previous_show_hint_value == false:
-		checkpoint_system.player_close_to_checkpoint()
+		_checkpoint_system.player_close_to_checkpoint()
 	elif _show_hint == false and \
 	_previous_show_hint_value == true:
-		checkpoint_system.player_far_from_checkpoint()
+		_checkpoint_system.player_far_from_checkpoint()
 	
 	_previous_show_hint_value = _show_hint 
+
+
+func play_recovery_particles() -> void:
+	_recovery_particles.restart()

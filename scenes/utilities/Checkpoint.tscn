@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://k32oq3ivgjxf"]
+[gd_scene load_steps=17 format=3 uid="uid://k32oq3ivgjxf"]
 
 [ext_resource type="Texture2D" uid="uid://ceqnrmp0444y5" path="res://assets/location-check-svgrepo-com.svg" id="1_duys1"]
 [ext_resource type="Script" path="res://scripts/utilities/checkpoint.gd" id="1_oer0l"]
@@ -50,6 +50,42 @@ material = SubResource("StandardMaterial3D_yme5i")
 radius = 0.02
 height = 0.04
 
+[sub_resource type="Gradient" id="Gradient_qs1u6"]
+offsets = PackedFloat32Array(0.603113, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xcac6"]
+gradient = SubResource("Gradient_qs1u6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u4qmt"]
+direction = Vector3(0, 0, 0)
+spread = 180.0
+flatness = 1.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 10.0
+tangential_accel_max = 5.0
+scale_min = 0.3
+scale_max = 0.6
+color = Color(0.121569, 0.537255, 0.717647, 1)
+color_ramp = SubResource("GradientTexture1D_xcac6")
+hue_variation_min = -0.05
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ueuf6"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="SphereMesh" id="SphereMesh_wi6pq"]
+material = SubResource("StandardMaterial3D_ueuf6")
+radius = 0.05
+height = 0.1
+
 [node name="Checkpoint" type="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375, 0)
 script = ExtResource("1_oer0l")
@@ -77,9 +113,20 @@ light_energy = 3.0
 light_size = 1.0
 omni_range = 6.0
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+[node name="CheckpointParticles" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.273792, 0)
 amount = 128
 lifetime = 4.0
 process_material = SubResource("ParticleProcessMaterial_a1a52")
 draw_pass_1 = SubResource("SphereMesh_pwcdx")
+
+[node name="RecoveryParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.829595, 0)
+emitting = false
+amount = 512
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+randomness = 0.5
+process_material = SubResource("ParticleProcessMaterial_u4qmt")
+draw_pass_1 = SubResource("SphereMesh_wi6pq")
