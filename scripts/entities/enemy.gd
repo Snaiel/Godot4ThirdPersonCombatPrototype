@@ -29,6 +29,7 @@ var active_motion_component: MotionComponent
 @onready var _agent: NavigationAgent3D = $NavigationAgent3D
 
 @onready var skeleton: Skeleton3D = $CharacterModel/Armature_004/GeneralSkeleton
+@onready var _sword: Sword = $CharacterModel/Armature_004/GeneralSkeleton/Sword
 
 
 var _default_move_speed: float
@@ -265,6 +266,8 @@ func _on_health_component_zero_health() -> void:
 	_dizzy_component.enabled = false
 	_head_rotation_component.enabled = false
 	_notice_component.enabled = false
+	
+	_sword.can_damage = false
 	
 	_blackboard.set_value("dead", true)
 	_blackboard.set_value("interrupt_timers", true)

@@ -247,18 +247,12 @@ shape = SubResource("SphereShape3D_bb732")
 [node name="ChangeTargetTimer" type="Timer" parent="LockOnSystem"]
 wait_time = 0.5
 
-[node name="CheckpointSystem" type="Node" parent="."]
-script = ExtResource("9_3tuum")
-
 [node name="CameraController" parent="." instance=ExtResource("2_s2v7n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.6934, 0)
 not_running_spin_speed = 3.5
 running_spin_speed = 4.0
 
-[node name="Player" parent="." instance=ExtResource("2_thr8q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.74791, 2.4235, 32.2169)
-
-[node name="Enemies" type="Node3D" parent="."]
+[node name="Enemies" type="Node" parent="."]
 
 [node name="Enemy" parent="Enemies" instance=ExtResource("2_oia4d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.35622, 2, 4.21994)
@@ -299,6 +293,13 @@ transform = Transform3D(-0.933104, 0, 0.359606, 0, 1, 0, -0.359606, 0, -0.933104
 
 [node name="Enemy13" parent="Enemies" instance=ExtResource("2_oia4d")]
 transform = Transform3D(-0.186421, 0, 0.98247, 0, 1, 0, -0.98247, 0, -0.186421, 3.91759, 1.95832, 34.1214)
+
+[node name="CheckpointSystem" type="Node" parent="." node_paths=PackedStringArray("enemies")]
+script = ExtResource("9_3tuum")
+enemies = NodePath("../Enemies")
+
+[node name="Player" parent="." instance=ExtResource("2_thr8q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.74791, 2.4235, 32.2169)
 
 [connection signal="area_entered" from="LockOnSystem" to="LockOnSystem" method="_on_area_entered"]
 [connection signal="area_exited" from="LockOnSystem" to="LockOnSystem" method="_on_area_exited"]

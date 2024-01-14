@@ -79,14 +79,14 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1,
 surface_material_override/0 = SubResource("ShaderMaterial_i1ddg")
 
 [node name="Sword" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity") instance=ExtResource("4_r63io")]
-transform = Transform3D(0.945671, 0.301914, 0.120638, 0.0288813, 0.291577, -0.956111, -0.323839, 0.907651, 0.267017, -0.149396, 0.126253, -0.0558241)
+transform = Transform3D(1.9372e-06, -1, -8.50259e-05, 1.43006e-06, 8.49663e-05, -1, 1, 1.87761e-06, 1.48969e-06, -0.737829, 1.43565, -0.061713)
 _entity = NodePath("../../../..")
 
 [node name="Area" parent="CharacterModel/Armature_004/GeneralSkeleton/Sword" index="1"]
 collision_mask = 2
 
 [node name="LockOnAttachment" parent="CharacterModel/Armature_004/GeneralSkeleton" index="3"]
-transform = Transform3D(0.998118, 0.0528233, -0.0311465, -0.053765, 0.998096, -0.0302142, 0.0294912, 0.0318318, 0.999058, 0.0112773, 0.376828, -0.281875)
+transform = Transform3D(1, -7.20253e-12, 4.0193e-12, 7.20253e-12, 1, -3.01674e-08, -4.0193e-12, 3.01674e-08, 1, -2.25238e-05, 1.34721, -0.0427615)
 
 [node name="AnimationTree" parent="CharacterModel" index="2"]
 "parameters/Dizzy Finisher Which One/current_state" = ""
@@ -533,7 +533,6 @@ script = ExtResource("12_q7h63")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
-[connection signal="death" from="." to="CharacterModel/Armature_004/GeneralSkeleton/Sword" method="_on_enemy_death"]
 [connection signal="weapon_hit" from="HitboxComponent" to="." method="_on_entity_hitbox_weapon_hit"]
 [connection signal="zero_health" from="HealthComponent" to="." method="_on_health_component_zero_health"]
 

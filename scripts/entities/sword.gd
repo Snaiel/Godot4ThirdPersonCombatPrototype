@@ -30,7 +30,3 @@ func get_knockback() -> float:
 
 func get_parried() -> void:
 	parried.emit()
-
-
-func _on_enemy_death(_enemy: Enemy):
-	can_damage = false

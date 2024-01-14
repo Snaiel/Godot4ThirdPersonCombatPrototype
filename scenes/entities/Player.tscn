@@ -87,8 +87,11 @@ layers = 2
 surface_material_override/0 = ExtResource("4_ysu0o")
 
 [node name="Sword" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity") instance=ExtResource("5_vtx6o")]
-transform = Transform3D(0.817032, 0.196887, 0.541935, 0.329475, -0.930752, -0.158578, 0.473185, 0.308118, -0.825324, -0.285644, 0.876523, 0.227201)
+transform = Transform3D(1.9372e-06, -1, -8.50259e-05, 1.43006e-06, 8.49663e-05, -1, 1, 1.87761e-06, 1.48969e-06, -0.737829, 1.43565, -0.061713)
 _entity = NodePath("../../../..")
+
+[node name="LockOnAttachment" parent="CharacterModel/Armature_004/GeneralSkeleton" index="3"]
+transform = Transform3D(1, -7.20253e-12, 4.0193e-12, 7.20253e-12, 1, -3.01674e-08, -4.0193e-12, 3.01674e-08, 1, -2.25238e-05, 1.34721, -0.0427615)
 
 [node name="AnimationTree" parent="CharacterModel" index="2"]
 "parameters/Dizzy Finisher Which One/current_state" = ""
