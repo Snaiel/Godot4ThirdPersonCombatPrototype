@@ -68,6 +68,7 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
+	
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().quit()
 	elif Input.is_action_just_pressed("ui_text_backspace"):
@@ -75,9 +76,6 @@ func _physics_process(_delta: float) -> void:
 	elif Input.is_action_just_pressed("attack") and \
 	not checkpoint_system.at_checkpoint:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	
-	if Input.is_action_just_pressed("ui_down"):
-		print("BRO")
 	
 	state_machine.process_player_state_machine()
 	state_machine.process_movement_animations_state_machine()

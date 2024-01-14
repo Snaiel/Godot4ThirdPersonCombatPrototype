@@ -47,7 +47,8 @@ func _physics_process(_delta):
 			0.02
 		)
 	
-	if float(anim_tree["parameters/Sitting or Standing/blend_amount"]) < 0.1:
+	if float(anim_tree["parameters/Sitting or Standing/blend_amount"]) < 0.1 and \
+	_active:
 		sitting_idle = true
 		if _can_emit_sat_down:
 			_can_emit_sat_down = false
