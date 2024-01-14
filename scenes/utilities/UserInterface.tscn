@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://c42vaoia0lped" path="res://assets/checkpoint_menu_background.png" id="16_no8c8"]
 [ext_resource type="Script" path="res://scripts/user_interface/checkpoint_interface.gd" id="16_xyxjr"]
 [ext_resource type="Script" path="res://scripts/user_interface/death_screen.gd" id="18_bmqo6"]
-[ext_resource type="Texture2D" uid="uid://bduym4ixwu5rh" path="res://assets/death_strip_half.png" id="18_h8rpm"]
+[ext_resource type="Texture2D" uid="uid://cj06tl3fnh5m4" path="res://assets/death_strip.png" id="19_1fhdx"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vd688"]
 font_size = 20
@@ -383,7 +383,6 @@ position = Vector2(4, 0)
 polygon = PackedVector2Array(0, -4, 0, 4, 92, 4, 92, -4)
 
 [node name="DeathScreen" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -400,26 +399,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TopHalf" type="TextureRect" parent="DeathScreen/DeathMessage"]
+[node name="TextureRect" type="TextureRect" parent="DeathScreen/DeathMessage"]
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("18_h8rpm")
-expand_mode = 2
-flip_v = true
-
-[node name="BottomHalf" type="TextureRect" parent="DeathScreen/DeathMessage"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("18_h8rpm")
+texture = ExtResource("19_1fhdx")
 expand_mode = 2
 
 [node name="Label" type="Label" parent="DeathScreen/DeathMessage"]

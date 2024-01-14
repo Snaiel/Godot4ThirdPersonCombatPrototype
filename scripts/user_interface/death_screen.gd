@@ -17,6 +17,10 @@ var _respawning: bool = false
 @onready var _checkpoint_system: CheckpointSystem = Globals.checkpoint_system
 
 
+func _ready():
+	visible = false
+
+
 func _physics_process(_delta):
 	
 	if _show_message:
