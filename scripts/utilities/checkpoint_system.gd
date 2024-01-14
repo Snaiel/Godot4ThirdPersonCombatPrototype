@@ -88,6 +88,10 @@ func enable_hint() -> void:
 	interaction_hints.counter += 1
 
 
+func sat_at_checkpoint() -> void:
+	current_checkpoint = closest_checkpoint
+
+
 func recover_after_death() -> void:
 	lock_on_system.reset_target()
 	player.global_transform = current_checkpoint\
