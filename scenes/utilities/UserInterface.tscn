@@ -83,10 +83,13 @@ scale = Vector2(0.02, 0.02)
 texture = ExtResource("1_v2w42")
 
 [node name="HUD" type="Control" parent="."]
-anchors_preset = 0
-offset_left = -1.0
-offset_right = 39.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("3_bcps2")
 
 [node name="Crosshair" type="Sprite2D" parent="HUD"]
@@ -113,8 +116,14 @@ position = Vector2(31, 28)
 visible = false
 position = Vector2(105, 32)
 
-[node name="OffCameraNoticeTriangles" type="Node2D" parent="HUD"]
-position = Vector2(569, 447)
+[node name="OffCameraNoticeTriangles" type="Control" parent="HUD"]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.55
+anchor_right = 0.5
+anchor_bottom = 0.55
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="OffCameraNoticeTriangle" parent="HUD/OffCameraNoticeTriangles" instance=ExtResource("6_for7l")]
 visible = false
@@ -125,10 +134,6 @@ anchor_left = 0.05
 anchor_top = 0.92
 anchor_right = 0.05
 anchor_bottom = 0.92
-offset_left = 46.0
-offset_top = 460.0
-offset_right = 46.0
-offset_bottom = 460.0
 grow_vertical = 0
 script = ExtResource("7_d0aas")
 
@@ -153,10 +158,6 @@ anchor_left = 0.5
 anchor_top = 0.875
 anchor_right = 0.5
 anchor_bottom = 0.875
-offset_left = 460.0
-offset_top = 437.5
-offset_right = 460.0
-offset_bottom = 437.5
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("8_gg83b")
@@ -197,10 +198,6 @@ anchor_left = 0.92
 anchor_top = 0.92
 anchor_right = 0.92
 anchor_bottom = 0.92
-offset_left = 846.4
-offset_top = 460.0
-offset_right = 846.4
-offset_bottom = 460.0
 grow_horizontal = 0
 grow_vertical = 0
 script = ExtResource("10_3s5wg")
@@ -236,10 +233,6 @@ anchor_left = 0.5
 anchor_top = 0.94
 anchor_right = 0.5
 anchor_bottom = 0.94
-offset_left = 460.0
-offset_top = 470.0
-offset_right = 460.0
-offset_bottom = 470.0
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("13_mkuun")
@@ -265,6 +258,7 @@ label_settings = SubResource("LabelSettings_u65vg")
 vertical_alignment = 1
 
 [node name="CheckpointInterface" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -383,6 +377,7 @@ position = Vector2(4, 0)
 polygon = PackedVector2Array(0, -4, 0, 4, 92, 4, 92, -4)
 
 [node name="DeathScreen" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
