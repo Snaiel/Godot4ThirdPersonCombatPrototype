@@ -28,11 +28,7 @@ func _ready():
 	_packed_enemies.pack(enemies)
 	
 	checkpoint_interface.recover_button.pressed.connect(
-		func():
-			enemies.queue_free()
-			var new_enemies: Node = _packed_enemies.instantiate()
-			get_parent().add_child(new_enemies)
-			enemies = new_enemies
+		_recover
 	)
 
 func _process(_delta):
@@ -67,3 +63,13 @@ func disable_hint() -> void:
 
 func enable_hint() -> void:
 	interaction_hints.counter += 1
+
+
+func _recover() -> void:
+	enemies.queue_free()
+	var new_enemies: Node = _packed_enemies.instantiate()
+	get_parent().add_child(new_enemies)
+	enemies = new_enemies
+	
+	player.health_component.health = player.health_component.max_health
+	player.instability_component.instability = 0
