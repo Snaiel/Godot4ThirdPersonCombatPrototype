@@ -73,7 +73,7 @@ collision_mask = 11
 script = ExtResource("1_nrck3")
 
 [node name="CharacterModel" parent="." instance=ExtResource("2_0tr8h")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Alpha_Surface" parent="CharacterModel/Armature_004/GeneralSkeleton" index="1"]
 surface_material_override/0 = SubResource("ShaderMaterial_i1ddg")
@@ -97,7 +97,7 @@ transform = Transform3D(1, -7.20253e-12, 4.0193e-12, 7.20253e-12, 1, -3.01674e-0
 "parameters/Dizzy Which One/current_index" = -1
 
 [node name="Collider" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 shape = SubResource("CapsuleShape3D_lwy87")
 
 [node name="EnemyRotationComponent" parent="." node_paths=PackedStringArray("movement_component", "blackboard", "agent", "entity") instance=ExtResource("5_shm7x")]
@@ -107,6 +107,7 @@ agent = NodePath("../NavigationAgent3D")
 entity = NodePath("..")
 
 [node name="HeadRotationComponent" parent="." node_paths=PackedStringArray("skeleton", "rotation_component") instance=ExtResource("6_b30i3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, 0)
 skeleton = NodePath("../CharacterModel/Armature_004/GeneralSkeleton")
 rotation_component = NodePath("../EnemyRotationComponent")
 
@@ -127,7 +128,7 @@ bone_attachment = NodePath("../CharacterModel/Armature_004/GeneralSkeleton/LockO
 health_component = NodePath("../HealthComponent")
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("2_h2tgk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 entity = NodePath("..")
 groups = Array[String](["player"])
 
@@ -157,6 +158,7 @@ lock_on_component = NodePath("../LockOnComponent")
 health_component = NodePath("../HealthComponent")
 
 [node name="NoticeComponent" parent="." node_paths=PackedStringArray("entity", "blackboard") instance=ExtResource("10_rxy6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, 0)
 entity = NodePath("..")
 blackboard = NodePath("../Blackboard")
 
@@ -166,6 +168,7 @@ _movement_component = NodePath("../MovementComponent")
 _weapon = NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Sword")
 
 [node name="BlockComponent" parent="." node_paths=PackedStringArray("movement_component", "character") instance=ExtResource("16_ckq0d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
 movement_component = NodePath("../MovementComponent")
 character = NodePath("../CharacterModel")
 
@@ -174,6 +177,7 @@ hitbox_component = NodePath("../HitboxComponent")
 block_component = NodePath("../BlockComponent")
 
 [node name="WellbeingComponent" parent="." node_paths=PackedStringArray("lock_on_component", "backstab_component", "health_component", "instability_component") instance=ExtResource("19_ds4io")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9, 0)
 lock_on_component = NodePath("../LockOnComponent")
 backstab_component = NodePath("../BackstabComponent")
 health_component = NodePath("../HealthComponent")

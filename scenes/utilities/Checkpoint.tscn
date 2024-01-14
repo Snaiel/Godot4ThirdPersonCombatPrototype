@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://k32oq3ivgjxf"]
+[gd_scene load_steps=18 format=3 uid="uid://k32oq3ivgjxf"]
 
 [ext_resource type="Texture2D" uid="uid://ceqnrmp0444y5" path="res://assets/location-check-svgrepo-com.svg" id="1_duys1"]
 [ext_resource type="Script" path="res://scripts/utilities/checkpoint.gd" id="1_oer0l"]
@@ -86,6 +86,10 @@ material = SubResource("StandardMaterial3D_ueuf6")
 radius = 0.05
 height = 0.1
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_2fhdd"]
+radius = 0.1
+height = 1.0
+
 [node name="Checkpoint" type="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375, 0)
 script = ExtResource("1_oer0l")
@@ -130,3 +134,11 @@ explosiveness = 1.0
 randomness = 0.5
 process_material = SubResource("ParticleProcessMaterial_u4qmt")
 draw_pass_1 = SubResource("SphereMesh_wi6pq")
+
+[node name="RespawnPoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.05145, -0.367655, 0.819638)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RespawnPoint"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0.451712, -0.206719)
+mesh = SubResource("CapsuleMesh_2fhdd")
+skeleton = NodePath("../..")

@@ -54,7 +54,7 @@ func process_camera() -> void:
 		)
 		
 		camera_controller.global_position = camera_controller.global_position.lerp(
-			player.global_position + Vector3(0, -0.5, 0), 
+			player.global_position + Vector3(0, 0.5, 0), 
 			0.05
 		)
 		

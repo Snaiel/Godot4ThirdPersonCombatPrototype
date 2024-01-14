@@ -31,13 +31,14 @@ var active_motion_component: MotionComponent
 @onready var skeleton: Skeleton3D = $CharacterModel/Armature_004/GeneralSkeleton
 @onready var _sword: Sword = $CharacterModel/Armature_004/GeneralSkeleton/Sword
 
+@onready var player: Player = Globals.player
 
 var _default_move_speed: float
 var _dead: bool = false
 
 
 func _ready() -> void:
-	target = Globals.player
+	target = player
 	_agent.target_position = target.global_position
 	
 	_attack_component.can_move.connect(
@@ -144,7 +145,7 @@ func _physics_process(_delta: float) -> void:
 	if _blackboard.get_value("agent_target_position") == null and \
 	_blackboard.get_value("rotate_towards_target"):
 		_head_rotation_component.desired_target_pos = \
-			target.global_position
+			player.lock_on_attachment_point.global_position
 	else:
 		_head_rotation_component.desired_target_pos = Vector3.INF
 

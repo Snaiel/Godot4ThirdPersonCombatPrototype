@@ -2,6 +2,7 @@ class_name CheckpointSystem
 extends Node
 
 
+@export var current_checkpoint: Checkpoint
 @export var enemies: Node
 
 var closest_checkpoint: Checkpoint

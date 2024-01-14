@@ -294,12 +294,13 @@ transform = Transform3D(-0.933104, 0, 0.359606, 0, 1, 0, -0.359606, 0, -0.933104
 [node name="Enemy13" parent="Enemies" instance=ExtResource("2_oia4d")]
 transform = Transform3D(-0.186421, 0, 0.98247, 0, 1, 0, -0.98247, 0, -0.186421, 3.91759, 1.95832, 34.1214)
 
-[node name="CheckpointSystem" type="Node" parent="." node_paths=PackedStringArray("enemies")]
+[node name="CheckpointSystem" type="Node" parent="." node_paths=PackedStringArray("current_checkpoint", "enemies")]
 script = ExtResource("9_3tuum")
+current_checkpoint = NodePath("../World/NavigationRegion3D/Checkpoints/Checkpoint3")
 enemies = NodePath("../Enemies")
 
 [node name="Player" parent="." instance=ExtResource("2_thr8q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.74791, 2.4235, 32.2169)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.74791, 1.01272, 32.2169)
 
 [connection signal="area_entered" from="LockOnSystem" to="LockOnSystem" method="_on_area_entered"]
 [connection signal="area_exited" from="LockOnSystem" to="LockOnSystem" method="_on_area_exited"]

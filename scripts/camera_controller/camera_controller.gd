@@ -6,7 +6,7 @@ extends SpringArm3D
 
 @export_category("Camera Settings")
 @export var camera_distance: float = 2.0
-@export var vertical_offset: float = 0.5
+@export var vertical_offset: float = 1.5
 @export var camera_angle: float = 0.0
 @export var camera_fov: float = 75.0
 

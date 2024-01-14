@@ -21,6 +21,7 @@ extends CharacterBody3D
 @export var health_charge_component: HealthChargeComponent
 
 @export var weapon: Sword
+@export var lock_on_attachment_point: Node3D
 
 var active_motion_component: MotionComponent
 
