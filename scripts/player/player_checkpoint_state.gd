@@ -29,6 +29,8 @@ func enter():
 	player.rotation_component.can_rotate = false
 	player.character.sitting_animations.sit_down()
 	player.set_root_motion(true)
+	player.hitbox_component.enabled = false
+	
 	checkpoint_system.disable_hint()
 	
 	user_interface.hud.enabled = false
@@ -58,6 +60,8 @@ func process_movement_animations() -> void:
 func exit():
 	player.set_root_motion(false)
 	player.rotation_component.can_rotate = true
+	player.hitbox_component.enabled = true
+	
 	checkpoint_system.enable_hint()
 	
 	user_interface.hud.enabled = true
