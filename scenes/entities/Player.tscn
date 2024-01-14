@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://dujukbu10vbmm"]
+[gd_scene load_steps=42 format=3 uid="uid://dujukbu10vbmm"]
 
 [ext_resource type="Script" path="res://scripts/entities/player.gd" id="1_lgfyt"]
 [ext_resource type="Script" path="res://scripts/player/player_state_machine.gd" id="2_4ql4h"]
@@ -27,6 +27,7 @@
 [ext_resource type="Script" path="res://scripts/player/player_drink_state.gd" id="22_47iaw"]
 [ext_resource type="PackedScene" uid="uid://7qijntg00gi5" path="res://scenes/components/HeadRotationComponent.tscn" id="23_0vsx7"]
 [ext_resource type="Script" path="res://scripts/player/player_checkpoint_state.gd" id="23_3gyf7"]
+[ext_resource type="Script" path="res://scripts/player/player_death_state.gd" id="24_adwl8"]
 [ext_resource type="PackedScene" uid="uid://k5h6f26p6mgf" path="res://scenes/components/MovementComponent.tscn" id="24_mwhws"]
 [ext_resource type="PackedScene" uid="uid://bp3sx3yshrcdb" path="res://scenes/components/InstabilityComponent.tscn" id="26_nvu4k"]
 [ext_resource type="PackedScene" uid="uid://b1tn0d24q1ec1" path="res://scenes/components/JumpComponent.tscn" id="26_w2wp7"]
@@ -223,6 +224,10 @@ player = NodePath("../..")
 
 [node name="Checkpoint" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("23_3gyf7")
+player = NodePath("../..")
+
+[node name="Death" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("24_adwl8")
 player = NodePath("../..")
 
 [node name="Collider" type="CollisionShape3D" parent="."]
