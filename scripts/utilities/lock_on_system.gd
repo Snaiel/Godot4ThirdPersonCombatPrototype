@@ -89,6 +89,11 @@ func _input(event: InputEvent) -> void:
 			_change_target_timer.start()
 
 
+func reset_target() -> void:
+	target = null
+	lock_on.emit(target)
+
+
 func _on_area_entered(area: LockOnComponent) -> void:
 	if area not in _targets_nearby and area.enabled:
 		_targets_nearby.append(area)

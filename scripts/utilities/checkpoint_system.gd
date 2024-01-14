@@ -16,6 +16,8 @@ var _counter: int = 0
 var _packed_enemies: PackedScene
 
 @onready var player: Player = Globals.player
+@onready var camera_controller: CameraController = Globals.camera_controller
+@onready var lock_on_system: LockOnSystem = Globals.lock_on_system
 @onready var interaction_hints: InteractionHints = Globals\
 	.user_interface\
 	.hud\
@@ -84,6 +86,18 @@ func disable_hint() -> void:
 
 func enable_hint() -> void:
 	interaction_hints.counter += 1
+
+
+func recover_after_death() -> void:
+	lock_on_system.reset_target()
+	player.global_transform = current_checkpoint\
+		.respawn_point\
+		.global_transform
+	camera_controller.global_rotation.y = current_checkpoint\
+		.respawn_point\
+		.global_rotation\
+		.y
+	_recover()
 
 
 func _recover() -> void:

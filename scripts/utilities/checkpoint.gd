@@ -11,6 +11,8 @@ var _player_angle: float
 var _show_hint: bool
 var _previous_show_hint_value: bool = _show_hint
 
+@onready var respawn_point: Node3D = $RespawnPoint
+
 @onready var _recovery_particles: GPUParticles3D = $RecoveryParticles
 @onready var _player: Player = Globals.player
 @onready var _checkpoint_system: CheckpointSystem = Globals.checkpoint_system

@@ -76,3 +76,8 @@ func death_2() -> void:
 func interrupt_blend_death() -> void:
 	_blend_death = false
 	anim_tree["parameters/Death/blend_amount"] = 0.0
+
+
+func reset_death() -> void:
+	_death = false
+	_blend_death = false

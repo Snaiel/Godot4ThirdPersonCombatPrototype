@@ -2,11 +2,18 @@ class_name DeathScreen
 extends Control
 
 
+signal respawn
+
+
 var _show_message: bool = false
 var _fade_to_black: bool = false
 
+var _respawning: bool = false
+
 @onready var _death_message: Control = $DeathMessage
 @onready var _fade: TextureRect = $Fade
+
+@onready var _checkpoint_system: CheckpointSystem = Globals.checkpoint_system
 
 
 func _physics_process(_delta):
@@ -25,17 +32,21 @@ func _physics_process(_delta):
 		)
 	
 	if _fade_to_black:
-		_fade.self_modulate.a = lerp(
+		_fade.self_modulate.a = move_toward(
 			_fade.self_modulate.a,
 			1.0,
-			0.05
+			0.02
 		)
 	else:
-		_fade.self_modulate.a = lerp(
+		_fade.self_modulate.a = move_toward(
 			_fade.self_modulate.a,
 			0.0,
-			0.05
+			0.02
 		)
+	
+	if is_zero_approx(_fade.self_modulate.a) and _respawning:
+		visible = false
+		_respawning = false
 
 
 func play_death_screen() -> void:
@@ -57,8 +68,24 @@ func play_death_screen() -> void:
 	)
 	
 	await timer.timeout
-	timer = get_tree().create_timer(2)
+	timer = get_tree().create_timer(1)
 	timer.timeout.connect(
 		func():
 			_fade_to_black = true
+	)
+	
+	await timer.timeout
+	timer = get_tree().create_timer(2)
+	timer.timeout.connect(
+		func():
+			respawn.emit()
+			_checkpoint_system.recover_after_death()
+	)
+	
+	await timer.timeout
+	timer = get_tree().create_timer(1)
+	timer.timeout.connect(
+		func():
+			_fade_to_black = false
+			_respawning = true
 	)

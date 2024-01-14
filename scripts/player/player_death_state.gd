@@ -10,6 +10,12 @@ func _ready():
 			if parent_state.current_state != self:
 				parent_state.change_state(self)
 	)
+	
+	Globals.user_interface.death_screen.respawn.connect(
+		func():
+			player.character.hit_and_death_animations.reset_death()
+			parent_state.transition_to_default_state()
+	)
 
 
 func enter():
@@ -40,4 +46,10 @@ func process_player():
 
 
 func exit():
-	pass
+	player.set_root_motion(false)
+	
+	Globals.lock_on_system.enabled = true
+	
+	player.rotation_component.can_rotate = true
+	player.head_rotation_component.enabled = true
+	player.hitbox_component.enabled = true
