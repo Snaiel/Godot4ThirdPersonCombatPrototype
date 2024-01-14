@@ -23,6 +23,8 @@ func enter():
 	player.hitbox_component.enabled = false
 	
 	player.character.hit_and_death_animations.death_1()
+	
+	Globals.user_interface.death_screen.play_death_screen()
 
 
 func process_player():
