@@ -3,6 +3,7 @@ extends Control
 
 
 signal respawn
+signal stand_up
 
 
 var _show_message: bool = false
@@ -88,4 +89,11 @@ func play_death_screen() -> void:
 		func():
 			_fade_to_black = false
 			_respawning = true
+	)
+	
+	await timer.timeout
+	timer = get_tree().create_timer(0.5)
+	timer.timeout.connect(
+		func():
+			stand_up.emit()
 	)

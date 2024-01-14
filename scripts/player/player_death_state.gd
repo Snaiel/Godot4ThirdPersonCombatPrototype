@@ -14,6 +14,12 @@ func _ready():
 	Globals.user_interface.death_screen.respawn.connect(
 		func():
 			player.character.hit_and_death_animations.reset_death()
+			player.character.sitting_animations.blend_to_idle()
+	)
+	
+	Globals.user_interface.death_screen.stand_up.connect(
+		func():
+			player.character.sitting_animations.stand_up()
 			parent_state.transition_to_default_state()
 	)
 

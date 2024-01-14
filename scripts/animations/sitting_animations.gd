@@ -84,6 +84,7 @@ func blend_to_idle() -> void:
 	if _ignore_method_calls:
 		return
 	
+	_active = true
 	_transitioning = false
 
 
