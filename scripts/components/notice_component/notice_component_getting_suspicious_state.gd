@@ -34,9 +34,6 @@ func enter() -> void:
 	notice_component\
 		.notice_triangle\
 		.visible = true
-	notice_component\
-		.off_camera_notice_triangle\
-		.visible = true
 	
 	notice_component\
 		.notice_triangle\

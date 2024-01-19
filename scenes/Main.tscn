@@ -286,10 +286,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.737, 2, -10.9117)
 
 [node name="Enemy6" parent="Enemies" instance=ExtResource("2_oia4d")]
 transform = Transform3D(-0.722786, 0, 0.691072, 0, 1, 0, -0.691072, 0, -0.722786, 13.5218, 2, 14.0395)
-debug = true
 
 [node name="Enemy12" parent="Enemies" instance=ExtResource("2_oia4d")]
 transform = Transform3D(-0.933104, 0, 0.359606, 0, 1, 0, -0.359606, 0, -0.933104, 10.6569, 1.95832, 34.9633)
+debug = true
 
 [node name="Enemy13" parent="Enemies" instance=ExtResource("2_oia4d")]
 transform = Transform3D(-0.186421, 0, 0.98247, 0, 1, 0, -0.98247, 0, -0.186421, 3.91759, 1.95832, 34.1214)
