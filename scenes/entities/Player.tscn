@@ -319,6 +319,7 @@ receive_weapon_parried = false
 max_instability = 200.0
 
 [node name="HealthComponent" parent="." instance=ExtResource("26_ypb3h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
 blood_scene = ExtResource("27_63iim")
 
 [node name="JumpComponent" parent="." node_paths=PackedStringArray("entity", "animations", "movement_component") instance=ExtResource("26_w2wp7")]

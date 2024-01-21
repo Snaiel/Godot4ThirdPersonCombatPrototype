@@ -39,6 +39,7 @@ func decrement_health(weapon: Sword) -> void:
 		blood_particle.look_at(weapon.global_position)
 		blood_particle.rotate_y(PI)
 		blood_particle.restart()
+		print(blood_particle)
 	
 	if deal_max_damage:
 		health = 0
