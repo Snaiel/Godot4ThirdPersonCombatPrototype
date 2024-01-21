@@ -201,8 +201,8 @@ anchor_bottom = 0.92
 grow_horizontal = 0
 grow_vertical = 0
 script = ExtResource("10_3s5wg")
-flask_color = Color(0.419608, 0.768627, 0.0705882, 1)
-no_charges_color = Color(0.380392, 0.454902, 0.321569, 1)
+flask_color = Color(0.0823529, 0.596078, 0.815686, 1)
+no_charges_color = Color(0.231373, 0.341176, 0.482353, 1)
 
 [node name="Background" type="Sprite2D" parent="HUD/PlayerHealthCharges"]
 self_modulate = Color(0.196078, 0.196078, 0.196078, 1)
@@ -211,7 +211,7 @@ scale = Vector2(0.8, 0.8)
 texture = ExtResource("10_nh3cc")
 
 [node name="Flask" type="Sprite2D" parent="HUD/PlayerHealthCharges"]
-self_modulate = Color(0.419608, 0.768627, 0.0705882, 1)
+self_modulate = Color(0.0823529, 0.596078, 0.815686, 1)
 position = Vector2(-40, -40)
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("11_dmhdx")

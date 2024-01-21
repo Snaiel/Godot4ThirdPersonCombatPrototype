@@ -29,6 +29,8 @@ var _desired_light_energy: float
 
 
 func _ready():
+	current_charges = max_charges
+	
 	_desired_light_energy = lights[0].light_energy
 	
 	for light in lights:
