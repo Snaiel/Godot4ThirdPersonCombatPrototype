@@ -13,13 +13,26 @@ func _ready():
 	
 	Globals.user_interface.death_screen.respawn.connect(
 		func():
+			if parent_state.current_state != self:
+				return
+			
 			player.character.hit_and_death_animations.reset_death()
 			player.character.sitting_animations.blend_to_idle()
 	)
 	
 	Globals.user_interface.death_screen.stand_up.connect(
 		func():
+			if parent_state.current_state != self:
+				return
+			
 			player.character.sitting_animations.stand_up()
+	)
+	
+	player.character.sitting_animations.finished.connect(
+		func():
+			if parent_state.current_state != self:
+				return
+			
 			parent_state.transition_to_default_state()
 	)
 
@@ -43,12 +56,12 @@ func process_player():
 	pass
 
 
-#func process_movement_animations():
-#	player.character.movement_animations.move(
-#		player.input_direction,
-#		player.lock_on_target != null, 
-#		false
-#	)
+func process_movement_animations():
+	player.character.movement_animations.move(
+		Vector3.ZERO,
+		player.lock_on_target != null, 
+		false
+	)
 
 
 func exit():

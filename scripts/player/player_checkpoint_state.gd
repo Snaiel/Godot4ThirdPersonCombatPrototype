@@ -15,13 +15,15 @@ func _ready():
 	
 	player.character.sitting_animations.sat_down.connect(
 		func():
-			user_interface.checkpoint_interface.show_menu = true
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			if parent_state.current_state == self:
+				user_interface.checkpoint_interface.show_menu = true
+				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	)
 	
 	player.character.sitting_animations.finished.connect(
 		func():
-			parent_state.transition_to_default_state()
+			if parent_state.current_state == self:
+				parent_state.transition_to_default_state()
 	)
 	
 	user_interface.checkpoint_interface.return_button.pressed.connect(
