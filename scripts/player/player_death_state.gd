@@ -40,6 +40,7 @@ func _ready():
 func enter():
 	player.set_root_motion(true)
 	
+	Globals.lock_on_system.reset_target()
 	Globals.lock_on_system.enabled = false
 	
 	player.weapon.can_damage = false
@@ -50,6 +51,9 @@ func enter():
 	player.character.hit_and_death_animations.death_1()
 	
 	Globals.user_interface.death_screen.play_death_screen()
+	
+	player.set_rotation_target_to_lock_on_target()
+	player.rotation_component.rotate_towards_target = false
 
 
 func process_player():
