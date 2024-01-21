@@ -342,6 +342,7 @@ movement_component = NodePath("../MovementComponent")
 character = NodePath("../CharacterModel")
 
 [node name="ParryComponent" parent="." node_paths=PackedStringArray("hitbox_component", "block_component") instance=ExtResource("30_ceaq1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 hitbox_component = NodePath("../HitboxComponent")
 block_component = NodePath("../BlockComponent")
 

@@ -7,8 +7,11 @@ signal parried_incoming_hit(incoming_weapon: Sword)
 
 @export var hitbox_component: HitboxComponent
 @export var block_component: BlockComponent
+@export var parry_particles_scene: PackedScene = preload("res://scenes/particles/ParryParticles.tscn")
 
 var in_parry_window: bool = false
+
+var _parry_particles: GPUParticles3D
 
 var _parry_timer: Timer
 var _parry_index: int = 0
@@ -29,6 +32,11 @@ func _ready() -> void:
 			if in_parry_window:
 				parried_incoming_hit.emit(incoming_weapon)
 	)
+	
+	
+	_parry_particles = parry_particles_scene.instantiate()
+	add_child(_parry_particles)
+	
 	
 	_parry_timer = Timer.new()
 	_parry_timer.wait_time = _parry_interval[_parry_index]
@@ -77,3 +85,7 @@ func is_spamming() -> bool:
 
 func reset_parry_cooldown() -> void:
 	_parry_cooldown_timer.stop()
+
+
+func play_parry_particles() -> void:
+	_parry_particles.restart()

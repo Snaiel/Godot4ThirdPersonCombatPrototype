@@ -41,6 +41,8 @@ func enter():
 	player.instability_component.process_parry()
 	
 	player.parry_component.reset_parry_cooldown()
+	player.parry_component.play_parry_particles()
+	
 	player.character.parry_animations.parry()
 	player.block_component.anim.stop()
 	player.block_component.anim.play("parried")
