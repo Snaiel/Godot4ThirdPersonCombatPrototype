@@ -6,11 +6,19 @@ extends Node3D
 @export var character: CharacterAnimations
 @export var walk_speed_while_blocking: float = 0.8
 @export var transparency: float = 0.7
+@export var block_particles_scene: PackedScene = preload("res://scenes/particles/BlockParticles.tscn")
 
 var blocking: bool = false
 
+var _particles: GPUParticles3D
+
 @onready var _mesh: MeshInstance3D = $Mesh
 @onready var anim: AnimationPlayer = $AnimationPlayer
+
+
+func _ready():
+	_particles = block_particles_scene.instantiate()
+	add_child(_particles)
 
 
 func _physics_process(_delta: float) -> void:
@@ -36,3 +44,4 @@ func blocked() -> void:
 	if not anim.is_playing():
 		print("BLOCKED")
 		anim.play("blocked")
+	_particles.restart()

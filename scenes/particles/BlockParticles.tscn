@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://q45nlnwpb1bf"]
+
+[sub_resource type="Curve" id="Curve_dr1d2"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.756944, 0.726316), -0.985263, -0.985263, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_fkb70"]
+curve = SubResource("Curve_dr1d2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u3guo"]
+lifetime_randomness = 0.4
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 0.5
+initial_velocity_max = 5.0
+scale_min = 0.1
+scale_max = 0.2
+scale_curve = SubResource("CurveTexture_fkb70")
+color = Color(0.501961, 0.501961, 0.501961, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_viv2t"]
+shading_mode = 0
+vertex_color_use_as_albedo = true
+use_particle_trails = true
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_avg2o"]
+material = SubResource("StandardMaterial3D_viv2t")
+radius = 0.05
+radial_steps = 16
+
+[node name="BlockParticles" type="GPUParticles3D"]
+emitting = false
+amount = 128
+one_shot = true
+preprocess = 0.01
+explosiveness = 1.0
+randomness = 1.0
+transform_align = 2
+trail_enabled = true
+trail_lifetime = 0.02
+process_material = SubResource("ParticleProcessMaterial_u3guo")
+draw_pass_1 = SubResource("TubeTrailMesh_avg2o")
