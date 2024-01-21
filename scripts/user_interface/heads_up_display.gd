@@ -145,3 +145,14 @@ func _process_dizzy() -> void:
 	)
 	
 	_crosshair.position = crosshair_pos
+
+
+func clear_enemy_hud_elements() -> void:
+	for child in notice_triangles.get_children().slice(1):
+		child.queue_free()
+	
+	for child in wellbeing_widgets.get_children().slice(1):
+		child.queue_free()
+	
+	for child in off_camera_notice_triangles.get_children().slice(1):
+		child.queue_free()

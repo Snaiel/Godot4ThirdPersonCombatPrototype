@@ -106,6 +106,8 @@ func recover_after_death() -> void:
 
 func _recover() -> void:
 	enemies.queue_free()
+	Globals.user_interface.hud.clear_enemy_hud_elements()
+	
 	var new_enemies: Node = _packed_enemies.instantiate()
 	get_parent().add_child(new_enemies)
 	enemies = new_enemies
