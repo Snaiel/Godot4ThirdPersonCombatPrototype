@@ -54,9 +54,8 @@ material_override = ExtResource("1_1ul2y")
 size = Vector3(0.5, 2, 0.5)
 material = ExtResource("1_1ul2y")
 
-[node name="LockOnComponent" parent="World/NavigationRegion3D/CSGCombiner3D/CSGBox3D20" node_paths=PackedStringArray("component_owner") instance=ExtResource("2_ovf3o")]
+[node name="LockOnComponent" parent="World/NavigationRegion3D/CSGCombiner3D/CSGBox3D20" instance=ExtResource("2_ovf3o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.615943, 0)
-component_owner = NodePath("")
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="World/NavigationRegion3D/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5, 2, 1.5)
@@ -176,9 +175,8 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/NavigationRegion3D/Box"]
 shape = SubResource("BoxShape3D_sh5lt")
 
-[node name="LockOnComponent" parent="World/NavigationRegion3D/Box" node_paths=PackedStringArray("component_owner") instance=ExtResource("2_ovf3o")]
+[node name="LockOnComponent" parent="World/NavigationRegion3D/Box" instance=ExtResource("2_ovf3o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99771, 0)
-component_owner = NodePath("")
 
 [node name="Checkpoints" type="Node3D" parent="World/NavigationRegion3D"]
 
