@@ -43,6 +43,7 @@ var _holding_down_run_timer: Timer
 
 
 func _ready() -> void:
+	active_motion_component = movement_component
 	hitbox_component.weapon_hit.connect(_on_hitbox_component_weapon_hit)
 	
 	attack_component.can_rotate.connect(

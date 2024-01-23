@@ -95,13 +95,19 @@ func sat_at_checkpoint() -> void:
 
 func recover_after_death() -> void:
 	lock_on_system.reset_target()
+	
 	player.global_transform = current_checkpoint\
 		.respawn_point\
 		.global_transform
+	
+	player.movement_component.reset_secondary_movement()
+	player.movement_component.reset_desired_velocity()
+	
 	camera_controller.global_rotation.y = current_checkpoint\
 		.respawn_point\
 		.global_rotation\
 		.y
+	
 	_recover()
 
 

@@ -92,5 +92,10 @@ func knockback(knockback_origin: Vector3) -> void:
 
 
 func reset_secondary_movement() -> void:
+	secondary_movement_direction = Vector3.ZERO
 	secondary_movement_speed = 0.0
 	secondary_movement_friction = 0.0
+
+
+func reset_desired_velocity() -> void:
+	desired_velocity = Vector3.ZERO
