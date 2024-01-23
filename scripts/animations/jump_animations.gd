@@ -17,10 +17,23 @@ var _can_switch_jump: bool = false
 
 var _can_emit_vertical_movement_ended: bool = false
 
+var _just_fall_timer: Timer
+var _just_fall_timer_pause: float = 0.1
+
+
+func _ready():
+	_just_fall_timer = Timer.new()
+	_just_fall_timer.autostart = false
+	_just_fall_timer.one_shot = true
+	_just_fall_timer.wait_time = _just_fall_timer_pause
+	_just_fall_timer.timeout.connect(
+		func():
+			_fade_vertical_movement = true
+	)
+	add_child(_just_fall_timer)
+
 
 func _physics_process(_delta):
-	if debug:
-		pass
 	
 	# This blends between the normal movement stuff
 	# and all this vertical movement stuff (jump and fall)
@@ -122,10 +135,16 @@ func falling_idle() -> void:
 ## without the jump. Useful if the player
 ## literally just walks off a platform
 func just_fall() -> void:
-	anim_tree["parameters/Jump and Fall Blend/blend_amount"] = 1.0
+	if _just_fall_timer.is_stopped():
+		_just_fall_timer.start()
+	
+	_fade_to_fall = true
+	
+	if float(anim_tree["parameters/Vertical Movement/blend_amount"]) < 0.05:
+		anim_tree["parameters/Jump and Fall Blend/blend_amount"] = 1.0
+	
 	anim_tree["parameters/Jump 1/Jump Speed/scale"] = 0.0
 	anim_tree["parameters/Jump 1/Jump Speed/scale"] = 0.0
-	_fade_vertical_movement = true
 	
 
 ## A method to signfiy when to blend from the
