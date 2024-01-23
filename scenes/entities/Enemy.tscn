@@ -172,8 +172,10 @@ movement_component = NodePath("../MovementComponent")
 character = NodePath("../CharacterModel")
 
 [node name="ParryComponent" parent="." node_paths=PackedStringArray("hitbox_component", "block_component") instance=ExtResource("18_pmwql")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 hitbox_component = NodePath("../HitboxComponent")
 block_component = NodePath("../BlockComponent")
+parry_particles_colour = Color(0.439216, 0.0392157, 0.0392157, 1)
 
 [node name="WellbeingComponent" parent="." node_paths=PackedStringArray("lock_on_component", "backstab_component", "health_component", "instability_component") instance=ExtResource("19_ds4io")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9, 0)

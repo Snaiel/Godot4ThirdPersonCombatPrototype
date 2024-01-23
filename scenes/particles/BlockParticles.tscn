@@ -25,7 +25,7 @@ use_particle_trails = true
 
 [sub_resource type="TubeTrailMesh" id="TubeTrailMesh_avg2o"]
 material = SubResource("StandardMaterial3D_viv2t")
-radius = 0.05
+radius = 0.1
 radial_steps = 16
 
 [node name="BlockParticles" type="GPUParticles3D"]

@@ -188,13 +188,14 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 	_blackboard.get_value("dizzy", false):
 		rng = 0.0
 	
-	
 	if 0.8 < rng and rng <= 1.0:
 		# 20% chance of parrying
 		
 		active_motion_component.knockback(weapon.get_entity().global_position)
 		
 		_parry_component.in_parry_window = true
+		_parry_component.play_parry_particles()
+		
 		_attack_component.interrupt_attack()
 		
 		_character.parry_animations.parry()

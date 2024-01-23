@@ -8,6 +8,7 @@ signal parried_incoming_hit(incoming_weapon: Sword)
 @export var hitbox_component: HitboxComponent
 @export var block_component: BlockComponent
 @export var parry_particles_scene: PackedScene = preload("res://scenes/particles/ParryParticles.tscn")
+@export var parry_particles_colour: Color
 
 var in_parry_window: bool = false
 
@@ -35,6 +36,21 @@ func _ready() -> void:
 	
 	
 	_parry_particles = parry_particles_scene.instantiate()
+	# this is ridiculous. you need to do duplicate the various
+	# attributes so that they aren't shared across instances.
+	#
+	# found similar problem and subsequent solution:
+	# https://forum.godotengine.org/t/reusing-particlesmaterial-causes-referencing-issues/28299/3
+	#
+	# relevent github issue:
+	# https://github.com/godotengine/godot/issues/74918
+	_parry_particles.process_material = _parry_particles.process_material.duplicate()
+	_parry_particles.process_material.color_ramp = _parry_particles.process_material.color_ramp.duplicate()
+	_parry_particles.process_material.color_ramp.gradient = _parry_particles.process_material.color_ramp.gradient.duplicate()
+	_parry_particles.process_material.color_ramp.gradient.set_color(
+		1, 
+		parry_particles_colour
+	)
 	add_child(_parry_particles)
 	
 	
