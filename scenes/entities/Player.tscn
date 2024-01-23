@@ -300,6 +300,7 @@ rotation_component = NodePath("../PlayerRotationComponent")
 
 [node name="MovementComponent" parent="." node_paths=PackedStringArray("entity", "rotation_component") instance=ExtResource("24_mwhws")]
 speed = 3.0
+debug = true
 entity = NodePath("..")
 rotation_component = NodePath("../PlayerRotationComponent")
 

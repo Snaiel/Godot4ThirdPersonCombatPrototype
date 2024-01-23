@@ -77,7 +77,10 @@ func set_secondary_movement(secondary_speed: float, time: float, friction: float
 	secondary_movement_friction = friction
 	
 	if direction == Vector3.ZERO:
-		secondary_movement_direction = looking_direction
+		secondary_movement_direction = Vector3.FORWARD.rotated(
+			Vector3.UP,
+			entity.rotation.y
+		)
 	else:
 		secondary_movement_direction = direction
 	secondary_movement_direction = secondary_movement_direction.normalized()
