@@ -2,8 +2,9 @@ class_name CheckpointSystem
 extends Node
 
 
+@export var level: Node3D
 @export var current_checkpoint: Checkpoint
-@export var enemies: Node
+@export var enemies: Node3D
 
 var closest_checkpoint: Checkpoint
 
@@ -109,7 +110,7 @@ func _recover() -> void:
 	Globals.user_interface.hud.clear_enemy_hud_elements()
 	
 	var new_enemies: Node = _packed_enemies.instantiate()
-	get_parent().add_child(new_enemies)
+	level.add_child(new_enemies)
 	enemies = new_enemies
 	
 	player.health_component.health = player.health_component.max_health
