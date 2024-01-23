@@ -41,8 +41,8 @@ func _physics_process(delta):
 	if not can_move and \
 	is_zero_approx(secondary_movement_speed) and \
 	entity.is_on_floor():
-		desired_velocity.x = lerp(desired_velocity.x, 0.0, 0.1)
-		desired_velocity.z = lerp(desired_velocity.z, 0.0, 0.1)
+		desired_velocity.x = move_toward(desired_velocity.x, 0.0, 0.5)
+		desired_velocity.z = move_toward(desired_velocity.z, 0.0, 0.5)
 
 	if not entity.is_on_floor():
 		desired_velocity.y -= gravity * delta

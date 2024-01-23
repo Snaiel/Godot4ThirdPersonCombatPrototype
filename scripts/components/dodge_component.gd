@@ -51,16 +51,24 @@ func _dodge() -> void:
 	can_set_intent_to_dodge = false
 	can_dodge = false
 	dodging = true
-
+	
 	movement_component.vertical_movement = false
-
+	
 	if movement_component.move_direction.length() > 0.0:
-		movement_component.desired_velocity += movement_component.move_direction.normalized() * dodge_strength
+		
+		movement_component.desired_velocity += movement_component\
+			.move_direction.normalized() * dodge_strength
+		
 	elif not entity.lock_on_target:
-		movement_component.desired_velocity += movement_component.looking_direction.normalized() * dodge_strength		
+		
+		movement_component.desired_velocity += movement_component\
+			.looking_direction.normalized() * dodge_strength * 1.5
+		
 	else:
-		movement_component.desired_velocity += -movement_component.looking_direction.normalized() * dodge_strength
-
+		
+		movement_component.desired_velocity += -movement_component\
+			.looking_direction.normalized() * dodge_strength
+	
 	# how long the dodge status lasts
 	var dodge_timer: SceneTreeTimer = get_tree().create_timer(0.2)
 	# after this time, presing dodge again will dodge as soon as possible
