@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cfip2n0nvr8n3"]
+[gd_scene load_steps=19 format=3 uid="uid://cfip2n0nvr8n3"]
 
 [ext_resource type="Script" path="res://scripts/utilities/level.gd" id="1_du374"]
 [ext_resource type="Material" uid="uid://qml1qedtuxl6" path="res://materials/grid.tres" id="2_5uhq1"]
@@ -11,6 +11,8 @@
 [ext_resource type="Script" path="res://scripts/utilities/dizzy_system.gd" id="6_mckri"]
 [ext_resource type="Script" path="res://scripts/utilities/lock_on_system.gd" id="6_tdxnb"]
 [ext_resource type="Script" path="res://scripts/utilities/checkpoint_system.gd" id="9_3tuum"]
+[ext_resource type="Material" uid="uid://btbksw2yyqb52" path="res://materials/grid_dark_blue.tres" id="10_5d4ga"]
+[ext_resource type="Material" uid="uid://3e1mdcc0te5n" path="res://materials/grid_blue.tres" id="11_7qywu"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bb732"]
 radius = 10.0
@@ -28,6 +30,8 @@ background_mode = 2
 sky = SubResource("Sky_qudfu")
 tonemap_mode = 2
 glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_albedo = Color(0.905882, 0.980392, 1, 1)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_peoj2"]
 vertices = PackedVector3Array(-13, 5.5, -70.5, -12.25, 5.5, -70.75, -12.25, 5.5, -75.5, -17.5, 5.5, -75.5, -17.5, 5.5, -72.75, -11, 5.5, -64.5, -11, 5.5, -68.5, -13, 5.5, -69.25, -17.5, 5.5, -67.25, -17.5, 5.5, -64.5, -17.5, 5.5, -72.75, -19.75, 5.5, -72.5, -19.75, 5.5, -67.5, -17.5, 5.5, -67.25, -13, 5.5, -69.25, -13, 5.5, -70.5, -10.25, 5.5, -68.75, -11, 5.5, -68.5, -11, 5.5, -64.5, -6.5, 5.5, -64.5, -10.25, 5.5, -70, -10.25, 5.5, -68.75, -6.5, 5.5, -64.5, -6.5, 5.5, -75.5, -12.25, 5.5, -75.5, -12.25, 5.5, -70.75, -10.25, 5.5, -70, -6.5, 5.5, -75.5, -45.5, 7.5, -72.5, -45.5, 7.5, -60.5, -44.5, 7.5, -60.5, -44.5, 7.5, -72.5, -32.5, 5.5, -67.25, -30.25, 5.5, -67.5, -30.25, 5.5, -72.5, -36.75, 5.5, -72.5, -32.5, 5.5, -67.25, -36.75, 5.5, -72.5, -43.25, 5.5, -72.5, -43.25, 4, -60.5, -32.5, 4, -60.25, -43.25, 5.5, -67.1667, -30.25, 5.5, -67.5, -19.75, 5.5, -67.5, -19.75, 5.5, -72.5, -30.25, 5.5, -72.5, -31.5, 7.5, -66.5, -31.5, 7.5, -60.5, -30.5, 7.5, -60.5, -30.5, 7.5, -66.5, -29.5, 3.5, -47.25, -27.5, 3.25, -47.5, -28, 3.5, -51.25, -29.5, 3.5, -51.75, -38, 3.5, -39.5, -29.5, 3.5, -39.5, -29.5, 3.5, -47.25, -29.5, 3.5, -51.75, -29.75, 3.5, -58.25, -32.25, 3.75, -58.25, -29.5, 3.5, -47.25, -43.75, 3.75, -58.25, -46.25, 3.5, -58.25, -46.25, 3.5, -49, -43.25, 3.75, -58.75, -43.75, 3.75, -58.25, -46.25, 3.5, -49, -32.5, 4, -60.25, -43.25, 4, -60.5, -43.25, 3.75, -58.75, -32.25, 3.75, -58.25, -46.25, 3.5, -49, -46.25, 3.5, -39.5, -38, 3.5, -39.5, -29.5, 3.5, -47.25, -32.25, 3.75, -58.25, -43.25, 3.75, -58.75, -47.5, 13.5, -38.5, -47, 13.5, -38.5, -47.25, 13.5, -49, -47.5, 13.5, -49, -47.25, 13.5, -49, -47, 13.5, -59.5, -47.5, 13.5, -59.5, -47.5, 13.5, -49, -29, 13.5, -59.5, -28.5, 13.5, -52.25, -28.5, 13.5, -59.5, 5.5, 3.5, -43.5, 5.75, 3.5, -41.5, 6.5, 3.5, -41.5, 6.5, 3.5, -48, 0.5, 3.75, -43.25, 0.5, 4.25, -42, 4.5, 4.25, -42, 4.5, 3.75, -43.25, -6.5, 3.5, -48.75, -6.5, 3.5, -44.25, -0.5, 3.5, -43.25, -8, 3.25, -48.5, -8, 3.25, -44.5, -6.5, 3.5, -44.25, -6.5, 3.5, -48.75, -0.5, 3.5, -43.25, 5.5, 3.5, -43.5, 6.5, 3.5, -48, 6.5, 3.5, -54.5, 0, 3.5, -54.5, -6.5, 3.5, -48.75, 0, 3.5, -54.5, -6.5, 3.5, -54.5, -6.5, 3.5, -48.75, 0.5, 3.75, -43.25, 4.5, 3.75, -43.25, 5.5, 3.5, -43.5, -0.5, 3.5, -43.25, 0.5, 3.75, -43.25, 5.5, 3.5, -43.5, -6.5, 3.5, -41.5, -0.5, 3.5, -41.5, -0.5, 3.5, -43.25, -6.5, 3.5, -44.25, -25.75, 2.5, -46.25, -27.25, 2.5, -46.25, -27.25, 2.5, -43.75, -18.5, 2.5, -43.5, -9.25, 2.5, -49.5, -7.5, 2.5, -49.5, -7.5, 2.5, -52.25, -16.75, 2.5, -52.25, -9.25, 2.75, -44.5, -8, 3.25, -44.5, -8, 3.25, -48.5, -9.25, 2.75, -48.5, -25.5, 2.75, -47.25, -25.75, 2.5, -46.25, -18.5, 2.5, -43.5, -25.75, 2.75, -51.5, -28, 3.5, -51.25, -27.5, 3.25, -47.5, -25.5, 2.75, -47.25, -16.75, 2.5, -52.25, -25.75, 2.5, -52.25, -25.5, 2.75, -47.25, -18.5, 2.5, -43.5, -9.5, 2.5, -43.5, -9.25, 2.5, -49.5, -9.5, 2.5, -43.5, -9.25, 2.75, -44.5, -9.25, 2.75, -48.5, -25.75, 2.5, -52.25, -25.75, 2.75, -51.5, -25.5, 2.75, -47.25, -9.5, 2.5, -43.5, -9.25, 2.75, -48.5, -9.25, 2.5, -49.5, -18, 8.5, -42.5, -27.25, 8.5, -42.5, -17.5, 8.5, -42.25, -17.5, 8.5, -42.25, -7.5, 8.5, -42.25, -9, 8.5, -42.75, -18, 8.5, -42.5, -2.25, 5.5, -31, -2, 5.5, -30.25, -1.25, 5.5, -30.25, -2.25, 5.5, -28.5, -2.5, 5.5, -29.25, -3.75, 5.5, -29.75, -4.25, 5.5, -28.25, -4.5, 5.5, -9.75, -9.5, 5.5, -9.5, -9.25, 5.5, -9, -4.25, 5.5, -9.25, -4.25, 5.5, -28.25, -3.75, 5.5, -29.75, -3.75, 5.5, -30.5, -4.5, 5.5, -33, 4.5, 4.25, -42, 0.5, 4.25, -42, 0.25, 4.5, -40.5, 4.5, 4.75, -35.25, -1, 5.5, -29, -1.5, 5.5, -28.5, 4.5, 5.5, -28.25, -1.25, 5.5, -30.25, -1, 5.5, -29, 4.5, 5.5, -28.25, -4.5, 5.5, -17.5, -4.5, 5.5, -9.75, -4.25, 5.5, -9.25, -4.25, 5.5, -18.75, -2.25, 5.5, -31, -1.25, 5.5, -30.25, 4.5, 5.5, -28.25, -2.25, 5.5, -31, 4.5, 5.5, -28.25, 4.5, 4.75, -35.25, 0.25, 4.5, -40.5, -4.5, 4.5, -40.5, -4.5, 5.5, -33, 4.5, 5.5, -32.45, -4.5, 4.5, -36.75, -1.48495, 4.5, -36.9811, -4.25, 5.5, -18.75, -4.25, 5.5, -28.25, -4.5, 5.5, -25.25, -4.5, 5.5, -17.5, -9.5, 5.5, 9.5, -9, 5.5, 9.5, -9.25, 5.5, 0.25, -9.5, 5.5, 0, -4.5, 5.5, -33, -4.5, 5.5, -25.25, -4.25, 5.5, -28.25, -9.5, 5.5, 0, -9.25, 5.5, 0.25, -9.25, 5.5, -9, -9.5, 5.5, -9.5, -4.5, 5.5, -33, -3.75, 5.5, -30.5, -2.25, 5.5, -31, 0, 1.5, -17.25, 0.5, 1.5, -16, 0.75, 1.5, -16.5, 1.75, 1.5, -17.5, 0, 1.5, -17.25, 0.75, 1.5, -16.5, 3.5, 1.5, -16.5, -3.25, 1.5, -27.25, -1.5, 1.5, -26.25, 1.5, 1.5, -26.5, 3.5, 1.5, -27.25, -3.25, 1.5, -19, -1.5, 1.5, -19.25, -1.5, 1.5, -26.25, -3.25, 1.5, -27.25, 1.75, 1.5, -17.5, 3.5, 1.5, -16.5, 3.5, 1.5, -27.25, 1.5, 1.5, -26.5, -0.5, 4.5, -25.5, -0.5, 4.5, -18.5, 0.5, 4.5, -18.5, 0.5, 4.5, -25.5, -1.5, 1.5, -17.5, -1.5, 1.5, -19.25, -3.25, 1.5, -19, -3.25, 1.5, -13.5, 0.5, 1.5, -16, 0, 1.5, -17.25, -1.5, 1.5, -17.5, -3.25, 1.5, -13.5, 0.5, 1.5, -13.5, 1.5, 3.5, -15.5, 1.5, 3.5, -14.5, 3.5, 3.5, -14.5, 3.5, 3.5, -15.5, 3.5, 1.5, -13.25, 0.75, 1.5, -13.25, 0.75, 1.5, -10.75, 3.5, 1.5, -8.5, -8.25, 1.5, 0, -0.75, 1.5, 0, -0.5, 1.5, -1, -3.75, 1.5, -8.25, -8.25, 1.5, -8.25, 3.5, 1.5, -8.5, 0.75, 1.5, -10.75, 0.25, 1.5, -10.25, 0.25, 1.5, -10.25, -3.25, 1.5, -10.25, -3.25, 1.5, -8.75, 0.25, 1.5, -10.25, -3.25, 1.5, -8.75, -3.75, 1.5, -8.25, -0.5, 1.5, -1, 0.5, 1.5, -1, 3.5, 1.5, -8.5, 0.5, 1.5, -1, 1.75, 1.5, 0.5, 8.5, 1.5, 0.5, 8.5, 1.5, -8.25, 3.5, 1.5, -8.5, -3.25, 2.5, -12.5, -3.25, 2.5, -11.5, -0.5, 2.5, -11.5, -0.5, 2.5, -12.5, 4.5, 5.5, -10.5, 4.5, 5.5, -9.5, 5, 5.5, -9.5, 5.25, 5.5, -9.5, 9.5, 5.5, -9, 9.5, 5.5, -9.5, 0.75, 1.5, 8.5, 0.75, 1.5, 1.25, -0.5, 1.5, 1, -0.5, 1.5, 1, -0.75, 1.5, 0, -8.25, 1.5, 0, -8.25, 1.5, 8.5, 0.75, 1.5, 8.5, 8.5, 1.5, 0.5, 1.75, 1.5, 0.5, 1.5, 1.5, 1.25, 0.75, 1.5, 8.5, 8.5, 1.5, 8.5, 1.5, 1.5, 1.25, 0.75, 1.5, 1.25, 0.75, 1.5, 8.5)
@@ -90,7 +94,6 @@ use_collision = true
 
 [node name="Section1" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -45, 0)
-material_override = ExtResource("2_5uhq1")
 size = Vector3(20, 100, 20)
 material = ExtResource("2_5uhq1")
 
@@ -116,17 +119,17 @@ material = ExtResource("2_5uhq1")
 [node name="Section2Platform1" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -12)
 size = Vector3(4, 2, 2)
-material = ExtResource("2_5uhq1")
+material = ExtResource("10_5d4ga")
 
 [node name="Section2Platform2" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2, -15)
 size = Vector3(4, 2, 2)
-material = ExtResource("2_5uhq1")
+material = ExtResource("11_7qywu")
 
 [node name="Section2Platform3" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -22)
 size = Vector3(2, 4, 8)
-material = ExtResource("2_5uhq1")
+material = ExtResource("11_7qywu")
 
 [node name="Section3_1" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -45, -31)
@@ -257,6 +260,93 @@ transform = Transform3D(0.974331, 0, -0.225121, 0, 1, 0, 0.225121, 0, 0.974331, 
 
 [node name="Checkpoint3" parent="Level1/World/NavigationRegion3D/Checkpoints" instance=ExtResource("5_6d1b6")]
 transform = Transform3D(0.999397, 0, 0.0347252, 0, 1, 0, -0.0347252, 0, 0.999397, -12.1503, 5.39547, -69.8372)
+
+[node name="BackgroundEnvironment" type="CSGCombiner3D" parent="Level1/World"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Level1/World/BackgroundEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32, -49, -18)
+size = Vector3(8, 150, 20)
+material = ExtResource("2_5uhq1")
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="Level1/World/BackgroundEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -91, -25, -42)
+size = Vector3(30, 150, 20)
+material = ExtResource("2_5uhq1")
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="Level1/World/BackgroundEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, -25, 98)
+size = Vector3(30, 150, 20)
+material = ExtResource("2_5uhq1")
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="Level1/World/BackgroundEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 114, -31, -13)
+size = Vector3(30, 150, 20)
+material = ExtResource("2_5uhq1")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Level1/World/BackgroundEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, -61, -18)
+size = Vector3(12, 150, 12)
+material = ExtResource("10_5d4ga")
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="Level1/World/BackgroundEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -83, -52, -108)
+size = Vector3(12, 150, 12)
+material = ExtResource("10_5d4ga")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Level1/World/BackgroundEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, -57, -71)
+size = Vector3(30, 150, 12)
+material = ExtResource("10_5d4ga")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Level1/World/BackgroundEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, -51, -60)
+size = Vector3(20, 150, 20)
+material = ExtResource("11_7qywu")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Level1/World/BackgroundEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, -54, 60)
+size = Vector3(20, 150, 20)
+material = ExtResource("11_7qywu")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Level1/World/BackgroundEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, -61, 60)
+size = Vector3(80, 150, 8)
+material = ExtResource("10_5d4ga")
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="Level1/World/BackgroundEnvironment"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -96, -43, -66)
+size = Vector3(80, 150, 8)
+material = ExtResource("10_5d4ga")
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="Level1/World/BackgroundEnvironment"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 129, -47, 8.00001)
+size = Vector3(80, 150, 8)
+material = ExtResource("10_5d4ga")
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Level1/World/BackgroundEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, -46, 42)
+size = Vector3(20, 150, 40)
+material = ExtResource("11_7qywu")
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Level1/World/BackgroundEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -91, -32, -101)
+size = Vector3(12, 150, 35)
+material = ExtResource("11_7qywu")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Level1/World/BackgroundEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, -39, 11)
+size = Vector3(20, 150, 12)
+material = ExtResource("2_5uhq1")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Level1/World/BackgroundEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, -64, -50)
+size = Vector3(8, 150, 35)
+material = ExtResource("2_5uhq1")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Level1/World/BackgroundEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, -57, 9.48403)
+size = Vector3(8, 150, 35)
+material = ExtResource("11_7qywu")
 
 [node name="Enemies" type="Node3D" parent="Level1"]
 
