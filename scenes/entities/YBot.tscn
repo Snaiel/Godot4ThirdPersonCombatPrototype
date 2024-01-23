@@ -1191,6 +1191,11 @@ bone_idx = 4
 [node name="AttachmentPoint" type="Node3D" parent="Armature_004/GeneralSkeleton/LockOnAttachment" index="0"]
 transform = Transform3D(1, 2.09768e-20, 0, 2.09768e-20, 1, 0, 0, 0, 1, 0, 0, 0.05)
 
+[node name="HeadAttachment" type="BoneAttachment3D" parent="Armature_004/GeneralSkeleton" index="3"]
+transform = Transform3D(1, 7.38663e-14, 3.99088e-12, -7.38663e-14, 1, -2.97017e-08, -3.99088e-12, 2.97017e-08, 1, -4.44873e-05, 1.60075, -0.00340818)
+bone_name = "Head"
+bone_idx = 6
+
 [node name="AnimationPlayer" parent="." index="1"]
 libraries = {
 "": SubResource("AnimationLibrary_dgc36"),

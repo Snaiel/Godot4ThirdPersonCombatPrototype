@@ -6,6 +6,7 @@ extends Node3D
 @export var debug: bool
 @export var enabled: bool = true
 @export var entity: Enemy
+@export var head_attachment: BoneAttachment3D
 @export var notice_triangle_scene: PackedScene
 @export var off_camera_notice_triangle_scene: PackedScene
 @export var initial_state: NoticeComponentState
@@ -125,13 +126,13 @@ func change_state(new_state: NoticeComponentState) -> void:
 func inside_inner_threshold() -> bool:
 	return angle_to_player < inner_angle and \
 		distance_to_player < inner_distance and \
-		_can_see_target(player)
+		_can_see_target(player.lock_on_attachment_point.global_position)
 
 
 func inside_outer_threshold() -> bool:
 	return angle_to_player < outer_angle and \
 		distance_to_player < outer_distance and \
-		_can_see_target(player)
+		_can_see_target(player.lock_on_attachment_point.global_position)
 
 
 func get_notice_value() -> float:
@@ -166,18 +167,18 @@ func transition_to_aggro() -> void:
 	change_state(aggro_state)
 
 
-func _can_see_target(t: Node3D) -> bool:
+func _can_see_target(target_pos: Vector3) -> bool:
 	var can_see: bool = true
 
 	var space_state: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
 	var query: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(
-		entity.global_position,
-		t.global_position,
+		head_attachment.global_position,
+		target_pos,
 		1
 	)
 	var result: Dictionary = space_state.intersect_ray(query)
 	
 	if result.size() != 0:
 		can_see = false
-
+	
 	return can_see
