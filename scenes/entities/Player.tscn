@@ -54,7 +54,7 @@ shader_parameter/alpha_clip = 0.0
 radius = 0.3
 height = 1.8
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("state_machine", "character", "movement_component", "root_motion_component", "hitbox_component", "health_component", "instability_component", "jump_component", "block_component", "dodge_component", "rotation_component", "head_rotation_component", "attack_component", "parry_component", "fade_component", "health_charge_component", "weapon", "lock_on_attachment_point") groups=["player"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("state_machine", "character", "movement_component", "root_motion_component", "hitbox_component", "health_component", "instability_component", "jump_component", "block_component", "dodge_component", "rotation_component", "head_rotation_component", "attack_component", "parry_component", "fade_component", "health_charge_component", "weapon", "lock_on_attachment_point", "footsteps") groups=["player"]]
 collision_layer = 2
 collision_mask = 9
 script = ExtResource("1_lgfyt")
@@ -76,6 +76,7 @@ fade_component = NodePath("FadeComponent")
 health_charge_component = NodePath("HealthChargeComponent")
 weapon = NodePath("CharacterModel/Armature_004/GeneralSkeleton/Sword")
 lock_on_attachment_point = NodePath("CharacterModel/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint")
+footsteps = NodePath("CharacterModel/AudioManager/Footsteps")
 
 [node name="CharacterModel" parent="." instance=ExtResource("5_gusos")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)

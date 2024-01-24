@@ -2,6 +2,8 @@ class_name MovementAnimations
 extends BaseAnimations
 
 
+@export var audio_footsteps: AudioFootsteps
+
 var _input_dir: Vector2 = Vector2.ZERO
 var _lock_on_walk_blend: float = 0.0
 
@@ -40,3 +42,9 @@ func move(dir: Vector3, locked_on: bool, running: bool) -> void:
 		anim_tree["parameters/Movement/blend_amount"] = lerp(anim_tree["parameters/Movement/blend_amount"], 1.0, 0.1)
 	else:
 		anim_tree["parameters/Movement/blend_amount"] = lerp(anim_tree["parameters/Movement/blend_amount"], 0.0, 0.1)
+	
+	
+	if _input_dir.length() > 0.01:
+		audio_footsteps.can_play = true
+	else:
+		audio_footsteps.can_play = false

@@ -20,8 +20,12 @@ extends CharacterBody3D
 @export var fade_component: FadeComponent
 @export var health_charge_component: HealthChargeComponent
 
+@export_category("Character")
 @export var weapon: Sword
 @export var lock_on_attachment_point: Node3D
+
+@export_category("Audio")
+@export var footsteps: AudioFootsteps
 
 var active_motion_component: MotionComponent
 
@@ -118,6 +122,10 @@ func _physics_process(_delta: float) -> void:
 			backstab_system.backstab_victim.global_position
 	else:
 		head_rotation_component.desired_target_pos = Vector3.INF
+	
+	
+	footsteps.on_floor = is_on_floor()
+	footsteps.running = state_machine.current_state is PlayerRunState
 
 
 func set_rotation_target_to_lock_on_target() -> void:
