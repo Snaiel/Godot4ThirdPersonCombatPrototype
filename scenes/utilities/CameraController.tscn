@@ -69,3 +69,5 @@ script = ExtResource("9_xlmhn")
 normal_state = NodePath("../Normal")
 camera_controller = NodePath("../..")
 camera = NodePath("../../Camera3D")
+
+[node name="AudioListener3D" type="AudioListener3D" parent="."]
