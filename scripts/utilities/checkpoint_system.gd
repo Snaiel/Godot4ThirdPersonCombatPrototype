@@ -16,6 +16,8 @@ var at_checkpoint: bool = false
 var _counter: int = 0
 var _packed_enemies: PackedScene
 
+@onready var death_sfx: AudioStreamPlayer3D = $DeathSfx
+
 @onready var player: Player = Globals.player
 @onready var camera_controller: CameraController = Globals.camera_controller
 @onready var lock_on_system: LockOnSystem = Globals.lock_on_system
@@ -91,6 +93,10 @@ func enable_hint() -> void:
 
 func sat_at_checkpoint() -> void:
 	current_checkpoint = closest_checkpoint
+
+
+func play_death_sfx() -> void:
+	death_sfx.play()
 
 
 func recover_after_death() -> void:

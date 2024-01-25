@@ -10,6 +10,8 @@ var _counter: int = 0:
 		if _counter < 0:
 			_counter = 0
 
+@onready var idle_song: AudioStreamPlayer = $IdleBackgroundMusic
+@onready var active_song: AudioStreamPlayer = $ActiveBackgroundMusic
 @onready var anim: AnimationPlayer = $AnimationPlayer
 
 
@@ -34,3 +36,18 @@ func fade_to_idle() -> void:
 	
 	idle_music = true
 	anim.play("FadeToIdle")
+
+
+func fade_out() -> void:
+	if idle_music:
+		anim.play("IdleFadeOut")
+	else:
+		anim.play("ActiveFadeOut")
+	
+	print(active_song.playing)
+	idle_music = true
+	_counter = 0
+
+
+func reset() -> void:
+	anim.play("RESET")

@@ -15,6 +15,7 @@ var _respawning: bool = false
 @onready var _fade: TextureRect = $Fade
 
 @onready var _checkpoint_system: CheckpointSystem = Globals.checkpoint_system
+@onready var _music_system: MusicSystem = Globals.music_system
 
 
 func _ready():
@@ -63,6 +64,7 @@ func play_death_screen() -> void:
 	timer.timeout.connect(
 		func():
 			_show_message = true
+			_checkpoint_system.play_death_sfx()
 	)
 	
 	await timer.timeout
@@ -93,6 +95,7 @@ func play_death_screen() -> void:
 		func():
 			_fade_to_black = false
 			_respawning = true
+			_music_system.reset()
 	)
 	
 	await timer.timeout
@@ -100,4 +103,5 @@ func play_death_screen() -> void:
 	timer.timeout.connect(
 		func():
 			stand_up.emit()
+			_music_system.idle_song.play()
 	)
