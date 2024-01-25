@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cfip2n0nvr8n3"]
+[gd_scene load_steps=26 format=3 uid="uid://cfip2n0nvr8n3"]
 
 [ext_resource type="Script" path="res://scripts/utilities/level.gd" id="1_du374"]
 [ext_resource type="Material" uid="uid://qml1qedtuxl6" path="res://materials/grid.tres" id="2_5uhq1"]
@@ -120,10 +120,61 @@ tracks/2/keys = {
 "values": [0.0, -80.0]
 }
 
+[sub_resource type="Animation" id="Animation_iv34r"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IdleBackgroundMusic:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("IdleBackgroundMusic:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ActiveBackgroundMusic:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ActiveBackgroundMusic:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g1jku"]
 _data = {
 "FadeToActive": SubResource("Animation_pe051"),
-"FadeToIdle": SubResource("Animation_s1645")
+"FadeToIdle": SubResource("Animation_s1645"),
+"RESET": SubResource("Animation_iv34r")
 }
 
 [node name="Main" type="Node3D" node_paths=PackedStringArray("player", "user_interface", "camera_controller", "lock_on_system", "backstab_system", "dizzy_system", "checkpoint_system", "music_system")]
@@ -477,8 +528,6 @@ bus = &"Music"
 
 [node name="ActiveBackgroundMusic" type="AudioStreamPlayer" parent="MusicSystem"]
 stream = ExtResource("15_ug2pn")
-volume_db = -80.0
-stream_paused = true
 bus = &"Music"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MusicSystem"]
