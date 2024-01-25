@@ -1461,6 +1461,7 @@ volume_db = -5.0
 [node name="Hit" type="AudioStreamPlayer3D" parent="AudioManager" index="7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
 stream = SubResource("AudioStreamRandomizer_by5m0")
+volume_db = -15.0
 
 [node name="Dizzy" type="AudioStreamPlayer3D" parent="AudioManager" index="8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)

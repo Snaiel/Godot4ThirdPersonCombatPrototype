@@ -478,6 +478,7 @@ bus = &"Music"
 [node name="ActiveBackgroundMusic" type="AudioStreamPlayer" parent="MusicSystem"]
 stream = ExtResource("15_ug2pn")
 volume_db = -80.0
+stream_paused = true
 bus = &"Music"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MusicSystem"]
