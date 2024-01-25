@@ -35,6 +35,13 @@ You must have Blender installed and have Blender imports (https://docs.godotengi
 - https://www.youtube.com/watch?v=ow_Lum-Agbs introduction into state machines
 - https://medium.com/dotcrossdot/hierarchical-finite-state-machine-c9e3f4ce0d9e introduction into hierarchical finite state machines
 
+## Audio
+
+- https://www.audacityteam.org/ Audacity free audio editor
+- https://www.kenney.nl/assets/category:Audio?sort=update sound packs from Kenney
+- https://opengameart.org/content/crystal-cave-song18 ambient background music from Cynic Music
+- https://opengameart.org/content/hyper-ultra-racing fast paced music from Cynic Music
+
 
 # Attribution
 Giving credit is not necessary but much appreciated!

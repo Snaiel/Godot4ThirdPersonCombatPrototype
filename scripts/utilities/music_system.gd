@@ -44,7 +44,6 @@ func fade_out() -> void:
 	else:
 		anim.play("ActiveFadeOut")
 	
-	print(active_song.playing)
 	idle_music = true
 	_counter = 0
 
