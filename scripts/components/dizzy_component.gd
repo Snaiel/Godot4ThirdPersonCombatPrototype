@@ -19,7 +19,8 @@ extends Node3D
 
 @export_category("Audio")
 @export var dizzy_sfx: AudioStreamPlayer3D
-@export var thrust_puncture: AudioStreamPlayer3D
+@export var thrust_puncture_sfx: AudioStreamPlayer3D
+@export var hit_sfx: AudioStreamPlayer3D
 
 var _dizzy_timer: Timer
 var _come_out_of_damage_dizzy_timer: Timer
@@ -71,7 +72,9 @@ func process_hit(weapon: Sword):
 		health_component.deal_max_damage = true
 		dizzy_system.dizzy_victim_killed.emit()
 		if instability_component.full_instability_from_parry:
-			thrust_puncture.play()
+			thrust_puncture_sfx.play()
+		else:
+			hit_sfx.play()
 
 
 func _on_instability_component_full_instability():

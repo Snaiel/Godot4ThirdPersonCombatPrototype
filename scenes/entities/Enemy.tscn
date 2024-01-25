@@ -132,7 +132,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 entity = NodePath("..")
 groups = Array[String](["player"])
 
-[node name="DizzyComponent" parent="." node_paths=PackedStringArray("entity", "lock_on_component", "health_component", "attack_component", "instability_component", "character", "blackboard", "dizzy_sfx", "thrust_puncture") instance=ExtResource("10_nld3f")]
+[node name="DizzyComponent" parent="." node_paths=PackedStringArray("entity", "lock_on_component", "health_component", "attack_component", "instability_component", "character", "blackboard", "dizzy_sfx", "thrust_puncture_sfx", "hit_sfx") instance=ExtResource("10_nld3f")]
 entity = NodePath("..")
 lock_on_component = NodePath("../LockOnComponent")
 health_component = NodePath("../HealthComponent")
@@ -141,7 +141,8 @@ instability_component = NodePath("../InstabilityComponent")
 character = NodePath("../CharacterModel")
 blackboard = NodePath("../Blackboard")
 dizzy_sfx = NodePath("../CharacterModel/AudioManager/Dizzy")
-thrust_puncture = NodePath("../CharacterModel/AudioManager/ThrustPuncture")
+thrust_puncture_sfx = NodePath("../CharacterModel/AudioManager/ThrustPuncture")
+hit_sfx = NodePath("../CharacterModel/AudioManager/Hit")
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_c0k3s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
