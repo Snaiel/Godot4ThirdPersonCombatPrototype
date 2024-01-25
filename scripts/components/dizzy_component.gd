@@ -17,6 +17,9 @@ extends Node3D
 @export var character: CharacterAnimations
 @export var blackboard: Blackboard
 
+@export_category("Audio")
+@export var thrust_puncture: AudioStreamPlayer3D
+
 var _dizzy_timer: Timer
 var _come_out_of_damage_dizzy_timer: Timer
 var _damage_dizzy_timer_pause: float = 1.5
@@ -66,6 +69,8 @@ func process_hit(weapon: Sword):
 		entity.set_root_motion(true)
 		health_component.deal_max_damage = true
 		dizzy_system.dizzy_victim_killed.emit()
+		if instability_component.full_instability_from_parry:
+			thrust_puncture.play()
 
 
 func _on_instability_component_full_instability():

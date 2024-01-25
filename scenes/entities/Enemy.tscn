@@ -79,17 +79,11 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 surface_material_override/0 = SubResource("ShaderMaterial_i1ddg")
 
 [node name="Sword" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity") instance=ExtResource("4_r63io")]
-transform = Transform3D(1.9372e-06, -1, -8.50259e-05, 1.43006e-06, 8.49663e-05, -1, 1, 1.87761e-06, 1.48969e-06, -0.737829, 1.43565, -0.061713)
+transform = Transform3D(8.64318e-07, -1, -8.56519e-05, 8.63812e-07, 8.56221e-05, -1, 1, 8.64302e-07, 8.93688e-07, -0.737829, 1.43565, -0.0617137)
 _entity = NodePath("../../../..")
 
 [node name="Area" parent="CharacterModel/Armature_004/GeneralSkeleton/Sword" index="1"]
 collision_mask = 2
-
-[node name="LockOnAttachment" parent="CharacterModel/Armature_004/GeneralSkeleton" index="3"]
-transform = Transform3D(1, -7.20253e-12, 4.0193e-12, 7.20253e-12, 1, -3.01674e-08, -4.0193e-12, 3.01674e-08, 1, -2.25238e-05, 1.34721, -0.0427615)
-
-[node name="HeadAttachment" parent="CharacterModel/Armature_004/GeneralSkeleton" index="4"]
-transform = Transform3D(1, 7.38663e-14, 3.99088e-12, -7.38663e-14, 1, -2.97017e-08, -3.99088e-12, 2.97017e-08, 1, -4.44873e-05, 1.60075, -0.00340818)
 
 [node name="AnimationTree" parent="CharacterModel" index="2"]
 "parameters/Dizzy Finisher Which One/current_state" = ""
@@ -98,6 +92,12 @@ transform = Transform3D(1, 7.38663e-14, 3.99088e-12, -7.38663e-14, 1, -2.97017e-
 "parameters/Dizzy From Damage/current_index" = -1
 "parameters/Dizzy Which One/current_state" = ""
 "parameters/Dizzy Which One/current_index" = -1
+
+[node name="WeaponSwing" parent="CharacterModel/AudioManager" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
+
+[node name="ThrustPuncture" parent="CharacterModel/AudioManager" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
 
 [node name="Collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
@@ -135,11 +135,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 entity = NodePath("..")
 groups = Array[String](["player"])
 
-[node name="DizzyComponent" parent="." node_paths=PackedStringArray("entity", "lock_on_component", "health_component", "attack_component", "instability_component", "character", "blackboard") instance=ExtResource("10_nld3f")]
-dizzy_from_parry_length = null
-dizzy_from_damage_length = null
-debug = null
-enabled = null
+[node name="DizzyComponent" parent="." node_paths=PackedStringArray("entity", "lock_on_component", "health_component", "attack_component", "instability_component", "character", "blackboard", "thrust_puncture") instance=ExtResource("10_nld3f")]
 entity = NodePath("..")
 lock_on_component = NodePath("../LockOnComponent")
 health_component = NodePath("../HealthComponent")
@@ -147,6 +143,7 @@ attack_component = NodePath("../AttackComponent")
 instability_component = NodePath("../InstabilityComponent")
 character = NodePath("../CharacterModel")
 blackboard = NodePath("../Blackboard")
+thrust_puncture = NodePath("../CharacterModel/AudioManager/ThrustPuncture")
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_c0k3s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
@@ -156,10 +153,11 @@ blood_scene = ExtResource("7_fiewg")
 hitbox = NodePath("../HitboxComponent")
 weapon = NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Sword")
 
-[node name="BackstabComponent" parent="." node_paths=PackedStringArray("entity", "lock_on_component", "health_component") instance=ExtResource("14_u1sji")]
+[node name="BackstabComponent" parent="." node_paths=PackedStringArray("entity", "lock_on_component", "health_component", "puncture_sound") instance=ExtResource("14_u1sji")]
 entity = NodePath("..")
 lock_on_component = NodePath("../LockOnComponent")
 health_component = NodePath("../HealthComponent")
+puncture_sound = NodePath("../CharacterModel/AudioManager/ThrustPuncture")
 
 [node name="NoticeComponent" parent="." node_paths=PackedStringArray("entity", "head_attachment", "blackboard") instance=ExtResource("10_rxy6t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, 0)

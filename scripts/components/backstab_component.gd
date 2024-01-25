@@ -7,6 +7,7 @@ extends Node3D
 @export var entity: CharacterBody3D
 @export var lock_on_component: LockOnComponent
 @export var health_component: HealthComponent
+@export var puncture_sound: AudioStreamPlayer3D
 
 var _dist_to_player: float = 0.0
 var _angle_to_player: float = 0.0
@@ -51,5 +52,6 @@ func being_backstabbed() -> bool:
 
 func process_hit() -> void:
 	if being_backstabbed():
+		puncture_sound.play()
 		health_component.deal_max_damage = true
 		entity.rotation.y = _player.rotation.y

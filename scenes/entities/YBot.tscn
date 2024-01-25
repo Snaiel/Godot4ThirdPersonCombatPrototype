@@ -1,4 +1,4 @@
-[gd_scene load_steps=166 format=3 uid="uid://x0oxbha36o2h"]
+[gd_scene load_steps=168 format=3 uid="uid://x0oxbha36o2h"]
 
 [ext_resource type="PackedScene" uid="uid://q3eag1ltsb0y" path="res://models/ybot.blend" id="1_ml8ck"]
 [ext_resource type="Script" path="res://scripts/animations/character_animations.gd" id="2_l62dg"]
@@ -21,6 +21,7 @@
 [ext_resource type="Script" path="res://scripts/audio/audio_footsteps.gd" id="19_if0sk"]
 [ext_resource type="AudioStream" uid="uid://d2hx1psw3kw3j" path="res://audio/jump_land.wav" id="20_dne06"]
 [ext_resource type="AudioStream" uid="uid://bju8g4kcmxeps" path="res://audio/weapon_swing.wav" id="21_2ltyf"]
+[ext_resource type="AudioStream" uid="uid://bwkd4ivuxm0ny" path="res://audio/thrust_puncture.wav" id="22_lkxki"]
 
 [sub_resource type="Animation" id="Animation_263e4"]
 resource_name = "Y Bot"
@@ -1137,6 +1138,11 @@ streams_count = 1
 stream_0/stream = ExtResource("21_2ltyf")
 stream_0/weight = 1.0
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xjlfg"]
+streams_count = 1
+stream_0/stream = ExtResource("22_lkxki")
+stream_0/weight = 1.0
+
 [node name="YBot" instance=ExtResource("1_ml8ck")]
 script = ExtResource("2_l62dg")
 
@@ -1404,3 +1410,7 @@ volume_db = -7.0
 [node name="WeaponSwing" type="AudioStreamPlayer3D" parent="AudioManager" index="2"]
 stream = SubResource("AudioStreamRandomizer_801ki")
 volume_db = -25.0
+
+[node name="ThrustPuncture" type="AudioStreamPlayer3D" parent="AudioManager" index="3"]
+stream = SubResource("AudioStreamRandomizer_xjlfg")
+volume_db = -10.0
