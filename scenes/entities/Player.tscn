@@ -204,12 +204,13 @@ run_state = NodePath("../Run")
 jump_state = NodePath("../Jump")
 player = NodePath("../..")
 
-[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("walk_state", "attack_state", "block_state", "parry_state", "player")]
+[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("walk_state", "attack_state", "block_state", "parry_state", "audio_jump_land", "player")]
 script = ExtResource("8_jgsl3")
 walk_state = NodePath("../Walk")
 attack_state = NodePath("../Attack")
 block_state = NodePath("../Block")
 parry_state = NodePath("../Parry")
+audio_jump_land = NodePath("../../CharacterModel/AudioManager/JumpLand")
 player = NodePath("../..")
 
 [node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("parry_state", "block_state", "dizzy_finisher_state", "player")]
