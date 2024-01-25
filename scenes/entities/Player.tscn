@@ -271,11 +271,12 @@ script = ExtResource("19_24iu4")
 attack_state = NodePath("../Attack")
 player = NodePath("../..")
 
-[node name="HitByEnemy" type="Node" parent="StateMachine" node_paths=PackedStringArray("attack_state", "block_state", "parry_state", "player")]
+[node name="HitByEnemy" type="Node" parent="StateMachine" node_paths=PackedStringArray("attack_state", "block_state", "parry_state", "sfx", "player")]
 script = ExtResource("21_x55ju")
 attack_state = NodePath("../Attack")
 block_state = NodePath("../Block")
 parry_state = NodePath("../Parry")
+sfx = NodePath("../../CharacterModel/AudioManager/Hit")
 player = NodePath("../..")
 
 [node name="Drink" type="Node" parent="StateMachine" node_paths=PackedStringArray("health_charge_component", "player")]

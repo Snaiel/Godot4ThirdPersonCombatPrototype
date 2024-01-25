@@ -11,6 +11,7 @@ signal death(enemy)
 @export_category("Audio")
 @export var parry_sfx: AudioStreamPlayer3D
 @export var block_sfx: AudioStreamPlayer3D
+@export var hit_sfx: AudioStreamPlayer3D
 
 var active_motion_component: MotionComponent
 
@@ -255,6 +256,8 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 		
 		_blackboard.set_value("got_hit", true)
 		_blackboard.set_value("interrupt_timers", true)
+		
+		hit_sfx.play()
 		
 		if Globals.dizzy_system.dizzy_victim != _dizzy_component:
 			active_motion_component.knockback(weapon.get_entity().global_position)

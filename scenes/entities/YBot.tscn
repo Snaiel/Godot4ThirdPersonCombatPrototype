@@ -1,4 +1,4 @@
-[gd_scene load_steps=173 format=3 uid="uid://x0oxbha36o2h"]
+[gd_scene load_steps=175 format=3 uid="uid://x0oxbha36o2h"]
 
 [ext_resource type="PackedScene" uid="uid://q3eag1ltsb0y" path="res://models/ybot.blend" id="1_ml8ck"]
 [ext_resource type="Script" path="res://scripts/animations/character_animations.gd" id="2_l62dg"]
@@ -25,6 +25,7 @@
 [ext_resource type="AudioStream" uid="uid://b15aeyitorki7" path="res://audio/block.wav" id="23_3icvw"]
 [ext_resource type="AudioStream" uid="uid://cliluvk2ijjfu" path="res://audio/parry.wav" id="23_eqk0n"]
 [ext_resource type="AudioStream" uid="uid://b6gbnrwod81th" path="res://audio/blocking.wav" id="25_c3yud"]
+[ext_resource type="AudioStream" uid="uid://cd4rhj6wa6w2o" path="res://audio/hit.wav" id="26_nihmx"]
 
 [sub_resource type="Animation" id="Animation_263e4"]
 resource_name = "Y Bot"
@@ -1156,6 +1157,11 @@ streams_count = 1
 stream_0/stream = ExtResource("23_3icvw")
 stream_0/weight = 1.0
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_by5m0"]
+streams_count = 1
+stream_0/stream = ExtResource("26_nihmx")
+stream_0/weight = 1.0
+
 [node name="YBot" instance=ExtResource("1_ml8ck")]
 script = ExtResource("2_l62dg")
 
@@ -1421,10 +1427,12 @@ stream = SubResource("AudioStreamRandomizer_8ow8j")
 volume_db = -7.0
 
 [node name="WeaponSwing" type="AudioStreamPlayer3D" parent="AudioManager" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
 stream = SubResource("AudioStreamRandomizer_801ki")
 volume_db = -25.0
 
 [node name="ThrustPuncture" type="AudioStreamPlayer3D" parent="AudioManager" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
 stream = SubResource("AudioStreamRandomizer_xjlfg")
 volume_db = -10.0
 
@@ -1434,6 +1442,7 @@ stream = SubResource("AudioStreamRandomizer_jof1e")
 volume_db = -5.0
 
 [node name="Blocking" type="AudioStreamPlayer3D" parent="AudioManager" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
 stream = ExtResource("25_c3yud")
 volume_db = -25.0
 
@@ -1441,3 +1450,8 @@ volume_db = -25.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
 stream = SubResource("AudioStreamRandomizer_hqt8r")
 volume_db = -5.0
+
+[node name="Hit" type="AudioStreamPlayer3D" parent="AudioManager" index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
+stream = SubResource("AudioStreamRandomizer_by5m0")
+volume_db = -2.0

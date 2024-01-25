@@ -6,6 +6,8 @@ extends PlayerStateMachine
 @export var block_state: PlayerBlockState
 @export var parry_state: PlayerParryState
 
+@export var sfx: AudioStreamPlayer3D
+
 var _incoming_weapon: Sword
 
 var _can_block_or_parry: bool = false
@@ -53,6 +55,8 @@ func enter():
 	player.attack_component.interrupt_attack()
 	
 	_pressed_attack = false
+	
+	sfx.play()
 	
 	_timer.start()
 
