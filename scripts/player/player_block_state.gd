@@ -6,7 +6,8 @@ extends PlayerStateMachine
 @export var attack_state: PlayerAttackState
 @export var reduce_instability_rate: float = 0.8
 
-@export var sfx: AudioStreamPlayer3D
+@export var blocking_sfx: AudioStreamPlayer3D
+@export var block_sfx: AudioStreamPlayer3D
 
 var _can_reduce_instability: bool = true
 var _pause_before_reducing_instability_timer: Timer
@@ -42,7 +43,7 @@ func _ready():
 			player.block_component.blocked()
 			player.instability_component.process_block()
 			
-			sfx.play()
+			block_sfx.play()
 	)
 
 
@@ -52,6 +53,8 @@ func enter():
 	
 	_can_reduce_instability = false
 	_pause_before_reducing_instability_timer.start()
+	
+	blocking_sfx.play()
 
 
 func process_player():
@@ -82,3 +85,5 @@ func process_player():
 func exit():
 	player.block_component.blocking = false
 	_pause_before_reducing_instability_timer.stop()
+	
+	blocking_sfx.stop()

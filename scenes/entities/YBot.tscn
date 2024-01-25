@@ -1,4 +1,4 @@
-[gd_scene load_steps=172 format=3 uid="uid://x0oxbha36o2h"]
+[gd_scene load_steps=173 format=3 uid="uid://x0oxbha36o2h"]
 
 [ext_resource type="PackedScene" uid="uid://q3eag1ltsb0y" path="res://models/ybot.blend" id="1_ml8ck"]
 [ext_resource type="Script" path="res://scripts/animations/character_animations.gd" id="2_l62dg"]
@@ -24,6 +24,7 @@
 [ext_resource type="AudioStream" uid="uid://bwkd4ivuxm0ny" path="res://audio/thrust_puncture.wav" id="22_lkxki"]
 [ext_resource type="AudioStream" uid="uid://b15aeyitorki7" path="res://audio/block.wav" id="23_3icvw"]
 [ext_resource type="AudioStream" uid="uid://cliluvk2ijjfu" path="res://audio/parry.wav" id="23_eqk0n"]
+[ext_resource type="AudioStream" uid="uid://b6gbnrwod81th" path="res://audio/blocking.wav" id="25_c3yud"]
 
 [sub_resource type="Animation" id="Animation_263e4"]
 resource_name = "Y Bot"
@@ -1432,7 +1433,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
 stream = SubResource("AudioStreamRandomizer_jof1e")
 volume_db = -5.0
 
-[node name="Block" type="AudioStreamPlayer3D" parent="AudioManager" index="5"]
+[node name="Blocking" type="AudioStreamPlayer3D" parent="AudioManager" index="5"]
+stream = ExtResource("25_c3yud")
+volume_db = -25.0
+
+[node name="Block" type="AudioStreamPlayer3D" parent="AudioManager" index="6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
 stream = SubResource("AudioStreamRandomizer_hqt8r")
 volume_db = -5.0
