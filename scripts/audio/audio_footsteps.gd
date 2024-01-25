@@ -18,8 +18,8 @@ func play_footstep() -> void:
 		return
 	
 	if running:
-		pitch_scale = 1.1
+		pitch_scale = 0.7
 	else:
-		pitch_scale = 1.2
+		pitch_scale = 0.8
 	
 	play()

@@ -15,9 +15,9 @@
 [ext_resource type="Script" path="res://scripts/animations/drink_animations.gd" id="13_yftnk"]
 [ext_resource type="Script" path="res://scripts/animations/walk_or_jog_animations.gd" id="14_s7odg"]
 [ext_resource type="Script" path="res://scripts/animations/sitting_animations.gd" id="15_rxgn1"]
-[ext_resource type="AudioStream" uid="uid://bpr1iuxywp48q" path="res://audio/footsteps/footstep_concrete_000.wav" id="16_1uhp5"]
-[ext_resource type="AudioStream" uid="uid://burg561qkjnpy" path="res://audio/footsteps/footstep_concrete_003.wav" id="17_nteug"]
-[ext_resource type="AudioStream" uid="uid://b0osqpjo0phj4" path="res://audio/footsteps/footstep_concrete_004.wav" id="18_erbx1"]
+[ext_resource type="AudioStream" uid="uid://bd1ks0felifw2" path="res://audio/footsteps/footstep00.wav" id="16_abtj0"]
+[ext_resource type="AudioStream" uid="uid://cavo4qpxknfh2" path="res://audio/footsteps/footstep01.wav" id="17_kbmfv"]
+[ext_resource type="AudioStream" uid="uid://dkk215uq2twwa" path="res://audio/footsteps/footstep02.wav" id="18_u4dji"]
 [ext_resource type="Script" path="res://scripts/audio/audio_footsteps.gd" id="19_if0sk"]
 [ext_resource type="AudioStream" uid="uid://d2hx1psw3kw3j" path="res://audio/jump_land.wav" id="20_dne06"]
 [ext_resource type="AudioStream" uid="uid://bju8g4kcmxeps" path="res://audio/weapon_swing.wav" id="21_2ltyf"]
@@ -1120,11 +1120,11 @@ node_connections = [&"output", 0, &"Death", &"Attack", 0, &"Attack Inward Slash"
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6fy3m"]
 streams_count = 3
 playback_mode = 1
-stream_0/stream = ExtResource("16_1uhp5")
+stream_0/stream = ExtResource("16_abtj0")
 stream_0/weight = 1.0
-stream_1/stream = ExtResource("17_nteug")
+stream_1/stream = ExtResource("17_kbmfv")
 stream_1/weight = 1.0
-stream_2/stream = ExtResource("18_erbx1")
+stream_2/stream = ExtResource("18_u4dji")
 stream_2/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_8ow8j"]
@@ -1393,14 +1393,14 @@ anim_tree = NodePath("../AnimationTree")
 
 [node name="Footsteps" type="AudioStreamPlayer3D" parent="AudioManager" index="0"]
 stream = SubResource("AudioStreamRandomizer_6fy3m")
-volume_db = -20.0
-pitch_scale = 0.9
+volume_db = -35.0
+pitch_scale = 0.8
 script = ExtResource("19_if0sk")
 
 [node name="JumpLand" type="AudioStreamPlayer3D" parent="AudioManager" index="1"]
 stream = SubResource("AudioStreamRandomizer_8ow8j")
-volume_db = -10.0
+volume_db = -7.0
 
 [node name="WeaponSwing" type="AudioStreamPlayer3D" parent="AudioManager" index="2"]
 stream = SubResource("AudioStreamRandomizer_801ki")
-volume_db = -30.0
+volume_db = -25.0
