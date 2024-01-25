@@ -7,6 +7,8 @@ extends PlayerStateMachine
 @export var parry_state: PlayerParryState
 @export var dizzy_finisher_state: PlayerDizzyFinisherState
 
+@export var sfx: AudioStreamPlayer3D
+
 var _incoming_weapon: Sword
 
 var _timer: Timer
@@ -51,6 +53,8 @@ func enter():
 		player.movement_component.knockback(
 			_incoming_weapon.get_entity().global_position
 		)
+	
+	sfx.play()
 	
 	_timer.start()
 

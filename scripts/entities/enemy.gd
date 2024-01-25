@@ -8,6 +8,8 @@ signal death(enemy)
 @export var target: Node3D
 @export var debug: bool = false
 
+@export var parry_sfx: AudioStreamPlayer3D
+
 var active_motion_component: MotionComponent
 
 @onready var _blackboard: Blackboard = $Blackboard
@@ -207,6 +209,8 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 		
 		_blackboard.set_value("can_attack", false)
 		_blackboard.set_value("attack", false)
+		
+		parry_sfx.play()
 		
 		var timer: SceneTreeTimer = get_tree().create_timer(0.2)
 		timer.timeout.connect(
