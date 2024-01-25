@@ -52,6 +52,8 @@ func enter() -> void:
 		.background_triangle\
 		.self_modulate\
 		.a = 0
+	
+	Globals.music_system.fade_to_active()
 
 
 func physics_process(delta) -> void:

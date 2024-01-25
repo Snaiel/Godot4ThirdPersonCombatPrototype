@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c7k25fiayfnor"
+path="res://.godot/imported/Crystal Cave.ogg-de14836585f83c620e168119b8a2b3de.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/music/Crystal Cave.ogg"
+dest_files=["res://.godot/imported/Crystal Cave.ogg-de14836585f83c620e168119b8a2b3de.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

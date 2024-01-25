@@ -295,3 +295,7 @@ func _on_health_component_zero_health() -> void:
 		_character.dizzy_animations.play_death_kneeling()
 	else:
 		_character.hit_and_death_animations.death_1()
+	
+	if _blackboard.get_value("notice_state") == "aggro":
+		print("CMON")
+		Globals.music_system.fade_to_idle()

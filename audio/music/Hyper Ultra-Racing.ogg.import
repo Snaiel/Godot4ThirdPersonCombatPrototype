@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bcu6lpb4pl0c5"
+path="res://.godot/imported/Hyper Ultra-Racing.ogg-ad6afe02ff5c94fafc3d1fb07ec43d4b.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/music/Hyper Ultra-Racing.ogg"
+dest_files=["res://.godot/imported/Hyper Ultra-Racing.ogg-ad6afe02ff5c94fafc3d1fb07ec43d4b.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
