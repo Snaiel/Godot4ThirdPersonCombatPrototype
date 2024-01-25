@@ -8,7 +8,9 @@ signal death(enemy)
 @export var target: Node3D
 @export var debug: bool = false
 
+@export_category("Audio")
 @export var parry_sfx: AudioStreamPlayer3D
+@export var block_sfx: AudioStreamPlayer3D
 
 var active_motion_component: MotionComponent
 
@@ -230,6 +232,8 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 		
 		_instability_component.enabled = false
 		_health_component.enabled = false
+		
+		block_sfx.play()
 		
 		var timer: SceneTreeTimer = get_tree().create_timer(0.3)
 		timer.timeout.connect(

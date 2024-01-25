@@ -220,10 +220,11 @@ block_state = NodePath("../Block")
 dizzy_finisher_state = NodePath("../DizzyFinisher")
 player = NodePath("../..")
 
-[node name="Block" type="Node" parent="StateMachine" node_paths=PackedStringArray("parry_state", "attack_state", "player")]
+[node name="Block" type="Node" parent="StateMachine" node_paths=PackedStringArray("parry_state", "attack_state", "sfx", "player")]
 script = ExtResource("9_t1v34")
 parry_state = NodePath("../Parry")
 attack_state = NodePath("../Attack")
+sfx = NodePath("../../CharacterModel/AudioManager/Block")
 player = NodePath("../..")
 
 [node name="Parry" type="Node" parent="StateMachine" node_paths=PackedStringArray("block_state", "dizzy_finisher_state", "player")]

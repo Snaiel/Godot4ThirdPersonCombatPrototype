@@ -6,6 +6,8 @@ extends PlayerStateMachine
 @export var attack_state: PlayerAttackState
 @export var reduce_instability_rate: float = 0.8
 
+@export var sfx: AudioStreamPlayer3D
+
 var _can_reduce_instability: bool = true
 var _pause_before_reducing_instability_timer: Timer
 var _pause_before_reducing_instability_length: float = 2.0
@@ -27,16 +29,20 @@ func _ready():
 	
 	player.hitbox_component.weapon_hit.connect(
 		func(incoming_weapon: Sword):
-			if parent_state.current_state == self:
-				player.movement_component.knockback(
-					incoming_weapon.get_entity().global_position
-				)
-				
-				_can_reduce_instability = false
-				_pause_before_reducing_instability_timer.start()
-				
-				player.block_component.blocked()
-				player.instability_component.process_block()
+			if parent_state.current_state != self:
+				return
+			
+			player.movement_component.knockback(
+				incoming_weapon.get_entity().global_position
+			)
+			
+			_can_reduce_instability = false
+			_pause_before_reducing_instability_timer.start()
+			
+			player.block_component.blocked()
+			player.instability_component.process_block()
+			
+			sfx.play()
 	)
 
 

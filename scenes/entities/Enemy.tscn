@@ -67,11 +67,12 @@ shader_parameter/alpha_clip = 0.0
 radius = 0.3
 height = 1.8
 
-[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("parry_sfx") groups=["enemy"]]
+[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("parry_sfx", "block_sfx") groups=["enemy"]]
 collision_layer = 8
 collision_mask = 11
 script = ExtResource("1_nrck3")
 parry_sfx = NodePath("CharacterModel/AudioManager/Parry")
+block_sfx = NodePath("CharacterModel/AudioManager/Block")
 
 [node name="CharacterModel" parent="." instance=ExtResource("2_0tr8h")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
