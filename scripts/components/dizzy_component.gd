@@ -18,6 +18,7 @@ extends Node3D
 @export var blackboard: Blackboard
 
 @export_category("Audio")
+@export var dizzy_sfx: AudioStreamPlayer3D
 @export var thrust_puncture: AudioStreamPlayer3D
 
 var _dizzy_timer: Timer
@@ -84,6 +85,8 @@ func _on_instability_component_full_instability():
 		return
 	
 	dizzy_system.dizzy_victim = self
+	
+	dizzy_sfx.play()
 	
 	if instability_component.full_instability_from_parry:
 		entity.set_root_motion(true)
