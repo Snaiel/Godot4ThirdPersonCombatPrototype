@@ -126,7 +126,7 @@ process_material = SubResource("ParticleProcessMaterial_a1a52")
 draw_pass_1 = SubResource("SphereMesh_pwcdx")
 
 [node name="RecoveryParticles" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.829595, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 emitting = false
 amount = 512
 lifetime = 2.0
