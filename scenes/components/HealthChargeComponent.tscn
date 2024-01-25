@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://cbs5mcpj3x6im"]
+[gd_scene load_steps=18 format=3 uid="uid://cbs5mcpj3x6im"]
 
 [ext_resource type="Script" path="res://scripts/components/health_charge_component.gd" id="1_4typu"]
 [ext_resource type="Texture2D" uid="uid://dyeohhs3ktuna" path="res://assets/chevron-double-up.png" id="2_be1v1"]
+[ext_resource type="AudioStream" uid="uid://baln12rfgoykf" path="res://audio/health_jingle.wav" id="3_oi47p"]
 
 [sub_resource type="Curve" id="Curve_svo57"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.815972, 0.663158), -1.47248, -1.47248, 0, 0, Vector2(1, 0), -3.11579, 0.0, 0, 0]
@@ -82,6 +83,11 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_aj284")
 size = Vector2(0.1, 0.1)
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5uc35"]
+streams_count = 1
+stream_0/stream = ExtResource("3_oi47p")
+stream_0/weight = 1.0
+
 [node name="HealthChargeComponent" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.173562, 0)
 script = ExtResource("1_4typu")
@@ -126,3 +132,7 @@ light_color = Color(0.580392, 0.898039, 0.192157, 1)
 light_energy = 0.2
 light_size = 0.5
 omni_range = 3.0
+
+[node name="HealthJingle" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_5uc35")
+volume_db = -30.0

@@ -26,6 +26,7 @@ var _desired_light_energy: float
 	$OmniLight3D,
 	$OmniLight3D2
 ]
+@onready var health_jingle_sfx: AudioStreamPlayer3D = $HealthJingle
 
 
 func _ready():
@@ -46,6 +47,7 @@ func _ready():
 			for particle in particles:
 				particle.restart()
 			_show_light = true
+			health_jingle_sfx.play()
 	)
 	
 	character.drink_animations.finished.connect(
