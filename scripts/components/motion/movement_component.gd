@@ -30,7 +30,7 @@ func handle_movement(_delta: float) -> void:
 			# if coming from a jump, quickly come to a stop.
 			# otherwise, if just going from walking/runnning to a stop,
 			# come to a gentle stop
-			var weight: float = 0.4 if vertical_movement else 0.2
+			var weight: float = 1.0 if vertical_movement else 0.2
 			
 			desired_velocity = desired_velocity.move_toward(
 				Vector3(
