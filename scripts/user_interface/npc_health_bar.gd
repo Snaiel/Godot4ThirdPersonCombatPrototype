@@ -2,6 +2,7 @@ class_name NPCHealthBar
 extends Node2D
 
 
+var current_health: float
 var default_health: float
 var health_bar_visible: bool = false
 
@@ -42,12 +43,8 @@ func _ready():
 	add_child(_health_delay_timer)
 
 
-func process_health(health: float) -> void:
-	_health_sprite.scale.x = lerp(
-		0.0, 
-		_default_health_sprite_scale_x,
-		health / default_health
-	)
+func _process(_delta: float) -> void:
+	_scale_health_bar_sprite()
 	
 	if _play_delay:
 		_delay_sprite.scale.x = move_toward(
@@ -58,14 +55,27 @@ func process_health(health: float) -> void:
 	
 	if is_equal_approx(_delay_sprite.scale.x, _health_sprite.scale.x):
 		_play_delay = false
-		if is_zero_approx(health):
+		if is_zero_approx(current_health):
 			health_bar_visible = false
 
 
-func show_health_bar(_health: float) -> void:
+func setup() -> void:
+	_scale_health_bar_sprite()
+	_delay_sprite.scale.x = _health_sprite.scale.x
+
+
+func show_health_bar() -> void:
 	health_bar_visible = true
 	
 	_show_health_bar_timer.start()
-		
+	prints(_delay_sprite.scale.x, _health_sprite.scale.x)
 	if _health_delay_timer.is_stopped():
 		_health_delay_timer.start()
+
+
+func _scale_health_bar_sprite() -> void:
+	_health_sprite.scale.x = lerp(
+		0.0, 
+		_default_health_sprite_scale_x,
+		current_health / default_health
+	)

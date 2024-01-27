@@ -33,7 +33,7 @@ func _ready():
 	health_component.took_damage.connect(
 		func():
 			_visible = true
-			_health_bar.show_health_bar(health_component.health)
+			_health_bar.show_health_bar()
 	)
 	_default_health_bar_y_pos = _health_bar.position.y
 	
@@ -41,7 +41,6 @@ func _ready():
 	_instability_bar.max_instability = instability_component.max_instability
 	instability_component.instability_increased.connect(
 		func():
-#			print(instability_component.instability())
 			_instability_bar.instability_increased(
 				instability_component.instability
 			)
@@ -49,7 +48,7 @@ func _ready():
 
 
 func _process(_delta):
-	_health_bar.process_health(health_component.health)
+	_health_bar.current_health = health_component.health
 	_instability_bar.process_instability(instability_component.instability)
 	
 	if _lock_on_system.target == lock_on_component or \
@@ -63,8 +62,8 @@ func _process(_delta):
 		_visible = false
 	
 	if not _instability_bar.instability_bar_visible or \
-		is_zero_approx(instability_component.instability) or \
-		is_zero_approx(health_component.health):
+	is_zero_approx(instability_component.instability) or \
+	is_zero_approx(health_component.health):
 		_instability_bar.instability_bar_visible = false
 		_instability_bar.visible = false
 		_health_bar.position.y = _health_bar_y_pos_instability_invisible
@@ -76,3 +75,8 @@ func _process(_delta):
 	_well_being_widget.visible = _visible
 	
 	_well_being_widget.position = _camera.unproject_position(global_position)
+
+
+func setup() -> void:
+	_health_bar.current_health = health_component.health
+	_health_bar.setup()

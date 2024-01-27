@@ -41,6 +41,7 @@ var _dead: bool = false
 @onready var _attack_component: AttackComponent = $AttackComponent
 @onready var _block_component: BlockComponent = $BlockComponent
 @onready var _parry_component: ParryComponent = $ParryComponent
+@onready var _wellbeing_component: WellbeingComponent = $WellbeingComponent
 @onready var _agent: NavigationAgent3D = $NavigationAgent3D
 
 @onready var skeleton: Skeleton3D = $CharacterModel/Armature_004/GeneralSkeleton
@@ -63,13 +64,14 @@ func _ready() -> void:
 	_default_move_speed = _movement_component.speed
 	_blackboard.set_value("move_speed", _default_move_speed)
 	
-	_blackboard.set_value("can_attack", true)	
+	_blackboard.set_value("can_attack", true)
 	_blackboard.set_value("dead", false)
 	
 	_health_component.health = wellbeing_stats.initial_health
 	_instability_component.instability = wellbeing_stats.initial_instability
 	_instability_component.can_reduce_instability = wellbeing_stats\
 		.can_reduce_instability
+	_wellbeing_component.setup()
 
 
 func _physics_process(_delta: float) -> void:
