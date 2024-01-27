@@ -8,6 +8,8 @@ signal death(enemy)
 @export var target: Node3D
 @export var debug: bool = false
 
+@export var wellbeing_stats: WellbeingStats
+
 @export_category("Incoming Weapon Hit Weights")
 @export var hit_weight: float = 0.4
 @export var block_weight: float = 0.4

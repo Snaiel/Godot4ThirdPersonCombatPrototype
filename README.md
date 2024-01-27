@@ -42,6 +42,11 @@ You must have Blender installed and have Blender imports (https://docs.godotengi
 - https://opengameart.org/content/crystal-cave-song18 ambient background music from Cynic Music
 - https://opengameart.org/content/hyper-ultra-racing fast paced music from Cynic Music
 
+## Custom Resources
+
+- https://docs.godotengine.org/en/stable/tutorials/scripting/resources.html wonderful documentation
+- https://www.youtube.com/watch?v=vzRZjM9MTGw great explanation
+
 
 # Attribution
 Giving credit is not necessary but much appreciated!
