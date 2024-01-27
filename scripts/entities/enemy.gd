@@ -68,6 +68,8 @@ func _ready() -> void:
 	
 	_health_component.health = wellbeing_stats.initial_health
 	_instability_component.instability = wellbeing_stats.initial_instability
+	_instability_component.can_reduce_instability = wellbeing_stats\
+		.can_reduce_instability
 
 
 func _physics_process(_delta: float) -> void:

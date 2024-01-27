@@ -19,8 +19,9 @@ signal full_instability
 		instability = clamp(value, 0.0, max_instability)
 
 @export_category("Instability Reduction")
-var reduction_pause_length: float = 2.0
-var reduction_rate: float = 0.2
+@export var can_reduce_instability: bool = true
+@export var reduction_pause_length: float = 2.0
+@export var reduction_rate: float = 0.2
 
 var full_instability_from_parry: bool = false
 
@@ -54,7 +55,7 @@ func _ready():
 
 
 func _physics_process(_delta):
-	if _reduce_instability:
+	if _reduce_instability and can_reduce_instability:
 		instability -= reduction_rate
 
 

@@ -60,6 +60,7 @@ max_health = 100.0
 initial_health = 100.0
 max_instability = 100.0
 initial_instability = 0.0
+can_reduce_instability = null
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i1ddg"]
 render_priority = 0
