@@ -65,6 +65,9 @@ func _ready() -> void:
 	
 	_blackboard.set_value("can_attack", true)	
 	_blackboard.set_value("dead", false)
+	
+	_health_component.health = wellbeing_stats.initial_health
+	_instability_component.instability = wellbeing_stats.initial_instability
 
 
 func _physics_process(_delta: float) -> void:
