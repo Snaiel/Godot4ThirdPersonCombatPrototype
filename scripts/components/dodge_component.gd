@@ -1,12 +1,13 @@
 class_name DodgeComponent
 extends Node3D
 
-@export var dodge_strength: float
+
+@export var dodge_strength: float = 7
 
 # This is the time before touching the ground
 # that an intent to dodge can be made and it
 # letting the dodge go through once on the ground
-@export var _in_air_buffer: float
+@export var _in_air_buffer: float = 0.1
 
 @export_category("References")
 @export var entity: Player
@@ -55,17 +56,9 @@ func _dodge() -> void:
 	movement_component.vertical_movement = false
 	
 	if movement_component.move_direction.length() > 0.0:
-		
 		movement_component.desired_velocity += movement_component\
 			.move_direction.normalized() * dodge_strength
-		
-	elif not entity.lock_on_target:
-		
-		movement_component.desired_velocity += movement_component\
-			.looking_direction.normalized() * dodge_strength * 1.5
-		
 	else:
-		
 		movement_component.desired_velocity += -movement_component\
 			.looking_direction.normalized() * dodge_strength
 	

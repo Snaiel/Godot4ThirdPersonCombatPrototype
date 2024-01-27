@@ -15,17 +15,14 @@ func handle_movement(_delta: float) -> void:
 	if can_move:
 		if move_direction.length() > 0.05:
 			
-			var weight: float = 0.2 if entity.is_on_floor() else 0.1
+			var weight: float = 0.4 if entity.is_on_floor() else 0.2
 			
-			desired_velocity.z = lerp(
-				desired_velocity.z,
-				move_direction.z * speed,
-				weight
-			)
-			
-			desired_velocity.x = lerp(
-				desired_velocity.x,
-				move_direction.x * speed,
+			desired_velocity = desired_velocity.move_toward(
+				Vector3(
+					move_direction.x * speed,
+					desired_velocity.y,
+					move_direction.z * speed
+				),
 				weight
 			)
 			
@@ -35,15 +32,12 @@ func handle_movement(_delta: float) -> void:
 			# come to a gentle stop
 			var weight: float = 0.4 if vertical_movement else 0.2
 			
-			desired_velocity.x = lerp(
-				desired_velocity.x,
-				0.0,
-				weight
-			)
-			
-			desired_velocity.z = lerp(
-				desired_velocity.z,
-				0.0,
+			desired_velocity = desired_velocity.move_toward(
+				Vector3(
+					0,
+					desired_velocity.y,
+					0
+				),
 				weight
 			)
 			

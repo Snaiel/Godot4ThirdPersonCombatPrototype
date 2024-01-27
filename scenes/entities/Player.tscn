@@ -338,7 +338,7 @@ animations = NodePath("../CharacterModel")
 movement_component = NodePath("../MovementComponent")
 
 [node name="DodgeComponent" parent="." node_paths=PackedStringArray("entity", "movement_component", "jump_component") instance=ExtResource("27_7sekg")]
-dodge_strength = 16.0
+dodge_strength = 7.0
 entity = NodePath("..")
 movement_component = NodePath("../MovementComponent")
 jump_component = NodePath("../JumpComponent")

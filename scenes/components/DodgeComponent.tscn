@@ -2,10 +2,5 @@
 
 [ext_resource type="Script" path="res://scripts/components/dodge_component.gd" id="1_qre4d"]
 
-[node name="DodgeComponent" type="Node3D" node_paths=PackedStringArray("entity", "movement_component", "jump_component")]
+[node name="DodgeComponent" type="Node3D"]
 script = ExtResource("1_qre4d")
-dodge_strength = 8.0
-_in_air_buffer = 0.1
-entity = NodePath("")
-movement_component = NodePath("")
-jump_component = NodePath("")
