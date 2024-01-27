@@ -4,8 +4,9 @@ extends Node2D
 
 @export var color_gradient: Gradient
 
+var current_instability: float
 var max_instability: float
-var instability_bar_visible: bool = false
+var should_be_visible: bool = false
 
 var _default_instability_sprite_scale_x: float
 
@@ -17,11 +18,11 @@ func _ready():
 	_default_instability_sprite_scale_x = instability_bar.scale.x
 
 
-func process_instability(instability: float) -> void:
-	var instability_percentage = instability / max_instability
+func _process(_delta: float) -> void:
+	var instability_percentage = current_instability / max_instability
 	
 	if is_zero_approx(instability_percentage):
-		instability_bar_visible = false
+		should_be_visible = false
 	
 	instability_bar.scale.x = lerp(
 		0.0, 
@@ -38,4 +39,4 @@ func process_instability(instability: float) -> void:
 
 
 func instability_increased(_instability: float) -> void:
-	instability_bar_visible = true
+	should_be_visible = true

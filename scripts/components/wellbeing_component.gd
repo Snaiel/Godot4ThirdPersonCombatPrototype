@@ -49,28 +49,32 @@ func _ready():
 
 func _process(_delta):
 	_health_bar.current_health = health_component.health
-	_instability_bar.process_instability(instability_component.instability)
+	_instability_bar.current_instability = instability_component.instability
 	
+	# check whether to make the entire widget visible
 	if _lock_on_system.target == lock_on_component or \
-		_health_bar.health_bar_visible or \
-		_instability_bar.instability_bar_visible:
+	_health_bar.should_be_visible or \
+	_instability_bar.should_be_visible:
+		
 		_visible = true
+		
+		# check whether the instability bar should NOT be visible.
+		# when it's zero or when the enemy is dead.
+		if is_zero_approx(instability_component.instability) and (
+			not _instability_bar.should_be_visible or \
+			is_zero_approx(health_component.health)
+		):
+			_instability_bar.should_be_visible = false
+			_instability_bar.visible = false
+			_health_bar.position.y = _health_bar_y_pos_instability_invisible
+		else:
+			_instability_bar.visible = true
+			_health_bar.position.y = _default_health_bar_y_pos
 	else:
 		_visible = false
-		
+	
 	if not _camera.is_position_in_frustum(global_position):
 		_visible = false
-	
-	if not _instability_bar.instability_bar_visible or \
-	is_zero_approx(instability_component.instability) or \
-	is_zero_approx(health_component.health):
-		_instability_bar.instability_bar_visible = false
-		_instability_bar.visible = false
-		_health_bar.position.y = _health_bar_y_pos_instability_invisible
-	else:
-		_instability_bar.instability_bar_visible = true
-		_instability_bar.visible = true
-		_health_bar.position.y = _default_health_bar_y_pos
 	
 	_well_being_widget.visible = _visible
 	
@@ -80,3 +84,4 @@ func _process(_delta):
 func setup() -> void:
 	_health_bar.current_health = health_component.health
 	_health_bar.setup()
+	_instability_bar.current_instability = instability_component.instability

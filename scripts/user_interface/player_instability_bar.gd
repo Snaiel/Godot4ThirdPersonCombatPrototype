@@ -4,8 +4,6 @@ extends Control
 
 @export var color_gradient: Gradient
 
-var instability_bar_visible: bool = false
-
 var _instability: float
 var _max_instability: float
 
@@ -45,9 +43,6 @@ func _process(_delta):
 		_disappear_pause_timer.start()
 	
 	var instability_percentage = _instability / _max_instability
-	
-	if is_zero_approx(instability_percentage):
-		instability_bar_visible = false
 	
 	_instability_bar.scale.x = lerp(
 		0.0, 

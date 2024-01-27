@@ -4,7 +4,7 @@ extends Node2D
 
 var current_health: float
 var default_health: float
-var health_bar_visible: bool = false
+var should_be_visible: bool = false
 
 var _default_health_sprite_scale_x: float
 
@@ -28,7 +28,7 @@ func _ready():
 	_show_health_bar_timer.one_shot = true
 	_show_health_bar_timer.timeout.connect(
 		func():
-			health_bar_visible = false
+			should_be_visible = false
 	)
 	add_child(_show_health_bar_timer)
 	
@@ -56,7 +56,7 @@ func _process(_delta: float) -> void:
 	if is_equal_approx(_delay_sprite.scale.x, _health_sprite.scale.x):
 		_play_delay = false
 		if is_zero_approx(current_health):
-			health_bar_visible = false
+			should_be_visible = false
 
 
 func setup() -> void:
@@ -65,7 +65,7 @@ func setup() -> void:
 
 
 func show_health_bar() -> void:
-	health_bar_visible = true
+	should_be_visible = true
 	
 	_show_health_bar_timer.start()
 	prints(_delay_sprite.scale.x, _health_sprite.scale.x)
