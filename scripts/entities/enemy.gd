@@ -8,12 +8,20 @@ signal death(enemy)
 @export var target: Node3D
 @export var debug: bool = false
 
+@export_category("Incoming Weapon Hit Weights")
+@export var hit_weight: float = 0.4
+@export var block_weight: float = 0.4
+@export var parry_weight: float = 0.2
+
 @export_category("Audio")
 @export var parry_sfx: AudioStreamPlayer3D
 @export var block_sfx: AudioStreamPlayer3D
 @export var hit_sfx: AudioStreamPlayer3D
 
 var active_motion_component: MotionComponent
+
+var _default_move_speed: float
+var _dead: bool = false
 
 @onready var _blackboard: Blackboard = $Blackboard
 @onready var _character: CharacterAnimations = $CharacterModel
@@ -37,9 +45,6 @@ var active_motion_component: MotionComponent
 @onready var _sword: Sword = $CharacterModel/Armature_004/GeneralSkeleton/Sword
 
 @onready var player: Player = Globals.player
-
-var _default_move_speed: float
-var _dead: bool = false
 
 
 func _ready() -> void:
@@ -186,43 +191,37 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 			active_motion_component.knockback(weapon.get_entity().global_position)
 		return
 	
+	_blackboard.set_value("can_attack", false)
+	_blackboard.set_value("attack", false)
 	
-	var rng: float = RandomNumberGenerator.new().randf()
+	var total_weight: float = hit_weight + block_weight + parry_weight
+	var rng: float = RandomNumberGenerator.new().randf() * total_weight
+	
 	
 	if _blackboard.get_value("notice_state") != "aggro" or \
 	_blackboard.get_value("dizzy", false):
 		rng = 0.0
 	
-	if 0.8 < rng and rng <= 1.0:
-		# 20% chance of parrying
-		
-		active_motion_component.knockback(weapon.get_entity().global_position)
-		
-		_parry_component.in_parry_window = true
-		_parry_component.play_parry_particles()
+	if rng < hit_weight:
+		# incoming hit goes through
+		_health_component.decrement_health(weapon)
+		_instability_component.process_hit()
 		
 		_attack_component.interrupt_attack()
 		
-		_character.parry_animations.parry()
-		_block_component.anim.play("parried")
+		_character.hit_and_death_animations.hit()
+#		_set_agent_target_to_target = true
 		
-		_instability_component.process_parry()
+		_blackboard.set_value("got_hit", true)
+		_blackboard.set_value("interrupt_timers", true)
 		
-		weapon.get_parried()
+		hit_sfx.play()
 		
-		_blackboard.set_value("can_attack", false)
-		_blackboard.set_value("attack", false)
+		if Globals.dizzy_system.dizzy_victim != _dizzy_component:
+			active_motion_component.knockback(weapon.get_entity().global_position)
 		
-		parry_sfx.play()
-		
-		var timer: SceneTreeTimer = get_tree().create_timer(0.2)
-		timer.timeout.connect(
-			func(): 
-				_attack_component.attack()
-		)
-	elif 0.4 <= rng and rng <= 0.8:
-		# 40% chance of blocking
-		
+	elif rng < hit_weight + block_weight:
+		# block incoming hit
 		active_motion_component.knockback(weapon.get_entity().global_position)
 		
 		_block_component.blocking = true
@@ -243,24 +242,31 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 				_instability_component.enabled = true
 				_health_component.enabled = true
 		)
-	else:
-		# 40% chance of being hit
 		
-		_health_component.decrement_health(weapon)
-		_instability_component.process_hit()
+	elif rng < hit_weight + block_weight + parry_weight:
+		# parry incoming hit
+		active_motion_component.knockback(weapon.get_entity().global_position)
+		
+		_parry_component.in_parry_window = true
+		_parry_component.play_parry_particles()
 		
 		_attack_component.interrupt_attack()
 		
-		_character.hit_and_death_animations.hit()
-#		_set_agent_target_to_target = true
+		_character.parry_animations.parry()
+		_block_component.anim.play("parried")
 		
-		_blackboard.set_value("got_hit", true)
-		_blackboard.set_value("interrupt_timers", true)
+		_instability_component.process_parry()
 		
-		hit_sfx.play()
+		weapon.get_parried()
 		
-		if Globals.dizzy_system.dizzy_victim != _dizzy_component:
-			active_motion_component.knockback(weapon.get_entity().global_position)
+		parry_sfx.play()
+		
+		var timer: SceneTreeTimer = get_tree().create_timer(0.2)
+		timer.timeout.connect(
+			func(): 
+				_attack_component.attack()
+		)
+	
 
 
 func _on_health_component_zero_health() -> void:
