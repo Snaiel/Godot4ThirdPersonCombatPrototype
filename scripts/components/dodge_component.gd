@@ -13,6 +13,7 @@ extends Node3D
 @export var entity: Player
 @export var movement_component: MovementComponent
 @export var jump_component: JumpComponent
+@export var sfx: AudioStreamPlayer3D
 
 
 var dodging: bool = false
@@ -67,6 +68,8 @@ func _dodge() -> void:
 	else:
 		movement_component.desired_velocity += movement_component\
 			.looking_direction.normalized() * dodge_strength
+	
+	sfx.play()
 	
 	# how long the dodge status lasts
 	var dodge_timer: SceneTreeTimer = get_tree().create_timer(0.2)

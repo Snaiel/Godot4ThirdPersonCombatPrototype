@@ -337,10 +337,11 @@ entity = NodePath("..")
 animations = NodePath("../CharacterModel")
 movement_component = NodePath("../MovementComponent")
 
-[node name="DodgeComponent" parent="." node_paths=PackedStringArray("entity", "movement_component", "jump_component") instance=ExtResource("27_7sekg")]
+[node name="DodgeComponent" parent="." node_paths=PackedStringArray("entity", "movement_component", "jump_component", "sfx") instance=ExtResource("27_7sekg")]
 entity = NodePath("..")
 movement_component = NodePath("../MovementComponent")
 jump_component = NodePath("../JumpComponent")
+sfx = NodePath("../CharacterModel/AudioManager/Dodge")
 
 [node name="AttackComponent" parent="." node_paths=PackedStringArray("_attack_animations", "_movement_component", "_weapon") instance=ExtResource("28_no1kf")]
 _attack_animations = NodePath("../CharacterModel/AttackAnimations")
