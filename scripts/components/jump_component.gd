@@ -4,10 +4,15 @@ extends Node3D
 
 signal just_landed
 
+@export_category("Configuration")
 @export var entity: CharacterBody3D
 @export var animations: CharacterAnimations
 @export var movement_component: MovementComponent
 @export var jump_strength: float = 8
+
+@export_category("Audio")
+@export var jump_sfx: AudioStreamPlayer3D
+@export var land_sfx: AudioStreamPlayer3D
 
 var actually_jump: bool = false
 var jumping: bool = false
@@ -48,6 +53,7 @@ func _process(_delta: float) -> void:
 		jumping = false
 		animations.jump_animations.fade_out()		
 		just_landed.emit()
+		land_sfx.play()
 	
 	# actually_jump is true when the jump animation reaches the point
 	# where the animations actually jumps. When this happens,
@@ -67,6 +73,7 @@ func start_jump() -> void:
 ## the point in the animation where they lift off of the ground 
 func _jump() -> void:
 	actually_jump = true
+	jump_sfx.play()
 
 
 ## assumes we are now not doing any vertical movement

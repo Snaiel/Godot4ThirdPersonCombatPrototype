@@ -7,8 +7,6 @@ extends PlayerStateMachine
 @export var block_state: PlayerBlockState
 @export var parry_state: PlayerParryState
 
-@export var audio_jump_land: AudioStreamPlayer3D
-
 
 func _ready():
 	super._ready()
@@ -22,8 +20,6 @@ func _ready():
 
 func enter():
 	player.jump_component.start_jump()
-	
-	player.footsteps.play()
 	
 	if parent_state.previous_state == walk_state:
 		player.movement_component.speed = 3.5
@@ -49,7 +45,3 @@ func process_player():
 		player.rotation_component.rotate_towards_target = false
 	else:
 		player.rotation_component.rotate_towards_target = true
-
-
-func exit():
-	audio_jump_land.play()
