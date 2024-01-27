@@ -24,6 +24,11 @@ func process_player():
 	else:
 		player.set_rotation_target_to_lock_on_target()
 	
+	
+	if Input.is_action_just_pressed("run"):
+		parent_state.change_state(dodge_state)
+		return
+	
 	if Input.is_action_just_pressed("jump") and \
 	player.is_on_floor():
 		parent_state.change_state(jump_state)
@@ -41,6 +46,7 @@ func process_player():
 	if Input.is_action_pressed("block"):
 		parent_state.change_state(block_state)
 		return
+	
 	
 	if not Globals.backstab_system.backstab_victim:
 		parent_state.transition_to_previous_state()

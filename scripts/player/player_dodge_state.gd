@@ -21,7 +21,7 @@ func process_player():
 		parent_state.change_state(run_state)
 		return
 	elif not player.dodge_component.dodging:
-		parent_state.transition_to_previous_state()
+		parent_state.transition_to_default_state()
 		return
 	
 	if Input.is_action_just_pressed("jump") and \
