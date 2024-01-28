@@ -81,6 +81,7 @@ func _physics_process(_delta: float) -> void:
 	_backstab_component.debug = debug
 	_notice_component.debug = debug
 	_dizzy_component.debug = debug
+	_wellbeing_component.debug = debug
 	
 	_blackboard.set_value("debug", debug)
 	

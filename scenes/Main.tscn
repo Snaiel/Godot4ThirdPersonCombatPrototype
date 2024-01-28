@@ -61,7 +61,7 @@ can_reduce_instability = true
 [sub_resource type="Resource" id="Resource_dsuvw"]
 script = ExtResource("13_adayc")
 max_health = 100.0
-initial_health = 100.0
+initial_health = 60.0
 max_instability = 100.0
 initial_instability = 90.0
 can_reduce_instability = false

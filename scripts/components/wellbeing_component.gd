@@ -3,6 +3,7 @@ extends Node3D
 
 
 @export_category("Configuration")
+@export var debug: bool = false
 @export var lock_on_component: LockOnComponent
 @export var backstab_component: BackstabComponent
 @export var health_component: HealthComponent
@@ -53,6 +54,13 @@ func _process(_delta):
 	_health_bar.current_health = health_component.health
 	_instability_bar.current_instability = instability_component.instability
 	
+#	if debug:
+#		prints(
+#			_lock_on_system.target == lock_on_component,
+#			_health_bar.should_be_visible,
+#			_instability_bar.should_be_visible
+#		)
+	
 	# check whether to make the entire widget visible
 	if _lock_on_system.target == lock_on_component or \
 	_health_bar.should_be_visible or \
@@ -60,20 +68,18 @@ func _process(_delta):
 		
 		_visible = true
 		
-		# check whether the instability bar should NOT be visible.
-		# when it's zero or when the enemy is dead.
-		if is_zero_approx(instability_component.instability) and (
-			not _instability_bar.should_be_visible or \
-			is_zero_approx(health_component.health)
-		):
+		# check whether the instability bar should be visible
+		if (_instability_bar.should_be_visible or \
+		instability_component.instability > 0) and \
+		health_component.health > 0:
+			_instability_bar.visible = true
+			_health_bar.position.y = _default_health_bar_y_pos
+			notice_component.triangle_y_offset = -25
+		else:
 			_instability_bar.should_be_visible = false
 			_instability_bar.visible = false
 			_health_bar.position.y = _health_bar_y_pos_instability_invisible
 			notice_component.triangle_y_offset = -15
-		else:
-			_instability_bar.visible = true
-			_health_bar.position.y = _default_health_bar_y_pos
-			notice_component.triangle_y_offset = -25
 	else:
 		_visible = false
 		notice_component.triangle_y_offset = -10
