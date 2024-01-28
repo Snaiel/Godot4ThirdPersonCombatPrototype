@@ -38,19 +38,19 @@ func _physics_process(delta: float) -> void:
 		# smoothly rotate the player towards it
 		looking_direction = player.global_position.direction_to(target.global_position)
 		target_look = atan2(-looking_direction.x, -looking_direction.z)
-
-		var rotation_difference: float = abs(player.rotation.y - target_look)
-
+		
 		# This makes the rotation smoother when the player is locked
 		# on and transitions from sprinting to walking
+		var rotation_difference: float = abs(player.rotation.y - target_look)
 		var rotation_weight: float
-		if rotation_difference < 0.05:
-			rotation_weight = 0.2
-		else:
+		if rotation_difference > 0.05 and \
+		player.state_machine.current_state is PlayerRunState:
 			rotation_weight = 0.1
-
+		else:
+			rotation_weight = 0.2
+		
 		player.rotation.y = lerp_angle(player.rotation.y, target_look, rotation_weight)
-
+		
 		# change move direction so it orbits the locked on target
 		# (not a perfect orbit, needs tuning but not unplayable)
 		if move_direction.length() > 0.2:
