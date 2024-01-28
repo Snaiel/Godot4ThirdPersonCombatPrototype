@@ -7,6 +7,8 @@ extends Node3D
 @export var backstab_component: BackstabComponent
 @export var health_component: HealthComponent
 @export var instability_component: InstabilityComponent
+@export var notice_component: NoticeComponent
+@export var hud_info: Node3D
 
 @export_category("Wellbeing Widget")
 @export var wellbeing_widget_scene: PackedScene
@@ -67,18 +69,23 @@ func _process(_delta):
 			_instability_bar.should_be_visible = false
 			_instability_bar.visible = false
 			_health_bar.position.y = _health_bar_y_pos_instability_invisible
+			notice_component.triangle_y_offset = -15
 		else:
 			_instability_bar.visible = true
 			_health_bar.position.y = _default_health_bar_y_pos
+			notice_component.triangle_y_offset = -25
 	else:
 		_visible = false
+		notice_component.triangle_y_offset = -10
 	
 	if not _camera.is_position_in_frustum(global_position):
 		_visible = false
 	
 	_well_being_widget.visible = _visible
 	
-	_well_being_widget.position = _camera.unproject_position(global_position)
+	_well_being_widget.position = _camera.unproject_position(
+		hud_info.global_position
+	)
 
 
 func setup() -> void:

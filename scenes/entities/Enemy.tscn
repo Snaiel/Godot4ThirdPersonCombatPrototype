@@ -168,11 +168,12 @@ lock_on_component = NodePath("../LockOnComponent")
 health_component = NodePath("../HealthComponent")
 puncture_sound = NodePath("../CharacterModel/AudioManager/ThrustPuncture")
 
-[node name="NoticeComponent" parent="." node_paths=PackedStringArray("entity", "head_attachment", "blackboard") instance=ExtResource("10_rxy6t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, 0)
+[node name="NoticeComponent" parent="." node_paths=PackedStringArray("entity", "head_attachment", "blackboard", "hud_info") instance=ExtResource("10_rxy6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 entity = NodePath("..")
 head_attachment = NodePath("../CharacterModel/Armature_004/GeneralSkeleton/HeadAttachment")
 blackboard = NodePath("../Blackboard")
+hud_info = NodePath("../HUDInfoPos")
 
 [node name="AttackComponent" parent="." node_paths=PackedStringArray("_attack_animations", "_movement_component", "_weapon") instance=ExtResource("16_hpgg5")]
 _attack_animations = NodePath("../CharacterModel/AttackAnimations")
@@ -190,12 +191,17 @@ hitbox_component = NodePath("../HitboxComponent")
 block_component = NodePath("../BlockComponent")
 parry_particles_colour = Color(0.439216, 0.0392157, 0.0392157, 1)
 
-[node name="WellbeingComponent" parent="." node_paths=PackedStringArray("lock_on_component", "backstab_component", "health_component", "instability_component") instance=ExtResource("19_ds4io")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9, 0)
+[node name="WellbeingComponent" parent="." node_paths=PackedStringArray("lock_on_component", "backstab_component", "health_component", "instability_component", "notice_component", "hud_info") instance=ExtResource("19_ds4io")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 lock_on_component = NodePath("../LockOnComponent")
 backstab_component = NodePath("../BackstabComponent")
 health_component = NodePath("../HealthComponent")
 instability_component = NodePath("../InstabilityComponent")
+notice_component = NodePath("../NoticeComponent")
+hud_info = NodePath("../HUDInfoPos")
+
+[node name="HUDInfoPos" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9, 0)
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard")]
 script = ExtResource("7_6a3a7")

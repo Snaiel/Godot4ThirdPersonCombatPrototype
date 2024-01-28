@@ -12,6 +12,7 @@ extends Node3D
 @export var initial_state: NoticeComponentState
 @export var aggro_state: NoticeComponentAggroState
 @export var blackboard: Blackboard
+@export var hud_info: Node3D
 
 @export_category("Notice Thresholds")
 @export var inner_angle: float = 50.0
@@ -38,6 +39,8 @@ var distance_to_player: float
 
 var notice_triangle: NoticeTriangle
 var off_camera_notice_triangle: OffCameraNoticeTriangle
+
+var triangle_y_offset: float = -25
 
 var _is_inside_outer_threshold: bool = false
 
@@ -74,7 +77,9 @@ func _physics_process(delta) -> void:
 		player.global_position
 	)
 	
-	notice_triangle.position = camera.unproject_position(global_position)
+	notice_triangle.position = camera.unproject_position(
+		hud_info.global_position
+	) + Vector2(0, triangle_y_offset)
 	
 	off_camera_notice_triangle.debug = debug
 	off_camera_notice_triangle.visible = not in_camera_frustum() and \
