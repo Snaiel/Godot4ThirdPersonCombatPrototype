@@ -60,7 +60,7 @@ max_health = 100.0
 initial_health = 100.0
 max_instability = 100.0
 initial_instability = 0.0
-can_reduce_instability = null
+can_reduce_instability = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i1ddg"]
 render_priority = 0
@@ -97,6 +97,10 @@ _entity = NodePath("../../../..")
 
 [node name="Area" parent="CharacterModel/Armature_004/GeneralSkeleton/Sword" index="1"]
 collision_mask = 2
+
+[node name="Crosshair" parent="CharacterModel/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint" index="0" node_paths=PackedStringArray("backstab_component", "dizzy_component")]
+backstab_component = NodePath("../../../../../../BackstabComponent")
+dizzy_component = NodePath("../../../../../../DizzyComponent")
 
 [node name="AnimationTree" parent="CharacterModel" index="2"]
 "parameters/Dizzy Finisher Which One/current_state" = ""

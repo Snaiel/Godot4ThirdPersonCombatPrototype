@@ -1,9 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://b075d85nmca7s"]
+[gd_scene load_steps=25 format=3 uid="uid://b075d85nmca7s"]
 
 [ext_resource type="Script" path="res://scripts/utilities/user_interface.gd" id="1_2nhxu"]
 [ext_resource type="Texture2D" uid="uid://dishehhur7io2" path="res://assets/white_dot.png" id="1_v2w42"]
 [ext_resource type="Script" path="res://scripts/user_interface/heads_up_display.gd" id="3_bcps2"]
-[ext_resource type="Texture2D" uid="uid://b1oqk2tqilbw" path="res://assets/crosshair.svg" id="3_etq2v"]
 [ext_resource type="PackedScene" uid="uid://dt6i863shdkev" path="res://scenes/utilities/NoticeTriangle.tscn" id="4_rjkcx"]
 [ext_resource type="PackedScene" uid="uid://clbe1nrax10m8" path="res://scenes/utilities/WellbeingWidget.tscn" id="5_5c8kv"]
 [ext_resource type="PackedScene" uid="uid://dxqwv56gkjhbf" path="res://scenes/utilities/OffCameraNoticeTriangle.tscn" id="6_for7l"]
@@ -91,11 +90,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("3_bcps2")
-
-[node name="Crosshair" type="Sprite2D" parent="HUD"]
-position = Vector2(37, 58)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("3_etq2v")
 
 [node name="LockOn" type="TextureRect" parent="HUD"]
 layout_mode = 1

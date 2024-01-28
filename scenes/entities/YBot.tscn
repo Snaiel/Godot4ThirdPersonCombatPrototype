@@ -1,10 +1,12 @@
-[gd_scene load_steps=181 format=3 uid="uid://x0oxbha36o2h"]
+[gd_scene load_steps=183 format=3 uid="uid://x0oxbha36o2h"]
 
 [ext_resource type="PackedScene" uid="uid://q3eag1ltsb0y" path="res://models/ybot.blend" id="1_ml8ck"]
 [ext_resource type="Script" path="res://scripts/animations/character_animations.gd" id="2_l62dg"]
 [ext_resource type="AnimationLibrary" uid="uid://cpdmlmb5om1d3" path="res://animations/combat_animations_1/combat_animations_1.blend" id="3_1k4bt"]
 [ext_resource type="AnimationLibrary" uid="uid://c6e3lwlt6ukuj" path="res://animations/movement_animations_1/movement_animations_1.blend" id="3_2g4g2"]
+[ext_resource type="Texture2D" uid="uid://b1oqk2tqilbw" path="res://assets/crosshair.svg" id="3_bk74o"]
 [ext_resource type="AnimationLibrary" uid="uid://bsfa8d3deue20" path="res://animations/interaction_animations_1/interaction_animations_1.blend" id="4_e2apr"]
+[ext_resource type="Script" path="res://scripts/utilities/crosshair.gd" id="4_htgrv"]
 [ext_resource type="Script" path="res://scripts/animations/movement_animations.gd" id="5_23e6x"]
 [ext_resource type="Script" path="res://scripts/animations/jump_animations.gd" id="6_olmu2"]
 [ext_resource type="Script" path="res://scripts/animations/attack_animations.gd" id="7_qu3gw"]
@@ -1261,6 +1263,14 @@ bone_idx = 4
 
 [node name="AttachmentPoint" type="Node3D" parent="Armature_004/GeneralSkeleton/LockOnAttachment" index="0"]
 transform = Transform3D(1, 2.09768e-20, 0, 2.09768e-20, 1, 0, 0, 0, 1, 0, 0, 0.05)
+
+[node name="Crosshair" type="Sprite3D" parent="Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint" index="0"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+billboard = 1
+no_depth_test = true
+texture_filter = 1
+texture = ExtResource("3_bk74o")
+script = ExtResource("4_htgrv")
 
 [node name="HeadAttachment" type="BoneAttachment3D" parent="Armature_004/GeneralSkeleton" index="3"]
 transform = Transform3D(1, 7.38663e-14, 3.99088e-12, -7.38663e-14, 1, -2.97017e-08, -3.99088e-12, 2.97017e-08, 1, -4.44873e-05, 1.60075, -0.00340818)

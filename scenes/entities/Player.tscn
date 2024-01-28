@@ -148,6 +148,9 @@ _entity = NodePath("../../../..")
 [node name="LockOnAttachment" parent="CharacterModel/Armature_004/GeneralSkeleton" index="3"]
 transform = Transform3D(1, 7.35419e-12, -2.66409e-12, -7.35419e-12, 1, -7.87391e-09, 2.66409e-12, 7.87391e-09, 1, -2.25238e-05, 1.34721, -0.0427615)
 
+[node name="Crosshair" parent="CharacterModel/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint" index="0"]
+enabled = false
+
 [node name="HeadAttachment" parent="CharacterModel/Armature_004/GeneralSkeleton" index="4"]
 transform = Transform3D(1, 7.81293e-14, -2.66409e-12, -7.81293e-14, 1, -8.33958e-09, 2.66409e-12, 8.33958e-09, 1, -4.44873e-05, 1.60075, -0.00340819)
 
