@@ -618,14 +618,11 @@ hit_weight = 0.0
 block_weight = 1.0
 parry_weight = 0.0
 
-[node name="Enemy8" parent="Level1/Enemies" node_paths=PackedStringArray("parry_sfx", "block_sfx", "hit_sfx") instance=ExtResource("2_oia4d")]
-transform = Transform3D(-7.54976e-08, 0, 1, 0, 1, 0, -1, 0, -7.54976e-08, -19.6061, 5, -70.3963)
+[node name="Enemy8" parent="Level1/Enemies" instance=ExtResource("2_oia4d")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -20, 6, -70)
 hit_weight = 0.0
 block_weight = 0.5
 parry_weight = 0.5
-parry_sfx = NodePath("../Enemy7/CharacterModel/AudioManager/Parry")
-block_sfx = NodePath("../Enemy7/CharacterModel/AudioManager/Block")
-hit_sfx = NodePath("../Enemy7/CharacterModel/AudioManager/Hit")
 
 [node name="CheckpointSystem" type="Node" parent="." node_paths=PackedStringArray("level", "current_checkpoint", "enemies")]
 script = ExtResource("9_3tuum")
