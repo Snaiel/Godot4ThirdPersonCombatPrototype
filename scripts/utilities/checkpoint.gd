@@ -20,7 +20,11 @@ var _previous_show_hint_value: bool = _show_hint
 @onready var _checkpoint_system: CheckpointSystem = Globals.checkpoint_system
 
 
-func _process(_delta):
+func _ready():
+	respawn_point.visible = false
+
+
+func _process(_delta: float):
 	_checkpoint_system.checkpoints.append(self)
 	
 	_dist_to_player = global_position.distance_to(
