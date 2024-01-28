@@ -127,3 +127,4 @@ func _recover() -> void:
 	
 	player.health_component.health = player.health_component.max_health
 	player.instability_component.instability = 0
+	player.health_charge_component.reset_charges()

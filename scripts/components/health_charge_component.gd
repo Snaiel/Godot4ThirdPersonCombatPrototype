@@ -76,3 +76,7 @@ func _physics_process(_delta):
 
 func consume_health_charge() -> void:
 	character.drink_animations.drink()
+
+
+func reset_charges() -> void:
+	current_charges = max_charges

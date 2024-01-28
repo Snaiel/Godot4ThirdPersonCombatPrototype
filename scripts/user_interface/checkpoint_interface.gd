@@ -12,7 +12,6 @@ var fade_out: bool = false
 @onready var menu: Control = $Menu
 @onready var recover_button: Button = $Menu/Buttons/Recover
 @onready var return_button: Button = $Menu/Buttons/Return
-@onready var recover_particles: GPUParticles2D = $RecoverParticles
 @onready var fade_texture: TextureRect = $Fade
 
 @onready var checkpoint_system: CheckpointSystem = Globals.checkpoint_system
