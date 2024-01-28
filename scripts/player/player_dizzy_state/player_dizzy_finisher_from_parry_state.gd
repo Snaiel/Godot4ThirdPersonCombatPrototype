@@ -19,7 +19,6 @@ func _ready():
 func enter():
 	_finished = false
 	player.character.dizzy_animations.play_from_parry_pre_finisher()
-	player.look_at(dizzy_system.dizzy_victim.entity.global_position)
 	player.rotation_component.target = Globals.dizzy_system.dizzy_victim.entity
 	player.rotation_component.rotate_towards_target = true
 	player.movement_component.can_move = false
