@@ -54,6 +54,15 @@ func _ready() -> void:
 	target = player
 	_agent.target_position = target.global_position
 	
+	Globals.void_death_system.body_entered.connect(
+		func(body: Node3D):
+			if body == self:
+				_health_component.deal_max_damage = true
+				_health_component.decrement_health(1)
+				var timer: SceneTreeTimer = get_tree().create_timer(5)
+				timer.timeout.connect(queue_free)
+	)
+	
 	_attack_component.can_move.connect(
 		func(flag: bool):
 			_blackboard.set_value("can_move", flag)
