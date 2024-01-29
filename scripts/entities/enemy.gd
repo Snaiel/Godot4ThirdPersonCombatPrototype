@@ -190,13 +190,13 @@ func _set_target_reachable():
 func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 	if Globals.backstab_system.backstab_victim == _backstab_component:
 		_backstab_component.process_hit()
-		_health_component.decrement_health(weapon)
+		_health_component.damage_from_weapon(weapon)
 		active_motion_component.knockback(weapon.get_entity().global_position)
 		return
 	
 	if Globals.dizzy_system.dizzy_victim == _dizzy_component:
 		_dizzy_component.process_hit(weapon)
-		_health_component.decrement_health(weapon)
+		_health_component.damage_from_weapon(weapon)
 		if _instability_component.full_instability_from_parry:
 			active_motion_component.knockback(weapon.get_entity().global_position)
 		return
@@ -214,7 +214,7 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 	
 	if rng < hit_weight:
 		# incoming hit goes through
-		_health_component.decrement_health(weapon)
+		_health_component.damage_from_weapon(weapon)
 		_instability_component.process_hit()
 		
 		_attack_component.interrupt_attack()

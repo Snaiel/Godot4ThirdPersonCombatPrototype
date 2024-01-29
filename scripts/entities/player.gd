@@ -70,6 +70,13 @@ func _ready() -> void:
 	state_machine.enter_state_machine()
 	
 	character.walk_or_jog_animations.to_jogging()
+	
+	Globals.void_death_system.body_entered.connect(
+		func(body: Node3D):
+			if body is Player:
+				health_component.deal_max_damage = true
+				health_component.decrement_health(1)
+	)
 
 
 func _physics_process(_delta: float) -> void:
@@ -168,5 +175,5 @@ func _on_hitbox_component_weapon_hit(incoming_weapon: Sword) -> void:
 	state_machine.current_state is PlayerBlockState:
 		return
 	
-	health_component.decrement_health(incoming_weapon)
+	health_component.damage_from_weapon(incoming_weapon)
 	instability_component.process_hit()

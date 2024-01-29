@@ -6,8 +6,6 @@ extends MotionComponent
 
 
 func handle_movement(_delta: float) -> void:
-	if not enabled:
-		return
 	
 	move_direction = rotation_component.move_direction
 	looking_direction = rotation_component.looking_direction

@@ -29,7 +29,7 @@ func is_alive() -> bool:
 	return health > 0
 
 
-func decrement_health(weapon: Sword) -> void:
+func damage_from_weapon(weapon: Sword) -> void:
 	if not enabled:
 		return
 	
@@ -39,13 +39,19 @@ func decrement_health(weapon: Sword) -> void:
 		blood_particle.look_at(weapon.global_position)
 		blood_particle.rotate_y(PI)
 		blood_particle.restart()
-		print(blood_particle)
+	
+	decrement_health(weapon.get_damage())
+
+
+func decrement_health(amount: float) -> void:
+	if not enabled:
+		return
 	
 	if deal_max_damage:
 		health = 0
 		deal_max_damage = false
 	else:
-		health -= weapon.get_damage()
+		health -= amount
 	
 	took_damage.emit()
 	
