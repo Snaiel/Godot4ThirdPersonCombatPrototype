@@ -295,6 +295,7 @@ func _on_health_component_zero_health() -> void:
 	_dizzy_component.enabled = false
 	_head_rotation_component.enabled = false
 	_notice_component.enabled = false
+	_notice_component.hide_notice_triangles()
 	
 	_sword.can_damage = false
 	

@@ -172,6 +172,11 @@ func transition_to_aggro() -> void:
 	change_state(aggro_state)
 
 
+func hide_notice_triangles() -> void:
+	notice_triangle.visible = false
+	off_camera_notice_triangle.visible = false
+
+
 func _can_see_target(target_pos: Vector3) -> bool:
 	var can_see: bool = true
 
