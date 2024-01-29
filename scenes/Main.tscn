@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cfip2n0nvr8n3"]
+[gd_scene load_steps=38 format=3 uid="uid://cfip2n0nvr8n3"]
 
 [ext_resource type="Script" path="res://scripts/utilities/level.gd" id="1_du374"]
 [ext_resource type="Material" uid="uid://qml1qedtuxl6" path="res://materials/grid.tres" id="2_5uhq1"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" path="res://scripts/utilities/music_system.gd" id="14_oqh6a"]
 [ext_resource type="AudioStream" uid="uid://bcy3kyjij5qj1" path="res://audio/death.wav" id="14_uh7dv"]
 [ext_resource type="AudioStream" uid="uid://bcu6lpb4pl0c5" path="res://audio/music/Hyper Ultra-Racing.ogg" id="15_ug2pn"]
+[ext_resource type="Script" path="res://scripts/utilities/void_death_system.gd" id="19_q8ont"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bb732"]
 radius = 10.0
@@ -35,7 +36,8 @@ background_mode = 2
 sky = SubResource("Sky_qudfu")
 tonemap_mode = 2
 glow_enabled = true
-volumetric_fog_enabled = true
+fog_density = 0.02
+fog_height_density = 0.2
 volumetric_fog_albedo = Color(0.905882, 0.980392, 1, 1)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_peoj2"]
@@ -262,7 +264,10 @@ _data = {
 "RESET": SubResource("Animation_iv34r")
 }
 
-[node name="Main" type="Node3D" node_paths=PackedStringArray("player", "user_interface", "camera_controller", "lock_on_system", "backstab_system", "dizzy_system", "checkpoint_system", "music_system")]
+[sub_resource type="BoxShape3D" id="BoxShape3D_vdqph"]
+size = Vector3(150, 1, 150)
+
+[node name="Main" type="Node3D" node_paths=PackedStringArray("player", "user_interface", "camera_controller", "lock_on_system", "backstab_system", "dizzy_system", "checkpoint_system", "music_system", "void_death_system")]
 script = ExtResource("1_du374")
 player = NodePath("Player")
 user_interface = NodePath("UserInterface")
@@ -272,6 +277,7 @@ backstab_system = NodePath("BackstabSystem")
 dizzy_system = NodePath("DizzySystem")
 checkpoint_system = NodePath("CheckpointSystem")
 music_system = NodePath("MusicSystem")
+void_death_system = NodePath("VoidDeathSystem")
 
 [node name="CameraController" parent="." instance=ExtResource("2_s2v7n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.6934, 0)
@@ -802,6 +808,14 @@ bus = &"Music"
 libraries = {
 "": SubResource("AnimationLibrary_g1jku")
 }
+
+[node name="VoidDeathSystem" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -30)
+collision_mask = 10
+script = ExtResource("19_q8ont")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VoidDeathSystem"]
+shape = SubResource("BoxShape3D_vdqph")
 
 [connection signal="area_entered" from="LockOnSystem" to="LockOnSystem" method="_on_area_entered"]
 [connection signal="area_exited" from="LockOnSystem" to="LockOnSystem" method="_on_area_exited"]

@@ -10,6 +10,7 @@ extends Node3D
 @export var dizzy_system: DizzySystem
 @export var checkpoint_system: CheckpointSystem
 @export var music_system: MusicSystem
+@export var void_death_system: VoidDeathSystem
 
 
 func _enter_tree():
@@ -21,3 +22,4 @@ func _enter_tree():
 	Globals.user_interface = user_interface
 	Globals.checkpoint_system = checkpoint_system
 	Globals.music_system = music_system
+	Globals.void_death_system = void_death_system
