@@ -27,7 +27,7 @@ var _dead: bool = false
 
 @onready var _blackboard: Blackboard = $Blackboard
 @onready var _character: CharacterAnimations = $CharacterModel
-@onready var _rotation_component: RotationComponent = $EnemyRotationComponent
+@onready var _rotation_component: NPCRotationComponent = $EnemyRotationComponent
 @onready var _head_rotation_component: HeadRotationComponent = $HeadRotationComponent
 @onready var _movement_component: MovementComponent = $MovementComponent
 @onready var _root_motion_component: RootMotionComponent = $RootMotionComponent
@@ -283,7 +283,7 @@ func _on_health_component_zero_health() -> void:
 	if _dead:
 		return
 	
-	_root_motion_component.enabled = true
+	set_root_motion(true)
 	
 	death.emit(self)
 	_dead = true
@@ -293,6 +293,7 @@ func _on_health_component_zero_health() -> void:
 	_lock_on_component.enabled = false
 	_backstab_component.enabled = false
 	_dizzy_component.enabled = false
+	_rotation_component.can_rotate = false
 	_head_rotation_component.enabled = false
 	_notice_component.enabled = false
 	_notice_component.hide_notice_triangles()
@@ -314,5 +315,4 @@ func _on_health_component_zero_health() -> void:
 		_character.hit_and_death_animations.death_1()
 	
 	if _blackboard.get_value("notice_state") == "aggro":
-		print("CMON")
 		Globals.music_system.fade_to_idle()

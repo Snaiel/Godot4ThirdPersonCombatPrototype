@@ -3,7 +3,6 @@ extends RotationComponent
 
 
 var player: Player
-var can_rotate: bool = true
 
 var _freelook_turn: bool = true
 var _turn_all_the_way: bool = false

@@ -18,6 +18,9 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	
+	if not can_rotate:
+		return
+	
 	var _input_direction: Vector3 = blackboard.get_value("input_direction", Vector3.ZERO)
 	var _can_move: bool = movement_component.can_move
 	var _velocity: Vector3 = movement_component.desired_velocity
