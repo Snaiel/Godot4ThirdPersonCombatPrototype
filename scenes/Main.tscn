@@ -35,10 +35,8 @@ sky_material = SubResource("ProceduralSkyMaterial_co0qk")
 background_mode = 2
 sky = SubResource("Sky_qudfu")
 tonemap_mode = 2
-glow_enabled = true
 fog_density = 0.02
 fog_height_density = 0.2
-volumetric_fog_enabled = true
 volumetric_fog_albedo = Color(0.905882, 0.980392, 1, 1)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_peoj2"]
@@ -288,7 +286,7 @@ running_spin_speed = 4.0
 [node name="UserInterface" parent="." instance=ExtResource("3_hlhuw")]
 
 [node name="Player" parent="." instance=ExtResource("2_thr8q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.292, 11.7351, 3.6913)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 15, -68)
 
 [node name="BackstabSystem" type="Node3D" parent="."]
 script = ExtResource("5_thw20")
@@ -459,6 +457,12 @@ polygon = PackedVector2Array(0, 2, 10, 0, 0, 0)
 depth = 12.0
 material = ExtResource("2_5uhq1")
 
+[node name="Section8_8" type="CSGPolygon3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(1.31135e-07, 0, -1, 0, 1, 0, 1, 0, 1.31135e-07, -4.00001, 10, -96)
+polygon = PackedVector2Array(0, 2, 10, 0, 0, 0)
+depth = 6.0
+material = ExtResource("2_5uhq1")
+
 [node name="Section6_2" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, -45, -70)
 material_override = ExtResource("2_5uhq1")
@@ -483,6 +487,54 @@ material_override = ExtResource("2_5uhq1")
 size = Vector3(20, 100, 12)
 material = ExtResource("2_5uhq1")
 
+[node name="Section8_1" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -45, -78)
+material_override = ExtResource("2_5uhq1")
+size = Vector3(4, 100, 12)
+material = ExtResource("2_5uhq1")
+
+[node name="Section8_2" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -40, -90)
+material_override = ExtResource("2_5uhq1")
+size = Vector3(6, 100, 14)
+material = ExtResource("2_5uhq1")
+
+[node name="Section8_7" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -38, -98)
+material_override = ExtResource("2_5uhq1")
+size = Vector3(12, 100, 4)
+material = ExtResource("2_5uhq1")
+
+[node name="Section8_6" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -8.77817, -38, -101.435)
+material_override = ExtResource("2_5uhq1")
+size = Vector3(2, 100, 8)
+material = ExtResource("2_5uhq1")
+
+[node name="Section8_3" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -44, -82)
+material_override = ExtResource("2_5uhq1")
+size = Vector3(6, 100, 2)
+material = ExtResource("2_5uhq1")
+
+[node name="Section8_5" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -41.5, -79)
+material_override = ExtResource("2_5uhq1")
+size = Vector3(2, 100, 4)
+material = ExtResource("2_5uhq1")
+
+[node name="Section8_4" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -42.5, -82)
+material_override = ExtResource("2_5uhq1")
+size = Vector3(4, 100, 4)
+material = ExtResource("2_5uhq1")
+
+[node name="Section9_1" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, -38, -112)
+material_override = ExtResource("2_5uhq1")
+size = Vector3(4, 100, 8)
+material = ExtResource("2_5uhq1")
+
 [node name="Checkpoints" type="Node3D" parent="Level1/World/NavigationRegion3D"]
 
 [node name="Checkpoint" parent="Level1/World/NavigationRegion3D/Checkpoints" instance=ExtResource("5_6d1b6")]
@@ -493,6 +545,9 @@ transform = Transform3D(0.974331, 0, -0.225121, 0, 1, 0, 0.225121, 0, 0.974331, 
 
 [node name="Checkpoint3" parent="Level1/World/NavigationRegion3D/Checkpoints" instance=ExtResource("5_6d1b6")]
 transform = Transform3D(0.999397, 0, 0.0347252, 0, 1, 0, -0.0347252, 0, 0.999397, -1.15693, 5.39547, -70.2192)
+
+[node name="Checkpoint4" parent="Level1/World/NavigationRegion3D/Checkpoints" instance=ExtResource("5_6d1b6")]
+transform = Transform3D(0.999397, 0, 0.0347252, 0, 1, 0, -0.0347252, 0, 0.999397, -14, 12.395, -114)
 
 [node name="BackgroundEnvironment" type="CSGCombiner3D" parent="Level1/World"]
 
