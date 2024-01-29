@@ -73,6 +73,11 @@ func _unhandled_input(event: InputEvent) -> void:
 	state_machine.process_unhandled_input_state_machine(event)
 
 
+func reset() -> void:
+	state_machine.transition_to_default_state()
+	rotation_degrees.x = -20.0
+
+
 func player_moving(move_direction: Vector3, running: bool, delta: float) -> void:
 	if not looking_around:
 		var new_rotation: float

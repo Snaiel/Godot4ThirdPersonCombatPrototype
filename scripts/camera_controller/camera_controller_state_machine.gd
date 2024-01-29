@@ -7,6 +7,7 @@ extends Node
 
 var current_state: CameraControllerStateMachine
 var parent_state: CameraControllerStateMachine
+var default_state: CameraControllerStateMachine
 var has_sub_states: bool = false
 
 @onready var player: Player =  Globals.player
@@ -19,13 +20,20 @@ func _ready():
 	else:
 		return
 	
-	var default_state: CameraControllerStateMachine = get_child(0)
+	default_state = get_child(0)
 	default_state.enter_state_machine()
 	current_state = default_state
 	
 	for child in get_children():
 		var sub_state: CameraControllerStateMachine = child
 		sub_state.parent_state = self
+
+
+func transition_to_default_state() -> void:
+	if not default_state:
+		return
+	
+	change_state(default_state)
 
 
 func change_state(new_state: CameraControllerStateMachine) -> void:
