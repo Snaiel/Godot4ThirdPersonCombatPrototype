@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cy5wvw01aul4m"]
+[gd_scene load_steps=12 format=3 uid="uid://cy5wvw01aul4m"]
 
 [ext_resource type="Script" path="res://scripts/camera_controller/camera_controller.gd" id="1_axdd4"]
 [ext_resource type="Script" path="res://scripts/camera_controller/camera_controller_normal_state.gd" id="2_06p3n"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scripts/camera_controller/dizzy_finisher/camera_controller_dizzy_finisher_from_parry_state.gd" id="6_ws6gk"]
 [ext_resource type="Script" path="res://scripts/camera_controller/dizzy_finisher/camera_controller_dizzy_finisher_from_damage_state.gd" id="8_bo7s0"]
 [ext_resource type="Script" path="res://scripts/camera_controller/camera_controller_backstab_state.gd" id="9_xlmhn"]
+[ext_resource type="Script" path="res://scripts/camera_controller/camera_controller_void_state.gd" id="10_cu1cf"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_gxheq"]
 margin = 0.2
@@ -67,6 +68,11 @@ camera = NodePath("../../../Camera3D")
 [node name="Backstab" type="Node" parent="StateMachine" node_paths=PackedStringArray("normal_state", "camera_controller", "camera")]
 script = ExtResource("9_xlmhn")
 normal_state = NodePath("../Normal")
+camera_controller = NodePath("../..")
+camera = NodePath("../../Camera3D")
+
+[node name="Void" type="Node" parent="StateMachine" node_paths=PackedStringArray("camera_controller", "camera")]
+script = ExtResource("10_cu1cf")
 camera_controller = NodePath("../..")
 camera = NodePath("../../Camera3D")
 

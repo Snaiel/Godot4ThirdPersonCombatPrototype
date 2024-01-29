@@ -38,6 +38,7 @@ tonemap_mode = 2
 glow_enabled = true
 fog_density = 0.02
 fog_height_density = 0.2
+volumetric_fog_enabled = true
 volumetric_fog_albedo = Color(0.905882, 0.980392, 1, 1)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_peoj2"]
@@ -516,8 +517,8 @@ size = Vector3(30, 150, 20)
 material = ExtResource("2_5uhq1")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Level1/World/BackgroundEnvironment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, -61, -18)
-size = Vector3(12, 150, 12)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, -61, -13)
+size = Vector3(12, 150, 20)
 material = ExtResource("10_5d4ga")
 
 [node name="CSGBox3D12" type="CSGBox3D" parent="Level1/World/BackgroundEnvironment"]
