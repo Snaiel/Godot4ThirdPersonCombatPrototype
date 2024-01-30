@@ -286,7 +286,7 @@ running_spin_speed = 4.0
 [node name="UserInterface" parent="." instance=ExtResource("3_hlhuw")]
 
 [node name="Player" parent="." instance=ExtResource("2_thr8q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 15, -68)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, 23, -101)
 
 [node name="BackstabSystem" type="Node3D" parent="."]
 script = ExtResource("5_thw20")
@@ -457,12 +457,6 @@ polygon = PackedVector2Array(0, 2, 10, 0, 0, 0)
 depth = 12.0
 material = ExtResource("2_5uhq1")
 
-[node name="Section8_8" type="CSGPolygon3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
-transform = Transform3D(1.31135e-07, 0, -1, 0, 1, 0, 1, 0, 1.31135e-07, -4.00001, 10, -96)
-polygon = PackedVector2Array(0, 2, 10, 0, 0, 0)
-depth = 6.0
-material = ExtResource("2_5uhq1")
-
 [node name="Section6_2" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, -45, -70)
 material_override = ExtResource("2_5uhq1")
@@ -493,24 +487,6 @@ material_override = ExtResource("2_5uhq1")
 size = Vector3(4, 100, 12)
 material = ExtResource("2_5uhq1")
 
-[node name="Section8_2" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -40, -90)
-material_override = ExtResource("2_5uhq1")
-size = Vector3(6, 100, 14)
-material = ExtResource("2_5uhq1")
-
-[node name="Section8_7" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -38, -98)
-material_override = ExtResource("2_5uhq1")
-size = Vector3(12, 100, 4)
-material = ExtResource("2_5uhq1")
-
-[node name="Section8_6" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -8.77817, -38, -101.435)
-material_override = ExtResource("2_5uhq1")
-size = Vector3(2, 100, 8)
-material = ExtResource("2_5uhq1")
-
 [node name="Section8_3" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -44, -82)
 material_override = ExtResource("2_5uhq1")
@@ -524,15 +500,177 @@ size = Vector3(2, 100, 4)
 material = ExtResource("2_5uhq1")
 
 [node name="Section8_4" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -42.5, -82)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -42.5, -81)
 material_override = ExtResource("2_5uhq1")
 size = Vector3(4, 100, 4)
 material = ExtResource("2_5uhq1")
 
+[node name="Section8_2" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.00001, -40, -86)
+material_override = ExtResource("2_5uhq1")
+size = Vector3(6, 100, 14)
+material = ExtResource("2_5uhq1")
+
+[node name="Section8_7" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 10, -38, -86)
+material_override = ExtResource("2_5uhq1")
+size = Vector3(12, 100, 4)
+material = ExtResource("2_5uhq1")
+
+[node name="Section8_6" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 13.435, -38, -93.7782)
+material_override = ExtResource("2_5uhq1")
+size = Vector3(2, 100, 8)
+material = ExtResource("2_5uhq1")
+
+[node name="Section8_8" type="CSGPolygon3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(-1, 0, -8.74236e-08, 0, 1, 0, 8.74236e-08, 0, -1, 8.00002, 10, -89)
+polygon = PackedVector2Array(0, 2, 10, 0, 0, 0)
+depth = 6.0
+material = ExtResource("2_5uhq1")
+
 [node name="Section9_1" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, -38, -112)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 24, -38, -99)
 material_override = ExtResource("2_5uhq1")
 size = Vector3(4, 100, 8)
+material = ExtResource("2_5uhq1")
+
+[node name="Section9_4" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 31, -39, -104)
+material_override = ExtResource("2_5uhq1")
+size = Vector3(6, 100, 6)
+material = ExtResource("2_5uhq1")
+
+[node name="Section9_2" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 31, -38, -99)
+material_override = ExtResource("2_5uhq1")
+size = Vector3(6, 100, 6)
+material = ExtResource("2_5uhq1")
+
+[node name="Section9_3" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 36, -39, -111)
+material_override = ExtResource("2_5uhq1")
+size = Vector3(8, 100, 16)
+material = ExtResource("2_5uhq1")
+
+[node name="Section9_9" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 49, -38, -107)
+material_override = ExtResource("2_5uhq1")
+size = Vector3(16, 100, 10)
+material = ExtResource("2_5uhq1")
+
+[node name="Section9_10" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 51, -35, -96)
+material_override = ExtResource("2_5uhq1")
+size = Vector3(8, 100, 12)
+material = ExtResource("2_5uhq1")
+
+[node name="Section9_15" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 48, -35, -86)
+material_override = ExtResource("2_5uhq1")
+size = Vector3(12, 100, 12)
+material = ExtResource("2_5uhq1")
+
+[node name="Section9_12" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 49, -30, -88)
+material_override = ExtResource("2_5uhq1")
+size = Vector3(6, 100, 12)
+material = ExtResource("2_5uhq1")
+
+[node name="Section9_13" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 54.5, -32, -89)
+material_override = ExtResource("2_5uhq1")
+size = Vector3(1, 100, 14)
+material = ExtResource("2_5uhq1")
+
+[node name="Section9_14" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 58, -35, -88.5)
+material_override = ExtResource("2_5uhq1")
+size = Vector3(1, 100, 10)
+material = ExtResource("2_5uhq1")
+
+[node name="Section9_7" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 39, -32, -104)
+material_override = ExtResource("2_5uhq1")
+size = Vector3(8, 100, 10)
+material = ExtResource("2_5uhq1")
+
+[node name="Section9_11" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 39, -29, -93)
+material_override = ExtResource("2_5uhq1")
+size = Vector3(20, 100, 12)
+material = ExtResource("2_5uhq1")
+
+[node name="Section9_16" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 36, -28, -73)
+material_override = ExtResource("2_5uhq1")
+size = Vector3(26, 100, 14)
+material = ExtResource("2_5uhq1")
+
+[node name="Section9_5" type="CSGPolygon3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(-4.37122e-08, 0, 1, 0, 1, 0, -1, 0, -4.37122e-08, 34, 11, -102)
+polygon = PackedVector2Array(0, 1, 5, 0, 0, 0)
+depth = 6.0
+material = ExtResource("2_5uhq1")
+
+[node name="Section9_6" type="CSGPolygon3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(-1, 0, -7.54979e-08, 0, 1, 0, 7.54979e-08, 0, -1, 44, 11, -115)
+polygon = PackedVector2Array(0, 1, 10, 0, 0, 0)
+depth = 7.0
+material = ExtResource("2_5uhq1")
+
+[node name="Section9_8" type="CSGPolygon3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(-1.053e-07, 0, 1, 0, 1, 0, -1, 0, -1.053e-07, 54, 12, -100)
+polygon = PackedVector2Array(0, 3, 7, 0, 0, 0)
+depth = 10.0
+material = ExtResource("2_5uhq1")
+
+[node name="Section10_2" type="CSGPolygon3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(-1.053e-07, 0, 1, 0, 1, 0, -1, 0, -1.053e-07, 55, 15, -67)
+polygon = PackedVector2Array(0, 3, 7, 0, 0, 0)
+depth = 7.0
+material = ExtResource("2_5uhq1")
+
+[node name="Section10_1" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 47, -35, -79)
+material_override = ExtResource("2_5uhq1")
+size = Vector3(14, 100, 22)
+material = ExtResource("2_5uhq1")
+
+[node name="Section10_5" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 48, -35, -69.5)
+material_override = ExtResource("2_5uhq1")
+size = Vector3(5, 100, 14)
+material = ExtResource("2_5uhq1")
+
+[node name="Section10_8" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 45, -35, -62.5)
+material_override = ExtResource("2_5uhq1")
+size = Vector3(10, 100, 4)
+material = ExtResource("2_5uhq1")
+
+[node name="Section10_3" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 51.5, -32, -60)
+material_override = ExtResource("2_5uhq1")
+size = Vector3(14, 100, 11)
+material = ExtResource("2_5uhq1")
+
+[node name="Section10_6" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 39, -27, -60)
+material_override = ExtResource("2_5uhq1")
+size = Vector3(2, 100, 22)
+material = ExtResource("2_5uhq1")
+
+[node name="Section10_7" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 58, -27, -60)
+material_override = ExtResource("2_5uhq1")
+size = Vector3(2, 100, 8)
+material = ExtResource("2_5uhq1")
+
+[node name="Section10_4" type="CSGBox3D" parent="Level1/World/NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 47.5, -32, -69)
+material_override = ExtResource("2_5uhq1")
+size = Vector3(3, 100, 4)
 material = ExtResource("2_5uhq1")
 
 [node name="Checkpoints" type="Node3D" parent="Level1/World/NavigationRegion3D"]
@@ -547,7 +685,10 @@ transform = Transform3D(0.974331, 0, -0.225121, 0, 1, 0, 0.225121, 0, 0.974331, 
 transform = Transform3D(0.999397, 0, 0.0347252, 0, 1, 0, -0.0347252, 0, 0.999397, -1.15693, 5.39547, -70.2192)
 
 [node name="Checkpoint4" parent="Level1/World/NavigationRegion3D/Checkpoints" instance=ExtResource("5_6d1b6")]
-transform = Transform3D(0.999397, 0, 0.0347252, 0, 1, 0, -0.0347252, 0, 0.999397, -14, 12.395, -114)
+transform = Transform3D(0.999397, 0, 0.0347252, 0, 1, 0, -0.0347252, 0, 0.999397, 31, 12.395, -98)
+
+[node name="RespawnPoint" parent="Level1/World/NavigationRegion3D/Checkpoints/Checkpoint4" index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.948551, -0.367655, -1.18037)
 
 [node name="BackgroundEnvironment" type="CSGCombiner3D" parent="Level1/World"]
 
@@ -877,3 +1018,5 @@ shape = SubResource("BoxShape3D_vdqph")
 [connection signal="area_exited" from="LockOnSystem" to="LockOnSystem" method="_on_area_exited"]
 [connection signal="lock_on" from="LockOnSystem" to="Player" method="_on_lock_on_system_lock_on"]
 [connection signal="timeout" from="LockOnSystem/ChangeTargetTimer" to="LockOnSystem" method="_on_change_target_timer_timeout"]
+
+[editable path="Level1/World/NavigationRegion3D/Checkpoints/Checkpoint4"]
