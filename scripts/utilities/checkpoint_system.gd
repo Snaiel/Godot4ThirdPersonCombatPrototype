@@ -31,8 +31,7 @@ var _packed_enemies: PackedScene
 
 
 func _ready():
-	for child in enemies.get_children():
-		child.owner = enemies
+	_set_enemies_chldren_owner(enemies)
 	
 	_packed_enemies = PackedScene.new()
 	_packed_enemies.pack(enemies)
@@ -129,3 +128,10 @@ func _recover() -> void:
 	player.health_component.health = player.health_component.max_health
 	player.instability_component.instability = 0
 	player.health_charge_component.reset_charges()
+
+
+func _set_enemies_chldren_owner(node: Node) -> void:
+	for child in node.get_children():
+		child.owner = enemies
+		if child.get_child_count() > 0 and not child is Enemy:
+			_set_enemies_chldren_owner(child)
