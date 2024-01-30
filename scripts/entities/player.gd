@@ -116,7 +116,8 @@ func _physics_process(_delta: float) -> void:
 	
 	if Input.is_action_just_pressed("interact") and \
 	not state_machine.current_state is PlayerCheckpointState and \
-	checkpoint_system.near_checkpoint:
+	checkpoint_system.current_checkpoint and \
+	checkpoint_system.current_checkpoint.can_sit_at_checkpoint:
 		state_machine.change_state(checkpoint_state)
 	
 	

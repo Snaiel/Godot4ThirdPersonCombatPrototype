@@ -56,7 +56,7 @@ func _physics_process(_delta):
 func _recover() -> void:
 	show_menu = false
 	
-	checkpoint_system.closest_checkpoint.play_recovery_particles()
+	checkpoint_system.current_checkpoint.play_recovery_particles()
 	
 	var timer: SceneTreeTimer
 	timer = get_tree().create_timer(1)

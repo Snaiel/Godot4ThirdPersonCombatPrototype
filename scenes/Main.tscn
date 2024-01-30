@@ -286,7 +286,7 @@ running_spin_speed = 4.0
 [node name="UserInterface" parent="." instance=ExtResource("3_hlhuw")]
 
 [node name="Player" parent="." instance=ExtResource("2_thr8q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52, 31, -57)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57, 32, -44)
 
 [node name="BackstabSystem" type="Node3D" parent="."]
 script = ExtResource("5_thw20")
@@ -873,20 +873,20 @@ transform = Transform3D(0.999397, 0, 0.0347252, 0, 1, 0, -0.0347252, 0, 0.999397
 [node name="Checkpoint4" parent="Level1/World/NavigationRegion3D/Checkpoints" instance=ExtResource("5_6d1b6")]
 transform = Transform3D(0.999397, 0, 0.0347252, 0, 1, 0, -0.0347252, 0, 0.999397, 31, 12.395, -98)
 
-[node name="RespawnPoint" parent="Level1/World/NavigationRegion3D/Checkpoints/Checkpoint4" index="7"]
+[node name="RespawnPoint" parent="Level1/World/NavigationRegion3D/Checkpoints/Checkpoint4" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.948551, -0.367655, -1.18037)
 
 [node name="Checkpoint5" parent="Level1/World/NavigationRegion3D/Checkpoints" instance=ExtResource("5_6d1b6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.687, 22.891, -40.6253)
 
-[node name="MeshInstance3D" parent="Level1/World/NavigationRegion3D/Checkpoints/Checkpoint5" index="0"]
-skeleton = NodePath("../../Checkpoint5")
-
-[node name="RespawnPoint" parent="Level1/World/NavigationRegion3D/Checkpoints/Checkpoint5" index="7"]
+[node name="RespawnPoint" parent="Level1/World/NavigationRegion3D/Checkpoints/Checkpoint5" index="0"]
 transform = Transform3D(-0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, -0.965926, 0.323036, -0.367657, -1.73576)
 
 [node name="MeshInstance3D" parent="Level1/World/NavigationRegion3D/Checkpoints/Checkpoint5/RespawnPoint" index="0"]
 skeleton = NodePath("../../../Checkpoint5")
+
+[node name="MeshInstance3D" parent="Level1/World/NavigationRegion3D/Checkpoints/Checkpoint5" index="1"]
+skeleton = NodePath("../../Checkpoint5")
 
 [node name="BackgroundEnvironment" type="CSGCombiner3D" parent="Level1/World"]
 
@@ -1204,10 +1204,10 @@ transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 
 [node name="Enemy4" parent="Level1/Enemies/Section3" instance=ExtResource("2_oia4d")]
 transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 58.7528, -5, 22.4458)
 
-[node name="CheckpointSystem" type="Node" parent="." node_paths=PackedStringArray("level", "current_checkpoint", "enemies")]
+[node name="CheckpointSystem" type="Node" parent="." node_paths=PackedStringArray("level", "initial_checkpoint", "enemies")]
 script = ExtResource("9_3tuum")
 level = NodePath("../Level1")
-current_checkpoint = NodePath("../Level1/World/NavigationRegion3D/Checkpoints/Checkpoint")
+initial_checkpoint = NodePath("../Level1/World/NavigationRegion3D/Checkpoints/Checkpoint")
 enemies = NodePath("../Level1/Enemies")
 
 [node name="DeathSfx" type="AudioStreamPlayer3D" parent="CheckpointSystem"]

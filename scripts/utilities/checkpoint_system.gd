@@ -3,17 +3,14 @@ extends Node
 
 
 @export var level: Node3D
-@export var current_checkpoint: Checkpoint
+@export var initial_checkpoint: Checkpoint
 @export var enemies: Node3D
 
-var closest_checkpoint: Checkpoint
+var current_checkpoint: Checkpoint
+var saved_checkpoint: Checkpoint
 
-var checkpoints: Array[Checkpoint]
-
-var near_checkpoint: bool = false
 var at_checkpoint: bool = false
 
-var _counter: int = 0
 var _packed_enemies: PackedScene
 
 @onready var death_sfx: AudioStreamPlayer3D = $DeathSfx
@@ -31,6 +28,9 @@ var _packed_enemies: PackedScene
 
 
 func _ready():
+	if not enemies:
+		return
+	
 	_set_enemies_chldren_owner(enemies)
 	
 	_packed_enemies = PackedScene.new()
@@ -39,47 +39,21 @@ func _ready():
 	checkpoint_interface.perform_recovery.connect(
 		_recover
 	)
+	
+	saved_checkpoint = initial_checkpoint
 
 
-func _process(_delta):
-	if _counter > 0:
-		near_checkpoint = true
+func _physics_process(_delta: float):
+	
+	if current_checkpoint:
 		interaction_hints.checkpoint_hint.visible = true
 	else:
-		near_checkpoint = false
 		interaction_hints.checkpoint_hint.visible = false
 	
 	if player.character.sitting_animations.sitting_idle:
 		at_checkpoint = true
 	else:
 		at_checkpoint = false
-	
-	if closest_checkpoint == null:
-		closest_checkpoint = checkpoints[0]
-	
-	for checkpoint in checkpoints:
-		var current_closest_checkpoint_dist: float = closest_checkpoint.global_position.distance_to(
-			player.global_position
-		)
-		
-		var checkpoint_dist: float = checkpoint.global_position.distance_to(
-			player.global_position
-		)
-		
-		if checkpoint_dist < current_closest_checkpoint_dist:
-			closest_checkpoint = checkpoint
-
-
-func player_close_to_checkpoint() -> void:
-	_counter += 1
-	if _counter == 1:
-		interaction_hints.counter += 1
-
-
-func player_far_from_checkpoint() -> void:
-	_counter -= 1
-	if _counter == 0:
-		interaction_hints.counter -= 1
 
 
 func disable_hint() -> void:
@@ -90,8 +64,8 @@ func enable_hint() -> void:
 	interaction_hints.counter += 1
 
 
-func sat_at_checkpoint() -> void:
-	current_checkpoint = closest_checkpoint
+func save_current_checkpoint() -> void:
+	saved_checkpoint = current_checkpoint
 
 
 func play_death_sfx() -> void:
@@ -101,14 +75,14 @@ func play_death_sfx() -> void:
 func recover_after_death() -> void:
 	lock_on_system.reset_target()
 	
-	player.global_transform = current_checkpoint\
+	player.global_transform = saved_checkpoint\
 		.respawn_point\
 		.global_transform
 	
 	player.movement_component.reset_secondary_movement()
 	player.movement_component.reset_desired_velocity()
 	
-	camera_controller.global_rotation.y = current_checkpoint\
+	camera_controller.global_rotation.y = saved_checkpoint\
 		.respawn_point\
 		.global_rotation\
 		.y

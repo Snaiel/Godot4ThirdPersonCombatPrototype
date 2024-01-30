@@ -40,7 +40,7 @@ func enter():
 	player.hitbox_component.enabled = false
 	
 	checkpoint_system.disable_hint()
-	checkpoint_system.sat_at_checkpoint()
+	checkpoint_system.save_current_checkpoint()
 	
 	user_interface.hud.enabled = false
 	
