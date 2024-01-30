@@ -4,6 +4,7 @@ extends Node3D
 
 signal just_landed
 
+
 @export_category("Configuration")
 @export var entity: CharacterBody3D
 @export var animations: CharacterAnimations
@@ -44,7 +45,7 @@ func _process(_delta: float) -> void:
 	if not entity.is_on_floor() and \
 		entity.velocity.y < -0.2 and \
 		_jump_raycast.is_colliding():
-
+	
 		animations.jump_animations.jump_landing()
 	
 	# Check if we just landed on the floor
@@ -62,7 +63,14 @@ func _process(_delta: float) -> void:
 		actually_jump = false
 		movement_component.desired_velocity.y = jump_strength
 		movement_component.vertical_movement = true
-		_can_emit_just_landed = true
+		
+		# wait before setting flag because just_landed
+		# gets emitted while it is still on the ground.
+		var timer: SceneTreeTimer = get_tree().create_timer(0.05)
+		timer.timeout.connect(
+			func():
+				_can_emit_just_landed = true
+		)
 
 
 func start_jump() -> void:

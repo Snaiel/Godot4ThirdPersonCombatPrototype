@@ -112,10 +112,10 @@ func start_jump() -> void:
 	else:
 		anim_tree["parameters/Jump 2/Jump Trim/seek_request"] = 0.65
 		anim_tree["parameters/Jump 2/Jump Speed/scale"] = 1.0
-
+	
 	_can_switch_jump = true
 	_fade_vertical_movement = true
-	
+
 
 ## When to actually apply the jump force
 func jump_force() -> void:
@@ -145,7 +145,7 @@ func just_fall() -> void:
 	
 	anim_tree["parameters/Jump 1/Jump Speed/scale"] = 0.0
 	anim_tree["parameters/Jump 1/Jump Speed/scale"] = 0.0
-	
+
 
 ## A method to signfiy when to blend from the
 ## falling idle animation to the rest of the
