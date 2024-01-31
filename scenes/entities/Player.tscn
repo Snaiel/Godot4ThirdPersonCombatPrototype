@@ -363,9 +363,9 @@ hitbox_component = NodePath("../HitboxComponent")
 block_component = NodePath("../BlockComponent")
 parry_particles_colour = Color(0.027451, 0.278431, 0.427451, 1)
 
-[node name="FadeComponent" parent="." node_paths=PackedStringArray("meshes", "entity") instance=ExtResource("31_y5b1e")]
+[node name="FadeComponent" parent="." node_paths=PackedStringArray("origin_point", "meshes") instance=ExtResource("31_y5b1e")]
+origin_point = NodePath("../CharacterModel/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint")
 meshes = [NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Alpha_Joints"), NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Alpha_Surface"), NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Sword/Mesh")]
-entity = NodePath("..")
 
 [node name="HealthChargeComponent" parent="." node_paths=PackedStringArray("entity", "character", "health_component") instance=ExtResource("36_ay03g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.27364, 0)

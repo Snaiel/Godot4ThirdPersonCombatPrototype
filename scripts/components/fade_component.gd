@@ -2,9 +2,9 @@ class_name FadeComponent
 extends Node3D
 
 
-@export var meshes: Array[MeshInstance3D]
-@export var entity: Node3D
 @export var enabled: bool = true
+@export var origin_point: Node3D
+@export var meshes: Array[MeshInstance3D]
 
 @onready var cam = Globals.camera_controller.cam
 
@@ -14,7 +14,9 @@ func _process(_delta):
 	if not enabled:
 		return
 	
-	var dist: float = entity.global_position.distance_to(cam.global_position)
+	var dist: float = origin_point.global_position.distance_to(
+		cam.global_position
+	)
 	
 	var opacity: float = clamp(dist - 0.7, 0.0, 1.0)
 	
