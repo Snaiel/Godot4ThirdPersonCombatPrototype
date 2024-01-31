@@ -5,7 +5,7 @@ extends CameraControllerStateMachine
 func _ready():
 	super._ready()
 	
-	Globals.void_death_system.body_entered.connect(
+	Globals.void_death_system.fallen_into_the_void.connect(
 		func(body: Node3D):
 			if body is Player:
 				parent_state.change_state(self)

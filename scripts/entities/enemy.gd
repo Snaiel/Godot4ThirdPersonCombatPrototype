@@ -54,7 +54,7 @@ func _ready() -> void:
 	target = player
 	_agent.target_position = target.global_position
 	
-	Globals.void_death_system.body_entered.connect(
+	Globals.void_death_system.fallen_into_the_void.connect(
 		func(body: Node3D):
 			if body == self:
 				_health_component.deal_max_damage = true

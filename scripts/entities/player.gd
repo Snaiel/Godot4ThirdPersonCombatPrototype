@@ -71,7 +71,7 @@ func _ready() -> void:
 	
 	character.walk_or_jog_animations.to_jogging()
 	
-	Globals.void_death_system.body_entered.connect(
+	Globals.void_death_system.fallen_into_the_void.connect(
 		func(body: Node3D):
 			if body is Player:
 				health_component.deal_max_damage = true

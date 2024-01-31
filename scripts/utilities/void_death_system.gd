@@ -1,9 +1,15 @@
 class_name VoidDeathSystem
-extends Area3D
+extends Node3D
 
 
-func _ready():
-	body_entered.connect(
-		func(body: Node3D):
-			prints("Fallen in to the void:", body)
-	)
+signal fallen_into_the_void(body: Node3D)
+
+
+func _ready() -> void:
+	for child in get_children():
+		var area: Area3D = child
+		area.body_entered.connect(
+			func(body: Node3D):
+				fallen_into_the_void.emit(body)
+				prints("Fallen in to the void:", body)
+		)
