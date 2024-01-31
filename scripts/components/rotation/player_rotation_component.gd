@@ -63,9 +63,8 @@ func _physics_process(delta: float) -> void:
 		_freelook_turn = true
 		_turn_all_the_way = true
 
-		if _can_move and _velocity.length() > 0:
-			# normal behaviour: player rotating towards where
-			# they are going
+		if _can_move and _velocity.length() > 0 and player.is_on_floor():
+			# normal behaviour: player rotating towards where they are going
 			looking_direction = Vector3(_velocity.x, 0, _velocity.z)
 		elif can_rotate:
 			# if player can't move but they can rotate,
