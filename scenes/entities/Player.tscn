@@ -372,6 +372,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.27364, 0)
 entity = NodePath("..")
 character = NodePath("../CharacterModel")
 health_component = NodePath("../HealthComponent")
+max_charges = 3
 
 [editable path="CharacterModel"]
 [editable path="CharacterModel/Armature_004/GeneralSkeleton/Sword"]

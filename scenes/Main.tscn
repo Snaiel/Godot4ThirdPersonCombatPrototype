@@ -285,7 +285,7 @@ running_spin_speed = 4.0
 [node name="UserInterface" parent="." instance=ExtResource("3_hlhuw")]
 
 [node name="Player" parent="." instance=ExtResource("2_thr8q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 23, -98)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12, 2)
 
 [node name="BackstabSystem" type="Node3D" parent="."]
 script = ExtResource("5_thw20")
@@ -1085,32 +1085,32 @@ font_size = 48
 [node name="Label4" type="Label3D" parent="Level1/World/Notes"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6, 7, -30)
 outline_modulate = Color(0, 0, 0, 0)
-text = "E to recover at checkpoints
-Sitting at a checkpoint sets respawn point
+text = "E to recover at checkpoints.
+Sitting at a checkpoint sets respawn point.
 Recovering at a checkpoint restores health,
-restores health charges, and respawns enemies"
+restores health charges, and respawns enemies."
 font_size = 48
 
 [node name="Label5" type="Label3D" parent="Level1/World/Notes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.76837e-07, 7, -39)
 outline_modulate = Color(0, 0, 0, 0)
 text = "You can backstab enemies
-to instantly kill them"
+to instantly kill them."
 font_size = 48
 
 [node name="Label6" type="Label3D" parent="Level1/World/Notes"]
 transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 6, 6, -42)
 outline_modulate = Color(0, 0, 0, 0)
 text = "MIDDLE MOUSE BTN
-to lock on to enemies"
+to lock on to enemies."
 font_size = 48
 
 [node name="Label7" type="Label3D" parent="Level1/World/Notes"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 6.53553, 6, -47.8787)
 outline_modulate = Color(0, 0, 0, 0)
 text = "LEFT MOUSE BTN
-Attacks bring down health
-and slightly increase instability"
+attacks bring down health
+and slightly increase instability."
 font_size = 48
 
 [node name="Label8" type="Label3D" parent="Level1/World/Notes"]
@@ -1132,16 +1132,16 @@ horizontal_alignment = 0
 transform = Transform3D(-7.35137e-08, 0, 1, 0, 1, 0, -1, 0, -7.35137e-08, -6, 6, -48)
 outline_modulate = Color(0, 0, 0, 0)
 text = "You can finish enemies when you attack
-them and increase their instability to full"
+them and increase their instability to full."
 font_size = 48
 
 [node name="Label10" type="Label3D" parent="Level1/World/Notes"]
 transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, -23, 4.5, -52.9)
 outline_modulate = Color(0, 0, 0, 0)
-text = "RIGHT MOUSE BTN to parry/block
+text = "RIGHT MOUSE BTN to parry/block.
 
 R to consume a health charge
-and restore health"
+and restore health."
 font_size = 48
 
 [node name="Label11" type="Label3D" parent="Level1/World/Notes"]
