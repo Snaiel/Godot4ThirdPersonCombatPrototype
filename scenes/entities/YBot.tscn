@@ -1388,62 +1388,58 @@ parameters/Sitting/blend_amount = 0
 "parameters/Walking Lock On/transition_request" = ""
 "parameters/Walking Lock On/current_index" = 0
 
-[node name="RootMotionView" type="RootMotionView" parent="." index="3"]
-visible = false
-animation_path = NodePath("../AnimationTree")
-
-[node name="MovementAnimations" type="Node3D" parent="." index="4" node_paths=PackedStringArray("audio_footsteps", "parent_animations", "anim_tree")]
+[node name="MovementAnimations" type="Node" parent="." index="3" node_paths=PackedStringArray("audio_footsteps", "parent_animations", "anim_tree")]
 script = ExtResource("5_23e6x")
 audio_footsteps = NodePath("../AudioManager/Footsteps")
 parent_animations = NodePath("..")
 anim_tree = NodePath("../AnimationTree")
 
-[node name="WalkOrJogAnimations" type="Node3D" parent="." index="5" node_paths=PackedStringArray("parent_animations", "anim_tree")]
+[node name="WalkOrJogAnimations" type="Node" parent="." index="4" node_paths=PackedStringArray("parent_animations", "anim_tree")]
 script = ExtResource("14_s7odg")
 parent_animations = NodePath("..")
 anim_tree = NodePath("../AnimationTree")
 
-[node name="JumpAnimations" type="Node3D" parent="." index="6" node_paths=PackedStringArray("parent_animations", "anim_tree")]
+[node name="JumpAnimations" type="Node" parent="." index="5" node_paths=PackedStringArray("parent_animations", "anim_tree")]
 script = ExtResource("6_olmu2")
 parent_animations = NodePath("..")
 anim_tree = NodePath("../AnimationTree")
 
-[node name="AttackAnimations" type="Node3D" parent="." index="7" node_paths=PackedStringArray("parent_animations", "anim_tree")]
+[node name="AttackAnimations" type="Node" parent="." index="6" node_paths=PackedStringArray("parent_animations", "anim_tree")]
 script = ExtResource("7_qu3gw")
 parent_animations = NodePath("..")
 anim_tree = NodePath("../AnimationTree")
 
-[node name="BlockAnimations" type="Node3D" parent="." index="8" node_paths=PackedStringArray("parent_animations", "anim_tree")]
+[node name="BlockAnimations" type="Node" parent="." index="7" node_paths=PackedStringArray("parent_animations", "anim_tree")]
 script = ExtResource("8_hx2j7")
 parent_animations = NodePath("..")
 anim_tree = NodePath("../AnimationTree")
 
-[node name="ParryAnimations" type="Node3D" parent="." index="9" node_paths=PackedStringArray("parent_animations", "anim_tree")]
+[node name="ParryAnimations" type="Node" parent="." index="8" node_paths=PackedStringArray("parent_animations", "anim_tree")]
 script = ExtResource("9_347er")
 parent_animations = NodePath("..")
 anim_tree = NodePath("../AnimationTree")
 
-[node name="HitAndDeathAnimations" type="Node3D" parent="." index="10" node_paths=PackedStringArray("parent_animations", "anim_tree")]
+[node name="HitAndDeathAnimations" type="Node" parent="." index="9" node_paths=PackedStringArray("parent_animations", "anim_tree")]
 script = ExtResource("9_qcdnc")
 parent_animations = NodePath("..")
 anim_tree = NodePath("../AnimationTree")
 
-[node name="DizzyAnimations" type="Node3D" parent="." index="11" node_paths=PackedStringArray("parent_animations", "anim_tree")]
+[node name="DizzyAnimations" type="Node" parent="." index="10" node_paths=PackedStringArray("parent_animations", "anim_tree")]
 script = ExtResource("11_to7pc")
 parent_animations = NodePath("..")
 anim_tree = NodePath("../AnimationTree")
 
-[node name="DrinkAnimations" type="Node3D" parent="." index="12" node_paths=PackedStringArray("parent_animations", "anim_tree")]
+[node name="DrinkAnimations" type="Node" parent="." index="11" node_paths=PackedStringArray("parent_animations", "anim_tree")]
 script = ExtResource("13_yftnk")
 parent_animations = NodePath("..")
 anim_tree = NodePath("../AnimationTree")
 
-[node name="SittingAnimations" type="Node3D" parent="." index="13" node_paths=PackedStringArray("parent_animations", "anim_tree")]
+[node name="SittingAnimations" type="Node" parent="." index="12" node_paths=PackedStringArray("parent_animations", "anim_tree")]
 script = ExtResource("15_rxgn1")
 parent_animations = NodePath("..")
 anim_tree = NodePath("../AnimationTree")
 
-[node name="AudioManager" type="Node3D" parent="." index="14"]
+[node name="AudioManager" type="Node3D" parent="." index="13"]
 
 [node name="Footsteps" type="AudioStreamPlayer3D" parent="AudioManager" index="0"]
 stream = SubResource("AudioStreamRandomizer_6fy3m")
