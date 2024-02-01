@@ -34,6 +34,10 @@ func fade_to_idle() -> void:
 	if _counter != 0:
 		return
 	
+	force_fade_to_idle()
+
+
+func force_fade_to_idle() -> void:
 	idle_music = true
 	anim.play("FadeToIdle")
 

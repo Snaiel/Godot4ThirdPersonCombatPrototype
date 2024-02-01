@@ -113,3 +113,4 @@ func physics_process(delta) -> void:
 
 func exit() -> void:
 	_aggro_timer.stop()
+	Globals.music_system.fade_to_idle()

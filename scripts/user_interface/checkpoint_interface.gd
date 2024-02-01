@@ -16,8 +16,6 @@ var _prev_mouse_mode: int
 @onready var return_button: Button = $Menu/Buttons/Return
 @onready var fade_texture: TextureRect = $Fade
 
-@onready var checkpoint_system: CheckpointSystem = Globals.checkpoint_system
-
 
 func _ready():
 	visible = false
@@ -85,13 +83,14 @@ func hide_menu() -> void:
 func _recover() -> void:
 	_show_menu = false
 	
-	checkpoint_system.current_checkpoint.play_recovery_particles()
+	Globals.checkpoint_system.current_checkpoint.play_recovery_particles()
 	
 	var timer: SceneTreeTimer
 	timer = get_tree().create_timer(1)
 	timer.timeout.connect(
 		func():
 			fade_out = true
+			Globals.music_system.force_fade_to_idle()
 	)
 	
 	await timer.timeout
