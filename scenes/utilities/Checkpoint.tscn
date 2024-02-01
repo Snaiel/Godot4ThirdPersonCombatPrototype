@@ -118,6 +118,9 @@ shape = SubResource("CapsuleShape3D_aiul3")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.809058, 0)
+visibility_range_end = 15.0
+visibility_range_end_margin = 5.0
+visibility_range_fade_mode = 1
 modulate = Color(0.0784314, 0.654902, 0.854902, 1)
 billboard = 1
 texture = ExtResource("1_duys1")
@@ -128,21 +131,30 @@ light_color = Color(0.352941, 0.701961, 0.792157, 1)
 light_energy = 3.0
 light_size = 1.0
 distance_fade_enabled = true
+distance_fade_begin = 20.0
 omni_range = 6.0
 
 [node name="CheckpointParticles" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.273792, 0)
+visibility_range_end = 20.0
+visibility_range_end_margin = 5.0
+visibility_range_fade_mode = 2
 amount = 128
 lifetime = 4.0
+preprocess = 5.0
 process_material = SubResource("ParticleProcessMaterial_a1a52")
 draw_pass_1 = SubResource("SphereMesh_pwcdx")
 
 [node name="RecoveryParticles" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+visibility_range_end = 20.0
+visibility_range_end_margin = 5.0
+visibility_range_fade_mode = 2
 emitting = false
 amount = 512
 lifetime = 2.0
 one_shot = true
+preprocess = 5.0
 explosiveness = 1.0
 randomness = 0.5
 process_material = SubResource("ParticleProcessMaterial_u4qmt")
