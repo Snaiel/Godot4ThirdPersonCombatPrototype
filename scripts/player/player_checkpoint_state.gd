@@ -16,8 +16,7 @@ func _ready():
 	player.character.sitting_animations.sat_down.connect(
 		func():
 			if parent_state.current_state == self:
-				user_interface.checkpoint_interface.show_menu = true
-				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+				user_interface.checkpoint_interface.show_menu()
 	)
 	
 	player.character.sitting_animations.finished.connect(
@@ -26,7 +25,7 @@ func _ready():
 				parent_state.transition_to_default_state()
 	)
 	
-	user_interface.checkpoint_interface.return_button.pressed.connect(
+	user_interface.checkpoint_interface.exit_checkpoint.connect(
 		_stand_up
 	)
 
@@ -43,9 +42,6 @@ func enter():
 	checkpoint_system.save_current_checkpoint()
 	
 	user_interface.hud.enabled = false
-	
-	user_interface.checkpoint_interface.visible = true
-	user_interface.checkpoint_interface.recover_button.grab_focus()
 	
 	camera_controller.enabled = false
 	lock_on_system.enabled = false
@@ -80,7 +76,7 @@ func exit():
 func _stand_up() -> void:
 	player.character.sitting_animations.stand_up()
 	
-	user_interface.checkpoint_interface.show_menu = false
+	user_interface.checkpoint_interface.hide_menu()
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	_exiting = true

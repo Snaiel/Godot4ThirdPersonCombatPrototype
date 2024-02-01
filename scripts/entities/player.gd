@@ -81,7 +81,7 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	
-	if Input.is_action_just_pressed("ui_cancel"):
+	if Input.is_action_just_pressed("exit"):
 		get_tree().quit()
 	elif Input.is_action_just_pressed("ui_text_backspace"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
