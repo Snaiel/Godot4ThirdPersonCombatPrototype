@@ -57,6 +57,8 @@ func enter() -> void:
 
 
 func physics_process(delta) -> void:
+	notice_component.notice_triangle.visible = true
+	
 	# change the offset of the mask to reflect on the meter in the triangle
 	notice_component.notice_triangle.process_mask_offset(_notice_val)
 	notice_component.off_camera_notice_triangle.process_mask_offsets(_notice_val)
@@ -67,7 +69,6 @@ func physics_process(delta) -> void:
 	elif notice_component.inside_outer_threshold():
 		# raise suspicion
 		_notice_val += notice_component.get_notice_value() * delta
-		notice_component.notice_triangle.visible = true
 	else:
 		_notice_val -= notice_component.get_notice_value() * delta
 	

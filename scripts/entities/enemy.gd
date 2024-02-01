@@ -125,11 +125,10 @@ func _physics_process(_delta: float) -> void:
 	
 	
 	## Debug Prints
-#	if debug:
-#		prints(
-#			_blackboard.get_value("agent_target_position"),
-#			_rotation_component.target
-#		)
+	if debug:
+		prints(
+			_blackboard.get_value("notice_state")
+		)
 	
 	## Component Management
 	_rotation_component.rotate_towards_target = _blackboard.get_value(

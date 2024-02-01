@@ -9,7 +9,18 @@ extends NoticeComponentState
 func enter() -> void:
 	notice_component.notice_triangle.visible = false
 	notice_component.notice_triangle.self_modulate = Color.WHITE
-	notice_component.notice_triangle.inner_triangle.self_modulate = notice_component.suspicion_color
+	notice_component.notice_triangle.inner_triangle.self_modulate = \
+		notice_component.suspicion_color
+	notice_component.notice_triangle.background_triangle.self_modulate = \
+		notice_component.background_color
+	
+	notice_component.off_camera_notice_triangle.visible = false
+	notice_component.off_camera_notice_triangle.triangle_arc_base\
+		.self_modulate = Color.WHITE
+	notice_component.off_camera_notice_triangle.inner_triangle\
+		.self_modulate = notice_component.suspicion_color
+	notice_component.off_camera_notice_triangle.background_triangle\
+		.self_modulate = notice_component.background_color
 	
 	notice_component.blackboard.set_value(
 		"agent_target_position",
