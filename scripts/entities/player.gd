@@ -111,7 +111,8 @@ func _physics_process(_delta: float) -> void:
 	
 	
 	if Input.is_action_just_pressed("consume_item") and \
-	not state_machine.current_state is PlayerDrinkState:
+	not state_machine.current_state is PlayerDrinkState and \
+	not state_machine.current_state is PlayerCheckpointState:
 		state_machine.change_state(drink_state)
 	
 	if Input.is_action_just_pressed("interact") and \
