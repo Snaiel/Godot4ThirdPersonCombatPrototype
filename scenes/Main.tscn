@@ -319,6 +319,15 @@ wait_time = 0.5
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_32f71")
 
+[node name="CheckpointSystem" type="Node" parent="." node_paths=PackedStringArray("level", "initial_checkpoint", "enemies")]
+script = ExtResource("9_3tuum")
+level = NodePath("../Level1")
+initial_checkpoint = NodePath("../Level1/World/NavigationRegion3D/Checkpoints/Checkpoint")
+enemies = NodePath("../Level1/Enemies")
+
+[node name="DeathSfx" type="AudioStreamPlayer3D" parent="CheckpointSystem"]
+stream = ExtResource("14_uh7dv")
+
 [node name="Level1" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
 
@@ -1340,15 +1349,6 @@ transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 
 
 [node name="Enemy4" parent="Level1/Enemies/Section3/Enemies" instance=ExtResource("2_oia4d")]
 transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 58.7528, -5, 22.4458)
-
-[node name="CheckpointSystem" type="Node" parent="." node_paths=PackedStringArray("level", "initial_checkpoint", "enemies")]
-script = ExtResource("9_3tuum")
-level = NodePath("../Level1")
-initial_checkpoint = NodePath("../Level1/World/NavigationRegion3D/Checkpoints/Checkpoint")
-enemies = NodePath("../Level1/Enemies")
-
-[node name="DeathSfx" type="AudioStreamPlayer3D" parent="CheckpointSystem"]
-stream = ExtResource("14_uh7dv")
 
 [node name="MusicSystem" type="Node" parent="."]
 script = ExtResource("14_oqh6a")

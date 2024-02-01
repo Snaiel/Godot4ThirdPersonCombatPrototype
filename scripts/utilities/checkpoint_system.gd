@@ -31,7 +31,7 @@ func _ready():
 	if not enemies:
 		return
 	
-	_set_enemies_chldren_owner(enemies)
+	set_enemies_chldren_owner()
 	
 	_packed_enemies = PackedScene.new()
 	_packed_enemies.pack(enemies)
@@ -54,6 +54,10 @@ func _physics_process(_delta: float):
 		at_checkpoint = true
 	else:
 		at_checkpoint = false
+
+
+func set_enemies_chldren_owner() -> void:
+	_set_node_owner_to_enemies(enemies)
 
 
 func disable_hint() -> void:
@@ -104,8 +108,8 @@ func _recover() -> void:
 	player.health_charge_component.reset_charges()
 
 
-func _set_enemies_chldren_owner(node: Node) -> void:
+func _set_node_owner_to_enemies(node: Node) -> void:
 	for child in node.get_children():
 		child.owner = enemies
-		if child.get_child_count() > 0 and not child is Enemy:
-			_set_enemies_chldren_owner(child)
+		if child._set_node_owner_to_enemies() > 0 and not child is Enemy:
+			_set_node_owner_to_enemies(child)
