@@ -29,6 +29,28 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 import_script/path=""
 _subresources={
+"meshes": {
+"ybot-23c75a3c902935809a8b283036dfbb3f_Alpha_Joints": {
+"generate/lightmap_uv": 0,
+"generate/lods": 1,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"lods/normal_split_angle": 25.0,
+"save_to_file/enabled": false,
+"save_to_file/make_streamable": "",
+"save_to_file/path": ""
+},
+"ybot-23c75a3c902935809a8b283036dfbb3f_Alpha_Surface": {
+"generate/lightmap_uv": 0,
+"generate/lods": 1,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"lods/normal_split_angle": 25.0,
+"save_to_file/enabled": false,
+"save_to_file/make_streamable": "",
+"save_to_file/path": ""
+}
+},
 "nodes": {
 "PATH:Armature_004/Skeleton3D": {
 "retarget/bone_map": Resource("res://animations/bone_map.tres")

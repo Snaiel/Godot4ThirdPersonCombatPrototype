@@ -1,7 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://b075d85nmca7s"]
+[gd_scene load_steps=24 format=3 uid="uid://b075d85nmca7s"]
 
 [ext_resource type="Script" path="res://scripts/utilities/user_interface.gd" id="1_2nhxu"]
 [ext_resource type="Texture2D" uid="uid://dishehhur7io2" path="res://assets/white_dot.png" id="1_v2w42"]
+[ext_resource type="Script" path="res://scripts/utilities/fps_counter.gd" id="2_rxxh1"]
 [ext_resource type="Script" path="res://scripts/user_interface/heads_up_display.gd" id="3_bcps2"]
 [ext_resource type="PackedScene" uid="uid://dt6i863shdkev" path="res://scenes/utilities/NoticeTriangle.tscn" id="4_rjkcx"]
 [ext_resource type="PackedScene" uid="uid://clbe1nrax10m8" path="res://scenes/utilities/WellbeingWidget.tscn" id="5_5c8kv"]
@@ -42,14 +43,18 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_2nhxu")
 
-[node name="DebugLabel" type="Label" parent="."]
-visible = false
-layout_mode = 0
-offset_left = 24.0
-offset_top = 21.0
-offset_right = 116.0
-offset_bottom = 47.0
-text = "DebugLabel"
+[node name="FPSCounter" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.04
+anchor_top = 0.04
+anchor_right = 0.04
+anchor_bottom = 0.04
+offset_right = 92.0
+offset_bottom = 26.0
+text = "FPS: 0
+"
+script = ExtResource("2_rxxh1")
 
 [node name="DebugWhiteDot" type="Sprite2D" parent="."]
 visible = false
@@ -228,6 +233,7 @@ label_settings = SubResource("LabelSettings_u65vg")
 vertical_alignment = 1
 
 [node name="CheckpointInterface" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
