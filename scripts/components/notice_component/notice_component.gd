@@ -51,9 +51,11 @@ var _is_inside_outer_threshold: bool = false
 func _ready() -> void:
 	notice_triangle = notice_triangle_scene.instantiate()
 	Globals.user_interface.hud.notice_triangles.add_child(notice_triangle)
+	notice_triangle.visible = false
 	
 	off_camera_notice_triangle = off_camera_notice_triangle_scene.instantiate()
 	Globals.user_interface.hud.off_camera_notice_triangles.add_child(off_camera_notice_triangle)
+	off_camera_notice_triangle.visible = false
 	
 	current_state = initial_state
 	current_state.enter()

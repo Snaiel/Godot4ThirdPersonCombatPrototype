@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://kprsqtbxvcxx"]
+
+[ext_resource type="Script" path="res://scripts/utilities/enemy_section.gd" id="1_ewjba"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_svx3x"]
+size = Vector3(60, 500, 130)
+
+[node name="EnemySection" type="Area3D"]
+collision_mask = 2
+script = ExtResource("1_ewjba")
+
+[node name="AreaCollider" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_svx3x")
+
+[node name="Enemies" type="Node3D" parent="."]
