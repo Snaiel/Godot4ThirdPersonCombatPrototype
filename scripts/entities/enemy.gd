@@ -307,6 +307,8 @@ func _on_health_component_zero_health() -> void:
 	_notice_component.enabled = false
 	_notice_component.hide_notice_triangles()
 	
+	disable_mode = CollisionObject3D.DISABLE_MODE_MAKE_STATIC
+	
 	_sword.can_damage = false
 	
 	_blackboard.set_value("dead", true)
