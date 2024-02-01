@@ -154,7 +154,6 @@ emitting = false
 amount = 512
 lifetime = 2.0
 one_shot = true
-preprocess = 5.0
 explosiveness = 1.0
 randomness = 0.5
 process_material = SubResource("ParticleProcessMaterial_u4qmt")
