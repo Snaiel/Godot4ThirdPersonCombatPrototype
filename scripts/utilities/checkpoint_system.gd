@@ -111,5 +111,5 @@ func _recover() -> void:
 func _set_node_owner_to_enemies(node: Node) -> void:
 	for child in node.get_children():
 		child.owner = enemies
-		if child._set_node_owner_to_enemies() > 0 and not child is Enemy:
+		if child.get_child_count() > 0 and not child is Enemy:
 			_set_node_owner_to_enemies(child)
