@@ -16,6 +16,8 @@ var _prev_mouse_mode: int
 @onready var return_button: Button = $Menu/Buttons/Return
 @onready var fade_texture: TextureRect = $Fade
 
+@onready var music_system: MusicSystem = Globals.music_system
+
 
 func _ready():
 	visible = false
@@ -90,7 +92,8 @@ func _recover() -> void:
 	timer.timeout.connect(
 		func():
 			fade_out = true
-			Globals.music_system.force_fade_to_idle()
+			if music_system.active_song.playing:
+				music_system.force_fade_to_idle()
 	)
 	
 	await timer.timeout

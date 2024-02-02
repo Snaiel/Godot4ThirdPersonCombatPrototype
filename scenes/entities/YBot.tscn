@@ -1255,6 +1255,7 @@ extra_cull_margin = 1.0
 
 [node name="Alpha_Surface" parent="Armature_004/GeneralSkeleton" index="1"]
 extra_cull_margin = 1.0
+lod_bias = 0.7
 
 [node name="LockOnAttachment" type="BoneAttachment3D" parent="Armature_004/GeneralSkeleton" index="2"]
 transform = Transform3D(1, -7.20253e-12, 4.0193e-12, 7.20253e-12, 1, -3.01674e-08, -4.0193e-12, 3.01674e-08, 1, -2.25238e-05, 1.34721, -0.0427615)
