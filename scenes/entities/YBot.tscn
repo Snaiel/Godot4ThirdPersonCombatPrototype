@@ -1446,52 +1446,63 @@ anim_tree = NodePath("../AnimationTree")
 stream = SubResource("AudioStreamRandomizer_6fy3m")
 volume_db = -35.0
 pitch_scale = 0.8
+max_distance = 20.0
 script = ExtResource("19_if0sk")
 
 [node name="Jump" type="AudioStreamPlayer3D" parent="AudioManager" index="1"]
 stream = SubResource("AudioStreamRandomizer_f3n3c")
 volume_db = -25.0
+max_distance = 20.0
 
 [node name="JumpLand" type="AudioStreamPlayer3D" parent="AudioManager" index="2"]
 stream = SubResource("AudioStreamRandomizer_8ow8j")
 volume_db = -7.0
+max_distance = 20.0
 
 [node name="WeaponSwing" type="AudioStreamPlayer3D" parent="AudioManager" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
 stream = SubResource("AudioStreamRandomizer_801ki")
 volume_db = -15.0
+max_distance = 20.0
 
 [node name="ThrustPuncture" type="AudioStreamPlayer3D" parent="AudioManager" index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
 stream = SubResource("AudioStreamRandomizer_xjlfg")
 volume_db = -10.0
+max_distance = 20.0
 
 [node name="Parry" type="AudioStreamPlayer3D" parent="AudioManager" index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
 stream = SubResource("AudioStreamRandomizer_jof1e")
 volume_db = -5.0
+max_distance = 20.0
 
 [node name="Blocking" type="AudioStreamPlayer3D" parent="AudioManager" index="6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
 stream = ExtResource("25_c3yud")
 volume_db = -25.0
+max_distance = 20.0
 
 [node name="Block" type="AudioStreamPlayer3D" parent="AudioManager" index="7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
 stream = SubResource("AudioStreamRandomizer_hqt8r")
 volume_db = -5.0
+max_distance = 20.0
 
 [node name="Hit" type="AudioStreamPlayer3D" parent="AudioManager" index="8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
 stream = SubResource("AudioStreamRandomizer_by5m0")
 volume_db = -15.0
+max_distance = 20.0
 
 [node name="Dizzy" type="AudioStreamPlayer3D" parent="AudioManager" index="9"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
 stream = SubResource("AudioStreamRandomizer_big2v")
 volume_db = -15.0
+max_distance = 20.0
 
 [node name="Dodge" type="AudioStreamPlayer3D" parent="AudioManager" index="10"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
 stream = SubResource("AudioStreamRandomizer_5axk7")
 volume_db = -30.0
+max_distance = 20.0

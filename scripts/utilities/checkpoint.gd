@@ -47,11 +47,9 @@ func _physics_process(_delta: float) -> void:
 	)
 	
 	if _can_set_current_checkpoint:
+		_can_set_current_checkpoint = false
 		if _player_inside:
 			_checkpoint_system.current_checkpoint = self
-		else:
-			_checkpoint_system.current_checkpoint = null
-		_can_set_current_checkpoint = false
 	
 	if _player_inside:
 		if _player_angle < max_angle and \

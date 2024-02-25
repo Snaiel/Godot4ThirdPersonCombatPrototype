@@ -163,6 +163,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("IdleBackgroundMusic:stream_paused")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_s1645"]
 resource_name = "FadeToIdle"
@@ -202,6 +214,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ActiveBackgroundMusic:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_vdfwq"]
@@ -328,9 +352,9 @@ level = NodePath("../Level1")
 initial_checkpoint = NodePath("../Level1/World/NavigationRegion3D/Checkpoints/Checkpoint")
 enemies = NodePath("../Level1/Enemies")
 
-[node name="DeathSfx" type="AudioStreamPlayer3D" parent="CheckpointSystem"]
+[node name="DeathSfx" type="AudioStreamPlayer" parent="CheckpointSystem"]
 stream = ExtResource("14_uh7dv")
-volume_db = 10.0
+volume_db = -8.0
 
 [node name="Level1" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
@@ -1162,6 +1186,23 @@ Enemies are also inclined to counter attack
 immediately after they parry you."
 font_size = 48
 
+[node name="Label17" type="Label3D" parent="Level1/World/Notes"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 118, 15, -16)
+outline_modulate = Color(0, 0, 0, 0)
+text = "End of demo!
+
+Thank you for checking out this prototype.
+
+I would love to hear your thoughts on it :D
+
+Any feedback, suggestions, criticisms, or ideas
+are greatly appreciated. Please leave them
+in the comments of the devlog.
+
+Make sure to subscribe to the channel if you
+want to stay updated on the progress of this game!"
+font_size = 48
+
 [node name="Enemies" type="Node3D" parent="Level1"]
 
 [node name="Section1" type="Area3D" parent="Level1/Enemies"]
@@ -1176,7 +1217,7 @@ shape = SubResource("BoxShape3D_svx3x")
 [node name="Enemies" type="Node3D" parent="Level1/Enemies/Section1"]
 
 [node name="Enemy1" parent="Level1/Enemies/Section1/Enemies" instance=ExtResource("2_oia4d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 4, 13)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0168, 4, 14.6035)
 wellbeing_stats = SubResource("Resource_ygafm")
 hit_weight = 1.0
 block_weight = 0.0

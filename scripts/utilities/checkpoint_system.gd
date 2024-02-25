@@ -13,7 +13,7 @@ var at_checkpoint: bool = false
 
 var _packed_enemies: PackedScene
 
-@onready var death_sfx: AudioStreamPlayer3D = $DeathSfx
+@onready var death_sfx: AudioStreamPlayer = $DeathSfx
 
 @onready var player: Player = Globals.player
 @onready var camera_controller: CameraController = Globals.camera_controller

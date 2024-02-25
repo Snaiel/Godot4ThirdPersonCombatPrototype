@@ -29,6 +29,8 @@ You must have Blender installed and have Blender imports (https://docs.godotengi
 
 ## AI Behaviour
 
+- https://www.youtube.com/watch?v=6VBCXvfNlCM behaviour tree introduction
+- https://www.gamedeveloper.com/programming/behavior-trees-for-ai-how-they-work in depth behaviour tree introduction
 - https://github.com/bitbrain/beehave behaviour tree library for Godot
 - https://www.youtube.com/watch?v=EOocBMBbL-E&t=4s for navmesh basics
 

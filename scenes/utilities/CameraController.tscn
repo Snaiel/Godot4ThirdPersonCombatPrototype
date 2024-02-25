@@ -75,5 +75,3 @@ camera = NodePath("../../Camera3D")
 script = ExtResource("10_cu1cf")
 camera_controller = NodePath("../..")
 camera = NodePath("../../Camera3D")
-
-[node name="AudioListener3D" type="AudioListener3D" parent="."]
