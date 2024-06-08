@@ -162,7 +162,7 @@ func receive_cannot_attack_again() -> void:
 
 func receive_attack_finished() -> void:
 	_level = 1
-	if _intend_to_stop_attacking:
+	if _intend_to_stop_attacking and attacking:
 		attacking_finished.emit()
 		stop_attacking()
 

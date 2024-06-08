@@ -56,7 +56,7 @@ func process_player():
 
 
 func exit():
-	player.movement_component.can_move = true
+	player.attack_component.interrupt_attack()
 
 
 func check_for_dizzy_finisher() -> bool:
