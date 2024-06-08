@@ -56,6 +56,7 @@ func process_player():
 
 
 func exit():
+	player.movement_component.can_move = true
 	player.attack_component.interrupt_attack()
 
 
