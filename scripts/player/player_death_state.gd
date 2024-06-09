@@ -55,6 +55,7 @@ func enter():
 	player.set_rotation_target_to_lock_on_target()
 	player.rotation_component.rotate_towards_target = false
 	
+	Globals.player._aggro_enemy_counter = 0
 	Globals.music_system.fade_out()
 
 

@@ -27,6 +27,8 @@ extends CharacterBody3D
 @export_category("Audio")
 @export var footsteps: AudioFootsteps
 
+signal aggro_enemy_counter_changed(old_value : int, new_value : int)
+
 var active_motion_component: MotionComponent
 
 var input_direction: Vector3 = Vector3.ZERO
@@ -38,13 +40,25 @@ var locked_on_turning_in_place: bool = false
 var holding_down_run: bool = false
 var _holding_down_run_timer: Timer
 
+var _aggro_enemy_counter: int = 0
+
+var aggro_enemy_counter: int:
+	set(value):
+		var old = _aggro_enemy_counter
+		_aggro_enemy_counter = value
+		if _aggro_enemy_counter < 0:
+			_aggro_enemy_counter = 0
+		
+		aggro_enemy_counter_changed.emit(old, _aggro_enemy_counter)
+	get:
+		return _aggro_enemy_counter
+
 @onready var drink_state: PlayerDrinkState = $StateMachine/Drink
 @onready var checkpoint_state: PlayerCheckpointState = $StateMachine/Checkpoint
 
 @onready var dizzy_system: DizzySystem = Globals.dizzy_system
 @onready var backstab_system: BackstabSystem = Globals.backstab_system
 @onready var checkpoint_system: CheckpointSystem = Globals.checkpoint_system
-
 
 func _ready() -> void:
 	active_motion_component = movement_component
@@ -118,7 +132,8 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("interact") and \
 	not state_machine.current_state is PlayerCheckpointState and \
 	checkpoint_system.current_checkpoint and \
-	checkpoint_system.current_checkpoint.can_sit_at_checkpoint:
+	checkpoint_system.current_checkpoint.can_sit_at_checkpoint and \
+	Globals.player.aggro_enemy_counter <= 0:
 		state_machine.change_state(checkpoint_state)
 	
 	

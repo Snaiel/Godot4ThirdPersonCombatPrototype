@@ -4,20 +4,20 @@ extends Node
 
 var idle_music: bool = true
 
-var _counter: int = 0:
-	set(value):
-		_counter = value
-		if _counter < 0:
-			_counter = 0
-
 @onready var idle_song: AudioStreamPlayer = $IdleBackgroundMusic
 @onready var active_song: AudioStreamPlayer = $ActiveBackgroundMusic
 @onready var anim: AnimationPlayer = $AnimationPlayer
 
+func _ready():
+	Globals.player.aggro_enemy_counter_changed.connect(on_counter_changed)
+
+func on_counter_changed(old_value, new_value):
+	if new_value > 0:
+		fade_to_active()
+	else:
+		fade_to_idle()
 
 func fade_to_active() -> void:
-	_counter += 1
-	
 	if not idle_music:
 		return
 	
@@ -26,12 +26,7 @@ func fade_to_active() -> void:
 
 
 func fade_to_idle() -> void:
-	_counter -= 1
-	
 	if idle_music:
-		return
-	
-	if _counter != 0:
 		return
 	
 	force_fade_to_idle()
@@ -49,7 +44,6 @@ func fade_out() -> void:
 		anim.play("ActiveFadeOut")
 	
 	idle_music = true
-	_counter = 0
 
 
 func reset() -> void:

@@ -53,7 +53,7 @@ func enter() -> void:
 		.self_modulate\
 		.a = 0
 	
-	Globals.music_system.fade_to_active()
+	Globals.player.aggro_enemy_counter += 1
 
 
 func physics_process(delta) -> void:
@@ -113,4 +113,4 @@ func physics_process(delta) -> void:
 
 func exit() -> void:
 	_aggro_timer.stop()
-	Globals.music_system.fade_to_idle()
+	Globals.player.aggro_enemy_counter -= 1

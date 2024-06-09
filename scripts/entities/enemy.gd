@@ -325,4 +325,4 @@ func _on_health_component_zero_health() -> void:
 		_character.hit_and_death_animations.death_1()
 	
 	if _blackboard.get_value("notice_state") == "aggro":
-		Globals.music_system.fade_to_idle()
+		Globals.player.aggro_enemy_counter -= 1
