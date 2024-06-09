@@ -1,4 +1,4 @@
-class_name PlayerBackstabState
+class_name PlayerBackstabPrepareState
 extends PlayerStateMachine
 
 
@@ -7,14 +7,16 @@ extends PlayerStateMachine
 @export var attack_state: PlayerAttackState
 @export var block_state: PlayerBlockState
 @export var parry_state: PlayerParryState
+@export var backstab_attack_state: PlayerBackstabAttackState
 
+var main_state : PlayerStateMachine
 
 func _ready():
 	super._ready()
 
 
 func enter():
-	pass
+	main_state = parent_state.parent_state
 
 
 func process_player():
@@ -26,30 +28,29 @@ func process_player():
 	
 	
 	if Input.is_action_just_pressed("run"):
-		parent_state.change_state(dodge_state)
+		main_state.change_state(dodge_state)
 		return
 	
 	if Input.is_action_just_pressed("jump") and \
 	player.is_on_floor():
-		parent_state.change_state(jump_state)
+		main_state.change_state(jump_state)
 		return
 	
 	if Input.is_action_just_pressed("attack"):
-		player.rotation_component.rotate_towards_target = true
-		player.attack_component.thrust()
-		player.hitbox_component.enabled = false
+		parent_state.change_state(backstab_attack_state)
+		return
 	
 	if Input.is_action_just_pressed("block"):
-		parent_state.change_state(parry_state)
+		main_state.change_state(parry_state)
 		return
 	
 	if Input.is_action_pressed("block"):
-		parent_state.change_state(block_state)
+		main_state.change_state(block_state)
 		return
 	
 	
 	if not Globals.backstab_system.backstab_victim:
-		parent_state.transition_to_previous_state()
+		main_state.transition_to_previous_state()
 
 
 func process_movement_animations() -> void:
@@ -61,4 +62,4 @@ func process_movement_animations() -> void:
 
 
 func exit():
-	player.hitbox_component.enabled = true
+	pass

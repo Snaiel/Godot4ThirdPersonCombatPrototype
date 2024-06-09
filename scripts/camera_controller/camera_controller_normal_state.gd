@@ -16,7 +16,7 @@ func process_camera() -> void:
 	
 	if Globals.backstab_system.backstab_victim != null and \
 	player.state_machine.current_state is PlayerBackstabState and \
-	player.attack_component.attacking:
+	player.state_machine.current_state.current_state is PlayerBackstabAttackState:
 		parent_state.change_state(
 			backstab_state
 		)
