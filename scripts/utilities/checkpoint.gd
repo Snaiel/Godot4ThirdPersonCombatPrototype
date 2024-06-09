@@ -54,7 +54,8 @@ func _physics_process(_delta: float) -> void:
 	if _player_inside:
 		if _player_angle < max_angle and \
 		not _previously_enabled_hint and \
-		_player.is_on_floor():
+		_player.is_on_floor() and \
+		_player.aggro_enemy_counter == 0:
 			can_sit_at_checkpoint = true
 			_checkpoint_system.enable_hint()
 			_previously_enabled_hint = true
