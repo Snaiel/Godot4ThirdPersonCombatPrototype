@@ -6,7 +6,7 @@ extends RotationComponent
 @export var movement_component: MovementComponent
 @export var blackboard: Blackboard
 @export var agent: NavigationAgent3D
-
+@export var speed: float
 var npc: Enemy
 
 
@@ -53,14 +53,14 @@ func _physics_process(delta: float) -> void:
 		else:
 			rotation_weight = 0.1
 
-		entity.rotation.y = lerp_angle(entity.rotation.y, target_look, rotation_weight)
+		entity.rotation.y = lerp_angle(entity.rotation.y, target_look, rotation_weight * speed)
 
 		# change move direction so it orbits the locked on target
 		# (not a perfect orbit, needs tuning but not unplayable)
 		if move_direction.length() > 0.2:
 			move_direction = move_direction.rotated(
 				Vector3.UP,
-				target_look + sign(move_direction.x) * 0.02
+				entity.rotation.y + sign(move_direction.x) * 0.02
 			).normalized()
 		
 	elif _input_direction.length() > 0.2:
@@ -78,7 +78,7 @@ func _physics_process(delta: float) -> void:
 		)
 		
 		target_look = atan2(-looking_direction.x, -looking_direction.z)
-		entity.rotation.y = lerp_angle(entity.rotation.y, target_look, 0.1)
+		entity.rotation.y = lerp_angle(entity.rotation.y, target_look, 0.1 * speed)
 		
 		move_direction = Vector3.ZERO
 		
