@@ -6,9 +6,8 @@ extends RotationComponent
 @export var movement_component: MovementComponent
 @export var blackboard: Blackboard
 @export var agent: NavigationAgent3D
-@export var speed: float
 var npc: Enemy
-
+var speed: float = 1 # mainly for testing purporse
 
 func _ready() -> void:
 	npc = entity as Enemy

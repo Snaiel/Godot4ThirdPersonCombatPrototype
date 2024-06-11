@@ -52,6 +52,9 @@ func set_backstab_victim(victim: BackstabComponent, dist: float) -> void:
 	
 	if not victim.health_component.is_alive():
 		return
+		
+	if victim.notice_component.current_state is NoticeComponentAggroState:
+		return
 	
 	if victim == backstab_victim:
 		return
