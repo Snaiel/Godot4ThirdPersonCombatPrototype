@@ -248,6 +248,8 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 		
 		_instability_component.process_block()
 		
+		_notice_component.transition_to_aggro()
+		
 		_instability_component.enabled = false
 		_health_component.enabled = false
 		
@@ -272,6 +274,8 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 		
 		_character.parry_animations.parry()
 		_block_component.anim.play("parried")
+		
+		_notice_component.transition_to_aggro()
 		
 		_instability_component.process_parry()
 		
