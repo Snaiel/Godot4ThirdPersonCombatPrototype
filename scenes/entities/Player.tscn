@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://dujukbu10vbmm"]
+[gd_scene load_steps=43 format=3 uid="uid://dujukbu10vbmm"]
 
 [ext_resource type="Script" path="res://scripts/entities/player.gd" id="1_lgfyt"]
 [ext_resource type="Script" path="res://scripts/player/player_state_machine.gd" id="2_4ql4h"]
@@ -22,6 +22,7 @@
 [ext_resource type="Script" path="res://scripts/player/player_dizzy_state/player_dizzy_finisher_from_damage_state.gd" id="18_hlp8w"]
 [ext_resource type="Script" path="res://scripts/player/player_parried_by_enemy_state.gd" id="19_24iu4"]
 [ext_resource type="Script" path="res://scripts/player/player_parried_enemy_hit_state.gd" id="20_1olui"]
+[ext_resource type="Script" path="res://scripts/player/player_instability_stun.gd" id="21_3l62o"]
 [ext_resource type="Script" path="res://scripts/player/player_hit_by_enemy_state.gd" id="21_x55ju"]
 [ext_resource type="PackedScene" uid="uid://bgb0pw8dklo4j" path="res://scenes/components/PlayerRotationComponent.tscn" id="22_23hj7"]
 [ext_resource type="Script" path="res://scripts/player/player_drink_state.gd" id="22_47iaw"]
@@ -294,6 +295,14 @@ player = NodePath("../..")
 script = ExtResource("24_adwl8")
 player = NodePath("../..")
 
+[node name="InstabilityStun" type="Node" parent="StateMachine" node_paths=PackedStringArray("attack_state", "block_state", "parry_state", "sfx", "player")]
+script = ExtResource("21_3l62o")
+attack_state = NodePath("../Attack")
+block_state = NodePath("../Block")
+parry_state = NodePath("../Parry")
+sfx = NodePath("../../CharacterModel/AudioManager/Stun")
+player = NodePath("../..")
+
 [node name="Collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 shape = SubResource("CapsuleShape3D_lnhvg")
@@ -328,7 +337,8 @@ groups = Array[String](["enemy"])
 hitbox = NodePath("../HitboxComponent")
 weapon = NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Sword")
 receive_weapon_parried = false
-max_instability = 200.0
+reduction_pause_length = 5.0
+reduction_rate = 5.0
 
 [node name="HealthComponent" parent="." instance=ExtResource("26_ypb3h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)

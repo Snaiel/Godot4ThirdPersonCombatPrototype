@@ -77,10 +77,6 @@ func process_player():
 		player.rotation_component.rotate_towards_target = true
 	else:
 		player.rotation_component.rotate_towards_target = false
-	
-	if _can_reduce_instability:
-		player.instability_component.instability -= reduce_instability_rate
-
 
 func exit():
 	player.block_component.blocking = false
