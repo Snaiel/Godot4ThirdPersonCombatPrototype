@@ -36,10 +36,11 @@ func enter():
 	player.character.sitting_animations.sit_down()
 	player.set_root_motion(true)
 	player.hitbox_component.enabled = false
-	player.lock_on_target = checkpoint_system.current_checkpoint.lock_on_component
+	player.rotation_component.target = checkpoint_system.current_checkpoint
 	
-	player.set_rotation_target_to_lock_on_target()
 	player.rotation_component.rotate_towards_target = true
+	Globals.lock_on_system.reset_target()
+	
 	
 	checkpoint_system.disable_hint()
 	checkpoint_system.save_current_checkpoint()
@@ -69,7 +70,7 @@ func exit():
 	user_interface.checkpoint_interface.visible = false
 	
 	player.rotation_component.rotate_towards_target = false
-	player.lock_on_target = null
+	player.rotation_component.target = null
 	
 
 

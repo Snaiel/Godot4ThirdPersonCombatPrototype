@@ -13,7 +13,6 @@ var _can_set_current_checkpoint: bool
 var _previously_enabled_hint: bool
 
 @onready var respawn_point: Node3D = $RespawnPoint
-@onready var lock_on_component: LockOnComponent = $LockOnComponent
 
 @onready var _area: Area3D = $Area3D
 @onready var _recovery_particles: GPUParticles3D = $RecoveryParticles
