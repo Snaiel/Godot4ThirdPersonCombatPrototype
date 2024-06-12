@@ -25,7 +25,8 @@ func _ready():
 		func():
 			get_tree().create_timer(0.1).timeout.connect(
 				func():
-					parent_state.change_state(self)
+					if not (parent_state.current_state is PlayerDeathState):
+						parent_state.change_state(self)
 			)
 	)
 	
