@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://k32oq3ivgjxf"]
+[gd_scene load_steps=21 format=3 uid="uid://k32oq3ivgjxf"]
 
 [ext_resource type="Texture2D" uid="uid://ceqnrmp0444y5" path="res://assets/location-check-svgrepo-com.svg" id="1_duys1"]
 [ext_resource type="Script" path="res://scripts/utilities/checkpoint.gd" id="1_oer0l"]
 [ext_resource type="AudioStream" uid="uid://c6ljxehpyx37p" path="res://audio/recover.wav" id="3_l5o21"]
+[ext_resource type="PackedScene" uid="uid://ia1adrmqd0lf" path="res://scenes/components/LockOnComponent.tscn" id="4_bco3y"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_2fhdd"]
 radius = 0.1
@@ -170,3 +171,8 @@ collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_84yr2")
+
+[node name="LockOnComponent" parent="." node_paths=PackedStringArray("component_owner", "bone_attachment", "health_component") instance=ExtResource("4_bco3y")]
+component_owner = NodePath("..")
+bone_attachment = NodePath("..")
+health_component = NodePath("")

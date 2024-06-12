@@ -33,23 +33,22 @@ func _ready():
 func enter():
 	_exiting = false
 	
-	player.rotation_component.can_rotate = false
 	player.character.sitting_animations.sit_down()
 	player.set_root_motion(true)
 	player.hitbox_component.enabled = false
+	player.lock_on_target = checkpoint_system.current_checkpoint.lock_on_component
+	
+	player.set_rotation_target_to_lock_on_target()
+	player.rotation_component.rotate_towards_target = true
 	
 	checkpoint_system.disable_hint()
 	checkpoint_system.save_current_checkpoint()
 	
 	user_interface.hud.enabled = false
-	
-	camera_controller.enabled = false
-	lock_on_system.enabled = false
 
 
 func process_player():
 	pass
-	
 
 func process_movement_animations() -> void:
 	player.character.movement_animations.move(
@@ -69,8 +68,9 @@ func exit():
 	user_interface.hud.enabled = true
 	user_interface.checkpoint_interface.visible = false
 	
-	camera_controller.enabled = true
-	lock_on_system.enabled = true
+	player.rotation_component.rotate_towards_target = false
+	player.lock_on_target = null
+	
 
 
 func _stand_up() -> void:
