@@ -31,3 +31,4 @@ func process_player():
 
 func exit():
 	player.head_rotation_component.enabled = true
+	player.health_charge_component.interupt()
