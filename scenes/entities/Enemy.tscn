@@ -165,6 +165,7 @@ blood_scene = ExtResource("7_fiewg")
 [node name="InstabilityComponent" parent="." node_paths=PackedStringArray("hitbox", "weapon") instance=ExtResource("13_vs44y")]
 hitbox = NodePath("../HitboxComponent")
 weapon = NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Sword")
+max_instability = 100.0
 
 [node name="BackstabComponent" parent="." node_paths=PackedStringArray("entity", "lock_on_component", "health_component", "notice_component", "puncture_sound") instance=ExtResource("14_u1sji")]
 entity = NodePath("..")

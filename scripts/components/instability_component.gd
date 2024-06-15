@@ -13,7 +13,7 @@ signal full_instability
 @export var receive_weapon_parried: bool = true
 
 @export_category("Instability")
-@export var max_instability: float = 100.0
+@export var max_instability: float = 50.0
 @export var instability: float = 0.0:
 	set(value):
 		instability = clamp(value, 0.0, max_instability)
@@ -21,14 +21,12 @@ signal full_instability
 @export_category("Instability Reduction")
 @export var can_reduce_instability: bool = true
 @export var reduction_pause_length: float = 2.0
-@export var reduction_rate: float = 0.2
+@export var reduction_rate: float = 1
 
 var full_instability_from_parry: bool = false
 
 var _instability_reduction_pause_timer: Timer
 var _reduce_instability: bool = false
-
-
 
 
 func _ready():
@@ -56,7 +54,7 @@ func _ready():
 
 func _physics_process(_delta):
 	if _reduce_instability and can_reduce_instability:
-		instability -= reduction_rate
+		instability -= reduction_rate * _delta
 
 
 func come_out_of_full_instability(multiplier: float) -> void:
