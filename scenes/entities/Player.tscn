@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://dujukbu10vbmm"]
+[gd_scene load_steps=44 format=3 uid="uid://dujukbu10vbmm"]
 
 [ext_resource type="Script" path="res://scripts/entities/player.gd" id="1_lgfyt"]
 [ext_resource type="Script" path="res://scripts/player/player_state_machine.gd" id="2_4ql4h"]
@@ -16,9 +16,11 @@
 [ext_resource type="Script" path="res://scripts/player/player_block_state.gd" id="9_t1v34"]
 [ext_resource type="PackedScene" uid="uid://b616qwvblkmpo" path="res://scenes/components/BlockComponent.tscn" id="10_hjlwj"]
 [ext_resource type="Script" path="res://scripts/player/player_parry_state.gd" id="10_xd0pu"]
-[ext_resource type="Script" path="res://scripts/player/player_backstab_state.gd" id="11_i0t64"]
 [ext_resource type="Script" path="res://scripts/player/player_dizzy_state/player_dizzy_finisher_from_parry_state.gd" id="12_ull0x"]
+[ext_resource type="Script" path="res://scripts/player/player_backstab_state/player_backstab_attack_state.gd" id="16_nyfh7"]
+[ext_resource type="Script" path="res://scripts/player/player_backstab_state/player_backstab_state.gd" id="16_sn4wl"]
 [ext_resource type="Script" path="res://scripts/player/player_dizzy_state/player_dizzy_finisher_state.gd" id="16_vyrl8"]
+[ext_resource type="Script" path="res://scripts/player/player_backstab_state/player_backstab_prepare_state.gd" id="17_5scrx"]
 [ext_resource type="Script" path="res://scripts/player/player_dizzy_state/player_dizzy_finisher_from_damage_state.gd" id="18_hlp8w"]
 [ext_resource type="Script" path="res://scripts/player/player_parried_by_enemy_state.gd" id="19_24iu4"]
 [ext_resource type="Script" path="res://scripts/player/player_parried_enemy_hit_state.gd" id="20_1olui"]
@@ -246,14 +248,25 @@ dizzy_finisher_state = NodePath("../DizzyFinisher")
 sfx = NodePath("../../CharacterModel/AudioManager/Parry")
 player = NodePath("../..")
 
-[node name="Backstab" type="Node" parent="StateMachine" node_paths=PackedStringArray("dodge_state", "jump_state", "attack_state", "block_state", "parry_state", "player")]
-script = ExtResource("11_i0t64")
-dodge_state = NodePath("../Dodge")
-jump_state = NodePath("../Jump")
-attack_state = NodePath("../Attack")
-block_state = NodePath("../Block")
-parry_state = NodePath("../Parry")
+[node name="Backstab" type="Node" parent="StateMachine" node_paths=PackedStringArray("prepare_state", "attack_state", "player")]
+script = ExtResource("16_sn4wl")
+prepare_state = NodePath("Prepare")
+attack_state = NodePath("Attack")
 player = NodePath("../..")
+
+[node name="Prepare" type="Node" parent="StateMachine/Backstab" node_paths=PackedStringArray("dodge_state", "jump_state", "attack_state", "block_state", "parry_state", "backstab_attack_state", "player")]
+script = ExtResource("17_5scrx")
+dodge_state = NodePath("../../Dodge")
+jump_state = NodePath("../../Jump")
+attack_state = NodePath("../../Attack")
+block_state = NodePath("../../Block")
+parry_state = NodePath("../../Parry")
+backstab_attack_state = NodePath("../Attack")
+player = NodePath("../../..")
+
+[node name="Attack" type="Node" parent="StateMachine/Backstab" node_paths=PackedStringArray("player")]
+script = ExtResource("16_nyfh7")
+player = NodePath("../../..")
 
 [node name="DizzyFinisher" type="Node" parent="StateMachine" node_paths=PackedStringArray("from_parry", "from_damage", "player")]
 script = ExtResource("16_vyrl8")

@@ -20,10 +20,7 @@ func enter():
 	
 	player.movement_component.can_move = false
 	
-	if parent_state.previous_state is PlayerBackstabState or \
-	Globals.backstab_system.backstab_victim != null:
-		player.attack_component.thrust()
-	elif parent_state.previous_state is PlayerBlockState:
+	if parent_state.previous_state is PlayerBlockState:
 		player.attack_component.attack(false)
 	else:
 		player.attack_component.attack()
@@ -57,6 +54,7 @@ func process_player():
 
 func exit():
 	player.movement_component.can_move = true
+	player.attack_component.interrupt_attack()
 
 
 func check_for_dizzy_finisher() -> bool:

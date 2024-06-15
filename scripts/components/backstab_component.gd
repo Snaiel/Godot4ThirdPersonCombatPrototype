@@ -7,6 +7,7 @@ extends Node3D
 @export var entity: CharacterBody3D
 @export var lock_on_component: LockOnComponent
 @export var health_component: HealthComponent
+@export var notice_component: NoticeComponent
 @export var puncture_sound: AudioStreamPlayer3D
 
 var _dist_to_player: float = 0.0
