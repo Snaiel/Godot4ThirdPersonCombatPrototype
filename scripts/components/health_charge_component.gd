@@ -55,7 +55,10 @@ func _ready():
 			finished_drinking.emit()
 			_show_light = false
 	)
-
+	character.drink_animations.interupted.connect(
+		func():
+			_show_light = false
+	)
 
 func _physics_process(_delta):
 	if _show_light:
@@ -77,6 +80,8 @@ func _physics_process(_delta):
 func consume_health_charge() -> void:
 	character.drink_animations.drink()
 
+func interupt() -> void:
+	character.drink_animations.interupt_drink()
 
 func reset_charges() -> void:
 	current_charges = max_charges
