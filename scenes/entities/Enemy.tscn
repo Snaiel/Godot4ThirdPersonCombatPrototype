@@ -166,10 +166,11 @@ blood_scene = ExtResource("7_fiewg")
 hitbox = NodePath("../HitboxComponent")
 weapon = NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Sword")
 
-[node name="BackstabComponent" parent="." node_paths=PackedStringArray("entity", "lock_on_component", "health_component", "puncture_sound") instance=ExtResource("14_u1sji")]
+[node name="BackstabComponent" parent="." node_paths=PackedStringArray("entity", "lock_on_component", "health_component", "notice_component", "puncture_sound") instance=ExtResource("14_u1sji")]
 entity = NodePath("..")
 lock_on_component = NodePath("../LockOnComponent")
 health_component = NodePath("../HealthComponent")
+notice_component = NodePath("../NoticeComponent")
 puncture_sound = NodePath("../CharacterModel/AudioManager/ThrustPuncture")
 
 [node name="NoticeComponent" parent="." node_paths=PackedStringArray("entity", "head_attachment", "blackboard", "hud_info") instance=ExtResource("10_rxy6t")]
