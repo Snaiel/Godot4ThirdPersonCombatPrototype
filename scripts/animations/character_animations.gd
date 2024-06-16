@@ -2,16 +2,16 @@ class_name CharacterAnimations
 extends Node3D
 
 
-@onready var movement_animations: MovementAnimations = $MovementAnimations
-@onready var walk_or_jog_animations: WalkOrJogAnimations = $WalkOrJogAnimations
-@onready var jump_animations: JumpAnimations = $JumpAnimations
-@onready var attack_animations: AttackAnimations = $AttackAnimations
-@onready var block_animations: BlockAnimations = $BlockAnimations
-@onready var parry_animations: ParryAnimations = $ParryAnimations
-@onready var hit_and_death_animations: HitAndDeathAnimations = $HitAndDeathAnimations
-@onready var dizzy_animations: DizzyAnimations = $DizzyAnimations
-@onready var drink_animations: DrinkAnimations = $DrinkAnimations
-@onready var sitting_animations: SittingAnimations = $SittingAnimations
+@export var movement_animations: MovementAnimations
+@export var walk_or_jog_animations: WalkOrJogAnimations
+@export var jump_animations: JumpAnimations
+@export var attack_animations: AttackAnimations
+@export var block_animations: BlockAnimations
+@export var parry_animations: ParryAnimations
+@export var hit_and_death_animations: HitAndDeathAnimations
+@export var dizzy_animations: DizzyAnimations
+@export var drink_animations: DrinkAnimations
+@export var sitting_animations: SittingAnimations
 
 @onready var anim_tree: AnimationTree = $AnimationTree
 

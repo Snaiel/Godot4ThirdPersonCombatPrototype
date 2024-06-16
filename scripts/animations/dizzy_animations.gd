@@ -111,7 +111,7 @@ func receive_finished_standing_up() -> void:
 func play_death_kneeling() -> void:
 	_ignore_receive_kneel = true
 	
-	anim_tree["parameters/Dizzy Kneeling Trim/seek_request"] = 3.0
+	anim_tree["parameters/Dizzy Kneeling Trim/seek_request"] = 3.25
 	anim_tree["parameters/Dizzy Kneeling Speed/scale"] = 1.0
 	anim_tree["parameters/Dizzy From Damage/transition_request"] = "to_kneel"
 	

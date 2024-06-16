@@ -1,4 +1,4 @@
-[gd_scene load_steps=183 format=3 uid="uid://x0oxbha36o2h"]
+[gd_scene load_steps=187 format=3 uid="uid://x0oxbha36o2h"]
 
 [ext_resource type="PackedScene" uid="uid://q3eag1ltsb0y" path="res://models/ybot.blend" id="1_ml8ck"]
 [ext_resource type="Script" path="res://scripts/animations/character_animations.gd" id="2_l62dg"]
@@ -7,15 +7,19 @@
 [ext_resource type="Texture2D" uid="uid://b1oqk2tqilbw" path="res://assets/crosshair.svg" id="3_bk74o"]
 [ext_resource type="AnimationLibrary" uid="uid://bsfa8d3deue20" path="res://animations/interaction_animations_1/interaction_animations_1.blend" id="4_e2apr"]
 [ext_resource type="Script" path="res://scripts/utilities/crosshair.gd" id="4_htgrv"]
-[ext_resource type="Script" path="res://scripts/animations/movement_animations.gd" id="5_23e6x"]
 [ext_resource type="Script" path="res://scripts/animations/jump_animations.gd" id="6_olmu2"]
 [ext_resource type="Script" path="res://scripts/animations/attack_animations.gd" id="7_qu3gw"]
+[ext_resource type="Script" path="res://scripts/animations/movement/movement_animations.gd" id="8_aq5jl"]
 [ext_resource type="Script" path="res://scripts/animations/block_animations.gd" id="8_hx2j7"]
+[ext_resource type="Script" path="res://scripts/animations/movement/locked_on_movement_animations.gd" id="9_0vb2t"]
 [ext_resource type="Script" path="res://scripts/animations/parry_animations.gd" id="9_347er"]
 [ext_resource type="Script" path="res://scripts/animations/hit_and_death_animations.gd" id="9_qcdnc"]
+[ext_resource type="Script" path="res://scripts/animations/movement/locked_on_walk_animations.gd" id="10_1n8qx"]
+[ext_resource type="Script" path="res://scripts/animations/movement/free_movement_animations.gd" id="11_a5ffn"]
 [ext_resource type="Script" path="res://scripts/animations/dizzy_animations.gd" id="11_to7pc"]
+[ext_resource type="Script" path="res://scripts/animations/movement/walk_or_jog_animations.gd" id="12_8jamv"]
+[ext_resource type="Script" path="res://scripts/animations/movement/running_animations.gd" id="13_mvol6"]
 [ext_resource type="Script" path="res://scripts/animations/drink_animations.gd" id="13_yftnk"]
-[ext_resource type="Script" path="res://scripts/animations/walk_or_jog_animations.gd" id="14_s7odg"]
 [ext_resource type="Script" path="res://scripts/animations/sitting_animations.gd" id="15_rxgn1"]
 [ext_resource type="AudioStream" uid="uid://bd1ks0felifw2" path="res://audio/footsteps/footstep00.wav" id="16_abtj0"]
 [ext_resource type="AudioStream" uid="uid://cavo4qpxknfh2" path="res://audio/footsteps/footstep01.wav" id="17_kbmfv"]
@@ -754,11 +758,11 @@ animation = &"movement_animations_1/Falling Idle"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_met48"]
 animation = &"movement_animations_1/Idle Inactive"
 
-[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_2veyp"]
-
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_4ihs2"]
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_vxaje"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_2veyp"]
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_uqlxb"]
 
@@ -818,9 +822,14 @@ animation = &"combat_animations_1/Kneel Idle"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_baww8"]
 animation = &"movement_animations_1/Idle Active"
 
-[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_sq418"]
-
-[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_1bqjp"]
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_0mwvr"]
+xfade_time = 0.3
+input_0/name = "locked_on"
+input_0/auto_advance = false
+input_0/reset = true
+input_1/name = "not_locked_on"
+input_1/auto_advance = false
+input_1/reset = true
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dotnv"]
 animation = &"movement_animations_1/Walk-Backwards"
@@ -875,8 +884,9 @@ blend_point_5/node = SubResource("AnimationNodeBlendTree_6madj")
 blend_point_5/pos = Vector2(1, 0)
 sync = true
 
-[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_seau3"]
-sync = true
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_1bqjp"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_sq418"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f1g3g"]
 animation = &"combat_animations_1/Blocking"
@@ -934,6 +944,9 @@ input_1/name = "not_locked_on"
 input_1/auto_advance = false
 input_1/reset = true
 
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_seau3"]
+sync = true
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ngpt6"]
 animation = &"interaction_animations_1/Standing Up"
 
@@ -957,17 +970,8 @@ animation = &"interaction_animations_1/Sitting Idle"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g8521"]
 animation = &"movement_animations_1/Walk-Forwards"
 
-[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_0mwvr"]
-xfade_time = 0.3
-input_0/name = "locked_on"
-input_0/auto_advance = false
-input_0/reset = true
-input_1/name = "not_locked_on"
-input_1/auto_advance = false
-input_1/reset = true
-
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_pvyc3"]
-graph_offset = Vector2(6308.83, 1451.82)
+graph_offset = Vector2(4602.57, 1128.83)
 nodes/Attack/node = SubResource("AnimationNodeTransition_gr1qy")
 nodes/Attack/position = Vector2(860, 1160)
 "nodes/Attack Forward Thrust/node" = SubResource("AnimationNodeBlendTree_ws83a")
@@ -1049,17 +1053,17 @@ nodes/Drinking/position = Vector2(4160, 840)
 "nodes/Fall Animation/node" = SubResource("AnimationNodeAnimation_pia0b")
 "nodes/Fall Animation/position" = Vector2(-300, 760)
 "nodes/Free Idle/node" = SubResource("AnimationNodeAnimation_met48")
-"nodes/Free Idle/position" = Vector2(-2220, 320)
-"nodes/Free Jog Or Walk/node" = SubResource("AnimationNodeBlend2_2veyp")
-"nodes/Free Jog Or Walk/position" = Vector2(-2060, 540)
+"nodes/Free Idle/position" = Vector2(-2208, 320)
 "nodes/Free Jog Speed/node" = SubResource("AnimationNodeTimeScale_4ihs2")
-"nodes/Free Jog Speed/position" = Vector2(-2320, 500)
+"nodes/Free Jog Speed/position" = Vector2(-2304, 640)
 "nodes/Free Movement/node" = SubResource("AnimationNodeBlend2_vxaje")
 "nodes/Free Movement/position" = Vector2(-1740, 380)
+"nodes/Free Walk Or Jog/node" = SubResource("AnimationNodeBlend2_2veyp")
+"nodes/Free Walk Or Jog/position" = Vector2(-2064, 528)
 "nodes/Free Walk Speed/node" = SubResource("AnimationNodeTimeScale_uqlxb")
-"nodes/Free Walk Speed/position" = Vector2(-2320, 660)
+"nodes/Free Walk Speed/position" = Vector2(-2320, 496)
 "nodes/Jog Forward/node" = SubResource("AnimationNodeAnimation_s6br3")
-"nodes/Jog Forward/position" = Vector2(-2720, 500)
+"nodes/Jog Forward/position" = Vector2(-2704, 640)
 "nodes/Jump 1/node" = SubResource("AnimationNodeBlendTree_qb1it")
 "nodes/Jump 1/position" = Vector2(-440, 440)
 "nodes/Jump 2/node" = SubResource("AnimationNodeBlendTree_6g7ih")
@@ -1078,16 +1082,16 @@ nodes/Drinking/position = Vector2(4160, 840)
 "nodes/Kneeling Idle Animation/position" = Vector2(7300, 2000)
 "nodes/Kneeling Idle Speed/node" = SubResource("AnimationNodeTimeScale_02gek")
 "nodes/Kneeling Idle Speed/position" = Vector2(7680, 2000)
-"nodes/Lock On Idle/node" = SubResource("AnimationNodeAnimation_baww8")
-"nodes/Lock On Idle/position" = Vector2(-2220, -160)
-"nodes/Lock On Movement/node" = SubResource("AnimationNodeBlend2_sq418")
-"nodes/Lock On Movement/position" = Vector2(-1782.12, -133.327)
-"nodes/Lock On Walk/node" = SubResource("AnimationNodeBlendSpace2D_pudql")
-"nodes/Lock On Walk/position" = Vector2(-2340, 20)
-"nodes/Lock On Walk Speed/node" = SubResource("AnimationNodeTimeScale_1bqjp")
-"nodes/Lock On Walk Speed/position" = Vector2(-2060, 20)
-nodes/Movement/node = SubResource("AnimationNodeBlend2_seau3")
-nodes/Movement/position = Vector2(-640, 180)
+"nodes/Locked On Idle/node" = SubResource("AnimationNodeAnimation_baww8")
+"nodes/Locked On Idle/position" = Vector2(-2240, -160)
+"nodes/Locked On Movement/node" = SubResource("AnimationNodeTransition_0mwvr")
+"nodes/Locked On Movement/position" = Vector2(-1223.12, 6.67313)
+"nodes/Locked On Walk/node" = SubResource("AnimationNodeBlend2_sq418")
+"nodes/Locked On Walk/position" = Vector2(-1782.12, -133.327)
+"nodes/Locked On Walk Direction/node" = SubResource("AnimationNodeBlendSpace2D_pudql")
+"nodes/Locked On Walk Direction/position" = Vector2(-2368, 16)
+"nodes/Locked On Walk Speed/node" = SubResource("AnimationNodeTimeScale_1bqjp")
+"nodes/Locked On Walk Speed/position" = Vector2(-2096, 16)
 nodes/Parry/node = SubResource("AnimationNodeBlend2_o5xyw")
 nodes/Parry/position = Vector2(3000, 740)
 "nodes/Parry Animation/node" = SubResource("AnimationNodeAnimation_f1g3g")
@@ -1098,10 +1102,12 @@ nodes/Parry/position = Vector2(3000, 740)
 "nodes/Parry Trim/position" = Vector2(2600, 940)
 "nodes/Run Forwards/node" = SubResource("AnimationNodeAnimation_316ac")
 "nodes/Run Forwards/position" = Vector2(-1380, 740)
-"nodes/Running Lock On/node" = SubResource("AnimationNodeTransition_yy6jj")
-"nodes/Running Lock On/position" = Vector2(-940, 460)
+nodes/Running/node = SubResource("AnimationNodeBlend2_seau3")
+nodes/Running/position = Vector2(-640, 180)
 "nodes/Running Lock On Look Direction/node" = SubResource("AnimationNodeBlendSpace2D_q7vgs")
 "nodes/Running Lock On Look Direction/position" = Vector2(-1380, 460)
+"nodes/Running Locked On/node" = SubResource("AnimationNodeTransition_yy6jj")
+"nodes/Running Locked On/position" = Vector2(-940, 460)
 "nodes/Sit to Stand Animation/node" = SubResource("AnimationNodeAnimation_ngpt6")
 "nodes/Sit to Stand Animation/position" = Vector2(4180, 1480)
 "nodes/Sit to Stand Speed/node" = SubResource("AnimationNodeTimeScale_51bq6")
@@ -1121,11 +1127,9 @@ nodes/Sitting/position = Vector2(5480, 1060)
 "nodes/Vertical Movement/node" = SubResource("AnimationNodeBlend2_ox7cf")
 "nodes/Vertical Movement/position" = Vector2(580, 360)
 "nodes/Walk Forward/node" = SubResource("AnimationNodeAnimation_g8521")
-"nodes/Walk Forward/position" = Vector2(-2740, 660)
-"nodes/Walking Lock On/node" = SubResource("AnimationNodeTransition_0mwvr")
-"nodes/Walking Lock On/position" = Vector2(-1223.12, 6.67313)
+"nodes/Walk Forward/position" = Vector2(-2736, 496)
 nodes/output/position = Vector2(10760, 1380)
-node_connections = [&"output", 0, &"Death", &"Attack", 0, &"Attack Inward Slash", &"Attack", 1, &"Attack Inward Slash Copy", &"Attack", 2, &"Attack Outward Slash", &"Attack", 3, &"Attack Outward Slash Copy", &"Attack", 4, &"Attack Forward Thrust", &"Attack", 5, &"Attack Quick Slash", &"Attacking", 0, &"Vertical Movement", &"Attacking", 1, &"Attack", &"Blocking", 0, &"Attacking", &"Blocking", 1, &"Blocking Speed", &"Blocking Speed", 0, &"Blocking Trim", &"Blocking Trim", 0, &"Blocking Animation", &"Death", 0, &"Dizzy", &"Death", 1, &"Death Which One", &"Death 1 Speed", 0, &"Death 1 Trim", &"Death 1 Trim", 0, &"Death Animation", &"Death 2 Speed", 0, &"Death 2 Trim", &"Death 2 Trim", 0, &"Death Backstab Animation", &"Death Which One", 0, &"Death 1 Speed", &"Death Which One", 1, &"Death 2 Speed", &"Dizzy", 0, &"Dizzy Finisher", &"Dizzy", 1, &"Dizzy Which One", &"Dizzy Finisher", 0, &"Sitting", &"Dizzy Finisher", 1, &"Dizzy Finisher Which One", &"Dizzy Finisher From Damage Speed", 0, &"Dizzy Finisher From Damage Trim", &"Dizzy Finisher From Damage Trim", 0, &"Dizzy Finisher From Damage Animation", &"Dizzy Finisher From Parry Speed", 0, &"Dizzy Finisher From Parry Trim", &"Dizzy Finisher From Parry Trim", 0, &"Dizzy Finisher From Parry Animation", &"Dizzy Finisher Which One", 0, &"Dizzy Finisher From Parry Speed", &"Dizzy Finisher Which One", 1, &"Dizzy Finisher From Damage Speed", &"Dizzy From Damage", 0, &"Dizzy Kneeling Speed", &"Dizzy From Damage", 1, &"Kneeling Idle Speed", &"Dizzy From Damage", 2, &"Kneel to Stand Speed", &"Dizzy Kneeling Speed", 0, &"Dizzy Kneeling Trim", &"Dizzy Kneeling Trim", 0, &"Dizzy Kneeling Animation", &"Dizzy Which One", 0, &"Dizzy Idle Animation", &"Dizzy Which One", 1, &"Dizzy From Damage", &"Drinking", 0, &"Parry", &"Drinking", 1, &"Drinking Speed", &"Drinking Speed", 0, &"Drinking Trim", &"Drinking Trim", 0, &"Drinking Animation", &"Free Jog Or Walk", 0, &"Free Jog Speed", &"Free Jog Or Walk", 1, &"Free Walk Speed", &"Free Jog Speed", 0, &"Jog Forward", &"Free Movement", 0, &"Free Idle", &"Free Movement", 1, &"Free Jog Or Walk", &"Free Walk Speed", 0, &"Walk Forward", &"Jump Handler", 0, &"Jump 1", &"Jump Handler", 1, &"Jump 2", &"Jump and Fall Blend", 0, &"Jump Handler", &"Jump and Fall Blend", 1, &"Fall Animation", &"Kneel to Stand Speed", 0, &"Kneel to Stand Trim", &"Kneel to Stand Trim", 0, &"Kneel to Stand Animation", &"Kneeling Idle Speed", 0, &"Kneeling Idle Animation", &"Lock On Movement", 0, &"Lock On Idle", &"Lock On Movement", 1, &"Lock On Walk Speed", &"Lock On Walk Speed", 0, &"Lock On Walk", &"Movement", 0, &"Walking Lock On", &"Movement", 1, &"Running Lock On", &"Parry", 0, &"Blocking", &"Parry", 1, &"Parry Speed", &"Parry Speed", 0, &"Parry Trim", &"Parry Trim", 0, &"Parry Animation", &"Running Lock On", 0, &"Running Lock On Look Direction", &"Running Lock On", 1, &"Run Forwards", &"Sit to Stand Speed", 0, &"Sit to Stand Trim", &"Sit to Stand Trim", 0, &"Sit to Stand Animation", &"Sitting", 0, &"Drinking", &"Sitting", 1, &"Sitting or Standing", &"Sitting Idle Speed", 0, &"Sitting Idle Trim", &"Sitting Idle Trim", 0, &"Sitting Idle Animation", &"Sitting or Standing", 0, &"Sitting Idle Speed", &"Sitting or Standing", 1, &"Sit to Stand Speed", &"Vertical Movement", 0, &"Movement", &"Vertical Movement", 1, &"Jump and Fall Blend", &"Walking Lock On", 0, &"Lock On Movement", &"Walking Lock On", 1, &"Free Movement"]
+node_connections = [&"output", 0, &"Death", &"Attack", 0, &"Attack Inward Slash", &"Attack", 1, &"Attack Inward Slash Copy", &"Attack", 2, &"Attack Outward Slash", &"Attack", 3, &"Attack Outward Slash Copy", &"Attack", 4, &"Attack Forward Thrust", &"Attack", 5, &"Attack Quick Slash", &"Attacking", 0, &"Vertical Movement", &"Attacking", 1, &"Attack", &"Blocking", 0, &"Attacking", &"Blocking", 1, &"Blocking Speed", &"Blocking Speed", 0, &"Blocking Trim", &"Blocking Trim", 0, &"Blocking Animation", &"Death", 0, &"Dizzy", &"Death", 1, &"Death Which One", &"Death 1 Speed", 0, &"Death 1 Trim", &"Death 1 Trim", 0, &"Death Animation", &"Death 2 Speed", 0, &"Death 2 Trim", &"Death 2 Trim", 0, &"Death Backstab Animation", &"Death Which One", 0, &"Death 1 Speed", &"Death Which One", 1, &"Death 2 Speed", &"Dizzy", 0, &"Dizzy Finisher", &"Dizzy", 1, &"Dizzy Which One", &"Dizzy Finisher", 0, &"Sitting", &"Dizzy Finisher", 1, &"Dizzy Finisher Which One", &"Dizzy Finisher From Damage Speed", 0, &"Dizzy Finisher From Damage Trim", &"Dizzy Finisher From Damage Trim", 0, &"Dizzy Finisher From Damage Animation", &"Dizzy Finisher From Parry Speed", 0, &"Dizzy Finisher From Parry Trim", &"Dizzy Finisher From Parry Trim", 0, &"Dizzy Finisher From Parry Animation", &"Dizzy Finisher Which One", 0, &"Dizzy Finisher From Parry Speed", &"Dizzy Finisher Which One", 1, &"Dizzy Finisher From Damage Speed", &"Dizzy From Damage", 0, &"Dizzy Kneeling Speed", &"Dizzy From Damage", 1, &"Kneeling Idle Speed", &"Dizzy From Damage", 2, &"Kneel to Stand Speed", &"Dizzy Kneeling Speed", 0, &"Dizzy Kneeling Trim", &"Dizzy Kneeling Trim", 0, &"Dizzy Kneeling Animation", &"Dizzy Which One", 0, &"Dizzy Idle Animation", &"Dizzy Which One", 1, &"Dizzy From Damage", &"Drinking", 0, &"Parry", &"Drinking", 1, &"Drinking Speed", &"Drinking Speed", 0, &"Drinking Trim", &"Drinking Trim", 0, &"Drinking Animation", &"Free Jog Speed", 0, &"Jog Forward", &"Free Movement", 0, &"Free Idle", &"Free Movement", 1, &"Free Walk Or Jog", &"Free Walk Or Jog", 0, &"Free Walk Speed", &"Free Walk Or Jog", 1, &"Free Jog Speed", &"Free Walk Speed", 0, &"Walk Forward", &"Jump Handler", 0, &"Jump 1", &"Jump Handler", 1, &"Jump 2", &"Jump and Fall Blend", 0, &"Jump Handler", &"Jump and Fall Blend", 1, &"Fall Animation", &"Kneel to Stand Speed", 0, &"Kneel to Stand Trim", &"Kneel to Stand Trim", 0, &"Kneel to Stand Animation", &"Kneeling Idle Speed", 0, &"Kneeling Idle Animation", &"Locked On Movement", 0, &"Locked On Walk", &"Locked On Movement", 1, &"Free Movement", &"Locked On Walk", 0, &"Locked On Idle", &"Locked On Walk", 1, &"Locked On Walk Speed", &"Locked On Walk Speed", 0, &"Locked On Walk Direction", &"Parry", 0, &"Blocking", &"Parry", 1, &"Parry Speed", &"Parry Speed", 0, &"Parry Trim", &"Parry Trim", 0, &"Parry Animation", &"Running", 0, &"Locked On Movement", &"Running", 1, &"Running Locked On", &"Running Locked On", 0, &"Running Lock On Look Direction", &"Running Locked On", 1, &"Run Forwards", &"Sit to Stand Speed", 0, &"Sit to Stand Trim", &"Sit to Stand Trim", 0, &"Sit to Stand Animation", &"Sitting", 0, &"Drinking", &"Sitting", 1, &"Sitting or Standing", &"Sitting Idle Speed", 0, &"Sitting Idle Trim", &"Sitting Idle Trim", 0, &"Sitting Idle Animation", &"Sitting or Standing", 0, &"Sitting Idle Speed", &"Sitting or Standing", 1, &"Sit to Stand Speed", &"Vertical Movement", 0, &"Running", &"Vertical Movement", 1, &"Jump and Fall Blend"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6fy3m"]
 streams_count = 3
@@ -1183,72 +1187,73 @@ streams_count = 1
 stream_0/stream = ExtResource("28_2e7ry")
 stream_0/weight = 1.0
 
-[node name="YBot" instance=ExtResource("1_ml8ck")]
+[node name="YBot" node_paths=PackedStringArray("movement_animations", "walk_or_jog_animations", "jump_animations", "attack_animations", "block_animations", "parry_animations", "hit_and_death_animations", "dizzy_animations", "drink_animations", "sitting_animations") instance=ExtResource("1_ml8ck")]
 script = ExtResource("2_l62dg")
+movement_animations = NodePath("Movement")
+walk_or_jog_animations = NodePath("Movement/LockedOnMovement/FreeMovement/FreeWalkOrJog")
+jump_animations = NodePath("JumpAnimations")
+attack_animations = NodePath("AttackAnimations")
+block_animations = NodePath("BlockAnimations")
+parry_animations = NodePath("ParryAnimations")
+hit_and_death_animations = NodePath("HitAndDeathAnimations")
+dizzy_animations = NodePath("DizzyAnimations")
+drink_animations = NodePath("DrinkAnimations")
+sitting_animations = NodePath("SittingAnimations")
 
 [node name="GeneralSkeleton" parent="Armature_004" index="0"]
-bones/1/position = Vector3(0, 0.997919, -9.7151e-08)
-bones/1/rotation = Quaternion(0, 3.6125e-14, -8.49572e-14, 1)
-bones/2/rotation = Quaternion(1.13584e-08, 1.51878e-12, 1.9824e-14, 1)
-bones/3/rotation = Quaternion(3.72529e-09, 6.82121e-13, 0, 1)
-bones/4/rotation = Quaternion(0, -2.27374e-13, 3.6664e-12, 1)
-bones/5/rotation = Quaternion(-2.32831e-10, -1.42109e-14, -3.6382e-12, 1)
-bones/8/rotation = Quaternion(-0.500032, -0.499968, -0.500031, 0.499968)
-bones/9/rotation = Quaternion(-1.35601e-06, 1, 1.90586e-05, 1.78814e-07)
-bones/10/rotation = Quaternion(0, -0.707107, 0, 0.707107)
-bones/11/rotation = Quaternion(2.10734e-08, 0.707107, -2.10734e-08, 0.707107)
-bones/12/rotation = Quaternion(-2.98023e-08, 2.98023e-08, 2.98023e-08, 1)
-bones/13/rotation = Quaternion(-0.214187, 0.673887, 0.214187, 0.673887)
+bones/1/position = Vector3(6.04682e-06, 0.928626, -9.00516e-08)
+bones/1/rotation = Quaternion(-0.0364564, -0.367114, -0.0133018, 0.929366)
+bones/2/rotation = Quaternion(0.0504308, 0.0402731, -0.00849581, 0.997879)
+bones/3/rotation = Quaternion(0.100698, 0.081046, -0.0184478, 0.991439)
+bones/4/rotation = Quaternion(0.100698, 0.081046, -0.0184478, 0.991439)
+bones/5/rotation = Quaternion(-0.0375602, -0.011032, 0.00219372, 0.999231)
+bones/6/rotation = Quaternion(-0.054458, 0.176927, -0.0130317, 0.98263)
+bones/8/rotation = Quaternion(0.524253, 0.460725, 0.542051, -0.468051)
+bones/9/rotation = Quaternion(0.0474451, 0.843246, -0.522597, 0.116526)
+bones/10/rotation = Quaternion(0.277458, -0.604294, 0.295283, 0.686043)
+bones/11/rotation = Quaternion(-0.104369, 0.789564, 0.125817, 0.591494)
+bones/13/rotation = Quaternion(-0.219211, 0.673395, 0.208745, 0.674472)
 bones/14/rotation = Quaternion(2.98023e-08, 4.47035e-08, 6.66134e-16, 1)
 bones/15/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 2.98023e-08, 1)
-bones/16/rotation = Quaternion(-2.98023e-08, 2.98023e-08, 2.98023e-08, 1)
-bones/17/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
+bones/17/rotation = Quaternion(0.142788, -0.00077261, -0.00694361, 0.989729)
 bones/18/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
 bones/19/rotation = Quaternion(-2.98023e-08, -5.96046e-08, -2.98023e-08, 1)
-bones/20/rotation = Quaternion(-2.98023e-08, 2.98023e-08, 2.98023e-08, 1)
-bones/21/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
+bones/21/rotation = Quaternion(0.189711, -0.00139368, 0.014238, 0.981736)
 bones/22/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
 bones/23/rotation = Quaternion(-1.49012e-08, 1.49012e-08, 1.49012e-08, 1)
-bones/24/rotation = Quaternion(-2.98023e-08, 2.98023e-08, 2.98023e-08, 1)
-bones/25/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
+bones/25/rotation = Quaternion(0.275544, 0.00175889, 0.0240698, 0.960985)
 bones/26/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
 bones/27/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
-bones/28/rotation = Quaternion(-2.74181e-06, 5.96046e-08, -0.000141144, 1)
-bones/29/rotation = Quaternion(6.19888e-06, 0, 0.000368327, 1)
-bones/30/rotation = Quaternion(-3.56138e-06, -2.98023e-08, -0.000229582, 1)
+bones/28/rotation = Quaternion(0.290917, -0.014055, -0.163943, 0.942493)
+bones/29/rotation = Quaternion(0.336146, 0.0112787, 0.0495706, 0.940437)
+bones/30/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
 bones/31/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
-bones/32/rotation = Quaternion(0.499969, -0.500032, -0.499969, -0.500031)
-bones/33/rotation = Quaternion(-4.17233e-07, 1, -2.00272e-05, -2.23517e-07)
-bones/34/rotation = Quaternion(0, 0.707107, -2.10734e-08, 0.707107)
-bones/35/rotation = Quaternion(-2.10734e-08, -0.707107, -2.10734e-08, 0.707107)
-bones/36/rotation = Quaternion(-2.98023e-08, -2.98023e-08, -2.98023e-08, 1)
-bones/37/rotation = Quaternion(-0.214187, -0.673887, -0.214187, 0.673887)
-bones/38/rotation = Quaternion(-1.49012e-08, 0, 0, 1)
+bones/32/rotation = Quaternion(0.489204, -0.484239, -0.589672, -0.422468)
+bones/33/rotation = Quaternion(0.186803, 0.845471, -0.490798, -0.0969608)
+bones/34/rotation = Quaternion(0.285857, 0.679323, -0.222608, 0.638162)
+bones/35/rotation = Quaternion(0.14699, -0.743609, 0.00398269, 0.652245)
+bones/37/rotation = Quaternion(-0.108474, -0.754011, -0.0908499, 0.641442)
 bones/39/rotation = Quaternion(5.96046e-08, 8.9407e-08, 2.98023e-08, 1)
-bones/40/rotation = Quaternion(-4.47035e-08, 0, -4.47035e-08, 1)
-bones/41/rotation = Quaternion(-4.47035e-08, 0, -4.47035e-08, 1)
+bones/41/rotation = Quaternion(0.147297, 0.000254452, 0.00977862, 0.989044)
 bones/42/rotation = Quaternion(-4.47035e-08, 0, -4.47035e-08, 1)
 bones/43/rotation = Quaternion(-4.47035e-08, 0, -4.47035e-08, 1)
-bones/44/rotation = Quaternion(-4.47035e-08, 0, -4.47035e-08, 1)
-bones/45/rotation = Quaternion(-4.47035e-08, 0, -4.47035e-08, 1)
+bones/45/rotation = Quaternion(0.263567, 0.00144613, -0.016844, 0.964493)
 bones/46/rotation = Quaternion(-4.47035e-08, 0, -4.47035e-08, 1)
 bones/47/rotation = Quaternion(-1.49012e-08, 4.47035e-08, -4.47035e-08, 1)
-bones/48/rotation = Quaternion(-4.47035e-08, 0, -4.47035e-08, 1)
-bones/49/rotation = Quaternion(-4.47035e-08, 0, -4.47035e-08, 1)
+bones/49/rotation = Quaternion(0.320425, -0.00242639, -0.0338017, 0.946668)
 bones/50/rotation = Quaternion(-4.47035e-08, 0, -4.47035e-08, 1)
 bones/51/rotation = Quaternion(-4.47035e-08, 0, -4.47035e-08, 1)
-bones/52/rotation = Quaternion(-4.47035e-08, 0, -4.47035e-08, 1)
-bones/53/rotation = Quaternion(2.08616e-07, -1.49012e-08, -1.05053e-05, 1)
-bones/54/rotation = Quaternion(-2.98023e-08, 8.9407e-08, 1.04755e-05, 1)
+bones/53/rotation = Quaternion(0.349285, -0.0122068, -0.0687267, 0.934413)
+bones/54/rotation = Quaternion(-4.47035e-08, 0, -4.47035e-08, 1)
 bones/55/rotation = Quaternion(-4.47035e-08, 0, -4.47035e-08, 1)
-bones/56/rotation = Quaternion(-8.24738e-09, -1.02951e-05, -1, 8.83958e-08)
-bones/57/rotation = Quaternion(1.62981e-09, 1, -1.97897e-05, -5.46133e-08)
-bones/58/rotation = Quaternion(-1.85216e-09, 0.707107, -0.707107, 6.37965e-09)
-bones/59/rotation = Quaternion(1.64636e-10, 1, 0, 1.811e-09)
-bones/61/rotation = Quaternion(3.62518e-12, 2.93825e-10, 1, -4.22005e-10)
-bones/62/rotation = Quaternion(0, 1, -9.31323e-10, 1.27329e-11)
-bones/63/rotation = Quaternion(1.69267e-09, 0.707107, -0.707107, 1.36339e-09)
-bones/64/rotation = Quaternion(-4.93908e-10, 1, 0, -4.77445e-09)
+bones/56/rotation = Quaternion(0.0770803, 0.225182, 0.965584, -0.104877)
+bones/57/rotation = Quaternion(0.0388392, 0.946694, -0.297267, -0.117877)
+bones/58/rotation = Quaternion(-0.0451625, 0.671766, -0.737692, 0.0500203)
+bones/59/rotation = Quaternion(0.027883, 0.999373, 0.0204614, -0.00757287)
+bones/61/rotation = Quaternion(-0.123633, 0.0317165, 0.983773, 0.126095)
+bones/62/rotation = Quaternion(0.0266145, 0.952748, -0.293244, -0.0746392)
+bones/63/rotation = Quaternion(0.0989926, 0.556111, -0.817814, -0.110098)
+bones/64/rotation = Quaternion(0.00306753, 0.99987, 0.0155852, -0.00295573)
 
 [node name="Alpha_Joints" parent="Armature_004/GeneralSkeleton" index="0"]
 extra_cull_margin = 1.0
@@ -1258,7 +1263,7 @@ extra_cull_margin = 1.0
 lod_bias = 0.7
 
 [node name="LockOnAttachment" type="BoneAttachment3D" parent="Armature_004/GeneralSkeleton" index="2"]
-transform = Transform3D(1, -7.20253e-12, 4.0193e-12, 7.20253e-12, 1, -3.01674e-08, -4.0193e-12, 3.01674e-08, 1, -2.25238e-05, 1.34721, -0.0427615)
+transform = Transform3D(0.942295, -0.128871, -0.308986, -0.0148774, 0.905912, -0.423205, 0.334453, 0.403381, 0.851719, 0.0188887, 1.27706, -0.00738538)
 bone_name = "UpperChest"
 bone_idx = 4
 
@@ -1274,7 +1279,7 @@ texture = ExtResource("3_bk74o")
 script = ExtResource("4_htgrv")
 
 [node name="HeadAttachment" type="BoneAttachment3D" parent="Armature_004/GeneralSkeleton" index="3"]
-transform = Transform3D(1, 7.38663e-14, 3.99088e-12, -7.38663e-14, 1, -2.97017e-08, -3.99088e-12, 2.97017e-08, 1, -4.44873e-05, 1.60075, -0.00340818)
+transform = Transform3D(0.997935, -0.0642367, -0.000251293, 0.0622928, 0.968676, -0.240387, 0.0156852, 0.239875, 0.970677, -0.0248102, 1.49531, 0.122191)
 bone_name = "Head"
 bone_idx = 6
 
@@ -1289,6 +1294,7 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
 tree_root = SubResource("AnimationNodeBlendTree_pvyc3")
 anim_player = NodePath("../AnimationPlayer")
+active = true
 root_motion_track = NodePath("%GeneralSkeleton:Root")
 parameters/Attack/current_state = "attack_1"
 parameters/Attack/transition_request = ""
@@ -1352,9 +1358,9 @@ parameters/Dizzy/blend_amount = 0.0
 parameters/Drinking/blend_amount = 0.0
 "parameters/Drinking Speed/scale" = 1.0
 "parameters/Drinking Trim/seek_request" = -1.0
-"parameters/Free Jog Or Walk/blend_amount" = 0
 "parameters/Free Jog Speed/scale" = 1.0
 "parameters/Free Movement/blend_amount" = 0
+"parameters/Free Walk Or Jog/blend_amount" = 0
 "parameters/Free Walk Speed/scale" = 1.0
 "parameters/Jump 1/Jump Speed/scale" = 1.0
 "parameters/Jump 1/Jump Trim/seek_request" = -1.0
@@ -1365,19 +1371,22 @@ parameters/Drinking/blend_amount = 0.0
 "parameters/Kneel to Stand Speed/scale" = 1.0
 "parameters/Kneel to Stand Trim/seek_request" = -1.0
 "parameters/Kneeling Idle Speed/scale" = 0.2
-"parameters/Lock On Movement/blend_amount" = 0.0
-"parameters/Lock On Walk/blend_position" = Vector2(0, -1)
-"parameters/Lock On Walk/4/TimeScale/scale" = 1.0
-"parameters/Lock On Walk/5/TimeScale/scale" = 1.0
-"parameters/Lock On Walk Speed/scale" = 1.0
-parameters/Movement/blend_amount = 0.0
+"parameters/Locked On Movement/current_state" = "locked_on"
+"parameters/Locked On Movement/transition_request" = ""
+"parameters/Locked On Movement/current_index" = 0
+"parameters/Locked On Walk/blend_amount" = 0
+"parameters/Locked On Walk Direction/blend_position" = Vector2(0, 0)
+"parameters/Locked On Walk Direction/4/TimeScale/scale" = 1.0
+"parameters/Locked On Walk Direction/5/TimeScale/scale" = 1.0
+"parameters/Locked On Walk Speed/scale" = 1.0
 parameters/Parry/blend_amount = 0
 "parameters/Parry Speed/scale" = 1.0
 "parameters/Parry Trim/seek_request" = -1.0
-"parameters/Running Lock On/current_state" = "locked_on"
-"parameters/Running Lock On/transition_request" = ""
-"parameters/Running Lock On/current_index" = 0
+parameters/Running/blend_amount = 0.0
 "parameters/Running Lock On Look Direction/blend_position" = Vector2(0, 0)
+"parameters/Running Locked On/current_state" = "locked_on"
+"parameters/Running Locked On/transition_request" = ""
+"parameters/Running Locked On/current_index" = 0
 "parameters/Sit to Stand Speed/scale" = 1.0
 "parameters/Sit to Stand Trim/seek_request" = -1.0
 parameters/Sitting/blend_amount = 0
@@ -1385,62 +1394,82 @@ parameters/Sitting/blend_amount = 0
 "parameters/Sitting Idle Trim/seek_request" = -1.0
 "parameters/Sitting or Standing/blend_amount" = 0
 "parameters/Vertical Movement/blend_amount" = 0.0
-"parameters/Walking Lock On/current_state" = "locked_on"
-"parameters/Walking Lock On/transition_request" = ""
-"parameters/Walking Lock On/current_index" = 0
 
-[node name="MovementAnimations" type="Node" parent="." index="3" node_paths=PackedStringArray("audio_footsteps", "parent_animations", "anim_tree")]
-script = ExtResource("5_23e6x")
+[node name="Movement" type="Node" parent="." index="3" node_paths=PackedStringArray("movement_animations", "audio_footsteps", "parent_animations", "anim_tree")]
+script = ExtResource("8_aq5jl")
+movement_animations = [NodePath("LockedOnMovement"), NodePath("LockedOnMovement/LockedOnWalk"), NodePath("LockedOnMovement/FreeMovement"), NodePath("LockedOnMovement/FreeMovement/FreeWalkOrJog"), NodePath("Running")]
 audio_footsteps = NodePath("../AudioManager/Footsteps")
 parent_animations = NodePath("..")
 anim_tree = NodePath("../AnimationTree")
 
-[node name="WalkOrJogAnimations" type="Node" parent="." index="4" node_paths=PackedStringArray("parent_animations", "anim_tree")]
-script = ExtResource("14_s7odg")
-parent_animations = NodePath("..")
-anim_tree = NodePath("../AnimationTree")
+[node name="LockedOnMovement" type="Node" parent="Movement" index="0" node_paths=PackedStringArray("parent_animations", "anim_tree")]
+script = ExtResource("9_0vb2t")
+parent_animations = NodePath("../..")
+anim_tree = NodePath("../../AnimationTree")
 
-[node name="JumpAnimations" type="Node" parent="." index="5" node_paths=PackedStringArray("parent_animations", "anim_tree")]
+[node name="LockedOnWalk" type="Node" parent="Movement/LockedOnMovement" index="0" node_paths=PackedStringArray("audio_footsteps", "parent_animations", "anim_tree")]
+script = ExtResource("10_1n8qx")
+audio_footsteps = NodePath("../../../AudioManager/Footsteps")
+parent_animations = NodePath("../../..")
+anim_tree = NodePath("../../../AnimationTree")
+
+[node name="FreeMovement" type="Node" parent="Movement/LockedOnMovement" index="1" node_paths=PackedStringArray("audio_footsteps", "parent_animations", "anim_tree")]
+script = ExtResource("11_a5ffn")
+audio_footsteps = NodePath("../../../AudioManager/Footsteps")
+parent_animations = NodePath("../../..")
+anim_tree = NodePath("../../../AnimationTree")
+
+[node name="FreeWalkOrJog" type="Node" parent="Movement/LockedOnMovement/FreeMovement" index="0" node_paths=PackedStringArray("parent_animations", "anim_tree")]
+script = ExtResource("12_8jamv")
+parent_animations = NodePath("../../../..")
+anim_tree = NodePath("../../../../AnimationTree")
+
+[node name="Running" type="Node" parent="Movement" index="1" node_paths=PackedStringArray("parent_animations", "anim_tree")]
+script = ExtResource("13_mvol6")
+parent_animations = NodePath("../..")
+anim_tree = NodePath("../../AnimationTree")
+
+[node name="JumpAnimations" type="Node" parent="." index="4" node_paths=PackedStringArray("parent_animations", "anim_tree")]
 script = ExtResource("6_olmu2")
 parent_animations = NodePath("..")
 anim_tree = NodePath("../AnimationTree")
 
-[node name="AttackAnimations" type="Node" parent="." index="6" node_paths=PackedStringArray("parent_animations", "anim_tree")]
+[node name="AttackAnimations" type="Node" parent="." index="5" node_paths=PackedStringArray("parent_animations", "anim_tree")]
 script = ExtResource("7_qu3gw")
 parent_animations = NodePath("..")
 anim_tree = NodePath("../AnimationTree")
 
-[node name="BlockAnimations" type="Node" parent="." index="7" node_paths=PackedStringArray("parent_animations", "anim_tree")]
+[node name="BlockAnimations" type="Node" parent="." index="6" node_paths=PackedStringArray("parent_animations", "anim_tree")]
 script = ExtResource("8_hx2j7")
 parent_animations = NodePath("..")
 anim_tree = NodePath("../AnimationTree")
 
-[node name="ParryAnimations" type="Node" parent="." index="8" node_paths=PackedStringArray("parent_animations", "anim_tree")]
+[node name="ParryAnimations" type="Node" parent="." index="7" node_paths=PackedStringArray("parent_animations", "anim_tree")]
 script = ExtResource("9_347er")
 parent_animations = NodePath("..")
 anim_tree = NodePath("../AnimationTree")
 
-[node name="HitAndDeathAnimations" type="Node" parent="." index="9" node_paths=PackedStringArray("parent_animations", "anim_tree")]
+[node name="HitAndDeathAnimations" type="Node" parent="." index="8" node_paths=PackedStringArray("parent_animations", "anim_tree")]
 script = ExtResource("9_qcdnc")
 parent_animations = NodePath("..")
 anim_tree = NodePath("../AnimationTree")
 
-[node name="DizzyAnimations" type="Node" parent="." index="10" node_paths=PackedStringArray("parent_animations", "anim_tree")]
+[node name="DizzyAnimations" type="Node" parent="." index="9" node_paths=PackedStringArray("parent_animations", "anim_tree")]
 script = ExtResource("11_to7pc")
 parent_animations = NodePath("..")
 anim_tree = NodePath("../AnimationTree")
 
-[node name="DrinkAnimations" type="Node" parent="." index="11" node_paths=PackedStringArray("parent_animations", "anim_tree")]
+[node name="DrinkAnimations" type="Node" parent="." index="10" node_paths=PackedStringArray("parent_animations", "anim_tree")]
 script = ExtResource("13_yftnk")
 parent_animations = NodePath("..")
 anim_tree = NodePath("../AnimationTree")
 
-[node name="SittingAnimations" type="Node" parent="." index="12" node_paths=PackedStringArray("parent_animations", "anim_tree")]
+[node name="SittingAnimations" type="Node" parent="." index="11" node_paths=PackedStringArray("parent_animations", "anim_tree")]
 script = ExtResource("15_rxgn1")
 parent_animations = NodePath("..")
 anim_tree = NodePath("../AnimationTree")
 
-[node name="AudioManager" type="Node3D" parent="." index="13"]
+[node name="AudioManager" type="Node3D" parent="." index="12"]
 
 [node name="Footsteps" type="AudioStreamPlayer3D" parent="AudioManager" index="0"]
 stream = SubResource("AudioStreamRandomizer_6fy3m")

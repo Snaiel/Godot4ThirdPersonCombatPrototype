@@ -36,8 +36,8 @@ func _ready():
 		_on_instability_component_full_instability
 	)
 	
-	health_component.zero_health.connect(
-		func():
+	entity.death.connect(
+		func(_enemy):
 			dizzy_system.dizzy_victim = null
 	)
 	

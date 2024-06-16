@@ -8,8 +8,6 @@ extends PlayerStateMachine
 
 @export var sfx: AudioStreamPlayer3D
 
-var _incoming_weapon: Sword
-
 var _can_block_or_parry: bool = false
 
 var _timer: Timer
