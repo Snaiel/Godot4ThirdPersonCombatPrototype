@@ -5,6 +5,8 @@ extends Node3D
 @export var enabled: bool = true
 @export var origin_point: Node3D
 @export var meshes: Array[MeshInstance3D]
+@export var margin: float = 0.7
+@export var min_opacity: float = 0.0
 
 @onready var cam = Globals.camera_controller.cam
 
@@ -18,7 +20,7 @@ func _process(_delta):
 		cam.global_position
 	)
 	
-	var opacity: float = clamp(dist - 0.7, 0.0, 1.0)
+	var opacity: float = clamp(dist - margin, min_opacity, 1.0)
 	
 	for mesh in meshes:
 		mesh.set_instance_shader_parameter("opacity", opacity)

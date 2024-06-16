@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://dujukbu10vbmm"]
+[gd_scene load_steps=45 format=3 uid="uid://dujukbu10vbmm"]
 
 [ext_resource type="Script" path="res://scripts/entities/player.gd" id="1_lgfyt"]
 [ext_resource type="Script" path="res://scripts/player/player_state_machine.gd" id="2_4ql4h"]
@@ -313,7 +313,7 @@ script = ExtResource("21_3l62o")
 attack_state = NodePath("../Attack")
 block_state = NodePath("../Block")
 parry_state = NodePath("../Parry")
-sfx = NodePath("../../CharacterModel/AudioManager/Stun")
+sfx = NodePath("../../CharacterModel/AudioManager/Dizzy")
 player = NodePath("../..")
 
 [node name="Collider" type="CollisionShape3D" parent="."]
