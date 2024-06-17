@@ -38,6 +38,11 @@ func _ready():
 			if _health_delay_timer.is_stopped():
 				_health_delay_timer.start()
 	)
+	_player.health_component.health_increased.connect(
+		func():
+			_delay_bar.scale.x = _get_health_bar_scale()
+			print(_get_health_bar_scale())
+	)
 	
 	_health_delay_timer = Timer.new()
 	_health_delay_timer.wait_time = _health_delay_pause
@@ -51,14 +56,7 @@ func _ready():
 
 
 func _process(_delta):
-	
-	_health = _player.health_component.health
-	
-	_health_bar.scale.x = lerp(
-		0.0, 
-		1.0,
-		_health / _default_health
-	)
+	_health_bar.scale.x = _get_health_bar_scale()
 	
 	if _play_delay:
 		_delay_bar.scale.x = move_toward(
@@ -69,3 +67,11 @@ func _process(_delta):
 	
 	if is_equal_approx(_delay_bar.scale.x, _health_bar.scale.x):
 		_play_delay = false
+
+func _get_health_bar_scale() -> float:
+	_health = _player.health_component.health
+	return lerp(
+		0.0, 
+		1.0,
+		_health / _default_health
+	)
