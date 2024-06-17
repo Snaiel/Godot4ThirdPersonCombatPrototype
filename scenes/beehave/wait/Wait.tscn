@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bdnrgdpa3fa5c"]
 
-[ext_resource type="Script" path="res://scripts/beehave/wait.gd" id="1_1icoq"]
+[ext_resource type="Script" path="res://scripts/beehave/wait/wait.gd" id="1_1icoq"]
 
 [node name="Wait" type="Node"]
 script = ExtResource("1_1icoq")

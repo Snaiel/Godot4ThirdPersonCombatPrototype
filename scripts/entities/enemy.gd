@@ -7,6 +7,7 @@ signal death(enemy)
 
 @export var target: Node3D
 @export var debug: bool = false
+@export var root_motion: bool = false
 
 @export var wellbeing_stats: WellbeingStats
 
@@ -55,6 +56,8 @@ var _dead: bool = false
 func _ready() -> void:
 	target = player
 	agent.target_position = target.global_position
+	
+	set_root_motion(root_motion)
 	
 	Globals.void_death_system.fallen_into_the_void.connect(
 		func(body: Node3D):
