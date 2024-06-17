@@ -10,7 +10,7 @@ var _finished: bool = false
 func _ready():
 	super._ready()
 	
-	player.character.dizzy_animations.dizzy_finisher_finished.connect(
+	player.character.dizzy_finisher_animations.dizzy_finisher_finished.connect(
 		func():
 			if parent_state.current_state != self:
 				return
@@ -24,7 +24,7 @@ func enter():
 	player.movement_component.can_move = false
 	player.weapon.can_damage = false
 	player.attack_component.disable_attack_interrupted()
-	player.character.dizzy_animations.play_from_damage_finisher()
+	player.character.dizzy_finisher_animations.play_from_damage_finisher()
 	dizzy_system.victim_being_killed = true
 
 

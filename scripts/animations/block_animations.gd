@@ -2,12 +2,7 @@ class_name BlockAnimations
 extends BaseAnimations
 
 
-var _temp_speed: float
 var _previous_value: bool
-
-
-func _ready() -> void:
-	_temp_speed = anim_tree["parameters/Free Walk Speed/scale"]
 
 
 func process_block(blocking: bool) -> void:

@@ -9,7 +9,8 @@ extends Node3D
 @export var block_animations: BlockAnimations
 @export var parry_animations: ParryAnimations
 @export var hit_and_death_animations: HitAndDeathAnimations
-@export var dizzy_animations: DizzyAnimations
+@export var dizzy_victim_animations: DizzyVictimAnimations
+@export var dizzy_finisher_animations: DizzyFinisherAnimations
 @export var drink_animations: DrinkAnimations
 @export var sitting_animations: SittingAnimations
 

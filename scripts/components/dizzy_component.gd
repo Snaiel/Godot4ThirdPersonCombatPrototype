@@ -93,12 +93,12 @@ func _on_instability_component_full_instability():
 	
 	if instability_component.full_instability_from_parry:
 		entity.set_root_motion(true)
-		character.dizzy_animations.dizzy_from_parry()
+		character.dizzy_victim_animations.dizzy_from_parry()
 		_dizzy_timer.start(dizzy_from_parry_length)
 		blackboard.set_value("rotate_towards_target", true)
 		_from_parry_knockback()
 	else:
-		character.dizzy_animations.dizzy_from_damage()
+		character.dizzy_victim_animations.dizzy_from_damage()
 		_dizzy_timer.start(dizzy_from_damage_length)
 		blackboard.set_value("rotate_towards_target", false)
 		entity.look_at(player.global_position)
@@ -139,7 +139,7 @@ func _come_out_of_dizzy() -> void:
 		return
 	
 	dizzy_system.dizzy_victim = null
-	character.dizzy_animations.disable_blend_dizzy()
+	character.dizzy_victim_animations.disable_blend_dizzy()
 	instability_component.come_out_of_full_instability(0.7)
 	
 	if instability_component.full_instability_from_parry:

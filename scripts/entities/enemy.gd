@@ -333,7 +333,7 @@ func _on_health_component_zero_health() -> void:
 		character.hit_and_death_animations.death_2()
 	elif Globals.dizzy_system.dizzy_victim == dizzy_component and \
 	not dizzy_component.instability_component.full_instability_from_parry:
-		character.dizzy_animations.play_death_kneeling()
+		character.dizzy_victim_animations.play_death_kneeling()
 	else:
 		character.hit_and_death_animations.death_1()
 	
