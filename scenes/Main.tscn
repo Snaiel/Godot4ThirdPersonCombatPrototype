@@ -1,8 +1,8 @@
-[gd_scene load_steps=44 format=3 uid="uid://cfip2n0nvr8n3"]
+[gd_scene load_steps=45 format=3 uid="uid://cfip2n0nvr8n3"]
 
 [ext_resource type="Script" path="res://scripts/utilities/level.gd" id="1_du374"]
 [ext_resource type="Material" uid="uid://qml1qedtuxl6" path="res://materials/grid.tres" id="2_5uhq1"]
-[ext_resource type="PackedScene" uid="uid://cv8knl5vavfyy" path="res://scenes/entities/Enemy.tscn" id="2_oia4d"]
+[ext_resource type="PackedScene" uid="uid://cv8knl5vavfyy" path="res://scenes/entities/Enemies/Swordsman.tscn" id="2_oia4d"]
 [ext_resource type="PackedScene" uid="uid://cy5wvw01aul4m" path="res://scenes/utilities/CameraController.tscn" id="2_s2v7n"]
 [ext_resource type="PackedScene" uid="uid://dujukbu10vbmm" path="res://scenes/entities/Player.tscn" id="2_thr8q"]
 [ext_resource type="PackedScene" uid="uid://b075d85nmca7s" path="res://scenes/utilities/UserInterface.tscn" id="3_hlhuw"]
@@ -21,6 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://bcu6lpb4pl0c5" path="res://audio/music/Hyper Ultra-Racing.ogg" id="15_ug2pn"]
 [ext_resource type="Script" path="res://scripts/utilities/void_death_system.gd" id="19_q8ont"]
 [ext_resource type="PackedScene" uid="uid://biuqyf53m0ive" path="res://scenes/utilities/VoidArea.tscn" id="20_pa5m1"]
+[ext_resource type="PackedScene" uid="uid://tnef4myjatff" path="res://scenes/entities/Enemies/Zombie.tscn" id="22_jrcpq"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bb732"]
 radius = 10.0
@@ -1360,6 +1361,9 @@ script = ExtResource("19_q8ont")
 
 [node name="VoidArea2" parent="VoidDeathSystem" instance=ExtResource("20_pa5m1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84, 5, -23)
+
+[node name="Zombie" parent="." instance=ExtResource("22_jrcpq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.49948, 11, -3.98021)
 
 [connection signal="area_entered" from="LockOnSystem" to="LockOnSystem" method="_on_area_entered"]
 [connection signal="area_exited" from="LockOnSystem" to="LockOnSystem" method="_on_area_exited"]

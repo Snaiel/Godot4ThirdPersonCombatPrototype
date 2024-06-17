@@ -1,0 +1,676 @@
+[gd_scene load_steps=60 format=3 uid="uid://tnef4myjatff"]
+
+[ext_resource type="Script" path="res://scripts/entities/enemy.gd" id="1_htlua"]
+[ext_resource type="Script" path="res://scripts/utilities/wellbeing_stats.gd" id="2_uvk8f"]
+[ext_resource type="PackedScene" uid="uid://x0oxbha36o2h" path="res://scenes/entities/YBot.tscn" id="3_0q0yy"]
+[ext_resource type="Material" uid="uid://bgbid1wqcdi4p" path="res://materials/joints_shader.tres" id="4_14n7o"]
+[ext_resource type="Shader" path="res://shaders/fade.gdshader" id="5_ckjjh"]
+[ext_resource type="Script" path="res://scripts/entities/sword.gd" id="8_ex1w4"]
+[ext_resource type="PackedScene" uid="uid://bg5d27eyqwsfd" path="res://scenes/components/ParryComponent.tscn" id="21_e624s"]
+[ext_resource type="PackedScene" uid="uid://bjbif8ix55ckv" path="res://scenes/components/EnemyRotationComponent.tscn" id="31_onl5a"]
+[ext_resource type="PackedScene" uid="uid://7qijntg00gi5" path="res://scenes/components/HeadRotationComponent.tscn" id="32_loni5"]
+[ext_resource type="PackedScene" uid="uid://k5h6f26p6mgf" path="res://scenes/components/MovementComponent.tscn" id="33_0xgdh"]
+[ext_resource type="PackedScene" uid="uid://c8qyy3wuwlus6" path="res://scenes/components/RootMotionComponent.tscn" id="34_d7haf"]
+[ext_resource type="PackedScene" uid="uid://ia1adrmqd0lf" path="res://scenes/components/LockOnComponent.tscn" id="35_ia0kh"]
+[ext_resource type="PackedScene" uid="uid://cko2lhqdu4n44" path="res://scenes/components/HitboxComponent.tscn" id="36_65ie4"]
+[ext_resource type="PackedScene" uid="uid://hnb8xok6xlar" path="res://scenes/components/DizzyComponent.tscn" id="37_s073p"]
+[ext_resource type="PackedScene" uid="uid://cq3fjofav3npm" path="res://scenes/components/HealthComponent.tscn" id="38_xiefn"]
+[ext_resource type="PackedScene" uid="uid://bsbt5fjir608i" path="res://scenes/particles/blood.tscn" id="39_ypxt1"]
+[ext_resource type="PackedScene" uid="uid://bp3sx3yshrcdb" path="res://scenes/components/InstabilityComponent.tscn" id="40_df3sf"]
+[ext_resource type="PackedScene" uid="uid://207cuag4hgs7" path="res://scenes/components/BackstabComponent.tscn" id="41_py63a"]
+[ext_resource type="PackedScene" uid="uid://da664p5ek0cgr" path="res://scenes/components/NoticeComponent.tscn" id="42_rpbq4"]
+[ext_resource type="PackedScene" uid="uid://1elkqdybiiu1" path="res://scenes/components/AttackComponent.tscn" id="43_7m6jm"]
+[ext_resource type="PackedScene" uid="uid://b616qwvblkmpo" path="res://scenes/components/BlockComponent.tscn" id="44_pesi7"]
+[ext_resource type="PackedScene" uid="uid://mmj6qxe250co" path="res://scenes/components/FadeComponent.tscn" id="45_v2dxv"]
+[ext_resource type="PackedScene" uid="uid://cce0kkdsdv4rt" path="res://scenes/components/WellbeingComponent.tscn" id="46_yms17"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="47_uj8fg"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="48_teisf"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="49_ahbd6"]
+[ext_resource type="PackedScene" uid="uid://q4ffp4qtwtt4" path="res://scenes/beehave/compare_actions/IsDeadTrue.tscn" id="50_dv3bx"]
+[ext_resource type="PackedScene" uid="uid://5653b3wcf25p" path="res://scenes/beehave/inputs/InputNone.tscn" id="51_1s065"]
+[ext_resource type="PackedScene" uid="uid://dka5as0tjf4rh" path="res://scenes/beehave/set_actions/SetRotateTowardsTargetFalse.tscn" id="52_v6pln"]
+[ext_resource type="PackedScene" uid="uid://8q4shgtn2rdm" path="res://scenes/beehave/set_actions/SetCanAttackTrue.tscn" id="53_ga5bo"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_compare.gd" id="54_3f5dv"]
+[ext_resource type="PackedScene" uid="uid://34ehm7k44ywn" path="res://scenes/beehave/set_actions/SetInterruptTimersFalse.tscn" id="55_3wsw5"]
+[ext_resource type="Script" path="res://scripts/beehave/execute_expression.gd" id="56_xoiis"]
+[ext_resource type="PackedScene" uid="uid://cryed6dtlo286" path="res://scenes/beehave/set_actions/SetRotateTowardsTargetTrue.tscn" id="57_fg5hp"]
+[ext_resource type="PackedScene" uid="uid://b2vrwljrc7cpp" path="res://scenes/beehave/set_actions/SetLockedOnTrue.tscn" id="58_jql3h"]
+[ext_resource type="PackedScene" uid="uid://chv25a2oggqaw" path="res://scenes/beehave/wait/WaitBlock.tscn" id="59_13yvc"]
+[ext_resource type="PackedScene" uid="uid://cw3sck872787g" path="res://scenes/beehave/set_actions/SetGotHitFalse.tscn" id="60_a8uru"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_reactive.gd" id="61_jj6mj"]
+[ext_resource type="PackedScene" uid="uid://csbpq6cbn8rvn" path="res://scenes/beehave/compare_actions/IsStateSuspicious.tscn" id="62_0ronv"]
+[ext_resource type="PackedScene" uid="uid://c4jualprb4d24" path="res://scenes/beehave/compare_actions/IsStateGettingSuspicious.tscn" id="63_sknwe"]
+[ext_resource type="PackedScene" uid="uid://d1p0cwvn1hlcs" path="res://scenes/beehave/trees/CheckSuspicion.tscn" id="64_dngb3"]
+[ext_resource type="PackedScene" uid="uid://buwmvh65dccg5" path="res://scenes/beehave/compare_actions/IsStateAggro.tscn" id="65_g083q"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_random.gd" id="66_nwowx"]
+[ext_resource type="PackedScene" uid="uid://cfuiyhthukrn0" path="res://scenes/beehave/attacks/SingleRandomAttack.tscn" id="67_s3cyl"]
+[ext_resource type="PackedScene" uid="uid://b4vbjom07vuli" path="res://scenes/beehave/set_actions/SetWalkSpeed.tscn" id="68_ky614"]
+[ext_resource type="PackedScene" uid="uid://rnknofcns6ch" path="res://scenes/beehave/inputs/InputLeft.tscn" id="69_rkifo"]
+[ext_resource type="PackedScene" uid="uid://bpmbb56ftoyja" path="res://scenes/beehave/inputs/InputRight.tscn" id="70_7yh7s"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_set.gd" id="71_hlhqy"]
+[ext_resource type="Script" path="res://scripts/beehave/reset_wait.gd" id="72_1rnlu"]
+[ext_resource type="Script" path="res://scripts/beehave/wait.gd" id="73_0nwu3"]
+[ext_resource type="PackedScene" uid="uid://d1wjh32ysekoi" path="res://scenes/beehave/set_actions/SetRunSpeed.tscn" id="74_mmywf"]
+[ext_resource type="PackedScene" uid="uid://ppcsagqgu032" path="res://scenes/beehave/inputs/InputForwards.tscn" id="75_i1n32"]
+[ext_resource type="PackedScene" uid="uid://nc8fs0at3l7x" path="res://scenes/beehave/set_actions/SetLockedOnFalse.tscn" id="76_p2xse"]
+[ext_resource type="PackedScene" uid="uid://t7wqbcml070v" path="res://scenes/beehave/set_actions/SetLookedAroundFalse.tscn" id="77_ms7lv"]
+[ext_resource type="Script" path="res://addons/beehave/blackboard.gd" id="78_ktm1d"]
+
+[sub_resource type="Resource" id="Resource_6we7u"]
+script = ExtResource("2_uvk8f")
+max_health = 100.0
+initial_health = 100.0
+max_instability = 100.0
+initial_instability = 0.0
+can_reduce_instability = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dkjlv"]
+render_priority = 0
+shader = ExtResource("5_ckjjh")
+shader_parameter/albedo = Color(0, 0.686275, 0.117647, 1)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 1.0
+shader_parameter/normal_strength = 1.0
+shader_parameter/alpha_clip = 0.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_w5cek"]
+radius = 0.15
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lwy87"]
+radius = 0.3
+height = 1.8
+
+[node name="Zombie" type="CharacterBody3D" node_paths=PackedStringArray("parry_sfx", "block_sfx", "hit_sfx", "blackboard", "character", "rotation_component", "head_rotation_component", "movement_component", "root_motion_component", "lock_on_component", "hitbox_component", "health_component", "instability_component", "backstab_component", "dizzy_component", "notice_component", "attack_component", "block_component", "parry_component", "wellbeing_component", "agent", "skeleton", "sword") groups=["enemy"]]
+collision_layer = 8
+collision_mask = 11
+script = ExtResource("1_htlua")
+wellbeing_stats = SubResource("Resource_6we7u")
+parry_sfx = NodePath("CharacterModel/AudioManager/Parry")
+block_sfx = NodePath("CharacterModel/AudioManager/Block")
+hit_sfx = NodePath("CharacterModel/AudioManager/Hit")
+blackboard = NodePath("Blackboard")
+character = NodePath("CharacterModel")
+rotation_component = NodePath("Rotation/EnemyRotationComponent")
+head_rotation_component = NodePath("Rotation/HeadRotationComponent")
+movement_component = NodePath("Movement/MovementComponent")
+root_motion_component = NodePath("Movement/RootMotionComponent")
+lock_on_component = NodePath("Interface/LockOnComponent")
+hitbox_component = NodePath("HitboxComponent")
+health_component = NodePath("Wellbeing/HealthComponent")
+instability_component = NodePath("Wellbeing/InstabilityComponent")
+backstab_component = NodePath("Combat/BackstabComponent")
+dizzy_component = NodePath("Combat/DizzyComponent")
+notice_component = NodePath("Combat/NoticeComponent")
+attack_component = NodePath("Combat/AttackComponent")
+block_component = NodePath("Combat/BlockComponent")
+parry_component = NodePath("Combat/ParryComponent")
+wellbeing_component = NodePath("Wellbeing/WellbeingComponent")
+agent = NodePath("NavigationAgent3D")
+skeleton = NodePath("CharacterModel/Armature_004/GeneralSkeleton")
+sword = NodePath("CharacterModel/Armature_004/GeneralSkeleton/Fist")
+
+[node name="CharacterModel" parent="." instance=ExtResource("3_0q0yy")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="GeneralSkeleton" parent="CharacterModel/Armature_004" index="0"]
+bones/1/position = Vector3(6.04682e-06, 0.928626, -9.00516e-08)
+bones/1/rotation = Quaternion(0, 2.2904e-14, -6.7831e-14, 1)
+bones/2/rotation = Quaternion(2.11667e-10, -2.1808e-13, 2.94964e-16, 1)
+bones/3/rotation = Quaternion(3.72529e-09, -4.54747e-13, 2.84217e-14, 1)
+bones/4/rotation = Quaternion(2.77556e-17, -6.82121e-13, -3.63798e-12, 1)
+bones/5/rotation = Quaternion(2.32831e-10, 0, 3.63803e-12, 1)
+bones/8/rotation = Quaternion(-0.500032, -0.499969, -0.500032, 0.499968)
+bones/9/rotation = Quaternion(-1.3411e-06, 1, 1.91033e-05, 2.08616e-07)
+bones/10/rotation = Quaternion(-4.21468e-08, -0.707107, 0, 0.707107)
+bones/11/rotation = Quaternion(-7.10043e-09, 0.707107, -7.10043e-09, 0.707107)
+bones/13/rotation = Quaternion(-0.214187, 0.673887, 0.214187, 0.673887)
+bones/14/rotation = Quaternion(-4.47035e-08, 2.98023e-08, 4.44089e-16, 1)
+bones/15/rotation = Quaternion(0, -5.96046e-08, -2.98023e-08, 1)
+bones/18/rotation = Quaternion(0, -5.96046e-08, 0, 1)
+bones/19/rotation = Quaternion(2.98023e-08, 2.98023e-08, -2.98023e-08, 1)
+bones/21/rotation = Quaternion(2.98023e-08, -2.98023e-08, 2.98023e-08, 1)
+bones/22/rotation = Quaternion(2.98023e-08, -2.98023e-08, 2.98023e-08, 1)
+bones/23/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
+bones/25/rotation = Quaternion(-4.47035e-08, -4.47035e-08, 0, 1)
+bones/26/rotation = Quaternion(-1.49012e-08, -1.49012e-08, -1.49012e-08, 1)
+bones/27/rotation = Quaternion(0, -5.96046e-08, 0, 1)
+bones/28/rotation = Quaternion(-2.72691e-06, 2.98023e-08, -0.000141129, 1)
+bones/29/rotation = Quaternion(6.22869e-06, 1.04308e-07, 0.000368372, 1)
+bones/30/rotation = Quaternion(-3.57628e-06, 0, -0.000229612, 1)
+bones/31/rotation = Quaternion(1.49012e-08, -1.49012e-08, 0, 1)
+bones/32/rotation = Quaternion(0.499969, -0.500031, -0.499969, -0.500031)
+bones/33/rotation = Quaternion(-4.17233e-07, 1, -1.99974e-05, -2.83122e-07)
+bones/34/rotation = Quaternion(-4.21468e-08, 0.707107, 0, 0.707107)
+bones/35/rotation = Quaternion(-2.81893e-08, -0.707107, -1.39575e-08, 0.707107)
+bones/37/rotation = Quaternion(-0.214187, -0.673887, -0.214187, 0.673887)
+bones/38/rotation = Quaternion(-2.98023e-08, 1.49012e-08, 2.22045e-16, 1)
+bones/39/rotation = Quaternion(0, -8.9407e-08, 0, 1)
+bones/41/rotation = Quaternion(0, 5.96046e-08, 5.96046e-08, 1)
+bones/46/rotation = Quaternion(0, 5.96046e-08, 5.96046e-08, 1)
+bones/47/rotation = Quaternion(2.98023e-08, -1.49012e-08, 1.49012e-08, 1)
+bones/49/rotation = Quaternion(-1.49012e-08, 4.47035e-08, 5.96046e-08, 1)
+bones/50/rotation = Quaternion(-1.49012e-08, 1.49012e-08, -1.49012e-08, 1)
+bones/53/rotation = Quaternion(1.49012e-07, -8.9407e-08, -1.05202e-05, 1)
+bones/54/rotation = Quaternion(-2.98023e-08, 8.9407e-08, 1.05351e-05, 1)
+bones/55/rotation = Quaternion(2.98023e-08, -2.98023e-08, -2.98023e-08, 1)
+bones/56/rotation = Quaternion(-8.25414e-09, -1.02951e-05, -1, 8.79593e-08)
+bones/57/rotation = Quaternion(1.39698e-09, 1, -1.97939e-05, -5.46588e-08)
+bones/58/rotation = Quaternion(-1.20905e-09, 0.707107, -0.707107, 2.41295e-09)
+bones/59/rotation = Quaternion(8.23181e-10, 1, 5.96046e-08, -8.23181e-10)
+bones/61/rotation = Quaternion(-1.3356e-12, -6.52502e-10, 1, 2.1827e-11)
+bones/62/rotation = Quaternion(-2.32831e-10, 1, 1.39698e-09, -1.09139e-11)
+bones/63/rotation = Quaternion(1.60006e-09, 0.707107, -0.707107, -3.75576e-10)
+bones/64/rotation = Quaternion(-2.63418e-09, 1, 0, 0)
+
+[node name="Alpha_Joints" parent="CharacterModel/Armature_004/GeneralSkeleton" index="0"]
+surface_material_override/0 = ExtResource("4_14n7o")
+
+[node name="Alpha_Surface" parent="CharacterModel/Armature_004/GeneralSkeleton" index="1"]
+surface_material_override/0 = SubResource("ShaderMaterial_dkjlv")
+
+[node name="Fist" type="BoneAttachment3D" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity")]
+transform = Transform3D(7.54791e-07, -1, -8.41021e-05, 5.5829e-07, 8.41021e-05, -1, 1, 7.54744e-07, 5.58354e-07, -0.735536, 1.36636, -0.0720902)
+bone_name = "RightHand"
+bone_idx = 35
+script = ExtResource("8_ex1w4")
+_entity = NodePath("../../../..")
+
+[node name="Area" type="Area3D" parent="CharacterModel/Armature_004/GeneralSkeleton/Fist" groups=["weapon"]]
+transform = Transform3D(1, 0, 0, 0, 1, 4.70233e-13, 0, 4.70233e-13, 1, 0, 0, 0)
+collision_layer = 4
+collision_mask = 2
+
+[node name="Collider" type="CollisionShape3D" parent="CharacterModel/Armature_004/GeneralSkeleton/Fist/Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 4.70233e-13, 0, 4.70233e-13, 1, 0, 0.141502, 0)
+shape = SubResource("SphereShape3D_w5cek")
+
+[node name="LockOnAttachment" parent="CharacterModel/Armature_004/GeneralSkeleton" index="3"]
+transform = Transform3D(1, 7.35419e-12, -2.66409e-12, -7.35419e-12, 1, -7.87391e-09, 2.66409e-12, 7.87391e-09, 1, 0.00227089, 1.27792, -0.053138)
+
+[node name="Crosshair" parent="CharacterModel/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint" index="0" node_paths=PackedStringArray("backstab_component", "dizzy_component")]
+backstab_component = NodePath("../../../../../../Combat/BackstabComponent")
+dizzy_component = NodePath("../../../../../../Combat/DizzyComponent")
+
+[node name="HeadAttachment" parent="CharacterModel/Armature_004/GeneralSkeleton" index="4"]
+transform = Transform3D(1, 7.81293e-14, -2.66409e-12, -7.81293e-14, 1, -8.33958e-09, 2.66409e-12, 8.33958e-09, 1, 0.00224893, 1.53146, -0.0137847)
+
+[node name="AnimationTree" parent="CharacterModel" index="2"]
+active = false
+"parameters/Dizzy Finisher Which One/current_state" = ""
+"parameters/Dizzy Finisher Which One/current_index" = -1
+"parameters/Dizzy From Damage/current_state" = ""
+"parameters/Dizzy From Damage/current_index" = -1
+"parameters/Dizzy Which One/current_state" = ""
+"parameters/Dizzy Which One/current_index" = -1
+
+[node name="Collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_lwy87")
+
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("36_65ie4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+entity = NodePath("..")
+groups = Array[String](["player"])
+
+[node name="Rotation" type="Node3D" parent="."]
+
+[node name="EnemyRotationComponent" parent="Rotation" node_paths=PackedStringArray("movement_component", "blackboard", "agent", "entity") instance=ExtResource("31_onl5a")]
+movement_component = NodePath("../../Movement/MovementComponent")
+blackboard = NodePath("../../Blackboard")
+agent = NodePath("../../NavigationAgent3D")
+entity = NodePath("../..")
+
+[node name="HeadRotationComponent" parent="Rotation" node_paths=PackedStringArray("skeleton", "rotation_component") instance=ExtResource("32_loni5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, 0)
+skeleton = NodePath("../../CharacterModel/Armature_004/GeneralSkeleton")
+rotation_component = NodePath("../EnemyRotationComponent")
+
+[node name="Movement" type="Node3D" parent="."]
+
+[node name="MovementComponent" parent="Movement" node_paths=PackedStringArray("entity", "rotation_component") instance=ExtResource("33_0xgdh")]
+speed = 3.0
+entity = NodePath("../..")
+rotation_component = NodePath("../../Rotation/EnemyRotationComponent")
+
+[node name="RootMotionComponent" parent="Movement" node_paths=PackedStringArray("character", "entity", "rotation_component") instance=ExtResource("34_d7haf")]
+character = NodePath("../../CharacterModel")
+enabled = false
+entity = NodePath("../..")
+rotation_component = NodePath("../../Rotation/EnemyRotationComponent")
+
+[node name="Wellbeing" type="Node3D" parent="."]
+
+[node name="HealthComponent" parent="Wellbeing" instance=ExtResource("38_xiefn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
+blood_scene = ExtResource("39_ypxt1")
+
+[node name="InstabilityComponent" parent="Wellbeing" node_paths=PackedStringArray("hitbox", "weapon") instance=ExtResource("40_df3sf")]
+hitbox = NodePath("../../HitboxComponent")
+weapon = NodePath("../../CharacterModel/Armature_004/GeneralSkeleton/Fist")
+max_instability = 100.0
+
+[node name="WellbeingComponent" parent="Wellbeing" node_paths=PackedStringArray("lock_on_component", "backstab_component", "health_component", "instability_component", "notice_component", "hud_info") instance=ExtResource("46_yms17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+lock_on_component = NodePath("../../Interface/LockOnComponent")
+backstab_component = NodePath("../../Combat/BackstabComponent")
+health_component = NodePath("../HealthComponent")
+instability_component = NodePath("../InstabilityComponent")
+notice_component = NodePath("../../Combat/NoticeComponent")
+hud_info = NodePath("../../Interface/HUDInfoPos")
+
+[node name="Combat" type="Node3D" parent="."]
+
+[node name="DizzyComponent" parent="Combat" node_paths=PackedStringArray("entity", "lock_on_component", "health_component", "attack_component", "instability_component", "character", "blackboard", "dizzy_sfx", "thrust_puncture_sfx", "hit_sfx") instance=ExtResource("37_s073p")]
+entity = NodePath("../..")
+lock_on_component = NodePath("../../Interface/LockOnComponent")
+health_component = NodePath("../../Wellbeing/HealthComponent")
+attack_component = NodePath("../AttackComponent")
+instability_component = NodePath("../../Wellbeing/InstabilityComponent")
+character = NodePath("../../CharacterModel")
+blackboard = NodePath("../../Blackboard")
+dizzy_sfx = NodePath("../../CharacterModel/AudioManager/Dizzy")
+thrust_puncture_sfx = NodePath("../../CharacterModel/AudioManager/ThrustPuncture")
+hit_sfx = NodePath("../../CharacterModel/AudioManager/Hit")
+
+[node name="BackstabComponent" parent="Combat" node_paths=PackedStringArray("entity", "lock_on_component", "health_component", "notice_component", "puncture_sound") instance=ExtResource("41_py63a")]
+entity = NodePath("../..")
+lock_on_component = NodePath("../../Interface/LockOnComponent")
+health_component = NodePath("../../Wellbeing/HealthComponent")
+notice_component = NodePath("../NoticeComponent")
+puncture_sound = NodePath("../../CharacterModel/AudioManager/ThrustPuncture")
+
+[node name="NoticeComponent" parent="Combat" node_paths=PackedStringArray("entity", "head_attachment", "blackboard", "hud_info") instance=ExtResource("42_rpbq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+entity = NodePath("../..")
+head_attachment = NodePath("../../CharacterModel/Armature_004/GeneralSkeleton/HeadAttachment")
+blackboard = NodePath("../../Blackboard")
+hud_info = NodePath("../../Interface/HUDInfoPos")
+
+[node name="AttackComponent" parent="Combat" node_paths=PackedStringArray("_attack_animations", "_movement_component", "_weapon") instance=ExtResource("43_7m6jm")]
+_attack_animations = NodePath("../../CharacterModel/AttackAnimations")
+_movement_component = NodePath("../../Movement/MovementComponent")
+_weapon = NodePath("../../CharacterModel/Armature_004/GeneralSkeleton/Fist")
+
+[node name="BlockComponent" parent="Combat" node_paths=PackedStringArray("movement_component", "character") instance=ExtResource("44_pesi7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
+movement_component = NodePath("../../Movement/MovementComponent")
+character = NodePath("../../CharacterModel")
+
+[node name="ParryComponent" parent="Combat" node_paths=PackedStringArray("hitbox_component", "block_component") instance=ExtResource("21_e624s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+hitbox_component = NodePath("../../HitboxComponent")
+block_component = NodePath("../BlockComponent")
+parry_particles_colour = Color(0.439216, 0.0392157, 0.0392157, 1)
+
+[node name="Interface" type="Node3D" parent="."]
+
+[node name="LockOnComponent" parent="Interface" node_paths=PackedStringArray("component_owner", "bone_attachment", "health_component") instance=ExtResource("35_ia0kh")]
+component_owner = NodePath("../..")
+bone_attachment = NodePath("../../CharacterModel/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint")
+health_component = NodePath("../../Wellbeing/HealthComponent")
+
+[node name="HUDInfoPos" type="Node3D" parent="Interface"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9, 0)
+
+[node name="FadeComponent" parent="." node_paths=PackedStringArray("origin_point", "meshes") instance=ExtResource("45_v2dxv")]
+origin_point = NodePath("../CharacterModel/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint")
+meshes = [NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Alpha_Joints"), NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Alpha_Surface")]
+
+[node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard")]
+script = ExtResource("47_uj8fg")
+blackboard = NodePath("../Blackboard")
+
+[node name="SelectorComposite" type="Node" parent="BeehaveTree"]
+script = ExtResource("48_teisf")
+
+[node name="Dead" type="Node" parent="BeehaveTree/SelectorComposite"]
+script = ExtResource("49_ahbd6")
+
+[node name="IsDeadTrue" parent="BeehaveTree/SelectorComposite/Dead" instance=ExtResource("50_dv3bx")]
+
+[node name="StandStill" parent="BeehaveTree/SelectorComposite/Dead" instance=ExtResource("51_1s065")]
+
+[node name="SetRotateTowardsTargetFalse" parent="BeehaveTree/SelectorComposite/Dead" instance=ExtResource("52_v6pln")]
+
+[node name="SetCanAttackFalse" parent="BeehaveTree/SelectorComposite/Dead" instance=ExtResource("53_ga5bo")]
+value = "false"
+
+[node name="Dizzy" type="Node" parent="BeehaveTree/SelectorComposite"]
+script = ExtResource("49_ahbd6")
+
+[node name="IsDizzyTrue" type="Node" parent="BeehaveTree/SelectorComposite/Dizzy"]
+script = ExtResource("54_3f5dv")
+left_operand = "get_value(\"dizzy\")"
+right_operand = "true"
+
+[node name="InputNone" parent="BeehaveTree/SelectorComposite/Dizzy" instance=ExtResource("51_1s065")]
+
+[node name="GotHit" type="Node" parent="BeehaveTree/SelectorComposite"]
+script = ExtResource("49_ahbd6")
+
+[node name="IsGotHitTrue" type="Node" parent="BeehaveTree/SelectorComposite/GotHit"]
+script = ExtResource("54_3f5dv")
+left_operand = "get_value(\"got_hit\", false)"
+right_operand = "true"
+
+[node name="SetInterruptTimersFalse" parent="BeehaveTree/SelectorComposite/GotHit" instance=ExtResource("55_3wsw5")]
+
+[node name="LeafExecuteExpression" type="Node" parent="BeehaveTree/SelectorComposite/GotHit"]
+script = ExtResource("56_xoiis")
+expression_string = "print(\"ENEMY GOT HIT\")"
+
+[node name="SetRotateTowardsTargetTrue" parent="BeehaveTree/SelectorComposite/GotHit" instance=ExtResource("57_fg5hp")]
+
+[node name="SetLockedOnTrue" parent="BeehaveTree/SelectorComposite/GotHit" instance=ExtResource("58_jql3h")]
+
+[node name="InputNone" parent="BeehaveTree/SelectorComposite/GotHit" instance=ExtResource("51_1s065")]
+
+[node name="WaitBlock" parent="BeehaveTree/SelectorComposite/GotHit" instance=ExtResource("59_13yvc")]
+wait_id = 89884236
+wait_time = 0.8
+
+[node name="LeafExecuteExpression2" type="Node" parent="BeehaveTree/SelectorComposite/GotHit"]
+script = ExtResource("56_xoiis")
+expression_string = "print(\"WAIT DONE\")"
+
+[node name="SetGotHitFalse" parent="BeehaveTree/SelectorComposite/GotHit" instance=ExtResource("60_a8uru")]
+
+[node name="Suspicious" type="Node" parent="BeehaveTree/SelectorComposite"]
+script = ExtResource("49_ahbd6")
+
+[node name="SuspiciousOrGettingAggro" type="Node" parent="BeehaveTree/SelectorComposite/Suspicious"]
+script = ExtResource("61_jj6mj")
+
+[node name="IsStateSuspicious" parent="BeehaveTree/SelectorComposite/Suspicious/SuspiciousOrGettingAggro" instance=ExtResource("62_0ronv")]
+
+[node name="IsStateGettingAggro" parent="BeehaveTree/SelectorComposite/Suspicious/SuspiciousOrGettingAggro" instance=ExtResource("63_sknwe")]
+
+[node name="SetLockedOnTrue" parent="BeehaveTree/SelectorComposite/Suspicious" instance=ExtResource("58_jql3h")]
+
+[node name="SetLookAtTargetTrue" parent="BeehaveTree/SelectorComposite/Suspicious" instance=ExtResource("57_fg5hp")]
+
+[node name="CheckSuspicion" parent="BeehaveTree/SelectorComposite/Suspicious" instance=ExtResource("64_dngb3")]
+
+[node name="WaitBlock" parent="BeehaveTree/SelectorComposite/Suspicious/CheckSuspicion/StayIfClose/LookAround/CheckOutArea" index="2"]
+wait_id = 96447004
+
+[node name="WaitBlock2" parent="BeehaveTree/SelectorComposite/Suspicious/CheckSuspicion/StayIfClose/LookAround/CheckOutArea" index="4"]
+wait_id = 29712614
+
+[node name="WaitBlock3" parent="BeehaveTree/SelectorComposite/Suspicious/CheckSuspicion/StayIfClose/LookAround/CheckOutArea" index="6"]
+wait_id = 60900737
+
+[node name="WaitBlock4" parent="BeehaveTree/SelectorComposite/Suspicious/CheckSuspicion/StayIfClose/LookAround/CheckOutArea" index="8"]
+wait_id = 54819208
+
+[node name="WaitBlock5" parent="BeehaveTree/SelectorComposite/Suspicious/CheckSuspicion/StayIfClose/LookAround/CheckOutArea" index="10"]
+wait_id = 75627888
+
+[node name="WaitBlock6" parent="BeehaveTree/SelectorComposite/Suspicious/CheckSuspicion/StayIfClose/LookAround/CheckOutArea" index="12"]
+wait_id = 31695564
+
+[node name="Wait" parent="BeehaveTree/SelectorComposite/Suspicious/CheckSuspicion/MoveToTarget" index="1"]
+wait_id = 10868496
+
+[node name="Aggro" type="Node" parent="BeehaveTree/SelectorComposite"]
+script = ExtResource("49_ahbd6")
+
+[node name="IsStateAggro" parent="BeehaveTree/SelectorComposite/Aggro" instance=ExtResource("65_g083q")]
+
+[node name="SetInterruptTimersFalse" parent="BeehaveTree/SelectorComposite/Aggro" instance=ExtResource("55_3wsw5")]
+
+[node name="AggroTarget" type="Node" parent="BeehaveTree/SelectorComposite/Aggro"]
+script = ExtResource("48_teisf")
+
+[node name="Attack" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget"]
+script = ExtResource("49_ahbd6")
+
+[node name="IsCanAttackTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack"]
+script = ExtResource("54_3f5dv")
+left_operand = "get_value(\"can_attack\")"
+right_operand = "true"
+
+[node name="PlayerDistLessThan" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack"]
+script = ExtResource("54_3f5dv")
+left_operand = "get_value(\"player_dist\")"
+operator = 3
+right_operand = "2.5"
+
+[node name="IsPerceivesPlayerTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack"]
+script = ExtResource("54_3f5dv")
+left_operand = "get_value(\"perceives_player\")"
+right_operand = "true"
+
+[node name="PerformAttack" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack"]
+script = ExtResource("66_nwowx")
+
+[node name="SingleAttack" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack"]
+script = ExtResource("49_ahbd6")
+
+[node name="PrintSingleAttack" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/SingleAttack"]
+script = ExtResource("56_xoiis")
+expression_string = "print(\"SINGLE ATTACK\")"
+
+[node name="SingleRandomAttack" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/SingleAttack" instance=ExtResource("67_s3cyl")]
+
+[node name="DoubleAttack" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack"]
+script = ExtResource("49_ahbd6")
+
+[node name="PrintDoubleAttack" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/DoubleAttack"]
+script = ExtResource("56_xoiis")
+expression_string = "print(\"DOUBLE ATTACK\")"
+
+[node name="SingleRandomAttack" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/DoubleAttack" instance=ExtResource("67_s3cyl")]
+
+[node name="WaitBlock" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/DoubleAttack" instance=ExtResource("59_13yvc")]
+wait_id = 10658642
+wait_time = 0.8
+
+[node name="SetCanAttackTrue" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/DoubleAttack" instance=ExtResource("53_ga5bo")]
+
+[node name="SingleRandomAttack2" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/DoubleAttack" instance=ExtResource("67_s3cyl")]
+
+[node name="TripleAttack" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack"]
+script = ExtResource("49_ahbd6")
+
+[node name="PrintTripleAttack" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack"]
+script = ExtResource("56_xoiis")
+expression_string = "print(\"TRIPLE ATTACK\")"
+
+[node name="SingleRandomAttack" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack" instance=ExtResource("67_s3cyl")]
+
+[node name="WaitBlock" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack" instance=ExtResource("59_13yvc")]
+wait_id = 35297727
+wait_time = 0.8
+
+[node name="SetCanAttackTrue" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack" instance=ExtResource("53_ga5bo")]
+
+[node name="SingleRandomAttack2" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack" instance=ExtResource("67_s3cyl")]
+
+[node name="WaitBlock2" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack" instance=ExtResource("59_13yvc")]
+wait_id = 94769640
+wait_time = 0.8
+
+[node name="SetCanAttackTrue2" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack" instance=ExtResource("53_ga5bo")]
+
+[node name="SingleRandomAttack3" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack" instance=ExtResource("67_s3cyl")]
+
+[node name="ActAggro" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget"]
+script = ExtResource("49_ahbd6")
+
+[node name="SetLookAtTargetTrue" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro" instance=ExtResource("57_fg5hp")]
+
+[node name="SetLockedOnTrue" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro" instance=ExtResource("58_jql3h")]
+
+[node name="StayOrChase" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro"]
+script = ExtResource("48_teisf")
+
+[node name="Unreachable" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase"]
+script = ExtResource("49_ahbd6")
+
+[node name="IsTargetReachableFalse" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Unreachable"]
+script = ExtResource("54_3f5dv")
+left_operand = "get_value(\"target_reachable\")"
+right_operand = "false"
+
+[node name="SequenceComposite" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Unreachable"]
+script = ExtResource("49_ahbd6")
+
+[node name="WalkSpeed" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Unreachable/SequenceComposite" instance=ExtResource("68_ky614")]
+
+[node name="Strafe" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Unreachable/SequenceComposite"]
+script = ExtResource("66_nwowx")
+
+[node name="InputLeft" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Unreachable/SequenceComposite/Strafe" instance=ExtResource("69_rkifo")]
+
+[node name="InputRight" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Unreachable/SequenceComposite/Strafe" instance=ExtResource("70_7yh7s")]
+
+[node name="WaitBlock" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Unreachable/SequenceComposite" instance=ExtResource("59_13yvc")]
+wait_id = 65281962
+wait_time = 2.0
+
+[node name="SquareUpIfClose" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase"]
+script = ExtResource("49_ahbd6")
+
+[node name="PlayerDistLessThan" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/SquareUpIfClose"]
+script = ExtResource("54_3f5dv")
+left_operand = "get_value(\"player_dist\")"
+operator = 3
+right_operand = "2.5"
+
+[node name="SetAgentTargetPositionNull" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/SquareUpIfClose"]
+script = ExtResource("71_hlhqy")
+key = "\"agent_target_position\""
+value = "null"
+
+[node name="SetCanInvestigateLastAgentPositionTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/SquareUpIfClose"]
+script = ExtResource("71_hlhqy")
+key = "\"can_set_investigate_last_agent_position\""
+value = "true"
+
+[node name="ResetWaitBeforeChase" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/SquareUpIfClose"]
+script = ExtResource("72_1rnlu")
+wait_id = 23169934
+
+[node name="InputNone" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/SquareUpIfClose" instance=ExtResource("51_1s065")]
+
+[node name="Wait" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/SquareUpIfClose"]
+script = ExtResource("73_0nwu3")
+time = 1.0
+wait_id = 61967809
+
+[node name="SquareUp" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/SquareUpIfClose"]
+script = ExtResource("49_ahbd6")
+
+[node name="WalkSpeed" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/SquareUpIfClose/SquareUp" instance=ExtResource("68_ky614")]
+
+[node name="Strafe" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/SquareUpIfClose/SquareUp"]
+script = ExtResource("66_nwowx")
+
+[node name="InputLeft" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/SquareUpIfClose/SquareUp/Strafe" instance=ExtResource("69_rkifo")]
+
+[node name="InputRight" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/SquareUpIfClose/SquareUp/Strafe" instance=ExtResource("70_7yh7s")]
+
+[node name="WaitBlock" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/SquareUpIfClose/SquareUp" instance=ExtResource("59_13yvc")]
+wait_id = 23245375
+wait_time = 2.0
+
+[node name="SetCanAttackTrue" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/SquareUpIfClose/SquareUp" instance=ExtResource("53_ga5bo")]
+
+[node name="Chase" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase"]
+script = ExtResource("49_ahbd6")
+
+[node name="IsPerceivesPlayerTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Chase"]
+script = ExtResource("54_3f5dv")
+left_operand = "get_value(\"perceives_player\")"
+right_operand = "true"
+
+[node name="IsTargetReachableTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Chase"]
+script = ExtResource("54_3f5dv")
+left_operand = "get_value(\"target_reachable\")"
+right_operand = "true"
+
+[node name="SetCanInvestigateLastAgentPositionTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Chase"]
+script = ExtResource("71_hlhqy")
+key = "\"can_set_investigate_last_agent_position\""
+value = "true"
+
+[node name="ResetWait" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Chase"]
+script = ExtResource("72_1rnlu")
+wait_id = 61967809
+
+[node name="InputNone" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Chase" instance=ExtResource("51_1s065")]
+
+[node name="SetRunSpeed" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Chase" instance=ExtResource("74_mmywf")]
+
+[node name="WaitBeforeChase" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Chase"]
+script = ExtResource("73_0nwu3")
+time = 2.0
+wait_id = 23169934
+
+[node name="InputForwards" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Chase" instance=ExtResource("75_i1n32")]
+
+[node name="Investigate" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase"]
+script = ExtResource("48_teisf")
+
+[node name="LastAgentPosition" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Investigate"]
+script = ExtResource("49_ahbd6")
+
+[node name="IsCanSetInvestigateLastAgentPositionTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Investigate/LastAgentPosition"]
+script = ExtResource("54_3f5dv")
+left_operand = "get_value(\"can_set_investigate_last_agent_position\")"
+right_operand = "true"
+
+[node name="SetInvestigateLastAgentPositionFalse" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Investigate/LastAgentPosition"]
+script = ExtResource("71_hlhqy")
+key = "\"investigate_last_agent_position\""
+value = "true"
+
+[node name="InvestigateLastPosition" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Investigate" instance=ExtResource("64_dngb3")]
+
+[node name="WaitBlock" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Investigate/InvestigateLastPosition/StayIfClose/LookAround/CheckOutArea" index="2"]
+wait_id = 46595952
+
+[node name="WaitBlock2" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Investigate/InvestigateLastPosition/StayIfClose/LookAround/CheckOutArea" index="4"]
+wait_id = 69733578
+
+[node name="WaitBlock3" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Investigate/InvestigateLastPosition/StayIfClose/LookAround/CheckOutArea" index="6"]
+wait_id = 51816124
+
+[node name="WaitBlock4" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Investigate/InvestigateLastPosition/StayIfClose/LookAround/CheckOutArea" index="8"]
+wait_id = 68693030
+
+[node name="WaitBlock5" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Investigate/InvestigateLastPosition/StayIfClose/LookAround/CheckOutArea" index="10"]
+wait_id = 31300344
+
+[node name="WaitBlock6" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Investigate/InvestigateLastPosition/StayIfClose/LookAround/CheckOutArea" index="12"]
+wait_id = 48134024
+
+[node name="Wait" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Investigate/InvestigateLastPosition/MoveToTarget" index="1"]
+wait_id = 82140480
+
+[node name="Idle" type="Node" parent="BeehaveTree/SelectorComposite"]
+script = ExtResource("49_ahbd6")
+
+[node name="StandStill" parent="BeehaveTree/SelectorComposite/Idle" instance=ExtResource("51_1s065")]
+
+[node name="SetLockedOnFalse" parent="BeehaveTree/SelectorComposite/Idle" instance=ExtResource("76_p2xse")]
+
+[node name="SetRotateTowardsTargetFalse" parent="BeehaveTree/SelectorComposite/Idle" instance=ExtResource("52_v6pln")]
+
+[node name="SetLookedAroundFalse" parent="BeehaveTree/SelectorComposite/Idle" instance=ExtResource("77_ms7lv")]
+
+[node name="LeafExecuteExpression" type="Node" parent="BeehaveTree/SelectorComposite/Idle"]
+script = ExtResource("56_xoiis")
+enabled = false
+expression_string = "prints(get_value(\"debug\"), \"idling\")"
+
+[node name="Blackboard" type="Node" parent="."]
+script = ExtResource("78_ktm1d")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[editable path="CharacterModel"]
+[editable path="BeehaveTree/SelectorComposite/Suspicious/CheckSuspicion"]
+[editable path="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ActAggro/StayOrChase/Investigate/InvestigateLastPosition"]
