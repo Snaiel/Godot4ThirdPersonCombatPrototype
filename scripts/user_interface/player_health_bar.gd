@@ -41,7 +41,6 @@ func _ready():
 	_player.health_component.health_increased.connect(
 		func():
 			_delay_bar.scale.x = _get_health_bar_scale()
-			print(_get_health_bar_scale())
 	)
 	
 	_health_delay_timer = Timer.new()

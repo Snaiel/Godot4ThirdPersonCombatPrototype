@@ -95,6 +95,8 @@ func _ready() -> void:
 	instability_component.can_reduce_instability = wellbeing_stats\
 		.can_reduce_instability
 	wellbeing_component.setup()
+	
+	print(name)
 
 
 func _physics_process(_delta: float) -> void:

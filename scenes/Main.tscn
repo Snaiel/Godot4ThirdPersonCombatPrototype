@@ -1265,6 +1265,9 @@ hit_weight = 0.0
 block_weight = 0.5
 parry_weight = 0.5
 
+[node name="Zombie" parent="Level1/Enemies/Section1/Enemies" instance=ExtResource("22_jrcpq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.4995, 1, 48.0198)
+
 [node name="Section2" type="Area3D" parent="Level1/Enemies"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43, 0, -76)
 collision_mask = 2
@@ -1361,9 +1364,6 @@ script = ExtResource("19_q8ont")
 
 [node name="VoidArea2" parent="VoidDeathSystem" instance=ExtResource("20_pa5m1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84, 5, -23)
-
-[node name="Zombie" parent="." instance=ExtResource("22_jrcpq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.49948, 11, -3.98021)
 
 [connection signal="area_entered" from="LockOnSystem" to="LockOnSystem" method="_on_area_entered"]
 [connection signal="area_exited" from="LockOnSystem" to="LockOnSystem" method="_on_area_exited"]

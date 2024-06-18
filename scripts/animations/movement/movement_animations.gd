@@ -8,10 +8,6 @@ extends BaseAnimations
 var _input_dir: Vector2 = Vector2.ZERO
 
 
-func _ready():
-	prints(get_parent(), anim_tree)
-
-
 func move(dir: Vector3, locked_on: bool, running: bool) -> void:
 	var new_dir = Vector2(dir.x, dir.z)
 	_input_dir = _input_dir.lerp(new_dir, 0.3)
