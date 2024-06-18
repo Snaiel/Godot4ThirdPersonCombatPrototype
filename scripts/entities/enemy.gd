@@ -7,7 +7,6 @@ signal death(enemy)
 
 @export var target: Node3D
 @export var debug: bool = false
-@export var root_motion: bool = false
 
 @export var wellbeing_stats: WellbeingStats
 
@@ -65,8 +64,6 @@ func _enter_tree():
 func _ready() -> void:
 	target = player
 	agent.target_position = target.global_position
-	
-	set_root_motion(root_motion)
 	
 	Globals.void_death_system.fallen_into_the_void.connect(
 		func(body: Node3D):
@@ -153,6 +150,7 @@ func _physics_process(_delta: float) -> void:
 		prints(
 			blackboard.get_value("notice_state")
 		)
+	
 	
 	## Component Management
 	rotation_component.rotate_towards_target = blackboard.get_value(
