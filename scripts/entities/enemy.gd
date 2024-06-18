@@ -58,7 +58,10 @@ var _dead: bool = false
 
 func _enter_tree():
 	var path_names: PackedStringArray = str(get_path()).split("/")
-	beehave_tree.name = path_names[-3] + "/" + path_names[-1]
+	var beehave_name: String = path_names[-3] + "_" + path_names[-1]
+	if beehave_tree == null:
+		beehave_tree = get_node("BeehaveTree")
+	beehave_tree.name = beehave_name
 
 
 func _ready() -> void:

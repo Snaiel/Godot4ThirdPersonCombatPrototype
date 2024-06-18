@@ -21,3 +21,11 @@ func _ready():
 			print("Player left enemy section: " + name)
 			remove_child(enemies)
 	)
+
+
+func _notification(what):
+	if what == NOTIFICATION_PREDELETE:
+		print("DELETE")
+		for node in enemies.get_children():
+			var enemy: Enemy = node
+			BeehaveDebuggerMessages.unregister_tree(enemy.beehave_tree.get_instance_id())
