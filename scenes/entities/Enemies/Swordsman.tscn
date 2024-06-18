@@ -78,7 +78,7 @@ shader_parameter/alpha_clip = 0.0
 radius = 0.3
 height = 1.8
 
-[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("parry_sfx", "block_sfx", "hit_sfx", "blackboard", "character", "rotation_component", "head_rotation_component", "movement_component", "root_motion_component", "lock_on_component", "hitbox_component", "health_component", "instability_component", "backstab_component", "dizzy_component", "notice_component", "attack_component", "block_component", "parry_component", "wellbeing_component", "agent", "skeleton", "sword") groups=["enemy"]]
+[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("parry_sfx", "block_sfx", "hit_sfx", "character", "rotation_component", "head_rotation_component", "movement_component", "root_motion_component", "lock_on_component", "hitbox_component", "health_component", "instability_component", "backstab_component", "dizzy_component", "notice_component", "attack_component", "block_component", "parry_component", "wellbeing_component", "beehave_tree", "blackboard", "agent", "skeleton", "sword") groups=["enemy"]]
 collision_layer = 8
 collision_mask = 11
 script = ExtResource("1_nrck3")
@@ -86,7 +86,6 @@ wellbeing_stats = SubResource("Resource_6we7u")
 parry_sfx = NodePath("CharacterModel/AudioManager/Parry")
 block_sfx = NodePath("CharacterModel/AudioManager/Block")
 hit_sfx = NodePath("CharacterModel/AudioManager/Hit")
-blackboard = NodePath("Blackboard")
 character = NodePath("CharacterModel")
 rotation_component = NodePath("Rotation/EnemyRotationComponent")
 head_rotation_component = NodePath("Rotation/HeadRotationComponent")
@@ -103,6 +102,8 @@ attack_component = NodePath("Combat/AttackComponent")
 block_component = NodePath("Combat/BlockComponent")
 parry_component = NodePath("Combat/ParryComponent")
 wellbeing_component = NodePath("Interface/WellbeingComponent")
+beehave_tree = NodePath("BeehaveTree")
+blackboard = NodePath("Blackboard")
 agent = NodePath("NavigationAgent3D")
 skeleton = NodePath("CharacterModel/Armature_004/GeneralSkeleton")
 sword = NodePath("CharacterModel/Armature_004/GeneralSkeleton/Sword")
@@ -124,27 +125,47 @@ bones/10/rotation = Quaternion(0.277458, -0.604294, 0.295283, 0.686043)
 bones/11/rotation = Quaternion(-0.104369, 0.789564, 0.125817, 0.591494)
 bones/12/rotation = Quaternion(0.0444242, 0.077714, -0.045648, 0.994939)
 bones/13/rotation = Quaternion(-0.219211, 0.673395, 0.208745, 0.674472)
+bones/14/rotation = Quaternion(2.98023e-08, 4.47035e-08, 6.66134e-16, 1)
+bones/15/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 2.98023e-08, 1)
 bones/16/rotation = Quaternion(0.0326982, -0.00579913, 0.0611036, 0.997579)
 bones/17/rotation = Quaternion(0.142788, -0.00077261, -0.00694361, 0.989729)
+bones/18/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
+bones/19/rotation = Quaternion(-2.98023e-08, -5.96046e-08, -2.98023e-08, 1)
 bones/20/rotation = Quaternion(0.124657, 0.00606972, -0.0858581, 0.98846)
 bones/21/rotation = Quaternion(0.189711, -0.00139368, 0.014238, 0.981736)
+bones/22/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
+bones/23/rotation = Quaternion(-1.49012e-08, 1.49012e-08, 1.49012e-08, 1)
 bones/24/rotation = Quaternion(0.264954, -0.0133327, -0.130873, 0.955245)
 bones/25/rotation = Quaternion(0.275544, 0.00175889, 0.0240698, 0.960985)
+bones/26/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
+bones/27/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
 bones/28/rotation = Quaternion(0.290917, -0.014055, -0.163943, 0.942493)
 bones/29/rotation = Quaternion(0.336146, 0.0112787, 0.0495706, 0.940437)
+bones/30/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
+bones/31/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
 bones/32/rotation = Quaternion(0.489204, -0.484239, -0.589672, -0.422468)
 bones/33/rotation = Quaternion(0.186803, 0.845471, -0.490798, -0.0969608)
 bones/34/rotation = Quaternion(0.285857, 0.679323, -0.222608, 0.638162)
 bones/35/rotation = Quaternion(0.14699, -0.743609, 0.00398269, 0.652245)
 bones/36/rotation = Quaternion(-1.83582e-05, 0.0773394, 0.0429052, 0.996081)
 bones/37/rotation = Quaternion(-0.108474, -0.754011, -0.0908499, 0.641442)
+bones/39/rotation = Quaternion(5.96046e-08, 8.9407e-08, 2.98023e-08, 1)
 bones/40/rotation = Quaternion(0.0395766, 0.00983451, 0.010194, 0.999116)
 bones/41/rotation = Quaternion(0.147297, 0.000254452, 0.00977862, 0.989044)
+bones/42/rotation = Quaternion(-4.47035e-08, 0, -4.47035e-08, 1)
+bones/43/rotation = Quaternion(-4.47035e-08, 0, -4.47035e-08, 1)
 bones/44/rotation = Quaternion(0.11099, 0.00862119, 0.0246105, 0.993479)
 bones/45/rotation = Quaternion(0.263567, 0.00144613, -0.016844, 0.964493)
+bones/46/rotation = Quaternion(-4.47035e-08, 0, -4.47035e-08, 1)
+bones/47/rotation = Quaternion(-1.49012e-08, 4.47035e-08, -4.47035e-08, 1)
 bones/48/rotation = Quaternion(0.187009, -0.00859906, 0.067387, 0.980006)
 bones/49/rotation = Quaternion(0.320425, -0.00242639, -0.0338017, 0.946668)
+bones/50/rotation = Quaternion(-4.47035e-08, 0, -4.47035e-08, 1)
+bones/51/rotation = Quaternion(-4.47035e-08, 0, -4.47035e-08, 1)
+bones/52/rotation = Quaternion(0.207169, -0.0111395, 0.0920781, 0.973899)
 bones/53/rotation = Quaternion(0.349285, -0.0122068, -0.0687267, 0.934413)
+bones/54/rotation = Quaternion(-4.47035e-08, 0, -4.47035e-08, 1)
+bones/55/rotation = Quaternion(-4.47035e-08, 0, -4.47035e-08, 1)
 bones/56/rotation = Quaternion(0.0770803, 0.225182, 0.965584, -0.104877)
 bones/57/rotation = Quaternion(0.0388392, 0.946694, -0.297267, -0.117877)
 bones/58/rotation = Quaternion(-0.0451625, 0.671766, -0.737692, 0.0500203)
@@ -161,21 +182,21 @@ surface_material_override/0 = ExtResource("4_yduye")
 surface_material_override/0 = SubResource("ShaderMaterial_i1ddg")
 
 [node name="Sword" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity") instance=ExtResource("4_r63io")]
-transform = Transform3D(-0.18487, -0.251437, 0.950054, 0.31849, -0.929873, -0.184121, 0.929724, 0.268544, 0.251986, -0.307378, 0.879604, -0.218088)
+transform = Transform3D(-0.18487, -0.251436, 0.950054, 0.318492, -0.929873, -0.18412, 0.929724, 0.268546, 0.251986, -0.307378, 0.879604, -0.218087)
 _entity = NodePath("../../../..")
 
 [node name="Area" parent="CharacterModel/Armature_004/GeneralSkeleton/Sword" index="1"]
 collision_mask = 2
 
 [node name="LockOnAttachment" parent="CharacterModel/Armature_004/GeneralSkeleton" index="3"]
-transform = Transform3D(0.942295, -0.128871, -0.308986, -0.0148774, 0.905912, -0.423205, 0.334453, 0.403381, 0.851719, 0.0215048, 1.27706, -0.00864882)
+transform = Transform3D(0.942295, -0.12887, -0.308985, -0.0148777, 0.905912, -0.423204, 0.334451, 0.40338, 0.85172, 0.0215049, 1.27707, -0.00864891)
 
 [node name="Crosshair" parent="CharacterModel/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint" index="0" node_paths=PackedStringArray("backstab_component", "dizzy_component")]
 backstab_component = NodePath("../../../../../../Combat/BackstabComponent")
 dizzy_component = NodePath("../../../../../../Combat/DizzyComponent")
 
 [node name="HeadAttachment" parent="CharacterModel/Armature_004/GeneralSkeleton" index="4"]
-transform = Transform3D(0.997935, -0.0642367, -0.000251293, 0.0622928, 0.968676, -0.240387, 0.0156852, 0.239875, 0.970677, -0.022194, 1.49531, 0.120928)
+transform = Transform3D(0.997935, -0.0642358, -0.000251025, 0.062292, 0.968677, -0.240386, 0.0156845, 0.239874, 0.970677, -0.0221937, 1.49531, 0.120927)
 
 [node name="AnimationTree" parent="CharacterModel" index="2"]
 "parameters/Dizzy Finisher Which One/current_state" = ""

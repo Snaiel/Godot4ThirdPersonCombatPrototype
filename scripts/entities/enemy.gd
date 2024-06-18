@@ -22,7 +22,6 @@ signal death(enemy)
 @export var hit_sfx: AudioStreamPlayer3D
 
 @export_category("Components")
-@export var blackboard: Blackboard
 @export var character: CharacterAnimations
 @export var rotation_component: NPCRotationComponent
 @export var head_rotation_component: HeadRotationComponent
@@ -39,8 +38,13 @@ signal death(enemy)
 @export var block_component: BlockComponent
 @export var parry_component: ParryComponent
 @export var wellbeing_component: WellbeingComponent
+
+@export_category("AI Behaviour")
+@export var beehave_tree: BeehaveTree
+@export var blackboard: Blackboard
 @export var agent: NavigationAgent3D
 
+@export_category("Model")
 @export var skeleton: Skeleton3D
 @export var sword: Sword
 
@@ -51,6 +55,11 @@ var _dead: bool = false
 
 
 @onready var player: Player = Globals.player
+
+
+func _enter_tree():
+	var path_names: PackedStringArray = str(get_path()).split("/")
+	beehave_tree.name = path_names[-3] + "/" + path_names[-1]
 
 
 func _ready() -> void:
@@ -82,10 +91,9 @@ func _ready() -> void:
 	)
 	
 	active_motion_component = movement_component
-	
 	_default_move_speed = movement_component.speed
-	blackboard.set_value("move_speed", _default_move_speed)
 	
+	blackboard.set_value("move_speed", _default_move_speed)
 	blackboard.set_value("can_attack", true)
 	blackboard.set_value("dead", false)
 	
