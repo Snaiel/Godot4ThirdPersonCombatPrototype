@@ -3,11 +3,7 @@
 [ext_resource type="Script" path="res://scripts/components/wellbeing_component.gd" id="1_8f71p"]
 [ext_resource type="PackedScene" uid="uid://clbe1nrax10m8" path="res://scenes/utilities/WellbeingWidget.tscn" id="2_cobr1"]
 
-[node name="WellbeingComponent" type="Node3D" node_paths=PackedStringArray("lock_on_component", "backstab_component", "health_component", "instability_component")]
+[node name="WellbeingComponent" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 script = ExtResource("1_8f71p")
-lock_on_component = NodePath("")
-backstab_component = NodePath("")
-health_component = NodePath("")
-instability_component = NodePath("")
 wellbeing_widget_scene = ExtResource("2_cobr1")

@@ -96,5 +96,6 @@ func _process(_delta):
 
 func setup() -> void:
 	_health_bar.current_health = health_component.health
+	_health_bar.default_health = health_component.max_health
 	_health_bar.setup()
 	_instability_bar.current_instability = instability_component.instability

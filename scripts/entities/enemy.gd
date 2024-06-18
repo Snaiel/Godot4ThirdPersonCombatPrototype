@@ -90,6 +90,7 @@ func _ready() -> void:
 	blackboard.set_value("dead", false)
 	
 	health_component.health = wellbeing_stats.initial_health
+	health_component.max_health = wellbeing_stats.max_health
 	instability_component.instability = wellbeing_stats.initial_instability
 	instability_component.can_reduce_instability = wellbeing_stats\
 		.can_reduce_instability
