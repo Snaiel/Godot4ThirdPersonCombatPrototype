@@ -149,10 +149,10 @@ func _physics_process(_delta: float) -> void:
 	
 	
 	## Debug Prints
-	if debug:
-		prints(
-			blackboard.get_value("rotate_towards_target")
-		)
+#	if debug:
+#		prints(
+#			blackboard.get_value("rotate_towards_target")
+#		)
 	
 	
 	## Component Management

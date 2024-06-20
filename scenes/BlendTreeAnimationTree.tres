@@ -37,7 +37,7 @@ animation = &"combat_animations_1/Inward Slash"
 animation = &"movement_animations_1/Walk-Forwards"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_vau4f"]
-graph_offset = Vector2(-543.957, -18.5721)
+graph_offset = Vector2(-538.119, -51.8633)
 "nodes/Inward Slash/node" = SubResource("AnimationNodeAnimation_cu7nq")
 "nodes/Inward Slash/position" = Vector2(-660, 120)
 "nodes/Inward Slash Speed/node" = SubResource("AnimationNodeTimeScale_sr615")
@@ -206,22 +206,22 @@ node_connections = [&"output", 0, &"Quick Slash and Walk Blend", &"Quick Slash S
 [sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_gr1qy"]
 xfade_time = 0.2
 allow_transition_to_self = true
-input_0/name = "attack_1"
+input_0/name = "inward_slash"
 input_0/auto_advance = false
 input_0/reset = true
-input_1/name = "attack_1_copy"
+input_1/name = "inward_slash_copy"
 input_1/auto_advance = false
 input_1/reset = true
-input_2/name = "attack_2"
+input_2/name = "outward_slash"
 input_2/auto_advance = false
 input_2/reset = true
-input_3/name = "attack_2_copy"
+input_3/name = "outward_slash_copy"
 input_3/auto_advance = false
 input_3/reset = true
-input_4/name = "attack_3"
+input_4/name = "thrust"
 input_4/auto_advance = false
 input_4/reset = true
-input_5/name = "attack_4"
+input_5/name = "quick_slash"
 input_5/auto_advance = false
 input_5/reset = true
 
@@ -548,6 +548,7 @@ animation = &"interaction_animations_1/Sitting Idle"
 animation = &"movement_animations_1/Walk-Forwards"
 
 [resource]
+graph_offset = Vector2(-2.97139, 673.146)
 nodes/Attack/node = SubResource("AnimationNodeTransition_gr1qy")
 nodes/Attack/position = Vector2(860, 1160)
 "nodes/Attack Forward Thrust/node" = SubResource("AnimationNodeBlendTree_ws83a")

@@ -5,12 +5,11 @@ signal can_rotate(flag: bool)
 signal can_move(flag: bool)
 
 @export var _attack_animations: AttackAnimations
-@export var _movement_component: MovementComponent
 @export var _weapon: Sword
 @export var _can_attack: bool = true
 
 var attacking: bool = false
-var attack_level: int = 1:
+var attack_level: int = 0:
 	set = set_attack_level
 
 var _manually_set_attack_level: bool = false
@@ -38,10 +37,10 @@ func attack(can_stop: bool = true) -> void:
 	_attack_interrupted = false
 	
 	if not _manually_set_attack_level:
-		if _can_attack_again and attack_level < 2:
+		if _can_attack_again and attack_level < 1:
 			attack_level += 1
 		else:
-			attack_level = 1
+			attack_level = 0
 	
 	_can_attack = false
 	
@@ -84,7 +83,7 @@ func interrupt_attack() -> void:
 	
 	can_move.emit(true)
 	attacking = false
-	attack_level = 1
+	attack_level = 0
 	
 	_can_attack = true
 	_can_attack_again = false
@@ -117,33 +116,15 @@ func _receive_rotation(flag: bool) -> void:
 	can_rotate.emit(flag)
 
 
-func _receive_movement() -> void:
+func _receive_movement(attack_strat: AttackStrategy) -> void:
 	_can_stop_attack = false
 	
 	if _attack_interrupted:
 		return
-		
-	match attack_level:
-		1:
-			_movement_component.set_secondary_movement(6, 5, 15)
-		2:
-			_movement_component.set_secondary_movement(6, 5, 15)
-		3:
-			_movement_component.set_secondary_movement(6, 5, 15)
-		4:
-			_movement_component.set_secondary_movement(6, 5, 15)
+	
+	attack_strat.receive_movement()
 
 
 func _receive_can_damage(can_damage: bool) -> void:
 	if not _attack_interrupted:
 		_weapon.can_damage = can_damage
-
-
-func _on_hitbox_component_weapon_hit(_w: Sword):
-	if attacking:
-		_attack_interrupted = true
-	can_move.emit(true)
-	attacking = false
-	attack_level = 1
-	_can_attack_again = false
-	_attack_animations.stop_attacking()

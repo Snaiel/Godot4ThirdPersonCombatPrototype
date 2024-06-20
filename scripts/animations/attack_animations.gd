@@ -2,12 +2,15 @@ class_name AttackAnimations
 extends BaseAnimations
 
 
-signal secondary_movement
+signal secondary_movement(attack: AttackStrategy)
 signal can_damage(flag: bool)
 signal can_rotate(flag: bool)
 signal can_attack_again(flag: bool)
 signal can_play_animation
 signal attacking_finished
+
+
+@export var attacks: Array[AttackStrategy]
 
 
 # this means if an attacking animation is currently occurring
@@ -36,17 +39,6 @@ var _intend_to_stop_attacking: bool = true
 # it's -1, and to do nothing when it's 0
 var _transition_legs: int = 0
 
-# A flag that signifies whether to play
-# the attack 1 animation or the copy
-# of the attack 1 animation. This is done
-# to rectify the issue of instant
-# transitions when the transition node
-# in the blend tree is requested to play
-# the animation that is currently playing.
-var _play_attack_1_copy: bool = false
-
-var _play_attack_2_copy: bool = false
-
 
 func _ready() -> void:
 	anim_tree["parameters/Attacking/blend_amount"] = 0.0
@@ -70,26 +62,15 @@ func _physics_process(_delta: float) -> void:
 		)
 
 	if _transition_legs  == 1:
-		_perform_transition_legs()
+		attacks[_level].perform_legs_transition()
 	elif _transition_legs == -1:
-		_end_legs_transition()
-			
+		attacks[_level].end_legs_transition()
+	
 	if _can_play_animation and _intent_to_attack:
 		
 		_transition_legs = 0
 		
-		match _level:
-			1:
-				_play_attack_1()
-			2:
-				_play_attack_2()
-			3:
-				anim_tree["parameters/Attack/transition_request"] = "attack_3"
-			4:
-				anim_tree["parameters/Attack Quick Slash/Quick Slash Trim/seek_request"] = 0.9
-				anim_tree["parameters/Attack Quick Slash/Walk Forwards Trim/seek_request"] = 0.8
-				anim_tree["parameters/Attack Quick Slash/Walk Forwards Speed/scale"] = 0.8				
-				anim_tree["parameters/Attack/transition_request"] = "attack_4"
+		attacks[_level].play_attack()
 		
 		_can_play_animation = false
 		_intent_to_attack = false
@@ -118,7 +99,7 @@ func stop_attacking() -> void:
 
 
 func receive_secondary_movement() -> void:
-	secondary_movement.emit()
+	secondary_movement.emit(attacks[_level])
 
 
 func prevent_rotation() -> void:
@@ -132,22 +113,14 @@ func recieve_can_play_animation() -> void:
 
 func receive_play_legs() -> void:
 	_transition_legs = 1
-	match _level:
-		1:
-			anim_tree["parameters/Attack Inward Slash/Walk Forwards Speed/scale"] = 0.8
-			anim_tree["parameters/Attack Inward Slash Copy/Walk Forwards Speed/scale"] = 0.8
-		2:
-			anim_tree["parameters/Attack Outward Slash/Walk Forwards Speed/scale"] = 0.8
-			anim_tree["parameters/Attack Outward Slash Copy/Walk Forwards Speed/scale"] = 0.8			
-		4:
-			anim_tree["parameters/Attack Quick Slash/Walk Forwards Speed/scale"] = 0.8
+	attacks[_level].play_legs()
 
 
-func receive_stop_legs(level: int) -> void:
+func receive_stop_legs(which_attack: StringName) -> void:
 	# having a check for the level originating from the animation
 	# against the current attack _level to see whether
 	# to actually transition out of the current animation's legs
-	if level == _level:
+	if which_attack == attacks[_level].attack_name:
 		_transition_legs = -1
 
 
@@ -173,83 +146,3 @@ func receive_can_damage() -> void:
 
 func receive_cannot_damage() -> void:
 	can_damage.emit(false)
-
-
-func _play_attack_1() -> void:
-	if _play_attack_1_copy:
-		anim_tree["parameters/Attack Inward Slash Copy/Inward Slash and Walk Blend/blend_amount"] = 0.0				
-		anim_tree["parameters/Attack Inward Slash Copy/Inward Slash Trim/seek_request"] = 0.0
-		anim_tree["parameters/Attack Inward Slash Copy/Walk Forwards Trim/seek_request"] = 0.55
-		anim_tree["parameters/Attack Inward Slash Copy/Walk Forwards Speed/scale"] = 0.0
-		anim_tree["parameters/Attack/transition_request"] = "attack_1_copy"
-		_play_attack_1_copy = false
-	else:
-		anim_tree["parameters/Attack Inward Slash/Inward Slash and Walk Blend/blend_amount"] = 0.0				
-		anim_tree["parameters/Attack Inward Slash/Inward Slash Trim/seek_request"] = 0.0
-		anim_tree["parameters/Attack Inward Slash/Walk Forwards Trim/seek_request"] = 0.55
-		anim_tree["parameters/Attack Inward Slash/Walk Forwards Speed/scale"] = 0.0
-		anim_tree["parameters/Attack/transition_request"] = "attack_1"
-		_play_attack_1_copy = true
-
-
-func _play_attack_2() -> void:
-	if _play_attack_2_copy:
-		anim_tree["parameters/Attack Outward Slash Copy/Outward Slash Trim/seek_request"] = 0.5
-		anim_tree["parameters/Attack Outward Slash Copy/Walk Forwards Trim/seek_request"] = 0.955
-		anim_tree["parameters/Attack Outward Slash Copy/Walk Forwards Speed/scale"] = 0.0
-		anim_tree["parameters/Attack/transition_request"] = "attack_2_copy"
-		_play_attack_2_copy = false
-	else:
-		anim_tree["parameters/Attack Outward Slash/Outward Slash Trim/seek_request"] = 0.5
-		anim_tree["parameters/Attack Outward Slash/Walk Forwards Trim/seek_request"] = 0.955
-		anim_tree["parameters/Attack Outward Slash/Walk Forwards Speed/scale"] = 0.0
-		anim_tree["parameters/Attack/transition_request"] = "attack_2"
-		_play_attack_2_copy = true
-
-
-func _perform_transition_legs() -> void:
-	match _level:
-		1:
-			anim_tree["parameters/Attack Inward Slash/Inward Slash and Walk Blend/blend_amount"] = lerp(
-				float(anim_tree["parameters/Attack Inward Slash/Inward Slash and Walk Blend/blend_amount"]), 
-				1.0, 
-				0.3
-			)
-				
-			anim_tree["parameters/Attack Inward Slash Copy/Inward Slash and Walk Blend/blend_amount"] = lerp(
-				float(anim_tree["parameters/Attack Inward Slash Copy/Inward Slash and Walk Blend/blend_amount"]), 
-				1.0, 
-				0.3
-			)
-
-
-func _end_legs_transition() -> void:
-	match _level:
-		1:
-			anim_tree["parameters/Attack Inward Slash/Walk Forwards Speed/scale"] = lerp(
-				float(anim_tree["parameters/Attack Inward Slash/Walk Forwards Speed/scale"]), 
-				0.05, 
-				0.3
-			)
-			anim_tree["parameters/Attack Inward Slash Copy/Walk Forwards Speed/scale"] = lerp(
-				float(anim_tree["parameters/Attack Inward Slash Copy/Walk Forwards Speed/scale"]), 
-				0.05, 
-				0.3
-			)
-		2:
-			anim_tree["parameters/Attack Outward Slash/Walk Forwards Speed/scale"] = lerp(
-				float(anim_tree["parameters/Attack Outward Slash/Walk Forwards Speed/scale"]),
-				0.05,
-				0.3
-			)
-			anim_tree["parameters/Attack Outward Slash Copy/Walk Forwards Speed/scale"] = lerp(
-				float(anim_tree["parameters/Attack Outward Slash Copy/Walk Forwards Speed/scale"]),
-				0.05,
-				0.3
-			)
-		4:
-			anim_tree["parameters/Attack Quick Slash/Walk Forwards Speed/scale"] = lerp(
-				float(anim_tree["parameters/Attack Quick Slash/Walk Forwards Speed/scale"]),
-				0.05,
-				0.3
-			)
