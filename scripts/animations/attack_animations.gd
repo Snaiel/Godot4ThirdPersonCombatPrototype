@@ -85,13 +85,6 @@ func attack(level: int, manually_set_level: bool = false) -> void:
 	_level = level
 
 
-func thrust() -> void:
-	attacking = true
-	_intent_to_attack = true
-	_level = 3
-	_can_play_animation = true
-
-
 func stop_attacking() -> void:
 	_can_play_animation = true
 	can_rotate.emit(true)

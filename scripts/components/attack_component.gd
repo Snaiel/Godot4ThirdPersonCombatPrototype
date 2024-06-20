@@ -52,20 +52,6 @@ func attack(can_stop: bool = true) -> void:
 	_manually_set_attack_level = false
 
 
-func thrust() -> void:
-	if not _can_attack:
-		return
-	
-	attacking = true
-	_can_stop_attack = false
-	_attack_interrupted = false
-	
-	can_move.emit(false)
-	
-	_attack_animations.thrust()
-	_manually_set_attack_level = false
-
-
 func disable_attack_interrupted() -> void:
 	_attack_interrupted = false
 
