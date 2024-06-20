@@ -151,7 +151,7 @@ func _physics_process(_delta: float) -> void:
 	## Debug Prints
 #	if debug:
 #		prints(
-#			blackboard.get_value("rotate_towards_target")
+#			active_motion_component,
 #		)
 	
 	
@@ -182,6 +182,7 @@ func _physics_process(_delta: float) -> void:
 		blackboard.set_value("attack", false)
 		attack_component.attack_level = blackboard.get_value("attack_level", 1)
 		attack_component.attack()
+	blackboard.set_value("attacking", attack_component.attacking)
 	
 	
 	## Character Animations
