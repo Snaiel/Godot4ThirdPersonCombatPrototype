@@ -743,8 +743,9 @@ script = ExtResource("6_olmu2")
 parent_animations = NodePath("..")
 anim_tree = NodePath("../AnimationTree")
 
-[node name="AttackAnimations" type="Node" parent="." index="5" node_paths=PackedStringArray("parent_animations", "anim_tree")]
+[node name="AttackAnimations" type="Node" parent="." index="5" node_paths=PackedStringArray("attacks", "parent_animations", "anim_tree")]
 script = ExtResource("7_qu3gw")
+attacks = [NodePath("InwardAttack"), NodePath("OutwardAttack"), NodePath("ThrustAttack"), NodePath("QuickSlashAttack")]
 parent_animations = NodePath("..")
 anim_tree = NodePath("../AnimationTree")
 

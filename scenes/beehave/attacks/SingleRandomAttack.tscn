@@ -10,15 +10,15 @@ script = ExtResource("1_l52oy")
 [node name="ChooseAttack" type="Node" parent="."]
 script = ExtResource("2_p3wfn")
 
+[node name="SetAttackLevel0" type="Node" parent="ChooseAttack"]
+script = ExtResource("3_p8eh8")
+key = "\"attack_level\""
+value = "0"
+
 [node name="SetAttackLevel1" type="Node" parent="ChooseAttack"]
 script = ExtResource("3_p8eh8")
 key = "\"attack_level\""
 value = "1"
-
-[node name="SetAttackLevel2" type="Node" parent="ChooseAttack"]
-script = ExtResource("3_p8eh8")
-key = "\"attack_level\""
-value = "2"
 
 [node name="SetAttackTrue" type="Node" parent="."]
 script = ExtResource("3_p8eh8")

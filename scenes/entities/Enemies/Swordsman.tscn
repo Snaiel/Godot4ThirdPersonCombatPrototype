@@ -183,21 +183,21 @@ surface_material_override/0 = ExtResource("4_yduye")
 surface_material_override/0 = SubResource("ShaderMaterial_i1ddg")
 
 [node name="Sword" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity") instance=ExtResource("4_r63io")]
-transform = Transform3D(-0.18487, -0.251436, 0.950054, 0.318492, -0.929873, -0.18412, 0.929724, 0.268546, 0.251986, -0.307378, 0.879604, -0.218087)
+transform = Transform3D(-0.18487, -0.251437, 0.950054, 0.31849, -0.929873, -0.184121, 0.929724, 0.268544, 0.251986, -0.346427, 0.879604, -0.186865)
 _entity = NodePath("../../../..")
 
 [node name="Area" parent="CharacterModel/Armature_004/GeneralSkeleton/Sword" index="1"]
 collision_mask = 2
 
 [node name="LockOnAttachment" parent="CharacterModel/Armature_004/GeneralSkeleton" index="3"]
-transform = Transform3D(0.942295, -0.12887, -0.308985, -0.0148777, 0.905912, -0.423204, 0.334451, 0.40338, 0.85172, 0.0215049, 1.27707, -0.00864891)
+transform = Transform3D(0.942295, -0.128871, -0.308986, -0.0148774, 0.905912, -0.423205, 0.334453, 0.403381, 0.851719, -0.0175441, 1.27706, 0.0225741)
 
 [node name="Crosshair" parent="CharacterModel/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint" index="0" node_paths=PackedStringArray("backstab_component", "dizzy_component")]
 backstab_component = NodePath("../../../../../../Combat/BackstabComponent")
 dizzy_component = NodePath("../../../../../../Combat/DizzyComponent")
 
 [node name="HeadAttachment" parent="CharacterModel/Armature_004/GeneralSkeleton" index="4"]
-transform = Transform3D(0.997935, -0.0642358, -0.000251025, 0.062292, 0.968677, -0.240386, 0.0156845, 0.239874, 0.970677, -0.0221937, 1.49531, 0.120927)
+transform = Transform3D(0.997935, -0.0642367, -0.000251293, 0.0622928, 0.968676, -0.240387, 0.0156852, 0.239875, 0.970677, -0.0612429, 1.49531, 0.152151)
 
 [node name="AnimationTree" parent="CharacterModel" index="2"]
 "parameters/Dizzy Finisher Which One/current_state" = ""
@@ -206,6 +206,18 @@ transform = Transform3D(0.997935, -0.0642358, -0.000251025, 0.062292, 0.968677, 
 "parameters/Dizzy From Damage/current_index" = -1
 "parameters/Dizzy Which One/current_state" = ""
 "parameters/Dizzy Which One/current_index" = -1
+
+[node name="InwardAttack" parent="CharacterModel/AttackAnimations" index="0" node_paths=PackedStringArray("movement_component")]
+movement_component = NodePath("../../../Movement/MovementComponent")
+
+[node name="OutwardAttack" parent="CharacterModel/AttackAnimations" index="1" node_paths=PackedStringArray("movement_component")]
+movement_component = NodePath("../../../Movement/MovementComponent")
+
+[node name="ThrustAttack" parent="CharacterModel/AttackAnimations" index="2" node_paths=PackedStringArray("movement_component")]
+movement_component = NodePath("../../../Movement/MovementComponent")
+
+[node name="QuickSlashAttack" parent="CharacterModel/AttackAnimations" index="3" node_paths=PackedStringArray("movement_component")]
+movement_component = NodePath("../../../Movement/MovementComponent")
 
 [node name="Collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
@@ -281,9 +293,8 @@ head_attachment = NodePath("../../CharacterModel/Armature_004/GeneralSkeleton/He
 blackboard = NodePath("../../Blackboard")
 hud_info = NodePath("../../Interface/HUDInfoPos")
 
-[node name="AttackComponent" parent="Combat" node_paths=PackedStringArray("_attack_animations", "_movement_component", "_weapon") instance=ExtResource("16_hpgg5")]
+[node name="AttackComponent" parent="Combat" node_paths=PackedStringArray("_attack_animations", "_weapon") instance=ExtResource("16_hpgg5")]
 _attack_animations = NodePath("../../CharacterModel/AttackAnimations")
-_movement_component = NodePath("../../Movement/MovementComponent")
 _weapon = NodePath("../../CharacterModel/Armature_004/GeneralSkeleton/Sword")
 
 [node name="BlockComponent" parent="Combat" node_paths=PackedStringArray("movement_component", "character") instance=ExtResource("16_ckq0d")]
