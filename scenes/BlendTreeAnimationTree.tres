@@ -16,7 +16,7 @@ graph_offset = Vector2(-358.61, -3.69998)
 "nodes/Forward Thrust Trim/node" = SubResource("AnimationNodeTimeSeek_6gi4v")
 "nodes/Forward Thrust Trim/position" = Vector2(20, 120)
 nodes/output/position = Vector2(540, 140)
-node_connections = [&"output", 0, &"Forward Thrust Speed", &"Forward Thrust Speed", 0, &"Forward Thrust Trim", &"Forward Thrust Trim", 0, &"Forward Thrust"]
+node_connections = [&"Forward Thrust Speed", 0, &"Forward Thrust Trim", &"Forward Thrust Trim", 0, &"Forward Thrust", &"output", 0, &"Forward Thrust Speed"]
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_sr615"]
 
@@ -53,7 +53,7 @@ graph_offset = Vector2(-538.119, -51.8633)
 "nodes/Walk Forwards Trim/node" = SubResource("AnimationNodeTimeSeek_g6veh")
 "nodes/Walk Forwards Trim/position" = Vector2(-300, 340)
 nodes/output/position = Vector2(540, 220)
-node_connections = [&"output", 0, &"Inward Slash and Walk Blend", &"Inward Slash Speed", 0, &"Inward Slash Trim", &"Inward Slash Trim", 0, &"Inward Slash", &"Inward Slash and Walk Blend", 0, &"Inward Slash Speed", &"Inward Slash and Walk Blend", 1, &"Walk Forwards Speed", &"Walk Forwards Speed", 0, &"Walk Forwards Trim", &"Walk Forwards Trim", 0, &"Walk Forwards"]
+node_connections = [&"Inward Slash Speed", 0, &"Inward Slash Trim", &"Inward Slash Trim", 0, &"Inward Slash", &"Inward Slash and Walk Blend", 0, &"Inward Slash Speed", &"Inward Slash and Walk Blend", 1, &"Walk Forwards Speed", &"Walk Forwards Speed", 0, &"Walk Forwards Trim", &"Walk Forwards Trim", 0, &"Walk Forwards", &"output", 0, &"Inward Slash and Walk Blend"]
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_m02a1"]
 
@@ -90,7 +90,7 @@ graph_offset = Vector2(-698.162, -50.9099)
 "nodes/Walk Forwards Trim/node" = SubResource("AnimationNodeTimeSeek_xjju2")
 "nodes/Walk Forwards Trim/position" = Vector2(-460, 340)
 nodes/output/position = Vector2(500, 160)
-node_connections = [&"output", 0, &"Inward Slash and Walk Blend", &"Inward Slash Speed", 0, &"Inward Slash Trim", &"Inward Slash Trim", 0, &"Inward Slash", &"Inward Slash and Walk Blend", 0, &"Inward Slash Speed", &"Inward Slash and Walk Blend", 1, &"Walk Forwards Speed", &"Walk Forwards Speed", 0, &"Walk Forwards Trim", &"Walk Forwards Trim", 0, &"Walk Forwards"]
+node_connections = [&"Inward Slash Speed", 0, &"Inward Slash Trim", &"Inward Slash Trim", 0, &"Inward Slash", &"Inward Slash and Walk Blend", 0, &"Inward Slash Speed", &"Inward Slash and Walk Blend", 1, &"Walk Forwards Speed", &"Walk Forwards Speed", 0, &"Walk Forwards Trim", &"Walk Forwards Trim", 0, &"Walk Forwards", &"output", 0, &"Inward Slash and Walk Blend"]
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_n1atq"]
 
@@ -127,7 +127,7 @@ graph_offset = Vector2(-589.493, 22.4363)
 "nodes/Walk Forwards Trim/node" = SubResource("AnimationNodeTimeSeek_yj2l3")
 "nodes/Walk Forwards Trim/position" = Vector2(-380, 400)
 nodes/output/position = Vector2(540, 180)
-node_connections = [&"output", 0, &"Outward Slash and Walk Blend", &"Outward Slash Speed", 0, &"Outward Slash Trim", &"Outward Slash Trim", 0, &"Outward Slash", &"Outward Slash and Walk Blend", 0, &"Outward Slash Speed", &"Outward Slash and Walk Blend", 1, &"Walk Forwards Speed", &"Walk Forwards Speed", 0, &"Walk Forwards Trim", &"Walk Forwards Trim", 0, &"Walk Forwards"]
+node_connections = [&"Outward Slash Speed", 0, &"Outward Slash Trim", &"Outward Slash Trim", 0, &"Outward Slash", &"Outward Slash and Walk Blend", 0, &"Outward Slash Speed", &"Outward Slash and Walk Blend", 1, &"Walk Forwards Speed", &"Walk Forwards Speed", 0, &"Walk Forwards Trim", &"Walk Forwards Trim", 0, &"Walk Forwards", &"output", 0, &"Outward Slash and Walk Blend"]
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_01b7k"]
 
@@ -164,7 +164,7 @@ graph_offset = Vector2(-442.817, 215.416)
 "nodes/Walk Forwards Trim/node" = SubResource("AnimationNodeTimeSeek_7i8xv")
 "nodes/Walk Forwards Trim/position" = Vector2(-280, 420)
 nodes/output/position = Vector2(720, 160)
-node_connections = [&"output", 0, &"Outward Slash and Walk Blend", &"Outward Slash Speed", 0, &"Outward Slash Trim", &"Outward Slash Trim", 0, &"Outward Slash", &"Outward Slash and Walk Blend", 0, &"Outward Slash Speed", &"Outward Slash and Walk Blend", 1, &"Walk Forwards Speed", &"Walk Forwards Speed", 0, &"Walk Forwards Trim", &"Walk Forwards Trim", 0, &"Walk Forwards"]
+node_connections = [&"Outward Slash Speed", 0, &"Outward Slash Trim", &"Outward Slash Trim", 0, &"Outward Slash", &"Outward Slash and Walk Blend", 0, &"Outward Slash Speed", &"Outward Slash and Walk Blend", 1, &"Walk Forwards Speed", &"Walk Forwards Speed", 0, &"Walk Forwards Trim", &"Walk Forwards Trim", 0, &"Walk Forwards", &"output", 0, &"Outward Slash and Walk Blend"]
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_soxnx"]
 
@@ -201,7 +201,7 @@ graph_offset = Vector2(-345.786, 38.8251)
 "nodes/Walk Forwards Trim/node" = SubResource("AnimationNodeTimeSeek_ldaof")
 "nodes/Walk Forwards Trim/position" = Vector2(-220, 380)
 nodes/output/position = Vector2(660, 220)
-node_connections = [&"output", 0, &"Quick Slash and Walk Blend", &"Quick Slash Speed", 0, &"Quick Slash Trim", &"Quick Slash Trim", 0, &"Quick Slash", &"Quick Slash and Walk Blend", 0, &"Quick Slash Speed", &"Quick Slash and Walk Blend", 1, &"Walk Forwards Speed", &"Walk Forwards Speed", 0, &"Walk Forwards Trim", &"Walk Forwards Trim", 0, &"Walk Forwards"]
+node_connections = [&"Quick Slash Speed", 0, &"Quick Slash Trim", &"Quick Slash Trim", 0, &"Quick Slash", &"Quick Slash and Walk Blend", 0, &"Quick Slash Speed", &"Quick Slash and Walk Blend", 1, &"Walk Forwards Speed", &"Walk Forwards Speed", 0, &"Walk Forwards Trim", &"Walk Forwards Trim", 0, &"Walk Forwards", &"output", 0, &"Quick Slash and Walk Blend"]
 
 [sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_gr1qy"]
 xfade_time = 0.2
@@ -361,7 +361,7 @@ graph_offset = Vector2(-637.6, -35.2)
 "nodes/Jump Speed/position" = Vector2(44.044, 183.678)
 "nodes/Jump Trim/node" = SubResource("AnimationNodeTimeSeek_it0rv")
 "nodes/Jump Trim/position" = Vector2(-180, 160)
-node_connections = [&"output", 0, &"Jump Speed", &"Jump Speed", 0, &"Jump Trim", &"Jump Trim", 0, &"Jump Animation"]
+node_connections = [&"Jump Speed", 0, &"Jump Trim", &"Jump Trim", 0, &"Jump Animation", &"output", 0, &"Jump Speed"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2ykvw"]
 animation = &"movement_animations_1/Jump"
@@ -378,7 +378,7 @@ graph_offset = Vector2(-467, -73)
 "nodes/Jump Speed/position" = Vector2(100, 160)
 "nodes/Jump Trim/node" = SubResource("AnimationNodeTimeSeek_cf338")
 "nodes/Jump Trim/position" = Vector2(-100, 160)
-node_connections = [&"output", 0, &"Jump Speed", &"Jump Speed", 0, &"Jump Trim", &"Jump Trim", 0, &"Jump Animation"]
+node_connections = [&"Jump Speed", 0, &"Jump Trim", &"Jump Trim", 0, &"Jump Animation", &"output", 0, &"Jump Speed"]
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_nxeha"]
 
@@ -431,7 +431,7 @@ nodes/Animation/node = SubResource("AnimationNodeAnimation_gmvi0")
 nodes/Animation/position = Vector2(-240, 120)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_to2pe")
 nodes/TimeScale/position = Vector2(120, 120)
-node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation"]
+node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2o0sj"]
 animation = &"movement_animations_1/Walk-Right"
@@ -444,7 +444,7 @@ nodes/Animation/node = SubResource("AnimationNodeAnimation_2o0sj")
 nodes/Animation/position = Vector2(-340, 120)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_ee4p2")
 nodes/TimeScale/position = Vector2(80, 120)
-node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation"]
+node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_pudql"]
 blend_point_0/node = SubResource("AnimationNodeAnimation_dotnv")
@@ -706,4 +706,4 @@ nodes/Sitting/position = Vector2(5480, 1060)
 "nodes/Walk Forward/node" = SubResource("AnimationNodeAnimation_g8521")
 "nodes/Walk Forward/position" = Vector2(-2736, 496)
 nodes/output/position = Vector2(10760, 1380)
-node_connections = [&"output", 0, &"Death", &"Attack", 0, &"Attack Inward Slash", &"Attack", 1, &"Attack Inward Slash Copy", &"Attack", 2, &"Attack Outward Slash", &"Attack", 3, &"Attack Outward Slash Copy", &"Attack", 4, &"Attack Forward Thrust", &"Attack", 5, &"Attack Quick Slash", &"Attacking", 0, &"Vertical Movement", &"Attacking", 1, &"Attack", &"Blocking", 0, &"Attacking", &"Blocking", 1, &"Blocking Speed", &"Blocking Speed", 0, &"Blocking Trim", &"Blocking Trim", 0, &"Blocking Animation", &"Death", 0, &"Dizzy", &"Death", 1, &"Death Which One", &"Death 1 Speed", 0, &"Death 1 Trim", &"Death 1 Trim", 0, &"Death Animation", &"Death 2 Speed", 0, &"Death 2 Trim", &"Death 2 Trim", 0, &"Death Backstab Animation", &"Death Which One", 0, &"Death 1 Speed", &"Death Which One", 1, &"Death 2 Speed", &"Dizzy", 0, &"Dizzy Finisher", &"Dizzy", 1, &"Dizzy Which One", &"Dizzy Finisher", 0, &"Sitting", &"Dizzy Finisher", 1, &"Dizzy Finisher Which One", &"Dizzy Finisher From Damage Speed", 0, &"Dizzy Finisher From Damage Trim", &"Dizzy Finisher From Damage Trim", 0, &"Dizzy Finisher From Damage Animation", &"Dizzy Finisher From Parry Speed", 0, &"Dizzy Finisher From Parry Trim", &"Dizzy Finisher From Parry Trim", 0, &"Dizzy Finisher From Parry Animation", &"Dizzy Finisher Which One", 0, &"Dizzy Finisher From Parry Speed", &"Dizzy Finisher Which One", 1, &"Dizzy Finisher From Damage Speed", &"Dizzy From Damage", 0, &"Dizzy Kneeling Speed", &"Dizzy From Damage", 1, &"Kneeling Idle Speed", &"Dizzy From Damage", 2, &"Kneel to Stand Speed", &"Dizzy Kneeling Speed", 0, &"Dizzy Kneeling Trim", &"Dizzy Kneeling Trim", 0, &"Dizzy Kneeling Animation", &"Dizzy Which One", 0, &"Dizzy Idle Animation", &"Dizzy Which One", 1, &"Dizzy From Damage", &"Drinking", 0, &"Parry", &"Drinking", 1, &"Drinking Speed", &"Drinking Speed", 0, &"Drinking Trim", &"Drinking Trim", 0, &"Drinking Animation", &"Free Jog Speed", 0, &"Jog Forward", &"Free Movement", 0, &"Free Idle", &"Free Movement", 1, &"Free Walk Or Jog", &"Free Walk Or Jog", 0, &"Free Walk Speed", &"Free Walk Or Jog", 1, &"Free Jog Speed", &"Free Walk Speed", 0, &"Walk Forward", &"Jump Handler", 0, &"Jump 1", &"Jump Handler", 1, &"Jump 2", &"Jump and Fall Blend", 0, &"Jump Handler", &"Jump and Fall Blend", 1, &"Fall Animation", &"Kneel to Stand Speed", 0, &"Kneel to Stand Trim", &"Kneel to Stand Trim", 0, &"Kneel to Stand Animation", &"Kneeling Idle Speed", 0, &"Kneeling Idle Animation", &"Locked On Movement", 0, &"Locked On Walk", &"Locked On Movement", 1, &"Free Movement", &"Locked On Walk", 0, &"Locked On Idle", &"Locked On Walk", 1, &"Locked On Walk Speed", &"Locked On Walk Speed", 0, &"Locked On Walk Direction", &"Parry", 0, &"Blocking", &"Parry", 1, &"Parry Speed", &"Parry Speed", 0, &"Parry Trim", &"Parry Trim", 0, &"Parry Animation", &"Running", 0, &"Locked On Movement", &"Running", 1, &"Running Locked On", &"Running Locked On", 0, &"Running Lock On Look Direction", &"Running Locked On", 1, &"Run Forwards", &"Sit to Stand Speed", 0, &"Sit to Stand Trim", &"Sit to Stand Trim", 0, &"Sit to Stand Animation", &"Sitting", 0, &"Drinking", &"Sitting", 1, &"Sitting or Standing", &"Sitting Idle Speed", 0, &"Sitting Idle Trim", &"Sitting Idle Trim", 0, &"Sitting Idle Animation", &"Sitting or Standing", 0, &"Sitting Idle Speed", &"Sitting or Standing", 1, &"Sit to Stand Speed", &"Vertical Movement", 0, &"Running", &"Vertical Movement", 1, &"Jump and Fall Blend"]
+node_connections = [&"Attack", 0, &"Attack Inward Slash", &"Attack", 1, &"Attack Inward Slash Copy", &"Attack", 2, &"Attack Outward Slash", &"Attack", 3, &"Attack Outward Slash Copy", &"Attack", 4, &"Attack Forward Thrust", &"Attack", 5, &"Attack Quick Slash", &"Attacking", 0, &"Vertical Movement", &"Attacking", 1, &"Attack", &"Blocking", 0, &"Attacking", &"Blocking", 1, &"Blocking Speed", &"Blocking Speed", 0, &"Blocking Trim", &"Blocking Trim", 0, &"Blocking Animation", &"Death", 0, &"Dizzy", &"Death", 1, &"Death Which One", &"Death 1 Speed", 0, &"Death 1 Trim", &"Death 1 Trim", 0, &"Death Animation", &"Death 2 Speed", 0, &"Death 2 Trim", &"Death 2 Trim", 0, &"Death Backstab Animation", &"Death Which One", 0, &"Death 1 Speed", &"Death Which One", 1, &"Death 2 Speed", &"Dizzy", 0, &"Dizzy Finisher", &"Dizzy", 1, &"Dizzy Which One", &"Dizzy Finisher", 0, &"Sitting", &"Dizzy Finisher", 1, &"Dizzy Finisher Which One", &"Dizzy Finisher From Damage Speed", 0, &"Dizzy Finisher From Damage Trim", &"Dizzy Finisher From Damage Trim", 0, &"Dizzy Finisher From Damage Animation", &"Dizzy Finisher From Parry Speed", 0, &"Dizzy Finisher From Parry Trim", &"Dizzy Finisher From Parry Trim", 0, &"Dizzy Finisher From Parry Animation", &"Dizzy Finisher Which One", 0, &"Dizzy Finisher From Parry Speed", &"Dizzy Finisher Which One", 1, &"Dizzy Finisher From Damage Speed", &"Dizzy From Damage", 0, &"Dizzy Kneeling Speed", &"Dizzy From Damage", 1, &"Kneeling Idle Speed", &"Dizzy From Damage", 2, &"Kneel to Stand Speed", &"Dizzy Kneeling Speed", 0, &"Dizzy Kneeling Trim", &"Dizzy Kneeling Trim", 0, &"Dizzy Kneeling Animation", &"Dizzy Which One", 0, &"Dizzy Idle Animation", &"Dizzy Which One", 1, &"Dizzy From Damage", &"Drinking", 0, &"Parry", &"Drinking", 1, &"Drinking Speed", &"Drinking Speed", 0, &"Drinking Trim", &"Drinking Trim", 0, &"Drinking Animation", &"Free Jog Speed", 0, &"Jog Forward", &"Free Movement", 0, &"Free Idle", &"Free Movement", 1, &"Free Walk Or Jog", &"Free Walk Or Jog", 0, &"Free Walk Speed", &"Free Walk Or Jog", 1, &"Free Jog Speed", &"Free Walk Speed", 0, &"Walk Forward", &"Jump Handler", 0, &"Jump 1", &"Jump Handler", 1, &"Jump 2", &"Jump and Fall Blend", 0, &"Jump Handler", &"Jump and Fall Blend", 1, &"Fall Animation", &"Kneel to Stand Speed", 0, &"Kneel to Stand Trim", &"Kneel to Stand Trim", 0, &"Kneel to Stand Animation", &"Kneeling Idle Speed", 0, &"Kneeling Idle Animation", &"Locked On Movement", 0, &"Locked On Walk", &"Locked On Movement", 1, &"Free Movement", &"Locked On Walk", 0, &"Locked On Idle", &"Locked On Walk", 1, &"Locked On Walk Speed", &"Locked On Walk Speed", 0, &"Locked On Walk Direction", &"Parry", 0, &"Blocking", &"Parry", 1, &"Parry Speed", &"Parry Speed", 0, &"Parry Trim", &"Parry Trim", 0, &"Parry Animation", &"Running", 0, &"Locked On Movement", &"Running", 1, &"Running Locked On", &"Running Locked On", 0, &"Running Lock On Look Direction", &"Running Locked On", 1, &"Run Forwards", &"Sit to Stand Speed", 0, &"Sit to Stand Trim", &"Sit to Stand Trim", 0, &"Sit to Stand Animation", &"Sitting", 0, &"Drinking", &"Sitting", 1, &"Sitting or Standing", &"Sitting Idle Speed", 0, &"Sitting Idle Trim", &"Sitting Idle Trim", 0, &"Sitting Idle Animation", &"Sitting or Standing", 0, &"Sitting Idle Speed", &"Sitting or Standing", 1, &"Sit to Stand Speed", &"Vertical Movement", 0, &"Running", &"Vertical Movement", 1, &"Jump and Fall Blend", &"output", 0, &"Death"]
