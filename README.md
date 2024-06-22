@@ -4,7 +4,7 @@ A base project for third person combat. Contains a simple setup for player movem
 
 # Downloading the Project
 
-**Using Godot 4.1.3**
+**Using Godot 4.2.2**
 
 You must have Blender installed and have Blender imports (https://docs.godotengine.org/en/stable/tutorials/assets_pipeline/importing_scenes.html#importing-blend-files-directly-within-godot) configured in your Godot editor. If not, you will get an error saying `Error while loading file 'Main.tcsn'`. Please have a look at https://github.com/Snaiel/Godot4ThirdPersonCombatPrototype/issues/3.
 
