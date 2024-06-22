@@ -394,10 +394,10 @@ animation = &"movement_animations_1/Walk-Forwards"
 [sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_g1a58"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1rhce"]
-animation = &"zombie_animations_1/Zombie Punch"
+animation = &"zombie_animations_1/Zombie Smack"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_wmxk2"]
-graph_offset = Vector2(-445.709, 47.0513)
+graph_offset = Vector2(-818.709, -32.9487)
 "nodes/Zombie Smack/node" = SubResource("AnimationNodeAnimation_1rhce")
 "nodes/Zombie Smack/position" = Vector2(-560, 144)
 "nodes/Zombie Smack Speed/node" = SubResource("AnimationNodeTimeScale_kaeu2")
@@ -412,10 +412,10 @@ node_connections = [&"Zombie Smack Speed", 0, &"Zombie Smack Trim", &"Zombie Sma
 [sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_6uohh"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5dwo7"]
-animation = &"zombie_animations_1/Zombie Punch"
+animation = &"zombie_animations_1/Zombie Smack"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_yni63"]
-graph_offset = Vector2(-520.824, 14.4624)
+graph_offset = Vector2(-803.824, 37.4624)
 "nodes/Zombie Smack/node" = SubResource("AnimationNodeAnimation_5dwo7")
 "nodes/Zombie Smack/position" = Vector2(-624, 144)
 "nodes/Zombie Smack Speed/node" = SubResource("AnimationNodeTimeScale_a3bqr")
@@ -425,7 +425,7 @@ graph_offset = Vector2(-520.824, 14.4624)
 node_connections = [&"Zombie Smack Speed", 0, &"Zombie Smack Trim", &"Zombie Smack Trim", 0, &"Zombie Smack", &"output", 0, &"Zombie Smack Speed"]
 
 [resource]
-graph_offset = Vector2(-67.1663, 224.838)
+graph_offset = Vector2(216.606, 876.58)
 nodes/Attack/node = SubResource("AnimationNodeTransition_gr1qy")
 nodes/Attack/position = Vector2(860, 1160)
 "nodes/Attack Inward Slash/node" = SubResource("AnimationNodeBlendTree_kb1f6")

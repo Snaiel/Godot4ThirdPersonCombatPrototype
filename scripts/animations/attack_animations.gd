@@ -91,12 +91,12 @@ func stop_attacking() -> void:
 	attacking = false
 
 
-func receive_secondary_movement() -> void:
-	secondary_movement.emit(attacks[_level])
-
-
 func receive_prevent_rotation() -> void:
 	can_rotate.emit(false)
+
+
+func receive_secondary_movement() -> void:
+	secondary_movement.emit(attacks[_level])
 
 
 func recieve_can_play_animation() -> void:
@@ -126,12 +126,6 @@ func receive_cannot_attack_again() -> void:
 	can_attack_again.emit(false)
 				
 
-func receive_attack_finished() -> void:
-	_level = 1
-	if _intend_to_stop_attacking and attacking:
-		attacking_finished.emit()
-		stop_attacking()
-
 
 func receive_can_damage() -> void:
 	can_damage.emit(true)
@@ -139,3 +133,10 @@ func receive_can_damage() -> void:
 
 func receive_cannot_damage() -> void:
 	can_damage.emit(false)
+
+
+func receive_attack_finished() -> void:
+	_level = 0
+	if _intend_to_stop_attacking and attacking:
+		attacking_finished.emit()
+		stop_attacking()

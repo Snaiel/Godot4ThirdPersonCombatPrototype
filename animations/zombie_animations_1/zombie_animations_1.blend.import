@@ -3629,10 +3629,10 @@ _subresources={
 "slice_99/start_frame": 0,
 "slices/amount": null
 },
-"Zombie Punch": {
+"Zombie Smack": {
 "save_to_file/enabled": true,
 "save_to_file/keep_custom_tracks": true,
-"save_to_file/path": "res://animations/zombie_animations_1/zombie_animations_1_punch.res",
+"save_to_file/path": "res://animations/zombie_animations_1/zombie_animations_1_smack.res",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
@@ -5426,7 +5426,7 @@ _subresources={
 "slice_99/save_to_file/keep_custom_tracks": false,
 "slice_99/save_to_file/path": "",
 "slice_99/start_frame": 0,
-"slices/amount": null
+"slices/amount": 0
 },
 "Zombie Walk": {
 "save_to_file/enabled": false,

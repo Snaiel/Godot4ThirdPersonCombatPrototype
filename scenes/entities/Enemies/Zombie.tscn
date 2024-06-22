@@ -603,14 +603,11 @@ hit_and_death_animations = NodePath("HitAndDeathAnimations")
 dizzy_victim_animations = NodePath("DizzyVictimAnimations")
 dizzy_finisher_animations = NodePath("DizzyFinisherAnimations")
 
-[node name="GeneralSkeleton" parent="Character/Armature_004" index="0"]
-bones/0/position = Vector3(0.0763512, -3.26313e-10, -0.00273731)
-
 [node name="Alpha_Surface" parent="Character/Armature_004/GeneralSkeleton" index="1"]
 surface_material_override/0 = SubResource("ShaderMaterial_pxv52")
 
 [node name="Weapon" parent="Character/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity")]
-transform = Transform3D(0, -1, 0, 0, 0, -1, 1, 0, 0, -0.661478, 1.43559, -0.064451)
+transform = Transform3D(0, -1, 0, 0, 0, -1, 1, 0, 0, -0.737829, 1.43559, -0.0617137)
 _entity = NodePath("../../../..")
 
 [node name="Mesh" parent="Character/Armature_004/GeneralSkeleton/Weapon" index="0"]
@@ -621,7 +618,7 @@ transform = Transform3D(-0.891466, -0.453088, -3.91619e-05, 0.453088, -0.891466,
 shape = SubResource("SphereShape3D_isb3a")
 
 [node name="LockOnAttachment" parent="Character/Armature_004/GeneralSkeleton" index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0763286, 1.34721, -0.0454983)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25913e-05, 1.34721, -0.042761)
 
 [node name="Crosshair" type="Sprite3D" parent="Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint" index="0" node_paths=PackedStringArray("backstab_component", "dizzy_component")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
@@ -634,7 +631,7 @@ backstab_component = NodePath("../../../../../../Combat/BackstabComponent")
 dizzy_component = NodePath("../../../../../../Combat/DizzyComponent")
 
 [node name="HeadAttachment" parent="Character/Armature_004/GeneralSkeleton" index="4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0763066, 1.60075, -0.00614503)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.45549e-05, 1.60075, -0.00340771)
 
 [node name="AnimationPlayer" parent="Character" index="1"]
 libraries = {
