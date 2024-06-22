@@ -1,4 +1,4 @@
-[gd_scene load_steps=106 format=3 uid="uid://tnef4myjatff"]
+[gd_scene load_steps=109 format=3 uid="uid://tnef4myjatff"]
 
 [ext_resource type="Script" path="res://scripts/entities/enemy.gd" id="1_htlua"]
 [ext_resource type="Script" path="res://scripts/utilities/wellbeing_stats.gd" id="2_uvk8f"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dvwkf086vv2aa" path="res://scenes/entities/YBot.tscn" id="3_yb5ae"]
 [ext_resource type="Shader" path="res://shaders/fade.gdshader" id="5_gycrj"]
 [ext_resource type="Texture2D" uid="uid://b1oqk2tqilbw" path="res://assets/crosshair.svg" id="7_hjrdm"]
+[ext_resource type="PackedScene" uid="uid://b78ctcv6lulvi" path="res://scenes/utilities/Sword.tscn" id="8_11b14"]
 [ext_resource type="Script" path="res://scripts/utilities/crosshair.gd" id="8_85uy3"]
 [ext_resource type="AnimationLibrary" uid="uid://cpdmlmb5om1d3" path="res://animations/combat_animations_1/combat_animations_1.blend" id="9_4gv0h"]
 [ext_resource type="AnimationLibrary" uid="uid://c6e3lwlt6ukuj" path="res://animations/movement_animations_1/movement_animations_1.blend" id="11_6g2f5"]
@@ -29,6 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://bg5d27eyqwsfd" path="res://scenes/components/ParryComponent.tscn" id="21_e624s"]
 [ext_resource type="Script" path="res://scripts/animations/parry_animations.gd" id="21_n1uyc"]
 [ext_resource type="Script" path="res://scripts/attacks/zombie/zombie_smash_attack.gd" id="21_xh2qi"]
+[ext_resource type="Script" path="res://scripts/attacks/zombie/zombie_kick_attack.gd" id="22_plbic"]
 [ext_resource type="Script" path="res://scripts/audio/audio_footsteps.gd" id="22_rjua1"]
 [ext_resource type="AudioStream" uid="uid://dp8kx7ob5g52l" path="res://audio/jump.wav" id="23_n41vf"]
 [ext_resource type="AudioStream" uid="uid://d2hx1psw3kw3j" path="res://audio/jump_land.wav" id="24_4taq6"]
@@ -77,7 +79,6 @@
 [ext_resource type="PackedScene" uid="uid://d1p0cwvn1hlcs" path="res://scenes/beehave/trees/CheckSuspicion.tscn" id="64_dngb3"]
 [ext_resource type="PackedScene" uid="uid://buwmvh65dccg5" path="res://scenes/beehave/compare_actions/IsStateAggro.tscn" id="65_g083q"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_random.gd" id="66_nwowx"]
-[ext_resource type="PackedScene" uid="uid://cfuiyhthukrn0" path="res://scenes/beehave/attacks/SingleRandomAttack.tscn" id="67_s3cyl"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_set.gd" id="71_hlhqy"]
 [ext_resource type="PackedScene" uid="uid://d1wjh32ysekoi" path="res://scenes/beehave/set_actions/SetRunSpeed.tscn" id="74_mmywf"]
 [ext_resource type="Script" path="res://scripts/beehave/set_root_motion.gd" id="75_2wqsi"]
@@ -89,6 +90,7 @@
 [ext_resource type="Script" path="res://scripts/beehave/wait/reset_wait.gd" id="78_lf37f"]
 [ext_resource type="Script" path="res://scripts/beehave/wait/skip_wait.gd" id="79_n6a2w"]
 [ext_resource type="Script" path="res://scripts/beehave/wait/wait.gd" id="80_kovvc"]
+[ext_resource type="PackedScene" uid="uid://sgydepkut3a4" path="res://scenes/beehave/attacks/RandomAttack.tscn" id="81_5syh5"]
 
 [sub_resource type="Resource" id="Resource_6we7u"]
 script = ExtResource("2_uvk8f")
@@ -109,6 +111,9 @@ shader_parameter/normal_strength = 1.0
 shader_parameter/alpha_clip = 0.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_isb3a"]
+radius = 0.15
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_f5hyq"]
 radius = 0.15
 
 [sub_resource type="Animation" id="Animation_sc1df"]
@@ -590,7 +595,7 @@ beehave_tree = NodePath("BeehaveTree")
 blackboard = NodePath("Blackboard")
 agent = NodePath("NavigationAgent3D")
 skeleton = NodePath("Character/Armature_004/GeneralSkeleton")
-sword = NodePath("Character/Armature_004/GeneralSkeleton/Weapon")
+sword = NodePath("Character/Armature_004/GeneralSkeleton/WeaponHand")
 
 [node name="Character" parent="." node_paths=PackedStringArray("movement_animations", "walk_or_jog_animations", "jump_animations", "attack_animations", "block_animations", "parry_animations", "hit_and_death_animations", "dizzy_victim_animations", "dizzy_finisher_animations") instance=ExtResource("3_yb5ae")]
 script = ExtResource("3_ci7dv")
@@ -605,87 +610,68 @@ dizzy_victim_animations = NodePath("DizzyVictimAnimations")
 dizzy_finisher_animations = NodePath("DizzyFinisherAnimations")
 
 [node name="GeneralSkeleton" parent="Character/Armature_004" index="0"]
-bones/0/position = Vector3(-0.101837, -1.2217e-08, -0.102484)
-bones/1/position = Vector3(1.13615e-05, 0.86775, -8.54928e-08)
-bones/1/rotation = Quaternion(0.147903, -0.0981507, 0.00197906, 0.984118)
-bones/2/rotation = Quaternion(0.0744274, -0.00574228, -0.0017015, 0.997208)
-bones/3/rotation = Quaternion(0.119011, -0.0116513, -0.00666195, 0.992802)
-bones/4/rotation = Quaternion(0.123588, -0.012153, -0.006944, 0.992235)
-bones/5/rotation = Quaternion(0.0872272, 0.0111954, -0.0248143, 0.995816)
-bones/6/rotation = Quaternion(-0.0330895, 0.021778, 0.00874946, 0.999177)
-bones/8/rotation = Quaternion(0.372699, 0.602592, 0.449133, -0.544295)
-bones/9/rotation = Quaternion(0.35236, 0.772285, -0.525292, -0.0590396)
-bones/10/rotation = Quaternion(0.45914, -0.537765, 0.459139, 0.537765)
-bones/11/rotation = Quaternion(0.123773, 0.640354, -0.161975, 0.740534)
-bones/12/rotation = Quaternion(-0.00292137, -0.00450877, -0.100998, 0.994872)
-bones/13/rotation = Quaternion(-0.0894568, 0.702251, 0.0690828, 0.7029)
-bones/14/rotation = Quaternion(0.353882, 0.0609118, -0.023205, 0.933016)
-bones/15/rotation = Quaternion(0, -2.98023e-08, -2.98023e-08, 1)
-bones/16/rotation = Quaternion(0.439388, -3.23653e-07, -0.0530253, 0.896731)
-bones/17/rotation = Quaternion(0.807393, -3.76658e-07, -0.097436, 0.581913)
-bones/18/rotation = Quaternion(0.749415, -4.67557e-07, -0.0904391, 0.655894)
-bones/19/rotation = Quaternion(-2.98023e-08, -5.96046e-08, -2.98023e-08, 1)
-bones/20/rotation = Quaternion(0.439263, -2.64049e-07, -0.0530101, 0.896793)
-bones/21/rotation = Quaternion(0.807474, -3.47973e-07, -0.0974458, 0.581799)
-bones/22/rotation = Quaternion(0.749415, -3.80755e-07, -0.0904391, 0.655894)
-bones/23/rotation = Quaternion(-1.49012e-08, 1.49012e-08, 1.49012e-08, 1)
-bones/24/rotation = Quaternion(0.494689, -3.59696e-07, -0.059699, 0.867017)
-bones/25/rotation = Quaternion(0.807393, -6.15465e-07, -0.097436, 0.581913)
-bones/26/rotation = Quaternion(0.749415, -4.86744e-07, -0.0904393, 0.655894)
-bones/27/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
-bones/28/rotation = Quaternion(0.525309, 0.00950214, -0.0786677, 0.847214)
-bones/29/rotation = Quaternion(0.808721, 0.0289661, -0.0766617, 0.582455)
-bones/30/rotation = Quaternion(0.749491, -3.70696e-07, -0.0904483, 0.655807)
-bones/31/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
-bones/32/rotation = Quaternion(0.3736, -0.596928, -0.473696, -0.528879)
-bones/33/rotation = Quaternion(-0.477861, 0.798751, -0.363826, 0.0357397)
-bones/34/rotation = Quaternion(0.368675, 0.603389, -0.368675, 0.603389)
-bones/35/rotation = Quaternion(0.00231102, -0.808174, -0.0676348, 0.585042)
-bones/36/rotation = Quaternion(-0.0362406, -0.118038, 0.112362, 0.985966)
-bones/37/rotation = Quaternion(-0.145352, -0.672632, -0.146944, 0.710526)
-bones/38/rotation = Quaternion(0.390723, -0.123354, 0.00732342, 0.912176)
-bones/39/rotation = Quaternion(4.47035e-08, 4.47035e-08, 0, 1)
-bones/40/rotation = Quaternion(0.571723, 2.63838e-07, 0.0696741, 0.817483)
-bones/41/rotation = Quaternion(0.772281, 5.91291e-07, 0.0941154, 0.628271)
-bones/42/rotation = Quaternion(0.705947, 4.86326e-07, 0.0860315, 0.70302)
-bones/43/rotation = Quaternion(-1.49012e-08, 0, 1.49012e-08, 1)
-bones/44/rotation = Quaternion(0.571723, 3.94092e-07, 0.0696739, 0.817483)
-bones/45/rotation = Quaternion(0.772281, 5.7891e-07, 0.0941154, 0.628271)
-bones/46/rotation = Quaternion(0.705947, 4.64631e-07, 0.0860315, 0.70302)
-bones/47/rotation = Quaternion(-1.49012e-08, 1.49012e-08, 1.49012e-08, 1)
-bones/48/rotation = Quaternion(0.638252, 5.59816e-07, 0.0777816, 0.765888)
-bones/49/rotation = Quaternion(0.772281, 5.7124e-07, 0.0941153, 0.628272)
-bones/50/rotation = Quaternion(0.705947, 6.02621e-07, 0.0860314, 0.70302)
-bones/51/rotation = Quaternion(-1.49012e-08, 0, 1.49012e-08, 1)
-bones/52/rotation = Quaternion(0.681125, 4.7504e-07, 0.0830065, 0.727447)
-bones/53/rotation = Quaternion(0.772281, 6.29289e-07, 0.0941155, 0.628271)
-bones/54/rotation = Quaternion(0.705947, 4.8615e-07, 0.0860315, 0.70302)
-bones/55/rotation = Quaternion(-1.49012e-08, 0, 1.49012e-08, 1)
-bones/56/rotation = Quaternion(0.112292, 0.476842, 0.856592, -0.162055)
-bones/57/rotation = Quaternion(-0.00383812, 0.947844, -0.318396, -0.0141648)
-bones/58/rotation = Quaternion(-0.0841485, 0.735171, -0.665153, 0.100075)
-bones/59/rotation = Quaternion(1.216e-08, 0.999999, 0.00118178, 2.06091e-08)
-bones/61/rotation = Quaternion(-0.15146, 0.45945, 0.868692, 0.106484)
-bones/62/rotation = Quaternion(-0.00481457, 0.874548, -0.4804, -0.0660119)
-bones/63/rotation = Quaternion(0.0427968, 0.603684, -0.794156, -0.0552257)
-bones/64/rotation = Quaternion(2.33788e-09, 0.999997, 0.00254412, -1.62112e-08)
+bones/1/rotation = Quaternion(0, 2.2904e-14, -6.7831e-14, 1)
+bones/2/rotation = Quaternion(2.11667e-10, -2.1808e-13, 2.94964e-16, 1)
+bones/3/rotation = Quaternion(3.72529e-09, -4.54747e-13, 2.84217e-14, 1)
+bones/4/rotation = Quaternion(2.77556e-17, -6.82121e-13, -3.63798e-12, 1)
+bones/5/rotation = Quaternion(2.32831e-10, 0, 3.63803e-12, 1)
+bones/8/rotation = Quaternion(0.500032, 0.499969, 0.500032, -0.499968)
+bones/9/rotation = Quaternion(-1.3411e-06, 1, 1.91033e-05, 2.08616e-07)
+bones/10/rotation = Quaternion(-4.21468e-08, -0.707107, 0, 0.707107)
+bones/11/rotation = Quaternion(-7.10043e-09, 0.707107, -7.10043e-09, 0.707107)
+bones/12/rotation = Quaternion(-0.0431555, -0.0153035, 0.0411986, 0.998101)
+bones/13/rotation = Quaternion(-0.214187, 0.673887, 0.214187, 0.673887)
+bones/14/rotation = Quaternion(-4.47035e-08, 2.98023e-08, 4.44089e-16, 1)
+bones/15/rotation = Quaternion(0, -5.96046e-08, -2.98023e-08, 1)
+bones/16/rotation = Quaternion(-0.124949, 5.96046e-08, 0.0150788, 0.992049)
+bones/18/rotation = Quaternion(0, -5.96046e-08, 0, 1)
+bones/19/rotation = Quaternion(2.98023e-08, 2.98023e-08, -2.98023e-08, 1)
+bones/20/rotation = Quaternion(-0.125087, 8.9407e-08, 0.0150956, 0.992031)
+bones/21/rotation = Quaternion(2.98023e-08, -2.98023e-08, 2.98023e-08, 1)
+bones/22/rotation = Quaternion(2.98023e-08, -2.98023e-08, 2.98023e-08, 1)
+bones/23/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
+bones/24/rotation = Quaternion(-0.124949, 5.96046e-08, 0.0150788, 0.992049)
+bones/25/rotation = Quaternion(-4.47035e-08, -4.47035e-08, 0, 1)
+bones/26/rotation = Quaternion(-1.49012e-08, -1.49012e-08, -1.49012e-08, 1)
+bones/27/rotation = Quaternion(0, -5.96046e-08, 0, 1)
+bones/28/rotation = Quaternion(-2.72691e-06, 2.98023e-08, -0.000141129, 1)
+bones/29/rotation = Quaternion(6.22869e-06, 1.04308e-07, 0.000368372, 1)
+bones/30/rotation = Quaternion(-3.57628e-06, 0, -0.000229612, 1)
+bones/31/rotation = Quaternion(1.49012e-08, -1.49012e-08, 0, 1)
+bones/32/rotation = Quaternion(0.499969, -0.500031, -0.499969, -0.500031)
+bones/33/rotation = Quaternion(-4.17233e-07, 1, -1.99974e-05, -2.83122e-07)
+bones/34/rotation = Quaternion(-4.21468e-08, 0.707107, 0, 0.707107)
+bones/35/rotation = Quaternion(-2.81893e-08, -0.707107, -1.39575e-08, 0.707107)
+bones/36/rotation = Quaternion(-0.0426641, 0.0196651, -0.0701818, 0.996427)
+bones/37/rotation = Quaternion(-0.214187, -0.673887, -0.214187, 0.673887)
+bones/38/rotation = Quaternion(-2.98023e-08, 1.49012e-08, 2.22045e-16, 1)
+bones/39/rotation = Quaternion(0, -8.9407e-08, 0, 1)
+bones/40/rotation = Quaternion(-0.0967427, -5.96045e-08, -0.0117897, 0.99524)
+bones/41/rotation = Quaternion(0, 5.96046e-08, 5.96046e-08, 1)
+bones/44/rotation = Quaternion(-0.0967427, -5.96045e-08, -0.0117897, 0.99524)
+bones/46/rotation = Quaternion(0, 5.96046e-08, 5.96046e-08, 1)
+bones/47/rotation = Quaternion(2.98023e-08, -1.49012e-08, 1.49012e-08, 1)
+bones/48/rotation = Quaternion(-0.0967427, -5.96045e-08, -0.0117897, 0.99524)
+bones/49/rotation = Quaternion(-1.49012e-08, 4.47035e-08, 5.96046e-08, 1)
+bones/50/rotation = Quaternion(-1.49012e-08, 1.49012e-08, -1.49012e-08, 1)
+bones/52/rotation = Quaternion(-0.0967427, -5.96045e-08, -0.0117897, 0.99524)
+bones/53/rotation = Quaternion(1.49012e-07, -8.9407e-08, -1.05202e-05, 1)
+bones/54/rotation = Quaternion(-2.98023e-08, 8.9407e-08, 1.05351e-05, 1)
+bones/55/rotation = Quaternion(2.98023e-08, -2.98023e-08, -2.98023e-08, 1)
+bones/56/rotation = Quaternion(8.25414e-09, 1.02951e-05, 1, -8.79593e-08)
+bones/57/rotation = Quaternion(1.39698e-09, 1, -1.97939e-05, -5.46588e-08)
+bones/58/rotation = Quaternion(-1.20905e-09, 0.707107, -0.707107, 2.41295e-09)
+bones/59/rotation = Quaternion(8.23181e-10, 1, 5.96046e-08, -8.23181e-10)
+bones/61/rotation = Quaternion(-1.3356e-12, -6.52502e-10, 1, 2.1827e-11)
+bones/62/rotation = Quaternion(-2.32831e-10, 1, 1.39698e-09, -1.09139e-11)
+bones/63/rotation = Quaternion(1.60006e-09, 0.707107, -0.707107, -3.75576e-10)
+bones/64/rotation = Quaternion(-2.63418e-09, 1, 0, 0)
 
 [node name="Alpha_Surface" parent="Character/Armature_004/GeneralSkeleton" index="1"]
 surface_material_override/0 = SubResource("ShaderMaterial_pxv52")
 
-[node name="Weapon" parent="Character/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity")]
-transform = Transform3D(0.769548, 0.581534, 0.263843, 0.636548, -0.665556, -0.389667, -0.0510022, 0.467817, -0.882352, -0.269938, 0.818297, 0.16553)
-_entity = NodePath("../../../..")
-
-[node name="Mesh" parent="Character/Armature_004/GeneralSkeleton/Weapon" index="0"]
-visible = false
-
-[node name="Collider" parent="Character/Armature_004/GeneralSkeleton/Weapon/Area" index="0"]
-transform = Transform3D(-0.891466, -0.453088, -3.91619e-05, 0.453088, -0.891466, -0.000158824, 3.70497e-05, -0.00015933, 1, -5.58794e-08, 0.0718451, 6.19888e-06)
-shape = SubResource("SphereShape3D_isb3a")
-
-[node name="LockOnAttachment" parent="Character/Armature_004/GeneralSkeleton" index="3"]
-transform = Transform3D(0.971643, -0.129509, -0.19783, -0.083243, 0.595744, -0.798849, 0.221314, 0.792664, 0.56807, -0.115973, 1.19116, 0.0234248)
+[node name="LockOnAttachment" parent="Character/Armature_004/GeneralSkeleton" index="2"]
+transform = Transform3D(1, 7.35419e-12, -2.66409e-12, -7.35419e-12, 1, -7.87391e-09, 2.66409e-12, 7.87391e-09, 1, -2.25913e-05, 1.34721, -0.042761)
 
 [node name="Crosshair" type="Sprite3D" parent="Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint" index="0" node_paths=PackedStringArray("backstab_component", "dizzy_component")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
@@ -697,8 +683,32 @@ script = ExtResource("8_85uy3")
 backstab_component = NodePath("../../../../../../Combat/BackstabComponent")
 dizzy_component = NodePath("../../../../../../Combat/DizzyComponent")
 
-[node name="HeadAttachment" parent="Character/Armature_004/GeneralSkeleton" index="4"]
-transform = Transform3D(0.985568, -0.119862, -0.119533, -0.043588, 0.502631, -0.863402, 0.16357, 0.856152, 0.490152, -0.153426, 1.29211, 0.25224)
+[node name="HeadAttachment" parent="Character/Armature_004/GeneralSkeleton" index="3"]
+transform = Transform3D(1, 7.81293e-14, -2.66409e-12, -7.81293e-14, 1, -8.33958e-09, 2.66409e-12, 8.33958e-09, 1, -4.45549e-05, 1.60075, -0.00340771)
+
+[node name="WeaponHand" parent="Character/Armature_004/GeneralSkeleton" index="4" node_paths=PackedStringArray("_entity") instance=ExtResource("8_11b14")]
+transform = Transform3D(7.54791e-07, -1, -8.41021e-05, 5.5829e-07, 8.41021e-05, -1, 1, 7.54744e-07, 5.58354e-07, -0.737829, 1.43565, -0.0617133)
+_entity = NodePath("../../../..")
+
+[node name="Mesh" parent="Character/Armature_004/GeneralSkeleton/WeaponHand" index="0"]
+visible = false
+
+[node name="Collider" parent="Character/Armature_004/GeneralSkeleton/WeaponHand/Area" index="0"]
+transform = Transform3D(-0.891466, -0.453088, -3.91619e-05, 0.453088, -0.891466, -0.000158824, 3.70497e-05, -0.00015933, 1, -9.31323e-08, 0.127472, 1.06096e-05)
+shape = SubResource("SphereShape3D_isb3a")
+
+[node name="WeaponFoot" parent="Character/Armature_004/GeneralSkeleton" index="5" node_paths=PackedStringArray("_entity") instance=ExtResource("8_11b14")]
+transform = Transform3D(-1, 1.70723e-09, -3.21584e-09, -3.21584e-09, 1.48896e-09, 1, 1.70723e-09, 1, -1.48896e-09, -0.0912447, 0.104922, -0.0263016)
+bone_name = "RightFoot"
+bone_idx = 63
+_entity = NodePath("../../../..")
+
+[node name="Mesh" parent="Character/Armature_004/GeneralSkeleton/WeaponFoot" index="0"]
+visible = false
+
+[node name="Collider" parent="Character/Armature_004/GeneralSkeleton/WeaponFoot/Area" index="0"]
+transform = Transform3D(-0.891466, -0.453088, -3.91619e-05, 0.453088, -0.891466, -0.000158824, 3.70497e-05, -0.00015933, 1, -7.45058e-09, 0.0769712, -0.0405893)
+shape = SubResource("SphereShape3D_f5hyq")
 
 [node name="AnimationPlayer" parent="Character" index="1"]
 libraries = {
@@ -773,6 +783,10 @@ parameters/Running/blend_amount = 0
 "parameters/Running Locked On/transition_request" = ""
 "parameters/Running Locked On/current_index" = -1
 "parameters/Vertical Movement/blend_amount" = 0
+"parameters/Zombie Kick/Zombie Kick Speed/scale" = 1.0
+"parameters/Zombie Kick/Zombie Kick Trim/seek_request" = -1.0
+"parameters/Zombie Kick Copy/Zombie Kick Speed/scale" = 1.0
+"parameters/Zombie Kick Copy/Zombie Kick Trim/seek_request" = -1.0
 "parameters/Zombie Smack/Zombie Smack Speed/scale" = 1.0
 "parameters/Zombie Smack/Zombie Smack Trim/seek_request" = -1.0
 "parameters/Zombie Smack Copy/Zombie Smack Speed/scale" = 1.0
@@ -823,7 +837,7 @@ anim_tree = NodePath("../AnimationTree")
 
 [node name="AttackAnimations" type="Node" parent="Character" node_paths=PackedStringArray("attacks", "parent_animations", "anim_tree")]
 script = ExtResource("15_37iw6")
-attacks = [NodePath("ZombieSmack"), NodePath("ZombieSmash")]
+attacks = [NodePath("ZombieSmack"), NodePath("ZombieSmash"), NodePath("ZombieKick")]
 parent_animations = NodePath("..")
 anim_tree = NodePath("../AnimationTree")
 
@@ -835,6 +849,12 @@ anim_tree = NodePath("../../AnimationTree")
 
 [node name="ZombieSmash" type="Node" parent="Character/AttackAnimations" node_paths=PackedStringArray("movement_component", "parent_animations", "anim_tree")]
 script = ExtResource("21_xh2qi")
+movement_component = NodePath("../../../Movement/MovementComponent")
+parent_animations = NodePath("../..")
+anim_tree = NodePath("../../AnimationTree")
+
+[node name="ZombieKick" type="Node" parent="Character/AttackAnimations" node_paths=PackedStringArray("movement_component", "parent_animations", "anim_tree")]
+script = ExtResource("22_plbic")
 movement_component = NodePath("../../../Movement/MovementComponent")
 parent_animations = NodePath("../..")
 anim_tree = NodePath("../../AnimationTree")
@@ -974,7 +994,7 @@ blood_scene = ExtResource("39_ypxt1")
 
 [node name="InstabilityComponent" parent="Wellbeing" node_paths=PackedStringArray("hitbox", "weapon") instance=ExtResource("40_df3sf")]
 hitbox = NodePath("../../HitboxComponent")
-weapon = NodePath("../../Character/Armature_004/GeneralSkeleton/Weapon")
+weapon = NodePath("../../Character/Armature_004/GeneralSkeleton/WeaponHand")
 max_instability = 100.0
 
 [node name="Combat" type="Node3D" parent="."]
@@ -1007,7 +1027,7 @@ hud_info = NodePath("../../Interface/HUDInfoPos")
 
 [node name="AttackComponent" parent="Combat" node_paths=PackedStringArray("_attack_animations", "_weapon") instance=ExtResource("43_7m6jm")]
 _attack_animations = NodePath("../../Character/AttackAnimations")
-_weapon = NodePath("../../Character/Armature_004/GeneralSkeleton/Weapon")
+_weapon = NodePath("../../Character/Armature_004/GeneralSkeleton/WeaponHand")
 
 [node name="BlockComponent" parent="Combat" node_paths=PackedStringArray("movement_component", "character") instance=ExtResource("44_pesi7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
@@ -1193,7 +1213,8 @@ script = ExtResource("49_ahbd6")
 script = ExtResource("56_xoiis")
 expression_string = "print(\"SINGLE ATTACK\")"
 
-[node name="SingleRandomAttack" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/SingleAttack" instance=ExtResource("67_s3cyl")]
+[node name="RandomAttack" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/SingleAttack" instance=ExtResource("81_5syh5")]
+weights = Array[float]([1.0, 1.0, 1.0])
 
 [node name="DoubleAttack" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack"]
 script = ExtResource("49_ahbd6")
@@ -1202,7 +1223,8 @@ script = ExtResource("49_ahbd6")
 script = ExtResource("56_xoiis")
 expression_string = "print(\"DOUBLE ATTACK\")"
 
-[node name="SingleRandomAttack" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/DoubleAttack" instance=ExtResource("67_s3cyl")]
+[node name="RandomAttack" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/DoubleAttack" instance=ExtResource("81_5syh5")]
+weights = Array[float]([1.0, 1.0, 1.0])
 
 [node name="WaitBlock" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/DoubleAttack" instance=ExtResource("59_13yvc")]
 wait_id = 10658642
@@ -1214,7 +1236,8 @@ expression_string = "print(\"WOT\")"
 
 [node name="SetCanAttackTrue" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/DoubleAttack" instance=ExtResource("53_ga5bo")]
 
-[node name="SingleRandomAttack2" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/DoubleAttack" instance=ExtResource("67_s3cyl")]
+[node name="RandomAttack2" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/DoubleAttack" instance=ExtResource("81_5syh5")]
+weights = Array[float]([1.0, 1.0, 1.0])
 
 [node name="TripleAttack" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack"]
 script = ExtResource("49_ahbd6")
@@ -1223,7 +1246,8 @@ script = ExtResource("49_ahbd6")
 script = ExtResource("56_xoiis")
 expression_string = "print(\"TRIPLE ATTACK\")"
 
-[node name="SingleRandomAttack" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack" instance=ExtResource("67_s3cyl")]
+[node name="RandomAttack" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack" instance=ExtResource("81_5syh5")]
+weights = Array[float]([1.0, 1.0, 1.0])
 
 [node name="WaitBlock" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack" instance=ExtResource("59_13yvc")]
 wait_id = 35297727
@@ -1235,7 +1259,8 @@ expression_string = "print(\"WOT\")"
 
 [node name="SetCanAttackTrue" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack" instance=ExtResource("53_ga5bo")]
 
-[node name="SingleRandomAttack2" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack" instance=ExtResource("67_s3cyl")]
+[node name="RandomAttack2" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack" instance=ExtResource("81_5syh5")]
+weights = Array[float]([1.0, 1.0, 1.0])
 
 [node name="WaitBlock2" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack" instance=ExtResource("59_13yvc")]
 wait_id = 94769640
@@ -1247,7 +1272,8 @@ expression_string = "print(\"WOT WOT\")"
 
 [node name="SetCanAttackTrue2" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack" instance=ExtResource("53_ga5bo")]
 
-[node name="SingleRandomAttack3" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack" instance=ExtResource("67_s3cyl")]
+[node name="RandomAttack3" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack" instance=ExtResource("81_5syh5")]
+weights = Array[float]([1.0, 1.0, 1.0])
 
 [node name="IsNotAttacking" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget"]
 script = ExtResource("75_ekitc")
@@ -1370,5 +1396,6 @@ script = ExtResource("78_ktm1d")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
 [editable path="Character"]
-[editable path="Character/Armature_004/GeneralSkeleton/Weapon"]
+[editable path="Character/Armature_004/GeneralSkeleton/WeaponHand"]
+[editable path="Character/Armature_004/GeneralSkeleton/WeaponFoot"]
 [editable path="BeehaveTree/SelectorComposite/Suspicious/CheckSuspicion"]

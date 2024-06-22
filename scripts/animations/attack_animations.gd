@@ -117,6 +117,14 @@ func receive_stop_legs(which_attack: StringName) -> void:
 		_transition_legs = -1
 
 
+func receive_can_damage() -> void:
+	can_damage.emit(true)
+
+
+func receive_cannot_damage() -> void:
+	can_damage.emit(false)
+
+
 func receive_can_attack_again() -> void:
 	can_attack_again.emit(true)
 	_intend_to_stop_attacking = true
@@ -125,14 +133,6 @@ func receive_can_attack_again() -> void:
 func receive_cannot_attack_again() -> void:
 	can_attack_again.emit(false)
 				
-
-
-func receive_can_damage() -> void:
-	can_damage.emit(true)
-
-
-func receive_cannot_damage() -> void:
-	can_damage.emit(false)
 
 
 func receive_attack_finished() -> void:

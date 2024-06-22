@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=99 format=3 uid="uid://b5hblhvekj3pr"]
+[gd_resource type="AnimationNodeBlendTree" load_steps=107 format=3 uid="uid://b5hblhvekj3pr"]
 
 [sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_gr1qy"]
 xfade_time = 0.2
@@ -315,6 +315,40 @@ sync = true
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g8521"]
 animation = &"movement_animations_1/Walk-Forwards"
 
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_j7bsv"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_dufa1"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5fes3"]
+animation = &"zombie_animations_1/Zombie Kick"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_hpnqy"]
+graph_offset = Vector2(-667.364, -61.4545)
+"nodes/Zombie Kick/node" = SubResource("AnimationNodeAnimation_5fes3")
+"nodes/Zombie Kick/position" = Vector2(-760, 140)
+"nodes/Zombie Kick Speed/node" = SubResource("AnimationNodeTimeScale_j7bsv")
+"nodes/Zombie Kick Speed/position" = Vector2(0, 140)
+"nodes/Zombie Kick Trim/node" = SubResource("AnimationNodeTimeSeek_dufa1")
+"nodes/Zombie Kick Trim/position" = Vector2(-320, 140)
+node_connections = [&"Zombie Kick Speed", 0, &"Zombie Kick Trim", &"Zombie Kick Trim", 0, &"Zombie Kick", &"output", 0, &"Zombie Kick Speed"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_qbrnj"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_hnxps"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_djfm6"]
+animation = &"zombie_animations_1/Zombie Kick"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_3skjh"]
+graph_offset = Vector2(-579, -38)
+"nodes/Zombie Kick/node" = SubResource("AnimationNodeAnimation_djfm6")
+"nodes/Zombie Kick/position" = Vector2(-720, 140)
+"nodes/Zombie Kick Speed/node" = SubResource("AnimationNodeTimeScale_qbrnj")
+"nodes/Zombie Kick Speed/position" = Vector2(-20, 140)
+"nodes/Zombie Kick Trim/node" = SubResource("AnimationNodeTimeSeek_hnxps")
+"nodes/Zombie Kick Trim/position" = Vector2(-300, 140)
+node_connections = [&"Zombie Kick Speed", 0, &"Zombie Kick Trim", &"Zombie Kick Trim", 0, &"Zombie Kick", &"output", 0, &"Zombie Kick Speed"]
+
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_kaeu2"]
 
 [sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_g1a58"]
@@ -385,7 +419,7 @@ graph_offset = Vector2(-573, -66)
 node_connections = [&"Zombie Smash Speed", 0, &"Zombie Smash Trim", &"Zombie Smash Trim", 0, &"Zombie Smash", &"output", 0, &"Zombie Smash Speed"]
 
 [resource]
-graph_offset = Vector2(193.983, 598.217)
+graph_offset = Vector2(-19.6, 160.198)
 nodes/Attack/node = SubResource("AnimationNodeTransition_gr1qy")
 nodes/Attack/position = Vector2(860, 1160)
 nodes/Attacking/node = SubResource("AnimationNodeBlend2_vrma0")
@@ -506,6 +540,10 @@ nodes/Running/position = Vector2(-640, 180)
 "nodes/Vertical Movement/position" = Vector2(580, 360)
 "nodes/Walk Forward/node" = SubResource("AnimationNodeAnimation_g8521")
 "nodes/Walk Forward/position" = Vector2(-2736, 496)
+"nodes/Zombie Kick/node" = SubResource("AnimationNodeBlendTree_3skjh")
+"nodes/Zombie Kick/position" = Vector2(560, 1460)
+"nodes/Zombie Kick Copy/node" = SubResource("AnimationNodeBlendTree_hpnqy")
+"nodes/Zombie Kick Copy/position" = Vector2(540, 1580)
 "nodes/Zombie Smack/node" = SubResource("AnimationNodeBlendTree_yni63")
 "nodes/Zombie Smack/position" = Vector2(560, 920)
 "nodes/Zombie Smack Copy/node" = SubResource("AnimationNodeBlendTree_wmxk2")
@@ -515,4 +553,4 @@ nodes/Running/position = Vector2(-640, 180)
 "nodes/Zombie Smash Copy/node" = SubResource("AnimationNodeBlendTree_366vf")
 "nodes/Zombie Smash Copy/position" = Vector2(520, 1320)
 nodes/output/position = Vector2(7984, 1296)
-node_connections = [&"Attack", 0, &"Zombie Smack", &"Attack", 1, &"Zombie Smack Copy", &"Attack", 2, &"Zombie Smash", &"Attack", 3, &"Zombie Smash Copy", &"Attacking", 0, &"Vertical Movement", &"Attacking", 1, &"Attack", &"Blocking", 0, &"Attacking", &"Blocking", 1, &"Blocking Speed", &"Blocking Speed", 0, &"Blocking Trim", &"Blocking Trim", 0, &"Blocking Animation", &"Death", 0, &"Dizzy", &"Death", 1, &"Death Which One", &"Death 1 Speed", 0, &"Death 1 Trim", &"Death 1 Trim", 0, &"Death Animation", &"Death 2 Speed", 0, &"Death 2 Trim", &"Death 2 Trim", 0, &"Death Backstab Animation", &"Death Which One", 0, &"Death 1 Speed", &"Death Which One", 1, &"Death 2 Speed", &"Dizzy", 0, &"Dizzy Finisher", &"Dizzy", 1, &"Dizzy Which One", &"Dizzy Finisher", 0, &"Parry", &"Dizzy Finisher", 1, &"Dizzy Finisher Which One", &"Dizzy Finisher From Damage Speed", 0, &"Dizzy Finisher From Damage Trim", &"Dizzy Finisher From Damage Trim", 0, &"Dizzy Finisher From Damage Animation", &"Dizzy Finisher From Parry Speed", 0, &"Dizzy Finisher From Parry Trim", &"Dizzy Finisher From Parry Trim", 0, &"Dizzy Finisher From Parry Animation", &"Dizzy Finisher Which One", 0, &"Dizzy Finisher From Parry Speed", &"Dizzy Finisher Which One", 1, &"Dizzy Finisher From Damage Speed", &"Dizzy From Damage", 0, &"Dizzy Kneeling Speed", &"Dizzy From Damage", 1, &"Kneeling Idle Speed", &"Dizzy From Damage", 2, &"Kneel to Stand Speed", &"Dizzy Kneeling Speed", 0, &"Dizzy Kneeling Trim", &"Dizzy Kneeling Trim", 0, &"Dizzy Kneeling Animation", &"Dizzy Which One", 0, &"Dizzy Idle Animation", &"Dizzy Which One", 1, &"Dizzy From Damage", &"Free Jog Speed", 0, &"Jog Forward", &"Free Movement", 0, &"Free Idle", &"Free Movement", 1, &"Free Walk Or Jog", &"Free Walk Or Jog", 0, &"Free Walk Speed", &"Free Walk Or Jog", 1, &"Free Jog Speed", &"Free Walk Speed", 0, &"Walk Forward", &"Jump Handler", 0, &"Jump 1", &"Jump Handler", 1, &"Jump 2", &"Jump and Fall Blend", 0, &"Jump Handler", &"Jump and Fall Blend", 1, &"Fall Animation", &"Kneel to Stand Speed", 0, &"Kneel to Stand Trim", &"Kneel to Stand Trim", 0, &"Kneel to Stand Animation", &"Kneeling Idle Speed", 0, &"Kneeling Idle Animation", &"Locked On Movement", 0, &"Locked On Walk", &"Locked On Movement", 1, &"Free Movement", &"Locked On Walk", 0, &"Locked On Idle", &"Locked On Walk", 1, &"Locked On Walk Speed", &"Locked On Walk Speed", 0, &"Locked On Walk Direction", &"Parry", 0, &"Blocking", &"Parry", 1, &"Parry Speed", &"Parry Speed", 0, &"Parry Trim", &"Parry Trim", 0, &"Parry Animation", &"Running", 0, &"Locked On Movement", &"Running", 1, &"Running Locked On", &"Running Locked On", 0, &"Running Lock On Look Direction", &"Running Locked On", 1, &"Run Forwards", &"Vertical Movement", 0, &"Running", &"Vertical Movement", 1, &"Jump and Fall Blend", &"output", 0, &"Death"]
+node_connections = [&"Attack", 0, &"Zombie Smack", &"Attack", 1, &"Zombie Smack Copy", &"Attack", 2, &"Zombie Smash", &"Attack", 3, &"Zombie Smash Copy", &"Attack", 4, &"Zombie Kick", &"Attack", 5, &"Zombie Kick Copy", &"Attacking", 0, &"Vertical Movement", &"Attacking", 1, &"Attack", &"Blocking", 0, &"Attacking", &"Blocking", 1, &"Blocking Speed", &"Blocking Speed", 0, &"Blocking Trim", &"Blocking Trim", 0, &"Blocking Animation", &"Death", 0, &"Dizzy", &"Death", 1, &"Death Which One", &"Death 1 Speed", 0, &"Death 1 Trim", &"Death 1 Trim", 0, &"Death Animation", &"Death 2 Speed", 0, &"Death 2 Trim", &"Death 2 Trim", 0, &"Death Backstab Animation", &"Death Which One", 0, &"Death 1 Speed", &"Death Which One", 1, &"Death 2 Speed", &"Dizzy", 0, &"Dizzy Finisher", &"Dizzy", 1, &"Dizzy Which One", &"Dizzy Finisher", 0, &"Parry", &"Dizzy Finisher", 1, &"Dizzy Finisher Which One", &"Dizzy Finisher From Damage Speed", 0, &"Dizzy Finisher From Damage Trim", &"Dizzy Finisher From Damage Trim", 0, &"Dizzy Finisher From Damage Animation", &"Dizzy Finisher From Parry Speed", 0, &"Dizzy Finisher From Parry Trim", &"Dizzy Finisher From Parry Trim", 0, &"Dizzy Finisher From Parry Animation", &"Dizzy Finisher Which One", 0, &"Dizzy Finisher From Parry Speed", &"Dizzy Finisher Which One", 1, &"Dizzy Finisher From Damage Speed", &"Dizzy From Damage", 0, &"Dizzy Kneeling Speed", &"Dizzy From Damage", 1, &"Kneeling Idle Speed", &"Dizzy From Damage", 2, &"Kneel to Stand Speed", &"Dizzy Kneeling Speed", 0, &"Dizzy Kneeling Trim", &"Dizzy Kneeling Trim", 0, &"Dizzy Kneeling Animation", &"Dizzy Which One", 0, &"Dizzy Idle Animation", &"Dizzy Which One", 1, &"Dizzy From Damage", &"Free Jog Speed", 0, &"Jog Forward", &"Free Movement", 0, &"Free Idle", &"Free Movement", 1, &"Free Walk Or Jog", &"Free Walk Or Jog", 0, &"Free Walk Speed", &"Free Walk Or Jog", 1, &"Free Jog Speed", &"Free Walk Speed", 0, &"Walk Forward", &"Jump Handler", 0, &"Jump 1", &"Jump Handler", 1, &"Jump 2", &"Jump and Fall Blend", 0, &"Jump Handler", &"Jump and Fall Blend", 1, &"Fall Animation", &"Kneel to Stand Speed", 0, &"Kneel to Stand Trim", &"Kneel to Stand Trim", 0, &"Kneel to Stand Animation", &"Kneeling Idle Speed", 0, &"Kneeling Idle Animation", &"Locked On Movement", 0, &"Locked On Walk", &"Locked On Movement", 1, &"Free Movement", &"Locked On Walk", 0, &"Locked On Idle", &"Locked On Walk", 1, &"Locked On Walk Speed", &"Locked On Walk Speed", 0, &"Locked On Walk Direction", &"Parry", 0, &"Blocking", &"Parry", 1, &"Parry Speed", &"Parry Speed", 0, &"Parry Trim", &"Parry Trim", 0, &"Parry Animation", &"Running", 0, &"Locked On Movement", &"Running", 1, &"Running Locked On", &"Running Locked On", 0, &"Running Lock On Look Direction", &"Running Locked On", 1, &"Run Forwards", &"Vertical Movement", 0, &"Running", &"Vertical Movement", 1, &"Jump and Fall Blend", &"output", 0, &"Death"]

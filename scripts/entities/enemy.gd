@@ -180,7 +180,7 @@ func _physics_process(_delta: float) -> void:
 	if blackboard.get_value("can_attack", false) and blackboard.get_value("attack", false):
 		blackboard.set_value("can_attack", false)
 		blackboard.set_value("attack", false)
-		attack_component.attack_level = blackboard.get_value("attack_level", 1)
+		attack_component.attack_level = blackboard.get_value("attack_level", 0)
 		attack_component.attack()
 	blackboard.set_value("attacking", attack_component.attacking)
 	
