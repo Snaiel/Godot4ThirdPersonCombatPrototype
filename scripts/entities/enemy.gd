@@ -43,10 +43,6 @@ signal death(enemy)
 @export var blackboard: Blackboard
 @export var agent: NavigationAgent3D
 
-@export_category("Model")
-@export var skeleton: Skeleton3D
-@export var sword: Sword
-
 var active_motion_component: MotionComponent
 
 var _default_move_speed: float
@@ -221,18 +217,18 @@ func _set_target_reachable():
 	blackboard.set_value("target_reachable", target_reachable)
 
 
-func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
+func _on_entity_hitbox_weapon_hit(incoming_weapon: Weapon) -> void:
 	if Globals.backstab_system.backstab_victim == backstab_component:
 		backstab_component.process_hit()
-		health_component.damage_from_weapon(weapon)
-		active_motion_component.knockback(weapon.get_entity().global_position)
+		health_component.damage_from_weapon(incoming_weapon)
+		active_motion_component.knockback(incoming_weapon.get_entity().global_position)
 		return
 	
 	if Globals.dizzy_system.dizzy_victim == dizzy_component:
-		dizzy_component.process_hit(weapon)
-		health_component.damage_from_weapon(weapon)
+		dizzy_component.process_hit(incoming_weapon)
+		health_component.damage_from_weapon(incoming_weapon)
 		if instability_component.full_instability_from_parry:
-			active_motion_component.knockback(weapon.get_entity().global_position)
+			active_motion_component.knockback(incoming_weapon.get_entity().global_position)
 		return
 	
 	blackboard.set_value("can_attack", false)
@@ -248,7 +244,7 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 	
 	if rng < hit_weight:
 		# incoming hit goes through
-		health_component.damage_from_weapon(weapon)
+		health_component.damage_from_weapon(incoming_weapon)
 		instability_component.process_hit()
 		
 		attack_component.interrupt_attack()
@@ -262,11 +258,11 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 		hit_sfx.play()
 		
 		if Globals.dizzy_system.dizzy_victim != dizzy_component:
-			active_motion_component.knockback(weapon.get_entity().global_position)
+			active_motion_component.knockback(incoming_weapon.get_entity().global_position)
 		
 	elif rng < hit_weight + block_weight:
 		# block incoming hit
-		active_motion_component.knockback(weapon.get_entity().global_position)
+		active_motion_component.knockback(incoming_weapon.get_entity().global_position)
 		
 		block_component.blocking = true
 		block_component.blocked()
@@ -291,7 +287,7 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 		
 	elif rng < hit_weight + block_weight + parry_weight:
 		# parry incoming hit
-		active_motion_component.knockback(weapon.get_entity().global_position)
+		active_motion_component.knockback(incoming_weapon.get_entity().global_position)
 		
 		parry_component.in_parry_window = true
 		parry_component.play_parry_particles()
@@ -305,7 +301,7 @@ func _on_entity_hitbox_weapon_hit(weapon: Sword) -> void:
 		
 		instability_component.process_parry()
 		
-		weapon.get_parried()
+		incoming_weapon.get_parried()
 		
 		parry_sfx.play()
 		
@@ -325,6 +321,8 @@ func _on_health_component_zero_health() -> void:
 	
 	_dead = true
 	
+	attack_component.set_can_damage_of_weapons(false)
+	
 	hitbox_component.enabled = false
 	health_component.enabled = false
 	lock_on_component.enabled = false
@@ -336,8 +334,6 @@ func _on_health_component_zero_health() -> void:
 	notice_component.hide_notice_triangles()
 	
 	disable_mode = CollisionObject3D.DISABLE_MODE_MAKE_STATIC
-	
-	sword.can_damage = false
 	
 	blackboard.set_value("dead", true)
 	blackboard.set_value("interrupt_timers", true)

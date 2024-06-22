@@ -66,7 +66,7 @@ func _process(_delta):
 		position = lock_on_component.position
 
 
-func process_hit(weapon: Sword):
+func process_hit(weapon: Weapon):
 	if dizzy_system.dizzy_victim == self and weapon.get_entity() == player:
 		entity.set_root_motion(true)
 		health_component.deal_max_damage = true

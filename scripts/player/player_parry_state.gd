@@ -10,7 +10,7 @@ func _ready():
 	super._ready()
 	
 	player.hitbox_component.weapon_hit.connect(
-		func(incoming_weapon: Sword):
+		func(incoming_weapon: Weapon):
 			if parent_state.current_state == self:
 				player.movement_component.knockback(
 					incoming_weapon.get_entity().global_position

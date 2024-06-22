@@ -34,7 +34,7 @@ func is_alive() -> bool:
 	return health > 0
 
 
-func damage_from_weapon(weapon: Sword) -> void:
+func damage_from_weapon(weapon: Weapon) -> void:
 	if not enabled:
 		return
 	

@@ -5,7 +5,7 @@ signal can_rotate(flag: bool)
 signal can_move(flag: bool)
 
 @export var _attack_animations: AttackAnimations
-@export var _weapon: Sword
+@export var _weapons: Dictionary
 @export var _can_attack: bool = true
 
 var attacking: bool = false
@@ -63,6 +63,12 @@ func stop_attacking() -> bool:
 	return not attacking
 
 
+func set_can_damage_of_weapons(flag: bool) -> void:
+	for i in _weapons.values():
+		var weapon: Weapon = get_node(i)
+		weapon.can_damage = flag
+
+
 func interrupt_attack() -> void:
 	if attacking:
 		_attack_interrupted = true
@@ -75,7 +81,8 @@ func interrupt_attack() -> void:
 	_can_attack_again = false
 	
 	_attack_animations.stop_attacking()
-	_weapon.can_damage = false
+	
+	set_can_damage_of_weapons(false)
 
 
 func set_attack_level(level: int) -> void:
@@ -111,6 +118,14 @@ func _receive_movement(attack_strat: AttackStrategy) -> void:
 	attack_strat.receive_movement()
 
 
-func _receive_can_damage(can_damage: bool) -> void:
-	if not _attack_interrupted:
-		_weapon.can_damage = can_damage
+func _receive_can_damage(can_damage: bool, weapon_name: StringName) -> void:
+	if _attack_interrupted:
+		return
+	
+	prints(can_damage, weapon_name)
+	
+	if _weapons.has(weapon_name):
+		var weapon: Weapon = get_node(_weapons[weapon_name])
+		weapon.can_damage = can_damage
+	else:
+		set_can_damage_of_weapons(can_damage)

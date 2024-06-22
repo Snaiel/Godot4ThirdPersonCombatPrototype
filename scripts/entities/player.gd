@@ -21,7 +21,7 @@ extends CharacterBody3D
 @export var health_charge_component: HealthChargeComponent
 
 @export_category("Character")
-@export var weapon: Sword
+@export var weapon: Weapon
 @export var lock_on_attachment_point: Node3D
 
 @export_category("Audio")
@@ -171,7 +171,7 @@ func _on_lock_on_system_lock_on(target: LockOnComponent) -> void:
 	lock_on_target = target
 
 
-func _on_hitbox_component_weapon_hit(incoming_weapon: Sword) -> void:
+func _on_hitbox_component_weapon_hit(incoming_weapon: Weapon) -> void:
 	if state_machine.current_state is PlayerParryState or \
 	state_machine.current_state is PlayerParriedEnemyHitState or \
 	state_machine.current_state is PlayerBlockState:

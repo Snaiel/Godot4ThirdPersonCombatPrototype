@@ -29,7 +29,7 @@ func _ready():
 	add_child(_pause_before_reducing_instability_timer)
 	
 	player.hitbox_component.weapon_hit.connect(
-		func(incoming_weapon: Sword):
+		func(incoming_weapon: Weapon):
 			if parent_state.current_state != self:
 				return
 			

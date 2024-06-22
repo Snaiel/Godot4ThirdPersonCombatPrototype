@@ -8,7 +8,7 @@ extends PlayerStateMachine
 
 @export var sfx: AudioStreamPlayer3D
 
-var _incoming_weapon: Sword
+var _incoming_weapon: Weapon
 
 var _can_block_or_parry: bool = false
 
@@ -22,7 +22,7 @@ func _ready():
 	super._ready()
 	
 	player.hitbox_component.weapon_hit.connect(
-		func(incoming_weapon: Sword):
+		func(incoming_weapon: Weapon):
 			if not parent_state.current_state is PlayerParriedEnemyHitState and \
 			not parent_state.current_state is PlayerParryState and \
 			not parent_state.current_state is PlayerBlockState:

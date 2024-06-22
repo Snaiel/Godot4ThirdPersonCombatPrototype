@@ -1,4 +1,4 @@
-class_name Sword
+class_name Weapon
 extends BoneAttachment3D
 
 

@@ -9,7 +9,7 @@ extends PlayerStateMachine
 
 @export var sfx: AudioStreamPlayer3D
 
-var _incoming_weapon: Sword
+var _incoming_weapon: Weapon
 
 var _timer: Timer
 var _timer_length: float = 0.5
@@ -19,7 +19,7 @@ func _ready():
 	super._ready()
 	
 	player.parry_component.parried_incoming_hit.connect(
-		func(incoming_weapon: Sword):
+		func(incoming_weapon: Weapon):
 			_incoming_weapon = incoming_weapon
 			if Globals.dizzy_system.dizzy_victim == null:
 				parent_state.change_state(self)

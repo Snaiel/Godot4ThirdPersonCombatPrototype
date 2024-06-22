@@ -9,7 +9,7 @@ signal full_instability
 @export_category("Configuration")
 @export var enabled: bool = true
 @export var hitbox: HitboxComponent
-@export var weapon: Sword
+@export var weapon: Weapon
 @export var receive_weapon_parried: bool = true
 
 @export_category("Instability")

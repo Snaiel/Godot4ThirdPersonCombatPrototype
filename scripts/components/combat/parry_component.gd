@@ -2,7 +2,7 @@ class_name ParryComponent
 extends Node3D
 
 
-signal parried_incoming_hit(incoming_weapon: Sword)
+signal parried_incoming_hit(incoming_weapon: Weapon)
 
 
 @export var hitbox_component: HitboxComponent
@@ -29,7 +29,7 @@ var _parry_cooldown: float = 0.4
 
 func _ready() -> void:
 	hitbox_component.weapon_hit.connect(
-		func(incoming_weapon: Sword):
+		func(incoming_weapon: Weapon):
 			if in_parry_window:
 				parried_incoming_hit.emit(incoming_weapon)
 	)
