@@ -1,13 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://cij3tna3vvi65"]
+[gd_scene load_steps=15 format=3 uid="uid://cij3tna3vvi65"]
 
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="1_5577v"]
 [ext_resource type="PackedScene" uid="uid://cryed6dtlo286" path="res://scenes/beehave/set_actions/SetRotateTowardsTargetTrue.tscn" id="2_604vf"]
 [ext_resource type="PackedScene" uid="uid://b2vrwljrc7cpp" path="res://scenes/beehave/set_actions/SetLockedOnTrue.tscn" id="3_5engx"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="3_j8m5m"]
 [ext_resource type="Script" path="res://scripts/beehave/close_to_target.gd" id="4_fuagw"]
-[ext_resource type="Script" path="res://scripts/beehave/reset_wait.gd" id="5_p35gd"]
 [ext_resource type="PackedScene" uid="uid://5653b3wcf25p" path="res://scenes/beehave/inputs/InputNone.tscn" id="6_ibk58"]
-[ext_resource type="Script" path="res://scripts/beehave/wait.gd" id="7_8lmka"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_random.gd" id="8_onipt"]
 [ext_resource type="PackedScene" uid="uid://chv25a2oggqaw" path="res://scenes/beehave/wait/WaitBlock.tscn" id="9_rdkoq"]
 [ext_resource type="PackedScene" uid="uid://b4vbjom07vuli" path="res://scenes/beehave/set_actions/SetWalkSpeed.tscn" id="9_xg5t0"]
@@ -35,13 +33,13 @@ script = ExtResource("4_fuagw")
 target_range = 2.5
 
 [node name="ResetWaitBeforeChase" type="Node" parent="StayOrChase/SquareUpIfClose"]
-script = ExtResource("5_p35gd")
+script = null
 wait_id = 23169934
 
 [node name="InputNone" parent="StayOrChase/SquareUpIfClose" instance=ExtResource("6_ibk58")]
 
 [node name="Wait" type="Node" parent="StayOrChase/SquareUpIfClose"]
-script = ExtResource("7_8lmka")
+script = null
 time = 1.0
 wait_id = 61967809
 
@@ -71,7 +69,7 @@ script = ExtResource("4_fuagw")
 target_range = 15.0
 
 [node name="ResetWait" type="Node" parent="StayOrChase/Chase"]
-script = ExtResource("5_p35gd")
+script = null
 wait_id = 61967809
 
 [node name="InputNone" parent="StayOrChase/Chase" instance=ExtResource("6_ibk58")]
@@ -79,7 +77,7 @@ wait_id = 61967809
 [node name="SetRunSpeed" parent="StayOrChase/Chase" instance=ExtResource("14_lbagp")]
 
 [node name="WaitBeforeChase" type="Node" parent="StayOrChase/Chase"]
-script = ExtResource("7_8lmka")
+script = null
 time = 2.0
 wait_id = 23169934
 

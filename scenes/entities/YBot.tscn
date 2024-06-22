@@ -430,8 +430,8 @@ _data = {
 }
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6fy3m"]
-streams_count = 3
 playback_mode = 1
+streams_count = 3
 stream_0/stream = ExtResource("16_abtj0")
 stream_0/weight = 1.0
 stream_1/stream = ExtResource("17_kbmfv")
@@ -470,8 +470,8 @@ stream_0/stream = ExtResource("23_3icvw")
 stream_0/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_by5m0"]
-streams_count = 1
 random_pitch = 1.2
+streams_count = 1
 stream_0/stream = ExtResource("26_nihmx")
 stream_0/weight = 1.0
 
