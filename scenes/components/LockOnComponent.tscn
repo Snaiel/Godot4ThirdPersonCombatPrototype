@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ia1adrmqd0lf"]
 
-[ext_resource type="Script" path="res://scripts/components/lock_on_component.gd" id="1_gefd8"]
+[ext_resource type="Script" path="res://scripts/components/interface/lock_on_component.gd" id="1_gefd8"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_s72ik"]
 radius = 0.1

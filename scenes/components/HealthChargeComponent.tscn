@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://cbs5mcpj3x6im"]
 
-[ext_resource type="Script" path="res://scripts/components/health_charge_component.gd" id="1_4typu"]
+[ext_resource type="Script" path="res://scripts/components/utility/health_charge_component.gd" id="1_4typu"]
 [ext_resource type="Texture2D" uid="uid://dyeohhs3ktuna" path="res://assets/chevron-double-up.png" id="2_be1v1"]
 [ext_resource type="AudioStream" uid="uid://baln12rfgoykf" path="res://audio/health_jingle.wav" id="3_oi47p"]
 
