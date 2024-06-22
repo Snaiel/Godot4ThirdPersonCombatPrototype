@@ -1,7 +1,7 @@
 [gd_scene load_steps=60 format=3 uid="uid://cv8knl5vavfyy"]
 
 [ext_resource type="Script" path="res://scripts/entities/enemy.gd" id="1_nrck3"]
-[ext_resource type="PackedScene" uid="uid://x0oxbha36o2h" path="res://scenes/entities/YBot.tscn" id="2_0tr8h"]
+[ext_resource type="PackedScene" uid="uid://x0oxbha36o2h" path="res://scenes/entities/YBotCharacter.tscn" id="2_0tr8h"]
 [ext_resource type="Script" path="res://scripts/utilities/wellbeing_stats.gd" id="2_8acob"]
 [ext_resource type="PackedScene" uid="uid://cko2lhqdu4n44" path="res://scenes/components/HitboxComponent.tscn" id="2_h2tgk"]
 [ext_resource type="PackedScene" uid="uid://cq3fjofav3npm" path="res://scenes/components/HealthComponent.tscn" id="3_c0k3s"]
@@ -84,10 +84,10 @@ collision_layer = 8
 collision_mask = 11
 script = ExtResource("1_nrck3")
 wellbeing_stats = SubResource("Resource_6we7u")
-parry_sfx = NodePath("CharacterModel/AudioManager/Parry")
-block_sfx = NodePath("CharacterModel/AudioManager/Block")
-hit_sfx = NodePath("CharacterModel/AudioManager/Hit")
-character = NodePath("CharacterModel")
+parry_sfx = NodePath("Character/AudioManager/Parry")
+block_sfx = NodePath("Character/AudioManager/Block")
+hit_sfx = NodePath("Character/AudioManager/Hit")
+character = NodePath("Character")
 rotation_component = NodePath("Rotation/EnemyRotationComponent")
 head_rotation_component = NodePath("Rotation/HeadRotationComponent")
 movement_component = NodePath("Movement/MovementComponent")
@@ -106,13 +106,14 @@ wellbeing_component = NodePath("Interface/WellbeingComponent")
 beehave_tree = NodePath("BeehaveTree")
 blackboard = NodePath("Blackboard")
 agent = NodePath("NavigationAgent3D")
-skeleton = NodePath("CharacterModel/Armature_004/GeneralSkeleton")
-sword = NodePath("CharacterModel/Armature_004/GeneralSkeleton/Sword")
+skeleton = NodePath("Character/Armature_004/GeneralSkeleton")
+sword = NodePath("Character/Armature_004/GeneralSkeleton/Sword")
 
-[node name="CharacterModel" parent="." instance=ExtResource("2_0tr8h")]
+[node name="Character" parent="." instance=ExtResource("2_0tr8h")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
-[node name="GeneralSkeleton" parent="CharacterModel/Armature_004" index="0"]
+[node name="GeneralSkeleton" parent="Character/Armature_004" index="0"]
+bones/0/position = Vector3(0.00228737, -1.23697e-09, -0.0103765)
 bones/1/position = Vector3(6.04682e-06, 0.928626, -9.00516e-08)
 bones/1/rotation = Quaternion(-0.0364564, -0.367114, -0.0133018, 0.929366)
 bones/2/rotation = Quaternion(0.0504308, 0.0402731, -0.00849581, 0.997879)
@@ -177,30 +178,31 @@ bones/62/rotation = Quaternion(0.0266145, 0.952748, -0.293244, -0.0746392)
 bones/63/rotation = Quaternion(0.0989926, 0.556111, -0.817814, -0.110098)
 bones/64/rotation = Quaternion(0.00306753, 0.99987, 0.0155852, -0.00295573)
 
-[node name="Alpha_Joints" parent="CharacterModel/Armature_004/GeneralSkeleton" index="0"]
+[node name="Alpha_Joints" parent="Character/Armature_004/GeneralSkeleton" index="0"]
 surface_material_override/0 = ExtResource("4_yduye")
 
-[node name="Alpha_Surface" parent="CharacterModel/Armature_004/GeneralSkeleton" index="1"]
+[node name="Alpha_Surface" parent="Character/Armature_004/GeneralSkeleton" index="1"]
 surface_material_override/0 = SubResource("ShaderMaterial_i1ddg")
 
-[node name="Sword" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity") instance=ExtResource("4_r63io")]
-transform = Transform3D(-0.18487, -0.251436, 0.950054, 0.318492, -0.929873, -0.18412, 0.929724, 0.268546, 0.251986, -0.346427, 0.879604, -0.186864)
+[node name="Sword" parent="Character/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity") instance=ExtResource("4_r63io")]
+transform = Transform3D(-0.18487, -0.251436, 0.950054, 0.318492, -0.929873, -0.18412, 0.929724, 0.268546, 0.251986, -0.307707, 0.879604, -0.2272)
 _entity = NodePath("../../../..")
 
-[node name="Area" parent="CharacterModel/Armature_004/GeneralSkeleton/Sword" index="1"]
+[node name="Area" parent="Character/Armature_004/GeneralSkeleton/Sword" index="1"]
 collision_mask = 2
 
-[node name="LockOnAttachment" parent="CharacterModel/Armature_004/GeneralSkeleton" index="3"]
-transform = Transform3D(0.942295, -0.12887, -0.308985, -0.0148777, 0.905912, -0.423204, 0.334451, 0.40338, 0.85172, -0.0175441, 1.27707, 0.0225739)
+[node name="LockOnAttachment" parent="Character/Armature_004/GeneralSkeleton" index="3"]
+transform = Transform3D(0.942295, -0.12887, -0.308985, -0.0148777, 0.905912, -0.423204, 0.334451, 0.40338, 0.85172, 0.0211761, 1.27707, -0.0177619)
 
-[node name="Crosshair" parent="CharacterModel/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint" index="0" node_paths=PackedStringArray("backstab_component", "dizzy_component")]
+[node name="Crosshair" parent="Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint" index="0" node_paths=PackedStringArray("backstab_component", "dizzy_component")]
 backstab_component = NodePath("../../../../../../Combat/BackstabComponent")
 dizzy_component = NodePath("../../../../../../Combat/DizzyComponent")
 
-[node name="HeadAttachment" parent="CharacterModel/Armature_004/GeneralSkeleton" index="4"]
-transform = Transform3D(0.997935, -0.0642358, -0.000251025, 0.062292, 0.968677, -0.240386, 0.0156845, 0.239874, 0.970677, -0.0612427, 1.49531, 0.15215)
+[node name="HeadAttachment" parent="Character/Armature_004/GeneralSkeleton" index="4"]
+transform = Transform3D(0.997935, -0.0642358, -0.000251025, 0.062292, 0.968677, -0.240386, 0.0156845, 0.239874, 0.970677, -0.0225225, 1.49531, 0.111814)
 
-[node name="AnimationTree" parent="CharacterModel" index="2"]
+[node name="AnimationTree" parent="Character" index="2"]
+root_motion_track = NodePath("../Armature_004/GeneralSkeleton")
 "parameters/Dizzy Finisher Which One/current_state" = ""
 "parameters/Dizzy Finisher Which One/current_index" = -1
 "parameters/Dizzy From Damage/current_state" = ""
@@ -208,16 +210,16 @@ transform = Transform3D(0.997935, -0.0642358, -0.000251025, 0.062292, 0.968677, 
 "parameters/Dizzy Which One/current_state" = ""
 "parameters/Dizzy Which One/current_index" = -1
 
-[node name="InwardAttack" parent="CharacterModel/AttackAnimations" index="0" node_paths=PackedStringArray("movement_component")]
+[node name="InwardAttack" parent="Character/AttackAnimations" index="0" node_paths=PackedStringArray("movement_component")]
 movement_component = NodePath("../../../Movement/MovementComponent")
 
-[node name="OutwardAttack" parent="CharacterModel/AttackAnimations" index="1" node_paths=PackedStringArray("movement_component")]
+[node name="OutwardAttack" parent="Character/AttackAnimations" index="1" node_paths=PackedStringArray("movement_component")]
 movement_component = NodePath("../../../Movement/MovementComponent")
 
-[node name="ThrustAttack" parent="CharacterModel/AttackAnimations" index="2" node_paths=PackedStringArray("movement_component")]
+[node name="ThrustAttack" parent="Character/AttackAnimations" index="2" node_paths=PackedStringArray("movement_component")]
 movement_component = NodePath("../../../Movement/MovementComponent")
 
-[node name="QuickSlashAttack" parent="CharacterModel/AttackAnimations" index="3" node_paths=PackedStringArray("movement_component")]
+[node name="QuickSlashAttack" parent="Character/AttackAnimations" index="3" node_paths=PackedStringArray("movement_component")]
 movement_component = NodePath("../../../Movement/MovementComponent")
 
 [node name="Collider" type="CollisionShape3D" parent="."]
@@ -239,7 +241,7 @@ entity = NodePath("../..")
 
 [node name="HeadRotationComponent" parent="Rotation" node_paths=PackedStringArray("skeleton", "rotation_component") instance=ExtResource("6_b30i3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, 0)
-skeleton = NodePath("../../CharacterModel/Armature_004/GeneralSkeleton")
+skeleton = NodePath("../../Character/Armature_004/GeneralSkeleton")
 rotation_component = NodePath("../EnemyRotationComponent")
 
 [node name="Movement" type="Node3D" parent="."]
@@ -250,7 +252,7 @@ entity = NodePath("../..")
 rotation_component = NodePath("../../Rotation/EnemyRotationComponent")
 
 [node name="RootMotionComponent" parent="Movement" node_paths=PackedStringArray("character", "entity", "rotation_component") instance=ExtResource("8_hlwbk")]
-character = NodePath("../../CharacterModel")
+character = NodePath("../../Character")
 enabled = false
 entity = NodePath("../..")
 rotation_component = NodePath("../../Rotation/EnemyRotationComponent")
@@ -263,7 +265,7 @@ blood_scene = ExtResource("7_fiewg")
 
 [node name="InstabilityComponent" parent="Wellbeing" node_paths=PackedStringArray("hitbox", "weapon") instance=ExtResource("13_vs44y")]
 hitbox = NodePath("../../HitboxComponent")
-weapon = NodePath("../../CharacterModel/Armature_004/GeneralSkeleton/Sword")
+weapon = NodePath("../../Character/Armature_004/GeneralSkeleton/Sword")
 max_instability = 100.0
 
 [node name="Combat" type="Node3D" parent="."]
@@ -274,34 +276,34 @@ lock_on_component = NodePath("../../Interface/LockOnComponent")
 health_component = NodePath("../../Wellbeing/HealthComponent")
 attack_component = NodePath("../AttackComponent")
 instability_component = NodePath("../../Wellbeing/InstabilityComponent")
-character = NodePath("../../CharacterModel")
+character = NodePath("../../Character")
 blackboard = NodePath("../../Blackboard")
-dizzy_sfx = NodePath("../../CharacterModel/AudioManager/Dizzy")
-thrust_puncture_sfx = NodePath("../../CharacterModel/AudioManager/ThrustPuncture")
-hit_sfx = NodePath("../../CharacterModel/AudioManager/Hit")
+dizzy_sfx = NodePath("../../Character/AudioManager/Dizzy")
+thrust_puncture_sfx = NodePath("../../Character/AudioManager/ThrustPuncture")
+hit_sfx = NodePath("../../Character/AudioManager/Hit")
 
 [node name="BackstabComponent" parent="Combat" node_paths=PackedStringArray("entity", "lock_on_component", "health_component", "notice_component", "puncture_sound") instance=ExtResource("14_u1sji")]
 entity = NodePath("../..")
 lock_on_component = NodePath("../../Interface/LockOnComponent")
 health_component = NodePath("../../Wellbeing/HealthComponent")
 notice_component = NodePath("../NoticeComponent")
-puncture_sound = NodePath("../../CharacterModel/AudioManager/ThrustPuncture")
+puncture_sound = NodePath("../../Character/AudioManager/ThrustPuncture")
 
 [node name="NoticeComponent" parent="Combat" node_paths=PackedStringArray("entity", "head_attachment", "blackboard", "hud_info") instance=ExtResource("10_rxy6t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 entity = NodePath("../..")
-head_attachment = NodePath("../../CharacterModel/Armature_004/GeneralSkeleton/HeadAttachment")
+head_attachment = NodePath("../../Character/Armature_004/GeneralSkeleton/HeadAttachment")
 blackboard = NodePath("../../Blackboard")
 hud_info = NodePath("../../Interface/HUDInfoPos")
 
 [node name="AttackComponent" parent="Combat" node_paths=PackedStringArray("_attack_animations", "_weapon") instance=ExtResource("16_hpgg5")]
-_attack_animations = NodePath("../../CharacterModel/AttackAnimations")
-_weapon = NodePath("../../CharacterModel/Armature_004/GeneralSkeleton/Sword")
+_attack_animations = NodePath("../../Character/AttackAnimations")
+_weapon = NodePath("../../Character/Armature_004/GeneralSkeleton/Sword")
 
 [node name="BlockComponent" parent="Combat" node_paths=PackedStringArray("movement_component", "character") instance=ExtResource("16_ckq0d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
 movement_component = NodePath("../../Movement/MovementComponent")
-character = NodePath("../../CharacterModel")
+character = NodePath("../../Character")
 
 [node name="ParryComponent" parent="Combat" node_paths=PackedStringArray("hitbox_component", "block_component") instance=ExtResource("18_pmwql")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -313,7 +315,7 @@ parry_particles_colour = Color(0.439216, 0.0392157, 0.0392157, 1)
 
 [node name="LockOnComponent" parent="Interface" node_paths=PackedStringArray("component_owner", "bone_attachment", "health_component") instance=ExtResource("6_nxetg")]
 component_owner = NodePath("../..")
-bone_attachment = NodePath("../../CharacterModel/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint")
+bone_attachment = NodePath("../../Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint")
 health_component = NodePath("../../Wellbeing/HealthComponent")
 
 [node name="WellbeingComponent" parent="Interface" node_paths=PackedStringArray("lock_on_component", "backstab_component", "health_component", "instability_component", "notice_component", "hud_info") instance=ExtResource("19_ds4io")]
@@ -329,8 +331,8 @@ hud_info = NodePath("../HUDInfoPos")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9, 0)
 
 [node name="FadeComponent" parent="." node_paths=PackedStringArray("origin_point", "meshes") instance=ExtResource("22_suiee")]
-origin_point = NodePath("../CharacterModel/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint")
-meshes = [NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Alpha_Joints"), NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Alpha_Surface"), NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Sword/Mesh")]
+origin_point = NodePath("../Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint")
+meshes = [NodePath("../Character/Armature_004/GeneralSkeleton/Alpha_Joints"), NodePath("../Character/Armature_004/GeneralSkeleton/Alpha_Surface"), NodePath("../Character/Armature_004/GeneralSkeleton/Sword/Mesh")]
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("7_6a3a7")
@@ -690,7 +692,7 @@ script = ExtResource("12_q7h63")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
-[editable path="CharacterModel"]
-[editable path="CharacterModel/Armature_004/GeneralSkeleton/Sword"]
+[editable path="Character"]
+[editable path="Character/Armature_004/GeneralSkeleton/Sword"]
 [editable path="BeehaveTree/SelectorComposite/Suspicious/CheckSuspicion"]
 [editable path="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Investigate/InvestigateLastPosition"]

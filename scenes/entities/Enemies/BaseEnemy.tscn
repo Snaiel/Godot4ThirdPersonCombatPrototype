@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/entities/enemy.gd" id="1_vb1mm"]
 [ext_resource type="Script" path="res://scripts/utilities/wellbeing_stats.gd" id="2_282ix"]
-[ext_resource type="PackedScene" uid="uid://x0oxbha36o2h" path="res://scenes/entities/YBot.tscn" id="3_trqla"]
+[ext_resource type="PackedScene" uid="uid://x0oxbha36o2h" path="res://scenes/entities/YBotCharacter.tscn" id="3_trqla"]
 [ext_resource type="Material" uid="uid://bgbid1wqcdi4p" path="res://materials/joints_shader.tres" id="4_l4wly"]
 [ext_resource type="Shader" path="res://shaders/fade.gdshader" id="5_mch1h"]
 [ext_resource type="PackedScene" uid="uid://b78ctcv6lulvi" path="res://scenes/utilities/Sword.tscn" id="6_ihoas"]

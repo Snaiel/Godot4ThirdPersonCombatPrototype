@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://scripts/player/player_idle_state.gd" id="3_pk0l8"]
 [ext_resource type="Script" path="res://scripts/player/player_walk_state.gd" id="4_4fxcp"]
 [ext_resource type="Material" uid="uid://dp5o22jl53pqh" path="res://materials/player_shader_mat.tres" id="4_ysu0o"]
-[ext_resource type="PackedScene" uid="uid://x0oxbha36o2h" path="res://scenes/entities/YBot.tscn" id="5_gusos"]
+[ext_resource type="PackedScene" uid="uid://x0oxbha36o2h" path="res://scenes/entities/YBotCharacter.tscn" id="5_gusos"]
 [ext_resource type="PackedScene" uid="uid://b78ctcv6lulvi" path="res://scenes/utilities/Sword.tscn" id="5_vtx6o"]
 [ext_resource type="Script" path="res://scripts/player/player_run_state.gd" id="6_nj3fe"]
 [ext_resource type="Script" path="res://scripts/player/player_dodge_state.gd" id="7_e0tbh"]
@@ -62,7 +62,7 @@ collision_layer = 2
 collision_mask = 9
 script = ExtResource("1_lgfyt")
 state_machine = NodePath("StateMachine")
-character = NodePath("CharacterModel")
+character = NodePath("Character")
 movement_component = NodePath("Movement/MovementComponent")
 root_motion_component = NodePath("Movement/RootMotionComponent")
 hitbox_component = NodePath("HitboxComponent")
@@ -77,91 +77,35 @@ attack_component = NodePath("Combat/AttackComponent")
 parry_component = NodePath("Combat/ParryComponent")
 fade_component = NodePath("FadeComponent")
 health_charge_component = NodePath("HealthChargeComponent")
-weapon = NodePath("CharacterModel/Armature_004/GeneralSkeleton/Sword")
-lock_on_attachment_point = NodePath("CharacterModel/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint")
-footsteps = NodePath("CharacterModel/AudioManager/Footsteps")
+weapon = NodePath("Character/Armature_004/GeneralSkeleton/Sword")
+lock_on_attachment_point = NodePath("Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint")
+footsteps = NodePath("Character/AudioManager/Footsteps")
 
-[node name="CharacterModel" parent="." instance=ExtResource("5_gusos")]
+[node name="Character" parent="." instance=ExtResource("5_gusos")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
-[node name="GeneralSkeleton" parent="CharacterModel/Armature_004" index="0"]
-bones/0/position = Vector3(0.00121322, 6.24438e-11, 0.000523817)
-bones/1/rotation = Quaternion(0, 2.2904e-14, -6.7831e-14, 1)
-bones/2/rotation = Quaternion(2.11667e-10, -2.1808e-13, 2.94964e-16, 1)
-bones/3/rotation = Quaternion(3.72529e-09, -4.54747e-13, 2.84217e-14, 1)
-bones/4/rotation = Quaternion(2.77556e-17, -6.82121e-13, -3.63798e-12, 1)
-bones/5/rotation = Quaternion(2.32831e-10, 0, 3.63803e-12, 1)
-bones/6/rotation = Quaternion(0, 0, 0, 1)
-bones/8/rotation = Quaternion(-0.500032, -0.499969, -0.500032, 0.499968)
-bones/9/rotation = Quaternion(-1.3411e-06, 1, 1.91033e-05, 2.08616e-07)
-bones/10/rotation = Quaternion(-4.21468e-08, -0.707107, 0, 0.707107)
-bones/11/rotation = Quaternion(-7.10043e-09, 0.707107, -7.10043e-09, 0.707107)
-bones/13/rotation = Quaternion(-0.214187, 0.673887, 0.214187, 0.673887)
-bones/14/rotation = Quaternion(-4.47035e-08, 2.98023e-08, 4.44089e-16, 1)
-bones/15/rotation = Quaternion(0, -5.96046e-08, -2.98023e-08, 1)
-bones/17/rotation = Quaternion(0, 0, 0, 1)
-bones/18/rotation = Quaternion(0, -5.96046e-08, 0, 1)
-bones/19/rotation = Quaternion(2.98023e-08, 2.98023e-08, -2.98023e-08, 1)
-bones/21/rotation = Quaternion(2.98023e-08, -2.98023e-08, 2.98023e-08, 1)
-bones/22/rotation = Quaternion(2.98023e-08, -2.98023e-08, 2.98023e-08, 1)
-bones/23/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
-bones/25/rotation = Quaternion(-4.47035e-08, -4.47035e-08, 0, 1)
-bones/26/rotation = Quaternion(-1.49012e-08, -1.49012e-08, -1.49012e-08, 1)
-bones/27/rotation = Quaternion(0, -5.96046e-08, 0, 1)
-bones/28/rotation = Quaternion(-2.72691e-06, 2.98023e-08, -0.000141129, 1)
-bones/29/rotation = Quaternion(6.22869e-06, 1.04308e-07, 0.000368372, 1)
-bones/30/rotation = Quaternion(-3.57628e-06, 0, -0.000229612, 1)
-bones/31/rotation = Quaternion(1.49012e-08, -1.49012e-08, 0, 1)
-bones/32/rotation = Quaternion(0.499969, -0.500031, -0.499969, -0.500031)
-bones/33/rotation = Quaternion(-4.17233e-07, 1, -1.99974e-05, -2.83122e-07)
-bones/34/rotation = Quaternion(-4.21468e-08, 0.707107, 0, 0.707107)
-bones/35/rotation = Quaternion(-2.81893e-08, -0.707107, -1.39575e-08, 0.707107)
-bones/37/rotation = Quaternion(-0.214187, -0.673887, -0.214187, 0.673887)
-bones/38/rotation = Quaternion(-2.98023e-08, 1.49012e-08, 2.22045e-16, 1)
-bones/39/rotation = Quaternion(0, -8.9407e-08, 0, 1)
-bones/41/rotation = Quaternion(0, 5.96046e-08, 5.96046e-08, 1)
-bones/42/rotation = Quaternion(0, 0, 0, 1)
-bones/43/rotation = Quaternion(0, 0, 0, 1)
-bones/45/rotation = Quaternion(0, 0, 0, 1)
-bones/46/rotation = Quaternion(0, 5.96046e-08, 5.96046e-08, 1)
-bones/47/rotation = Quaternion(2.98023e-08, -1.49012e-08, 1.49012e-08, 1)
-bones/49/rotation = Quaternion(-1.49012e-08, 4.47035e-08, 5.96046e-08, 1)
-bones/50/rotation = Quaternion(-1.49012e-08, 1.49012e-08, -1.49012e-08, 1)
-bones/51/rotation = Quaternion(0, 0, 0, 1)
-bones/53/rotation = Quaternion(1.49012e-07, -8.9407e-08, -1.05202e-05, 1)
-bones/54/rotation = Quaternion(-2.98023e-08, 8.9407e-08, 1.05351e-05, 1)
-bones/55/rotation = Quaternion(2.98023e-08, -2.98023e-08, -2.98023e-08, 1)
-bones/56/rotation = Quaternion(-8.25414e-09, -1.02951e-05, -1, 8.79593e-08)
-bones/57/rotation = Quaternion(1.39698e-09, 1, -1.97939e-05, -5.46588e-08)
-bones/58/rotation = Quaternion(-1.20905e-09, 0.707107, -0.707107, 2.41295e-09)
-bones/59/rotation = Quaternion(8.23181e-10, 1, 5.96046e-08, -8.23181e-10)
-bones/61/rotation = Quaternion(-1.3356e-12, -6.52502e-10, 1, 2.1827e-11)
-bones/62/rotation = Quaternion(-2.32831e-10, 1, 1.39698e-09, -1.09139e-11)
-bones/63/rotation = Quaternion(1.60006e-09, 0.707107, -0.707107, -3.75576e-10)
-bones/64/rotation = Quaternion(-2.63418e-09, 1, 0, 0)
-
-[node name="Alpha_Joints" parent="CharacterModel/Armature_004/GeneralSkeleton" index="0"]
+[node name="Alpha_Joints" parent="Character/Armature_004/GeneralSkeleton" index="0"]
 layers = 2
 surface_material_override/0 = SubResource("ShaderMaterial_kr42x")
 
-[node name="Alpha_Surface" parent="CharacterModel/Armature_004/GeneralSkeleton" index="1"]
+[node name="Alpha_Surface" parent="Character/Armature_004/GeneralSkeleton" index="1"]
 layers = 2
 surface_material_override/0 = ExtResource("4_ysu0o")
 
-[node name="Sword" parent="CharacterModel/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity") instance=ExtResource("5_vtx6o")]
-transform = Transform3D(7.54791e-07, -1, -8.41021e-05, 5.5829e-07, 8.41021e-05, -1, 1, 7.54744e-07, 5.58354e-07, -0.736604, 1.30104, -0.0611899)
+[node name="Sword" parent="Character/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity") instance=ExtResource("5_vtx6o")]
+transform = Transform3D(-0.18487, -0.251437, 0.950054, 0.31849, -0.929873, -0.184121, 0.929724, 0.268544, 0.251986, -0.307707, 0.879604, -0.227201)
 _entity = NodePath("../../../..")
 
-[node name="LockOnAttachment" parent="CharacterModel/Armature_004/GeneralSkeleton" index="3"]
-transform = Transform3D(1, 7.35419e-12, -2.66409e-12, -7.35419e-12, 1, -7.87391e-09, 2.66409e-12, 7.87391e-09, 1, 0.00120244, 1.2126, -0.0422377)
+[node name="LockOnAttachment" parent="Character/Armature_004/GeneralSkeleton" index="3"]
+transform = Transform3D(0.942295, -0.128871, -0.308986, -0.0148774, 0.905912, -0.423205, 0.334453, 0.403381, 0.851719, 0.0211761, 1.27706, -0.0177619)
 
-[node name="Crosshair" parent="CharacterModel/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint" index="0"]
+[node name="Crosshair" parent="Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint" index="0"]
 enabled = false
 
-[node name="HeadAttachment" parent="CharacterModel/Armature_004/GeneralSkeleton" index="4"]
-transform = Transform3D(1, 7.81293e-14, -2.66409e-12, -7.81293e-14, 1, -8.33958e-09, 2.66409e-12, 8.33958e-09, 1, 0.00118047, 1.46614, -0.00288437)
+[node name="HeadAttachment" parent="Character/Armature_004/GeneralSkeleton" index="4"]
+transform = Transform3D(0.997935, -0.0642367, -0.000251293, 0.0622928, 0.968676, -0.240387, 0.0156852, 0.239875, 0.970677, -0.0225228, 1.49531, 0.111815)
 
-[node name="AnimationTree" parent="CharacterModel" index="2"]
+[node name="AnimationTree" parent="Character" index="2"]
 "parameters/Dizzy Finisher Which One/current_state" = ""
 "parameters/Dizzy Finisher Which One/current_index" = -1
 "parameters/Dizzy From Damage/current_state" = ""
@@ -169,19 +113,19 @@ transform = Transform3D(1, 7.81293e-14, -2.66409e-12, -7.81293e-14, 1, -8.33958e
 "parameters/Dizzy Which One/current_state" = ""
 "parameters/Dizzy Which One/current_index" = -1
 
-[node name="FreeMovement" parent="CharacterModel/Movement/LockedOnMovement" index="1"]
+[node name="FreeMovement" parent="Character/Movement/LockedOnMovement" index="1"]
 debug = true
 
-[node name="InwardAttack" parent="CharacterModel/AttackAnimations" index="0" node_paths=PackedStringArray("movement_component")]
+[node name="InwardAttack" parent="Character/AttackAnimations" index="0" node_paths=PackedStringArray("movement_component")]
 movement_component = NodePath("../../../Movement/MovementComponent")
 
-[node name="OutwardAttack" parent="CharacterModel/AttackAnimations" index="1" node_paths=PackedStringArray("movement_component")]
+[node name="OutwardAttack" parent="Character/AttackAnimations" index="1" node_paths=PackedStringArray("movement_component")]
 movement_component = NodePath("../../../Movement/MovementComponent")
 
-[node name="ThrustAttack" parent="CharacterModel/AttackAnimations" index="2" node_paths=PackedStringArray("movement_component")]
+[node name="ThrustAttack" parent="Character/AttackAnimations" index="2" node_paths=PackedStringArray("movement_component")]
 movement_component = NodePath("../../../Movement/MovementComponent")
 
-[node name="QuickSlashAttack" parent="CharacterModel/AttackAnimations" index="3" node_paths=PackedStringArray("movement_component")]
+[node name="QuickSlashAttack" parent="Character/AttackAnimations" index="3" node_paths=PackedStringArray("movement_component")]
 movement_component = NodePath("../../../Movement/MovementComponent")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("player")]
@@ -248,8 +192,8 @@ player = NodePath("../..")
 script = ExtResource("9_t1v34")
 parry_state = NodePath("../Parry")
 attack_state = NodePath("../Attack")
-blocking_sfx = NodePath("../../CharacterModel/AudioManager/Blocking")
-block_sfx = NodePath("../../CharacterModel/AudioManager/Block")
+blocking_sfx = NodePath("../../Character/AudioManager/Blocking")
+block_sfx = NodePath("../../Character/AudioManager/Block")
 player = NodePath("../..")
 
 [node name="Parry" type="Node" parent="StateMachine" node_paths=PackedStringArray("block_state", "dizzy_finisher_state", "player")]
@@ -264,7 +208,7 @@ attack_state = NodePath("../Attack")
 block_state = NodePath("../Block")
 parry_state = NodePath("../Parry")
 dizzy_finisher_state = NodePath("../DizzyFinisher")
-sfx = NodePath("../../CharacterModel/AudioManager/Parry")
+sfx = NodePath("../../Character/AudioManager/Parry")
 player = NodePath("../..")
 
 [node name="Backstab" type="Node" parent="StateMachine" node_paths=PackedStringArray("prepare_state", "attack_state", "player")]
@@ -311,7 +255,7 @@ script = ExtResource("21_x55ju")
 attack_state = NodePath("../Attack")
 block_state = NodePath("../Block")
 parry_state = NodePath("../Parry")
-sfx = NodePath("../../CharacterModel/AudioManager/Hit")
+sfx = NodePath("../../Character/AudioManager/Hit")
 player = NodePath("../..")
 
 [node name="Drink" type="Node" parent="StateMachine" node_paths=PackedStringArray("health_charge_component", "player")]
@@ -332,7 +276,7 @@ script = ExtResource("21_3l62o")
 attack_state = NodePath("../Attack")
 block_state = NodePath("../Block")
 parry_state = NodePath("../Parry")
-sfx = NodePath("../../CharacterModel/AudioManager/Dizzy")
+sfx = NodePath("../../Character/AudioManager/Dizzy")
 player = NodePath("../..")
 
 [node name="Collider" type="CollisionShape3D" parent="."]
@@ -352,7 +296,7 @@ entity = NodePath("../..")
 
 [node name="HeadRotationComponent" parent="Rotation" node_paths=PackedStringArray("skeleton", "rotation_component") instance=ExtResource("23_0vsx7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, 0)
-skeleton = NodePath("../../CharacterModel/Armature_004/GeneralSkeleton")
+skeleton = NodePath("../../Character/Armature_004/GeneralSkeleton")
 rotation_component = NodePath("../PlayerRotationComponent")
 
 [node name="Movement" type="Node3D" parent="."]
@@ -364,29 +308,29 @@ entity = NodePath("../..")
 rotation_component = NodePath("../../Rotation/PlayerRotationComponent")
 
 [node name="RootMotionComponent" parent="Movement" node_paths=PackedStringArray("character", "entity", "rotation_component") instance=ExtResource("27_4dpfb")]
-character = NodePath("../../CharacterModel")
+character = NodePath("../../Character")
 enabled = false
 entity = NodePath("../..")
 rotation_component = NodePath("../../Rotation/PlayerRotationComponent")
 
 [node name="JumpComponent" parent="Movement" node_paths=PackedStringArray("entity", "animations", "movement_component", "jump_sfx", "land_sfx") instance=ExtResource("26_w2wp7")]
 entity = NodePath("../..")
-animations = NodePath("../../CharacterModel")
+animations = NodePath("../../Character")
 movement_component = NodePath("../MovementComponent")
-jump_sfx = NodePath("../../CharacterModel/AudioManager/Jump")
-land_sfx = NodePath("../../CharacterModel/AudioManager/JumpLand")
+jump_sfx = NodePath("../../Character/AudioManager/Jump")
+land_sfx = NodePath("../../Character/AudioManager/JumpLand")
 
 [node name="DodgeComponent" parent="Movement" node_paths=PackedStringArray("entity", "movement_component", "jump_component", "sfx") instance=ExtResource("27_7sekg")]
 entity = NodePath("../..")
 movement_component = NodePath("../MovementComponent")
 jump_component = NodePath("../JumpComponent")
-sfx = NodePath("../../CharacterModel/AudioManager/Dodge")
+sfx = NodePath("../../Character/AudioManager/Dodge")
 
 [node name="Wellbeing" type="Node3D" parent="."]
 
 [node name="InstabilityComponent" parent="Wellbeing" node_paths=PackedStringArray("hitbox", "weapon") instance=ExtResource("26_nvu4k")]
 hitbox = NodePath("../../HitboxComponent")
-weapon = NodePath("../../CharacterModel/Armature_004/GeneralSkeleton/Sword")
+weapon = NodePath("../../Character/Armature_004/GeneralSkeleton/Sword")
 receive_weapon_parried = false
 reduction_pause_length = 5.0
 reduction_rate = 5.0
@@ -398,13 +342,13 @@ blood_scene = ExtResource("27_63iim")
 [node name="Combat" type="Node3D" parent="."]
 
 [node name="AttackComponent" parent="Combat" node_paths=PackedStringArray("_attack_animations", "_weapon") instance=ExtResource("28_no1kf")]
-_attack_animations = NodePath("../../CharacterModel/AttackAnimations")
-_weapon = NodePath("../../CharacterModel/Armature_004/GeneralSkeleton/Sword")
+_attack_animations = NodePath("../../Character/AttackAnimations")
+_weapon = NodePath("../../Character/Armature_004/GeneralSkeleton/Sword")
 
 [node name="BlockComponent" parent="Combat" node_paths=PackedStringArray("movement_component", "character") instance=ExtResource("10_hjlwj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, -0.08)
 movement_component = NodePath("../../Movement/MovementComponent")
-character = NodePath("../../CharacterModel")
+character = NodePath("../../Character")
 
 [node name="ParryComponent" parent="Combat" node_paths=PackedStringArray("hitbox_component", "block_component") instance=ExtResource("30_ceaq1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -415,13 +359,13 @@ parry_particles_colour = Color(0.027451, 0.278431, 0.427451, 1)
 [node name="HealthChargeComponent" parent="." node_paths=PackedStringArray("entity", "character", "health_component") instance=ExtResource("36_ay03g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.27364, 0)
 entity = NodePath("..")
-character = NodePath("../CharacterModel")
+character = NodePath("../Character")
 health_component = NodePath("../Wellbeing/HealthComponent")
 max_charges = 3
 
 [node name="FadeComponent" parent="." node_paths=PackedStringArray("origin_point", "meshes") instance=ExtResource("31_y5b1e")]
-origin_point = NodePath("../CharacterModel/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint")
-meshes = [NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Alpha_Joints"), NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Alpha_Surface"), NodePath("../CharacterModel/Armature_004/GeneralSkeleton/Sword/Mesh")]
+origin_point = NodePath("../Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint")
+meshes = [NodePath("../Character/Armature_004/GeneralSkeleton/Alpha_Joints"), NodePath("../Character/Armature_004/GeneralSkeleton/Alpha_Surface"), NodePath("../Character/Armature_004/GeneralSkeleton/Sword/Mesh")]
 
-[editable path="CharacterModel"]
-[editable path="CharacterModel/Armature_004/GeneralSkeleton/Sword"]
+[editable path="Character"]
+[editable path="Character/Armature_004/GeneralSkeleton/Sword"]
