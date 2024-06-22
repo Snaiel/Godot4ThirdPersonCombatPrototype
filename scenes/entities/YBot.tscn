@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvwkf086vv2aa"]
+
+[ext_resource type="PackedScene" uid="uid://q3eag1ltsb0y" path="res://models/ybot.blend" id="1_e6dyl"]
+[ext_resource type="Material" uid="uid://dp5o22jl53pqh" path="res://materials/player_shader_mat.tres" id="2_6v3jt"]
+[ext_resource type="Material" uid="uid://bgbid1wqcdi4p" path="res://materials/joints_shader.tres" id="2_rfs5t"]
+[ext_resource type="PackedScene" uid="uid://b78ctcv6lulvi" path="res://scenes/utilities/Sword.tscn" id="2_wytcf"]
+
+[node name="YBot" instance=ExtResource("1_e6dyl")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Alpha_Joints" parent="Armature_004/GeneralSkeleton" index="0"]
+surface_material_override/0 = ExtResource("2_rfs5t")
+
+[node name="Alpha_Surface" parent="Armature_004/GeneralSkeleton" index="1"]
+surface_material_override/0 = ExtResource("2_6v3jt")
+
+[node name="Weapon" parent="Armature_004/GeneralSkeleton" index="2" instance=ExtResource("2_wytcf")]
+transform = Transform3D(0, -1, 0, 0, 0, -1, 1, 0, 0, -0.737829, 1.43559, -0.0617137)
+
+[node name="LockOnAttachment" type="BoneAttachment3D" parent="Armature_004/GeneralSkeleton" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25913e-05, 1.34721, -0.042761)
+bone_name = "UpperChest"
+bone_idx = 4
+
+[node name="AttachmentPoint" type="Node3D" parent="Armature_004/GeneralSkeleton/LockOnAttachment" index="0"]
+transform = Transform3D(1, 2.09768e-20, 0, 2.09768e-20, 1, 0, 0, 0, 1, 0, 0, 0.05)
+
+[node name="HeadAttachment" type="BoneAttachment3D" parent="Armature_004/GeneralSkeleton" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.45549e-05, 1.60075, -0.00340771)
+bone_name = "Head"
+bone_idx = 6
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+root_motion_track = NodePath("%GeneralSkeleton:Root")
+anim_player = NodePath("../AnimationPlayer")
+
+[editable path="Armature_004/GeneralSkeleton/Weapon"]

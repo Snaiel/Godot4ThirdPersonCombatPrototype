@@ -151,7 +151,6 @@ bones/34/rotation = Quaternion(0.285857, 0.679323, -0.222608, 0.638162)
 bones/35/rotation = Quaternion(0.14699, -0.743609, 0.00398269, 0.652245)
 bones/36/rotation = Quaternion(-1.83582e-05, 0.0773394, 0.0429052, 0.996081)
 bones/37/rotation = Quaternion(-0.108474, -0.754011, -0.0908499, 0.641442)
-bones/38/rotation = Quaternion(-1.49012e-08, 0, 0, 1)
 bones/39/rotation = Quaternion(5.96046e-08, 8.9407e-08, 2.98023e-08, 1)
 bones/40/rotation = Quaternion(0.0395766, 0.00983451, 0.010194, 0.999116)
 bones/41/rotation = Quaternion(0.147297, 0.000254452, 0.00977862, 0.989044)
@@ -202,7 +201,6 @@ dizzy_component = NodePath("../../../../../../Combat/DizzyComponent")
 transform = Transform3D(0.997935, -0.0642358, -0.000251025, 0.062292, 0.968677, -0.240386, 0.0156845, 0.239874, 0.970677, -0.0225225, 1.49531, 0.111814)
 
 [node name="AnimationTree" parent="Character" index="2"]
-root_motion_track = NodePath("../Armature_004/GeneralSkeleton")
 "parameters/Dizzy Finisher Which One/current_state" = ""
 "parameters/Dizzy Finisher Which One/current_index" = -1
 "parameters/Dizzy From Damage/current_state" = ""
