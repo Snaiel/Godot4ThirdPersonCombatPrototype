@@ -1,4 +1,4 @@
-[gd_scene load_steps=105 format=3 uid="uid://tnef4myjatff"]
+[gd_scene load_steps=106 format=3 uid="uid://tnef4myjatff"]
 
 [ext_resource type="Script" path="res://scripts/entities/enemy.gd" id="1_htlua"]
 [ext_resource type="Script" path="res://scripts/utilities/wellbeing_stats.gd" id="2_uvk8f"]
@@ -28,6 +28,7 @@
 [ext_resource type="AudioStream" uid="uid://dkk215uq2twwa" path="res://audio/footsteps/footstep02.wav" id="21_6cqp3"]
 [ext_resource type="PackedScene" uid="uid://bg5d27eyqwsfd" path="res://scenes/components/ParryComponent.tscn" id="21_e624s"]
 [ext_resource type="Script" path="res://scripts/animations/parry_animations.gd" id="21_n1uyc"]
+[ext_resource type="Script" path="res://scripts/attacks/zombie/zombie_smash_attack.gd" id="21_xh2qi"]
 [ext_resource type="Script" path="res://scripts/audio/audio_footsteps.gd" id="22_rjua1"]
 [ext_resource type="AudioStream" uid="uid://dp8kx7ob5g52l" path="res://audio/jump.wav" id="23_n41vf"]
 [ext_resource type="AudioStream" uid="uid://d2hx1psw3kw3j" path="res://audio/jump_land.wav" id="24_4taq6"]
@@ -603,11 +604,77 @@ hit_and_death_animations = NodePath("HitAndDeathAnimations")
 dizzy_victim_animations = NodePath("DizzyVictimAnimations")
 dizzy_finisher_animations = NodePath("DizzyFinisherAnimations")
 
+[node name="GeneralSkeleton" parent="Character/Armature_004" index="0"]
+bones/0/position = Vector3(-0.101837, -1.2217e-08, -0.102484)
+bones/1/position = Vector3(1.13615e-05, 0.86775, -8.54928e-08)
+bones/1/rotation = Quaternion(0.147903, -0.0981507, 0.00197906, 0.984118)
+bones/2/rotation = Quaternion(0.0744274, -0.00574228, -0.0017015, 0.997208)
+bones/3/rotation = Quaternion(0.119011, -0.0116513, -0.00666195, 0.992802)
+bones/4/rotation = Quaternion(0.123588, -0.012153, -0.006944, 0.992235)
+bones/5/rotation = Quaternion(0.0872272, 0.0111954, -0.0248143, 0.995816)
+bones/6/rotation = Quaternion(-0.0330895, 0.021778, 0.00874946, 0.999177)
+bones/8/rotation = Quaternion(0.372699, 0.602592, 0.449133, -0.544295)
+bones/9/rotation = Quaternion(0.35236, 0.772285, -0.525292, -0.0590396)
+bones/10/rotation = Quaternion(0.45914, -0.537765, 0.459139, 0.537765)
+bones/11/rotation = Quaternion(0.123773, 0.640354, -0.161975, 0.740534)
+bones/12/rotation = Quaternion(-0.00292137, -0.00450877, -0.100998, 0.994872)
+bones/13/rotation = Quaternion(-0.0894568, 0.702251, 0.0690828, 0.7029)
+bones/14/rotation = Quaternion(0.353882, 0.0609118, -0.023205, 0.933016)
+bones/15/rotation = Quaternion(0, -2.98023e-08, -2.98023e-08, 1)
+bones/16/rotation = Quaternion(0.439388, -3.23653e-07, -0.0530253, 0.896731)
+bones/17/rotation = Quaternion(0.807393, -3.76658e-07, -0.097436, 0.581913)
+bones/18/rotation = Quaternion(0.749415, -4.67557e-07, -0.0904391, 0.655894)
+bones/19/rotation = Quaternion(-2.98023e-08, -5.96046e-08, -2.98023e-08, 1)
+bones/20/rotation = Quaternion(0.439263, -2.64049e-07, -0.0530101, 0.896793)
+bones/21/rotation = Quaternion(0.807474, -3.47973e-07, -0.0974458, 0.581799)
+bones/22/rotation = Quaternion(0.749415, -3.80755e-07, -0.0904391, 0.655894)
+bones/23/rotation = Quaternion(-1.49012e-08, 1.49012e-08, 1.49012e-08, 1)
+bones/24/rotation = Quaternion(0.494689, -3.59696e-07, -0.059699, 0.867017)
+bones/25/rotation = Quaternion(0.807393, -6.15465e-07, -0.097436, 0.581913)
+bones/26/rotation = Quaternion(0.749415, -4.86744e-07, -0.0904393, 0.655894)
+bones/27/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
+bones/28/rotation = Quaternion(0.525309, 0.00950214, -0.0786677, 0.847214)
+bones/29/rotation = Quaternion(0.808721, 0.0289661, -0.0766617, 0.582455)
+bones/30/rotation = Quaternion(0.749491, -3.70696e-07, -0.0904483, 0.655807)
+bones/31/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
+bones/32/rotation = Quaternion(0.3736, -0.596928, -0.473696, -0.528879)
+bones/33/rotation = Quaternion(-0.477861, 0.798751, -0.363826, 0.0357397)
+bones/34/rotation = Quaternion(0.368675, 0.603389, -0.368675, 0.603389)
+bones/35/rotation = Quaternion(0.00231102, -0.808174, -0.0676348, 0.585042)
+bones/36/rotation = Quaternion(-0.0362406, -0.118038, 0.112362, 0.985966)
+bones/37/rotation = Quaternion(-0.145352, -0.672632, -0.146944, 0.710526)
+bones/38/rotation = Quaternion(0.390723, -0.123354, 0.00732342, 0.912176)
+bones/39/rotation = Quaternion(4.47035e-08, 4.47035e-08, 0, 1)
+bones/40/rotation = Quaternion(0.571723, 2.63838e-07, 0.0696741, 0.817483)
+bones/41/rotation = Quaternion(0.772281, 5.91291e-07, 0.0941154, 0.628271)
+bones/42/rotation = Quaternion(0.705947, 4.86326e-07, 0.0860315, 0.70302)
+bones/43/rotation = Quaternion(-1.49012e-08, 0, 1.49012e-08, 1)
+bones/44/rotation = Quaternion(0.571723, 3.94092e-07, 0.0696739, 0.817483)
+bones/45/rotation = Quaternion(0.772281, 5.7891e-07, 0.0941154, 0.628271)
+bones/46/rotation = Quaternion(0.705947, 4.64631e-07, 0.0860315, 0.70302)
+bones/47/rotation = Quaternion(-1.49012e-08, 1.49012e-08, 1.49012e-08, 1)
+bones/48/rotation = Quaternion(0.638252, 5.59816e-07, 0.0777816, 0.765888)
+bones/49/rotation = Quaternion(0.772281, 5.7124e-07, 0.0941153, 0.628272)
+bones/50/rotation = Quaternion(0.705947, 6.02621e-07, 0.0860314, 0.70302)
+bones/51/rotation = Quaternion(-1.49012e-08, 0, 1.49012e-08, 1)
+bones/52/rotation = Quaternion(0.681125, 4.7504e-07, 0.0830065, 0.727447)
+bones/53/rotation = Quaternion(0.772281, 6.29289e-07, 0.0941155, 0.628271)
+bones/54/rotation = Quaternion(0.705947, 4.8615e-07, 0.0860315, 0.70302)
+bones/55/rotation = Quaternion(-1.49012e-08, 0, 1.49012e-08, 1)
+bones/56/rotation = Quaternion(0.112292, 0.476842, 0.856592, -0.162055)
+bones/57/rotation = Quaternion(-0.00383812, 0.947844, -0.318396, -0.0141648)
+bones/58/rotation = Quaternion(-0.0841485, 0.735171, -0.665153, 0.100075)
+bones/59/rotation = Quaternion(1.216e-08, 0.999999, 0.00118178, 2.06091e-08)
+bones/61/rotation = Quaternion(-0.15146, 0.45945, 0.868692, 0.106484)
+bones/62/rotation = Quaternion(-0.00481457, 0.874548, -0.4804, -0.0660119)
+bones/63/rotation = Quaternion(0.0427968, 0.603684, -0.794156, -0.0552257)
+bones/64/rotation = Quaternion(2.33788e-09, 0.999997, 0.00254412, -1.62112e-08)
+
 [node name="Alpha_Surface" parent="Character/Armature_004/GeneralSkeleton" index="1"]
 surface_material_override/0 = SubResource("ShaderMaterial_pxv52")
 
 [node name="Weapon" parent="Character/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity")]
-transform = Transform3D(0, -1, 0, 0, 0, -1, 1, 0, 0, -0.737829, 1.43559, -0.0617137)
+transform = Transform3D(0.769548, 0.581534, 0.263843, 0.636548, -0.665556, -0.389667, -0.0510022, 0.467817, -0.882352, -0.269938, 0.818297, 0.16553)
 _entity = NodePath("../../../..")
 
 [node name="Mesh" parent="Character/Armature_004/GeneralSkeleton/Weapon" index="0"]
@@ -618,7 +685,7 @@ transform = Transform3D(-0.891466, -0.453088, -3.91619e-05, 0.453088, -0.891466,
 shape = SubResource("SphereShape3D_isb3a")
 
 [node name="LockOnAttachment" parent="Character/Armature_004/GeneralSkeleton" index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25913e-05, 1.34721, -0.042761)
+transform = Transform3D(0.971643, -0.129509, -0.19783, -0.083243, 0.595744, -0.798849, 0.221314, 0.792664, 0.56807, -0.115973, 1.19116, 0.0234248)
 
 [node name="Crosshair" type="Sprite3D" parent="Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint" index="0" node_paths=PackedStringArray("backstab_component", "dizzy_component")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
@@ -631,7 +698,7 @@ backstab_component = NodePath("../../../../../../Combat/BackstabComponent")
 dizzy_component = NodePath("../../../../../../Combat/DizzyComponent")
 
 [node name="HeadAttachment" parent="Character/Armature_004/GeneralSkeleton" index="4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.45549e-05, 1.60075, -0.00340771)
+transform = Transform3D(0.985568, -0.119862, -0.119533, -0.043588, 0.502631, -0.863402, 0.16357, 0.856152, 0.490152, -0.153426, 1.29211, 0.25224)
 
 [node name="AnimationPlayer" parent="Character" index="1"]
 libraries = {
@@ -642,20 +709,11 @@ libraries = {
 }
 
 [node name="AnimationTree" parent="Character" index="2"]
+active = false
 tree_root = ExtResource("11_bcsl7")
 parameters/Attack/current_state = ""
 parameters/Attack/transition_request = ""
 parameters/Attack/current_index = -1
-"parameters/Attack Inward Slash/Inward Slash Speed/scale" = 1.0
-"parameters/Attack Inward Slash/Inward Slash Trim/seek_request" = -1.0
-"parameters/Attack Inward Slash/Inward Slash and Walk Blend/blend_amount" = 0
-"parameters/Attack Inward Slash/Walk Forwards Speed/scale" = 1.0
-"parameters/Attack Inward Slash/Walk Forwards Trim/seek_request" = -1.0
-"parameters/Attack Inward Slash Copy/Inward Slash Speed/scale" = 1.0
-"parameters/Attack Inward Slash Copy/Inward Slash Trim/seek_request" = -1.0
-"parameters/Attack Inward Slash Copy/Inward Slash and Walk Blend/blend_amount" = 0
-"parameters/Attack Inward Slash Copy/Walk Forwards Speed/scale" = 1.0
-"parameters/Attack Inward Slash Copy/Walk Forwards Trim/seek_request" = -1.0
 parameters/Attacking/blend_amount = 0
 parameters/Blocking/blend_amount = 0
 "parameters/Blocking Speed/scale" = 1.0
@@ -719,6 +777,10 @@ parameters/Running/blend_amount = 0
 "parameters/Zombie Smack/Zombie Smack Trim/seek_request" = -1.0
 "parameters/Zombie Smack Copy/Zombie Smack Speed/scale" = 1.0
 "parameters/Zombie Smack Copy/Zombie Smack Trim/seek_request" = -1.0
+"parameters/Zombie Smash/Zombie Smash Speed/scale" = 1.0
+"parameters/Zombie Smash/Zombie Smash Trim/seek_request" = -1.0
+"parameters/Zombie Smash Copy/Zombie Smash Speed/scale" = 1.0
+"parameters/Zombie Smash Copy/Zombie Smash Trim/seek_request" = -1.0
 
 [node name="Movement" type="Node" parent="Character" node_paths=PackedStringArray("movement_animations", "audio_footsteps", "parent_animations", "anim_tree")]
 script = ExtResource("12_47joh")
@@ -761,12 +823,18 @@ anim_tree = NodePath("../AnimationTree")
 
 [node name="AttackAnimations" type="Node" parent="Character" node_paths=PackedStringArray("attacks", "parent_animations", "anim_tree")]
 script = ExtResource("15_37iw6")
-attacks = [NodePath("ZombieSmack"), NodePath("ZombieSmack")]
+attacks = [NodePath("ZombieSmack"), NodePath("ZombieSmash")]
 parent_animations = NodePath("..")
 anim_tree = NodePath("../AnimationTree")
 
 [node name="ZombieSmack" type="Node" parent="Character/AttackAnimations" node_paths=PackedStringArray("movement_component", "parent_animations", "anim_tree")]
 script = ExtResource("20_beg5k")
+movement_component = NodePath("../../../Movement/MovementComponent")
+parent_animations = NodePath("../..")
+anim_tree = NodePath("../../AnimationTree")
+
+[node name="ZombieSmash" type="Node" parent="Character/AttackAnimations" node_paths=PackedStringArray("movement_component", "parent_animations", "anim_tree")]
+script = ExtResource("21_xh2qi")
 movement_component = NodePath("../../../Movement/MovementComponent")
 parent_animations = NodePath("../..")
 anim_tree = NodePath("../../AnimationTree")
