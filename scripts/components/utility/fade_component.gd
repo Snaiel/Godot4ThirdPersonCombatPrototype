@@ -1,5 +1,5 @@
 class_name FadeComponent
-extends Node3D
+extends Node
 
 
 @export var enabled: bool = true

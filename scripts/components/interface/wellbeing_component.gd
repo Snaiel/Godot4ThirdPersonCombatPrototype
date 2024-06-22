@@ -1,5 +1,5 @@
 class_name WellbeingComponent
-extends Node3D
+extends Node
 
 
 @export_category("Configuration")
@@ -84,7 +84,7 @@ func _process(_delta):
 		_visible = false
 		notice_component.triangle_y_offset = -10
 	
-	if not _camera.is_position_in_frustum(global_position):
+	if not _camera.is_position_in_frustum(hud_info.global_position):
 		_visible = false
 	
 	_well_being_widget.visible = _visible

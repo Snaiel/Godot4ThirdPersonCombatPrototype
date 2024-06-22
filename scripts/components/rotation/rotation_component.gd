@@ -1,5 +1,5 @@
 class_name RotationComponent
-extends Node3D
+extends Node
 
 @export var entity: CharacterBody3D
 

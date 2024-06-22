@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://scripts/components/movement/dodge_component.gd" id="1_qre4d"]
 
-[node name="DodgeComponent" type="Node3D"]
+[node name="DodgeComponent" type="Node"]
 script = ExtResource("1_qre4d")

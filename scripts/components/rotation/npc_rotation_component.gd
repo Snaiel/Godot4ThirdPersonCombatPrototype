@@ -9,6 +9,7 @@ extends RotationComponent
 var npc: Enemy
 var speed: float = 1 # mainly for testing purporse
 
+
 func _ready() -> void:
 	npc = entity as Enemy
 	looking_direction = looking_direction.rotated(Vector3.UP, entity.rotation.y).normalized()

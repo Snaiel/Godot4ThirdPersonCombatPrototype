@@ -1,5 +1,5 @@
 class_name AttackComponent
-extends Node3D
+extends Node
 
 signal can_rotate(flag: bool)
 signal can_move(flag: bool)

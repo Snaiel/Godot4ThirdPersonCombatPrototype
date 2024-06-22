@@ -1,5 +1,5 @@
 class_name MotionComponent
-extends Node3D
+extends Node
 
 
 @export var debug: bool = false

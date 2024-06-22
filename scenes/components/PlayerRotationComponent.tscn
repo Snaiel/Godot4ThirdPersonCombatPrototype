@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://scripts/components/rotation/player_rotation_component.gd" id="1_fulxd"]
 
-[node name="PlayerRotationComponent" type="Node3D"]
+[node name="PlayerRotationComponent" type="Node"]
 script = ExtResource("1_fulxd")

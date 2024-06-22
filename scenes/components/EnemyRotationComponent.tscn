@@ -2,9 +2,5 @@
 
 [ext_resource type="Script" path="res://scripts/components/rotation/npc_rotation_component.gd" id="1_tqgli"]
 
-[node name="EnemyRotationComponent" type="Node3D" node_paths=PackedStringArray("movement_component", "blackboard", "agent", "entity")]
+[node name="EnemyRotationComponent" type="Node"]
 script = ExtResource("1_tqgli")
-movement_component = NodePath("")
-blackboard = NodePath("")
-agent = NodePath("")
-entity = NodePath("")

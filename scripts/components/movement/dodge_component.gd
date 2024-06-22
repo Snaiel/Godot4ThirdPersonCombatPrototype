@@ -1,5 +1,5 @@
 class_name DodgeComponent
-extends Node3D
+extends Node
 
 
 @export var dodge_strength: float = 7
