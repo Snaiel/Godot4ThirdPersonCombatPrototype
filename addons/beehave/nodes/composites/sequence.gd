@@ -1,12 +1,12 @@
-## Sequence nodes will attempt to execute all of its children and report
-## `SUCCESS` in case all of the children report a `SUCCESS` status code.
-## If at least one child reports a `FAILURE` status code, this node will also
-## return `FAILURE` and restart.
-## In case a child returns `RUNNING` this node will tick again. 
 @tool
 @icon("../../icons/sequence.svg")
 class_name SequenceComposite extends Composite
 
+## Sequence nodes will attempt to execute all of its children and report
+## `SUCCESS` in case all of the children report a `SUCCESS` status code.
+## If at least one child reports a `FAILURE` status code, this node will also
+## return `FAILURE` and restart.
+## In case a child returns `RUNNING` this node will tick again.
 
 var successful_index: int = 0
 
@@ -16,7 +16,7 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 
 		if c.get_index() < successful_index:
 			continue
-		
+
 		if c != running_child:
 			c.before_run(actor, blackboard)
 
@@ -30,9 +30,11 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 
 		match response:
 			SUCCESS:
+				_cleanup_running_task(c, actor, blackboard)
 				successful_index += 1
 				c.after_run(actor, blackboard)
 			FAILURE:
+				_cleanup_running_task(c, actor, blackboard)
 				# Interrupt any child that was RUNNING before.
 				interrupt(actor, blackboard)
 				c.after_run(actor, blackboard)
@@ -53,9 +55,19 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 func interrupt(actor: Node, blackboard: Blackboard) -> void:
 	_reset()
 	super(actor, blackboard)
-	
+
+
 func _reset() -> void:
 	successful_index = 0
+
+
+## Changes `running_action` and `running_child` after the node finishes executing.
+func _cleanup_running_task(finished_action: Node, actor: Node, blackboard: Blackboard):
+	var blackboard_name = str(actor.get_instance_id())
+	if finished_action == running_child:
+		running_child = null
+		if finished_action == blackboard.get_value("running_action", null, blackboard_name):
+			blackboard.set_value("running_action", null, blackboard_name)
 
 
 func get_class_name() -> Array[StringName]:

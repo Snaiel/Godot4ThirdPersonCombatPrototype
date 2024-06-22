@@ -1,7 +1,9 @@
 @tool
-extends PanelContainer
+class_name BeehaveDebuggerTab extends PanelContainer
 
-signal make_floating()
+const BeehaveUtils := preload("res://addons/beehave/utils/utils.gd")
+
+signal make_floating
 
 const BeehaveGraphEdit := preload("graph_edit.gd")
 const TREE_ICON := preload("../icons/tree.svg")
@@ -25,7 +27,7 @@ func _ready() -> void:
 	item_list.item_selected.connect(_on_item_selected)
 	container.add_child(item_list)
 
-	graph = BeehaveGraphEdit.new()
+	graph = BeehaveGraphEdit.new(BeehaveUtils.get_frames())
 	container.add_child(graph)
 
 	message = Label.new()
@@ -37,20 +39,22 @@ func _ready() -> void:
 
 	var button := Button.new()
 	button.flat = true
+	button.name = "MakeFloatingButton"
 	button.icon = get_theme_icon(&"ExternalLink", &"EditorIcons")
 	button.pressed.connect(func(): make_floating.emit())
 	button.tooltip_text = "Make floating"
 	button.focus_mode = Control.FOCUS_NONE
-	graph.get_zoom_hbox().add_child(button)
+	graph.get_menu_container().add_child(button)
 
 	var toggle_button := Button.new()
 	toggle_button.flat = true
+	toggle_button.name = "TogglePanelButton"
 	toggle_button.icon = get_theme_icon(&"Back", &"EditorIcons")
 	toggle_button.pressed.connect(_on_toggle_button_pressed.bind(toggle_button))
 	toggle_button.tooltip_text = "Toggle Panel"
 	toggle_button.focus_mode = Control.FOCUS_NONE
-	graph.get_zoom_hbox().add_child(toggle_button)
-	graph.get_zoom_hbox().move_child(toggle_button, 0)
+	graph.get_menu_container().add_child(toggle_button)
+	graph.get_menu_container().move_child(toggle_button, 0)
 
 	stop()
 	visibility_changed.connect(_on_visibility_changed)
@@ -71,10 +75,15 @@ func stop() -> void:
 
 
 func register_tree(data: Dictionary) -> void:
-	var idx := item_list.add_item(data.name, TREE_ICON)
-	item_list.set_item_tooltip(idx, data.path)
-	item_list.set_item_metadata(idx, data.id)
+	if not active_trees.has(data.id):
+		var idx := item_list.add_item(data.name, TREE_ICON)
+		item_list.set_item_tooltip(idx, data.path)
+		item_list.set_item_metadata(idx, data.id)
+
 	active_trees[data.id] = data
+
+	if active_tree_id == data.id.to_int():
+		graph.beehave_tree = data
 
 
 func unregister_tree(instance_id: int) -> void:
@@ -92,7 +101,9 @@ func unregister_tree(instance_id: int) -> void:
 
 func _on_toggle_button_pressed(toggle_button: Button) -> void:
 	item_list.visible = !item_list.visible
-	toggle_button.icon = get_theme_icon(&"Back" if item_list.visible else &"Forward", &"EditorIcons")
+	toggle_button.icon = get_theme_icon(
+		&"Back" if item_list.visible else &"Forward", &"EditorIcons"
+	)
 
 
 func _on_item_selected(idx: int) -> void:
@@ -100,8 +111,10 @@ func _on_item_selected(idx: int) -> void:
 	graph.beehave_tree = active_trees.get(id, {})
 
 	active_tree_id = id.to_int()
-	session.send_message("beehave:activate_tree", [active_tree_id])
+	if session != null:
+		session.send_message("beehave:activate_tree", [active_tree_id])
 
 
 func _on_visibility_changed() -> void:
-	session.send_message("beehave:visibility_changed", [visible and is_visible_in_tree()])
+	if session != null:
+		session.send_message("beehave:visibility_changed", [visible and is_visible_in_tree()])
