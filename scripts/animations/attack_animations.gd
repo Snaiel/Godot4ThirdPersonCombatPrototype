@@ -95,7 +95,7 @@ func receive_secondary_movement() -> void:
 	secondary_movement.emit(attacks[_level])
 
 
-func prevent_rotation() -> void:
+func receive_prevent_rotation() -> void:
 	can_rotate.emit(false)
 
 
