@@ -133,6 +133,10 @@ exit={
 3d_physics/layer_4="enemy"
 3d_physics/layer_5="lock_on"
 
+[network]
+
+limits/debugger/max_queued_messages=4096
+
 [rendering]
 
 lights_and_shadows/directional_shadow/soft_shadow_filter_quality=0

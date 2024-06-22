@@ -33,15 +33,10 @@ script = ExtResource("4_fuagw")
 target_range = 2.5
 
 [node name="ResetWaitBeforeChase" type="Node" parent="StayOrChase/SquareUpIfClose"]
-script = null
-wait_id = 23169934
 
 [node name="InputNone" parent="StayOrChase/SquareUpIfClose" instance=ExtResource("6_ibk58")]
 
 [node name="Wait" type="Node" parent="StayOrChase/SquareUpIfClose"]
-script = null
-time = 1.0
-wait_id = 61967809
 
 [node name="SquareUp" type="Node" parent="StayOrChase/SquareUpIfClose"]
 script = ExtResource("1_5577v")
@@ -69,16 +64,11 @@ script = ExtResource("4_fuagw")
 target_range = 15.0
 
 [node name="ResetWait" type="Node" parent="StayOrChase/Chase"]
-script = null
-wait_id = 61967809
 
 [node name="InputNone" parent="StayOrChase/Chase" instance=ExtResource("6_ibk58")]
 
 [node name="SetRunSpeed" parent="StayOrChase/Chase" instance=ExtResource("14_lbagp")]
 
 [node name="WaitBeforeChase" type="Node" parent="StayOrChase/Chase"]
-script = null
-time = 2.0
-wait_id = 23169934
 
 [node name="InputForwards" parent="StayOrChase/Chase" instance=ExtResource("10_isq64")]
