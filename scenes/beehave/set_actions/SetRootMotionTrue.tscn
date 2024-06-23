@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cerhh2ei5vqf4"]
+
+[ext_resource type="Script" path="res://scripts/beehave/set_root_motion.gd" id="1_7xg1v"]
+
+[node name="SetRootMotionTrue" type="Node" node_paths=PackedStringArray("entity")]
+script = ExtResource("1_7xg1v")
+entity = NodePath("")
+root_motion = true

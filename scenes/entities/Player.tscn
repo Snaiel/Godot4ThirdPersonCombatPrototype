@@ -181,18 +181,6 @@ transform = Transform3D(0.997935, -0.0642358, -0.000251025, 0.062292, 0.968677, 
 [node name="FreeMovement" parent="Character/Movement/LockedOnMovement" index="1"]
 debug = true
 
-[node name="InwardAttack" parent="Character/AttackAnimations" index="0" node_paths=PackedStringArray("movement_component")]
-movement_component = NodePath("../../../Movement/MovementComponent")
-
-[node name="OutwardAttack" parent="Character/AttackAnimations" index="1" node_paths=PackedStringArray("movement_component")]
-movement_component = NodePath("../../../Movement/MovementComponent")
-
-[node name="ThrustAttack" parent="Character/AttackAnimations" index="2" node_paths=PackedStringArray("movement_component")]
-movement_component = NodePath("../../../Movement/MovementComponent")
-
-[node name="QuickSlashAttack" parent="Character/AttackAnimations" index="3" node_paths=PackedStringArray("movement_component")]
-movement_component = NodePath("../../../Movement/MovementComponent")
-
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("2_4ql4h")
 player = NodePath("..")
@@ -406,9 +394,9 @@ blood_scene = ExtResource("27_63iim")
 
 [node name="Combat" type="Node3D" parent="."]
 
-[node name="AttackComponent" parent="Combat" node_paths=PackedStringArray("_attack_animations") instance=ExtResource("28_no1kf")]
-_attack_animations = NodePath("../../Character/AttackAnimations")
-_weapons = {
+[node name="AttackComponent" parent="Combat" node_paths=PackedStringArray("attack_animations") instance=ExtResource("28_no1kf")]
+attack_animations = NodePath("../../Character/AttackAnimations")
+weapons = {
 "right_hand": NodePath("../../Character/Armature_004/GeneralSkeleton/Sword")
 }
 

@@ -13,10 +13,6 @@ func play_attack():
 	anim_tree["parameters/Attack/transition_request"] = "quick_slash"
 
 
-func receive_movement():
-	movement_component.set_secondary_movement(6, 5, 15)
-
-
 func play_legs():
 	anim_tree["parameters/Attack Quick Slash/Walk Forwards Speed/scale"] = 0.8
 

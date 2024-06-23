@@ -4,9 +4,11 @@ extends Node
 signal can_rotate(flag: bool)
 signal can_move(flag: bool)
 
-@export var _attack_animations: AttackAnimations
-@export var _weapons: Dictionary
-@export var _can_attack: bool = true
+@export var attack_animations: AttackAnimations
+@export var weapons: Dictionary
+@export var can_attack: bool = true
+
+var active_motion_component: MotionComponent
 
 var attacking: bool = false
 var attack_level: int = 0:
@@ -29,18 +31,18 @@ var _attack_interrupted: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	_attack_animations.secondary_movement.connect(_receive_movement)
-	_attack_animations.can_rotate.connect(_receive_rotation)
-	_attack_animations.can_damage.connect(_receive_can_damage)
-	_attack_animations.can_attack_again.connect(_receive_can_attack_again)
-	_attack_animations.can_play_animation.connect(_receive_can_play_animation)
-	_attack_animations.attacking_finished.connect(_receive_attacking_finished)
+	attack_animations.secondary_movement.connect(_receive_movement)
+	attack_animations.can_rotate.connect(_receive_rotation)
+	attack_animations.can_damage.connect(_receive_can_damage)
+	attack_animations.can_attack_again.connect(_receive_can_attack_again)
+	attack_animations.can_play_animation.connect(_receive_can_play_animation)
+	attack_animations.attacking_finished.connect(_receive_attacking_finished)
 
 
 func attack(can_stop: bool = true) -> void:
 	instance += 1
 	
-	if not _can_attack:
+	if not can_attack:
 		return
 		
 	attacking = true
@@ -53,12 +55,12 @@ func attack(can_stop: bool = true) -> void:
 		else:
 			attack_level = 0
 	
-	_can_attack = false
+	can_attack = false
 	
 	can_rotate.emit(true)
 	can_move.emit(false)
 	
-	_attack_animations.attack(attack_level, _manually_set_attack_level)
+	attack_animations.attack(attack_level, _manually_set_attack_level)
 		
 	_manually_set_attack_level = false
 
@@ -75,7 +77,7 @@ func stop_attacking() -> bool:
 
 
 func set_can_damage_of_weapons(flag: bool) -> void:
-	for i in _weapons.values():
+	for i in weapons.values():
 		var weapon: Weapon = get_node(i)
 		weapon.can_damage = flag
 
@@ -88,10 +90,10 @@ func interrupt_attack() -> void:
 	attacking = false
 	attack_level = 0
 	
-	_can_attack = true
+	can_attack = true
 	_can_attack_again = false
 	
-	_attack_animations.stop_attacking()
+	attack_animations.stop_attacking()
 	
 	set_can_damage_of_weapons(false)
 
@@ -102,7 +104,7 @@ func set_attack_level(level: int) -> void:
 
 
 func _receive_can_attack_again(can_attack_again: bool) -> void:
-	_can_attack = true
+	can_attack = true
 	if not _attack_interrupted:
 		_can_attack_again = can_attack_again
 
@@ -112,7 +114,7 @@ func _receive_can_play_animation() -> void:
 
 
 func _receive_attacking_finished() -> void:
-	_can_attack = true
+	can_attack = true
 	stop_attacking()
 
 
@@ -126,7 +128,12 @@ func _receive_movement(attack_strat: AttackStrategy) -> void:
 	if _attack_interrupted:
 		return
 	
-	attack_strat.receive_movement()
+	active_motion_component.set_secondary_movement(
+		attack_strat.move_speed,
+		attack_strat.time,
+		attack_strat.friction,
+		attack_strat.direction
+	)
 
 
 func _receive_can_damage(can_damage: bool, weapon_name: StringName) -> void:
@@ -135,8 +142,8 @@ func _receive_can_damage(can_damage: bool, weapon_name: StringName) -> void:
 	
 	prints(can_damage, weapon_name)
 	
-	if _weapons.has(weapon_name):
-		var weapon: Weapon = get_node(_weapons[weapon_name])
+	if weapons.has(weapon_name):
+		var weapon: Weapon = get_node(weapons[weapon_name])
 		weapon.can_damage = can_damage
 	else:
 		set_can_damage_of_weapons(can_damage)

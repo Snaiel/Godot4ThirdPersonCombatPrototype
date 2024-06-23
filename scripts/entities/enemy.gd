@@ -152,6 +152,8 @@ func _physics_process(_delta: float) -> void:
 	
 	
 	## Component Management
+	attack_component.active_motion_component = active_motion_component
+	
 	rotation_component.rotate_towards_target = blackboard.get_value(
 		"rotate_towards_target",
 		false

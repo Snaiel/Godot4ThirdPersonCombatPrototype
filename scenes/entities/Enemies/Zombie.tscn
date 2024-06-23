@@ -1,4 +1,4 @@
-[gd_scene load_steps=107 format=3 uid="uid://tnef4myjatff"]
+[gd_scene load_steps=108 format=3 uid="uid://tnef4myjatff"]
 
 [ext_resource type="Script" path="res://scripts/entities/enemy.gd" id="1_htlua"]
 [ext_resource type="Script" path="res://scripts/utilities/wellbeing_stats.gd" id="2_uvk8f"]
@@ -89,6 +89,7 @@
 [ext_resource type="Script" path="res://scripts/beehave/wait/skip_wait.gd" id="79_n6a2w"]
 [ext_resource type="Script" path="res://scripts/beehave/wait/wait.gd" id="80_kovvc"]
 [ext_resource type="PackedScene" uid="uid://sgydepkut3a4" path="res://scenes/beehave/attacks/RandomAttack.tscn" id="81_5syh5"]
+[ext_resource type="PackedScene" uid="uid://cerhh2ei5vqf4" path="res://scenes/beehave/set_actions/SetRootMotionTrue.tscn" id="89_ex15g"]
 
 [sub_resource type="Resource" id="Resource_6we7u"]
 script = ExtResource("2_uvk8f")
@@ -675,7 +676,7 @@ bones/64/rotation = Quaternion(-1.58473e-08, 1, 5.09473e-05, 3.80448e-08)
 surface_material_override/0 = SubResource("ShaderMaterial_pxv52")
 
 [node name="LockOnAttachment" parent="Character/Armature_004/GeneralSkeleton" index="2"]
-transform = Transform3D(0.950561, 0.0544599, -0.305725, 0.0123869, 0.977069, 0.212562, 0.31029, -0.205841, 0.928089, 0.18964, 1.21996, -0.103888)
+transform = Transform3D(0.950561, 0.0544597, -0.305725, 0.0123875, 0.977069, 0.212564, 0.31029, -0.205842, 0.928089, 0.18964, 1.21996, -0.103888)
 
 [node name="Crosshair" type="Sprite3D" parent="Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint" index="0" node_paths=PackedStringArray("backstab_component", "dizzy_component")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
@@ -688,10 +689,10 @@ backstab_component = NodePath("../../../../../../Combat/BackstabComponent")
 dizzy_component = NodePath("../../../../../../Combat/DizzyComponent")
 
 [node name="HeadAttachment" parent="Character/Armature_004/GeneralSkeleton" index="3"]
-transform = Transform3D(0.932854, 0.0833165, -0.350488, -0.325949, 0.609543, -0.722644, 0.153429, 0.788362, 0.595772, 0.19361, 1.46263, -0.0747153)
+transform = Transform3D(0.932854, 0.0833162, -0.350487, -0.325948, 0.609545, -0.722643, 0.15343, 0.788361, 0.595773, 0.19361, 1.46263, -0.0747159)
 
 [node name="WeaponHand" parent="Character/Armature_004/GeneralSkeleton" index="4" node_paths=PackedStringArray("entity", "attack_component") instance=ExtResource("8_11b14")]
-transform = Transform3D(0.543988, -0.122832, 0.830054, 0.134922, -0.963551, -0.23101, 0.828175, 0.237659, -0.507587, -0.0104668, 0.782607, -0.0831807)
+transform = Transform3D(0.543989, -0.122832, 0.830053, 0.134924, -0.96355, -0.231012, 0.828174, 0.237662, -0.507587, -0.0104672, 0.782606, -0.0831796)
 entity = NodePath("../../../..")
 attack_component = NodePath("../../../../Combat/AttackComponent")
 
@@ -705,7 +706,7 @@ transform = Transform3D(-0.891466, -0.453088, -3.91619e-05, 0.453088, -0.891466,
 shape = SubResource("SphereShape3D_isb3a")
 
 [node name="WeaponFoot" parent="Character/Armature_004/GeneralSkeleton" index="5" node_paths=PackedStringArray("entity", "attack_component") instance=ExtResource("8_11b14")]
-transform = Transform3D(-0.879125, 0.361152, -0.310981, 0.321921, 0.931139, 0.17131, 0.351435, 0.0504915, -0.93485, 0.0333013, 1.0957, 0.968227)
+transform = Transform3D(-0.879125, 0.361152, -0.31098, 0.321921, 0.931139, 0.17131, 0.351434, 0.0504917, -0.93485, 0.0333009, 1.0957, 0.968227)
 bone_name = "RightFoot"
 bone_idx = 63
 entity = NodePath("../../../..")
@@ -850,33 +851,30 @@ attacks = [NodePath("ZombieSmack"), NodePath("ZombieSmash"), NodePath("ZombieKic
 parent_animations = NodePath("..")
 anim_tree = NodePath("../AnimationTree")
 
-[node name="ZombieSmack" type="Node" parent="Character/AttackAnimations" node_paths=PackedStringArray("movement_component", "parent_animations", "anim_tree")]
+[node name="ZombieSmack" type="Node" parent="Character/AttackAnimations" node_paths=PackedStringArray("parent_animations", "anim_tree")]
 script = ExtResource("21_v3y6e")
 _attack_name = "Zombie Smack"
 has_copy = true
 trim = 0.3
 time = 7.0
-movement_component = NodePath("../../../Movement/MovementComponent")
 parent_animations = NodePath("../..")
 anim_tree = NodePath("../../AnimationTree")
 
-[node name="ZombieSmash" type="Node" parent="Character/AttackAnimations" node_paths=PackedStringArray("movement_component", "parent_animations", "anim_tree")]
+[node name="ZombieSmash" type="Node" parent="Character/AttackAnimations" node_paths=PackedStringArray("parent_animations", "anim_tree")]
 script = ExtResource("21_v3y6e")
 _attack_name = "Zombie Smash"
 has_copy = true
 trim = 0.3
 time = 7.0
-movement_component = NodePath("../../../Movement/MovementComponent")
 parent_animations = NodePath("../..")
 anim_tree = NodePath("../../AnimationTree")
 
-[node name="ZombieKick" type="Node" parent="Character/AttackAnimations" node_paths=PackedStringArray("movement_component", "parent_animations", "anim_tree")]
+[node name="ZombieKick" type="Node" parent="Character/AttackAnimations" node_paths=PackedStringArray("parent_animations", "anim_tree")]
 script = ExtResource("21_v3y6e")
 _attack_name = "Zombie Kick"
 has_copy = true
 trim = 0.2
 time = 7.0
-movement_component = NodePath("../../../Movement/MovementComponent")
 parent_animations = NodePath("../..")
 anim_tree = NodePath("../../AnimationTree")
 
@@ -1020,9 +1018,9 @@ max_instability = 100.0
 
 [node name="Combat" type="Node3D" parent="."]
 
-[node name="AttackComponent" parent="Combat" node_paths=PackedStringArray("_attack_animations") instance=ExtResource("43_7m6jm")]
-_attack_animations = NodePath("../../Character/AttackAnimations")
-_weapons = {
+[node name="AttackComponent" parent="Combat" node_paths=PackedStringArray("attack_animations") instance=ExtResource("43_7m6jm")]
+attack_animations = NodePath("../../Character/AttackAnimations")
+weapons = {
 "right_foot": NodePath("../../Character/Armature_004/GeneralSkeleton/WeaponFoot"),
 "right_hand": NodePath("../../Character/Armature_004/GeneralSkeleton/WeaponHand")
 }
@@ -1222,10 +1220,6 @@ script = ExtResource("54_3f5dv")
 left_operand = "get_value(\"perceives_player\")"
 right_operand = "true"
 
-[node name="SetRootMotionFalse" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack" node_paths=PackedStringArray("entity")]
-script = ExtResource("75_2wqsi")
-entity = NodePath("../../../../../..")
-
 [node name="PerformAttack" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack"]
 script = ExtResource("66_nwowx")
 
@@ -1326,10 +1320,6 @@ left_operand = "get_value(\"player_dist\")"
 operator = 3
 right_operand = "1"
 
-[node name="Print" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/SquareUpIfClose"]
-script = ExtResource("56_xoiis")
-expression_string = "print(\"stay\")"
-
 [node name="SetAgentTargetPositionNull" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/SquareUpIfClose"]
 script = ExtResource("71_hlhqy")
 key = "\"agent_target_position\""
@@ -1368,10 +1358,6 @@ script = ExtResource("54_3f5dv")
 left_operand = "get_value(\"target_reachable\")"
 right_operand = "true"
 
-[node name="Print" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Chase"]
-script = ExtResource("56_xoiis")
-expression_string = "print(\"chase\")"
-
 [node name="SetCanInvestigateLastAgentPositionTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Chase"]
 script = ExtResource("71_hlhqy")
 key = "\"can_set_investigate_last_agent_position\""
@@ -1403,10 +1389,8 @@ script = ExtResource("49_ahbd6")
 
 [node name="SetLookedAroundFalse" parent="BeehaveTree/SelectorComposite/Idle" instance=ExtResource("77_ms7lv")]
 
-[node name="SetRootMotionTrue" type="Node" parent="BeehaveTree/SelectorComposite/Idle" node_paths=PackedStringArray("entity")]
-script = ExtResource("75_2wqsi")
+[node name="SetRootMotionTrue" parent="BeehaveTree/SelectorComposite/Idle" node_paths=PackedStringArray("entity") instance=ExtResource("89_ex15g")]
 entity = NodePath("../../../..")
-root_motion = true
 
 [node name="LeafExecuteExpression" type="Node" parent="BeehaveTree/SelectorComposite/Idle"]
 script = ExtResource("56_xoiis")

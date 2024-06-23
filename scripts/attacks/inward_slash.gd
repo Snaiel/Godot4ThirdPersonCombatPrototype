@@ -23,10 +23,6 @@ func play_attack():
 		_play_copy = true
 
 
-func receive_movement():
-	movement_component.set_secondary_movement(6, 5, 15)
-
-
 func play_legs() -> void:
 	anim_tree["parameters/Attack Inward Slash/Walk Forwards Speed/scale"] = 0.8
 	anim_tree["parameters/Attack Inward Slash Copy/Walk Forwards Speed/scale"] = 0.8

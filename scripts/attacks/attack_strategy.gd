@@ -2,7 +2,11 @@ class_name AttackStrategy
 extends BaseAnimations
 
 
-@export var movement_component: MovementComponent
+@export_category("Secondary Movement Settings")
+@export var move_speed: float = 6
+@export var time: float = 5
+@export var friction: float = 15
+@export var direction: Vector3 = Vector3.ZERO
 
 var attack_name: StringName
 
@@ -21,10 +25,6 @@ func play_attack() -> void:
 		pass
 	else:
 		pass
-
-
-func receive_movement() -> void:
-	pass
 
 
 func play_legs() -> void:

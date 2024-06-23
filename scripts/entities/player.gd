@@ -81,6 +81,8 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	
+	attack_component.active_motion_component = active_motion_component
+	
 	if Input.is_action_just_pressed("exit"):
 		get_tree().quit()
 	elif Input.is_action_just_pressed("ui_text_backspace"):

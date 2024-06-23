@@ -1,5 +1,5 @@
 class_name SetRootMotion
-extends Leaf
+extends ActionLeaf
 
 
 @export var entity: Enemy
