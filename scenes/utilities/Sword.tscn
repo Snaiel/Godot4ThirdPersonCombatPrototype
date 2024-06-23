@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://b78ctcv6lulvi"]
 
-[ext_resource type="Script" path="res://scripts/entities/sword.gd" id="1_bx4em"]
+[ext_resource type="Script" path="res://scripts/entities/weapon.gd" id="1_bx4em"]
 [ext_resource type="Shader" path="res://shaders/fade.gdshader" id="2_fbolq"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_dg00e"]

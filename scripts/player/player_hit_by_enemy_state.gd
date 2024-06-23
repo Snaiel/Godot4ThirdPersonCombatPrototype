@@ -49,7 +49,7 @@ func enter():
 	
 	player.movement_component.can_move = false
 	player.movement_component.knockback(
-		_incoming_weapon.get_entity().global_position
+		_incoming_weapon.entity.global_position
 	)
 	player.character.hit_and_death_animations.hit()
 	player.attack_component.interrupt_attack()

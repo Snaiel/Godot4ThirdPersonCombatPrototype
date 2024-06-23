@@ -180,9 +180,10 @@ surface_material_override/0 = ExtResource("4_yduye")
 [node name="Alpha_Surface" parent="Character/Armature_004/GeneralSkeleton" index="1"]
 surface_material_override/0 = SubResource("ShaderMaterial_i1ddg")
 
-[node name="Sword" parent="Character/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity") instance=ExtResource("4_r63io")]
+[node name="Sword" parent="Character/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("entity", "attack_component") instance=ExtResource("4_r63io")]
 transform = Transform3D(-0.18487, -0.251436, 0.950054, 0.318492, -0.929873, -0.18412, 0.929724, 0.268546, 0.251986, -0.307707, 0.879604, -0.2272)
-_entity = NodePath("../../../..")
+entity = NodePath("../../../..")
+attack_component = NodePath("../../../../Combat/AttackComponent")
 
 [node name="Area" parent="Character/Armature_004/GeneralSkeleton/Sword" index="1"]
 collision_mask = 2

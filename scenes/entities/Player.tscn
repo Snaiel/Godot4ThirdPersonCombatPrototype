@@ -156,9 +156,10 @@ surface_material_override/0 = SubResource("ShaderMaterial_kr42x")
 layers = 2
 surface_material_override/0 = ExtResource("4_ysu0o")
 
-[node name="Sword" parent="Character/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("_entity") instance=ExtResource("5_vtx6o")]
+[node name="Sword" parent="Character/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("entity", "attack_component") instance=ExtResource("5_vtx6o")]
 transform = Transform3D(-0.18487, -0.251436, 0.950054, 0.318492, -0.929873, -0.18412, 0.929724, 0.268546, 0.251986, -0.307707, 0.879604, -0.2272)
-_entity = NodePath("../../../..")
+entity = NodePath("../../../..")
+attack_component = NodePath("../../../../Combat/AttackComponent")
 
 [node name="LockOnAttachment" parent="Character/Armature_004/GeneralSkeleton" index="3"]
 transform = Transform3D(0.942295, -0.12887, -0.308985, -0.0148777, 0.905912, -0.423204, 0.334451, 0.40338, 0.85172, 0.0211761, 1.27707, -0.017762)

@@ -221,14 +221,14 @@ func _on_entity_hitbox_weapon_hit(incoming_weapon: Weapon) -> void:
 	if Globals.backstab_system.backstab_victim == backstab_component:
 		backstab_component.process_hit()
 		health_component.damage_from_weapon(incoming_weapon)
-		active_motion_component.knockback(incoming_weapon.get_entity().global_position)
+		active_motion_component.knockback(incoming_weapon.entity.global_position)
 		return
 	
 	if Globals.dizzy_system.dizzy_victim == dizzy_component:
 		dizzy_component.process_hit(incoming_weapon)
 		health_component.damage_from_weapon(incoming_weapon)
 		if instability_component.full_instability_from_parry:
-			active_motion_component.knockback(incoming_weapon.get_entity().global_position)
+			active_motion_component.knockback(incoming_weapon.entity.global_position)
 		return
 	
 	blackboard.set_value("can_attack", false)
@@ -258,11 +258,11 @@ func _on_entity_hitbox_weapon_hit(incoming_weapon: Weapon) -> void:
 		hit_sfx.play()
 		
 		if Globals.dizzy_system.dizzy_victim != dizzy_component:
-			active_motion_component.knockback(incoming_weapon.get_entity().global_position)
+			active_motion_component.knockback(incoming_weapon.entity.global_position)
 		
 	elif rng < hit_weight + block_weight:
 		# block incoming hit
-		active_motion_component.knockback(incoming_weapon.get_entity().global_position)
+		active_motion_component.knockback(incoming_weapon.entity.global_position)
 		
 		block_component.blocking = true
 		block_component.blocked()
@@ -287,7 +287,7 @@ func _on_entity_hitbox_weapon_hit(incoming_weapon: Weapon) -> void:
 		
 	elif rng < hit_weight + block_weight + parry_weight:
 		# parry incoming hit
-		active_motion_component.knockback(incoming_weapon.get_entity().global_position)
+		active_motion_component.knockback(incoming_weapon.entity.global_position)
 		
 		parry_component.in_parry_window = true
 		parry_component.play_parry_particles()
@@ -301,7 +301,7 @@ func _on_entity_hitbox_weapon_hit(incoming_weapon: Weapon) -> void:
 		
 		instability_component.process_parry()
 		
-		incoming_weapon.get_parried()
+		incoming_weapon.parry_weapon()
 		
 		parry_sfx.play()
 		

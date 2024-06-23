@@ -45,7 +45,7 @@ func damage_from_weapon(weapon: Weapon) -> void:
 		blood_particle.rotate_y(PI)
 		blood_particle.restart()
 	
-	decrement_health(weapon.get_damage())
+	decrement_health(weapon.damage)
 
 
 func decrement_health(amount: float) -> void:

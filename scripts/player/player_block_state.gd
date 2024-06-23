@@ -34,7 +34,7 @@ func _ready():
 				return
 			
 			player.movement_component.knockback(
-				incoming_weapon.get_entity().global_position
+				incoming_weapon.entity.global_position
 			)
 			
 			_can_reduce_instability = false

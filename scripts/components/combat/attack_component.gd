@@ -12,6 +12,15 @@ var attacking: bool = false
 var attack_level: int = 0:
 	set = set_attack_level
 
+## The label of a single attack occurrence.
+# Used to make sure an entity is only hit
+# once in a single instance of an attack.
+# For example, a swing may enter a hitbox
+# twice, separately, but on the same animation.
+# This should only just count for one hit since
+# it's in the same animation/instance.
+var instance: int = 0
+
 var _manually_set_attack_level: bool = false
 var _can_stop_attack: bool = true
 var _can_attack_again: bool = false
@@ -29,6 +38,8 @@ func _ready() -> void:
 
 
 func attack(can_stop: bool = true) -> void:
+	instance += 1
+	
 	if not _can_attack:
 		return
 		

@@ -67,7 +67,7 @@ func _process(_delta):
 
 
 func process_hit(weapon: Weapon):
-	if dizzy_system.dizzy_victim == self and weapon.get_entity() == player:
+	if dizzy_system.dizzy_victim == self and weapon.entity == player:
 		entity.set_root_motion(true)
 		health_component.deal_max_damage = true
 		dizzy_system.dizzy_victim_killed.emit()

@@ -11,6 +11,9 @@ signal weapon_hit(weapon: Weapon)
 
 var _weapons_in_hitbox: Array[Weapon] = []
 
+# Weapon as key, wepaon.attack_component.instance as value
+var _successful_hits: Dictionary
+
 @onready var dizzy_system: DizzySystem = Globals.dizzy_system
 
 
@@ -27,17 +30,27 @@ func _process(_delta: float) -> void:
 		if not weapon.can_damage:
 			continue
 		
-		if weapon.get_entity() == entity:
+		# dont detect the weapon of the owner of this hitbox
+		if weapon.entity == entity:
 			continue
 		
+		# ignore entities not in the specified groups
 		var weapon_entity_in_groups: bool = false
 		for group in groups:
 			if weapon_entity_in_groups:
 				break
-			elif weapon.get_entity().is_in_group(group):
+			elif weapon.entity.is_in_group(group):
 				weapon_entity_in_groups = true
 		
 		if not weapon_entity_in_groups:
+			continue
+		
+		print(_successful_hits)
+		
+		# this weapon has already successfully gotten a hit in
+		# and so this subsequent detection should be ignored.
+		if _successful_hits.has(weapon) and \
+		weapon.attack_component.instance == _successful_hits[weapon]:
 			continue
 		
 		# if an entity is being finished while it is
@@ -45,16 +58,23 @@ func _process(_delta: float) -> void:
 		# victim is not this entity 
 		if dizzy_system.victim_being_killed and \
 		(
-			(dizzy_system.dizzy_victim != null and \
-			dizzy_system.dizzy_victim.entity != entity) or \
-			(dizzy_system.saved_victim != null and \
-			dizzy_system.saved_victim.entity != entity)
+			(
+				dizzy_system.dizzy_victim != null and \
+				dizzy_system.dizzy_victim.entity != entity
+			) or \
+			(
+				dizzy_system.saved_victim != null and \
+				dizzy_system.saved_victim.entity != entity
+			)
 		) and \
-		weapon.get_entity() == Globals.player:
+		weapon.entity == Globals.player:
 			continue
 		
-#		prints("HIT", entity)
-
+		prints("HIT", entity, weapon, weapon.attack_component.instance)
+		
+		_successful_hits[weapon] = weapon.attack_component.instance
+		print(_successful_hits)
+		
 		weapon_hit.emit(weapon)
 		_weapons_in_hitbox.erase(weapon)
 

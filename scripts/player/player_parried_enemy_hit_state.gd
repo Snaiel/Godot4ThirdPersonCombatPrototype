@@ -48,10 +48,10 @@ func enter():
 	player.character.parry_animations.parry()
 	player.block_component.anim.stop()
 	player.block_component.anim.play("parried")
-	_incoming_weapon.get_parried()
+	_incoming_weapon.parry_weapon()
 	if not player.dizzy_system.dizzy_victim:
 		player.movement_component.knockback(
-			_incoming_weapon.get_entity().global_position
+			_incoming_weapon.entity.global_position
 		)
 	
 	sfx.play()

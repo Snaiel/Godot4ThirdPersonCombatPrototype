@@ -13,7 +13,7 @@ func _ready():
 		func(incoming_weapon: Weapon):
 			if parent_state.current_state == self:
 				player.movement_component.knockback(
-					incoming_weapon.get_entity().global_position
+					incoming_weapon.entity.global_position
 				)
 	)
 
