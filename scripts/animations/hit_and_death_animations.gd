@@ -4,18 +4,30 @@ extends BaseAnimations
 
 signal hit_finished
 
+@export_category("Hit Configuration")
+@export var hit_duration: float = 0.3
+@export var hit_trim: float = 0.0
+@export var hit_speed: float = 1.0
+
+@export_category("Death Forwards Configuration")
+@export var death_forwards_trim: float = 0.0
+@export var death_forwards_speed: float = 1.0
+
+@export_category("Death Backwards Configuration")
+@export var death_backwards_trim: float = 0.0
+@export var death_backwards_speed: float = 1.0
+
 var _death: bool = false
 var _blend_death: bool = false
 
 var _hit_timer: Timer
-var _hit_wait_time: float = 0.3
 
 var _can_emit_hit_finished: bool = false
 
 
 func _ready():
 	_hit_timer = Timer.new()
-	_hit_timer.wait_time = _hit_wait_time
+	_hit_timer.wait_time = hit_duration
 	_hit_timer.one_shot = true
 	_hit_timer.autostart = false
 	_hit_timer.timeout.connect(
@@ -55,21 +67,24 @@ func hit() -> void:
 	
 	_can_emit_hit_finished = true
 	
-	anim_tree["parameters/Death 2 Trim/seek_request"] = 0.4
+	anim_tree["parameters/Death 2 Trim/seek_request"] = hit_trim
+	anim_tree["parameters/Death 2 Speed/scale"] = hit_speed
 	anim_tree["parameters/Death Which One/transition_request"] = "death_2"
 	_blend_death = true
 	_hit_timer.start()
 
 
 func death_1() -> void:
+	anim_tree["parameters/Death 1 Trim/seek_request"] = death_backwards_trim
+	anim_tree["parameters/Death 1 Speed/scale"] = death_backwards_speed	
 	anim_tree["parameters/Death Which One/transition_request"] = "death_1"
-	anim_tree["parameters/Death 1 Trim/seek_request"] = 0.1
 	_death = true
 
 
 func death_2() -> void:
+	anim_tree["parameters/Death 2 Trim/seek_request"] = death_forwards_trim
+	anim_tree["parameters/Death 2 Speed/scale"] = death_forwards_speed	
 	anim_tree["parameters/Death Which One/transition_request"] = "death_2"
-	anim_tree["parameters/Death 2 Trim/seek_request"] = 0.0
 	_death = true
 
 

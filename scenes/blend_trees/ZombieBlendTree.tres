@@ -47,7 +47,7 @@ filters = ["%GeneralSkeleton:LeftHand", "%GeneralSkeleton:LeftIndexDistal", "%Ge
 animation = &"zombie_animations_1/Zombie Death Backwards"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l3xmt"]
-animation = &"zombie_animations_1/Zombie Death Frontwards"
+animation = &"zombie_animations_1/Zombie Death Forwards"
 
 [sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_vq7r5"]
 input_0/name = "death_1"
@@ -419,7 +419,7 @@ graph_offset = Vector2(-573, -66)
 node_connections = [&"Zombie Smash Speed", 0, &"Zombie Smash Trim", &"Zombie Smash Trim", 0, &"Zombie Smash", &"output", 0, &"Zombie Smash Speed"]
 
 [resource]
-graph_offset = Vector2(189.667, 216.529)
+graph_offset = Vector2(3540.63, 1049.09)
 nodes/Attack/node = SubResource("AnimationNodeTransition_gr1qy")
 nodes/Attack/position = Vector2(860, 1160)
 nodes/Attacking/node = SubResource("AnimationNodeBlend2_vrma0")
