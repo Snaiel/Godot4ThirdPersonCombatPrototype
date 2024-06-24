@@ -323,7 +323,7 @@ func _on_health_component_zero_health() -> void:
 	
 	_dead = true
 	
-	attack_component.set_can_damage_of_weapons(false)
+	attack_component.set_can_damage_of_all_weapons(false)
 	
 	hitbox_component.enabled = false
 	health_component.enabled = false

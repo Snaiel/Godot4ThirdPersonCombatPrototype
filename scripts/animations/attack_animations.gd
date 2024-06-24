@@ -3,7 +3,7 @@ extends BaseAnimations
 
 
 signal secondary_movement(attack: AttackStrategy)
-signal can_damage(flag: bool, weapon_name: StringName)
+signal can_damage(flag: bool, weapon_names: Array[StringName])
 signal can_rotate(flag: bool)
 signal can_attack_again(flag: bool)
 signal can_play_animation
@@ -112,12 +112,16 @@ func receive_stop_legs(which_attack: StringName) -> void:
 		_transition_legs = -1
 
 
-func receive_can_damage(weapon_name: StringName = &"") -> void:
-	can_damage.emit(true, weapon_name)
+func receive_can_damage(weapon_names: Array = []) -> void:
+	var typed_weapon_names: Array[StringName] = []
+	typed_weapon_names.assign(weapon_names)
+	can_damage.emit(true, typed_weapon_names)
 
 
-func receive_cannot_damage(weapon_name: StringName = &"") -> void:
-	can_damage.emit(false, weapon_name)
+func receive_cannot_damage(weapon_names: Array = []) -> void:
+	var typed_weapon_names: Array[StringName] = []
+	typed_weapon_names.assign(weapon_names)
+	can_damage.emit(false, typed_weapon_names)
 
 
 func receive_can_attack_again() -> void:

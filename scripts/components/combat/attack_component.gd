@@ -76,7 +76,7 @@ func stop_attacking() -> bool:
 	return not attacking
 
 
-func set_can_damage_of_weapons(flag: bool) -> void:
+func set_can_damage_of_all_weapons(flag: bool) -> void:
 	for i in weapons.values():
 		var weapon: Weapon = get_node(i)
 		weapon.can_damage = flag
@@ -95,7 +95,7 @@ func interrupt_attack() -> void:
 	
 	attack_animations.stop_attacking()
 	
-	set_can_damage_of_weapons(false)
+	set_can_damage_of_all_weapons(false)
 
 
 func set_attack_level(level: int) -> void:
@@ -136,14 +136,19 @@ func _receive_movement(attack_strat: AttackStrategy) -> void:
 	)
 
 
-func _receive_can_damage(can_damage: bool, weapon_name: StringName) -> void:
+func _receive_can_damage(can_damage: bool, weapon_names: Array[StringName]) -> void:
 	if _attack_interrupted:
 		return
 	
-	prints(can_damage, weapon_name)
+	prints(can_damage, weapon_names)
 	
-	if weapons.has(weapon_name):
+	if weapon_names.size() == 0:
+		set_can_damage_of_all_weapons(can_damage)
+		return
+	
+	for weapon_name in weapon_names:
+		if not weapons.has(weapon_name):
+			continue
+		
 		var weapon: Weapon = get_node(weapons[weapon_name])
 		weapon.can_damage = can_damage
-	elif weapon_name.is_empty():
-		set_can_damage_of_weapons(can_damage)
