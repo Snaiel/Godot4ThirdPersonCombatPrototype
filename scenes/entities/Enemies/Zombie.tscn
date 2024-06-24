@@ -1215,7 +1215,7 @@ right_operand = "true"
 script = ExtResource("54_3f5dv")
 left_operand = "get_value(\"player_dist\")"
 operator = 3
-right_operand = "1.5"
+right_operand = "3"
 
 [node name="IsPerceivesPlayerTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack"]
 script = ExtResource("54_3f5dv")
@@ -1320,7 +1320,7 @@ script = ExtResource("49_ahbd6")
 script = ExtResource("54_3f5dv")
 left_operand = "get_value(\"player_dist\")"
 operator = 3
-right_operand = "1"
+right_operand = "2"
 
 [node name="SetAgentTargetPositionNull" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/SquareUpIfClose"]
 script = ExtResource("71_hlhqy")
@@ -1343,7 +1343,7 @@ script = ExtResource("49_ahbd6")
 
 [node name="WaitBlock" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/SquareUpIfClose/SquareUp" instance=ExtResource("59_13yvc")]
 wait_id = 59719075
-wait_time = 4.0
+wait_time = 3.0
 
 [node name="SetCanAttackTrue" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/SquareUpIfClose/SquareUp" instance=ExtResource("53_ga5bo")]
 
