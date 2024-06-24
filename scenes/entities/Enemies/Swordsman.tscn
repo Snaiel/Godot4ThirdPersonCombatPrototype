@@ -206,6 +206,9 @@ transform = Transform3D(0.997935, -0.0642358, -0.000251025, 0.062292, 0.968677, 
 "parameters/Dizzy Which One/current_state" = ""
 "parameters/Dizzy Which One/current_index" = -1
 
+[node name="Footsteps" parent="Character/AudioManager" index="0"]
+volume_db = -25.0
+
 [node name="Collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 shape = SubResource("CapsuleShape3D_lwy87")
