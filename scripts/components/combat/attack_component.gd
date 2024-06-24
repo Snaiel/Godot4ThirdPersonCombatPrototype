@@ -145,5 +145,5 @@ func _receive_can_damage(can_damage: bool, weapon_name: StringName) -> void:
 	if weapons.has(weapon_name):
 		var weapon: Weapon = get_node(weapons[weapon_name])
 		weapon.can_damage = can_damage
-	else:
+	elif weapon_name.is_empty():
 		set_can_damage_of_weapons(can_damage)

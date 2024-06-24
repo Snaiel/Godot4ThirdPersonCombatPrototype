@@ -99,11 +99,6 @@ func receive_secondary_movement() -> void:
 	secondary_movement.emit(attacks[_level])
 
 
-func recieve_can_play_animation() -> void:
-	can_play_animation.emit()
-	_can_play_animation = true
-
-
 func receive_play_legs() -> void:
 	_transition_legs = 1
 	attacks[_level].play_legs()
@@ -133,6 +128,11 @@ func receive_can_attack_again() -> void:
 func receive_cannot_attack_again() -> void:
 	can_attack_again.emit(false)
 				
+
+
+func recieve_can_play_animation() -> void:
+	can_play_animation.emit()
+	_can_play_animation = true
 
 
 func receive_attack_finished() -> void:
