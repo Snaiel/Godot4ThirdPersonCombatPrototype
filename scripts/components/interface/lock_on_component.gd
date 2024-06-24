@@ -6,7 +6,7 @@ signal destroyed(target: LockOnComponent)
 
 @export var enabled: bool = true
 @export var component_owner: Node3D
-@export var bone_attachment: Node3D
+@export var attachment_point: Node3D
 @export var health_component: HealthComponent
 
 
@@ -16,8 +16,8 @@ func _ready() -> void:
 
 
 func _process(_delta):
-	if bone_attachment:
-		global_position = bone_attachment.global_position
+	if attachment_point:
+		global_position = attachment_point.global_position
 
 
 func _emit_destroyed() -> void:
