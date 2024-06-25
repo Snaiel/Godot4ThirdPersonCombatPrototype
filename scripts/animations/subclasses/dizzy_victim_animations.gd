@@ -2,6 +2,8 @@ class_name DizzyVictimAnimations
 extends BaseAnimations
 
 
+@export var hit_and_death_animations: HitAndDeathAnimations
+
 # flag that dictates whether to play the dizzy anim
 var _blend_dizzy: bool = false
 
@@ -50,7 +52,7 @@ func dizzy_from_parry() -> void:
 func dizzy_from_damage() -> void:
 	_dizzy_from_parry = false
 	_ignore_finish_standing_up = true
-	parent_animations.hit_and_death_animations.interrupt_blend_death()
+	hit_and_death_animations.interrupt_blend_death()
 	anim_tree["parameters/Dizzy Kneeling Trim/seek_request"] = 1.2
 	anim_tree["parameters/Dizzy Kneeling Speed/scale"] = 1.5
 	anim_tree["parameters/Dizzy From Damage/transition_request"] = "to_kneel"	

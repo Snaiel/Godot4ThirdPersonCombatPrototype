@@ -4,20 +4,20 @@
 [ext_resource type="Script" path="res://scripts/utilities/wellbeing_stats.gd" id="2_282ix"]
 [ext_resource type="PackedScene" uid="uid://dvwkf086vv2aa" path="res://scenes/entities/YBot.tscn" id="3_686pg"]
 [ext_resource type="Script" path="res://scripts/animations/character_animations.gd" id="4_v8qrw"]
-[ext_resource type="Script" path="res://scripts/animations/movement/movement_animations.gd" id="5_vayey"]
-[ext_resource type="Script" path="res://scripts/animations/movement/locked_on_movement_animations.gd" id="6_26buq"]
+[ext_resource type="Script" path="res://scripts/animations/subclasses/movement/movement_animations.gd" id="5_vayey"]
+[ext_resource type="Script" path="res://scripts/animations/subclasses/movement/locked_on_movement_animations.gd" id="6_26buq"]
 [ext_resource type="PackedScene" uid="uid://b78ctcv6lulvi" path="res://scenes/utilities/Sword.tscn" id="6_ihoas"]
 [ext_resource type="PackedScene" uid="uid://bjbif8ix55ckv" path="res://scenes/components/EnemyRotationComponent.tscn" id="7_1wm5n"]
-[ext_resource type="Script" path="res://scripts/animations/movement/locked_on_walk_animations.gd" id="7_06c11"]
+[ext_resource type="Script" path="res://scripts/animations/subclasses/movement/locked_on_walk_animations.gd" id="7_06c11"]
 [ext_resource type="PackedScene" uid="uid://7qijntg00gi5" path="res://scenes/components/HeadRotationComponent.tscn" id="8_hukpa"]
-[ext_resource type="Script" path="res://scripts/animations/movement/free_movement_animations.gd" id="8_id5jy"]
-[ext_resource type="Script" path="res://scripts/animations/movement/walk_or_jog_animations.gd" id="9_ox63s"]
+[ext_resource type="Script" path="res://scripts/animations/subclasses/movement/free_movement_animations.gd" id="8_id5jy"]
+[ext_resource type="Script" path="res://scripts/animations/subclasses/movement/walk_or_jog_animations.gd" id="9_ox63s"]
 [ext_resource type="PackedScene" uid="uid://k5h6f26p6mgf" path="res://scenes/components/MovementComponent.tscn" id="9_sol1y"]
 [ext_resource type="PackedScene" uid="uid://c8qyy3wuwlus6" path="res://scenes/components/RootMotionComponent.tscn" id="10_hf0os"]
-[ext_resource type="Script" path="res://scripts/animations/movement/running_animations.gd" id="10_jphfe"]
+[ext_resource type="Script" path="res://scripts/animations/subclasses/movement/running_animations.gd" id="10_jphfe"]
 [ext_resource type="PackedScene" uid="uid://ia1adrmqd0lf" path="res://scenes/components/LockOnComponent.tscn" id="11_53efy"]
-[ext_resource type="Script" path="res://scripts/animations/jump_animations.gd" id="11_jgkv5"]
-[ext_resource type="Script" path="res://scripts/animations/attack_animations.gd" id="12_i2m3b"]
+[ext_resource type="Script" path="res://scripts/animations/subclasses/jump_animations.gd" id="11_jgkv5"]
+[ext_resource type="Script" path="res://scripts/animations/subclasses/attack_animations.gd" id="12_i2m3b"]
 [ext_resource type="PackedScene" uid="uid://cko2lhqdu4n44" path="res://scenes/components/HitboxComponent.tscn" id="12_yrsss"]
 [ext_resource type="PackedScene" uid="uid://hnb8xok6xlar" path="res://scenes/components/DizzyComponent.tscn" id="13_7i1b0"]
 [ext_resource type="Script" path="res://scripts/attacks/inward_slash.gd" id="13_g58d8"]
@@ -27,19 +27,19 @@
 [ext_resource type="Script" path="res://scripts/attacks/thrust.gd" id="15_obktm"]
 [ext_resource type="PackedScene" uid="uid://bp3sx3yshrcdb" path="res://scenes/components/InstabilityComponent.tscn" id="16_b0htn"]
 [ext_resource type="Script" path="res://scripts/attacks/quick_slash.gd" id="16_k718g"]
-[ext_resource type="Script" path="res://scripts/animations/block_animations.gd" id="17_oolvn"]
+[ext_resource type="Script" path="res://scripts/animations/subclasses/block_animations.gd" id="17_oolvn"]
 [ext_resource type="PackedScene" uid="uid://207cuag4hgs7" path="res://scenes/components/BackstabComponent.tscn" id="17_v10eo"]
-[ext_resource type="Script" path="res://scripts/animations/parry_animations.gd" id="18_eg5pv"]
+[ext_resource type="Script" path="res://scripts/animations/subclasses/parry_animations.gd" id="18_eg5pv"]
 [ext_resource type="PackedScene" uid="uid://da664p5ek0cgr" path="res://scenes/components/NoticeComponent.tscn" id="18_oqi8p"]
 [ext_resource type="PackedScene" uid="uid://1elkqdybiiu1" path="res://scenes/components/AttackComponent.tscn" id="19_brkvl"]
-[ext_resource type="Script" path="res://scripts/animations/hit_and_death_animations.gd" id="19_rpr78"]
+[ext_resource type="Script" path="res://scripts/animations/subclasses/hit_and_death_animations.gd" id="19_rpr78"]
 [ext_resource type="PackedScene" uid="uid://b616qwvblkmpo" path="res://scenes/components/BlockComponent.tscn" id="20_iehxy"]
-[ext_resource type="Script" path="res://scripts/animations/dizzy_victim_animations.gd" id="20_jv5wo"]
-[ext_resource type="Script" path="res://scripts/animations/dizzy_finisher_animations.gd" id="21_3s5e4"]
+[ext_resource type="Script" path="res://scripts/animations/subclasses/dizzy_victim_animations.gd" id="20_jv5wo"]
+[ext_resource type="Script" path="res://scripts/animations/subclasses/dizzy_finisher_animations.gd" id="21_3s5e4"]
 [ext_resource type="PackedScene" uid="uid://bg5d27eyqwsfd" path="res://scenes/components/ParryComponent.tscn" id="21_ho8wq"]
-[ext_resource type="Script" path="res://scripts/animations/drink_animations.gd" id="22_6h7p1"]
+[ext_resource type="Script" path="res://scripts/animations/subclasses/drink_animations.gd" id="22_6h7p1"]
 [ext_resource type="PackedScene" uid="uid://mmj6qxe250co" path="res://scenes/components/FadeComponent.tscn" id="22_weqps"]
-[ext_resource type="Script" path="res://scripts/animations/sitting_animations.gd" id="23_anh14"]
+[ext_resource type="Script" path="res://scripts/animations/subclasses/sitting_animations.gd" id="23_anh14"]
 [ext_resource type="PackedScene" uid="uid://cce0kkdsdv4rt" path="res://scenes/components/WellbeingComponent.tscn" id="23_o8r64"]
 [ext_resource type="AudioStream" uid="uid://bd1ks0felifw2" path="res://audio/footsteps/footstep00.wav" id="24_2of18"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="24_3s113"]
@@ -186,12 +186,16 @@ agent = NodePath("NavigationAgent3D")
 [node name="Character" parent="." instance=ExtResource("3_686pg")]
 script = ExtResource("4_v8qrw")
 
-[node name="WeaponHand" parent="Character/Armature_004/GeneralSkeleton" index="4" node_paths=PackedStringArray("entity", "attack_component") instance=ExtResource("6_ihoas")]
+[node name="LockOnAttachment" parent="Character/Armature_004/GeneralSkeleton" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25913e-05, 1.34721, -0.042761)
+
+[node name="HeadAttachment" parent="Character/Armature_004/GeneralSkeleton" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.45549e-05, 1.60075, -0.00340771)
+
+[node name="WeaponHand" parent="Character/Armature_004/GeneralSkeleton" index="4" instance=ExtResource("6_ihoas")]
 transform = Transform3D(0, 1, 0, 0, 0, -1, -1, 0, 0, 0.73777, 1.43572, -0.0617148)
 bone_name = "LeftHand"
 bone_idx = 11
-entity = NodePath("")
-attack_component = NodePath("")
 
 [node name="Mesh" parent="Character/Armature_004/GeneralSkeleton/WeaponHand" index="0"]
 transform = Transform3D(-0.891467, -0.453089, -3.91603e-05, 0.453089, -0.891468, -0.000158846, 3.694e-05, -0.000159293, 1, 0.168411, 0.443186, 0.0233155)
@@ -205,107 +209,80 @@ shape = SubResource("SphereShape3D_ke5g5")
 [node name="AnimationTree" parent="Character" index="2"]
 root_motion_track = NodePath("../Armature_004/GeneralSkeleton")
 
-[node name="Movement" type="Node" parent="Character" node_paths=PackedStringArray("movement_animations", "audio_footsteps", "parent_animations", "anim_tree")]
+[node name="Movement" type="Node" parent="Character" node_paths=PackedStringArray("movement_animations", "anim_tree")]
 script = ExtResource("5_vayey")
 movement_animations = [NodePath("LockedOnMovement"), NodePath("LockedOnMovement/LockedOnWalk"), NodePath("LockedOnMovement/FreeMovement"), NodePath("LockedOnMovement/FreeMovement/FreeWalkOrJog"), NodePath("Running")]
-audio_footsteps = NodePath("")
-parent_animations = NodePath("..")
 anim_tree = NodePath("../AnimationTree")
 
-[node name="LockedOnMovement" type="Node" parent="Character/Movement" node_paths=PackedStringArray("parent_animations", "anim_tree")]
+[node name="LockedOnMovement" type="Node" parent="Character/Movement"]
 script = ExtResource("6_26buq")
-parent_animations = NodePath("")
-anim_tree = NodePath("")
 
-[node name="LockedOnWalk" type="Node" parent="Character/Movement/LockedOnMovement" node_paths=PackedStringArray("audio_footsteps", "parent_animations", "anim_tree")]
+[node name="LockedOnWalk" type="Node" parent="Character/Movement/LockedOnMovement"]
 script = ExtResource("7_06c11")
-audio_footsteps = NodePath("")
-parent_animations = NodePath("")
-anim_tree = NodePath("")
 
-[node name="FreeMovement" type="Node" parent="Character/Movement/LockedOnMovement" node_paths=PackedStringArray("audio_footsteps", "parent_animations", "anim_tree")]
+[node name="FreeMovement" type="Node" parent="Character/Movement/LockedOnMovement"]
 script = ExtResource("8_id5jy")
-audio_footsteps = NodePath("")
-parent_animations = NodePath("")
-anim_tree = NodePath("")
 
-[node name="FreeWalkOrJog" type="Node" parent="Character/Movement/LockedOnMovement/FreeMovement" node_paths=PackedStringArray("parent_animations", "anim_tree")]
+[node name="FreeWalkOrJog" type="Node" parent="Character/Movement/LockedOnMovement/FreeMovement"]
 script = ExtResource("9_ox63s")
-parent_animations = NodePath("")
-anim_tree = NodePath("")
 
-[node name="Running" type="Node" parent="Character/Movement" node_paths=PackedStringArray("parent_animations", "anim_tree")]
+[node name="Running" type="Node" parent="Character/Movement"]
 script = ExtResource("10_jphfe")
-parent_animations = NodePath("")
-anim_tree = NodePath("")
 
-[node name="JumpAnimations" type="Node" parent="Character" node_paths=PackedStringArray("parent_animations", "anim_tree")]
+[node name="JumpAnimations" type="Node" parent="Character" node_paths=PackedStringArray("anim_tree")]
 script = ExtResource("11_jgkv5")
-parent_animations = NodePath("..")
 anim_tree = NodePath("../AnimationTree")
 
-[node name="AttackAnimations" type="Node" parent="Character" node_paths=PackedStringArray("attacks", "parent_animations", "anim_tree")]
+[node name="AttackAnimations" type="Node" parent="Character" node_paths=PackedStringArray("attacks", "anim_tree")]
 script = ExtResource("12_i2m3b")
 attacks = [NodePath("InwardAttack"), NodePath("OutwardAttack"), NodePath("ThrustAttack"), NodePath("QuickSlashAttack")]
-parent_animations = NodePath("..")
 anim_tree = NodePath("../AnimationTree")
 
-[node name="InwardAttack" type="Node" parent="Character/AttackAnimations" node_paths=PackedStringArray("parent_animations", "anim_tree")]
+[node name="InwardAttack" type="Node" parent="Character/AttackAnimations" node_paths=PackedStringArray("anim_tree")]
 script = ExtResource("13_g58d8")
-parent_animations = NodePath("../..")
 anim_tree = NodePath("../../AnimationTree")
 
-[node name="OutwardAttack" type="Node" parent="Character/AttackAnimations" node_paths=PackedStringArray("parent_animations", "anim_tree")]
+[node name="OutwardAttack" type="Node" parent="Character/AttackAnimations" node_paths=PackedStringArray("anim_tree")]
 script = ExtResource("14_vuk0x")
-parent_animations = NodePath("../..")
 anim_tree = NodePath("../../AnimationTree")
 
-[node name="ThrustAttack" type="Node" parent="Character/AttackAnimations" node_paths=PackedStringArray("parent_animations", "anim_tree")]
+[node name="ThrustAttack" type="Node" parent="Character/AttackAnimations" node_paths=PackedStringArray("anim_tree")]
 script = ExtResource("15_obktm")
-parent_animations = NodePath("../..")
 anim_tree = NodePath("../../AnimationTree")
 
-[node name="QuickSlashAttack" type="Node" parent="Character/AttackAnimations" node_paths=PackedStringArray("parent_animations", "anim_tree")]
+[node name="QuickSlashAttack" type="Node" parent="Character/AttackAnimations" node_paths=PackedStringArray("anim_tree")]
 script = ExtResource("16_k718g")
-parent_animations = NodePath("../..")
 anim_tree = NodePath("../../AnimationTree")
 
-[node name="BlockAnimations" type="Node" parent="Character" node_paths=PackedStringArray("parent_animations", "anim_tree")]
+[node name="BlockAnimations" type="Node" parent="Character" node_paths=PackedStringArray("anim_tree")]
 script = ExtResource("17_oolvn")
-parent_animations = NodePath("..")
 anim_tree = NodePath("../AnimationTree")
 
-[node name="ParryAnimations" type="Node" parent="Character" node_paths=PackedStringArray("parent_animations", "anim_tree")]
+[node name="ParryAnimations" type="Node" parent="Character" node_paths=PackedStringArray("anim_tree")]
 script = ExtResource("18_eg5pv")
-parent_animations = NodePath("..")
 anim_tree = NodePath("../AnimationTree")
 
-[node name="HitAndDeathAnimations" type="Node" parent="Character" node_paths=PackedStringArray("parent_animations", "anim_tree")]
+[node name="HitAndDeathAnimations" type="Node" parent="Character" node_paths=PackedStringArray("anim_tree")]
 script = ExtResource("19_rpr78")
 hit_trim = 0.4
 death_forwards_speed = 2.0
 death_backwards_trim = 0.1
-parent_animations = NodePath("..")
 anim_tree = NodePath("../AnimationTree")
 
-[node name="DizzyVictimAnimations" type="Node" parent="Character" node_paths=PackedStringArray("parent_animations", "anim_tree")]
+[node name="DizzyVictimAnimations" type="Node" parent="Character" node_paths=PackedStringArray("anim_tree")]
 script = ExtResource("20_jv5wo")
-parent_animations = NodePath("..")
 anim_tree = NodePath("../AnimationTree")
 
-[node name="DizzyFinisherAnimations" type="Node" parent="Character" node_paths=PackedStringArray("parent_animations", "anim_tree")]
+[node name="DizzyFinisherAnimations" type="Node" parent="Character" node_paths=PackedStringArray("anim_tree")]
 script = ExtResource("21_3s5e4")
-parent_animations = NodePath("..")
 anim_tree = NodePath("../AnimationTree")
 
-[node name="DrinkAnimations" type="Node" parent="Character" node_paths=PackedStringArray("parent_animations", "anim_tree")]
+[node name="DrinkAnimations" type="Node" parent="Character" node_paths=PackedStringArray("anim_tree")]
 script = ExtResource("22_6h7p1")
-parent_animations = NodePath("..")
 anim_tree = NodePath("../AnimationTree")
 
-[node name="SittingAnimations" type="Node" parent="Character" node_paths=PackedStringArray("parent_animations", "anim_tree")]
+[node name="SittingAnimations" type="Node" parent="Character" node_paths=PackedStringArray("anim_tree")]
 script = ExtResource("23_anh14")
-parent_animations = NodePath("..")
 anim_tree = NodePath("../AnimationTree")
 
 [node name="AudioManager" type="Node3D" parent="Character"]
@@ -487,7 +464,7 @@ meshes = [NodePath("../Character/Armature_004/GeneralSkeleton/Alpha_Joints"), No
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("24_3s113")
-blackboard = NodePath("@Node@36575")
+blackboard = NodePath("@Node@17589")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]
