@@ -21,18 +21,18 @@
 [ext_resource type="Script" path="res://scripts/animations/subclasses/drink_animations.gd" id="13_yftnk"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/sitting_animations.gd" id="15_rxgn1"]
 [ext_resource type="AudioStream" uid="uid://bd1ks0felifw2" path="res://audio/footsteps/footstep00.wav" id="16_abtj0"]
-[ext_resource type="Script" path="res://scripts/animations/subclasses/attacks/attack_animations.gd" id="16_af5h5"]
-[ext_resource type="Script" path="res://scripts/animations/subclasses/attacks/strategies/inward_slash.gd" id="17_ft2ad"]
+[ext_resource type="Script" path="res://scripts/animations/subclasses/attacks/attack_animations.gd" id="16_jnfae"]
 [ext_resource type="AudioStream" uid="uid://cavo4qpxknfh2" path="res://audio/footsteps/footstep01.wav" id="17_kbmfv"]
-[ext_resource type="Script" path="res://scripts/animations/subclasses/attacks/strategies/outward_slash.gd" id="18_ao2vc"]
+[ext_resource type="Script" path="res://scripts/animations/subclasses/attacks/strategies/inward_slash.gd" id="17_oej8k"]
 [ext_resource type="AudioStream" uid="uid://dkk215uq2twwa" path="res://audio/footsteps/footstep02.wav" id="18_u4dji"]
-[ext_resource type="Script" path="res://scripts/animations/subclasses/attacks/strategies/thrust.gd" id="19_a3o76"]
+[ext_resource type="Script" path="res://scripts/animations/subclasses/attacks/strategies/outward_slash.gd" id="18_v5yvh"]
+[ext_resource type="Script" path="res://scripts/animations/subclasses/attacks/strategies/thrust.gd" id="19_67vtr"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/dizzy_victim_animations.gd" id="19_gd7l1"]
 [ext_resource type="Script" path="res://scripts/audio/audio_footsteps.gd" id="19_if0sk"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/dizzy_finisher_animations.gd" id="19_q2ig4"]
+[ext_resource type="Script" path="res://scripts/animations/subclasses/attacks/strategies/quick_slash.gd" id="20_1ft2m"]
 [ext_resource type="AudioStream" uid="uid://d2hx1psw3kw3j" path="res://audio/jump_land.wav" id="20_dne06"]
 [ext_resource type="AudioStream" uid="uid://dp8kx7ob5g52l" path="res://audio/jump.wav" id="20_me88f"]
-[ext_resource type="Script" path="res://scripts/animations/subclasses/attacks/strategies/quick_slash.gd" id="20_wk4wi"]
 [ext_resource type="AudioStream" uid="uid://bju8g4kcmxeps" path="res://audio/weapon_swing.wav" id="21_2ltyf"]
 [ext_resource type="AudioStream" uid="uid://bwkd4ivuxm0ny" path="res://audio/thrust_puncture.wav" id="22_lkxki"]
 [ext_resource type="AudioStream" uid="uid://b15aeyitorki7" path="res://audio/block.wav" id="23_3icvw"]
@@ -735,23 +735,23 @@ script = ExtResource("6_olmu2")
 anim_tree = NodePath("../AnimationTree")
 
 [node name="AttackAnimations" type="Node" parent="." index="5" node_paths=PackedStringArray("anim_tree")]
-script = ExtResource("16_af5h5")
+script = ExtResource("16_jnfae")
 anim_tree = NodePath("../AnimationTree")
 
 [node name="InwardAttack" type="Node" parent="AttackAnimations" index="0" node_paths=PackedStringArray("anim_tree")]
-script = ExtResource("17_ft2ad")
+script = ExtResource("17_oej8k")
 anim_tree = NodePath("../../AnimationTree")
 
 [node name="OutwardAttack" type="Node" parent="AttackAnimations" index="1" node_paths=PackedStringArray("anim_tree")]
-script = ExtResource("18_ao2vc")
+script = ExtResource("18_v5yvh")
 anim_tree = NodePath("../../AnimationTree")
 
 [node name="ThrustAttack" type="Node" parent="AttackAnimations" index="2" node_paths=PackedStringArray("anim_tree")]
-script = ExtResource("19_a3o76")
+script = ExtResource("19_67vtr")
 anim_tree = NodePath("../../AnimationTree")
 
 [node name="QuickSlashAttack" type="Node" parent="AttackAnimations" index="3" node_paths=PackedStringArray("anim_tree")]
-script = ExtResource("20_wk4wi")
+script = ExtResource("20_1ft2m")
 anim_tree = NodePath("../../AnimationTree")
 
 [node name="BlockAnimations" type="Node" parent="." index="6" node_paths=PackedStringArray("walk_or_jog_animations", "anim_tree")]

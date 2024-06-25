@@ -1,4 +1,4 @@
-[gd_scene load_steps=106 format=3 uid="uid://b5gmqu8tocea8"]
+[gd_scene load_steps=210 format=3 uid="uid://b5gmqu8tocea8"]
 
 [ext_resource type="Script" path="res://scripts/entities/enemy.gd" id="1_2f16f"]
 [ext_resource type="Script" path="res://scripts/utilities/wellbeing_stats.gd" id="2_6ahm4"]
@@ -7,9 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://b78ctcv6lulvi" path="res://scenes/utilities/Sword.tscn" id="5_kxq7y"]
 [ext_resource type="Shader" path="res://shaders/fade.gdshader" id="5_yv445"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/movement/movement_animations.gd" id="6_0n86r"]
+[ext_resource type="Texture2D" uid="uid://b1oqk2tqilbw" path="res://assets/crosshair.svg" id="6_rcj5r"]
 [ext_resource type="AnimationLibrary" uid="uid://cpdmlmb5om1d3" path="res://animations/combat_animations_1/combat_animations_1.blend" id="6_stn53"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/movement/locked_on_movement_animations.gd" id="7_nprou"]
 [ext_resource type="AnimationLibrary" uid="uid://d1ywvl0gyvm8" path="res://animations/magic_animations_1/magic_animations_1.blend" id="7_ph4i1"]
+[ext_resource type="Script" path="res://scripts/utilities/crosshair.gd" id="7_yni7f"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/movement/locked_on_walk_animations.gd" id="8_3j7hy"]
 [ext_resource type="AnimationLibrary" uid="uid://c6e3lwlt6ukuj" path="res://animations/movement_animations_1/movement_animations_1.blend" id="8_f4207"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/movement/free_movement_animations.gd" id="9_35f7o"]
@@ -25,7 +27,10 @@
 [ext_resource type="Script" path="res://scripts/animations/subclasses/hit_and_death_animations.gd" id="20_2p2rd"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/dizzy_victim_animations.gd" id="21_vn8wt"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/dizzy_finisher_animations.gd" id="22_2fs1p"]
+[ext_resource type="Script" path="res://scripts/animations/subclasses/spells/spell_animations.gd" id="22_3ifjf"]
+[ext_resource type="Script" path="res://scripts/animations/subclasses/spells/strategies/simple_spell_strategy.gd" id="23_x11yt"]
 [ext_resource type="AudioStream" uid="uid://bd1ks0felifw2" path="res://audio/footsteps/footstep00.wav" id="25_lqr13"]
+[ext_resource type="Script" path="res://scripts/animations/subclasses/parry_animations.gd" id="25_rpvu6"]
 [ext_resource type="AudioStream" uid="uid://cavo4qpxknfh2" path="res://audio/footsteps/footstep01.wav" id="26_v3onq"]
 [ext_resource type="AudioStream" uid="uid://dkk215uq2twwa" path="res://audio/footsteps/footstep02.wav" id="27_qs5cw"]
 [ext_resource type="Script" path="res://scripts/audio/audio_footsteps.gd" id="28_00bfq"]
@@ -50,6 +55,7 @@
 [ext_resource type="PackedScene" uid="uid://cce0kkdsdv4rt" path="res://scenes/components/WellbeingComponent.tscn" id="47_ng2kb"]
 [ext_resource type="PackedScene" uid="uid://hnb8xok6xlar" path="res://scenes/components/DizzyComponent.tscn" id="48_pmtgc"]
 [ext_resource type="PackedScene" uid="uid://207cuag4hgs7" path="res://scenes/components/BackstabComponent.tscn" id="49_g4pr2"]
+[ext_resource type="Script" path="res://scripts/components/combat/spell_component.gd" id="50_blw3s"]
 [ext_resource type="PackedScene" uid="uid://da664p5ek0cgr" path="res://scenes/components/NoticeComponent.tscn" id="50_ihkl4"]
 [ext_resource type="PackedScene" uid="uid://1elkqdybiiu1" path="res://scenes/components/AttackComponent.tscn" id="51_rykib"]
 [ext_resource type="PackedScene" uid="uid://b616qwvblkmpo" path="res://scenes/components/BlockComponent.tscn" id="52_7xv8k"]
@@ -75,17 +81,7 @@
 [ext_resource type="PackedScene" uid="uid://c4jualprb4d24" path="res://scenes/beehave/compare_actions/IsStateGettingSuspicious.tscn" id="72_ymwad"]
 [ext_resource type="PackedScene" uid="uid://d1p0cwvn1hlcs" path="res://scenes/beehave/trees/CheckSuspicion.tscn" id="73_pra2m"]
 [ext_resource type="PackedScene" uid="uid://buwmvh65dccg5" path="res://scenes/beehave/compare_actions/IsStateAggro.tscn" id="74_ol7ty"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/failer.gd" id="75_bv67f"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_random.gd" id="76_4inph"]
-[ext_resource type="PackedScene" uid="uid://cfuiyhthukrn0" path="res://scenes/beehave/attacks/SingleRandomAttack.tscn" id="77_wel6s"]
-[ext_resource type="PackedScene" uid="uid://b4vbjom07vuli" path="res://scenes/beehave/set_actions/SetWalkSpeed.tscn" id="78_qv1bi"]
-[ext_resource type="PackedScene" uid="uid://rnknofcns6ch" path="res://scenes/beehave/inputs/InputLeft.tscn" id="79_1ctbg"]
-[ext_resource type="PackedScene" uid="uid://bpmbb56ftoyja" path="res://scenes/beehave/inputs/InputRight.tscn" id="80_8cwkg"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_set.gd" id="81_3i1v2"]
-[ext_resource type="Script" path="res://scripts/beehave/wait/reset_wait.gd" id="82_hotxy"]
-[ext_resource type="Script" path="res://scripts/beehave/wait/wait.gd" id="83_wwupn"]
-[ext_resource type="PackedScene" uid="uid://d1wjh32ysekoi" path="res://scenes/beehave/set_actions/SetRunSpeed.tscn" id="84_o3il2"]
-[ext_resource type="PackedScene" uid="uid://ppcsagqgu032" path="res://scenes/beehave/inputs/InputForwards.tscn" id="85_afof6"]
 [ext_resource type="PackedScene" uid="uid://nc8fs0at3l7x" path="res://scenes/beehave/set_actions/SetLockedOnFalse.tscn" id="86_64mn0"]
 [ext_resource type="PackedScene" uid="uid://t7wqbcml070v" path="res://scenes/beehave/set_actions/SetLookedAroundFalse.tscn" id="87_8kva6"]
 [ext_resource type="Script" path="res://addons/beehave/blackboard.gd" id="88_8mmq3"]
@@ -498,6 +494,561 @@ _data = {
 "Y Bot": SubResource("Animation_sc1df")
 }
 
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_w72vp"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1g7vj"]
+animation = &"combat_animations_1/Blocking"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_hegij"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_qy2by"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_pv8rc"]
+filter_enabled = true
+filters = ["%GeneralSkeleton:LeftHand", "%GeneralSkeleton:LeftIndexDistal", "%GeneralSkeleton:LeftIndexIntermediate", "%GeneralSkeleton:LeftIndexProximal", "%GeneralSkeleton:LeftLittleDistal", "%GeneralSkeleton:LeftLittleIntermediate", "%GeneralSkeleton:LeftLittleProximal", "%GeneralSkeleton:LeftLowerArm", "%GeneralSkeleton:LeftMiddleDistal", "%GeneralSkeleton:LeftMiddleIntermediate", "%GeneralSkeleton:LeftMiddleProximal", "%GeneralSkeleton:LeftRingDistal", "%GeneralSkeleton:LeftRingIntermediate", "%GeneralSkeleton:LeftRingProximal", "%GeneralSkeleton:LeftShoulder", "%GeneralSkeleton:LeftThumbDistal", "%GeneralSkeleton:LeftThumbMetacarpal", "%GeneralSkeleton:LeftThumbProximal", "%GeneralSkeleton:LeftUpperArm", "%GeneralSkeleton:mixamorig_LeftHandIndex1", "%GeneralSkeleton:mixamorig_LeftHandMiddle1", "%GeneralSkeleton:mixamorig_LeftHandPinky1", "%GeneralSkeleton:mixamorig_LeftHandRing1", "%GeneralSkeleton:mixamorig_LeftHandThumb1"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_era1v"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_jbigd"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_2xovq"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_5gs3k"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vsvsm"]
+animation = &"magic_animations_1/Magic Death Backwards"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l3xmt"]
+animation = &"magic_animations_1/Magic Death Forwards"
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_vq7r5"]
+input_0/name = "death_1"
+input_0/auto_advance = false
+input_0/reset = true
+input_1/name = "death_2"
+input_1/auto_advance = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_3rnpj"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wtbwl"]
+animation = &"combat_animations_1/Finisher on Kneeling Victim"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_yiouf"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_ijgrp"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ovki7"]
+animation = &"combat_animations_1/Upward Thrust"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_5d1rd"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_e48q0"]
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_oldk3"]
+input_0/name = "from_parry"
+input_0/auto_advance = false
+input_0/reset = true
+input_1/name = "from_damage"
+input_1/auto_advance = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_vbytd"]
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_ykc1s"]
+xfade_time = 0.3
+input_0/name = "to_kneel"
+input_0/auto_advance = false
+input_0/reset = true
+input_1/name = "kneel"
+input_1/auto_advance = false
+input_1/reset = true
+input_2/name = "to_stand"
+input_2/auto_advance = false
+input_2/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y1xna"]
+animation = &"combat_animations_1/Dizzy Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_byhug"]
+animation = &"combat_animations_1/Death Kneeling"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_74xre"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_6ghbn"]
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_ijofm"]
+input_0/name = "from_parry"
+input_0/auto_advance = false
+input_0/reset = true
+input_1/name = "from_damage"
+input_1/auto_advance = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_myeho"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pia0b"]
+animation = &"movement_animations_1/Falling Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_met48"]
+animation = &"magic_animations_1/Magic Idle Inactive"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_4ihs2"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_vxaje"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_2veyp"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_uqlxb"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s6br3"]
+animation = &"movement_animations_1/Jog Forward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wpde5"]
+animation = &"movement_animations_1/Jump"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_jrs8m"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_it0rv"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_qb1it"]
+graph_offset = Vector2(-637.6, -35.2)
+"nodes/Jump Animation/node" = SubResource("AnimationNodeAnimation_wpde5")
+"nodes/Jump Animation/position" = Vector2(-573.056, 172.788)
+"nodes/Jump Speed/node" = SubResource("AnimationNodeTimeScale_jrs8m")
+"nodes/Jump Speed/position" = Vector2(44.044, 183.678)
+"nodes/Jump Trim/node" = SubResource("AnimationNodeTimeSeek_it0rv")
+"nodes/Jump Trim/position" = Vector2(-180, 160)
+node_connections = [&"Jump Speed", 0, &"Jump Trim", &"Jump Trim", 0, &"Jump Animation", &"output", 0, &"Jump Speed"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2ykvw"]
+animation = &"movement_animations_1/Jump"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_lw7kt"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_cf338"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_6g7ih"]
+graph_offset = Vector2(-467, -73)
+"nodes/Jump Animation/node" = SubResource("AnimationNodeAnimation_2ykvw")
+"nodes/Jump Animation/position" = Vector2(-481.58, 160.93)
+"nodes/Jump Speed/node" = SubResource("AnimationNodeTimeScale_lw7kt")
+"nodes/Jump Speed/position" = Vector2(100, 160)
+"nodes/Jump Trim/node" = SubResource("AnimationNodeTimeSeek_cf338")
+"nodes/Jump Trim/position" = Vector2(-100, 160)
+node_connections = [&"Jump Speed", 0, &"Jump Trim", &"Jump Trim", 0, &"Jump Animation", &"output", 0, &"Jump Speed"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_nxeha"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_tbxkj"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q2sun"]
+animation = &"combat_animations_1/Kneel to Stand"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_fk50i"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_j2ebb"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_eecak"]
+animation = &"combat_animations_1/Kneel Idle"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_02gek"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_baww8"]
+animation = &"magic_animations_1/Magic Idle Active"
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_0mwvr"]
+xfade_time = 0.3
+input_0/name = "locked_on"
+input_0/auto_advance = false
+input_0/reset = true
+input_1/name = "not_locked_on"
+input_1/auto_advance = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dotnv"]
+animation = &"magic_animations_1/Magic Walk Backwards"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sh867"]
+animation = &"magic_animations_1/Magic Walk Backwards"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_td22i"]
+animation = &"magic_animations_1/Magic Walk Backwards"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_npwrp"]
+animation = &"magic_animations_1/Magic Walk Forwards"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gmvi0"]
+animation = &"magic_animations_1/Magic Walk Left"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_to2pe"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_6gouq"]
+graph_offset = Vector2(-387.49, -62.5348)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_gmvi0")
+nodes/Animation/position = Vector2(-240, 120)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_to2pe")
+nodes/TimeScale/position = Vector2(120, 120)
+node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2o0sj"]
+animation = &"magic_animations_1/Magic Walk Right"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_ee4p2"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_6madj"]
+graph_offset = Vector2(-441, -45)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_2o0sj")
+nodes/Animation/position = Vector2(-340, 120)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_ee4p2")
+nodes/TimeScale/position = Vector2(80, 120)
+node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_pudql"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_dotnv")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_sh867")
+blend_point_1/pos = Vector2(1, 1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_td22i")
+blend_point_2/pos = Vector2(-1, 1)
+blend_point_3/node = SubResource("AnimationNodeAnimation_npwrp")
+blend_point_3/pos = Vector2(0, -1)
+blend_point_4/node = SubResource("AnimationNodeBlendTree_6gouq")
+blend_point_4/pos = Vector2(-1, 0)
+blend_point_5/node = SubResource("AnimationNodeBlendTree_6madj")
+blend_point_5/pos = Vector2(1, 0)
+sync = true
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_1bqjp"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_sq418"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_xqiu5"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_pxett"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ixpwx"]
+animation = &"magic_animations_1/Magic Attack Beam"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ujkgr"]
+graph_offset = Vector2(-638, -109)
+"nodes/Magic Beam/node" = SubResource("AnimationNodeAnimation_ixpwx")
+"nodes/Magic Beam/position" = Vector2(-680, 140)
+"nodes/Magic Beam Speed/node" = SubResource("AnimationNodeTimeScale_xqiu5")
+"nodes/Magic Beam Speed/position" = Vector2(20, 140)
+"nodes/Magic Beam Trim/node" = SubResource("AnimationNodeTimeSeek_pxett")
+"nodes/Magic Beam Trim/position" = Vector2(-240, 140)
+node_connections = [&"Magic Beam Speed", 0, &"Magic Beam Trim", &"Magic Beam Trim", 0, &"Magic Beam", &"output", 0, &"Magic Beam Speed"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_wrpur"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_yrh6l"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tooka"]
+animation = &"magic_animations_1/Magic Attack Beam"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_efl6x"]
+graph_offset = Vector2(-607, -94)
+"nodes/Magic Beam/node" = SubResource("AnimationNodeAnimation_tooka")
+"nodes/Magic Beam/position" = Vector2(-700, 140)
+"nodes/Magic Beam Speed/node" = SubResource("AnimationNodeTimeScale_wrpur")
+"nodes/Magic Beam Speed/position" = Vector2(20, 140)
+"nodes/Magic Beam Trim/node" = SubResource("AnimationNodeTimeSeek_yrh6l")
+"nodes/Magic Beam Trim/position" = Vector2(-260, 140)
+node_connections = [&"Magic Beam Speed", 0, &"Magic Beam Trim", &"Magic Beam Trim", 0, &"Magic Beam", &"output", 0, &"Magic Beam Speed"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_wbtss"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_t76a8"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v5c08"]
+animation = &"magic_animations_1/Magic Attack Big Projectile"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_h3e0k"]
+graph_offset = Vector2(-697, -124)
+"nodes/Magic Big Projectile/node" = SubResource("AnimationNodeAnimation_v5c08")
+"nodes/Magic Big Projectile/position" = Vector2(-800, 140)
+"nodes/Magic Big Projectile Speed/node" = SubResource("AnimationNodeTimeScale_wbtss")
+"nodes/Magic Big Projectile Speed/position" = Vector2(-20, 140)
+"nodes/Magic Big Projectile Trim/node" = SubResource("AnimationNodeTimeSeek_t76a8")
+"nodes/Magic Big Projectile Trim/position" = Vector2(-320, 140)
+node_connections = [&"Magic Big Projectile Speed", 0, &"Magic Big Projectile Trim", &"Magic Big Projectile Trim", 0, &"Magic Big Projectile", &"output", 0, &"Magic Big Projectile Speed"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_dvc28"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_b2gsy"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7a1wu"]
+animation = &"magic_animations_1/Magic Attack Big Projectile"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_51fyv"]
+graph_offset = Vector2(-630, -152)
+"nodes/Magic Big Projectile/node" = SubResource("AnimationNodeAnimation_7a1wu")
+"nodes/Magic Big Projectile/position" = Vector2(-760, 140)
+"nodes/Magic Big Projectile Speed/node" = SubResource("AnimationNodeTimeScale_dvc28")
+"nodes/Magic Big Projectile Speed/position" = Vector2(0, 140)
+"nodes/Magic Big Projectile Trim/node" = SubResource("AnimationNodeTimeSeek_b2gsy")
+"nodes/Magic Big Projectile Trim/position" = Vector2(-300, 140)
+node_connections = [&"Magic Big Projectile Speed", 0, &"Magic Big Projectile Trim", &"Magic Big Projectile Trim", 0, &"Magic Big Projectile", &"output", 0, &"Magic Big Projectile Speed"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_nr8m3"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_u1jf4"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o4jyi"]
+animation = &"magic_animations_1/Magic Attack Small Projectile"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_5rk5a"]
+graph_offset = Vector2(-642, -181)
+"nodes/Magic Small Projectile/node" = SubResource("AnimationNodeAnimation_o4jyi")
+"nodes/Magic Small Projectile/position" = Vector2(-800, 140)
+"nodes/Magic Small Projectile Speed/node" = SubResource("AnimationNodeTimeScale_nr8m3")
+"nodes/Magic Small Projectile Speed/position" = Vector2(-20, 140)
+"nodes/Magic Small Projectile Trim/node" = SubResource("AnimationNodeTimeSeek_u1jf4")
+"nodes/Magic Small Projectile Trim/position" = Vector2(-320, 140)
+node_connections = [&"Magic Small Projectile Speed", 0, &"Magic Small Projectile Trim", &"Magic Small Projectile Trim", 0, &"Magic Small Projectile", &"output", 0, &"Magic Small Projectile Speed"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_a00ou"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_dc6e0"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jxa5a"]
+animation = &"magic_animations_1/Magic Attack Small Projectile"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_5s8kf"]
+graph_offset = Vector2(-721.671, -123.585)
+"nodes/Magic Small Projectile/node" = SubResource("AnimationNodeAnimation_jxa5a")
+"nodes/Magic Small Projectile/position" = Vector2(-840, 140)
+"nodes/Magic Small Projectile Speed/node" = SubResource("AnimationNodeTimeScale_a00ou")
+"nodes/Magic Small Projectile Speed/position" = Vector2(-40, 140)
+"nodes/Magic Small Projectile Trim/node" = SubResource("AnimationNodeTimeSeek_dc6e0")
+"nodes/Magic Small Projectile Trim/position" = Vector2(-360, 140)
+node_connections = [&"Magic Small Projectile Speed", 0, &"Magic Small Projectile Trim", &"Magic Small Projectile Trim", 0, &"Magic Small Projectile", &"output", 0, &"Magic Small Projectile Speed"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f1g3g"]
+animation = &"combat_animations_1/Blocking"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_m2dko"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_hpc7t"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_o5xyw"]
+filter_enabled = true
+filters = ["%GeneralSkeleton:LeftHand", "%GeneralSkeleton:LeftIndexDistal", "%GeneralSkeleton:LeftIndexIntermediate", "%GeneralSkeleton:LeftIndexProximal", "%GeneralSkeleton:LeftLittleDistal", "%GeneralSkeleton:LeftLittleIntermediate", "%GeneralSkeleton:LeftLittleProximal", "%GeneralSkeleton:LeftLowerArm", "%GeneralSkeleton:LeftMiddleDistal", "%GeneralSkeleton:LeftMiddleIntermediate", "%GeneralSkeleton:LeftMiddleProximal", "%GeneralSkeleton:LeftRingDistal", "%GeneralSkeleton:LeftRingIntermediate", "%GeneralSkeleton:LeftRingProximal", "%GeneralSkeleton:LeftShoulder", "%GeneralSkeleton:LeftThumbDistal", "%GeneralSkeleton:LeftThumbMetacarpal", "%GeneralSkeleton:LeftThumbProximal", "%GeneralSkeleton:LeftUpperArm", "%GeneralSkeleton:mixamorig_LeftHandIndex1", "%GeneralSkeleton:mixamorig_LeftHandMiddle1", "%GeneralSkeleton:mixamorig_LeftHandPinky1", "%GeneralSkeleton:mixamorig_LeftHandRing1", "%GeneralSkeleton:mixamorig_LeftHandThumb1", "ParryAnimations"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_316ac"]
+animation = &"movement_animations_1/Run-Forwards"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ucbo1"]
+animation = &"movement_animations_1/Run-Left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_beekm"]
+animation = &"movement_animations_1/Run-Right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gfyka"]
+animation = &"movement_animations_1/Run-Forwards"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lj6tp"]
+animation = &"movement_animations_1/Run-Forwards"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1gv77"]
+animation = &"movement_animations_1/Run-Forwards"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3e7df"]
+animation = &"movement_animations_1/Run-Forwards"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_q7vgs"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_ucbo1")
+blend_point_0/pos = Vector2(-1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_beekm")
+blend_point_1/pos = Vector2(1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_gfyka")
+blend_point_2/pos = Vector2(0, -1)
+blend_point_3/node = SubResource("AnimationNodeAnimation_lj6tp")
+blend_point_3/pos = Vector2(0, 1)
+blend_point_4/node = SubResource("AnimationNodeAnimation_1gv77")
+blend_point_4/pos = Vector2(-1, 1)
+blend_point_5/node = SubResource("AnimationNodeAnimation_3e7df")
+blend_point_5/pos = Vector2(1, 1)
+sync = true
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_yy6jj"]
+xfade_time = 0.3
+input_0/name = "locked_on"
+input_0/auto_advance = false
+input_0/reset = true
+input_1/name = "not_locked_on"
+input_1/auto_advance = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_seau3"]
+sync = true
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_62iny"]
+input_0/name = "magic_small_projectile"
+input_0/auto_advance = false
+input_0/reset = true
+input_1/name = "magic_small_projectile_copy"
+input_1/auto_advance = false
+input_1/reset = true
+input_2/name = "magic_big_projectile"
+input_2/auto_advance = false
+input_2/reset = true
+input_3/name = "magic_big_projectile_copy"
+input_3/auto_advance = false
+input_3/reset = true
+input_4/name = "magic_beam"
+input_4/auto_advance = false
+input_4/reset = true
+input_5/name = "magic_beam_copy"
+input_5/auto_advance = false
+input_5/reset = true
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_vgnep"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_ox7cf"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g8521"]
+animation = &"movement_animations_1/Walk-Forwards"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_l6rbl"]
+nodes/Attacking/node = SubResource("AnimationNodeBlend2_w72vp")
+nodes/Attacking/position = Vector2(2757.02, 546.152)
+nodes/Blocking/node = SubResource("AnimationNodeBlend2_pv8rc")
+nodes/Blocking/position = Vector2(3340, 920)
+"nodes/Blocking Animation/node" = SubResource("AnimationNodeAnimation_1g7vj")
+"nodes/Blocking Animation/position" = Vector2(2620, 1160)
+"nodes/Blocking Speed/node" = SubResource("AnimationNodeTimeScale_hegij")
+"nodes/Blocking Speed/position" = Vector2(3160, 1160)
+"nodes/Blocking Trim/node" = SubResource("AnimationNodeTimeSeek_qy2by")
+"nodes/Blocking Trim/position" = Vector2(2960, 1160)
+nodes/Death/node = SubResource("AnimationNodeBlend2_3rnpj")
+nodes/Death/position = Vector2(8540, 1840)
+"nodes/Death 1 Speed/node" = SubResource("AnimationNodeTimeScale_era1v")
+"nodes/Death 1 Speed/position" = Vector2(8000, 1980)
+"nodes/Death 1 Trim/node" = SubResource("AnimationNodeTimeSeek_jbigd")
+"nodes/Death 1 Trim/position" = Vector2(7800, 1980)
+"nodes/Death 2 Speed/node" = SubResource("AnimationNodeTimeScale_2xovq")
+"nodes/Death 2 Speed/position" = Vector2(8000, 2160)
+"nodes/Death 2 Trim/node" = SubResource("AnimationNodeTimeSeek_5gs3k")
+"nodes/Death 2 Trim/position" = Vector2(7800, 2160)
+"nodes/Death Animation/node" = SubResource("AnimationNodeAnimation_vsvsm")
+"nodes/Death Animation/position" = Vector2(7340, 1980)
+"nodes/Death Backstab Animation/node" = SubResource("AnimationNodeAnimation_l3xmt")
+"nodes/Death Backstab Animation/position" = Vector2(7340, 2160)
+"nodes/Death Which One/node" = SubResource("AnimationNodeTransition_vq7r5")
+"nodes/Death Which One/position" = Vector2(8300, 2060)
+nodes/Dizzy/node = SubResource("AnimationNodeBlend2_myeho")
+nodes/Dizzy/position = Vector2(7240, 1640)
+"nodes/Dizzy Finisher/node" = SubResource("AnimationNodeBlend2_vbytd")
+"nodes/Dizzy Finisher/position" = Vector2(5800, 1500)
+"nodes/Dizzy Finisher From Damage Animation/node" = SubResource("AnimationNodeAnimation_wtbwl")
+"nodes/Dizzy Finisher From Damage Animation/position" = Vector2(4160, 1820)
+"nodes/Dizzy Finisher From Damage Speed/node" = SubResource("AnimationNodeTimeScale_yiouf")
+"nodes/Dizzy Finisher From Damage Speed/position" = Vector2(5040, 1820)
+"nodes/Dizzy Finisher From Damage Trim/node" = SubResource("AnimationNodeTimeSeek_ijgrp")
+"nodes/Dizzy Finisher From Damage Trim/position" = Vector2(4680, 1820)
+"nodes/Dizzy Finisher From Parry Animation/node" = SubResource("AnimationNodeAnimation_ovki7")
+"nodes/Dizzy Finisher From Parry Animation/position" = Vector2(4300, 1600)
+"nodes/Dizzy Finisher From Parry Speed/node" = SubResource("AnimationNodeTimeScale_5d1rd")
+"nodes/Dizzy Finisher From Parry Speed/position" = Vector2(5080, 1600)
+"nodes/Dizzy Finisher From Parry Trim/node" = SubResource("AnimationNodeTimeSeek_e48q0")
+"nodes/Dizzy Finisher From Parry Trim/position" = Vector2(4700, 1600)
+"nodes/Dizzy Finisher Which One/node" = SubResource("AnimationNodeTransition_oldk3")
+"nodes/Dizzy Finisher Which One/position" = Vector2(5440, 1680)
+"nodes/Dizzy From Damage/node" = SubResource("AnimationNodeTransition_ykc1s")
+"nodes/Dizzy From Damage/position" = Vector2(6560, 2080)
+"nodes/Dizzy Idle Animation/node" = SubResource("AnimationNodeAnimation_y1xna")
+"nodes/Dizzy Idle Animation/position" = Vector2(6460, 1800)
+"nodes/Dizzy Kneeling Animation/node" = SubResource("AnimationNodeAnimation_byhug")
+"nodes/Dizzy Kneeling Animation/position" = Vector2(5580, 1960)
+"nodes/Dizzy Kneeling Speed/node" = SubResource("AnimationNodeTimeScale_74xre")
+"nodes/Dizzy Kneeling Speed/position" = Vector2(6200, 1960)
+"nodes/Dizzy Kneeling Trim/node" = SubResource("AnimationNodeTimeSeek_6ghbn")
+"nodes/Dizzy Kneeling Trim/position" = Vector2(5960, 1960)
+"nodes/Dizzy Which One/node" = SubResource("AnimationNodeTransition_ijofm")
+"nodes/Dizzy Which One/position" = Vector2(6940, 1880)
+"nodes/Fall Animation/node" = SubResource("AnimationNodeAnimation_pia0b")
+"nodes/Fall Animation/position" = Vector2(240, 1000)
+"nodes/Free Idle/node" = SubResource("AnimationNodeAnimation_met48")
+"nodes/Free Idle/position" = Vector2(-1660, 560)
+"nodes/Free Jog Speed/node" = SubResource("AnimationNodeTimeScale_4ihs2")
+"nodes/Free Jog Speed/position" = Vector2(-1760, 880)
+"nodes/Free Movement/node" = SubResource("AnimationNodeBlend2_vxaje")
+"nodes/Free Movement/position" = Vector2(-1200, 620)
+"nodes/Free Walk Or Jog/node" = SubResource("AnimationNodeBlend2_2veyp")
+"nodes/Free Walk Or Jog/position" = Vector2(-1520, 780)
+"nodes/Free Walk Speed/node" = SubResource("AnimationNodeTimeScale_uqlxb")
+"nodes/Free Walk Speed/position" = Vector2(-1780, 740)
+"nodes/Jog Forward/node" = SubResource("AnimationNodeAnimation_s6br3")
+"nodes/Jog Forward/position" = Vector2(-2160, 880)
+"nodes/Jump 1/node" = SubResource("AnimationNodeBlendTree_qb1it")
+"nodes/Jump 1/position" = Vector2(100, 680)
+"nodes/Jump 2/node" = SubResource("AnimationNodeBlendTree_6g7ih")
+"nodes/Jump 2/position" = Vector2(100, 820)
+"nodes/Jump Handler/node" = SubResource("AnimationNodeBlend2_nxeha")
+"nodes/Jump Handler/position" = Vector2(400, 700)
+"nodes/Jump and Fall Blend/node" = SubResource("AnimationNodeBlend2_tbxkj")
+"nodes/Jump and Fall Blend/position" = Vector2(760, 780)
+"nodes/Kneel to Stand Animation/node" = SubResource("AnimationNodeAnimation_q2sun")
+"nodes/Kneel to Stand Animation/position" = Vector2(5500, 2360)
+"nodes/Kneel to Stand Speed/node" = SubResource("AnimationNodeTimeScale_fk50i")
+"nodes/Kneel to Stand Speed/position" = Vector2(6220, 2360)
+"nodes/Kneel to Stand Trim/node" = SubResource("AnimationNodeTimeSeek_j2ebb")
+"nodes/Kneel to Stand Trim/position" = Vector2(5920, 2360)
+"nodes/Kneeling Idle Animation/node" = SubResource("AnimationNodeAnimation_eecak")
+"nodes/Kneeling Idle Animation/position" = Vector2(5820, 2160)
+"nodes/Kneeling Idle Speed/node" = SubResource("AnimationNodeTimeScale_02gek")
+"nodes/Kneeling Idle Speed/position" = Vector2(6220, 2160)
+"nodes/Locked On Idle/node" = SubResource("AnimationNodeAnimation_baww8")
+"nodes/Locked On Idle/position" = Vector2(-1700, 80)
+"nodes/Locked On Movement/node" = SubResource("AnimationNodeTransition_0mwvr")
+"nodes/Locked On Movement/position" = Vector2(-680, 260)
+"nodes/Locked On Walk/node" = SubResource("AnimationNodeBlend2_sq418")
+"nodes/Locked On Walk/position" = Vector2(-1240, 120)
+"nodes/Locked On Walk Direction/node" = SubResource("AnimationNodeBlendSpace2D_pudql")
+"nodes/Locked On Walk Direction/position" = Vector2(-1820, 260)
+"nodes/Locked On Walk Speed/node" = SubResource("AnimationNodeTimeScale_1bqjp")
+"nodes/Locked On Walk Speed/position" = Vector2(-1540, 260)
+"nodes/Magic Beam/node" = SubResource("AnimationNodeBlendTree_efl6x")
+"nodes/Magic Beam/position" = Vector2(1540, 1600)
+"nodes/Magic Beam Copy/node" = SubResource("AnimationNodeBlendTree_ujkgr")
+"nodes/Magic Beam Copy/position" = Vector2(1520, 1720)
+"nodes/Magic Big Projectile/node" = SubResource("AnimationNodeBlendTree_51fyv")
+"nodes/Magic Big Projectile/position" = Vector2(1520, 1320)
+"nodes/Magic Big Projectile Copy/node" = SubResource("AnimationNodeBlendTree_h3e0k")
+"nodes/Magic Big Projectile Copy/position" = Vector2(1480, 1440)
+"nodes/Magic Small Projectile/node" = SubResource("AnimationNodeBlendTree_5s8kf")
+"nodes/Magic Small Projectile/position" = Vector2(1500, 1040)
+"nodes/Magic Small Projectile Copy/node" = SubResource("AnimationNodeBlendTree_5rk5a")
+"nodes/Magic Small Projectile Copy/position" = Vector2(1460, 1160)
+nodes/Parry/node = SubResource("AnimationNodeBlend2_o5xyw")
+nodes/Parry/position = Vector2(4300, 980)
+"nodes/Parry Animation/node" = SubResource("AnimationNodeAnimation_f1g3g")
+"nodes/Parry Animation/position" = Vector2(3560, 1180)
+"nodes/Parry Speed/node" = SubResource("AnimationNodeTimeScale_m2dko")
+"nodes/Parry Speed/position" = Vector2(4080, 1180)
+"nodes/Parry Trim/node" = SubResource("AnimationNodeTimeSeek_hpc7t")
+"nodes/Parry Trim/position" = Vector2(3900, 1180)
+"nodes/Run Forwards/node" = SubResource("AnimationNodeAnimation_316ac")
+"nodes/Run Forwards/position" = Vector2(-840, 980)
+nodes/Running/node = SubResource("AnimationNodeBlend2_seau3")
+nodes/Running/position = Vector2(-100, 420)
+"nodes/Running Lock On Look Direction/node" = SubResource("AnimationNodeBlendSpace2D_q7vgs")
+"nodes/Running Lock On Look Direction/position" = Vector2(-840, 700)
+"nodes/Running Locked On/node" = SubResource("AnimationNodeTransition_yy6jj")
+"nodes/Running Locked On/position" = Vector2(-400, 700)
+nodes/Spell/node = SubResource("AnimationNodeTransition_62iny")
+nodes/Spell/position = Vector2(1780, 1280)
+nodes/Spells/node = SubResource("AnimationNodeBlend2_vgnep")
+nodes/Spells/position = Vector2(2220, 740)
+"nodes/Vertical Movement/node" = SubResource("AnimationNodeBlend2_ox7cf")
+"nodes/Vertical Movement/position" = Vector2(1120, 600)
+"nodes/Walk Forward/node" = SubResource("AnimationNodeAnimation_g8521")
+"nodes/Walk Forward/position" = Vector2(-2180, 740)
+nodes/output/position = Vector2(9280, 1520)
+node_connections = [&"Blocking", 0, &"Spells", &"Blocking", 1, &"Blocking Speed", &"Blocking Speed", 0, &"Blocking Trim", &"Blocking Trim", 0, &"Blocking Animation", &"Death", 0, &"Dizzy", &"Death", 1, &"Death Which One", &"Death 1 Speed", 0, &"Death 1 Trim", &"Death 1 Trim", 0, &"Death Animation", &"Death 2 Speed", 0, &"Death 2 Trim", &"Death 2 Trim", 0, &"Death Backstab Animation", &"Death Which One", 0, &"Death 1 Speed", &"Death Which One", 1, &"Death 2 Speed", &"Dizzy", 0, &"Dizzy Finisher", &"Dizzy", 1, &"Dizzy Which One", &"Dizzy Finisher", 0, &"Parry", &"Dizzy Finisher", 1, &"Dizzy Finisher Which One", &"Dizzy Finisher From Damage Speed", 0, &"Dizzy Finisher From Damage Trim", &"Dizzy Finisher From Damage Trim", 0, &"Dizzy Finisher From Damage Animation", &"Dizzy Finisher From Parry Speed", 0, &"Dizzy Finisher From Parry Trim", &"Dizzy Finisher From Parry Trim", 0, &"Dizzy Finisher From Parry Animation", &"Dizzy Finisher Which One", 0, &"Dizzy Finisher From Parry Speed", &"Dizzy Finisher Which One", 1, &"Dizzy Finisher From Damage Speed", &"Dizzy From Damage", 0, &"Dizzy Kneeling Speed", &"Dizzy From Damage", 1, &"Kneeling Idle Speed", &"Dizzy From Damage", 2, &"Kneel to Stand Speed", &"Dizzy Kneeling Speed", 0, &"Dizzy Kneeling Trim", &"Dizzy Kneeling Trim", 0, &"Dizzy Kneeling Animation", &"Dizzy Which One", 0, &"Dizzy Idle Animation", &"Dizzy Which One", 1, &"Dizzy From Damage", &"Free Jog Speed", 0, &"Jog Forward", &"Free Movement", 0, &"Free Idle", &"Free Movement", 1, &"Free Walk Or Jog", &"Free Walk Or Jog", 0, &"Free Walk Speed", &"Free Walk Or Jog", 1, &"Free Jog Speed", &"Free Walk Speed", 0, &"Walk Forward", &"Jump Handler", 0, &"Jump 1", &"Jump Handler", 1, &"Jump 2", &"Jump and Fall Blend", 0, &"Jump Handler", &"Jump and Fall Blend", 1, &"Fall Animation", &"Kneel to Stand Speed", 0, &"Kneel to Stand Trim", &"Kneel to Stand Trim", 0, &"Kneel to Stand Animation", &"Kneeling Idle Speed", 0, &"Kneeling Idle Animation", &"Locked On Movement", 0, &"Locked On Walk", &"Locked On Movement", 1, &"Free Movement", &"Locked On Walk", 0, &"Locked On Idle", &"Locked On Walk", 1, &"Locked On Walk Speed", &"Locked On Walk Speed", 0, &"Locked On Walk Direction", &"Parry", 0, &"Blocking", &"Parry", 1, &"Parry Speed", &"Parry Speed", 0, &"Parry Trim", &"Parry Trim", 0, &"Parry Animation", &"Running", 0, &"Locked On Movement", &"Running", 1, &"Running Locked On", &"Running Locked On", 0, &"Running Lock On Look Direction", &"Running Locked On", 1, &"Run Forwards", &"Spell", 0, &"Magic Small Projectile", &"Spell", 1, &"Magic Small Projectile Copy", &"Spell", 2, &"Magic Big Projectile", &"Spell", 3, &"Magic Big Projectile Copy", &"Spell", 4, &"Magic Beam", &"Spell", 5, &"Magic Beam Copy", &"Spells", 0, &"Vertical Movement", &"Spells", 1, &"Spell", &"Vertical Movement", 0, &"Running", &"Vertical Movement", 1, &"Jump and Fall Blend", &"output", 0, &"Death"]
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_l16li"]
 playback_mode = 1
 streams_count = 3
@@ -558,11 +1109,15 @@ stream_0/weight = 1.0
 radius = 0.3
 height = 1.8
 
-[node name="Spellcaster" type="CharacterBody3D" node_paths=PackedStringArray("rotation_component", "head_rotation_component", "movement_component", "root_motion_component", "lock_on_component", "hitbox_component", "health_component", "instability_component", "backstab_component", "dizzy_component", "notice_component", "attack_component", "block_component", "parry_component", "wellbeing_component", "blackboard", "agent") groups=["enemy"]]
+[node name="Spellcaster" type="CharacterBody3D" node_paths=PackedStringArray("parry_sfx", "block_sfx", "hit_sfx", "character", "rotation_component", "head_rotation_component", "movement_component", "root_motion_component", "lock_on_component", "hitbox_component", "health_component", "instability_component", "backstab_component", "dizzy_component", "notice_component", "attack_component", "spell_component", "block_component", "parry_component", "wellbeing_component", "beehave_tree", "blackboard", "agent") groups=["enemy"]]
 collision_layer = 8
 collision_mask = 11
 script = ExtResource("1_2f16f")
 wellbeing_stats = SubResource("Resource_6we7u")
+parry_sfx = NodePath("Character/AudioManager/Parry")
+block_sfx = NodePath("Character/AudioManager/Block")
+hit_sfx = NodePath("Character/AudioManager/Hit")
+character = NodePath("Character")
 rotation_component = NodePath("Rotation/EnemyRotationComponent")
 head_rotation_component = NodePath("Rotation/HeadRotationComponent")
 movement_component = NodePath("Movement/MovementComponent")
@@ -575,84 +1130,47 @@ backstab_component = NodePath("Combat/BackstabComponent")
 dizzy_component = NodePath("Combat/DizzyComponent")
 notice_component = NodePath("Combat/NoticeComponent")
 attack_component = NodePath("Combat/AttackComponent")
+spell_component = NodePath("Combat/SpellComponent")
 block_component = NodePath("Combat/BlockComponent")
 parry_component = NodePath("Combat/ParryComponent")
 wellbeing_component = NodePath("Wellbeing/WellbeingComponent")
+beehave_tree = NodePath("BeehaveTree")
 blackboard = NodePath("Blackboard")
 agent = NodePath("NavigationAgent3D")
 
-[node name="Character" parent="." instance=ExtResource("3_w70a0")]
+[node name="Character" parent="." node_paths=PackedStringArray("movement_animations", "walk_or_jog_animations", "jump_animations", "attack_animations", "block_animations", "parry_animations", "hit_and_death_animations", "dizzy_victim_animations", "dizzy_finisher_animations") instance=ExtResource("3_w70a0")]
 script = ExtResource("4_2wx3f")
-
-[node name="GeneralSkeleton" parent="Character/Armature_004" index="0"]
-bones/1/rotation = Quaternion(0, 2.2904e-14, -6.7831e-14, 1)
-bones/2/rotation = Quaternion(2.11667e-10, -2.1808e-13, 2.94964e-16, 1)
-bones/3/rotation = Quaternion(3.72529e-09, -4.54747e-13, 2.84217e-14, 1)
-bones/4/rotation = Quaternion(2.77556e-17, -6.82121e-13, -3.63798e-12, 1)
-bones/5/rotation = Quaternion(2.32831e-10, 0, 3.63803e-12, 1)
-bones/8/rotation = Quaternion(0.500032, 0.499969, 0.500032, -0.499968)
-bones/9/rotation = Quaternion(-1.3411e-06, 1, 1.91033e-05, 2.08616e-07)
-bones/10/rotation = Quaternion(-4.21468e-08, -0.707107, 0, 0.707107)
-bones/11/rotation = Quaternion(-7.10043e-09, 0.707107, -7.10043e-09, 0.707107)
-bones/12/rotation = Quaternion(-0.0822456, -0.0213536, 0.0722267, 0.993762)
-bones/13/rotation = Quaternion(-0.214187, 0.673887, 0.214187, 0.673887)
-bones/14/rotation = Quaternion(-4.47035e-08, 2.98023e-08, 4.44089e-16, 1)
-bones/15/rotation = Quaternion(0, -5.96046e-08, -2.98023e-08, 1)
-bones/16/rotation = Quaternion(-0.0920347, 0.116276, 0.0215421, 0.988709)
-bones/18/rotation = Quaternion(0, -5.96046e-08, 0, 1)
-bones/19/rotation = Quaternion(2.98023e-08, 2.98023e-08, -2.98023e-08, 1)
-bones/20/rotation = Quaternion(0.0056684, 0.0731618, -0.00331281, 0.997299)
-bones/21/rotation = Quaternion(2.98023e-08, -2.98023e-08, 2.98023e-08, 1)
-bones/22/rotation = Quaternion(2.98023e-08, -2.98023e-08, 2.98023e-08, 1)
-bones/23/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
-bones/24/rotation = Quaternion(0.137673, 0.0489488, -0.0401254, 0.988453)
-bones/25/rotation = Quaternion(-4.47035e-08, -4.47035e-08, 0, 1)
-bones/26/rotation = Quaternion(-1.49012e-08, -1.49012e-08, -1.49012e-08, 1)
-bones/27/rotation = Quaternion(0, -5.96046e-08, 0, 1)
-bones/28/rotation = Quaternion(-2.72691e-06, 2.98023e-08, -0.000141129, 1)
-bones/29/rotation = Quaternion(6.22869e-06, 1.04308e-07, 0.000368372, 1)
-bones/30/rotation = Quaternion(-3.57628e-06, 0, -0.000229612, 1)
-bones/31/rotation = Quaternion(1.49012e-08, -1.49012e-08, 0, 1)
-bones/32/rotation = Quaternion(0.499969, -0.500031, -0.499969, -0.500031)
-bones/33/rotation = Quaternion(-4.17233e-07, 1, -1.99974e-05, -2.83122e-07)
-bones/34/rotation = Quaternion(-4.21468e-08, 0.707107, 0, 0.707107)
-bones/35/rotation = Quaternion(-2.81893e-08, -0.707107, -1.39575e-08, 0.707107)
-bones/36/rotation = Quaternion(-0.089253, 0.00200379, -0.0823982, 0.992593)
-bones/37/rotation = Quaternion(-0.214187, -0.673887, -0.214187, 0.673887)
-bones/38/rotation = Quaternion(-2.98023e-08, 1.49012e-08, 2.22045e-16, 1)
-bones/39/rotation = Quaternion(0, -8.9407e-08, 0, 1)
-bones/40/rotation = Quaternion(-0.0919146, -0.158436, -0.102263, 0.977748)
-bones/41/rotation = Quaternion(0, 5.96046e-08, 5.96046e-08, 1)
-bones/44/rotation = Quaternion(-0.0352153, -0.0398441, -0.0106681, 0.998528)
-bones/46/rotation = Quaternion(0, 5.96046e-08, 5.96046e-08, 1)
-bones/47/rotation = Quaternion(2.98023e-08, -1.49012e-08, 1.49012e-08, 1)
-bones/48/rotation = Quaternion(0.061973, 0.0613373, 0.102629, 0.990891)
-bones/49/rotation = Quaternion(-1.49012e-08, 4.47035e-08, 5.96046e-08, 1)
-bones/50/rotation = Quaternion(-1.49012e-08, 1.49012e-08, -1.49012e-08, 1)
-bones/52/rotation = Quaternion(0.08794, 0.16972, 0.179292, 0.965047)
-bones/53/rotation = Quaternion(1.49012e-07, -8.9407e-08, -1.05202e-05, 1)
-bones/54/rotation = Quaternion(-2.98023e-08, 8.9407e-08, 1.05351e-05, 1)
-bones/55/rotation = Quaternion(2.98023e-08, -2.98023e-08, -2.98023e-08, 1)
-bones/56/rotation = Quaternion(8.25414e-09, 1.02951e-05, 1, -8.79593e-08)
-bones/57/rotation = Quaternion(1.39698e-09, 1, -1.97939e-05, -5.46588e-08)
-bones/58/rotation = Quaternion(-1.20905e-09, 0.707107, -0.707107, 2.41295e-09)
-bones/59/rotation = Quaternion(8.23181e-10, 1, 5.96046e-08, -8.23181e-10)
-bones/61/rotation = Quaternion(-1.3356e-12, -6.52502e-10, 1, 2.1827e-11)
-bones/62/rotation = Quaternion(-2.32831e-10, 1, 1.39698e-09, -1.09139e-11)
-bones/63/rotation = Quaternion(1.60006e-09, 0.707107, -0.707107, -3.75576e-10)
-bones/64/rotation = Quaternion(-2.63418e-09, 1, 0, 0)
+movement_animations = NodePath("Movement")
+walk_or_jog_animations = NodePath("Movement/FreeWalkOrJog")
+jump_animations = NodePath("JumpAnimations")
+attack_animations = NodePath("AttackAnimations")
+block_animations = NodePath("BlockAnimations")
+parry_animations = NodePath("ParryAnimations")
+hit_and_death_animations = NodePath("HitAndDeathAnimations")
+dizzy_victim_animations = NodePath("DizzyVictimAnimations")
+dizzy_finisher_animations = NodePath("DizzyFinisherAnimations")
 
 [node name="Alpha_Surface" parent="Character/Armature_004/GeneralSkeleton" index="1"]
 surface_material_override/0 = SubResource("ShaderMaterial_n3hp3")
 
 [node name="LockOnAttachment" parent="Character/Armature_004/GeneralSkeleton" index="2"]
-transform = Transform3D(1, 7.35419e-12, -2.66409e-12, -7.35419e-12, 1, -7.87391e-09, 2.66409e-12, 7.87391e-09, 1, -2.25913e-05, 1.34721, -0.042761)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25913e-05, 1.34721, -0.042761)
+
+[node name="Crosshair" type="Sprite3D" parent="Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint" index="0" node_paths=PackedStringArray("backstab_component", "dizzy_component")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+billboard = 1
+no_depth_test = true
+texture_filter = 1
+texture = ExtResource("6_rcj5r")
+script = ExtResource("7_yni7f")
+backstab_component = NodePath("../../../../../../Combat/BackstabComponent")
+dizzy_component = NodePath("../../../../../../Combat/DizzyComponent")
 
 [node name="HeadAttachment" parent="Character/Armature_004/GeneralSkeleton" index="3"]
-transform = Transform3D(1, 7.81293e-14, -2.66409e-12, -7.81293e-14, 1, -8.33958e-09, 2.66409e-12, 8.33958e-09, 1, -4.45549e-05, 1.60075, -0.00340771)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.45549e-05, 1.60075, -0.00340771)
 
 [node name="WeaponHand" parent="Character/Armature_004/GeneralSkeleton" index="4" instance=ExtResource("5_kxq7y")]
-transform = Transform3D(-1.68905e-06, 1, -8.87513e-05, -1.42234e-06, -8.88109e-05, -1, -1, -1.74866e-06, 1.48223e-06, 0.737769, 1.43566, -0.0617156)
+transform = Transform3D(0, 1, 0, 0, 0, -1, -1, 0, 0, 0.73777, 1.43572, -0.0617148)
 bone_name = "LeftHand"
 bone_idx = 11
 
@@ -677,25 +1195,107 @@ libraries = {
 [node name="AnimationTree" parent="Character" index="2"]
 active = false
 root_motion_track = NodePath("../Armature_004/GeneralSkeleton")
+tree_root = SubResource("AnimationNodeBlendTree_l6rbl")
+parameters/Attacking/blend_amount = 0
+parameters/Blocking/blend_amount = 0
+"parameters/Blocking Speed/scale" = 1.0
+"parameters/Blocking Trim/seek_request" = -1.0
+parameters/Death/blend_amount = 0
+"parameters/Death 1 Speed/scale" = 1.0
+"parameters/Death 1 Trim/seek_request" = -1.0
+"parameters/Death 2 Speed/scale" = 1.0
+"parameters/Death 2 Trim/seek_request" = -1.0
+"parameters/Death Which One/current_state" = "death_1"
+"parameters/Death Which One/transition_request" = ""
+"parameters/Death Which One/current_index" = 0
+parameters/Dizzy/blend_amount = 0
+"parameters/Dizzy Finisher/blend_amount" = 0
+"parameters/Dizzy Finisher From Damage Speed/scale" = 1.0
+"parameters/Dizzy Finisher From Damage Trim/seek_request" = -1.0
+"parameters/Dizzy Finisher From Parry Speed/scale" = 1.0
+"parameters/Dizzy Finisher From Parry Trim/seek_request" = -1.0
+"parameters/Dizzy Finisher Which One/current_state" = "from_parry"
+"parameters/Dizzy Finisher Which One/transition_request" = ""
+"parameters/Dizzy Finisher Which One/current_index" = 0
+"parameters/Dizzy From Damage/current_state" = ""
+"parameters/Dizzy From Damage/transition_request" = ""
+"parameters/Dizzy From Damage/current_index" = -1
+"parameters/Dizzy Kneeling Speed/scale" = 1.0
+"parameters/Dizzy Kneeling Trim/seek_request" = -1.0
+"parameters/Dizzy Which One/current_state" = "from_parry"
+"parameters/Dizzy Which One/transition_request" = ""
+"parameters/Dizzy Which One/current_index" = 0
+"parameters/Free Jog Speed/scale" = 1.0
+"parameters/Free Movement/blend_amount" = 0
+"parameters/Free Walk Or Jog/blend_amount" = 0
+"parameters/Free Walk Speed/scale" = 1.0
+"parameters/Jump 1/Jump Speed/scale" = 1.0
+"parameters/Jump 1/Jump Trim/seek_request" = -1.0
+"parameters/Jump 2/Jump Speed/scale" = 1.0
+"parameters/Jump 2/Jump Trim/seek_request" = -1.0
+"parameters/Jump Handler/blend_amount" = 0
+"parameters/Jump and Fall Blend/blend_amount" = 0
+"parameters/Kneel to Stand Speed/scale" = 1.0
+"parameters/Kneel to Stand Trim/seek_request" = -1.0
+"parameters/Kneeling Idle Speed/scale" = 1.0
+"parameters/Locked On Movement/current_state" = "locked_on"
+"parameters/Locked On Movement/transition_request" = ""
+"parameters/Locked On Movement/current_index" = 0
+"parameters/Locked On Walk/blend_amount" = 0
+"parameters/Locked On Walk Direction/blend_position" = Vector2(0, 0)
+"parameters/Locked On Walk Direction/4/TimeScale/scale" = 1.0
+"parameters/Locked On Walk Direction/5/TimeScale/scale" = 1.0
+"parameters/Locked On Walk Speed/scale" = 1.0
+"parameters/Magic Beam/Magic Beam Speed/scale" = 1.0
+"parameters/Magic Beam/Magic Beam Trim/seek_request" = -1.0
+"parameters/Magic Beam Copy/Magic Beam Speed/scale" = 1.0
+"parameters/Magic Beam Copy/Magic Beam Trim/seek_request" = -1.0
+"parameters/Magic Big Projectile/Magic Big Projectile Speed/scale" = 1.0
+"parameters/Magic Big Projectile/Magic Big Projectile Trim/seek_request" = -1.0
+"parameters/Magic Big Projectile Copy/Magic Big Projectile Speed/scale" = 1.0
+"parameters/Magic Big Projectile Copy/Magic Big Projectile Trim/seek_request" = -1.0
+"parameters/Magic Small Projectile/Magic Small Projectile Speed/scale" = 1.0
+"parameters/Magic Small Projectile/Magic Small Projectile Trim/seek_request" = -1.0
+"parameters/Magic Small Projectile Copy/Magic Small Projectile Speed/scale" = 1.0
+"parameters/Magic Small Projectile Copy/Magic Small Projectile Trim/seek_request" = -1.0
+parameters/Parry/blend_amount = 0
+"parameters/Parry Speed/scale" = 1.0
+"parameters/Parry Trim/seek_request" = -1.0
+parameters/Running/blend_amount = 0
+"parameters/Running Lock On Look Direction/blend_position" = Vector2(0, 0)
+"parameters/Running Locked On/current_state" = "locked_on"
+"parameters/Running Locked On/transition_request" = ""
+"parameters/Running Locked On/current_index" = 0
+parameters/Spell/current_state = "magic_small_projectile"
+parameters/Spell/transition_request = ""
+parameters/Spell/current_index = 0
+parameters/Spells/blend_amount = 0
+"parameters/Vertical Movement/blend_amount" = 0
 
-[node name="Movement" type="Node" parent="Character" node_paths=PackedStringArray("anim_tree")]
+[node name="Movement" type="Node" parent="Character" node_paths=PackedStringArray("audio_footsteps", "anim_tree")]
 script = ExtResource("6_0n86r")
+audio_footsteps = NodePath("../AudioManager/Footsteps")
 anim_tree = NodePath("../AnimationTree")
 
-[node name="LockedOnMovement" type="Node" parent="Character/Movement"]
+[node name="LockedOnMovement" type="Node" parent="Character/Movement" node_paths=PackedStringArray("anim_tree")]
 script = ExtResource("7_nprou")
+anim_tree = NodePath("../../AnimationTree")
 
-[node name="LockedOnWalk" type="Node" parent="Character/Movement"]
+[node name="LockedOnWalk" type="Node" parent="Character/Movement" node_paths=PackedStringArray("anim_tree")]
 script = ExtResource("8_3j7hy")
+anim_tree = NodePath("../../AnimationTree")
 
-[node name="FreeMovement" type="Node" parent="Character/Movement"]
+[node name="FreeMovement" type="Node" parent="Character/Movement" node_paths=PackedStringArray("anim_tree")]
 script = ExtResource("9_35f7o")
+anim_tree = NodePath("../../AnimationTree")
 
-[node name="FreeWalkOrJog" type="Node" parent="Character/Movement"]
+[node name="FreeWalkOrJog" type="Node" parent="Character/Movement" node_paths=PackedStringArray("anim_tree")]
 script = ExtResource("10_bttfv")
+anim_tree = NodePath("../../AnimationTree")
 
-[node name="Running" type="Node" parent="Character/Movement"]
+[node name="Running" type="Node" parent="Character/Movement" node_paths=PackedStringArray("anim_tree")]
 script = ExtResource("11_cuqgl")
+anim_tree = NodePath("../../AnimationTree")
 
 [node name="JumpAnimations" type="Node" parent="Character" node_paths=PackedStringArray("anim_tree")]
 script = ExtResource("12_3qabv")
@@ -721,9 +1321,38 @@ anim_tree = NodePath("../../AnimationTree")
 script = ExtResource("17_2n6i7")
 anim_tree = NodePath("../../AnimationTree")
 
+[node name="SpellAnimations" type="Node" parent="Character" node_paths=PackedStringArray("anim_tree")]
+script = ExtResource("22_3ifjf")
+anim_tree = NodePath("../AnimationTree")
+
+[node name="SmallProjectile" type="Node" parent="Character/SpellAnimations" node_paths=PackedStringArray("anim_tree")]
+script = ExtResource("23_x11yt")
+spell_name = "Magic Small Projectile"
+has_copy = true
+secondary_movement = false
+anim_tree = NodePath("../../AnimationTree")
+
+[node name="BigProjectile" type="Node" parent="Character/SpellAnimations" node_paths=PackedStringArray("anim_tree")]
+script = ExtResource("23_x11yt")
+spell_name = "Magic Big Projectile"
+has_copy = true
+secondary_movement = false
+anim_tree = NodePath("../../AnimationTree")
+
+[node name="Beam" type="Node" parent="Character/SpellAnimations" node_paths=PackedStringArray("anim_tree")]
+script = ExtResource("23_x11yt")
+spell_name = "Magic Beam"
+has_copy = true
+secondary_movement = false
+anim_tree = NodePath("../../AnimationTree")
+
 [node name="BlockAnimations" type="Node" parent="Character" node_paths=PackedStringArray("walk_or_jog_animations", "anim_tree")]
 script = ExtResource("18_cfmo5")
 walk_or_jog_animations = NodePath("../Movement/FreeWalkOrJog")
+anim_tree = NodePath("../AnimationTree")
+
+[node name="ParryAnimations" type="Node" parent="Character" node_paths=PackedStringArray("anim_tree")]
+script = ExtResource("25_rpvu6")
 anim_tree = NodePath("../AnimationTree")
 
 [node name="HitAndDeathAnimations" type="Node" parent="Character" node_paths=PackedStringArray("anim_tree")]
@@ -737,8 +1366,9 @@ anim_tree = NodePath("../AnimationTree")
 script = ExtResource("21_vn8wt")
 anim_tree = NodePath("../AnimationTree")
 
-[node name="DizzyFinisherAnimations" type="Node" parent="Character"]
+[node name="DizzyFinisherAnimations" type="Node" parent="Character" node_paths=PackedStringArray("anim_tree")]
 script = ExtResource("22_2fs1p")
+anim_tree = NodePath("../AnimationTree")
 
 [node name="AudioManager" type="Node3D" parent="Character"]
 
@@ -892,6 +1522,10 @@ hud_info = NodePath("../../Interface/HUDInfoPos")
 [node name="AttackComponent" parent="Combat" node_paths=PackedStringArray("attack_animations") instance=ExtResource("51_rykib")]
 attack_animations = NodePath("../../Character/AttackAnimations")
 
+[node name="SpellComponent" type="Node" parent="Combat" node_paths=PackedStringArray("spell_animations")]
+script = ExtResource("50_blw3s")
+spell_animations = NodePath("../../Character/SpellAnimations")
+
 [node name="BlockComponent" parent="Combat" node_paths=PackedStringArray("movement_component", "character") instance=ExtResource("52_7xv8k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
 movement_component = NodePath("../../Movement/MovementComponent")
@@ -919,7 +1553,7 @@ meshes = [NodePath("../Character/Armature_004/GeneralSkeleton/Alpha_Joints"), No
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("56_m1hw4")
-blackboard = NodePath("@Node@17591")
+blackboard = NodePath("../Blackboard")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]
@@ -1021,238 +1655,47 @@ script = ExtResource("58_m5ref")
 
 [node name="SetInterruptTimersFalse" parent="BeehaveTree/SelectorComposite/Aggro" instance=ExtResource("64_u768y")]
 
-[node name="AggroTarget" type="Node" parent="BeehaveTree/SelectorComposite/Aggro"]
-script = ExtResource("57_1h4hq")
+[node name="SetRotateTowardsTargetTrue" parent="BeehaveTree/SelectorComposite/Aggro" instance=ExtResource("66_ubwho")]
 
-[node name="AlwaysFailDecorator" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget"]
-script = ExtResource("75_bv67f")
+[node name="SetLockedOnTrue" parent="BeehaveTree/SelectorComposite/Aggro" instance=ExtResource("67_xbyas")]
 
-[node name="SequenceComposite" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/AlwaysFailDecorator"]
+[node name="SetCanCastSpellTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro"]
+script = ExtResource("81_3i1v2")
+key = "\"can_cast_spell\""
+value = "true"
+
+[node name="WaitBlock" parent="BeehaveTree/SelectorComposite/Aggro" instance=ExtResource("68_ssdmi")]
+wait_id = 35573601
+wait_time = 3.0
+
+[node name="CastSpell" type="Node" parent="BeehaveTree/SelectorComposite/Aggro"]
 script = ExtResource("58_m5ref")
 
-[node name="SetRotateTowardsTargetTrue" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/AlwaysFailDecorator/SequenceComposite" instance=ExtResource("66_ubwho")]
-
-[node name="SetLockedOnTrue" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/AlwaysFailDecorator/SequenceComposite" instance=ExtResource("67_xbyas")]
-
-[node name="Attack" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget"]
-script = ExtResource("58_m5ref")
-
-[node name="IsCanAttackTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack"]
+[node name="IsCanCastSpellTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/CastSpell"]
 script = ExtResource("63_1wis6")
-left_operand = "get_value(\"can_attack\")"
+left_operand = "get_value(\"can_cast_spell\")"
 right_operand = "true"
 
-[node name="PlayerDistLessThan" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack"]
+[node name="PlayerDistLessThan" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/CastSpell"]
 script = ExtResource("63_1wis6")
 left_operand = "get_value(\"player_dist\")"
 operator = 3
-right_operand = "2.5"
+right_operand = "10"
 
-[node name="IsPerceivesPlayerTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack"]
+[node name="IsPerceivesPlayerTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/CastSpell"]
 script = ExtResource("63_1wis6")
 left_operand = "get_value(\"perceives_player\")"
 right_operand = "true"
 
-[node name="PerformAttack" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack"]
-script = ExtResource("76_4inph")
-
-[node name="SingleAttack" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack"]
-script = ExtResource("58_m5ref")
-
-[node name="PrintSingleAttack" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/SingleAttack"]
-script = ExtResource("65_ya4jq")
-expression_string = "print(\"SINGLE ATTACK\")"
-
-[node name="SingleRandomAttack" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/SingleAttack" instance=ExtResource("77_wel6s")]
-
-[node name="DoubleAttack" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack"]
-script = ExtResource("58_m5ref")
-
-[node name="PrintDoubleAttack" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/DoubleAttack"]
-script = ExtResource("65_ya4jq")
-expression_string = "print(\"DOUBLE ATTACK\")"
-
-[node name="SingleRandomAttack" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/DoubleAttack" instance=ExtResource("77_wel6s")]
-
-[node name="WaitBlock" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/DoubleAttack" instance=ExtResource("68_ssdmi")]
-wait_id = 10658642
-wait_time = 0.8
-
-[node name="SetCanAttackTrue" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/DoubleAttack" instance=ExtResource("62_rqtig")]
-
-[node name="SingleRandomAttack2" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/DoubleAttack" instance=ExtResource("77_wel6s")]
-
-[node name="TripleAttack" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack"]
-script = ExtResource("58_m5ref")
-
-[node name="PrintTripleAttack" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack"]
-script = ExtResource("65_ya4jq")
-expression_string = "print(\"TRIPLE ATTACK\")"
-
-[node name="SingleRandomAttack" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack" instance=ExtResource("77_wel6s")]
-
-[node name="WaitBlock" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack" instance=ExtResource("68_ssdmi")]
-wait_id = 35297727
-wait_time = 0.8
-
-[node name="SetCanAttackTrue" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack" instance=ExtResource("62_rqtig")]
-
-[node name="SingleRandomAttack2" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack" instance=ExtResource("77_wel6s")]
-
-[node name="WaitBlock2" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack" instance=ExtResource("68_ssdmi")]
-wait_id = 94769640
-wait_time = 0.8
-
-[node name="SetCanAttackTrue2" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack" instance=ExtResource("62_rqtig")]
-
-[node name="SingleRandomAttack3" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack" instance=ExtResource("77_wel6s")]
-
-[node name="StayOrChase" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget"]
-script = ExtResource("57_1h4hq")
-
-[node name="Unreachable" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase"]
-script = ExtResource("58_m5ref")
-
-[node name="IsTargetReachableFalse" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Unreachable"]
-script = ExtResource("63_1wis6")
-left_operand = "get_value(\"target_reachable\")"
-right_operand = "false"
-
-[node name="SequenceComposite" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Unreachable"]
-script = ExtResource("58_m5ref")
-
-[node name="WalkSpeed" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Unreachable/SequenceComposite" instance=ExtResource("78_qv1bi")]
-
-[node name="Strafe" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Unreachable/SequenceComposite"]
-script = ExtResource("76_4inph")
-
-[node name="InputLeft" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Unreachable/SequenceComposite/Strafe" instance=ExtResource("79_1ctbg")]
-
-[node name="InputRight" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Unreachable/SequenceComposite/Strafe" instance=ExtResource("80_8cwkg")]
-
-[node name="WaitBlock" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Unreachable/SequenceComposite" instance=ExtResource("68_ssdmi")]
-wait_id = 65281962
-wait_time = 2.0
-
-[node name="SquareUpIfClose" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase"]
-script = ExtResource("58_m5ref")
-
-[node name="PlayerDistLessThan" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/SquareUpIfClose"]
-script = ExtResource("63_1wis6")
-left_operand = "get_value(\"player_dist\")"
-operator = 3
-right_operand = "2.5"
-
-[node name="SetAgentTargetPositionNull" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/SquareUpIfClose"]
+[node name="SetSpellIndex0" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/CastSpell"]
 script = ExtResource("81_3i1v2")
-key = "\"agent_target_position\""
-value = "null"
+key = "\"spell_index\""
+value = "0"
 
-[node name="SetCanInvestigateLastAgentPositionTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/SquareUpIfClose"]
+[node name="SetCastSpellTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/CastSpell"]
 script = ExtResource("81_3i1v2")
-key = "\"can_set_investigate_last_agent_position\""
+key = "\"cast_spell\""
 value = "true"
-
-[node name="ResetWaitBeforeChase" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/SquareUpIfClose"]
-script = ExtResource("82_hotxy")
-wait_id = 23169934
-
-[node name="InputNone" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/SquareUpIfClose" instance=ExtResource("60_aapd6")]
-
-[node name="Wait" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/SquareUpIfClose"]
-script = ExtResource("83_wwupn")
-time = 1.0
-wait_id = 61967809
-
-[node name="SquareUp" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/SquareUpIfClose"]
-script = ExtResource("58_m5ref")
-
-[node name="WalkSpeed" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/SquareUpIfClose/SquareUp" instance=ExtResource("78_qv1bi")]
-
-[node name="Strafe" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/SquareUpIfClose/SquareUp"]
-script = ExtResource("76_4inph")
-
-[node name="InputLeft" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/SquareUpIfClose/SquareUp/Strafe" instance=ExtResource("79_1ctbg")]
-
-[node name="InputRight" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/SquareUpIfClose/SquareUp/Strafe" instance=ExtResource("80_8cwkg")]
-
-[node name="WaitBlock" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/SquareUpIfClose/SquareUp" instance=ExtResource("68_ssdmi")]
-wait_id = 23245375
-wait_time = 2.0
-
-[node name="SetCanAttackTrue" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/SquareUpIfClose/SquareUp" instance=ExtResource("62_rqtig")]
-
-[node name="Chase" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase"]
-script = ExtResource("58_m5ref")
-
-[node name="IsPerceivesPlayerTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Chase"]
-script = ExtResource("63_1wis6")
-left_operand = "get_value(\"perceives_player\")"
-right_operand = "true"
-
-[node name="IsTargetReachableTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Chase"]
-script = ExtResource("63_1wis6")
-left_operand = "get_value(\"target_reachable\")"
-right_operand = "true"
-
-[node name="SetCanInvestigateLastAgentPositionTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Chase"]
-script = ExtResource("81_3i1v2")
-key = "\"can_set_investigate_last_agent_position\""
-value = "true"
-
-[node name="ResetWait" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Chase"]
-script = ExtResource("82_hotxy")
-wait_id = 61967809
-
-[node name="InputNone" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Chase" instance=ExtResource("60_aapd6")]
-
-[node name="SetRunSpeed" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Chase" instance=ExtResource("84_o3il2")]
-
-[node name="WaitBeforeChase" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Chase"]
-script = ExtResource("83_wwupn")
-time = 2.0
-wait_id = 23169934
-
-[node name="InputForwards" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Chase" instance=ExtResource("85_afof6")]
-
-[node name="Investigate" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase"]
-script = ExtResource("57_1h4hq")
-
-[node name="LastAgentPosition" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Investigate"]
-script = ExtResource("58_m5ref")
-
-[node name="IsCanSetInvestigateLastAgentPositionTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Investigate/LastAgentPosition"]
-script = ExtResource("63_1wis6")
-left_operand = "get_value(\"can_set_investigate_last_agent_position\")"
-right_operand = "true"
-
-[node name="SetInvestigateLastAgentPositionFalse" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Investigate/LastAgentPosition"]
-script = ExtResource("81_3i1v2")
-key = "\"investigate_last_agent_position\""
-value = "true"
-
-[node name="InvestigateLastPosition" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Investigate" instance=ExtResource("73_pra2m")]
-
-[node name="WaitBlock" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Investigate/InvestigateLastPosition/StayIfClose/LookAround/CheckOutArea" index="2"]
-wait_id = 46595952
-
-[node name="WaitBlock2" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Investigate/InvestigateLastPosition/StayIfClose/LookAround/CheckOutArea" index="4"]
-wait_id = 69733578
-
-[node name="WaitBlock3" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Investigate/InvestigateLastPosition/StayIfClose/LookAround/CheckOutArea" index="6"]
-wait_id = 51816124
-
-[node name="WaitBlock4" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Investigate/InvestigateLastPosition/StayIfClose/LookAround/CheckOutArea" index="8"]
-wait_id = 68693030
-
-[node name="WaitBlock5" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Investigate/InvestigateLastPosition/StayIfClose/LookAround/CheckOutArea" index="10"]
-wait_id = 31300344
-
-[node name="WaitBlock6" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Investigate/InvestigateLastPosition/StayIfClose/LookAround/CheckOutArea" index="12"]
-wait_id = 48134024
-
-[node name="Wait" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Investigate/InvestigateLastPosition/MoveToTarget" index="1"]
-wait_id = 82140480
 
 [node name="Idle" type="Node" parent="BeehaveTree/SelectorComposite"]
 script = ExtResource("58_m5ref")
@@ -1265,11 +1708,6 @@ script = ExtResource("58_m5ref")
 
 [node name="SetLookedAroundFalse" parent="BeehaveTree/SelectorComposite/Idle" instance=ExtResource("87_8kva6")]
 
-[node name="LeafExecuteExpression" type="Node" parent="BeehaveTree/SelectorComposite/Idle"]
-script = ExtResource("65_ya4jq")
-enabled = false
-expression_string = "prints(get_value(\"debug\"), \"idling\")"
-
 [node name="Blackboard" type="Node" parent="."]
 script = ExtResource("88_8mmq3")
 
@@ -1278,4 +1716,3 @@ script = ExtResource("88_8mmq3")
 [editable path="Character"]
 [editable path="Character/Armature_004/GeneralSkeleton/WeaponHand"]
 [editable path="BeehaveTree/SelectorComposite/Suspicious/CheckSuspicion"]
-[editable path="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Investigate/InvestigateLastPosition"]

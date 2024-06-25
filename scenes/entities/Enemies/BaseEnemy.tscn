@@ -186,12 +186,6 @@ agent = NodePath("NavigationAgent3D")
 [node name="Character" parent="." instance=ExtResource("3_686pg")]
 script = ExtResource("4_v8qrw")
 
-[node name="LockOnAttachment" parent="Character/Armature_004/GeneralSkeleton" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25913e-05, 1.34721, -0.042761)
-
-[node name="HeadAttachment" parent="Character/Armature_004/GeneralSkeleton" index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.45549e-05, 1.60075, -0.00340771)
-
 [node name="WeaponHand" parent="Character/Armature_004/GeneralSkeleton" index="4" instance=ExtResource("6_ihoas")]
 transform = Transform3D(0, 1, 0, 0, 0, -1, -1, 0, 0, 0.73777, 1.43572, -0.0617148)
 bone_name = "LeftHand"
@@ -462,7 +456,7 @@ meshes = [NodePath("../Character/Armature_004/GeneralSkeleton/Alpha_Joints"), No
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("24_3s113")
-blackboard = NodePath("@Node@17589")
+blackboard = NodePath("@Node@25390")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]

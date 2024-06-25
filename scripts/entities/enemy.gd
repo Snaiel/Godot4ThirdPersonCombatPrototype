@@ -34,6 +34,7 @@ signal death(enemy)
 @export var dizzy_component: DizzyComponent
 @export var notice_component: NoticeComponent
 @export var attack_component: AttackComponent
+@export var spell_component: SpellComponent
 @export var block_component: BlockComponent
 @export var parry_component: ParryComponent
 @export var wellbeing_component: WellbeingComponent
@@ -145,14 +146,17 @@ func _physics_process(_delta: float) -> void:
 	
 	
 	## Debug Prints
-#	if debug:
-#		prints(
-#			active_motion_component,
-#		)
+	#if debug:
+		#prints(
+			#blackboard.get_value("notice_state"),
+		#)
 	
 	
 	## Component Management
 	attack_component.active_motion_component = active_motion_component
+	
+	if spell_component:
+		spell_component.active_motion_component = active_motion_component
 	
 	rotation_component.rotate_towards_target = blackboard.get_value(
 		"rotate_towards_target",
@@ -181,6 +185,16 @@ func _physics_process(_delta: float) -> void:
 		attack_component.attack_level = blackboard.get_value("attack_level", 0)
 		attack_component.attack()
 	blackboard.set_value("attacking", attack_component.attacking)
+	
+	
+	## Spellcasting
+	if spell_component:
+		if blackboard.get_value("can_cast_spell", false) and blackboard.get_value("cast_spell", false):
+			blackboard.set_value("can_cast_spell", false)
+			blackboard.set_value("cast_spell", false)
+			spell_component.spell_index = blackboard.get_value("spell_index", 0)
+			spell_component.cast_spell()
+		blackboard.set_value("executing_spelll", spell_component.executing)
 	
 	
 	## Character Animations
