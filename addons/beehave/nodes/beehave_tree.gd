@@ -104,8 +104,11 @@ var _can_send_message: bool = false
 
 
 func _ready() -> void:
-	get_tree().node_added.connect(_on_scene_tree_node_added_removed.bind(true))
-	get_tree().node_removed.connect(_on_scene_tree_node_added_removed.bind(false))
+	if not get_tree().is_connected("node_added", _on_scene_tree_node_added_removed.bind(true)):
+		get_tree().node_added.connect(_on_scene_tree_node_added_removed.bind(true))
+	if not get_tree().is_connected("node_removed", _on_scene_tree_node_added_removed.bind(false)):
+		get_tree().node_removed.connect(_on_scene_tree_node_added_removed.bind(false))
+
 
 	if not process_thread:
 		process_thread = ProcessThread.PHYSICS
@@ -156,7 +159,9 @@ func _on_scene_tree_node_added_removed(node: Node, is_added: bool) -> void:
 			)
 		else:
 			sgnal.connect(
-				func() -> void: BeehaveDebuggerMessages.unregister_tree(get_instance_id())
+				func() -> void:
+					BeehaveDebuggerMessages.unregister_tree(get_instance_id())
+					request_ready()
 			)
 
 
