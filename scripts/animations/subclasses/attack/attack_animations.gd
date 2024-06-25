@@ -10,8 +10,7 @@ signal can_play_animation
 signal attacking_finished
 
 
-@export var attacks: Array[AttackStrategy]
-
+var attacks: Array[AttackStrategy]
 
 # this means if an attacking animation is currently occurring
 var attacking: bool = false
@@ -42,6 +41,9 @@ var _transition_legs: int = 0
 
 func _ready() -> void:
 	anim_tree["parameters/Attacking/blend_amount"] = 0.0
+	
+	for child in get_children():
+		attacks.append(child)
 
 
 func _physics_process(_delta: float) -> void:

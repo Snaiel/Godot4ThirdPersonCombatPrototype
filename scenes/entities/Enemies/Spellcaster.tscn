@@ -16,11 +16,11 @@
 [ext_resource type="Script" path="res://scripts/animations/subclasses/movement/walk_or_jog_animations.gd" id="10_bttfv"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/movement/running_animations.gd" id="11_cuqgl"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/jump_animations.gd" id="12_3qabv"]
-[ext_resource type="Script" path="res://scripts/animations/subclasses/attack_animations.gd" id="13_n7hi2"]
-[ext_resource type="Script" path="res://scripts/attacks/inward_slash.gd" id="14_4l2dv"]
-[ext_resource type="Script" path="res://scripts/attacks/outward_slash.gd" id="15_v7gom"]
-[ext_resource type="Script" path="res://scripts/attacks/thrust.gd" id="16_gxm8x"]
-[ext_resource type="Script" path="res://scripts/attacks/quick_slash.gd" id="17_2n6i7"]
+[ext_resource type="Script" path="res://scripts/animations/subclasses/attack/attack_animations.gd" id="13_n7hi2"]
+[ext_resource type="Script" path="res://scripts/animations/subclasses/attack/strategies/inward_slash.gd" id="14_4l2dv"]
+[ext_resource type="Script" path="res://scripts/animations/subclasses/attack/strategies/outward_slash.gd" id="15_v7gom"]
+[ext_resource type="Script" path="res://scripts/animations/subclasses/attack/strategies/thrust.gd" id="16_gxm8x"]
+[ext_resource type="Script" path="res://scripts/animations/subclasses/attack/strategies/quick_slash.gd" id="17_2n6i7"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/block_animations.gd" id="18_cfmo5"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/hit_and_death_animations.gd" id="20_2p2rd"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/dizzy_victim_animations.gd" id="21_vn8wt"]
@@ -678,21 +678,20 @@ libraries = {
 active = false
 root_motion_track = NodePath("../Armature_004/GeneralSkeleton")
 
-[node name="Movement" type="Node" parent="Character" node_paths=PackedStringArray("movement_animations", "anim_tree")]
+[node name="Movement" type="Node" parent="Character" node_paths=PackedStringArray("anim_tree")]
 script = ExtResource("6_0n86r")
-movement_animations = [NodePath("LockedOnMovement"), NodePath("LockedOnMovement/LockedOnWalk"), NodePath("LockedOnMovement/FreeMovement"), NodePath("LockedOnMovement/FreeMovement/FreeWalkOrJog"), NodePath("Running")]
 anim_tree = NodePath("../AnimationTree")
 
 [node name="LockedOnMovement" type="Node" parent="Character/Movement"]
 script = ExtResource("7_nprou")
 
-[node name="LockedOnWalk" type="Node" parent="Character/Movement/LockedOnMovement"]
+[node name="LockedOnWalk" type="Node" parent="Character/Movement"]
 script = ExtResource("8_3j7hy")
 
-[node name="FreeMovement" type="Node" parent="Character/Movement/LockedOnMovement"]
+[node name="FreeMovement" type="Node" parent="Character/Movement"]
 script = ExtResource("9_35f7o")
 
-[node name="FreeWalkOrJog" type="Node" parent="Character/Movement/LockedOnMovement/FreeMovement"]
+[node name="FreeWalkOrJog" type="Node" parent="Character/Movement"]
 script = ExtResource("10_bttfv")
 
 [node name="Running" type="Node" parent="Character/Movement"]
@@ -702,9 +701,8 @@ script = ExtResource("11_cuqgl")
 script = ExtResource("12_3qabv")
 anim_tree = NodePath("../AnimationTree")
 
-[node name="AttackAnimations" type="Node" parent="Character" node_paths=PackedStringArray("attacks", "anim_tree")]
+[node name="AttackAnimations" type="Node" parent="Character" node_paths=PackedStringArray("anim_tree")]
 script = ExtResource("13_n7hi2")
-attacks = [NodePath("InwardAttack"), NodePath("OutwardAttack"), NodePath("ThrustAttack"), NodePath("QuickSlashAttack")]
 anim_tree = NodePath("../AnimationTree")
 
 [node name="InwardAttack" type="Node" parent="Character/AttackAnimations" node_paths=PackedStringArray("anim_tree")]
@@ -725,7 +723,7 @@ anim_tree = NodePath("../../AnimationTree")
 
 [node name="BlockAnimations" type="Node" parent="Character" node_paths=PackedStringArray("walk_or_jog_animations", "anim_tree")]
 script = ExtResource("18_cfmo5")
-walk_or_jog_animations = NodePath("../Movement/LockedOnMovement/FreeMovement/FreeWalkOrJog")
+walk_or_jog_animations = NodePath("../Movement/FreeWalkOrJog")
 anim_tree = NodePath("../AnimationTree")
 
 [node name="HitAndDeathAnimations" type="Node" parent="Character" node_paths=PackedStringArray("anim_tree")]

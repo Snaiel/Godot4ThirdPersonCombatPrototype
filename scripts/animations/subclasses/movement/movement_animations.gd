@@ -2,10 +2,16 @@ class_name MovementAnimations
 extends BaseAnimations
 
 
-@export var movement_animations: Array[BaseMovementAnimations]
 @export var audio_footsteps: AudioFootsteps
 
+var movement_animations: Array[BaseMovementAnimations]
+
 var _input_dir: Vector2 = Vector2.ZERO
+
+
+func _ready():
+	for child in get_children():
+		movement_animations.append(child)
 
 
 func move(dir: Vector3, locked_on: bool, running: bool) -> void:
