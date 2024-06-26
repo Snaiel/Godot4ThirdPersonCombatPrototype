@@ -125,16 +125,16 @@ func _ready() -> void:
 
 
 func _draw_port(slot_index: int, port_position: Vector2i, left: bool, color: Color) -> void:
-	#prints(slot_index, size, slot_index, port_position, left, color)
 	if horizontal:
-		draw_circle(Vector2(0, size.y / 2), 4, color)
-		draw_circle(Vector2(size.x, size.y / 2), 4, color)
+		if is_slot_enabled_left(1):
+			draw_texture(PORT_LEFT_ICON, Vector2(0, size.y / 2) + Vector2(-4, -5), color)
+		if is_slot_enabled_right(1):
+			draw_texture(PORT_RIGHT_ICON, Vector2(size.x, size.y / 2) + Vector2(-5, -4.5), color)
 	else:
-		if slot_index == 0:
-			#draw_circle(port_position, 4, color)
-			draw_circle(Vector2(size.x / 2, 0), 4, color)
+		if slot_index == 0 and is_slot_enabled_left(0):
+			draw_texture(PORT_TOP_ICON, Vector2(size.x / 2, 0) + Vector2(-4.5, -7), color)
 		elif slot_index == 1:
-			draw_circle(Vector2(size.x / 2, size.y), 4, color)
+			draw_texture(PORT_BOTTOM_ICON, Vector2(size.x / 2, size.y) + Vector2(-4.5, -5), color)
 
 
 func get_vertical_input_position() -> Vector2:
