@@ -212,10 +212,18 @@ func _get_connection_line(from_position: Vector2, to_position: Vector2) -> Packe
 	
 	for child in _get_child_nodes():
 		for port in child.get_input_port_count():
-			if (child.position_offset + child.get_input_port_position(port)).is_equal_approx(to_position):
+			if not (child.position_offset + child.get_input_port_position(port)).is_equal_approx(to_position):
+				continue
+			if horizontal_layout:
+				to_position = child.get_horizontal_input_position()
+			else:
 				to_position = child.get_vertical_input_position()
 		for port in child.get_output_port_count():
-			if (child.position_offset + child.get_output_port_position(port)).is_equal_approx(from_position):
+			if not (child.position_offset + child.get_output_port_position(port)).is_equal_approx(from_position):
+				continue
+			if horizontal_layout:
+				from_position = child.get_horizontal_output_position()
+			else:
 				from_position = child.get_vertical_output_position()
 	
 	points.push_back(from_position)
