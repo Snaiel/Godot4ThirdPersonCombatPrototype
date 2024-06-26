@@ -7,9 +7,9 @@ const HORIZONTAL_LAYOUT_ICON := preload("icons/horizontal_layout.svg")
 const VERTICAL_LAYOUT_ICON := preload("icons/vertical_layout.svg")
 
 const PROGRESS_SHIFT: int = 50
-const INACTIVE_COLOR: Color = Color("#898989aa")
-const ACTIVE_COLOR: Color = Color("#ffcc00c8")
-const SUCCESS_COLOR: Color = Color("#009944c8")
+const INACTIVE_COLOR: Color = Color("#898989")
+const ACTIVE_COLOR: Color = Color("#c29c06")
+const SUCCESS_COLOR: Color = Color("#07783a")
 
 
 var updating_graph: bool = false
@@ -209,10 +209,15 @@ func _get_child_nodes() -> Array[Node]:
 
 func _get_connection_line(from_position: Vector2, to_position: Vector2) -> PackedVector2Array:
 	var points: PackedVector2Array
-
-	from_position = from_position.round()
-	to_position = to_position.round()
-
+	
+	for child in _get_child_nodes():
+		for port in child.get_input_port_count():
+			if (child.position_offset + child.get_input_port_position(port)).is_equal_approx(to_position):
+				to_position = child.get_vertical_input_position()
+		for port in child.get_output_port_count():
+			if (child.position_offset + child.get_output_port_position(port)).is_equal_approx(from_position):
+				from_position = child.get_vertical_output_position()
+	
 	points.push_back(from_position)
 
 	var mid_position := ((to_position + from_position) / 2).round()

@@ -55,14 +55,15 @@ func _init(frames:RefCounted, horizontal: bool = false) -> void:
 func _ready() -> void:
 	custom_minimum_size = Vector2(50, 50) * BeehaveUtils.get_editor_scale()
 	draggable = false
-
+	
 	#add_theme_stylebox_override("frame", frames.empty if frames != null else null)
 	#add_theme_stylebox_override("selected_frame", frames.empty if frames != null else null)
 	add_theme_color_override("close_color", Color.TRANSPARENT)
 	add_theme_icon_override("close", ImageTexture.new())
 
 	# For top port
-	add_child(Control.new())
+	var top_port: Control = Control.new()
+	add_child(top_port)
 
 	panel = PanelContainer.new()
 	panel.mouse_filter = Control.MOUSE_FILTER_PASS
@@ -123,6 +124,35 @@ func _ready() -> void:
 	_on_size_changed.call_deferred()
 
 
+func _draw_port(slot_index: int, port_position: Vector2i, left: bool, color: Color) -> void:
+	#prints(slot_index, size, slot_index, port_position, left, color)
+	if horizontal:
+		draw_circle(Vector2(0, size.y / 2), 4, color)
+		draw_circle(Vector2(size.x, size.y / 2), 4, color)
+	else:
+		if slot_index == 0:
+			#draw_circle(port_position, 4, color)
+			draw_circle(Vector2(size.x / 2, 0), 4, color)
+		elif slot_index == 1:
+			draw_circle(Vector2(size.x / 2, size.y), 4, color)
+
+
+func get_vertical_input_position() -> Vector2:
+	return position_offset + Vector2(size.x/2, 0)
+
+
+func get_vertical_output_position() -> Vector2:
+	return position_offset + Vector2(size.x / 2, size.y)
+
+
+func get_horizontal_input_position() -> Vector2:
+	return position_offset + Vector2(0, size.y / 2)
+
+
+func get_horizontal_output_position() -> Vector2:
+	return position_offset + Vector2(size.x, size.y / 2)
+
+
 func set_status(status: int) -> void:
 	match status:
 		0: _set_stylebox_overrides(frames.panel_success, frames.titlebar_success)
@@ -131,17 +161,12 @@ func set_status(status: int) -> void:
 		_: _set_stylebox_overrides(frames.panel_normal, frames.titlebar_normal)
 
 
-func _set_stylebox_overrides(panel_stylebox: StyleBox, titlebar_stylebox: StyleBox) -> void:
-	add_theme_stylebox_override("panel", panel_stylebox)
-	add_theme_stylebox_override("titlebar", titlebar_stylebox)
-
-
 func set_slots(left_enabled: bool, right_enabled: bool) -> void:
 	if horizontal:
-		set_slot(1, left_enabled, 0, Color.WHITE, right_enabled, 0, Color.WHITE, PORT_LEFT_ICON, PORT_RIGHT_ICON)
+		set_slot(1, left_enabled, -1, Color.WHITE, right_enabled, -1, Color.WHITE, PORT_LEFT_ICON, PORT_RIGHT_ICON)
 	else:
-		set_slot(0, left_enabled, 0, Color.WHITE, false, -2, Color.TRANSPARENT, PORT_TOP_ICON, null)
-		set_slot(2, false, -1, Color.TRANSPARENT, right_enabled, 0, Color.WHITE, null, PORT_BOTTOM_ICON)
+		set_slot(0, left_enabled, -1, Color.WHITE, false, -1, Color.TRANSPARENT, PORT_TOP_ICON, null)
+		set_slot(2, false, -1, Color.TRANSPARENT, right_enabled, -1, Color.WHITE, null, PORT_BOTTOM_ICON)
 
 
 func set_color(color: Color) -> void:
@@ -157,5 +182,10 @@ func set_output_color(color: Color) -> void:
 	set_slot_color_right(1 if horizontal else 2, color)
 
 
+func _set_stylebox_overrides(panel_stylebox: StyleBox, titlebar_stylebox: StyleBox) -> void:
+	add_theme_stylebox_override("panel", panel_stylebox)
+	add_theme_stylebox_override("titlebar", titlebar_stylebox)
+
+
 func _on_size_changed():
-	add_theme_constant_override("port_offset", 12 * BeehaveUtils.get_editor_scale() if horizontal else round(size.x / 2.0))
+	add_theme_constant_override("port_offset", 12 * BeehaveUtils.get_editor_scale() if horizontal else round(size.x / 1.0))
