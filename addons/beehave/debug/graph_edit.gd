@@ -208,23 +208,20 @@ func _get_child_nodes() -> Array[Node]:
 
 
 func _get_connection_line(from_position: Vector2, to_position: Vector2) -> PackedVector2Array:
-	var points: PackedVector2Array
-	
 	for child in _get_child_nodes():
 		for port in child.get_input_port_count():
 			if not (child.position_offset + child.get_input_port_position(port)).is_equal_approx(to_position):
 				continue
-			if horizontal_layout:
-				to_position = child.get_horizontal_input_position()
-			else:
-				to_position = child.get_vertical_input_position()
+			to_position = child.position_offset + child.get_custom_input_port_position(horizontal_layout)
 		for port in child.get_output_port_count():
 			if not (child.position_offset + child.get_output_port_position(port)).is_equal_approx(from_position):
 				continue
-			if horizontal_layout:
-				from_position = child.get_horizontal_output_position()
-			else:
-				from_position = child.get_vertical_output_position()
+			from_position = child.position_offset + child.get_custom_output_port_position(horizontal_layout)
+	return _get_elbow_connection_line(from_position, to_position)
+
+
+func _get_elbow_connection_line(from_position: Vector2, to_position: Vector2) -> PackedVector2Array:
+	var points: PackedVector2Array
 	
 	points.push_back(from_position)
 
@@ -237,7 +234,7 @@ func _get_connection_line(from_position: Vector2, to_position: Vector2) -> Packe
 		points.push_back(Vector2(to_position.x, mid_position.y))
 
 	points.push_back(to_position)
-
+	
 	return points
 
 
@@ -282,17 +279,23 @@ func _draw() -> void:
 		var output_port_position: Vector2
 		var input_port_position: Vector2
 
-		# Godot 4.0+
-		if from.has_method("get_connection_output_position"):
-			output_port_position = from.position + from.call("get_connection_output_position", c.from_port)
-			input_port_position = to.position + to.call("get_connection_input_position", c.to_port)
-		# Godot 4.2+
-		else:
-			output_port_position = from.position + from.call("get_output_port_position", c.from_port)
-			input_port_position = to.position + to.call("get_input_port_position", c.to_port)
+		## Godot 4.0+
+		#if from.has_method("get_connection_output_position"):
+			#output_port_position = from.position + from.call("get_connection_output_position", c.from_port)
+			#input_port_position = to.position + to.call("get_connection_input_position", c.to_port)
+		## Godot 4.2+
+		#else:
+			#output_port_position = from.position + from.call("get_output_port_position", c.from_port)
+			#input_port_position = to.position + to.call("get_input_port_position", c.to_port)
 
-		var line := _get_connection_line(output_port_position, input_port_position)
-
+		var scale_factor: float = from.get_rect().size.x / from.size.x
+		
+		#var line := _get_connection_line(output_port_position, input_port_position)
+		var line := _get_elbow_connection_line(
+			from.position + from.get_custom_output_port_position(horizontal_layout) * scale_factor,
+			to.position + to.get_custom_input_port_position(horizontal_layout) * scale_factor
+		)
+		
 		var curve = Curve2D.new()
 		for l in line:
 			curve.add_point(l)

@@ -137,20 +137,18 @@ func _draw_port(slot_index: int, port_position: Vector2i, left: bool, color: Col
 			draw_texture(PORT_BOTTOM_ICON, Vector2(size.x / 2, size.y) + Vector2(-4.5, -5), color)
 
 
-func get_vertical_input_position() -> Vector2:
-	return position_offset + Vector2(size.x/2, 0)
+func get_custom_input_port_position(horizontal: bool) -> Vector2:
+	if horizontal:
+		return Vector2(0, size.y / 2)
+	else:
+		return Vector2(size.x/2, 0)
 
 
-func get_vertical_output_position() -> Vector2:
-	return position_offset + Vector2(size.x / 2, size.y)
-
-
-func get_horizontal_input_position() -> Vector2:
-	return position_offset + Vector2(0, size.y / 2)
-
-
-func get_horizontal_output_position() -> Vector2:
-	return position_offset + Vector2(size.x, size.y / 2)
+func get_custom_output_port_position(horizontal: bool) -> Vector2:
+	if horizontal:
+		return Vector2(size.x, size.y / 2)
+	else:
+		return Vector2(size.x / 2, size.y)
 
 
 func set_status(status: int) -> void:
