@@ -5,8 +5,7 @@ extends CharacterBody3D
 @export_category("Mechanisms")
 @export var state_machine: PlayerStateMachine
 @export var character: CharacterAnimations
-@export var movement_component: MovementComponent
-@export var root_motion_component: RootMotionComponent
+@export var locomotion_component: LocomotionComponent
 @export var hitbox_component: HitboxComponent
 @export var health_component: HealthComponent
 @export var instability_component: InstabilityComponent
@@ -27,7 +26,7 @@ extends CharacterBody3D
 @export_category("Audio")
 @export var footsteps: AudioFootsteps
 
-var active_motion_component: MotionComponent
+var active_motion_component: LocomotionStrategy
 
 var input_direction: Vector3 = Vector3.ZERO
 var last_input_on_ground: Vector3 = Vector3.ZERO
@@ -47,7 +46,6 @@ var _holding_down_run_timer: Timer
 
 
 func _ready() -> void:
-	active_motion_component = movement_component
 	hitbox_component.weapon_hit.connect(_on_hitbox_component_weapon_hit)
 	
 	attack_component.can_rotate.connect(
@@ -100,8 +98,6 @@ func _physics_process(_delta: float) -> void:
 
 	last_input_on_ground = input_direction if is_on_floor() else last_input_on_ground
 	
-	movement_component.move_direction = rotation_component.move_direction
-	
 	
 	# make sure the user is actually holding down
 	# the run key to make the player run
@@ -147,7 +143,7 @@ func process_default_movement_animations() -> void:
 	var dir: Vector3 = input_direction
 	var lock_on: bool = lock_on_target != null
 	
-	if movement_component.has_secondary_movement():
+	if locomotion_component.has_secondary_movement():
 		dir = Vector3.ZERO
 		lock_on = true
 	
@@ -156,17 +152,6 @@ func process_default_movement_animations() -> void:
 		lock_on, 
 		false
 	)
-
-
-func set_root_motion(flag: bool) -> void:
-	if flag:
-		active_motion_component = root_motion_component
-		root_motion_component.enabled = true
-		movement_component.enabled = false
-	else:
-		active_motion_component = movement_component
-		root_motion_component.enabled = false
-		movement_component.enabled = true
 
 
 func _on_lock_on_system_lock_on(target: LockOnComponent) -> void:

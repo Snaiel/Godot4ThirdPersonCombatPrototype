@@ -18,7 +18,7 @@ func enter():
 	if check_for_dizzy_finisher():
 		return
 	
-	player.movement_component.can_move = false
+	player.locomotion_component.can_move = false
 	
 	if parent_state.previous_state is PlayerBlockState:
 		player.attack_component.attack(false)
@@ -53,7 +53,7 @@ func process_player():
 
 
 func exit():
-	player.movement_component.can_move = true
+	player.locomotion_component.can_move = true
 	player.attack_component.interrupt_attack()
 
 

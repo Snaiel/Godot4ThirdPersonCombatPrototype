@@ -2,6 +2,7 @@ class_name PlayerDrinkState
 extends PlayerStateMachine
 
 
+@export var programmatic_movement: ProgrammaticMovementLocomotionStrategy
 @export var health_charge_component: HealthChargeComponent
 
 
@@ -17,7 +18,7 @@ func _ready():
 func enter():
 	health_charge_component.consume_health_charge()
 	player.head_rotation_component.enabled = false
-	player.movement_component.speed = 0.8
+	programmatic_movement.speed = 0.8
 
 
 func process_player():

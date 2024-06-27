@@ -45,7 +45,7 @@ func _ready():
 func enter():
 	_can_block_or_parry = false
 	
-	player.movement_component.can_move = false
+	player.locomotion_component.can_move = false
 	player.character.hit_and_death_animations.hit()
 	player.attack_component.interrupt_attack()
 	player.instability_component.come_out_of_full_instability(0)
@@ -84,5 +84,5 @@ func process_movement_animations() -> void:
 
 
 func exit():
-	player.movement_component.can_move = true
+	player.locomotion_component.can_move = true
 	_timer.stop()

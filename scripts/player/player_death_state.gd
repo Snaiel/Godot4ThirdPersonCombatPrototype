@@ -38,7 +38,7 @@ func _ready():
 
 
 func enter():
-	player.set_root_motion(true)
+	player.locomotion_component.set_strategy("root_motion")
 	
 	Globals.lock_on_system.reset_target()
 	Globals.lock_on_system.enabled = false
@@ -71,7 +71,7 @@ func process_movement_animations():
 
 
 func exit():
-	player.set_root_motion(false)
+	player.locomotion_component.set_strategy("programmatic")
 	
 	Globals.lock_on_system.enabled = true
 	

@@ -8,7 +8,8 @@ signal just_landed
 @export_category("Configuration")
 @export var entity: CharacterBody3D
 @export var animations: CharacterAnimations
-@export var movement_component: MovementComponent
+@export var rotation_component: RotationComponent
+@export var locomotion_component: LocomotionComponent
 @export var jump_strength: float = 8
 
 @export_category("Audio")
@@ -61,8 +62,8 @@ func _process(_delta: float) -> void:
 	# apply the jumping force
 	if actually_jump:
 		actually_jump = false
-		movement_component.desired_velocity.y = jump_strength
-		movement_component.vertical_movement = true
+		locomotion_component.desired_velocity.y = jump_strength
+		locomotion_component.vertical_movement = true
 		
 		# wait before setting flag because just_landed
 		# gets emitted while it is still on the ground.
@@ -86,6 +87,6 @@ func _jump() -> void:
 
 ## assumes we are now not doing any vertical movement
 func _receive_vertical_movement_ended() -> void:
-	movement_component.can_disable_vertical_movement = true
-	if movement_component.move_direction.length() > 0.2:
-		movement_component.vertical_movement = false
+	locomotion_component.can_disable_vertical_movement = true
+	if rotation_component.move_direction.length() > 0.2:
+		locomotion_component.vertical_movement = false

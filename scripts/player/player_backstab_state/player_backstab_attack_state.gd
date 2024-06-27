@@ -10,8 +10,8 @@ func enter():
 	player.attack_component.attack_level = 2
 	player.attack_component.attack()
 	player.hitbox_component.enabled = false
-	player.movement_component.can_move = false
+	player.locomotion_component.can_move = false
 
 func exit():
 	player.hitbox_component.enabled = true
-	player.movement_component.can_move = true
+	player.locomotion_component.can_move = true

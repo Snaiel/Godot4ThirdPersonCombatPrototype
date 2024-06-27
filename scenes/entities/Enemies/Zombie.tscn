@@ -562,7 +562,7 @@ stream_0/weight = 1.0
 radius = 0.3
 height = 1.8
 
-[node name="Zombie" type="CharacterBody3D" node_paths=PackedStringArray("parry_sfx", "block_sfx", "hit_sfx", "character", "rotation_component", "head_rotation_component", "movement_component", "root_motion_component", "lock_on_component", "hitbox_component", "health_component", "instability_component", "backstab_component", "dizzy_component", "notice_component", "attack_component", "block_component", "parry_component", "wellbeing_component", "beehave_tree", "blackboard", "agent") groups=["enemy"]]
+[node name="Zombie" type="CharacterBody3D" node_paths=PackedStringArray("parry_sfx", "block_sfx", "hit_sfx", "character", "rotation_component", "head_rotation_component", "root_motion_component", "lock_on_component", "hitbox_component", "health_component", "instability_component", "backstab_component", "dizzy_component", "notice_component", "attack_component", "block_component", "parry_component", "wellbeing_component", "beehave_tree", "blackboard", "agent") groups=["enemy"]]
 collision_layer = 8
 collision_mask = 11
 script = ExtResource("1_htlua")
@@ -577,7 +577,6 @@ hit_sfx = NodePath("Character/AudioManager/Hit")
 character = NodePath("Character")
 rotation_component = NodePath("Rotation/EnemyRotationComponent")
 head_rotation_component = NodePath("Rotation/HeadRotationComponent")
-movement_component = NodePath("Movement/MovementComponent")
 root_motion_component = NodePath("Movement/RootMotionComponent")
 lock_on_component = NodePath("Interface/LockOnComponent")
 hitbox_component = NodePath("HitboxComponent")
@@ -976,8 +975,7 @@ groups = Array[String](["player"])
 
 [node name="Rotation" type="Node3D" parent="."]
 
-[node name="EnemyRotationComponent" parent="Rotation" node_paths=PackedStringArray("movement_component", "blackboard", "agent", "entity") instance=ExtResource("31_onl5a")]
-movement_component = NodePath("../../Movement/MovementComponent")
+[node name="EnemyRotationComponent" parent="Rotation" node_paths=PackedStringArray("blackboard", "agent", "entity") instance=ExtResource("31_onl5a")]
 blackboard = NodePath("../../Blackboard")
 agent = NodePath("../../NavigationAgent3D")
 entity = NodePath("../..")
@@ -989,16 +987,12 @@ rotation_component = NodePath("../EnemyRotationComponent")
 
 [node name="Movement" type="Node3D" parent="."]
 
-[node name="MovementComponent" parent="Movement" node_paths=PackedStringArray("entity", "rotation_component") instance=ExtResource("33_0xgdh")]
+[node name="MovementComponent" parent="Movement" node_paths=PackedStringArray("rotation_component") instance=ExtResource("33_0xgdh")]
+rotation_component = NodePath("../../Rotation/EnemyRotationComponent")
 speed = 1.5
-entity = NodePath("../..")
-rotation_component = NodePath("../../Rotation/EnemyRotationComponent")
 
-[node name="RootMotionComponent" parent="Movement" node_paths=PackedStringArray("character", "entity", "rotation_component") instance=ExtResource("34_d7haf")]
+[node name="RootMotionComponent" parent="Movement" node_paths=PackedStringArray("character") instance=ExtResource("34_d7haf")]
 character = NodePath("../../Character")
-enabled = false
-entity = NodePath("../..")
-rotation_component = NodePath("../../Rotation/EnemyRotationComponent")
 
 [node name="Wellbeing" type="Node3D" parent="."]
 
@@ -1020,9 +1014,8 @@ weapons = {
 "right_foot": NodePath("../../Character/Armature_004/GeneralSkeleton/WeaponFoot")
 }
 
-[node name="BlockComponent" parent="Combat" node_paths=PackedStringArray("movement_component", "character") instance=ExtResource("44_pesi7")]
+[node name="BlockComponent" parent="Combat" node_paths=PackedStringArray("character") instance=ExtResource("44_pesi7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
-movement_component = NodePath("../../Movement/MovementComponent")
 character = NodePath("../../Character")
 
 [node name="ParryComponent" parent="Combat" node_paths=PackedStringArray("hitbox_component", "block_component") instance=ExtResource("21_e624s")]

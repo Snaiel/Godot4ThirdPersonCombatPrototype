@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://dujukbu10vbmm"]
+[gd_scene load_steps=47 format=3 uid="uid://dujukbu10vbmm"]
 
 [ext_resource type="Script" path="res://scripts/entities/player.gd" id="1_lgfyt"]
 [ext_resource type="Script" path="res://scripts/player/player_state_machine.gd" id="2_4ql4h"]
@@ -31,7 +31,6 @@
 [ext_resource type="PackedScene" uid="uid://7qijntg00gi5" path="res://scenes/components/HeadRotationComponent.tscn" id="23_0vsx7"]
 [ext_resource type="Script" path="res://scripts/player/player_checkpoint_state.gd" id="23_3gyf7"]
 [ext_resource type="Script" path="res://scripts/player/player_death_state.gd" id="24_adwl8"]
-[ext_resource type="PackedScene" uid="uid://k5h6f26p6mgf" path="res://scenes/components/MovementComponent.tscn" id="24_mwhws"]
 [ext_resource type="PackedScene" uid="uid://bp3sx3yshrcdb" path="res://scenes/components/InstabilityComponent.tscn" id="26_nvu4k"]
 [ext_resource type="PackedScene" uid="uid://b1tn0d24q1ec1" path="res://scenes/components/JumpComponent.tscn" id="26_w2wp7"]
 [ext_resource type="PackedScene" uid="uid://cq3fjofav3npm" path="res://scenes/components/HealthComponent.tscn" id="26_ypb3h"]
@@ -40,7 +39,10 @@
 [ext_resource type="PackedScene" uid="uid://bsbt5fjir608i" path="res://scenes/particles/blood.tscn" id="27_63iim"]
 [ext_resource type="PackedScene" uid="uid://1elkqdybiiu1" path="res://scenes/components/AttackComponent.tscn" id="28_no1kf"]
 [ext_resource type="PackedScene" uid="uid://bg5d27eyqwsfd" path="res://scenes/components/ParryComponent.tscn" id="30_ceaq1"]
+[ext_resource type="Script" path="res://scripts/components/movement/locomotion/locomotion_component.gd" id="31_ctbj8"]
 [ext_resource type="PackedScene" uid="uid://mmj6qxe250co" path="res://scenes/components/FadeComponent.tscn" id="31_y5b1e"]
+[ext_resource type="Script" path="res://scripts/components/movement/locomotion/programmatic_movement.gd" id="32_3p3ec"]
+[ext_resource type="Script" path="res://scripts/components/movement/locomotion/root_motion.gd" id="33_l377w"]
 [ext_resource type="PackedScene" uid="uid://cbs5mcpj3x6im" path="res://scenes/components/HealthChargeComponent.tscn" id="36_ay03g"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kr42x"]
@@ -57,14 +59,13 @@ shader_parameter/alpha_clip = 0.0
 radius = 0.3
 height = 1.8
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("state_machine", "character", "movement_component", "root_motion_component", "hitbox_component", "health_component", "instability_component", "jump_component", "block_component", "dodge_component", "rotation_component", "head_rotation_component", "attack_component", "parry_component", "fade_component", "health_charge_component", "weapon", "lock_on_attachment_point", "footsteps") groups=["player"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("state_machine", "character", "locomotion_component", "hitbox_component", "health_component", "instability_component", "jump_component", "block_component", "dodge_component", "rotation_component", "head_rotation_component", "attack_component", "parry_component", "fade_component", "health_charge_component", "weapon", "lock_on_attachment_point", "footsteps") groups=["player"]]
 collision_layer = 2
 collision_mask = 9
 script = ExtResource("1_lgfyt")
 state_machine = NodePath("StateMachine")
 character = NodePath("Character")
-movement_component = NodePath("Movement/MovementComponent")
-root_motion_component = NodePath("Movement/RootMotionComponent")
+locomotion_component = NodePath("Movement/LocomotionComponent")
 hitbox_component = NodePath("HitboxComponent")
 health_component = NodePath("Wellbeing/HealthComponent")
 instability_component = NodePath("Wellbeing/InstabilityComponent")
@@ -84,6 +85,70 @@ footsteps = NodePath("Character/AudioManager/Footsteps")
 [node name="Character" parent="." instance=ExtResource("5_gusos")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
+[node name="GeneralSkeleton" parent="Character/Armature_004" index="0"]
+bones/1/position = Vector3(6.04682e-06, 0.928626, -9.00516e-08)
+bones/1/rotation = Quaternion(-0.0364564, -0.367114, -0.0133018, 0.929366)
+bones/2/rotation = Quaternion(0.0504308, 0.0402731, -0.00849581, 0.997879)
+bones/3/rotation = Quaternion(0.100698, 0.081046, -0.0184478, 0.991439)
+bones/4/rotation = Quaternion(0.100698, 0.081046, -0.0184478, 0.991439)
+bones/5/rotation = Quaternion(-0.0375602, -0.011032, 0.00219372, 0.999231)
+bones/6/rotation = Quaternion(-0.054458, 0.176927, -0.0130317, 0.98263)
+bones/8/rotation = Quaternion(0.524253, 0.460725, 0.542051, -0.468051)
+bones/9/rotation = Quaternion(0.0474451, 0.843246, -0.522597, 0.116526)
+bones/10/rotation = Quaternion(0.277458, -0.604294, 0.295283, 0.686043)
+bones/11/rotation = Quaternion(-0.104369, 0.789564, 0.125817, 0.591494)
+bones/12/rotation = Quaternion(0.0444242, 0.077714, -0.045648, 0.994939)
+bones/13/rotation = Quaternion(-0.219211, 0.673395, 0.208745, 0.674472)
+bones/14/rotation = Quaternion(2.98023e-08, 4.47035e-08, 6.66134e-16, 1)
+bones/15/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 2.98023e-08, 1)
+bones/16/rotation = Quaternion(0.0326982, -0.00579913, 0.0611036, 0.997579)
+bones/17/rotation = Quaternion(0.142788, -0.00077261, -0.00694361, 0.989729)
+bones/18/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
+bones/19/rotation = Quaternion(-2.98023e-08, -5.96046e-08, -2.98023e-08, 1)
+bones/20/rotation = Quaternion(0.124657, 0.00606972, -0.0858581, 0.98846)
+bones/21/rotation = Quaternion(0.189711, -0.00139368, 0.014238, 0.981736)
+bones/22/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
+bones/23/rotation = Quaternion(-1.49012e-08, 1.49012e-08, 1.49012e-08, 1)
+bones/24/rotation = Quaternion(0.264954, -0.0133327, -0.130873, 0.955245)
+bones/25/rotation = Quaternion(0.275544, 0.00175889, 0.0240698, 0.960985)
+bones/26/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
+bones/27/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
+bones/28/rotation = Quaternion(0.290917, -0.014055, -0.163943, 0.942493)
+bones/29/rotation = Quaternion(0.336146, 0.0112787, 0.0495706, 0.940437)
+bones/30/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
+bones/31/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
+bones/32/rotation = Quaternion(0.489204, -0.484239, -0.589672, -0.422468)
+bones/33/rotation = Quaternion(0.186803, 0.845471, -0.490798, -0.0969608)
+bones/34/rotation = Quaternion(0.285857, 0.679323, -0.222608, 0.638162)
+bones/35/rotation = Quaternion(0.14699, -0.743609, 0.00398269, 0.652245)
+bones/36/rotation = Quaternion(-1.83582e-05, 0.0773394, 0.0429052, 0.996081)
+bones/37/rotation = Quaternion(-0.108474, -0.754011, -0.0908499, 0.641442)
+bones/39/rotation = Quaternion(5.96046e-08, 8.9407e-08, 2.98023e-08, 1)
+bones/40/rotation = Quaternion(0.0395766, 0.00983451, 0.010194, 0.999116)
+bones/41/rotation = Quaternion(0.147297, 0.000254452, 0.00977862, 0.989044)
+bones/42/rotation = Quaternion(-4.47035e-08, 0, -4.47035e-08, 1)
+bones/43/rotation = Quaternion(-4.47035e-08, 0, -4.47035e-08, 1)
+bones/44/rotation = Quaternion(0.11099, 0.00862119, 0.0246105, 0.993479)
+bones/45/rotation = Quaternion(0.263567, 0.00144613, -0.016844, 0.964493)
+bones/46/rotation = Quaternion(-4.47035e-08, 0, -4.47035e-08, 1)
+bones/47/rotation = Quaternion(-1.49012e-08, 4.47035e-08, -4.47035e-08, 1)
+bones/48/rotation = Quaternion(0.187009, -0.00859906, 0.067387, 0.980006)
+bones/49/rotation = Quaternion(0.320425, -0.00242639, -0.0338017, 0.946668)
+bones/50/rotation = Quaternion(-4.47035e-08, 0, -4.47035e-08, 1)
+bones/51/rotation = Quaternion(-4.47035e-08, 0, -4.47035e-08, 1)
+bones/52/rotation = Quaternion(0.207169, -0.0111395, 0.0920781, 0.973899)
+bones/53/rotation = Quaternion(0.349285, -0.0122068, -0.0687267, 0.934413)
+bones/54/rotation = Quaternion(-4.47035e-08, 0, -4.47035e-08, 1)
+bones/55/rotation = Quaternion(-4.47035e-08, 0, -4.47035e-08, 1)
+bones/56/rotation = Quaternion(0.0770803, 0.225182, 0.965584, -0.104877)
+bones/57/rotation = Quaternion(0.0388392, 0.946694, -0.297267, -0.117877)
+bones/58/rotation = Quaternion(-0.0451625, 0.671766, -0.737692, 0.0500203)
+bones/59/rotation = Quaternion(0.027883, 0.999373, 0.0204614, -0.00757287)
+bones/61/rotation = Quaternion(-0.123633, 0.0317165, 0.983773, 0.126095)
+bones/62/rotation = Quaternion(0.0266145, 0.952748, -0.293244, -0.0746392)
+bones/63/rotation = Quaternion(0.0989926, 0.556111, -0.817814, -0.110098)
+bones/64/rotation = Quaternion(0.00306753, 0.99987, 0.0155852, -0.00295573)
+
 [node name="Alpha_Joints" parent="Character/Armature_004/GeneralSkeleton" index="0"]
 layers = 2
 surface_material_override/0 = SubResource("ShaderMaterial_kr42x")
@@ -93,18 +158,18 @@ layers = 2
 surface_material_override/0 = ExtResource("4_ysu0o")
 
 [node name="Sword" parent="Character/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("entity", "attack_component") instance=ExtResource("5_vtx6o")]
-transform = Transform3D(-0.18487, -0.251437, 0.950054, 0.31849, -0.929873, -0.184121, 0.929724, 0.268544, 0.251986, -0.307707, 0.879604, -0.227201)
+transform = Transform3D(-0.18487, -0.251436, 0.950054, 0.318492, -0.929873, -0.18412, 0.929724, 0.268546, 0.251986, -0.307707, 0.879604, -0.2272)
 entity = NodePath("../../../..")
 attack_component = NodePath("../../../../Combat/AttackComponent")
 
 [node name="LockOnAttachment" parent="Character/Armature_004/GeneralSkeleton" index="3"]
-transform = Transform3D(0.942295, -0.128871, -0.308986, -0.0148774, 0.905912, -0.423205, 0.334453, 0.403381, 0.851719, 0.0211761, 1.27706, -0.0177619)
+transform = Transform3D(0.942295, -0.12887, -0.308985, -0.0148777, 0.905912, -0.423204, 0.334451, 0.40338, 0.85172, 0.0211761, 1.27707, -0.017762)
 
 [node name="Crosshair" parent="Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint" index="0"]
 enabled = false
 
 [node name="HeadAttachment" parent="Character/Armature_004/GeneralSkeleton" index="4"]
-transform = Transform3D(0.997935, -0.0642367, -0.000251293, 0.0622928, 0.968676, -0.240387, 0.0156852, 0.239875, 0.970677, -0.0225228, 1.49531, 0.111815)
+transform = Transform3D(0.997935, -0.0642358, -0.000251025, 0.062292, 0.968677, -0.240386, 0.0156845, 0.239874, 0.970677, -0.0225225, 1.49531, 0.111814)
 
 [node name="AnimationTree" parent="Character" index="2"]
 "parameters/Dizzy Finisher Which One/current_state" = ""
@@ -129,8 +194,9 @@ parry_state = NodePath("../Parry")
 backstab_state = NodePath("../Backstab")
 player = NodePath("../..")
 
-[node name="Walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "dodge_state", "run_state", "jump_state", "attack_state", "block_state", "parry_state", "backstab_state", "player")]
+[node name="Walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("programmatic_movement", "idle_state", "dodge_state", "run_state", "jump_state", "attack_state", "block_state", "parry_state", "backstab_state", "player")]
 script = ExtResource("4_4fxcp")
+programmatic_movement = NodePath("../../Movement/LocomotionComponent/ProgrammaticMovement")
 idle_state = NodePath("../Idle")
 dodge_state = NodePath("../Dodge")
 run_state = NodePath("../Run")
@@ -141,8 +207,9 @@ parry_state = NodePath("../Parry")
 backstab_state = NodePath("../Backstab")
 player = NodePath("../..")
 
-[node name="Run" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "walk_state", "jump_state", "dodge_state", "attack_state", "block_state", "parry_state", "backstab_state", "player")]
+[node name="Run" type="Node" parent="StateMachine" node_paths=PackedStringArray("programmatic_movement", "idle_state", "walk_state", "jump_state", "dodge_state", "attack_state", "block_state", "parry_state", "backstab_state", "player")]
 script = ExtResource("6_nj3fe")
+programmatic_movement = NodePath("../../Movement/LocomotionComponent/ProgrammaticMovement")
 idle_state = NodePath("../Idle")
 walk_state = NodePath("../Walk")
 jump_state = NodePath("../Jump")
@@ -159,8 +226,9 @@ run_state = NodePath("../Run")
 jump_state = NodePath("../Jump")
 player = NodePath("../..")
 
-[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("walk_state", "attack_state", "block_state", "parry_state", "player")]
+[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("programmatic_movement", "walk_state", "attack_state", "block_state", "parry_state", "player")]
 script = ExtResource("8_jgsl3")
+programmatic_movement = NodePath("../../Movement/LocomotionComponent/ProgrammaticMovement")
 walk_state = NodePath("../Walk")
 attack_state = NodePath("../Attack")
 block_state = NodePath("../Block")
@@ -188,8 +256,9 @@ block_state = NodePath("../Block")
 dizzy_finisher_state = NodePath("../DizzyFinisher")
 player = NodePath("../..")
 
-[node name="ParriedEnemyHit" type="Node" parent="StateMachine" node_paths=PackedStringArray("attack_state", "block_state", "parry_state", "dizzy_finisher_state", "sfx", "player")]
+[node name="ParriedEnemyHit" type="Node" parent="StateMachine" node_paths=PackedStringArray("programmatic_movement", "attack_state", "block_state", "parry_state", "dizzy_finisher_state", "sfx", "player")]
 script = ExtResource("20_1olui")
+programmatic_movement = NodePath("../../Movement/LocomotionComponent/ProgrammaticMovement")
 attack_state = NodePath("../Attack")
 block_state = NodePath("../Block")
 parry_state = NodePath("../Parry")
@@ -217,8 +286,9 @@ player = NodePath("../../..")
 script = ExtResource("16_nyfh7")
 player = NodePath("../../..")
 
-[node name="DizzyFinisher" type="Node" parent="StateMachine" node_paths=PackedStringArray("from_parry", "from_damage", "player")]
+[node name="DizzyFinisher" type="Node" parent="StateMachine" node_paths=PackedStringArray("programmatic_movement", "from_parry", "from_damage", "player")]
 script = ExtResource("16_vyrl8")
+programmatic_movement = NodePath("../../Movement/LocomotionComponent/ProgrammaticMovement")
 from_parry = NodePath("FromParry")
 from_damage = NodePath("FromDamage")
 player = NodePath("../..")
@@ -244,8 +314,9 @@ parry_state = NodePath("../Parry")
 sfx = NodePath("../../Character/AudioManager/Hit")
 player = NodePath("../..")
 
-[node name="Drink" type="Node" parent="StateMachine" node_paths=PackedStringArray("health_charge_component", "player")]
+[node name="Drink" type="Node" parent="StateMachine" node_paths=PackedStringArray("programmatic_movement", "health_charge_component", "player")]
 script = ExtResource("22_47iaw")
+programmatic_movement = NodePath("../../Movement/LocomotionComponent/ProgrammaticMovement")
 health_charge_component = NodePath("../../HealthChargeComponent")
 player = NodePath("../..")
 
@@ -287,28 +358,39 @@ rotation_component = NodePath("../PlayerRotationComponent")
 
 [node name="Movement" type="Node3D" parent="."]
 
-[node name="MovementComponent" parent="Movement" node_paths=PackedStringArray("entity", "rotation_component") instance=ExtResource("24_mwhws")]
-speed = 3.0
-debug = true
+[node name="LocomotionComponent" type="Node" parent="Movement" node_paths=PackedStringArray("entity")]
+script = ExtResource("31_ctbj8")
 entity = NodePath("../..")
-rotation_component = NodePath("../../Rotation/PlayerRotationComponent")
+strategies = {
+"programmatic": NodePath("ProgrammaticMovement"),
+"root_motion": NodePath("RootMotion")
+}
+default_strategy = &"programmatic"
 
-[node name="RootMotionComponent" parent="Movement" node_paths=PackedStringArray("character", "entity", "rotation_component") instance=ExtResource("27_4dpfb")]
+[node name="ProgrammaticMovement" type="Node" parent="Movement/LocomotionComponent" node_paths=PackedStringArray("rotation_component")]
+script = ExtResource("32_3p3ec")
+rotation_component = NodePath("../../../Rotation/PlayerRotationComponent")
+speed = 5.0
+
+[node name="RootMotion" type="Node" parent="Movement/LocomotionComponent" node_paths=PackedStringArray("character")]
+script = ExtResource("33_l377w")
+character = NodePath("../../../Character")
+
+[node name="RootMotionComponent" parent="Movement" node_paths=PackedStringArray("character") instance=ExtResource("27_4dpfb")]
 character = NodePath("../../Character")
-enabled = false
-entity = NodePath("../..")
-rotation_component = NodePath("../../Rotation/PlayerRotationComponent")
 
-[node name="JumpComponent" parent="Movement" node_paths=PackedStringArray("entity", "animations", "movement_component", "jump_sfx", "land_sfx") instance=ExtResource("26_w2wp7")]
+[node name="JumpComponent" parent="Movement" node_paths=PackedStringArray("entity", "animations", "rotation_component", "locomotion_component", "jump_sfx", "land_sfx") instance=ExtResource("26_w2wp7")]
 entity = NodePath("../..")
 animations = NodePath("../../Character")
-movement_component = NodePath("../MovementComponent")
+rotation_component = NodePath("../../Rotation/PlayerRotationComponent")
+locomotion_component = NodePath("../LocomotionComponent")
 jump_sfx = NodePath("../../Character/AudioManager/Jump")
 land_sfx = NodePath("../../Character/AudioManager/JumpLand")
 
-[node name="DodgeComponent" parent="Movement" node_paths=PackedStringArray("entity", "movement_component", "jump_component", "sfx") instance=ExtResource("27_7sekg")]
+[node name="DodgeComponent" parent="Movement" node_paths=PackedStringArray("entity", "rotation_component", "locomotion_component", "jump_component", "sfx") instance=ExtResource("27_7sekg")]
 entity = NodePath("../..")
-movement_component = NodePath("../MovementComponent")
+rotation_component = NodePath("../../Rotation/PlayerRotationComponent")
+locomotion_component = NodePath("../LocomotionComponent")
 jump_component = NodePath("../JumpComponent")
 sfx = NodePath("../../Character/AudioManager/Dodge")
 
@@ -333,9 +415,10 @@ weapons = {
 "right_hand": NodePath("../../Character/Armature_004/GeneralSkeleton/Sword")
 }
 
-[node name="BlockComponent" parent="Combat" node_paths=PackedStringArray("movement_component", "character") instance=ExtResource("10_hjlwj")]
+[node name="BlockComponent" parent="Combat" node_paths=PackedStringArray("entity", "programmatic_movement", "character") instance=ExtResource("10_hjlwj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, -0.08)
-movement_component = NodePath("../../Movement/MovementComponent")
+entity = NodePath("../..")
+programmatic_movement = NodePath("../../Movement/LocomotionComponent/ProgrammaticMovement")
 character = NodePath("../../Character")
 
 [node name="ParryComponent" parent="Combat" node_paths=PackedStringArray("hitbox_component", "block_component") instance=ExtResource("30_ceaq1")]

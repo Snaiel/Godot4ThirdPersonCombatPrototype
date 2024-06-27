@@ -8,7 +8,7 @@ signal can_move(flag: bool)
 @export var spell_animations: SpellAnimations
 @export var can_attack: bool = true
 
-var active_motion_component: MotionComponent
+var active_motion_component: LocomotionStrategy
 
 var executing: bool = false
 var spell_index: int = 0:

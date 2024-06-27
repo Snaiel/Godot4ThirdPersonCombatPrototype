@@ -83,8 +83,8 @@ func recover_after_death() -> void:
 		.respawn_point\
 		.global_transform
 	
-	player.movement_component.reset_secondary_movement()
-	player.movement_component.reset_desired_velocity()
+	player.locomotion_component.reset_secondary_movement()
+	player.locomotion_component.reset_desired_velocity()
 	
 	camera_controller.global_rotation.y = saved_checkpoint\
 		.respawn_point\

@@ -8,7 +8,7 @@ signal can_move(flag: bool)
 @export var weapons: Dictionary
 @export var can_attack: bool = true
 
-var active_motion_component: MotionComponent
+var active_motion_component: LocomotionStrategy
 
 var attacking: bool = false
 var attack_level: int = 0:

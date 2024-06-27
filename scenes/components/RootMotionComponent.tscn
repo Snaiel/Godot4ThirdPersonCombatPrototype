@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c8qyy3wuwlus6"]
 
-[ext_resource type="Script" path="res://scripts/components/movement/root_motion_component.gd" id="1_ghi5i"]
+[ext_resource type="Script" path="res://scripts/components/movement/locomotion/root_motion.gd" id="1_ghi5i"]
 
 [node name="RootMotionComponent" type="Node"]
 script = ExtResource("1_ghi5i")

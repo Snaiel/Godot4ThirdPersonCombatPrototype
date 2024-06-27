@@ -21,7 +21,7 @@ func _ready():
 
 func enter():
 	_finished = false
-	player.movement_component.can_move = false
+	player.locomotion_component.can_move = false
 	player.weapon.can_damage = false
 	player.attack_component.disable_attack_interrupted()
 	player.character.dizzy_finisher_animations.play_from_damage_finisher()
@@ -35,5 +35,5 @@ func process_player():
 
 
 func exit():
-	player.movement_component.can_move = true
+	player.locomotion_component.can_move = true
 	dizzy_system.victim_being_killed = false

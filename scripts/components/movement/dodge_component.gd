@@ -11,7 +11,8 @@ extends Node
 
 @export_category("References")
 @export var entity: Player
-@export var movement_component: MovementComponent
+@export var rotation_component: RotationComponent
+@export var locomotion_component: LocomotionComponent
 @export var jump_component: JumpComponent
 @export var sfx: AudioStreamPlayer3D
 
@@ -54,19 +55,19 @@ func _dodge() -> void:
 	can_dodge = false
 	dodging = true
 	
-	movement_component.vertical_movement = false
+	locomotion_component.vertical_movement = false
 	
-	if movement_component.move_direction.length() > 0.0:
-		movement_component.desired_velocity += movement_component\
+	if rotation_component.move_direction.length() > 0.05:
+		locomotion_component.desired_velocity += rotation_component\
 			.move_direction.normalized() * dodge_strength
 	elif entity.lock_on_target:
-		movement_component.desired_velocity += -Vector3(
-			movement_component.looking_direction.x,
+		locomotion_component.desired_velocity += -Vector3(
+			locomotion_component.looking_direction.x,
 			0,
-			movement_component.looking_direction.z
+			locomotion_component.looking_direction.z
 		).normalized() * dodge_strength
 	else:
-		movement_component.desired_velocity += movement_component\
+		locomotion_component.desired_velocity += locomotion_component\
 			.looking_direction.normalized() * dodge_strength
 	
 	sfx.play()

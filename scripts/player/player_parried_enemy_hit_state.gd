@@ -2,6 +2,8 @@ class_name PlayerParriedEnemyHitState
 extends PlayerStateMachine
 
 
+@export var programmatic_movement: ProgrammaticMovementLocomotionStrategy
+
 @export var attack_state: PlayerAttackState
 @export var block_state: PlayerBlockState
 @export var parry_state: PlayerParryState
@@ -37,7 +39,7 @@ func _ready():
 
 
 func enter():
-	player.movement_component.speed = 3
+	programmatic_movement.speed = 3
 	player.block_component.blocking = true
 	
 	player.instability_component.process_parry()
@@ -50,7 +52,7 @@ func enter():
 	player.block_component.anim.play("parried")
 	_incoming_weapon.parry_weapon()
 	if not player.dizzy_system.dizzy_victim:
-		player.movement_component.knockback(
+		player.locomotion_component.knockback(
 			_incoming_weapon.entity.global_position
 		)
 	

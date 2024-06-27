@@ -33,7 +33,7 @@ func _ready():
 			if parent_state.current_state != self:
 				return
 			
-			player.movement_component.knockback(
+			player.locomotion_component.knockback(
 				incoming_weapon.entity.global_position
 			)
 			

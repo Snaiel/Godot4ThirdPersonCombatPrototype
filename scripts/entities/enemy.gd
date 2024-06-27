@@ -24,8 +24,8 @@ signal death(enemy)
 @export var character: CharacterAnimations
 @export var rotation_component: NPCRotationComponent
 @export var head_rotation_component: HeadRotationComponent
-@export var movement_component: MovementComponent
-@export var root_motion_component: RootMotionComponent
+@export var locomotion_component: LocomotionComponent
+@export var root_motion_component: RootMotionLocomotionStrategy
 @export var lock_on_component: LockOnComponent
 @export var hitbox_component: HitboxComponent
 @export var health_component: HealthComponent
@@ -44,7 +44,7 @@ signal death(enemy)
 @export var blackboard: Blackboard
 @export var agent: NavigationAgent3D
 
-var active_motion_component: MotionComponent
+var active_motion_component: LocomotionStrategy
 
 var _default_move_speed: float
 var _dead: bool = false
@@ -87,8 +87,8 @@ func _ready() -> void:
 			blackboard.set_value("can_move", flag)
 	)
 	
-	active_motion_component = movement_component
-	_default_move_speed = movement_component.speed
+	#active_motion_component = locomotion_component
+	_default_move_speed = locomotion_component.speed
 	
 	blackboard.set_value("move_speed", _default_move_speed)
 	blackboard.set_value("can_attack", true)
@@ -107,7 +107,7 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	## Debug Components
 	rotation_component.debug = debug
-	movement_component.debug = debug
+	locomotion_component.debug = debug
 	backstab_component.debug = debug
 	notice_component.debug = debug
 	dizzy_component.debug = debug
@@ -163,11 +163,11 @@ func _physics_process(_delta: float) -> void:
 		false
 	)
 	
-	movement_component.can_move = blackboard.get_value(
+	locomotion_component.can_move = blackboard.get_value(
 		"can_move",
 		true
 	)
-	movement_component.speed = blackboard.get_value(
+	locomotion_component.speed = blackboard.get_value(
 		"move_speed",
 		_default_move_speed
 	)
@@ -199,7 +199,7 @@ func _physics_process(_delta: float) -> void:
 	
 	## Character Animations
 	character.anim_tree["parameters/Locked On Walk Direction/4/TimeScale/scale"] = 0.5
-	character.anim_tree["parameters/Locked On Walk Direction/5/TimeScale/scale"] = 0.5	
+	character.anim_tree["parameters/Locked On Walk Direction/5/TimeScale/scale"] = 0.5
 	character.movement_animations.move(
 		blackboard.get_value("input_direction", Vector3.ZERO), 
 		blackboard.get_value("locked_on", false), 
@@ -217,14 +217,15 @@ func _physics_process(_delta: float) -> void:
 
 
 func set_root_motion(flag: bool) -> void:
-	if flag:
-		active_motion_component = root_motion_component
-		root_motion_component.enabled = true
-		movement_component.enabled = false
-	else:
-		active_motion_component = movement_component
-		root_motion_component.enabled = false
-		movement_component.enabled = true
+	pass
+	#if flag:
+		#active_motion_component = root_motion_component
+		#root_motion_component.enabled = true
+		#locomotion_component.enabled = false
+	#else:
+		#active_motion_component = locomotion_component
+		#root_motion_component.enabled = false
+		#locomotion_component.enabled = true
 
 
 func _set_target_reachable():
