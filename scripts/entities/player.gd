@@ -26,8 +26,6 @@ extends CharacterBody3D
 @export_category("Audio")
 @export var footsteps: AudioFootsteps
 
-var active_motion_component: LocomotionStrategy
-
 var input_direction: Vector3 = Vector3.ZERO
 var last_input_on_ground: Vector3 = Vector3.ZERO
 
@@ -78,8 +76,6 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	
-	attack_component.active_motion_component = active_motion_component
 	
 	if Input.is_action_just_pressed("exit"):
 		get_tree().quit()

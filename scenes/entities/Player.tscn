@@ -409,8 +409,9 @@ blood_scene = ExtResource("27_63iim")
 
 [node name="Combat" type="Node3D" parent="."]
 
-[node name="AttackComponent" parent="Combat" node_paths=PackedStringArray("attack_animations") instance=ExtResource("28_no1kf")]
+[node name="AttackComponent" parent="Combat" node_paths=PackedStringArray("attack_animations", "locomotion_component") instance=ExtResource("28_no1kf")]
 attack_animations = NodePath("../../Character/AttackAnimations")
+locomotion_component = NodePath("../../Movement/LocomotionComponent")
 weapons = {
 "right_hand": NodePath("../../Character/Armature_004/GeneralSkeleton/Sword")
 }

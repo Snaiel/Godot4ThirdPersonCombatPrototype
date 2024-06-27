@@ -85,7 +85,7 @@ func has_secondary_movement() -> bool:
 	return _secondary_movement_speed > 0
 
 
-func set__secondary_movement(
+func set_secondary_movement(
 		secondary_speed: float,
 		time: float,
 		friction: float = 0.0,
@@ -112,7 +112,7 @@ func knockback(knockback_origin: Vector3) -> void:
 	var direction: Vector3 = entity\
 		.global_position\
 		.direction_to(knockback_origin)
-	set__secondary_movement(3, 5, 5, -direction)
+	set_secondary_movement(3, 5, 5, -direction)
 
 
 func reset__secondary_movement() -> void:

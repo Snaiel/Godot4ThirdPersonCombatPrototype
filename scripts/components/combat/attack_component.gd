@@ -5,10 +5,9 @@ signal can_rotate(flag: bool)
 signal can_move(flag: bool)
 
 @export var attack_animations: AttackAnimations
+@export var locomotion_component: LocomotionComponent
 @export var weapons: Dictionary
 @export var can_attack: bool = true
-
-var active_motion_component: LocomotionStrategy
 
 var attacking: bool = false
 var attack_level: int = 0:
@@ -128,7 +127,7 @@ func _receive_movement(attack_strat: AttackStrategy) -> void:
 	if _attack_interrupted:
 		return
 	
-	active_motion_component.set_secondary_movement(
+	locomotion_component.set_secondary_movement(
 		attack_strat.move_speed,
 		attack_strat.time,
 		attack_strat.friction,

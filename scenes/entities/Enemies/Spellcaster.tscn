@@ -1113,7 +1113,7 @@ stream_0/weight = 1.0
 radius = 0.3
 height = 1.8
 
-[node name="Spellcaster" type="CharacterBody3D" node_paths=PackedStringArray("parry_sfx", "block_sfx", "hit_sfx", "character", "rotation_component", "head_rotation_component", "root_motion_component", "lock_on_component", "hitbox_component", "health_component", "instability_component", "backstab_component", "dizzy_component", "notice_component", "attack_component", "spell_component", "block_component", "parry_component", "wellbeing_component", "beehave_tree", "blackboard", "agent") groups=["enemy"]]
+[node name="Spellcaster" type="CharacterBody3D" node_paths=PackedStringArray("parry_sfx", "block_sfx", "hit_sfx", "character", "rotation_component", "head_rotation_component", "lock_on_component", "hitbox_component", "health_component", "instability_component", "backstab_component", "dizzy_component", "notice_component", "attack_component", "spell_component", "block_component", "parry_component", "wellbeing_component", "beehave_tree", "blackboard", "agent") groups=["enemy"]]
 collision_layer = 8
 collision_mask = 11
 script = ExtResource("1_2f16f")
@@ -1124,7 +1124,6 @@ hit_sfx = NodePath("Character/AudioManager/Hit")
 character = NodePath("Character")
 rotation_component = NodePath("Rotation/EnemyRotationComponent")
 head_rotation_component = NodePath("Rotation/HeadRotationComponent")
-root_motion_component = NodePath("Movement/RootMotionComponent")
 lock_on_component = NodePath("Interface/LockOnComponent")
 hitbox_component = NodePath("HitboxComponent")
 health_component = NodePath("Wellbeing/HealthComponent")
