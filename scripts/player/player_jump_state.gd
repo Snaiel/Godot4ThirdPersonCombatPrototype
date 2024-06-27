@@ -2,7 +2,7 @@ class_name PlayerJumpState
 extends PlayerStateMachine
 
 
-@export var programmatic_movement: ProgrammaticMovementLocomotionStrategy
+@export var locomotion_component: LocomotionComponent
 
 @export var walk_state: PlayerWalkState
 @export var attack_state: PlayerAttackState
@@ -24,7 +24,7 @@ func enter():
 	player.jump_component.start_jump()
 	
 	if parent_state.previous_state == walk_state:
-		programmatic_movement.speed = 3.5
+		locomotion_component.speed = 3.5
 
 
 func process_player():

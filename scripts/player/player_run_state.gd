@@ -2,7 +2,7 @@ class_name PlayerRunState
 extends PlayerStateMachine
 
 
-@export var programmatic_movement: ProgrammaticMovementLocomotionStrategy
+@export var locomotion_component: LocomotionComponent
 
 @export var idle_state: PlayerIdleState
 @export var walk_state: PlayerWalkState
@@ -15,7 +15,7 @@ extends PlayerStateMachine
 
 
 func enter() -> void:
-	programmatic_movement.speed = 5
+	locomotion_component.speed = 5
 
 
 func process_player() -> void:

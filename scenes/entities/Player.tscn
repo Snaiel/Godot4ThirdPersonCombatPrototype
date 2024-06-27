@@ -194,9 +194,9 @@ parry_state = NodePath("../Parry")
 backstab_state = NodePath("../Backstab")
 player = NodePath("../..")
 
-[node name="Walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("programmatic_movement", "idle_state", "dodge_state", "run_state", "jump_state", "attack_state", "block_state", "parry_state", "backstab_state", "player")]
+[node name="Walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("locomotion_component", "idle_state", "dodge_state", "run_state", "jump_state", "attack_state", "block_state", "parry_state", "backstab_state", "player")]
 script = ExtResource("4_4fxcp")
-programmatic_movement = NodePath("../../Movement/LocomotionComponent/ProgrammaticMovement")
+locomotion_component = NodePath("../../Movement/LocomotionComponent")
 idle_state = NodePath("../Idle")
 dodge_state = NodePath("../Dodge")
 run_state = NodePath("../Run")
@@ -207,9 +207,9 @@ parry_state = NodePath("../Parry")
 backstab_state = NodePath("../Backstab")
 player = NodePath("../..")
 
-[node name="Run" type="Node" parent="StateMachine" node_paths=PackedStringArray("programmatic_movement", "idle_state", "walk_state", "jump_state", "dodge_state", "attack_state", "block_state", "parry_state", "backstab_state", "player")]
+[node name="Run" type="Node" parent="StateMachine" node_paths=PackedStringArray("locomotion_component", "idle_state", "walk_state", "jump_state", "dodge_state", "attack_state", "block_state", "parry_state", "backstab_state", "player")]
 script = ExtResource("6_nj3fe")
-programmatic_movement = NodePath("../../Movement/LocomotionComponent/ProgrammaticMovement")
+locomotion_component = NodePath("../../Movement/LocomotionComponent")
 idle_state = NodePath("../Idle")
 walk_state = NodePath("../Walk")
 jump_state = NodePath("../Jump")
@@ -226,9 +226,9 @@ run_state = NodePath("../Run")
 jump_state = NodePath("../Jump")
 player = NodePath("../..")
 
-[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("programmatic_movement", "walk_state", "attack_state", "block_state", "parry_state", "player")]
+[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("locomotion_component", "walk_state", "attack_state", "block_state", "parry_state", "player")]
 script = ExtResource("8_jgsl3")
-programmatic_movement = NodePath("../../Movement/LocomotionComponent/ProgrammaticMovement")
+locomotion_component = NodePath("../../Movement/LocomotionComponent")
 walk_state = NodePath("../Walk")
 attack_state = NodePath("../Attack")
 block_state = NodePath("../Block")
@@ -256,9 +256,9 @@ block_state = NodePath("../Block")
 dizzy_finisher_state = NodePath("../DizzyFinisher")
 player = NodePath("../..")
 
-[node name="ParriedEnemyHit" type="Node" parent="StateMachine" node_paths=PackedStringArray("programmatic_movement", "attack_state", "block_state", "parry_state", "dizzy_finisher_state", "sfx", "player")]
+[node name="ParriedEnemyHit" type="Node" parent="StateMachine" node_paths=PackedStringArray("locomotion_component", "attack_state", "block_state", "parry_state", "dizzy_finisher_state", "sfx", "player")]
 script = ExtResource("20_1olui")
-programmatic_movement = NodePath("../../Movement/LocomotionComponent/ProgrammaticMovement")
+locomotion_component = NodePath("../../Movement/LocomotionComponent")
 attack_state = NodePath("../Attack")
 block_state = NodePath("../Block")
 parry_state = NodePath("../Parry")
@@ -286,9 +286,9 @@ player = NodePath("../../..")
 script = ExtResource("16_nyfh7")
 player = NodePath("../../..")
 
-[node name="DizzyFinisher" type="Node" parent="StateMachine" node_paths=PackedStringArray("programmatic_movement", "from_parry", "from_damage", "player")]
+[node name="DizzyFinisher" type="Node" parent="StateMachine" node_paths=PackedStringArray("locomotion_component", "from_parry", "from_damage", "player")]
 script = ExtResource("16_vyrl8")
-programmatic_movement = NodePath("../../Movement/LocomotionComponent/ProgrammaticMovement")
+locomotion_component = NodePath("../../Movement/LocomotionComponent")
 from_parry = NodePath("FromParry")
 from_damage = NodePath("FromDamage")
 player = NodePath("../..")
@@ -314,9 +314,9 @@ parry_state = NodePath("../Parry")
 sfx = NodePath("../../Character/AudioManager/Hit")
 player = NodePath("../..")
 
-[node name="Drink" type="Node" parent="StateMachine" node_paths=PackedStringArray("programmatic_movement", "health_charge_component", "player")]
+[node name="Drink" type="Node" parent="StateMachine" node_paths=PackedStringArray("locomotion_component", "health_charge_component", "player")]
 script = ExtResource("22_47iaw")
-programmatic_movement = NodePath("../../Movement/LocomotionComponent/ProgrammaticMovement")
+locomotion_component = NodePath("../../Movement/LocomotionComponent")
 health_charge_component = NodePath("../../HealthChargeComponent")
 player = NodePath("../..")
 
@@ -370,7 +370,6 @@ default_strategy = &"programmatic"
 [node name="ProgrammaticMovement" type="Node" parent="Movement/LocomotionComponent" node_paths=PackedStringArray("rotation_component")]
 script = ExtResource("32_3p3ec")
 rotation_component = NodePath("../../../Rotation/PlayerRotationComponent")
-speed = 5.0
 
 [node name="RootMotion" type="Node" parent="Movement/LocomotionComponent" node_paths=PackedStringArray("character")]
 script = ExtResource("33_l377w")
@@ -416,10 +415,10 @@ weapons = {
 "right_hand": NodePath("../../Character/Armature_004/GeneralSkeleton/Sword")
 }
 
-[node name="BlockComponent" parent="Combat" node_paths=PackedStringArray("entity", "programmatic_movement", "character") instance=ExtResource("10_hjlwj")]
+[node name="BlockComponent" parent="Combat" node_paths=PackedStringArray("entity", "locomotion_component", "character") instance=ExtResource("10_hjlwj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, -0.08)
 entity = NodePath("../..")
-programmatic_movement = NodePath("../../Movement/LocomotionComponent/ProgrammaticMovement")
+locomotion_component = NodePath("../../Movement/LocomotionComponent")
 character = NodePath("../../Character")
 
 [node name="ParryComponent" parent="Combat" node_paths=PackedStringArray("hitbox_component", "block_component") instance=ExtResource("30_ceaq1")]

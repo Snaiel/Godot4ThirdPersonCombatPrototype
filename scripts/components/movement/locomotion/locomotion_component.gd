@@ -10,6 +10,7 @@ extends Node
 @export var strategies: Dictionary
 @export var default_strategy: StringName
 
+@export var speed: float = 5
 @export var gravity: float = 20.0
 
 

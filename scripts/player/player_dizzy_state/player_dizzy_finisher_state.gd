@@ -2,7 +2,7 @@ class_name PlayerDizzyFinisherState
 extends PlayerStateMachine
 
 
-@export var programmatic_movement: ProgrammaticMovementLocomotionStrategy
+@export var locomotion_component: LocomotionComponent
 
 @export var from_parry: PlayerDizzyFinisherFromParryState
 @export var from_damage: PlayerDizzyFinisherFromDamageState
@@ -16,7 +16,7 @@ func _ready():
 
 func enter():
 	player.hitbox_component.enabled = false
-	programmatic_movement.speed = 3
+	locomotion_component.speed = 3
 	
 	var state: PlayerStateMachine
 	if dizzy_system.dizzy_victim.instability_component.full_instability_from_parry:

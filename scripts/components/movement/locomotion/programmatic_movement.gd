@@ -3,7 +3,6 @@ extends LocomotionStrategy
 
 
 @export var rotation_component: RotationComponent
-@export var speed: float = 0.0
 
 
 func handle_movement(_delta: float, context: LocomotionComponent) -> void:
@@ -17,9 +16,9 @@ func handle_movement(_delta: float, context: LocomotionComponent) -> void:
 			
 			context.desired_velocity = context.desired_velocity.move_toward(
 				Vector3(
-					rotation_component.move_direction.x * speed,
+					rotation_component.move_direction.x * context.speed,
 					context.desired_velocity.y,
-					rotation_component.move_direction.z * speed
+					rotation_component.move_direction.z * context.speed
 				),
 				weight
 			)
