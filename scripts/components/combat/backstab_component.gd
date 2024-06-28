@@ -19,29 +19,26 @@ var _angle_to_entity: float = 0.0
 
 
 func _process(_delta):
-	if attachment_point:
-		position = attachment_point.position
-	
 	if not enabled:
 		return
-	
+		
+	global_position = attachment_point.global_position
 	_dist_to_player = entity.global_position.distance_to(_player.global_position)
-	
 	_angle_to_player = rad_to_deg(
 		Vector3.FORWARD.rotated(Vector3.UP, entity.global_rotation.y).angle_to(
 			entity.global_position.direction_to(_player.global_position)
 		)
 	)
-	
 	_angle_to_entity = rad_to_deg(
 			Vector3.FORWARD.rotated(Vector3.UP, _player.global_rotation.y).angle_to(
 				_player.global_position.direction_to(entity.global_position)
 		)
 	)
-	
-#	if debug: prints(_dist_to_player, _angle_to_player, _angle_to_entity)
-	
-	if _dist_to_player < 1.5 and _angle_to_player > 125 and _angle_to_entity < 80:
+	if (
+		_dist_to_player < 1.5 and \
+		_angle_to_player > 125 and \
+		_angle_to_entity < 80
+	):
 		_backstab_system.set_backstab_victim(self, _dist_to_player)
 	else:
 		_backstab_system.clear_backstab_victim(self)

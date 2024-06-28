@@ -33,7 +33,7 @@ var victim_being_killed: bool = false
 
 
 func _process(_delta):
-#	prints(victim_being_killed, saved_victim, dizzy_victim)
+	#prints(victim_being_killed, saved_victim, dizzy_victim)
 	
 	if victim_being_killed:
 		return

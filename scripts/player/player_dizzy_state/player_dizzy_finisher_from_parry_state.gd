@@ -29,6 +29,7 @@ func enter():
 func process_player():
 	if Input.is_action_just_pressed("attack") and \
 	dizzy_system.can_kill_victim:
+		player.attack_component.instance += 1
 		player.attack_component.disable_attack_interrupted()
 		player.character.dizzy_finisher_animations.play_from_parry_finisher()
 		dizzy_system.victim_being_killed = true

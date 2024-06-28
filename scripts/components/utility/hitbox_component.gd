@@ -55,7 +55,7 @@ func _process(_delta: float) -> void:
 		
 		# if an entity is being finished while it is
 		# dizzy, do not register the hit if the
-		# victim is not this entity 
+		# victim is not this entity
 		if dizzy_system.victim_being_killed and \
 		(
 			(

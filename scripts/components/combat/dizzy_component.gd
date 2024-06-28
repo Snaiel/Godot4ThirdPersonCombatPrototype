@@ -1,5 +1,5 @@
 class_name DizzyComponent
-extends Node
+extends Node3D
 
 
 @export_category("Dizzy Lengths")
@@ -10,6 +10,8 @@ extends Node
 @export var debug: bool = false
 @export var enabled: bool = true
 @export var entity: Enemy
+@export var attachment_point: Node3D
+@export var locomotion_component: LocomotionComponent
 @export var health_component: HealthComponent
 @export var attack_component: AttackComponent
 @export var instability_component: InstabilityComponent
@@ -48,9 +50,12 @@ func _ready():
 	_come_out_of_damage_dizzy_timer.one_shot = true
 	_come_out_of_damage_dizzy_timer.timeout.connect(_back_to_normal)
 	add_child(_come_out_of_damage_dizzy_timer)
+	
+	global_position = attachment_point.global_position
 
 
 func _process(_delta):
+	global_position = attachment_point.global_position
 	if not enabled:
 		if dizzy_system.dizzy_victim == self:
 			dizzy_system.dizzy_victim = null
@@ -59,7 +64,7 @@ func _process(_delta):
 
 func process_hit(weapon: Weapon):
 	if dizzy_system.dizzy_victim == self and weapon.entity == player:
-		entity.set_root_motion(true)
+		locomotion_component.set_active_strategy("root_motion")
 		health_component.deal_max_damage = true
 		dizzy_system.dizzy_victim_killed.emit()
 		if instability_component.full_instability_from_parry:
@@ -83,7 +88,7 @@ func _on_instability_component_full_instability():
 	dizzy_sfx.play()
 	
 	if instability_component.full_instability_from_parry:
-		entity.set_root_motion(true)
+		locomotion_component.set_active_strategy("root_motion")
 		character.dizzy_victim_animations.dizzy_from_parry()
 		_dizzy_timer.start(dizzy_from_parry_length)
 		blackboard.set_value("rotate_towards_target", true)
@@ -110,7 +115,7 @@ func _from_parry_knockback() -> void:
 	var weight: float = clamp(distance, 0.0, 2.0)
 	weight = inverse_lerp(2.0, 0.0, weight)
 	weight = lerp(0.0, 5.0, weight)
-	entity.active_motion_component.set_secondary_movement(
+	locomotion_component.set_secondary_movement(
 		weight,
 		5,
 		10,
@@ -123,7 +128,7 @@ func _from_damage_knockback() -> void:
 	var direction: Vector3 = entity.global_position.direction_to(
 		opponent_position
 	)
-	entity.active_motion_component.set_secondary_movement(
+	locomotion_component.set_secondary_movement(
 		5,
 		5,
 		10,
@@ -148,4 +153,4 @@ func _come_out_of_dizzy() -> void:
 func _back_to_normal() -> void:
 	blackboard.set_value("interrupt_timers", false)
 	blackboard.set_value("dizzy", false)
-	entity.set_root_motion(false)
+	locomotion_component.set_active_strategy("programmatic")
