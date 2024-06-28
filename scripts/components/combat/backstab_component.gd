@@ -8,6 +8,7 @@ extends Node3D
 @export var attachment_point: Node3D
 @export var health_component: HealthComponent
 @export var notice_component: NoticeComponent
+@export var crosshair: Crosshair
 @export var puncture_sound: AudioStreamPlayer3D
 
 var _dist_to_player: float = 0.0
@@ -16,6 +17,14 @@ var _angle_to_entity: float = 0.0
 
 @onready var _player: Player = Globals.player
 @onready var _backstab_system: BackstabSystem = Globals.backstab_system
+
+
+func _ready():
+	if crosshair: crosshair.register_callback(
+		func():
+			return _backstab_system.backstab_victim != null and \
+			_backstab_system.backstab_victim == self
+	)
 
 
 func _process(_delta):

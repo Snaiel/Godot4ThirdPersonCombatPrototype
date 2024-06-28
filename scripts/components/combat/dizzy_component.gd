@@ -15,6 +15,7 @@ extends Node3D
 @export var health_component: HealthComponent
 @export var attack_component: AttackComponent
 @export var instability_component: InstabilityComponent
+@export var crosshair: Crosshair
 @export var character: CharacterAnimations
 @export var blackboard: Blackboard
 
@@ -32,9 +33,14 @@ var _damage_dizzy_timer_pause: float = 1.5
 
 
 func _ready():
-	
 	instability_component.full_instability.connect(
 		_on_instability_component_full_instability
+	)
+	
+	if crosshair: crosshair.register_callback(
+		func():
+			return dizzy_system.dizzy_victim != null and \
+			dizzy_system.dizzy_victim == self
 	)
 	
 	_dizzy_timer = Timer.new()
