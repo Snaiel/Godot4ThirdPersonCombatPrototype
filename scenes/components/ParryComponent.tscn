@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bg5d27eyqwsfd"]
 
-[ext_resource type="Script" path="res://scripts/components/abilities/parry_component.gd" id="1_npyu2"]
+[ext_resource type="Script" path="res://scripts/components/abilities/parry_component.gd" id="1_umnob"]
 
 [node name="ParryComponent" type="Node3D"]
-script = ExtResource("1_npyu2")
+script = ExtResource("1_umnob")

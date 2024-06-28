@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://cv8knl5vavfyy"]
+[gd_scene load_steps=72 format=3 uid="uid://cv8knl5vavfyy"]
 
 [ext_resource type="Script" path="res://scripts/entities/enemy.gd" id="1_nrck3"]
 [ext_resource type="PackedScene" uid="uid://x0oxbha36o2h" path="res://scenes/entities/YBotCharacter.tscn" id="2_0tr8h"]
@@ -32,11 +32,11 @@
 [ext_resource type="Script" path="res://scripts/components/wellbeing/instability_component.gd" id="17_dsieu"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_reactive.gd" id="17_sr624"]
 [ext_resource type="PackedScene" uid="uid://csbpq6cbn8rvn" path="res://scenes/beehave/compare_actions/IsStateSuspicious.tscn" id="18_e0yjj"]
-[ext_resource type="Script" path="res://scripts/components/abilities/enemy_attack_component.gd" id="18_mfdlk"]
+[ext_resource type="Script" path="res://scripts/components/abilities/enemy_attack_component.gd" id="19_gnnqg"]
 [ext_resource type="PackedScene" uid="uid://c4jualprb4d24" path="res://scenes/beehave/compare_actions/IsStateGettingSuspicious.tscn" id="19_l4d6w"]
 [ext_resource type="PackedScene" uid="uid://cryed6dtlo286" path="res://scenes/beehave/set_actions/SetRotateTowardsTargetTrue.tscn" id="20_1isai"]
-[ext_resource type="Script" path="res://scripts/components/abilities/parry_component.gd" id="21_c62ik"]
 [ext_resource type="PackedScene" uid="uid://b2vrwljrc7cpp" path="res://scenes/beehave/set_actions/SetLockedOnTrue.tscn" id="21_dq1l1"]
+[ext_resource type="Script" path="res://scripts/components/abilities/parry_component.gd" id="21_eh56e"]
 [ext_resource type="Script" path="res://scripts/components/combat/dizzy_component.gd" id="22_cfyy2"]
 [ext_resource type="PackedScene" uid="uid://mmj6qxe250co" path="res://scenes/components/FadeComponent.tscn" id="22_suiee"]
 [ext_resource type="Script" path="res://scripts/components/combat/backstab_component.gd" id="22_yq2kx"]
@@ -44,11 +44,18 @@
 [ext_resource type="PackedScene" uid="uid://buwmvh65dccg5" path="res://scenes/beehave/compare_actions/IsStateAggro.tscn" id="23_augt0"]
 [ext_resource type="PackedScene" uid="uid://chv25a2oggqaw" path="res://scenes/beehave/wait/WaitBlock.tscn" id="24_ac52a"]
 [ext_resource type="PackedScene" uid="uid://8q4shgtn2rdm" path="res://scenes/beehave/set_actions/SetCanAttackTrue.tscn" id="24_ugq3t"]
+[ext_resource type="Script" path="res://scripts/components/combat/interaction/interaction_component.gd" id="25_o4t4g"]
+[ext_resource type="Script" path="res://scripts/components/combat/interaction/handlers/backstab_interaction_handler.gd" id="26_8ptli"]
 [ext_resource type="PackedScene" uid="uid://nc8fs0at3l7x" path="res://scenes/beehave/set_actions/SetLockedOnFalse.tscn" id="26_l0o05"]
 [ext_resource type="PackedScene" uid="uid://t7wqbcml070v" path="res://scenes/beehave/set_actions/SetLookedAroundFalse.tscn" id="27_2m2v4"]
+[ext_resource type="Script" path="res://scripts/components/combat/interaction/handlers/dizzy_interaction_handler.gd" id="27_huhc6"]
 [ext_resource type="PackedScene" uid="uid://34ehm7k44ywn" path="res://scenes/beehave/set_actions/SetInterruptTimersFalse.tscn" id="28_5hxv6"]
+[ext_resource type="Script" path="res://scripts/components/combat/interaction/handlers/outcomes_handler.gd" id="28_kaytl"]
 [ext_resource type="PackedScene" uid="uid://cw3sck872787g" path="res://scenes/beehave/set_actions/SetGotHitFalse.tscn" id="28_mcqya"]
+[ext_resource type="Script" path="res://scripts/components/combat/interaction/handlers/hit_interaction_handler.gd" id="29_7yemi"]
 [ext_resource type="Script" path="res://scripts/components/utility/void_death_component.gd" id="29_tsncg"]
+[ext_resource type="Script" path="res://scripts/components/combat/interaction/handlers/block_interaction_handler.gd" id="30_x3hvr"]
+[ext_resource type="Script" path="res://scripts/components/combat/interaction/handlers/parry_interaction_handler.gd" id="31_v2ntu"]
 [ext_resource type="PackedScene" uid="uid://cfuiyhthukrn0" path="res://scenes/beehave/attacks/SingleRandomAttack.tscn" id="33_gbbqm"]
 [ext_resource type="Script" path="res://scripts/beehave/execute_expression.gd" id="34_eiv28"]
 [ext_resource type="PackedScene" uid="uid://b4vbjom07vuli" path="res://scenes/beehave/set_actions/SetWalkSpeed.tscn" id="40_6x0m4"]
@@ -259,7 +266,7 @@ lock_on_component = NodePath("../../Utility/LockOnComponent")
 backstab_component = NodePath("../../Combat/BackstabComponent")
 health_component = NodePath("../HealthComponent")
 instability_component = NodePath("../InstabilityComponent")
-notice_component = NodePath("")
+notice_component = NodePath("../../Combat/NoticeComponent")
 wellbeing_widget_scene = ExtResource("15_kcl8l")
 
 [node name="HealthComponent" type="Node3D" parent="Wellbeing"]
@@ -275,7 +282,7 @@ max_instability = 100.0
 [node name="Abilities" type="Node3D" parent="."]
 
 [node name="AttackComponent" type="Node" parent="Abilities" node_paths=PackedStringArray("blackboard", "attack_animations", "locomotion_component")]
-script = ExtResource("18_mfdlk")
+script = ExtResource("19_gnnqg")
 blackboard = NodePath("../../Blackboard")
 attack_animations = NodePath("../../Character/AttackAnimations")
 locomotion_component = NodePath("../../LocomotionComponent")
@@ -291,7 +298,7 @@ character = NodePath("../../Character")
 
 [node name="ParryComponent" type="Node3D" parent="Abilities" node_paths=PackedStringArray("hitbox_component", "block_component")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-script = ExtResource("21_c62ik")
+script = ExtResource("21_eh56e")
 hitbox_component = NodePath("../../HitboxComponent")
 block_component = NodePath("../BlockComponent")
 parry_particles_colour = Color(0.439216, 0.0392157, 0.0392157, 1)
@@ -313,12 +320,11 @@ dizzy_sfx = NodePath("../../Character/AudioManager/Dizzy")
 thrust_puncture_sfx = NodePath("../../Character/AudioManager/ThrustPuncture")
 hit_sfx = NodePath("../../Character/AudioManager/Hit")
 
-[node name="BackstabComponent" type="Node3D" parent="Combat" node_paths=PackedStringArray("entity", "attachment_point", "health_component", "notice_component", "crosshair", "puncture_sound")]
+[node name="BackstabComponent" type="Node3D" parent="Combat" node_paths=PackedStringArray("entity", "attachment_point", "health_component", "crosshair", "puncture_sound")]
 script = ExtResource("22_yq2kx")
 entity = NodePath("../..")
 attachment_point = NodePath("../../Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint")
 health_component = NodePath("../../Wellbeing/HealthComponent")
-notice_component = NodePath("")
 crosshair = NodePath("../../Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint/Crosshair")
 puncture_sound = NodePath("../../Character/AudioManager/ThrustPuncture")
 
@@ -328,19 +334,55 @@ head_attachment = NodePath("../../Character/Armature_004/GeneralSkeleton/HeadAtt
 blackboard = NodePath("../../Blackboard")
 hud_info = NodePath("../../Utility/HUDInfoPos")
 
-[node name="IncomingWeaponHandler" type="Node" parent="Combat"]
+[node name="InteractionComponent" type="Node" parent="Combat" node_paths=PackedStringArray("hitbox_component")]
+script = ExtResource("25_o4t4g")
+hitbox_component = NodePath("../../HitboxComponent")
 
-[node name="Backstab" type="Node" parent="Combat/IncomingWeaponHandler"]
+[node name="Backstab" type="Node" parent="Combat/InteractionComponent" node_paths=PackedStringArray("backstab_component", "health_component", "locomotion_component")]
+script = ExtResource("26_8ptli")
+backstab_component = NodePath("../../BackstabComponent")
+health_component = NodePath("../../../Wellbeing/HealthComponent")
+locomotion_component = NodePath("../../../LocomotionComponent")
 
-[node name="Dizzy" type="Node" parent="Combat/IncomingWeaponHandler"]
+[node name="Dizzy" type="Node" parent="Combat/InteractionComponent" node_paths=PackedStringArray("dizzy_component", "health_component", "instability_component", "locomotion_component")]
+script = ExtResource("27_huhc6")
+dizzy_component = NodePath("../../DizzyComponent")
+health_component = NodePath("../../../Wellbeing/HealthComponent")
+instability_component = NodePath("../../../Wellbeing/InstabilityComponent")
+locomotion_component = NodePath("../../../LocomotionComponent")
 
-[node name="Outcomes" type="Node" parent="Combat/IncomingWeaponHandler"]
+[node name="Outcomes" type="Node" parent="Combat/InteractionComponent" node_paths=PackedStringArray("blackboard", "locomotion_component", "notice_component")]
+script = ExtResource("28_kaytl")
+blackboard = NodePath("../../../Blackboard")
+outcome_weights = Array[float]([4.0, 4.0, 2.0])
+locomotion_component = NodePath("../../../LocomotionComponent")
+notice_component = NodePath("../../NoticeComponent")
 
-[node name="Hit" type="Node" parent="Combat/IncomingWeaponHandler/Outcomes"]
+[node name="Hit" type="Node" parent="Combat/InteractionComponent/Outcomes" node_paths=PackedStringArray("blackboard", "health_component", "instability_component", "locomotion_component", "hit_and_death_animations", "hit_sfx")]
+script = ExtResource("29_7yemi")
+blackboard = NodePath("../../../../Blackboard")
+health_component = NodePath("../../../../Wellbeing/HealthComponent")
+instability_component = NodePath("../../../../Wellbeing/InstabilityComponent")
+locomotion_component = NodePath("../../../../LocomotionComponent")
+hit_and_death_animations = NodePath("../../../../Character/HitAndDeathAnimations")
+hit_sfx = NodePath("../../../../Character/AudioManager/Hit")
 
-[node name="Block" type="Node" parent="Combat/IncomingWeaponHandler/Outcomes"]
+[node name="Block" type="Node" parent="Combat/InteractionComponent/Outcomes" node_paths=PackedStringArray("blackboard", "block_component", "health_component", "instability_component", "block_sfx")]
+script = ExtResource("30_x3hvr")
+blackboard = NodePath("../../../../Blackboard")
+block_component = NodePath("../../../../Abilities/BlockComponent")
+health_component = NodePath("../../../../Wellbeing/HealthComponent")
+instability_component = NodePath("../../../../Wellbeing/InstabilityComponent")
+block_sfx = NodePath("../../../../Character/AudioManager/Block")
 
-[node name="Parry" type="Node" parent="Combat/IncomingWeaponHandler/Outcomes"]
+[node name="Parry" type="Node" parent="Combat/InteractionComponent/Outcomes" node_paths=PackedStringArray("blackboard", "parry_component", "parry_animations", "block_component", "parry_sfx", "instability_component")]
+script = ExtResource("31_v2ntu")
+blackboard = NodePath("../../../../Blackboard")
+parry_component = NodePath("../../../../Abilities/ParryComponent")
+parry_animations = NodePath("../../../../Character/ParryAnimations")
+block_component = NodePath("../../../../Abilities/BlockComponent")
+parry_sfx = NodePath("../../../../Character/AudioManager/Parry")
+instability_component = NodePath("../../../../Wellbeing/InstabilityComponent")
 
 [node name="Utility" type="Node3D" parent="."]
 
@@ -714,10 +756,8 @@ script = ExtResource("12_q7h63")
 
 [node name="NavigationAgent" type="NavigationAgent3D" parent="."]
 
-[connection signal="combat_interaction" from="." to="Abilities/AttackComponent" method="interrupt_attack"]
 [connection signal="dead" from="." to="Abilities/AttackComponent" method="set_can_damage_of_all_weapons" binds= [false]]
-[connection signal="got_hit" from="." to="Character/HitAndDeathAnimations" method="hit"]
-[connection signal="got_hit" from="." to="Character/AudioManager/Hit" method="play"]
+[connection signal="interaction" from="Combat/InteractionComponent/Outcomes" to="Abilities/AttackComponent" method="interrupt_attack"]
 
 [editable path="Character"]
 [editable path="Character/Armature_004/GeneralSkeleton/Sword"]

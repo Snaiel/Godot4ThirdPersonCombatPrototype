@@ -2,12 +2,8 @@ class_name Enemy
 extends CharacterBody3D
 
 
-signal combat_interaction
-signal got_hit
-signal block_weapon
-signal parry_weapon
-
 signal dead
+
 
 @export var debug: bool = false
 
@@ -57,7 +53,6 @@ func _ready() -> void:
 	if target == null:
 		target = Globals.player
 	
-	hitbox_component.weapon_hit.connect(_on_hitbox_component_weapon_hit)
 	health_component.zero_health.connect(_on_health_component_zero_health)
 	
 	blackboard.set_value("move_speed", 3)
@@ -76,7 +71,6 @@ func _physics_process(_delta: float) -> void:
 		#prints(
 			#notice_component.current_state
 		#)
-	
 	
 	## Target
 	var target_dist: float = global_position.distance_to(target.global_position)
@@ -153,60 +147,6 @@ func _physics_process(_delta: float) -> void:
 func _set_agent_target_reachable():
 	await get_tree().physics_frame
 	blackboard.set_value("agent_target_reachable", navigation_agent.is_target_reachable())
-
-
-func _on_hitbox_component_weapon_hit(incoming_weapon: Weapon) -> void:
-	if Globals.backstab_system.backstab_victim == backstab_component:
-		backstab_component.process_hit()
-		health_component.damage_from_weapon(incoming_weapon)
-		locomotion_component.knockback(incoming_weapon.entity.global_position)
-		return
-	
-	if Globals.dizzy_system.dizzy_victim == dizzy_component:
-		dizzy_component.process_hit(incoming_weapon)
-		health_component.damage_from_weapon(incoming_weapon)
-		if instability_component.full_instability_from_parry:
-			locomotion_component.knockback(incoming_weapon.entity.global_position)
-		return
-	
-	combat_interaction.emit()
-	
-	blackboard.set_value("interrupt_timers", true)
-	blackboard.set_value("can_attack", false)
-	blackboard.set_value("attack", false)
-	
-	var total_weight: float = hit_weight + block_weight + parry_weight
-	var rng: float = RandomNumberGenerator.new().randf() * total_weight
-	
-	if blackboard.get_value("notice_state") != "aggro" or \
-	blackboard.get_value("dizzy", false):
-		rng = 0.0
-	
-	locomotion_component.knockback(incoming_weapon.entity.global_position)
-	notice_component.transition_to_aggro()
-	
-	if rng < hit_weight:
-		# incoming hit goes through
-		got_hit.emit()
-		blackboard.set_value("got_hit", true)
-		health_component.damage_from_weapon(incoming_weapon)
-		instability_component.process_hit()
-	elif rng < hit_weight + block_weight:
-		# block incoming hit
-		block_weapon.emit()
-		instability_component.process_block()
-		instability_component.enabled = false
-		health_component.enabled = false
-		get_tree().create_timer(0.3).timeout.connect(
-			func():
-				instability_component.enabled = true
-				health_component.enabled = true
-		)
-	elif rng < hit_weight + block_weight + parry_weight:
-		# parry incoming hit
-		parry_weapon.emit()
-		instability_component.process_parry()
-		incoming_weapon.parry_weapon()
 
 
 func _on_health_component_zero_health() -> void:

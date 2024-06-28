@@ -24,7 +24,5 @@ func tick(_actor: Node, blackboard: Blackboard) -> int:
 			which_attack = i
 			break
 	
-	print(rng)
-	
 	blackboard.set_value("attack_level", which_attack)
 	return SUCCESS
