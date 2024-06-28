@@ -2,7 +2,5 @@
 
 [ext_resource type="Script" path="res://scripts/components/combat/parry_component.gd" id="1_npyu2"]
 
-[node name="ParryComponent" type="Node3D" node_paths=PackedStringArray("hitbox_component", "block_component")]
+[node name="ParryComponent" type="Node3D"]
 script = ExtResource("1_npyu2")
-hitbox_component = NodePath("")
-block_component = NodePath("")

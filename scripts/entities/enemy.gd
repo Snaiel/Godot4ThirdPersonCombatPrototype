@@ -193,19 +193,18 @@ func _on_hitbox_component_weapon_hit(incoming_weapon: Weapon) -> void:
 		instability_component.process_hit()
 	elif rng < hit_weight + block_weight:
 		# block incoming hit
-		blocking.emit(true)
+		block_weapon.emit()
 		instability_component.process_block()
 		instability_component.enabled = false
 		health_component.enabled = false
 		get_tree().create_timer(0.3).timeout.connect(
 			func():
-				blocking.emit(false)
 				instability_component.enabled = true
 				health_component.enabled = true
 		)
 	elif rng < hit_weight + block_weight + parry_weight:
 		# parry incoming hit
-		parried_weapon.emit()
+		parry_weapon.emit()
 		instability_component.process_parry()
 		incoming_weapon.parry_weapon()
 

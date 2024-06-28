@@ -1,5 +1,5 @@
 class_name DizzyComponent
-extends Node3D
+extends Node
 
 
 @export_category("Dizzy Lengths")
@@ -10,7 +10,6 @@ extends Node3D
 @export var debug: bool = false
 @export var enabled: bool = true
 @export var entity: Enemy
-@export var lock_on_component: LockOnComponent
 @export var health_component: HealthComponent
 @export var attack_component: AttackComponent
 @export var instability_component: InstabilityComponent
@@ -56,9 +55,6 @@ func _process(_delta):
 		if dizzy_system.dizzy_victim == self:
 			dizzy_system.dizzy_victim = null
 		return
-	
-	if lock_on_component:
-		position = lock_on_component.position
 
 
 func process_hit(weapon: Weapon):
@@ -105,8 +101,12 @@ func _on_instability_component_full_instability():
 
 func _from_parry_knockback() -> void:
 	var opponent_position: Vector3 = player.global_position
-	var direction: Vector3 = global_position.direction_to(opponent_position)
-	var distance: float = entity.global_position.distance_to(opponent_position)
+	var direction: Vector3 = entity.global_position.direction_to(
+		opponent_position
+	)
+	var distance: float = entity.global_position.distance_to(
+		opponent_position
+	)
 	var weight: float = clamp(distance, 0.0, 2.0)
 	weight = inverse_lerp(2.0, 0.0, weight)
 	weight = lerp(0.0, 5.0, weight)
@@ -120,7 +120,9 @@ func _from_parry_knockback() -> void:
 
 func _from_damage_knockback() -> void:
 	var opponent_position: Vector3 = player.global_position
-	var direction: Vector3 = global_position.direction_to(opponent_position)
+	var direction: Vector3 = entity.global_position.direction_to(
+		opponent_position
+	)
 	entity.active_motion_component.set_secondary_movement(
 		5,
 		5,

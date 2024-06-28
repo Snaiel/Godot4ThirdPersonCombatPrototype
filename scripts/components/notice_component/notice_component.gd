@@ -1,5 +1,5 @@
 class_name NoticeComponent
-extends Node3D
+extends Node
 
 
 @export_category("Configuration")
@@ -169,7 +169,7 @@ func get_notice_value() -> float:
 
 
 func in_camera_frustum() -> bool:
-	return camera.is_position_in_frustum(global_position)
+	return camera.is_position_in_frustum(hud_info.global_position)
 
 
 func transition_to_aggro() -> void:
@@ -185,7 +185,9 @@ func hide_notice_triangles() -> void:
 func _can_see_target(target_pos: Vector3) -> bool:
 	var can_see: bool = true
 
-	var space_state: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
+	var space_state: PhysicsDirectSpaceState3D = head_attachment.\
+		get_world_3d().\
+		direct_space_state
 	var query: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(
 		head_attachment.global_position,
 		target_pos,

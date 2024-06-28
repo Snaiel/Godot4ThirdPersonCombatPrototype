@@ -1,5 +1,5 @@
 class_name InstabilityComponent
-extends Node3D
+extends Node
 
 
 signal instability_increased
