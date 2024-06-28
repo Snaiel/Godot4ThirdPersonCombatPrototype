@@ -52,7 +52,8 @@ func being_backstabbed() -> bool:
 
 
 func process_hit() -> void:
-	if being_backstabbed():
-		puncture_sound.play()
-		health_component.deal_max_damage = true
-		entity.rotation.y = _player.rotation.y
+	if not being_backstabbed():
+		return
+	puncture_sound.play()
+	health_component.deal_max_damage = true
+	entity.rotation.y = _player.rotation.y

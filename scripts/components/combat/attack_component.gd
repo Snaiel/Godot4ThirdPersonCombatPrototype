@@ -2,7 +2,6 @@ class_name AttackComponent
 extends Node
 
 signal can_rotate(flag: bool)
-signal can_move(flag: bool)
 
 @export var attack_animations: AttackAnimations
 @export var locomotion_component: LocomotionComponent
@@ -57,7 +56,6 @@ func attack(can_stop: bool = true) -> void:
 	can_attack = false
 	
 	can_rotate.emit(true)
-	can_move.emit(false)
 	
 	attack_animations.attack(attack_level, _manually_set_attack_level)
 		
@@ -85,7 +83,6 @@ func interrupt_attack() -> void:
 	if attacking:
 		_attack_interrupted = true
 	
-	can_move.emit(true)
 	attacking = false
 	attack_level = 0
 	

@@ -2,14 +2,18 @@ class_name WellbeingComponent
 extends Node
 
 
+@export var wellbeing_stats: WellbeingStats
+
 @export_category("Configuration")
 @export var debug: bool = false
+@export var hud_info: Node3D
+
+@export_category("Components")
 @export var lock_on_component: LockOnComponent
 @export var backstab_component: BackstabComponent
 @export var health_component: HealthComponent
 @export var instability_component: InstabilityComponent
 @export var notice_component: NoticeComponent
-@export var hud_info: Node3D
 
 @export_category("Wellbeing Widget")
 @export var wellbeing_widget_scene: PackedScene
@@ -28,11 +32,20 @@ var _visible: bool = false
 
 
 func _ready():
+	health_component.health = wellbeing_stats.initial_health
+	health_component.max_health = wellbeing_stats.max_health
+	instability_component.instability = wellbeing_stats.initial_instability
+	instability_component.can_reduce_instability = wellbeing_stats\
+		.can_reduce_instability
+	
 	_well_being_widget = wellbeing_widget_scene.instantiate()
 	Globals.user_interface.hud.wellbeing_widgets.add_child(_well_being_widget)
 	
 	_health_bar = _well_being_widget.health_bar
 	_health_bar.default_health = health_component.max_health
+	_health_bar.current_health = health_component.health
+	_health_bar.default_health = health_component.max_health
+	_health_bar.setup()
 	health_component.took_damage.connect(
 		func():
 			_visible = true
@@ -42,6 +55,7 @@ func _ready():
 	
 	_instability_bar = _well_being_widget.instability_bar
 	_instability_bar.max_instability = instability_component.max_instability
+	_instability_bar.current_instability = instability_component.instability
 	instability_component.instability_increased.connect(
 		func():
 			_instability_bar.instability_increased(
@@ -92,10 +106,3 @@ func _process(_delta):
 	_well_being_widget.position = _camera.unproject_position(
 		hud_info.global_position
 	)
-
-
-func setup() -> void:
-	_health_bar.current_health = health_component.health
-	_health_bar.default_health = health_component.max_health
-	_health_bar.setup()
-	_instability_bar.current_instability = instability_component.instability

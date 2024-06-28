@@ -500,7 +500,6 @@ drink_animations = NodePath("DrinkAnimations")
 sitting_animations = NodePath("SittingAnimations")
 
 [node name="GeneralSkeleton" parent="Armature_004" index="0"]
-bones/0/position = Vector3(0.00228737, -1.23697e-09, -0.0103765)
 bones/1/position = Vector3(6.04682e-06, 0.928626, -9.00516e-08)
 bones/1/rotation = Quaternion(-0.0364564, -0.367114, -0.0133018, 0.929366)
 bones/2/rotation = Quaternion(0.0504308, 0.0402731, -0.00849581, 0.997879)
@@ -572,7 +571,7 @@ extra_cull_margin = 1.0
 lod_bias = 0.7
 
 [node name="LockOnAttachment" type="BoneAttachment3D" parent="Armature_004/GeneralSkeleton" index="2"]
-transform = Transform3D(0.942295, -0.128871, -0.308986, -0.0148774, 0.905912, -0.423205, 0.334453, 0.403381, 0.851719, 0.0211761, 1.27706, -0.0177619)
+transform = Transform3D(0.942295, -0.12887, -0.308985, -0.0148777, 0.905912, -0.423204, 0.334451, 0.40338, 0.85172, 0.0188887, 1.27707, -0.00738547)
 bone_name = "UpperChest"
 bone_idx = 4
 
@@ -588,11 +587,12 @@ texture = ExtResource("3_bk74o")
 script = ExtResource("4_htgrv")
 
 [node name="HeadAttachment" type="BoneAttachment3D" parent="Armature_004/GeneralSkeleton" index="3"]
-transform = Transform3D(0.997935, -0.0642367, -0.000251293, 0.0622928, 0.968676, -0.240387, 0.0156852, 0.239875, 0.970677, -0.0225228, 1.49531, 0.111815)
+transform = Transform3D(0.997935, -0.0642358, -0.000251025, 0.062292, 0.968677, -0.240386, 0.0156845, 0.239874, 0.970677, -0.0248099, 1.49531, 0.122191)
 bone_name = "Head"
 bone_idx = 6
 
 [node name="AnimationPlayer" parent="." index="1"]
+root_motion_track = NodePath("%GeneralSkeleton:Root")
 libraries = {
 "": SubResource("AnimationLibrary_dgc36"),
 "combat_animations_1": ExtResource("3_1k4bt"),

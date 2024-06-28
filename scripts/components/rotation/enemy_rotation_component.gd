@@ -1,4 +1,4 @@
-class_name NPCRotationComponent
+class_name EnemyRotationComponent
 extends RotationComponent
 
 
@@ -6,12 +6,13 @@ extends RotationComponent
 @export var locomotion_component: LocomotionComponent
 @export var blackboard: Blackboard
 @export var agent: NavigationAgent3D
-var npc: Enemy
+
+var enemy: Enemy
 var speed: float = 1 # mainly for testing purporse
 
 
 func _ready() -> void:
-	npc = entity as Enemy
+	enemy = entity as Enemy
 	looking_direction = looking_direction.rotated(Vector3.UP, entity.rotation.y).normalized()
 
 
@@ -38,7 +39,7 @@ func _physics_process(delta: float) -> void:
 		if blackboard.get_value("target_reachable"):
 			_next_location = agent.get_next_path_position()
 		else:
-			_next_location = npc.target.global_position
+			_next_location = enemy.target.global_position
 		looking_direction = entity.global_position.direction_to(_next_location)
 		target_look = atan2(-looking_direction.x, -looking_direction.z)
 		

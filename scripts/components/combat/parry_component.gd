@@ -10,7 +10,8 @@ signal parried_incoming_hit(incoming_weapon: Weapon)
 @export var parry_particles_scene: PackedScene = preload("res://scenes/particles/ParryParticles.tscn")
 @export var parry_particles_colour: Color
 
-var in_parry_window: bool = false
+var in_parry_window: bool = false:
+	set = set_in_parry_window
 
 var _parry_particles: GPUParticles3D
 
@@ -70,6 +71,11 @@ func _ready() -> void:
 	_parry_cooldown_timer.autostart = false
 	_parry_cooldown_timer.one_shot = true
 	add_child(_parry_cooldown_timer)
+
+
+func set_in_parry_window(value: bool) -> void:
+	if value == in_parry_window: return
+	in_parry_window = value
 
 
 func parry() -> void:

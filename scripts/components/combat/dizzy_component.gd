@@ -36,11 +36,6 @@ func _ready():
 		_on_instability_component_full_instability
 	)
 	
-	entity.death.connect(
-		func(_enemy):
-			dizzy_system.dizzy_victim = null
-	)
-	
 	_dizzy_timer = Timer.new()
 	_dizzy_timer.wait_time = dizzy_from_parry_length
 	_dizzy_timer.autostart = false

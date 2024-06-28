@@ -34,7 +34,7 @@ func enter():
 	_exiting = false
 	
 	player.character.sitting_animations.sit_down()
-	player.locomotion_component.set_strategy("root_motion")
+	player.locomotion_component.set_active_strategy("root_motion")
 	player.hitbox_component.enabled = false
 	player.rotation_component.target = checkpoint_system.current_checkpoint
 	
@@ -60,7 +60,7 @@ func process_movement_animations() -> void:
 
 
 func exit():
-	player.locomotion_component.set_strategy("programmatic")
+	player.locomotion_component.set_active_strategy("programmatic")
 	player.rotation_component.can_rotate = true
 	player.hitbox_component.enabled = true
 	

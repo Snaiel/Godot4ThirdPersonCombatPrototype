@@ -8,7 +8,8 @@ extends Node3D
 @export var transparency: float = 0.7
 @export var block_particles_scene: PackedScene = preload("res://scenes/particles/BlockParticles.tscn")
 
-var blocking: bool = false
+var blocking: bool = false:
+	set = set_blocking
 
 var _particles: GPUParticles3D
 
@@ -38,6 +39,11 @@ func _physics_process(_delta: float) -> void:
 			1.0,
 			0.2
 		)
+
+
+func set_blocking(value: bool) -> void:
+	if value == blocking: return
+	blocking = value
 
 
 func blocked() -> void:

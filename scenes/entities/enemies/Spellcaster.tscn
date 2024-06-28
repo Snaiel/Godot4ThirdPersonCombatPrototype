@@ -55,7 +55,6 @@
 [ext_resource type="PackedScene" uid="uid://cce0kkdsdv4rt" path="res://scenes/components/WellbeingComponent.tscn" id="47_ng2kb"]
 [ext_resource type="PackedScene" uid="uid://hnb8xok6xlar" path="res://scenes/components/DizzyComponent.tscn" id="48_pmtgc"]
 [ext_resource type="PackedScene" uid="uid://207cuag4hgs7" path="res://scenes/components/BackstabComponent.tscn" id="49_g4pr2"]
-[ext_resource type="Script" path="res://scripts/components/combat/spell_component.gd" id="50_blw3s"]
 [ext_resource type="PackedScene" uid="uid://da664p5ek0cgr" path="res://scenes/components/NoticeComponent.tscn" id="50_ihkl4"]
 [ext_resource type="PackedScene" uid="uid://1elkqdybiiu1" path="res://scenes/components/AttackComponent.tscn" id="51_rykib"]
 [ext_resource type="PackedScene" uid="uid://b616qwvblkmpo" path="res://scenes/components/BlockComponent.tscn" id="52_7xv8k"]
@@ -64,6 +63,7 @@
 [ext_resource type="PackedScene" uid="uid://mmj6qxe250co" path="res://scenes/components/FadeComponent.tscn" id="55_3sflq"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="56_m1hw4"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="57_1h4hq"]
+[ext_resource type="Script" path="res://scripts/components/combat/enemy_spell_component.gd" id="58_53fyx"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="58_m5ref"]
 [ext_resource type="PackedScene" uid="uid://q4ffp4qtwtt4" path="res://scenes/beehave/compare_actions/IsDeadTrue.tscn" id="59_ym8i0"]
 [ext_resource type="PackedScene" uid="uid://5653b3wcf25p" path="res://scenes/beehave/inputs/InputNone.tscn" id="60_aapd6"]
@@ -1113,29 +1113,12 @@ stream_0/weight = 1.0
 radius = 0.3
 height = 1.8
 
-[node name="Spellcaster" type="CharacterBody3D" node_paths=PackedStringArray("parry_sfx", "block_sfx", "hit_sfx", "character", "rotation_component", "head_rotation_component", "lock_on_component", "hitbox_component", "health_component", "instability_component", "backstab_component", "dizzy_component", "notice_component", "attack_component", "spell_component", "block_component", "parry_component", "wellbeing_component", "beehave_tree", "blackboard", "agent") groups=["enemy"]]
+[node name="Spellcaster" type="CharacterBody3D" node_paths=PackedStringArray("character", "beehave_tree", "blackboard", "agent") groups=["enemy"]]
 collision_layer = 8
 collision_mask = 11
 script = ExtResource("1_2f16f")
 wellbeing_stats = SubResource("Resource_6we7u")
-parry_sfx = NodePath("Character/AudioManager/Parry")
-block_sfx = NodePath("Character/AudioManager/Block")
-hit_sfx = NodePath("Character/AudioManager/Hit")
 character = NodePath("Character")
-rotation_component = NodePath("Rotation/EnemyRotationComponent")
-head_rotation_component = NodePath("Rotation/HeadRotationComponent")
-lock_on_component = NodePath("Interface/LockOnComponent")
-hitbox_component = NodePath("HitboxComponent")
-health_component = NodePath("Wellbeing/HealthComponent")
-instability_component = NodePath("Wellbeing/InstabilityComponent")
-backstab_component = NodePath("Combat/BackstabComponent")
-dizzy_component = NodePath("Combat/DizzyComponent")
-notice_component = NodePath("Combat/NoticeComponent")
-attack_component = NodePath("Combat/AttackComponent")
-spell_component = NodePath("Combat/SpellComponent")
-block_component = NodePath("Combat/BlockComponent")
-parry_component = NodePath("Combat/ParryComponent")
-wellbeing_component = NodePath("Wellbeing/WellbeingComponent")
 beehave_tree = NodePath("BeehaveTree")
 blackboard = NodePath("Blackboard")
 agent = NodePath("NavigationAgent3D")
@@ -1522,7 +1505,6 @@ rotation_component = NodePath("../EnemyRotationComponent")
 
 [node name="MovementComponent" parent="Movement" node_paths=PackedStringArray("rotation_component") instance=ExtResource("42_e0ces")]
 rotation_component = NodePath("../../Rotation/EnemyRotationComponent")
-speed = 3.0
 
 [node name="RootMotionComponent" parent="Movement" node_paths=PackedStringArray("character") instance=ExtResource("43_gimrw")]
 character = NodePath("../../Character")
@@ -1577,9 +1559,8 @@ hud_info = NodePath("../../Interface/HUDInfoPos")
 [node name="AttackComponent" parent="Combat" node_paths=PackedStringArray("attack_animations") instance=ExtResource("51_rykib")]
 attack_animations = NodePath("../../Character/AttackAnimations")
 
-[node name="SpellComponent" type="Node" parent="Combat" node_paths=PackedStringArray("spell_animations")]
-script = ExtResource("50_blw3s")
-spell_animations = NodePath("../../Character/SpellAnimations")
+[node name="SpellComponent" type="Node" parent="Combat"]
+script = ExtResource("58_53fyx")
 
 [node name="BlockComponent" parent="Combat" node_paths=PackedStringArray("character") instance=ExtResource("52_7xv8k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)

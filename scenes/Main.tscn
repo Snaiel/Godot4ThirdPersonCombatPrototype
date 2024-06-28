@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://cfip2n0nvr8n3"]
+[gd_scene load_steps=37 format=3 uid="uid://cfip2n0nvr8n3"]
 
 [ext_resource type="Script" path="res://scripts/utilities/level.gd" id="1_du374"]
 [ext_resource type="Material" uid="uid://qml1qedtuxl6" path="res://materials/grid.tres" id="2_5uhq1"]
@@ -14,7 +14,6 @@
 [ext_resource type="Material" uid="uid://btbksw2yyqb52" path="res://materials/grid_dark_blue.tres" id="10_5d4ga"]
 [ext_resource type="Material" uid="uid://3e1mdcc0te5n" path="res://materials/grid_blue.tres" id="11_7qywu"]
 [ext_resource type="Script" path="res://scripts/utilities/enemy_section.gd" id="12_ubnhe"]
-[ext_resource type="Script" path="res://scripts/utilities/wellbeing_stats.gd" id="13_adayc"]
 [ext_resource type="AudioStream" uid="uid://c7k25fiayfnor" path="res://audio/music/Crystal Cave.ogg" id="14_1bpwj"]
 [ext_resource type="Script" path="res://scripts/utilities/music_system.gd" id="14_oqh6a"]
 [ext_resource type="AudioStream" uid="uid://bcy3kyjij5qj1" path="res://audio/death.wav" id="14_uh7dv"]
@@ -47,54 +46,6 @@ polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 5), PackedInt32Arr
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_svx3x"]
 size = Vector3(70, 500, 130)
-
-[sub_resource type="Resource" id="Resource_ygafm"]
-script = ExtResource("13_adayc")
-max_health = 100.0
-initial_health = 100.0
-max_instability = 100.0
-initial_instability = 0.0
-can_reduce_instability = true
-
-[sub_resource type="Resource" id="Resource_qvry7"]
-script = ExtResource("13_adayc")
-max_health = 100.0
-initial_health = 35.0
-max_instability = 100.0
-initial_instability = 0.0
-can_reduce_instability = true
-
-[sub_resource type="Resource" id="Resource_dsuvw"]
-script = ExtResource("13_adayc")
-max_health = 100.0
-initial_health = 60.0
-max_instability = 100.0
-initial_instability = 90.0
-can_reduce_instability = false
-
-[sub_resource type="Resource" id="Resource_lt7um"]
-script = ExtResource("13_adayc")
-max_health = 100.0
-initial_health = 45.0
-max_instability = 100.0
-initial_instability = 0.0
-can_reduce_instability = true
-
-[sub_resource type="Resource" id="Resource_2ecca"]
-script = ExtResource("13_adayc")
-max_health = 100.0
-initial_health = 20.0
-max_instability = 100.0
-initial_instability = 0.0
-can_reduce_instability = true
-
-[sub_resource type="Resource" id="Resource_n3mtw"]
-script = ExtResource("13_adayc")
-max_health = 100.0
-initial_health = 70.0
-max_instability = 100.0
-initial_instability = 0.0
-can_reduce_instability = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dynxn"]
 size = Vector3(50, 500, 80)
@@ -1218,58 +1169,49 @@ shape = SubResource("BoxShape3D_svx3x")
 
 [node name="Enemy1" parent="Level1/Enemies/Section1/Enemies" instance=ExtResource("2_oia4d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0168, 4, 14.6035)
-debug = false
-wellbeing_stats = SubResource("Resource_ygafm")
 hit_weight = 1.0
 block_weight = 0.0
 parry_weight = 0.0
 
 [node name="Enemy2" parent="Level1/Enemies/Section1/Enemies" instance=ExtResource("2_oia4d")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 18, 3, 3)
-debug = false
-wellbeing_stats = SubResource("Resource_qvry7")
 hit_weight = 1.0
 block_weight = 0.0
 parry_weight = 0.0
 
 [node name="Enemy3" parent="Level1/Enemies/Section1/Enemies" instance=ExtResource("2_oia4d")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -4, 2, 4)
-debug = false
-wellbeing_stats = SubResource("Resource_dsuvw")
 hit_weight = 1.0
 block_weight = 0.0
 parry_weight = 0.0
 
 [node name="Enemy4" parent="Level1/Enemies/Section1/Enemies" instance=ExtResource("2_oia4d")]
 transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -17.0328, 3, 8.3461)
-debug = false
-wellbeing_stats = SubResource("Resource_lt7um")
 hit_weight = 1.0
 block_weight = 0.0
 parry_weight = 0.0
 
 [node name="Enemy5" parent="Level1/Enemies/Section1/Enemies" instance=ExtResource("2_oia4d")]
 transform = Transform3D(-0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, -0.258819, -21.7003, 3, 1.3773)
-debug = false
-wellbeing_stats = SubResource("Resource_2ecca")
 hit_weight = 1.0
 block_weight = 0.0
 parry_weight = 0.0
 
 [node name="Enemy7" parent="Level1/Enemies/Section1/Enemies" instance=ExtResource("2_oia4d")]
 transform = Transform3D(-1, 0, -1.19209e-07, 0, 1, 0, 1.19209e-07, 0, -1, -23.6061, 5, -17.3963)
-debug = false
-wellbeing_stats = SubResource("Resource_n3mtw")
 hit_weight = 0.0
 block_weight = 1.0
 parry_weight = 0.0
 
 [node name="Enemy8" parent="Level1/Enemies/Section1/Enemies" instance=ExtResource("2_oia4d")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7, 6, -18)
-debug = false
 hit_weight = 0.0
 block_weight = 0.5
 parry_weight = 0.5
+
+[node name="Enemy" parent="Level1/Enemies/Section1/Enemies" instance=ExtResource("2_oia4d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5215, 1, 48.5749)
+debug = true
 
 [node name="Section2" type="Area3D" parent="Level1/Enemies"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43, 0, -76)
@@ -1293,66 +1235,30 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 13, -18)
 
 [node name="Enemy1" parent="Level1/Enemies/Section2/Enemies" instance=ExtResource("2_oia4d")]
 transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -12, -2, -17)
-debug = false
-hit_weight = 0.4
-block_weight = 0.4
-parry_weight = 0.2
 
 [node name="Enemy2" parent="Level1/Enemies/Section2/Enemies" instance=ExtResource("2_oia4d")]
 transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 3.1387, 1, -9.75496)
-debug = false
-hit_weight = 0.4
-block_weight = 0.4
-parry_weight = 0.2
 
 [node name="Enemy3" parent="Level1/Enemies/Section2/Enemies" instance=ExtResource("2_oia4d")]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 7.39993, 2, -1.57927)
-debug = false
-hit_weight = 0.4
-block_weight = 0.4
-parry_weight = 0.2
 
 [node name="Enemy4" parent="Level1/Enemies/Section2/Enemies" instance=ExtResource("2_oia4d")]
 transform = Transform3D(1.19209e-07, 0, -1, 0, 1, 0, 1, 0, 1.19209e-07, 8.52125, 2, 14.27)
-debug = false
-hit_weight = 0.4
-block_weight = 0.4
-parry_weight = 0.2
 
 [node name="Enemy5" parent="Level1/Enemies/Section2/Enemies" instance=ExtResource("2_oia4d")]
 transform = Transform3D(1, 0, 1.62921e-07, 0, 1, 0, -1.62921e-07, 0, 1, 2.52125, 5, 24.27)
-debug = false
-hit_weight = 0.4
-block_weight = 0.4
-parry_weight = 0.2
 
 [node name="Enemy6" parent="Level1/Enemies/Section2/Enemies" instance=ExtResource("2_oia4d")]
 transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 10.0213, 5, 30.136)
-debug = false
-hit_weight = 0.4
-block_weight = 0.4
-parry_weight = 0.2
 
 [node name="Enemy7" parent="Level1/Enemies/Section2/Enemies" instance=ExtResource("2_oia4d")]
 transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -7.2274, 9, 4.01166)
-debug = false
-hit_weight = 0.4
-block_weight = 0.4
-parry_weight = 0.2
 
 [node name="Enemy8" parent="Level1/Enemies/Section2/Enemies" instance=ExtResource("2_oia4d")]
 transform = Transform3D(-0.707106, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707106, -1.86137, 9, -3.28257)
-debug = false
-hit_weight = 0.4
-block_weight = 0.4
-parry_weight = 0.2
 
 [node name="Enemy9" parent="Level1/Enemies/Section2/Enemies" instance=ExtResource("2_oia4d")]
 transform = Transform3D(0.707106, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707106, -13.8822, 8, 21.4662)
-debug = false
-hit_weight = 0.4
-block_weight = 0.4
-parry_weight = 0.2
 
 [node name="Section3" type="Area3D" parent="Level1/Enemies"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76, 13, -33)
@@ -1368,31 +1274,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 4, -4)
 
 [node name="Enemy" parent="Level1/Enemies/Section3/Enemies" instance=ExtResource("2_oia4d")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -5.29289, 1, -18.2929)
-debug = false
-hit_weight = 0.4
-block_weight = 0.4
-parry_weight = 0.2
 
 [node name="Enemy2" parent="Level1/Enemies/Section3/Enemies" instance=ExtResource("2_oia4d")]
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 11.2635, 0, 7.16295)
-debug = false
-hit_weight = 0.4
-block_weight = 0.4
-parry_weight = 0.2
 
 [node name="Enemy3" parent="Level1/Enemies/Section3/Enemies" instance=ExtResource("2_oia4d")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 4.17117, 0, 15.1339)
-debug = false
-hit_weight = 0.4
-block_weight = 0.4
-parry_weight = 0.2
 
 [node name="Enemy4" parent="Level1/Enemies/Section3/Enemies" instance=ExtResource("2_oia4d")]
 transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 58.7528, -5, 22.4458)
-debug = false
-hit_weight = 0.4
-block_weight = 0.4
-parry_weight = 0.2
 
 [node name="MusicSystem" type="Node" parent="."]
 script = ExtResource("14_oqh6a")
@@ -1419,13 +1309,6 @@ script = ExtResource("19_q8ont")
 
 [node name="VoidArea2" parent="VoidDeathSystem" instance=ExtResource("20_pa5m1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84, 5, -23)
-
-[node name="Enemy" parent="." instance=ExtResource("2_oia4d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5215, 11, -3.42515)
-debug = false
-hit_weight = 0.4
-block_weight = 0.4
-parry_weight = 0.2
 
 [connection signal="area_entered" from="LockOnSystem" to="LockOnSystem" method="_on_area_entered"]
 [connection signal="area_exited" from="LockOnSystem" to="LockOnSystem" method="_on_area_exited"]

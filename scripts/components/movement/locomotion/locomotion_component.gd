@@ -10,7 +10,8 @@ extends Node
 @export var strategies: Dictionary
 @export var default_strategy: StringName
 
-@export var speed: float = 5
+@export var default_speed: float = 5
+@export var speed: float
 @export var gravity: float = 20.0
 
 
@@ -33,6 +34,8 @@ var _secondary_movement_timer: Timer
 
 
 func _ready() -> void:
+	speed = default_speed
+	
 	_secondary_movement_timer = Timer.new()
 	_secondary_movement_timer.timeout.connect(reset__secondary_movement)
 	add_child(_secondary_movement_timer)

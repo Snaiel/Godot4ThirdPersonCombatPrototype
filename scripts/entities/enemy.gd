@@ -2,55 +2,47 @@ class_name Enemy
 extends CharacterBody3D
 
 
-signal death(enemy)
+signal combat_interaction
+signal got_hit
+signal block_weapon
+signal parry_weapon
 
+signal dead
 
-@export var target: Node3D
 @export var debug: bool = false
-
-@export var wellbeing_stats: WellbeingStats
 
 @export_category("Incoming Weapon Hit Weights")
 @export var hit_weight: float = 0.4
 @export var block_weight: float = 0.4
 @export var parry_weight: float = 0.2
 
-@export_category("Audio")
-@export var parry_sfx: AudioStreamPlayer3D
-@export var block_sfx: AudioStreamPlayer3D
-@export var hit_sfx: AudioStreamPlayer3D
-
-@export_category("Components")
+@export_category("Utility")
 @export var character: CharacterAnimations
-@export var rotation_component: NPCRotationComponent
-@export var head_rotation_component: HeadRotationComponent
-@export var locomotion_component: LocomotionComponent
-@export var root_motion_component: RootMotionLocomotionStrategy
-@export var lock_on_component: LockOnComponent
 @export var hitbox_component: HitboxComponent
+@export var lock_on_component: LockOnComponent
+
+@export_category("Movement")
+@export var locomotion_component: LocomotionComponent
+
+@export_category("Rotation")
+@export var rotation_component: RotationComponent
+@export var head_rotation_component: HeadRotationComponent
+
+@export_category("Wellbeing")
 @export var health_component: HealthComponent
 @export var instability_component: InstabilityComponent
+
+@export_category("Combat")
 @export var backstab_component: BackstabComponent
 @export var dizzy_component: DizzyComponent
 @export var notice_component: NoticeComponent
-@export var attack_component: AttackComponent
-@export var spell_component: SpellComponent
-@export var block_component: BlockComponent
-@export var parry_component: ParryComponent
-@export var wellbeing_component: WellbeingComponent
 
 @export_category("AI Behaviour")
 @export var beehave_tree: BeehaveTree
 @export var blackboard: Blackboard
-@export var agent: NavigationAgent3D
+@export var navigation_agent: NavigationAgent3D
 
-var active_motion_component: LocomotionStrategy
-
-var _default_move_speed: float
-var _dead: bool = false
-
-
-@onready var player: Player = Globals.player
+var target: Node3D
 
 
 func _enter_tree():
@@ -62,140 +54,76 @@ func _enter_tree():
 
 
 func _ready() -> void:
-	target = player
-	agent.target_position = target.global_position
+	if target == null:
+		target = Globals.player
 	
-	Globals.void_death_system.fallen_into_the_void.connect(
-		func(body: Node3D):
-			if body == self:
-				health_component.deal_max_damage = true
-				health_component.decrement_health(1)
-				var timer: SceneTreeTimer = get_tree().create_timer(5)
-				timer.timeout.connect(queue_free)
-	)
+	hitbox_component.weapon_hit.connect(_on_hitbox_component_weapon_hit)
+	health_component.zero_health.connect(_on_health_component_zero_health)
 	
-	hitbox_component.weapon_hit.connect(
-		_on_entity_hitbox_weapon_hit
-	)
-	
-	health_component.zero_health.connect(
-		_on_health_component_zero_health
-	)
-	
-	attack_component.can_move.connect(
-		func(flag: bool):
-			blackboard.set_value("can_move", flag)
-	)
-	
-	#active_motion_component = locomotion_component
-	_default_move_speed = locomotion_component.speed
-	
-	blackboard.set_value("move_speed", _default_move_speed)
+	blackboard.set_value("move_speed", 3)
 	blackboard.set_value("can_attack", true)
 	blackboard.set_value("dead", false)
-	
-	health_component.health = wellbeing_stats.initial_health
-	health_component.max_health = wellbeing_stats.max_health
-	instability_component.instability = wellbeing_stats.initial_instability
-	instability_component.can_reduce_instability = wellbeing_stats\
-		.can_reduce_instability
-	wellbeing_component.setup()
 	
 	print(name)
 
 
 func _physics_process(_delta: float) -> void:
-	## Debug Components
-	rotation_component.debug = debug
-	locomotion_component.debug = debug
-	backstab_component.debug = debug
-	notice_component.debug = debug
-	dizzy_component.debug = debug
-	wellbeing_component.debug = debug
 	
 	blackboard.set_value("debug", debug)
+	navigation_agent.debug_enabled = debug
 	
-	agent.debug_enabled = debug
+	#if debug:
+		#prints(
+			#notice_component.current_state
+		#)
 	
 	
-	## Target Operations
-	var player_dist: float = global_position.distance_to(target.global_position)
-	var target_dist: float = agent.distance_to_target()
-	var target_dir: Vector3 = global_position.direction_to(agent.target_position)
-	var target_dir_angle: float = target_dir.angle_to(Vector3.FORWARD.rotated(Vector3.UP, global_rotation.y))
-	
-	blackboard.set_value("player_dist", player_dist)
+	## Target
+	var target_dist: float = global_position.distance_to(target.global_position)
+	var target_dir: Vector3 = global_position.direction_to(target.global_position)
+	var target_dir_angle: float = target_dir.angle_to(
+		Vector3.FORWARD.rotated(
+			Vector3.UP,
+			global_rotation.y
+		)
+	)
 	blackboard.set_value("target", target)
 	blackboard.set_value("target_dist", target_dist)
 	blackboard.set_value("target_dir", target_dir)
 	blackboard.set_value("target_dir_angle", target_dir_angle)
-	call_deferred("_set_target_reachable")
 	
-	if blackboard.get_value("investigate_last_agent_position"):
-		blackboard.set_value("can_set_investigate_last_agent_position", false)
-		blackboard.set_value("investigate_last_agent_position", false)
-		blackboard.set_value(
-			"agent_target_position",
-			target.global_position
-		)
-	
-	agent.target_position = blackboard.get_value(
-		"agent_target_position",
-		target.global_position
-	)
-	
-	
-	## Debug Prints
-	#if debug:
-		#prints(
-			#blackboard.get_value("notice_state"),
-		#)
-	
-	
-	## Component Management
-	attack_component.active_motion_component = active_motion_component
-	
-	if spell_component:
-		spell_component.active_motion_component = active_motion_component
-	
-	rotation_component.rotate_towards_target = blackboard.get_value(
-		"rotate_towards_target",
-		false
-	)
-	
+	## Locomotion Component
 	locomotion_component.can_move = blackboard.get_value(
 		"can_move",
 		true
 	)
 	locomotion_component.speed = blackboard.get_value(
 		"move_speed",
-		_default_move_speed
+		locomotion_component.default_speed
 	)
 	
+	## Rotation Component
+	rotation_component.rotate_towards_target = blackboard.get_value(
+		"rotate_towards_target",
+		false
+	)
+	
+	## Head Rotation Component
+	if blackboard.get_value("agent_target_position") == null and \
+	blackboard.get_value("rotate_towards_target"):
+		if target == Globals.player:
+			head_rotation_component.desired_target_pos = \
+				Globals.player.lock_on_attachment_point.global_position
+		else:
+			head_rotation_component.desired_target_pos = target.global_position
+	else:
+		head_rotation_component.desired_target_pos = Vector3.INF
+	
+	## Backstab Component
 	backstab_component.enabled = not blackboard.get_value(
 		"perceives_player",
 		false
 	)
-	
-	
-	## Attacking
-	if blackboard.get_value("can_attack", false) and blackboard.get_value("attack", false):
-		blackboard.set_value("can_attack", false)
-		blackboard.set_value("attack", false)
-		attack_component.attack_level = blackboard.get_value("attack_level", 0)
-		attack_component.attack()
-	blackboard.set_value("attacking", attack_component.attacking)
-	
-	
-	## Spellcasting
-	if spell_component:
-		if blackboard.get_value("can_cast_spell", false) and blackboard.get_value("cast_spell", false):
-			blackboard.set_value("can_cast_spell", false)
-			blackboard.set_value("cast_spell", false)
-			spell_component.spell_index = blackboard.get_value("spell_index", 0)
-			spell_component.cast_spell()
-		blackboard.set_value("executing_spelll", spell_component.executing)
-	
 	
 	## Character Animations
 	character.anim_tree["parameters/Locked On Walk Direction/4/TimeScale/scale"] = 0.5
@@ -206,139 +134,84 @@ func _physics_process(_delta: float) -> void:
 		false
 	)
 	
-	
-	## Head Rotation Component
-	if blackboard.get_value("agent_target_position") == null and \
-	blackboard.get_value("rotate_towards_target"):
-		head_rotation_component.desired_target_pos = \
-			player.lock_on_attachment_point.global_position
-	else:
-		head_rotation_component.desired_target_pos = Vector3.INF
+	## Navigation Agent
+	blackboard.set_value("agent_target_dist", navigation_agent.distance_to_target())
+	call_deferred("_set_agent_target_reachable")
+	if blackboard.get_value("investigate_last_agent_position"):
+		blackboard.set_value("can_set_investigate_last_agent_position", false)
+		blackboard.set_value("investigate_last_agent_position", false)
+		blackboard.set_value(
+			"agent_target_position",
+			target.global_position
+		)
+	navigation_agent.target_position = blackboard.get_value(
+		"agent_target_position",
+		target.global_position
+	)
 
 
-func set_root_motion(flag: bool) -> void:
-	pass
-	#if flag:
-		#active_motion_component = root_motion_component
-		#root_motion_component.enabled = true
-		#locomotion_component.enabled = false
-	#else:
-		#active_motion_component = locomotion_component
-		#root_motion_component.enabled = false
-		#locomotion_component.enabled = true
-
-
-func _set_target_reachable():
+func _set_agent_target_reachable():
 	await get_tree().physics_frame
-	var target_reachable: bool = agent.is_target_reachable()
-	blackboard.set_value("target_reachable", target_reachable)
+	blackboard.set_value("agent_target_reachable", navigation_agent.is_target_reachable())
 
 
-func _on_entity_hitbox_weapon_hit(incoming_weapon: Weapon) -> void:
+func _on_hitbox_component_weapon_hit(incoming_weapon: Weapon) -> void:
 	if Globals.backstab_system.backstab_victim == backstab_component:
 		backstab_component.process_hit()
 		health_component.damage_from_weapon(incoming_weapon)
-		active_motion_component.knockback(incoming_weapon.entity.global_position)
+		locomotion_component.knockback(incoming_weapon.entity.global_position)
 		return
 	
 	if Globals.dizzy_system.dizzy_victim == dizzy_component:
 		dizzy_component.process_hit(incoming_weapon)
 		health_component.damage_from_weapon(incoming_weapon)
 		if instability_component.full_instability_from_parry:
-			active_motion_component.knockback(incoming_weapon.entity.global_position)
+			locomotion_component.knockback(incoming_weapon.entity.global_position)
 		return
 	
+	combat_interaction.emit()
+	
+	blackboard.set_value("interrupt_timers", true)
 	blackboard.set_value("can_attack", false)
 	blackboard.set_value("attack", false)
 	
 	var total_weight: float = hit_weight + block_weight + parry_weight
 	var rng: float = RandomNumberGenerator.new().randf() * total_weight
 	
-	
 	if blackboard.get_value("notice_state") != "aggro" or \
 	blackboard.get_value("dizzy", false):
 		rng = 0.0
 	
+	locomotion_component.knockback(incoming_weapon.entity.global_position)
+	notice_component.transition_to_aggro()
+	
 	if rng < hit_weight:
 		# incoming hit goes through
+		got_hit.emit()
+		blackboard.set_value("got_hit", true)
 		health_component.damage_from_weapon(incoming_weapon)
 		instability_component.process_hit()
-		
-		attack_component.interrupt_attack()
-		
-		character.hit_and_death_animations.hit()
-#		_set_agent_target_to_target = true
-		
-		blackboard.set_value("got_hit", true)
-		blackboard.set_value("interrupt_timers", true)
-		
-		hit_sfx.play()
-		
-		if Globals.dizzy_system.dizzy_victim != dizzy_component:
-			active_motion_component.knockback(incoming_weapon.entity.global_position)
-		
 	elif rng < hit_weight + block_weight:
 		# block incoming hit
-		active_motion_component.knockback(incoming_weapon.entity.global_position)
-		
-		block_component.blocking = true
-		block_component.blocked()
-		attack_component.interrupt_attack()
-		
+		blocking.emit(true)
 		instability_component.process_block()
-		
-		notice_component.transition_to_aggro()
-		
 		instability_component.enabled = false
 		health_component.enabled = false
-		
-		block_sfx.play()
-		
-		var timer: SceneTreeTimer = get_tree().create_timer(0.3)
-		timer.timeout.connect(
-			func(): 
-				block_component.blocking = false
+		get_tree().create_timer(0.3).timeout.connect(
+			func():
+				blocking.emit(false)
 				instability_component.enabled = true
 				health_component.enabled = true
 		)
-		
 	elif rng < hit_weight + block_weight + parry_weight:
 		# parry incoming hit
-		active_motion_component.knockback(incoming_weapon.entity.global_position)
-		
-		parry_component.in_parry_window = true
-		parry_component.play_parry_particles()
-		
-		attack_component.interrupt_attack()
-		
-		character.parry_animations.parry()
-		block_component.anim.play("parried")
-		
-		notice_component.transition_to_aggro()
-		
+		parried_weapon.emit()
 		instability_component.process_parry()
-		
 		incoming_weapon.parry_weapon()
-		
-		parry_sfx.play()
-		
-		var timer: SceneTreeTimer = get_tree().create_timer(0.2)
-		timer.timeout.connect(
-			func(): 
-				attack_component.attack()
-		)
-	
 
 
 func _on_health_component_zero_health() -> void:
-	if _dead:
-		return
-	
-	set_root_motion(true)
-	
-	_dead = true
-	
-	attack_component.set_can_damage_of_all_weapons(false)
+	locomotion_component.set_active_strategy("root_motion")
 	
 	hitbox_component.enabled = false
 	health_component.enabled = false
@@ -369,4 +242,4 @@ func _on_health_component_zero_health() -> void:
 	if blackboard.get_value("notice_state") == "aggro":
 		Globals.music_system.fade_to_idle()
 	
-	death.emit(self)
+	dead.emit()
