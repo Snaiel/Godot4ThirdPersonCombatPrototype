@@ -11,8 +11,7 @@
 [ext_resource type="Script" path="res://scripts/components/notice_component/notice_component_getting_aggro_state.gd" id="7_5di1i"]
 [ext_resource type="Script" path="res://scripts/components/notice_component/notice_component_aggro_state.gd" id="8_ry4ay"]
 
-[node name="NoticeComponent" type="Node3D" node_paths=PackedStringArray("initial_state", "aggro_state")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+[node name="NoticeComponent" type="Node" node_paths=PackedStringArray("initial_state", "aggro_state")]
 script = ExtResource("1_611qe")
 notice_triangle_scene = ExtResource("2_2dsee")
 off_camera_notice_triangle_scene = ExtResource("3_i1p7x")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://b616qwvblkmpo"]
 
-[ext_resource type="Script" path="res://scripts/components/combat/block_component.gd" id="1_gfkgn"]
+[ext_resource type="Script" path="res://scripts/components/abilities/block_component.gd" id="1_gfkgn"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_h1652"]
 radius = 0.45

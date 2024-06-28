@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://cv8knl5vavfyy"]
+[gd_scene load_steps=65 format=3 uid="uid://cv8knl5vavfyy"]
 
 [ext_resource type="Script" path="res://scripts/entities/enemy.gd" id="1_nrck3"]
 [ext_resource type="PackedScene" uid="uid://x0oxbha36o2h" path="res://scenes/entities/YBotCharacter.tscn" id="2_0tr8h"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="9_aj65e"]
 [ext_resource type="Script" path="res://scripts/components/rotation/head_rotation_component.gd" id="9_d8fp0"]
 [ext_resource type="Script" path="res://scripts/components/movement/locomotion/locomotion_component.gd" id="10_p71rv"]
+[ext_resource type="PackedScene" uid="uid://da664p5ek0cgr" path="res://scenes/components/NoticeComponent.tscn" id="10_rxy6t"]
 [ext_resource type="Script" path="res://scripts/components/movement/locomotion/programmatic_movement.gd" id="11_5wdm6"]
 [ext_resource type="Script" path="res://scripts/components/movement/locomotion/root_motion.gd" id="12_88edh"]
 [ext_resource type="Script" path="res://addons/beehave/blackboard.gd" id="12_q7h63"]
@@ -31,33 +32,23 @@
 [ext_resource type="Script" path="res://scripts/components/wellbeing/instability_component.gd" id="17_dsieu"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_reactive.gd" id="17_sr624"]
 [ext_resource type="PackedScene" uid="uid://csbpq6cbn8rvn" path="res://scenes/beehave/compare_actions/IsStateSuspicious.tscn" id="18_e0yjj"]
-[ext_resource type="Script" path="res://scripts/components/combat/enemy_attack_component.gd" id="18_mfdlk"]
+[ext_resource type="Script" path="res://scripts/components/abilities/enemy_attack_component.gd" id="18_mfdlk"]
 [ext_resource type="PackedScene" uid="uid://c4jualprb4d24" path="res://scenes/beehave/compare_actions/IsStateGettingSuspicious.tscn" id="19_l4d6w"]
 [ext_resource type="PackedScene" uid="uid://cryed6dtlo286" path="res://scenes/beehave/set_actions/SetRotateTowardsTargetTrue.tscn" id="20_1isai"]
-[ext_resource type="Script" path="res://scripts/components/combat/parry_component.gd" id="21_c62ik"]
+[ext_resource type="Script" path="res://scripts/components/abilities/parry_component.gd" id="21_c62ik"]
 [ext_resource type="PackedScene" uid="uid://b2vrwljrc7cpp" path="res://scenes/beehave/set_actions/SetLockedOnTrue.tscn" id="21_dq1l1"]
 [ext_resource type="Script" path="res://scripts/components/combat/dizzy_component.gd" id="22_cfyy2"]
 [ext_resource type="PackedScene" uid="uid://mmj6qxe250co" path="res://scenes/components/FadeComponent.tscn" id="22_suiee"]
 [ext_resource type="Script" path="res://scripts/components/combat/backstab_component.gd" id="22_yq2kx"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_random.gd" id="23_4n8cs"]
 [ext_resource type="PackedScene" uid="uid://buwmvh65dccg5" path="res://scenes/beehave/compare_actions/IsStateAggro.tscn" id="23_augt0"]
-[ext_resource type="Script" path="res://scripts/components/notice_component/notice_component.gd" id="23_xicwr"]
 [ext_resource type="PackedScene" uid="uid://chv25a2oggqaw" path="res://scenes/beehave/wait/WaitBlock.tscn" id="24_ac52a"]
-[ext_resource type="PackedScene" uid="uid://dt6i863shdkev" path="res://scenes/utilities/NoticeTriangle.tscn" id="24_s80kh"]
 [ext_resource type="PackedScene" uid="uid://8q4shgtn2rdm" path="res://scenes/beehave/set_actions/SetCanAttackTrue.tscn" id="24_ugq3t"]
-[ext_resource type="PackedScene" uid="uid://dxqwv56gkjhbf" path="res://scenes/utilities/OffCameraNoticeTriangle.tscn" id="25_qus1u"]
-[ext_resource type="Curve" uid="uid://bxbb6mv0mtdp0" path="res://resources/notice_value_curve.tres" id="26_838wm"]
 [ext_resource type="PackedScene" uid="uid://nc8fs0at3l7x" path="res://scenes/beehave/set_actions/SetLockedOnFalse.tscn" id="26_l0o05"]
 [ext_resource type="PackedScene" uid="uid://t7wqbcml070v" path="res://scenes/beehave/set_actions/SetLookedAroundFalse.tscn" id="27_2m2v4"]
-[ext_resource type="Curve" uid="uid://deth5jw41owwx" path="res://resources/notice_scale_curve.tres" id="27_doh7b"]
 [ext_resource type="PackedScene" uid="uid://34ehm7k44ywn" path="res://scenes/beehave/set_actions/SetInterruptTimersFalse.tscn" id="28_5hxv6"]
-[ext_resource type="Script" path="res://scripts/components/notice_component/notice_component_idle_state.gd" id="28_k2jeq"]
 [ext_resource type="PackedScene" uid="uid://cw3sck872787g" path="res://scenes/beehave/set_actions/SetGotHitFalse.tscn" id="28_mcqya"]
-[ext_resource type="Script" path="res://scripts/components/notice_component/notice_component_getting_suspicious_state.gd" id="29_s0hf1"]
 [ext_resource type="Script" path="res://scripts/components/utility/void_death_component.gd" id="29_tsncg"]
-[ext_resource type="Script" path="res://scripts/components/notice_component/notice_component_suspicious_state.gd" id="30_nubk4"]
-[ext_resource type="Script" path="res://scripts/components/notice_component/notice_component_getting_aggro_state.gd" id="31_tvofb"]
-[ext_resource type="Script" path="res://scripts/components/notice_component/notice_component_aggro_state.gd" id="32_qrhxe"]
 [ext_resource type="PackedScene" uid="uid://cfuiyhthukrn0" path="res://scenes/beehave/attacks/SingleRandomAttack.tscn" id="33_gbbqm"]
 [ext_resource type="Script" path="res://scripts/beehave/execute_expression.gd" id="34_eiv28"]
 [ext_resource type="PackedScene" uid="uid://b4vbjom07vuli" path="res://scenes/beehave/set_actions/SetWalkSpeed.tscn" id="40_6x0m4"]
@@ -192,7 +183,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_i1ddg")
 [node name="Sword" parent="Character/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("entity", "attack_component") instance=ExtResource("4_r63io")]
 transform = Transform3D(-0.18487, -0.251436, 0.950054, 0.318492, -0.929873, -0.18412, 0.929724, 0.268546, 0.251986, -0.307707, 0.879604, -0.2272)
 entity = NodePath("../../../..")
-attack_component = NodePath("../../../../Combat/AttackComponent")
+attack_component = NodePath("../../../../Abilities/AttackComponent")
 
 [node name="Area" parent="Character/Armature_004/GeneralSkeleton/Sword" index="1"]
 collision_mask = 2
@@ -268,7 +259,7 @@ lock_on_component = NodePath("../../Utility/LockOnComponent")
 backstab_component = NodePath("../../Combat/BackstabComponent")
 health_component = NodePath("../HealthComponent")
 instability_component = NodePath("../InstabilityComponent")
-notice_component = NodePath("../../Combat/NoticeComponent")
+notice_component = NodePath("")
 wellbeing_widget_scene = ExtResource("15_kcl8l")
 
 [node name="HealthComponent" type="Node3D" parent="Wellbeing"]
@@ -281,9 +272,9 @@ script = ExtResource("17_dsieu")
 weapon = NodePath("../../Character/Armature_004/GeneralSkeleton/Sword")
 max_instability = 100.0
 
-[node name="Combat" type="Node3D" parent="."]
+[node name="Abilities" type="Node3D" parent="."]
 
-[node name="AttackComponent" type="Node" parent="Combat" node_paths=PackedStringArray("blackboard", "attack_animations", "locomotion_component")]
+[node name="AttackComponent" type="Node" parent="Abilities" node_paths=PackedStringArray("blackboard", "attack_animations", "locomotion_component")]
 script = ExtResource("18_mfdlk")
 blackboard = NodePath("../../Blackboard")
 attack_animations = NodePath("../../Character/AttackAnimations")
@@ -292,18 +283,20 @@ weapons = {
 "right_hand": NodePath("../../Character/Armature_004/GeneralSkeleton/Sword")
 }
 
-[node name="BlockComponent" parent="Combat" node_paths=PackedStringArray("entity", "locomotion_component", "character") instance=ExtResource("16_ckq0d")]
+[node name="BlockComponent" parent="Abilities" node_paths=PackedStringArray("entity", "locomotion_component", "character") instance=ExtResource("16_ckq0d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
 entity = NodePath("../..")
 locomotion_component = NodePath("../../LocomotionComponent")
 character = NodePath("../../Character")
 
-[node name="ParryComponent" type="Node3D" parent="Combat" node_paths=PackedStringArray("hitbox_component", "block_component")]
+[node name="ParryComponent" type="Node3D" parent="Abilities" node_paths=PackedStringArray("hitbox_component", "block_component")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("21_c62ik")
 hitbox_component = NodePath("../../HitboxComponent")
 block_component = NodePath("../BlockComponent")
 parry_particles_colour = Color(0.439216, 0.0392157, 0.0392157, 1)
+
+[node name="Combat" type="Node3D" parent="."]
 
 [node name="DizzyComponent" type="Node3D" parent="Combat" node_paths=PackedStringArray("entity", "attachment_point", "locomotion_component", "health_component", "attack_component", "instability_component", "crosshair", "character", "blackboard", "dizzy_sfx", "thrust_puncture_sfx", "hit_sfx")]
 script = ExtResource("22_cfyy2")
@@ -311,7 +304,7 @@ entity = NodePath("../..")
 attachment_point = NodePath("../../Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint")
 locomotion_component = NodePath("../../LocomotionComponent")
 health_component = NodePath("../../Wellbeing/HealthComponent")
-attack_component = NodePath("../AttackComponent")
+attack_component = NodePath("../../Abilities/AttackComponent")
 instability_component = NodePath("../../Wellbeing/InstabilityComponent")
 crosshair = NodePath("../../Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint/Crosshair")
 character = NodePath("../../Character")
@@ -325,56 +318,29 @@ script = ExtResource("22_yq2kx")
 entity = NodePath("../..")
 attachment_point = NodePath("../../Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint")
 health_component = NodePath("../../Wellbeing/HealthComponent")
-notice_component = NodePath("../NoticeComponent")
+notice_component = NodePath("")
 crosshair = NodePath("../../Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint/Crosshair")
 puncture_sound = NodePath("../../Character/AudioManager/ThrustPuncture")
 
-[node name="NoticeComponent" type="Node" parent="Combat" node_paths=PackedStringArray("entity", "head_attachment", "initial_state", "aggro_state", "blackboard", "hud_info")]
-script = ExtResource("23_xicwr")
+[node name="NoticeComponent" parent="Combat" node_paths=PackedStringArray("entity", "head_attachment", "blackboard", "hud_info") instance=ExtResource("10_rxy6t")]
 entity = NodePath("../..")
 head_attachment = NodePath("../../Character/Armature_004/GeneralSkeleton/HeadAttachment")
-notice_triangle_scene = ExtResource("24_s80kh")
-off_camera_notice_triangle_scene = ExtResource("25_qus1u")
-initial_state = NodePath("Idle")
-aggro_state = NodePath("Aggro")
 blackboard = NodePath("../../Blackboard")
 hud_info = NodePath("../../Utility/HUDInfoPos")
-notice_val_curve = ExtResource("26_838wm")
-suspicion_color = Color(0.815686, 0.654902, 0.105882, 1)
-aggro_color = Color(0.631373, 0.207843, 0.188235, 1)
-background_color = Color(0.196078, 0.196078, 0.196078, 1)
-expand_curve = ExtResource("27_doh7b")
 
-[node name="Idle" type="Node" parent="Combat/NoticeComponent" node_paths=PackedStringArray("getting_suspicious_state", "aggro_state", "notice_component")]
-script = ExtResource("28_k2jeq")
-getting_suspicious_state = NodePath("../GettingSuspicious")
-aggro_state = NodePath("../Aggro")
-notice_component = NodePath("..")
+[node name="IncomingWeaponHandler" type="Node" parent="Combat"]
 
-[node name="GettingSuspicious" type="Node" parent="Combat/NoticeComponent" node_paths=PackedStringArray("idle_state", "suspicious_state", "aggro_state", "notice_component")]
-script = ExtResource("29_s0hf1")
-idle_state = NodePath("../Idle")
-suspicious_state = NodePath("../Suspicious")
-aggro_state = NodePath("../Aggro")
-notice_component = NodePath("..")
+[node name="Backstab" type="Node" parent="Combat/IncomingWeaponHandler"]
 
-[node name="Suspicious" type="Node" parent="Combat/NoticeComponent" node_paths=PackedStringArray("idle_state", "getting_aggro_state", "aggro_state", "notice_component")]
-script = ExtResource("30_nubk4")
-idle_state = NodePath("../Idle")
-getting_aggro_state = NodePath("../GettingAggro")
-aggro_state = NodePath("../Aggro")
-notice_component = NodePath("..")
+[node name="Dizzy" type="Node" parent="Combat/IncomingWeaponHandler"]
 
-[node name="GettingAggro" type="Node" parent="Combat/NoticeComponent" node_paths=PackedStringArray("suspicious_state", "aggro_state", "notice_component")]
-script = ExtResource("31_tvofb")
-suspicious_state = NodePath("../Suspicious")
-aggro_state = NodePath("../Aggro")
-notice_component = NodePath("..")
+[node name="Outcomes" type="Node" parent="Combat/IncomingWeaponHandler"]
 
-[node name="Aggro" type="Node" parent="Combat/NoticeComponent" node_paths=PackedStringArray("idle_state", "notice_component")]
-script = ExtResource("32_qrhxe")
-idle_state = NodePath("../Idle")
-notice_component = NodePath("..")
+[node name="Hit" type="Node" parent="Combat/IncomingWeaponHandler/Outcomes"]
+
+[node name="Block" type="Node" parent="Combat/IncomingWeaponHandler/Outcomes"]
+
+[node name="Parry" type="Node" parent="Combat/IncomingWeaponHandler/Outcomes"]
 
 [node name="Utility" type="Node3D" parent="."]
 
@@ -748,8 +714,8 @@ script = ExtResource("12_q7h63")
 
 [node name="NavigationAgent" type="NavigationAgent3D" parent="."]
 
-[connection signal="combat_interaction" from="." to="Combat/AttackComponent" method="interrupt_attack"]
-[connection signal="dead" from="." to="Combat/AttackComponent" method="set_can_damage_of_all_weapons" binds= [false]]
+[connection signal="combat_interaction" from="." to="Abilities/AttackComponent" method="interrupt_attack"]
+[connection signal="dead" from="." to="Abilities/AttackComponent" method="set_can_damage_of_all_weapons" binds= [false]]
 [connection signal="got_hit" from="." to="Character/HitAndDeathAnimations" method="hit"]
 [connection signal="got_hit" from="." to="Character/AudioManager/Hit" method="play"]
 

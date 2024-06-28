@@ -63,7 +63,7 @@
 [ext_resource type="PackedScene" uid="uid://mmj6qxe250co" path="res://scenes/components/FadeComponent.tscn" id="55_3sflq"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="56_m1hw4"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="57_1h4hq"]
-[ext_resource type="Script" path="res://scripts/components/combat/enemy_spell_component.gd" id="58_53fyx"]
+[ext_resource type="Script" path="res://scripts/components/abilities/enemy_spell_component.gd" id="58_53fyx"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="58_m5ref"]
 [ext_resource type="PackedScene" uid="uid://q4ffp4qtwtt4" path="res://scenes/beehave/compare_actions/IsDeadTrue.tscn" id="59_ym8i0"]
 [ext_resource type="PackedScene" uid="uid://5653b3wcf25p" path="res://scenes/beehave/inputs/InputNone.tscn" id="60_aapd6"]
