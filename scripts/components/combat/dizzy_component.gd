@@ -2,21 +2,25 @@ class_name DizzyComponent
 extends Node3D
 
 
-@export_category("Dizzy Lengths")
-@export var dizzy_from_parry_length: float = 2.0
-@export var dizzy_from_damage_length: float = 3.0
-
 @export_category("Configuration")
 @export var debug: bool = false
 @export var enabled: bool = true
 @export var entity: Enemy
-@export var attachment_point: Node3D
+
+@export_category("Dizzy Lengths")
+@export var dizzy_from_parry_length: float = 2.0
+@export var dizzy_from_damage_length: float = 3.0
+
+@export_category("Components")
 @export var locomotion_component: LocomotionComponent
 @export var health_component: HealthComponent
 @export var attack_component: AttackComponent
 @export var instability_component: InstabilityComponent
+
+@export_category("Utility")
+@export var dizzy_victim_animations: DizzyVictimAnimations
+@export var attachment_point: Node3D
 @export var crosshair: Crosshair
-@export var character: CharacterAnimations
 @export var blackboard: Blackboard
 
 @export_category("Audio")
@@ -95,12 +99,12 @@ func _on_instability_component_full_instability():
 	
 	if instability_component.full_instability_from_parry:
 		locomotion_component.set_active_strategy("root_motion")
-		character.dizzy_victim_animations.dizzy_from_parry()
+		dizzy_victim_animations.dizzy_from_parry()
 		_dizzy_timer.start(dizzy_from_parry_length)
 		blackboard.set_value("rotate_towards_target", true)
 		_from_parry_knockback()
 	else:
-		character.dizzy_victim_animations.dizzy_from_damage()
+		dizzy_victim_animations.dizzy_from_damage()
 		_dizzy_timer.start(dizzy_from_damage_length)
 		blackboard.set_value("rotate_towards_target", false)
 		entity.look_at(player.global_position)
@@ -147,7 +151,7 @@ func _come_out_of_dizzy() -> void:
 		return
 	
 	dizzy_system.dizzy_victim = null
-	character.dizzy_victim_animations.disable_blend_dizzy()
+	dizzy_victim_animations.disable_blend_dizzy()
 	instability_component.come_out_of_full_instability(0.7)
 	
 	if instability_component.full_instability_from_parry:

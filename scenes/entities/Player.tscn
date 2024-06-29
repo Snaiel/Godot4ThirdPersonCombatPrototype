@@ -1,7 +1,8 @@
-[gd_scene load_steps=47 format=3 uid="uid://dujukbu10vbmm"]
+[gd_scene load_steps=48 format=3 uid="uid://dujukbu10vbmm"]
 
 [ext_resource type="Script" path="res://scripts/entities/player.gd" id="1_lgfyt"]
 [ext_resource type="Script" path="res://scripts/player/player_state_machine.gd" id="2_4ql4h"]
+[ext_resource type="Script" path="res://scripts/animations/player_animations.gd" id="3_2hud5"]
 [ext_resource type="Shader" path="res://shaders/fade.gdshader" id="3_iqmy4"]
 [ext_resource type="Script" path="res://scripts/player/player_idle_state.gd" id="3_pk0l8"]
 [ext_resource type="Script" path="res://scripts/player/player_walk_state.gd" id="4_4fxcp"]
@@ -82,8 +83,20 @@ weapon = NodePath("Character/Armature_004/GeneralSkeleton/Sword")
 lock_on_attachment_point = NodePath("Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint")
 footsteps = NodePath("Character/AudioManager/Footsteps")
 
-[node name="Character" parent="." instance=ExtResource("5_gusos")]
+[node name="Character" parent="." node_paths=PackedStringArray("movement_animations", "walk_or_jog_animations", "jump_animations", "attack_animations", "block_animations", "parry_animations", "hit_and_death_animations", "dizzy_victim_animations", "dizzy_finisher_animations", "drink_animations", "sitting_animations") instance=ExtResource("5_gusos")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+script = ExtResource("3_2hud5")
+movement_animations = NodePath("Movement")
+walk_or_jog_animations = NodePath("Movement/FreeWalkOrJog")
+jump_animations = NodePath("JumpAnimations")
+attack_animations = NodePath("AttackAnimations")
+block_animations = NodePath("BlockAnimations")
+parry_animations = NodePath("ParryAnimations")
+hit_and_death_animations = NodePath("HitAndDeathAnimations")
+dizzy_victim_animations = NodePath("DizzyVictimAnimations")
+dizzy_finisher_animations = NodePath("DizzyFinisherAnimations")
+drink_animations = NodePath("DrinkAnimations")
+sitting_animations = NodePath("SittingAnimations")
 
 [node name="GeneralSkeleton" parent="Character/Armature_004" index="0"]
 bones/1/position = Vector3(6.04682e-06, 0.928626, -9.00516e-08)
@@ -115,6 +128,7 @@ bones/26/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
 bones/27/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
 bones/28/rotation = Quaternion(0.290917, -0.014055, -0.163943, 0.942493)
 bones/29/rotation = Quaternion(0.336146, 0.0112787, 0.0495706, 0.940437)
+bones/30/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
 bones/31/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
 bones/32/rotation = Quaternion(0.489204, -0.484239, -0.589672, -0.422468)
 bones/33/rotation = Quaternion(0.186803, 0.845471, -0.490798, -0.0969608)
@@ -414,11 +428,11 @@ weapons = {
 "right_hand": NodePath("../../Character/Armature_004/GeneralSkeleton/Sword")
 }
 
-[node name="BlockComponent" parent="Combat" node_paths=PackedStringArray("entity", "locomotion_component", "character") instance=ExtResource("10_hjlwj")]
+[node name="BlockComponent" parent="Combat" node_paths=PackedStringArray("entity", "locomotion_component", "block_animations") instance=ExtResource("10_hjlwj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, -0.08)
 entity = NodePath("../..")
 locomotion_component = NodePath("../../Movement/LocomotionComponent")
-character = NodePath("../../Character")
+block_animations = NodePath("../../Character/BlockAnimations")
 
 [node name="ParryComponent" parent="Combat" node_paths=PackedStringArray("hitbox_component", "block_component") instance=ExtResource("30_ceaq1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -426,10 +440,10 @@ hitbox_component = NodePath("../../HitboxComponent")
 block_component = NodePath("../BlockComponent")
 parry_particles_colour = Color(0.027451, 0.278431, 0.427451, 1)
 
-[node name="HealthChargeComponent" parent="." node_paths=PackedStringArray("entity", "character", "health_component") instance=ExtResource("36_ay03g")]
+[node name="HealthChargeComponent" parent="." node_paths=PackedStringArray("entity", "drink_animations", "health_component") instance=ExtResource("36_ay03g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.27364, 0)
 entity = NodePath("..")
-character = NodePath("../Character")
+drink_animations = NodePath("../Character/DrinkAnimations")
 health_component = NodePath("../Wellbeing/HealthComponent")
 max_charges = 3
 

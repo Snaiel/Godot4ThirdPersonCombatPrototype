@@ -574,16 +574,8 @@ notice_component = NodePath("Combat/NoticeComponent")
 beehave_tree = NodePath("BeehaveTree")
 blackboard = NodePath("Blackboard")
 
-[node name="Character" parent="." node_paths=PackedStringArray("movement_animations", "walk_or_jog_animations", "jump_animations", "attack_animations", "block_animations", "parry_animations", "hit_and_death_animations", "dizzy_victim_animations") instance=ExtResource("3_yb5ae")]
+[node name="Character" parent="." instance=ExtResource("3_yb5ae")]
 script = ExtResource("3_ci7dv")
-movement_animations = NodePath("Movement")
-walk_or_jog_animations = NodePath("Movement/LockedOnMovement/FreeMovement/FreeWalkOrJog")
-jump_animations = NodePath("JumpAnimations")
-attack_animations = NodePath("AttackAnimations")
-block_animations = NodePath("BlockAnimations")
-parry_animations = NodePath("ParryAnimations")
-hit_and_death_animations = NodePath("HitAndDeathAnimations")
-dizzy_victim_animations = NodePath("DizzyVictimAnimations")
 
 [node name="GeneralSkeleton" parent="Character/Armature_004" index="0"]
 bones/1/rotation = Quaternion(0, 2.2904e-14, -6.7831e-14, 1)
@@ -988,9 +980,8 @@ weapons = {
 "right_foot": NodePath("../../Character/Armature_004/GeneralSkeleton/WeaponFoot")
 }
 
-[node name="BlockComponent" parent="Combat" node_paths=PackedStringArray("character") instance=ExtResource("44_pesi7")]
+[node name="BlockComponent" parent="Combat" instance=ExtResource("44_pesi7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
-character = NodePath("../../Character")
 
 [node name="ParryComponent" parent="Combat" node_paths=PackedStringArray("hitbox_component", "block_component") instance=ExtResource("21_e624s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -998,12 +989,11 @@ hitbox_component = NodePath("../../HitboxComponent")
 block_component = NodePath("../BlockComponent")
 parry_particles_colour = Color(0.439216, 0.0392157, 0.0392157, 1)
 
-[node name="DizzyComponent" parent="Combat" node_paths=PackedStringArray("entity", "health_component", "attack_component", "instability_component", "character", "blackboard", "dizzy_sfx", "thrust_puncture_sfx", "hit_sfx") instance=ExtResource("37_s073p")]
+[node name="DizzyComponent" parent="Combat" node_paths=PackedStringArray("entity", "health_component", "attack_component", "instability_component", "blackboard", "dizzy_sfx", "thrust_puncture_sfx", "hit_sfx") instance=ExtResource("37_s073p")]
 entity = NodePath("../..")
 health_component = NodePath("../../Wellbeing/HealthComponent")
 attack_component = NodePath("../AttackComponent")
 instability_component = NodePath("../../Wellbeing/InstabilityComponent")
-character = NodePath("../../Character")
 blackboard = NodePath("../../Blackboard")
 dizzy_sfx = NodePath("../../Character/AudioManager/Dizzy")
 thrust_puncture_sfx = NodePath("../../Character/AudioManager/ThrustPuncture")

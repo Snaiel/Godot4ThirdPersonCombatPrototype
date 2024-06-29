@@ -485,19 +485,8 @@ streams_count = 1
 stream_0/stream = ExtResource("28_2e7ry")
 stream_0/weight = 1.0
 
-[node name="YBotCharacter" node_paths=PackedStringArray("movement_animations", "walk_or_jog_animations", "jump_animations", "attack_animations", "block_animations", "parry_animations", "hit_and_death_animations", "dizzy_victim_animations", "dizzy_finisher_animations", "drink_animations", "sitting_animations") instance=ExtResource("1_ml8ck")]
+[node name="YBotCharacter" instance=ExtResource("1_ml8ck")]
 script = ExtResource("2_l62dg")
-movement_animations = NodePath("Movement")
-walk_or_jog_animations = NodePath("Movement/FreeWalkOrJog")
-jump_animations = NodePath("JumpAnimations")
-attack_animations = NodePath("AttackAnimations")
-block_animations = NodePath("BlockAnimations")
-parry_animations = NodePath("ParryAnimations")
-hit_and_death_animations = NodePath("HitAndDeathAnimations")
-dizzy_victim_animations = NodePath("DizzyVictimAnimations")
-dizzy_finisher_animations = NodePath("DizzyFinisherAnimations")
-drink_animations = NodePath("DrinkAnimations")
-sitting_animations = NodePath("SittingAnimations")
 
 [node name="GeneralSkeleton" parent="Armature_004" index="0"]
 bones/1/position = Vector3(6.17873e-06, 0.927116, -9.02058e-08)
@@ -572,7 +561,7 @@ extra_cull_margin = 1.0
 lod_bias = 0.7
 
 [node name="LockOnAttachment" type="BoneAttachment3D" parent="Armature_004/GeneralSkeleton" index="2"]
-transform = Transform3D(0.986442, -0.0554762, -0.154448, -0.0153047, 0.90593, -0.423151, 0.163393, 0.419778, 0.892798, 0.0173747, 1.27556, -0.0105398)
+transform = Transform3D(0.986442, -0.0554767, -0.154448, -0.0153045, 0.90593, -0.423152, 0.163394, 0.419779, 0.892798, 0.0173747, 1.27556, -0.0105398)
 bone_name = "UpperChest"
 bone_idx = 4
 
@@ -588,7 +577,7 @@ texture = ExtResource("3_bk74o")
 script = ExtResource("4_htgrv")
 
 [node name="HeadAttachment" type="BoneAttachment3D" parent="Armature_004/GeneralSkeleton" index="3"]
-transform = Transform3D(0.985101, -0.0206224, 0.170733, 0.0619691, 0.968657, -0.24055, -0.160421, 0.247546, 0.955503, -0.00278671, 1.49038, 0.128963)
+transform = Transform3D(0.985102, -0.0206228, 0.170732, 0.0619692, 0.968657, -0.240551, -0.160419, 0.247547, 0.955503, -0.00278687, 1.49038, 0.128963)
 bone_name = "Head"
 bone_idx = 6
 

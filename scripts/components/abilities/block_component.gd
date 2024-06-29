@@ -3,7 +3,7 @@ extends Node3D
 
 @export var entity: CharacterBody3D
 @export var locomotion_component: LocomotionComponent
-@export var character: CharacterAnimations
+@export var block_animations: BlockAnimations
 @export var walk_speed_while_blocking: float = 0.8
 @export var transparency: float = 0.7
 @export var block_particles_scene: PackedScene = preload("res://scenes/particles/BlockParticles.tscn")
@@ -23,7 +23,7 @@ func _ready():
 
 
 func _physics_process(_delta: float) -> void:
-	character.block_animations.process_block(blocking)
+	block_animations.process_block(blocking)
 	
 	if blocking:
 		if entity.is_on_floor():

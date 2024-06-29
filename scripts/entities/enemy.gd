@@ -19,6 +19,7 @@ signal dead
 
 @export_category("Movement")
 @export var locomotion_component: LocomotionComponent
+@export var movement_animations: MovementAnimations
 
 @export_category("Rotation")
 @export var rotation_component: RotationComponent
@@ -32,6 +33,8 @@ signal dead
 @export var backstab_component: BackstabComponent
 @export var dizzy_component: DizzyComponent
 @export var notice_component: NoticeComponent
+@export var dizzy_victim_animations: DizzyVictimAnimations
+@export var hit_and_death_animations: HitAndDeathAnimations
 
 @export_category("AI Behaviour")
 @export var beehave_tree: BeehaveTree
@@ -122,7 +125,7 @@ func _physics_process(_delta: float) -> void:
 	## Character Animations
 	character.anim_tree["parameters/Locked On Walk Direction/4/TimeScale/scale"] = 0.5
 	character.anim_tree["parameters/Locked On Walk Direction/5/TimeScale/scale"] = 0.5
-	character.movement_animations.move(
+	movement_animations.move(
 		blackboard.get_value("input_direction", Vector3.ZERO), 
 		blackboard.get_value("locked_on", false), 
 		false
@@ -171,12 +174,12 @@ func _on_health_component_zero_health() -> void:
 	collision_mask = 1
 	
 	if Globals.backstab_system.backstab_victim == backstab_component:
-		character.hit_and_death_animations.death_2()
+		hit_and_death_animations.death_2()
 	elif Globals.dizzy_system.dizzy_victim == dizzy_component and \
 	not dizzy_component.instability_component.full_instability_from_parry:
-		character.dizzy_victim_animations.play_death_kneeling()
+		dizzy_victim_animations.play_death_kneeling()
 	else:
-		character.hit_and_death_animations.death_1()
+		hit_and_death_animations.death_1()
 	
 	if blackboard.get_value("notice_state") == "aggro":
 		Globals.music_system.fade_to_idle()

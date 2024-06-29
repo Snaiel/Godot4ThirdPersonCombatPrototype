@@ -4,8 +4,9 @@ extends Node3D
 
 signal finished_drinking
 
+
 @export var entity: CharacterBody3D
-@export var character: CharacterAnimations
+@export var drink_animations: DrinkAnimations
 @export var health_component: HealthComponent
 @export var recovery_amount: float = 60.0
 @export var max_charges: int = 8
@@ -37,7 +38,7 @@ func _ready():
 	for light in lights:
 			light.light_energy = 0.0
 	
-	character.drink_animations.gain_health.connect(
+	drink_animations.gain_health.connect(
 		func():
 			if current_charges == 0:
 				return
@@ -50,12 +51,12 @@ func _ready():
 			health_jingle_sfx.play()
 	)
 	
-	character.drink_animations.finished.connect(
+	drink_animations.finished.connect(
 		func():
 			finished_drinking.emit()
 			_show_light = false
 	)
-	character.drink_animations.interupted.connect(
+	drink_animations.interupted.connect(
 		func():
 			_show_light = false
 	)
@@ -78,10 +79,10 @@ func _physics_process(_delta):
 
 
 func consume_health_charge() -> void:
-	character.drink_animations.drink()
+	drink_animations.drink()
 
 func interupt() -> void:
-	character.drink_animations.interupt_drink()
+	drink_animations.interupt_drink()
 
 func reset_charges() -> void:
 	current_charges = max_charges
