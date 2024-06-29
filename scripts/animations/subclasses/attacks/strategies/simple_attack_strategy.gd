@@ -20,9 +20,18 @@ func play_attack():
 		return
 	
 	if _play_copy:
-		anim_tree["parameters/%s Copy/%s Trim/seek_request" % [_attack_name, _attack_name]] = trim
-		anim_tree["parameters/%s Copy/%s Speed/scale" % [_attack_name, _attack_name]] = animation_speed
-		anim_tree["parameters/Attack/transition_request"] = _attack_name.to_snake_case() + "_copy"
+		anim_tree.set(
+			"parameters/%s Copy/%s Trim/seek_request" % [_attack_name, _attack_name],
+			 trim
+		)
+		anim_tree.set(
+			"parameters/%s Copy/%s Speed/scale" % [_attack_name, _attack_name],
+			 animation_speed
+		)
+		anim_tree.set(
+			"parameters/Attack/transition_request",
+			 _attack_name.to_snake_case() + "_copy"
+		)
 		_play_copy = false
 	else:
 		_play_attack()
@@ -30,6 +39,15 @@ func play_attack():
 
 
 func _play_attack():
-	anim_tree["parameters/%s/%s Trim/seek_request" % [_attack_name, _attack_name]] = trim
-	anim_tree["parameters/%s/%s Speed/scale" % [_attack_name, _attack_name]] = animation_speed
-	anim_tree["parameters/Attack/transition_request"] = _attack_name.to_snake_case()
+	anim_tree.set(
+		"parameters/%s/%s Trim/seek_request" % [_attack_name, _attack_name],
+		 trim
+	)
+	anim_tree.set(
+		"parameters/%s/%s Speed/scale" % [_attack_name, _attack_name],
+		 animation_speed
+	)
+	anim_tree.set(
+		"parameters/Attack/transition_request",
+		 _attack_name.to_snake_case()
+	)

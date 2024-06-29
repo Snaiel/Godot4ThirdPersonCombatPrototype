@@ -37,68 +37,69 @@ func _physics_process(_delta):
 	
 	# This blends between the normal movement stuff
 	# and all this vertical movement stuff (jump and fall)
-	if _fade_vertical_movement:
-		anim_tree["parameters/Vertical Movement/blend_amount"] = lerp(
-			float(anim_tree["parameters/Vertical Movement/blend_amount"]),
-			1.0,
+	var vertical_blend = anim_tree.get(&"parameters/Vertical Movement/blend_amount")
+	if vertical_blend == null: return
+	anim_tree.set(
+		&"parameters/Vertical Movement/blend_amount",
+		lerp(
+			float(vertical_blend),
+			1.0 if _fade_vertical_movement else 0.0,
 			0.05
 		)
-		
-		# assume we're transitioning to the vertical movement state,
-		# allow the ability to emit the signal when we come back down
-		if float(anim_tree["parameters/Vertical Movement/blend_amount"]) > 0.8:
-			_can_emit_vertical_movement_ended = true
-	else:
-		anim_tree["parameters/Vertical Movement/blend_amount"] = lerp(
-			float(anim_tree["parameters/Vertical Movement/blend_amount"]),
-			0.0,
-			0.05
-		)
+	)
+	# assume we're transitioning to the vertical movement state,
+	# allow the ability to emit the signal when we come back down
+	if vertical_blend > 0.8: _can_emit_vertical_movement_ended = true
 	
 	# this blends between two jump which are exactly the same.
 	# this is done because blending/transitioning to the same
 	# state is not smooth. so i am blending between two of the
 	# same jump animation so that it looks like jumping
 	# straight away after jumping is smooth.
+	var handler_blend = anim_tree.get(&"parameters/Jump Handler/blend_amount")
+	if handler_blend == null: return
 	if _do_jump_1 and _can_switch_jump:
-		anim_tree["parameters/Jump Handler/blend_amount"] = lerp(
-			float(anim_tree["parameters/Jump Handler/blend_amount"]),
-			0.0,
-			0.1
+		anim_tree.set(
+			&"parameters/Jump Handler/blend_amount",
+			lerp(
+				float(handler_blend),
+				0.0,
+				0.1
+			)
 		)
-		if anim_tree["parameters/Jump Handler/blend_amount"] < 0.02:
+		if handler_blend < 0.02:
 			_do_jump_1 = false
 			_can_switch_jump = false
 	if not _do_jump_1 and _can_switch_jump:
-		anim_tree["parameters/Jump Handler/blend_amount"] = lerp(
-			float(anim_tree["parameters/Jump Handler/blend_amount"]),
-			1.0,
-			0.1
+		anim_tree.set(
+			&"parameters/Jump Handler/blend_amount",
+			lerp(
+				float(handler_blend),
+				1.0,
+				0.1
+			)
 		)
-		if anim_tree["parameters/Jump Handler/blend_amount"] > 0.98:
+		if handler_blend > 0.98:
 			_do_jump_1 = true
 			_can_switch_jump = false
 	
-	# This blends between the jump animation and the
-	# falling idle animation
-	if _fade_to_fall:
-		anim_tree["parameters/Jump and Fall Blend/blend_amount"] = lerp(
-			float(anim_tree["parameters/Jump and Fall Blend/blend_amount"]),
-			1.0,
-			0.05
+	# This blends between the jump animation and the falling idle animation
+	var jump_and_fall_blend = anim_tree.get(
+		&"parameters/Jump and Fall Blend/blend_amount"
+	)
+	if jump_and_fall_blend == null: return
+	anim_tree.set(
+		&"parameters/Jump and Fall Blend/blend_amount",
+		lerp(
+			float(jump_and_fall_blend),
+			1.0 if _fade_to_fall else 0.0,
+			0.05 if _fade_to_fall else 0.1
 		)
-	else:
-		anim_tree["parameters/Jump and Fall Blend/blend_amount"] = lerp(
-			float(anim_tree["parameters/Jump and Fall Blend/blend_amount"]),
-			0.0,
-			0.1
-		)
+	)
 	
 	# here we assume we've successfully transitioned from the
 	# vertical movement state to the normal state
-	if _can_emit_vertical_movement_ended and \
-		float(anim_tree["parameters/Vertical Movement/blend_amount"]) < 0.8:
-		
+	if _can_emit_vertical_movement_ended and float(vertical_blend) < 0.8:
 		_can_emit_vertical_movement_ended = false
 		vertical_movement_ended.emit()
 
@@ -107,11 +108,11 @@ func _physics_process(_delta):
 func start_jump() -> void:
 	
 	if _do_jump_1:
-		anim_tree["parameters/Jump 1/Jump Trim/seek_request"] = 0.65
-		anim_tree["parameters/Jump 1/Jump Speed/scale"] = 1.0
+		anim_tree.set(&"parameters/Jump 1/Jump Trim/seek_request", 0.65)
+		anim_tree.set(&"parameters/Jump 1/Jump Speed/scale", 1.0)
 	else:
-		anim_tree["parameters/Jump 2/Jump Trim/seek_request"] = 0.65
-		anim_tree["parameters/Jump 2/Jump Speed/scale"] = 1.0
+		anim_tree.set(&"parameters/Jump 2/Jump Trim/seek_request", 0.65)
+		anim_tree.set(&"parameters/Jump 2/Jump Speed/scale", 1.0)
 	
 	_can_switch_jump = true
 	_fade_vertical_movement = true
@@ -140,11 +141,12 @@ func just_fall() -> void:
 	
 	_fade_to_fall = true
 	
-	if float(anim_tree["parameters/Vertical Movement/blend_amount"]) < 0.05:
-		anim_tree["parameters/Jump and Fall Blend/blend_amount"] = 1.0
+	var blend = anim_tree.get(&"parameters/Vertical Movement/blend_amount")
+	if blend != null and blend < 0.05:
+		anim_tree.set(&"parameters/Jump and Fall Blend/blend_amount", 1.0)
 	
-	anim_tree["parameters/Jump 1/Jump Speed/scale"] = 0.0
-	anim_tree["parameters/Jump 1/Jump Speed/scale"] = 0.0
+	anim_tree.set(&"parameters/Jump 1/Jump Speed/scale", 0.0)
+	anim_tree.set(&"parameters/Jump 1/Jump Speed/scale", 0.0)
 
 
 ## A method to signfiy when to blend from the

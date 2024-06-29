@@ -8,23 +8,32 @@ var _previous_value: bool
 
 
 func process_block(blocking: bool) -> void:
-	anim_tree["parameters/Blocking Trim/seek_request"] = 0.35
-	anim_tree["parameters/Blocking Speed/scale"] = 0.0
+	anim_tree.set(&"parameters/Blocking Trim/seek_request", 0.35)
+	anim_tree.set(&"parameters/Blocking Speed/scale", 0.0)
+	
+	var blend = anim_tree.get(&"parameters/Blocking/blend_amount")
+	if blend == null: return
 	
 	if blocking:
-		anim_tree["parameters/Blocking/blend_amount"] = lerp(
-			float(anim_tree["parameters/Blocking/blend_amount"]), 
-			1.0, 
-			0.2
+		anim_tree.set(
+			&"parameters/Blocking/blend_amount",
+			lerp(
+				float(blend), 
+				1.0, 
+				0.2
+			)
 		)
 		if _previous_value == false:
 			walk_or_jog_animations.set_walk_speed(0.5)
 			walk_or_jog_animations.to_walking()
 	else:
-		anim_tree["parameters/Blocking/blend_amount"] = lerp(
-			float(anim_tree["parameters/Blocking/blend_amount"]), 
-			0.0, 
-			0.1
+		anim_tree.set(
+			&"parameters/Blocking/blend_amount",
+			lerp(
+				float(blend), 
+				0.0, 
+				0.2
+			)
 		)
 		if _previous_value == true:
 			walk_or_jog_animations.reset_walk_speed()

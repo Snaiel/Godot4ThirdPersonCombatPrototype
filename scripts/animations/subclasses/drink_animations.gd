@@ -12,18 +12,16 @@ var _blend_drinking: bool = false
 var _interupted: bool = false
 
 func _physics_process(_delta):
-	if _blend_drinking:
-		anim_tree["parameters/Drinking/blend_amount"] = lerp(
-			float(anim_tree["parameters/Drinking/blend_amount"]),
-			1.0,
+	var blend = anim_tree.get(&"parameters/Drinking/blend_amount")
+	if blend == null: return
+	anim_tree.set(
+		&"parameters/Drinking/blend_amount",
+		lerp(
+			float(blend),
+			1.0 if _blend_drinking else 0.0,
 			0.05
 		)
-	else:
-		anim_tree["parameters/Drinking/blend_amount"] = lerp(
-			float(anim_tree["parameters/Drinking/blend_amount"]),
-			0.0,
-			0.05
-		)
+	)
 
 
 func drink() -> void:
@@ -33,8 +31,8 @@ func drink() -> void:
 	walk_or_jog_animations.can_change_speed = false
 	_blend_drinking = true
 	_interupted = false
-	anim_tree["parameters/Drinking Trim/seek_request"] = 1.5
-	anim_tree["parameters/Drinking Speed/scale"] = 1.5
+	anim_tree.set(&"parameters/Drinking Trim/seek_request", 1.5)
+	anim_tree.set(&"parameters/Drinking Speed/scale", 1.5)
 
 func interupt_drink() -> void:
 	walk_or_jog_animations.reset_walk_speed()

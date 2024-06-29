@@ -123,8 +123,8 @@ func _physics_process(_delta: float) -> void:
 	)
 	
 	## Character Animations
-	character.anim_tree["parameters/Locked On Walk Direction/4/TimeScale/scale"] = 0.5
-	character.anim_tree["parameters/Locked On Walk Direction/5/TimeScale/scale"] = 0.5
+	character.anim_tree.set(&"parameters/Locked On Walk Direction/4/TimeScale/scale", 0.5)
+	character.anim_tree.set(&"parameters/Locked On Walk Direction/5/TimeScale/scale", 0.5)
 	movement_animations.move(
 		blackboard.get_value("input_direction", Vector3.ZERO), 
 		blackboard.get_value("locked_on", false), 

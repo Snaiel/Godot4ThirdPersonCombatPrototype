@@ -13,4 +13,4 @@ func move(dir: Vector2, _locked_on: bool, _running: bool) -> void:
 	else:
 		_walk_blend = lerp(_walk_blend, 0.0, 0.1)
 	
-	anim_tree["parameters/Free Movement/blend_amount"] = _walk_blend
+	anim_tree.set(&"parameters/Free Movement/blend_amount", _walk_blend)

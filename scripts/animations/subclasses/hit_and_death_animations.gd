@@ -40,23 +40,20 @@ func _ready():
 func _physics_process(_delta) -> void:
 	if _death:
 		_blend_death = true
-		
-	if _blend_death:
-		anim_tree["parameters/Death/blend_amount"] = lerp(
-			float(anim_tree["parameters/Death/blend_amount"]),
-			1.0,
-			0.2
-		)
-	else:
-		anim_tree["parameters/Death/blend_amount"] = lerp(
-			float(anim_tree["parameters/Death/blend_amount"]),
-			0.0,
-			0.05
-		)
 	
-	if _can_emit_hit_finished and \
-		float(anim_tree["parameters/Death/blend_amount"]) < 0.1:
-		
+	var blend = anim_tree.get(&"parameters/Death/blend_amount")
+	if blend == null: return
+	
+	anim_tree.set(
+		&"parameters/Death/blend_amount",
+		lerp(
+			float(blend),
+			1.0 if _blend_death else 0.0,
+			0.2 if _blend_death else 0.05
+		)
+	)
+	
+	if _can_emit_hit_finished and float(blend) < 0.1:
 		_can_emit_hit_finished = false
 		hit_finished.emit()
 
@@ -67,30 +64,30 @@ func hit() -> void:
 	
 	_can_emit_hit_finished = true
 	
-	anim_tree["parameters/Death 2 Trim/seek_request"] = hit_trim
-	anim_tree["parameters/Death 2 Speed/scale"] = hit_speed
-	anim_tree["parameters/Death Which One/transition_request"] = "death_2"
+	anim_tree.set(&"parameters/Death 2 Trim/seek_request", hit_trim)
+	anim_tree.set(&"parameters/Death 2 Speed/scale", hit_speed)
+	anim_tree.set(&"parameters/Death Which One/transition_request", &"death_2")
 	_blend_death = true
 	_hit_timer.start()
 
 
 func death_1() -> void:
-	anim_tree["parameters/Death 1 Trim/seek_request"] = death_backwards_trim
-	anim_tree["parameters/Death 1 Speed/scale"] = death_backwards_speed	
-	anim_tree["parameters/Death Which One/transition_request"] = "death_1"
+	anim_tree.set(&"parameters/Death 1 Trim/seek_request", death_backwards_trim)
+	anim_tree.set(&"parameters/Death 1 Speed/scale", death_backwards_speed)
+	anim_tree.set(&"parameters/Death Which One/transition_request", &"death_1")
 	_death = true
 
 
 func death_2() -> void:
-	anim_tree["parameters/Death 2 Trim/seek_request"] = death_forwards_trim
-	anim_tree["parameters/Death 2 Speed/scale"] = death_forwards_speed	
-	anim_tree["parameters/Death Which One/transition_request"] = "death_2"
+	anim_tree.set(&"parameters/Death 2 Trim/seek_request", death_forwards_trim)
+	anim_tree.set(&"parameters/Death 2 Speed/scale", death_forwards_speed)
+	anim_tree.set(&"parameters/Death Which One/transition_request", &"death_2")
 	_death = true
 
 
 func interrupt_blend_death() -> void:
 	_blend_death = false
-	anim_tree["parameters/Death/blend_amount"] = 0.0
+	anim_tree.set(&"parameters/Death/blend_amount", 0.0)
 
 
 func reset_death() -> void:

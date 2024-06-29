@@ -29,23 +29,21 @@ var _ignore_finish_standing_up: bool = false
 
 func _physics_process(_delta):
 	# this is if the character has become a dizzy victim
-	if _blend_dizzy:
-		anim_tree["parameters/Dizzy/blend_amount"] = move_toward(
-			float(anim_tree["parameters/Dizzy/blend_amount"]),
-			1.0,
-			0.2
+	var blend = anim_tree.get(&"parameters/Dizzy/blend_amount")
+	if blend == null: return
+	anim_tree.set(
+		&"parameters/Dizzy/blend_amount",
+		move_toward(
+			float(blend),
+			1.0 if _blend_dizzy else 0.0,
+			0.2 if _blend_dizzy else 0.1
 		)
-	else:
-		anim_tree["parameters/Dizzy/blend_amount"] = move_toward(
-			float(anim_tree["parameters/Dizzy/blend_amount"]),
-			0.0,
-			0.1
-		)
+	)
 
 
 func dizzy_from_parry() -> void:
 	_dizzy_from_parry = true
-	anim_tree["parameters/Dizzy Which One/transition_request"] = "from_parry"
+	anim_tree.set(&"parameters/Dizzy Which One/transition_request", &"from_parry")
 	_blend_dizzy = true
 
 
@@ -53,10 +51,10 @@ func dizzy_from_damage() -> void:
 	_dizzy_from_parry = false
 	_ignore_finish_standing_up = true
 	hit_and_death_animations.interrupt_blend_death()
-	anim_tree["parameters/Dizzy Kneeling Trim/seek_request"] = 1.2
-	anim_tree["parameters/Dizzy Kneeling Speed/scale"] = 1.5
-	anim_tree["parameters/Dizzy From Damage/transition_request"] = "to_kneel"	
-	anim_tree["parameters/Dizzy Which One/transition_request"] = "from_damage"	
+	anim_tree.set(&"parameters/Dizzy Kneeling Trim/seek_request", 1.2)
+	anim_tree.set(&"parameters/Dizzy Kneeling Speed/scale", 1.5)
+	anim_tree.set(&"parameters/Dizzy From Damage/transition_request", &"to_kneel")
+	anim_tree.set(&"parameters/Dizzy Which One/transition_request", &"from_damage")
 	_blend_dizzy = true
 
 
@@ -64,8 +62,8 @@ func disable_blend_dizzy() -> void:
 	if _dizzy_from_parry:
 		_blend_dizzy = false
 	else:
-		anim_tree["parameters/Kneel to Stand Trim/seek_request"] = 1.0
-		anim_tree["parameters/Dizzy From Damage/transition_request"] = "to_stand"
+		anim_tree.set(&"parameters/Kneel to Stand Trim/seek_request", 1.0)
+		anim_tree.set(&"parameters/Dizzy From Damage/transition_request", &"to_stand")
 
 
 func receive_now_kneeling() -> void:
@@ -74,8 +72,8 @@ func receive_now_kneeling() -> void:
 
 	_ignore_finish_standing_up = false
 	
-	anim_tree["parameters/Dizzy Kneeling Speed/scale"] = 0.0
-	anim_tree["parameters/Dizzy From Damage/transition_request"] = "kneel"
+	anim_tree.set(&"parameters/Dizzy Kneeling Speed/scale", 0.0)
+	anim_tree.set(&"parameters/Dizzy From Damage/transition_request", &"kneel")
 
 
 func receive_finished_standing_up() -> void:
@@ -88,9 +86,9 @@ func receive_finished_standing_up() -> void:
 func play_death_kneeling() -> void:
 	_ignore_receive_kneel = true
 	
-	anim_tree["parameters/Dizzy Kneeling Trim/seek_request"] = 3.25
-	anim_tree["parameters/Dizzy Kneeling Speed/scale"] = 1.0
-	anim_tree["parameters/Dizzy From Damage/transition_request"] = "to_kneel"
+	anim_tree.set(&"parameters/Dizzy Kneeling Trim/seek_request", 3.25)
+	anim_tree.set(&"parameters/Dizzy Kneeling Speed/scale", 1.0)
+	anim_tree.set(&"parameters/Dizzy From Damage/transition_request", &"to_kneel")
 	
 	# reusing the to_kneel animation in the transition
 	# as it contains the death animation.

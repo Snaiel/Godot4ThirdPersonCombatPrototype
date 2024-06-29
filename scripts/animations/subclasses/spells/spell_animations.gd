@@ -33,7 +33,7 @@ var _intend_to_stop_casting: bool = true
 
 
 func _ready() -> void:
-	anim_tree["parameters/Spells/blend_amount"] = 0.0
+	anim_tree.set(&"parameters/Spells/blend_amount", 0.0)
 	
 	for child in get_children():
 		spells.append(child)
@@ -43,25 +43,23 @@ func _physics_process(_delta: float) -> void:
 	if debug:
 		pass
 	
-	if active:
-		anim_tree["parameters/Spells/blend_amount"] = lerp(
-			anim_tree["parameters/Spells/blend_amount"], 
-			1.0, 
-			0.15
-		)
-	else:
-		anim_tree["parameters/Spells/blend_amount"] = lerp(
-			anim_tree["parameters/Spells/blend_amount"], 
-			0.0, 
-			0.1
-		)
-	
 	if _can_play_animation and _intent_to_cast:
 		
 		spells[_level].play_attack()
 		
 		_can_play_animation = false
 		_intent_to_cast = false
+	
+	var blend = anim_tree.get(&"parameters/Spells/blend_amount")
+	if blend == null: return
+	anim_tree.set(
+		&"parameters/Spells/blend_amount",
+		lerp(
+			float(blend), 
+			1.0 if active else 0.0,
+			0.15
+		)
+	)
 
 
 func cast_spell(level: int, manually_set_level: bool = false) -> void:
