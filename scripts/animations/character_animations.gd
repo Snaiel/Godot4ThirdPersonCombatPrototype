@@ -18,12 +18,20 @@ func _ready() -> void:
 	if debug: print(_recipients)
 
 
-func execute(target: String, method: StringName, args: Array = []) -> void:
+func execute(target: String, method: StringName, args) -> void:
+	prints("EXECUTE", target, method, args)
+	
 	if not _recipients.has(target):
 		return
+	
 	var node: Node = _recipients[target]
+	
 	if not node.has_method(method):
 		return
+	
+	if args == null:
+		args = []
+	
 	node.callv(method, args)
 
 
