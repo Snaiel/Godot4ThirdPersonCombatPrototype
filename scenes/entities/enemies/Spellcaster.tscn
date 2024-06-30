@@ -1,7 +1,6 @@
-[gd_scene load_steps=211 format=3 uid="uid://b5gmqu8tocea8"]
+[gd_scene load_steps=209 format=3 uid="uid://b5gmqu8tocea8"]
 
 [ext_resource type="Script" path="res://scripts/entities/enemy.gd" id="1_2f16f"]
-[ext_resource type="Script" path="res://scripts/utilities/wellbeing_stats.gd" id="2_6ahm4"]
 [ext_resource type="PackedScene" uid="uid://dvwkf086vv2aa" path="res://scenes/entities/YBot.tscn" id="3_w70a0"]
 [ext_resource type="Script" path="res://scripts/animations/character_animations.gd" id="4_2wx3f"]
 [ext_resource type="PackedScene" uid="uid://b78ctcv6lulvi" path="res://scenes/utilities/Sword.tscn" id="5_kxq7y"]
@@ -86,14 +85,6 @@
 [ext_resource type="PackedScene" uid="uid://nc8fs0at3l7x" path="res://scenes/beehave/set_actions/SetLockedOnFalse.tscn" id="86_64mn0"]
 [ext_resource type="PackedScene" uid="uid://t7wqbcml070v" path="res://scenes/beehave/set_actions/SetLookedAroundFalse.tscn" id="87_8kva6"]
 [ext_resource type="Script" path="res://addons/beehave/blackboard.gd" id="88_8mmq3"]
-
-[sub_resource type="Resource" id="Resource_6we7u"]
-script = ExtResource("2_6ahm4")
-max_health = 100.0
-initial_health = 100.0
-max_instability = 100.0
-initial_instability = 0.0
-can_reduce_instability = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n3hp3"]
 render_priority = 0
@@ -1113,27 +1104,16 @@ stream_0/weight = 1.0
 radius = 0.3
 height = 1.8
 
-[node name="Spellcaster" type="CharacterBody3D" node_paths=PackedStringArray("character", "beehave_tree", "blackboard", "agent") groups=["enemy"]]
+[node name="Spellcaster" type="CharacterBody3D" node_paths=PackedStringArray("character", "beehave_tree", "blackboard") groups=["enemy"]]
 collision_layer = 8
 collision_mask = 11
 script = ExtResource("1_2f16f")
-wellbeing_stats = SubResource("Resource_6we7u")
 character = NodePath("Character")
 beehave_tree = NodePath("BeehaveTree")
 blackboard = NodePath("Blackboard")
-agent = NodePath("NavigationAgent3D")
 
-[node name="Character" parent="." node_paths=PackedStringArray("movement_animations", "walk_or_jog_animations", "jump_animations", "attack_animations", "block_animations", "parry_animations", "hit_and_death_animations", "dizzy_victim_animations", "dizzy_finisher_animations") instance=ExtResource("3_w70a0")]
+[node name="Character" parent="." instance=ExtResource("3_w70a0")]
 script = ExtResource("4_2wx3f")
-movement_animations = NodePath("Movement")
-walk_or_jog_animations = NodePath("Movement/FreeWalkOrJog")
-jump_animations = NodePath("JumpAnimations")
-attack_animations = NodePath("AttackAnimations")
-block_animations = NodePath("BlockAnimations")
-parry_animations = NodePath("ParryAnimations")
-hit_and_death_animations = NodePath("HitAndDeathAnimations")
-dizzy_victim_animations = NodePath("DizzyVictimAnimations")
-dizzy_finisher_animations = NodePath("DizzyFinisherAnimations")
 
 [node name="GeneralSkeleton" parent="Character/Armature_004" index="0"]
 bones/1/rotation = Quaternion(0, 2.2904e-14, -6.7831e-14, 1)
@@ -1199,15 +1179,13 @@ surface_material_override/0 = SubResource("ShaderMaterial_n3hp3")
 [node name="LockOnAttachment" parent="Character/Armature_004/GeneralSkeleton" index="2"]
 transform = Transform3D(1, 7.35419e-12, -2.66409e-12, -7.35419e-12, 1, -7.87391e-09, 2.66409e-12, 7.87391e-09, 1, -2.25913e-05, 1.34721, -0.042761)
 
-[node name="Crosshair" type="Sprite3D" parent="Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint" index="0" node_paths=PackedStringArray("backstab_component", "dizzy_component")]
+[node name="Crosshair" type="Sprite3D" parent="Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint" index="0"]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 billboard = 1
 no_depth_test = true
 texture_filter = 1
 texture = ExtResource("6_rcj5r")
 script = ExtResource("7_yni7f")
-backstab_component = NodePath("../../../../../../Combat/BackstabComponent")
-dizzy_component = NodePath("../../../../../../Combat/DizzyComponent")
 
 [node name="HeadAttachment" parent="Character/Armature_004/GeneralSkeleton" index="3"]
 transform = Transform3D(1, 7.81293e-14, -2.66409e-12, -7.81293e-14, 1, -8.33958e-09, 2.66409e-12, 8.33958e-09, 1, -4.45549e-05, 1.60075, -0.00340771)
@@ -1491,15 +1469,11 @@ groups = Array[String](["player"])
 
 [node name="Rotation" type="Node3D" parent="."]
 
-[node name="EnemyRotationComponent" parent="Rotation" node_paths=PackedStringArray("blackboard", "agent", "entity") instance=ExtResource("40_20ir7")]
-blackboard = NodePath("../../Blackboard")
-agent = NodePath("../../NavigationAgent3D")
-entity = NodePath("../..")
+[node name="EnemyRotationComponent" parent="Rotation" instance=ExtResource("40_20ir7")]
 
-[node name="HeadRotationComponent" parent="Rotation" node_paths=PackedStringArray("skeleton", "rotation_component") instance=ExtResource("41_sr5pl")]
+[node name="HeadRotationComponent" parent="Rotation" node_paths=PackedStringArray("skeleton") instance=ExtResource("41_sr5pl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, 0)
 skeleton = NodePath("../../Character/Armature_004/GeneralSkeleton")
-rotation_component = NodePath("../EnemyRotationComponent")
 
 [node name="Movement" type="Node3D" parent="."]
 
@@ -1520,37 +1494,33 @@ hitbox = NodePath("../../HitboxComponent")
 weapon = NodePath("../../Character/Armature_004/GeneralSkeleton/WeaponHand")
 max_instability = 100.0
 
-[node name="WellbeingComponent" parent="Wellbeing" node_paths=PackedStringArray("lock_on_component", "backstab_component", "health_component", "instability_component", "notice_component", "hud_info") instance=ExtResource("47_ng2kb")]
+[node name="WellbeingComponent" parent="Wellbeing" node_paths=PackedStringArray("hud_info", "lock_on_component", "backstab_component", "health_component", "instability_component", "notice_component") instance=ExtResource("47_ng2kb")]
+hud_info = NodePath("../../Interface/HUDInfoPos")
 lock_on_component = NodePath("../../Interface/LockOnComponent")
 backstab_component = NodePath("../../Combat/BackstabComponent")
 health_component = NodePath("../HealthComponent")
 instability_component = NodePath("../InstabilityComponent")
 notice_component = NodePath("../../Combat/NoticeComponent")
-hud_info = NodePath("../../Interface/HUDInfoPos")
 
 [node name="Combat" type="Node3D" parent="."]
 
-[node name="DizzyComponent" parent="Combat" node_paths=PackedStringArray("entity", "lock_on_component", "health_component", "attack_component", "instability_component", "character", "blackboard", "dizzy_sfx", "thrust_puncture_sfx", "hit_sfx") instance=ExtResource("48_pmtgc")]
+[node name="DizzyComponent" parent="Combat" node_paths=PackedStringArray("entity", "health_component", "attack_component", "instability_component", "blackboard", "dizzy_sfx", "thrust_puncture_sfx", "hit_sfx") instance=ExtResource("48_pmtgc")]
 entity = NodePath("../..")
-lock_on_component = NodePath("../../Interface/LockOnComponent")
 health_component = NodePath("../../Wellbeing/HealthComponent")
 attack_component = NodePath("../AttackComponent")
 instability_component = NodePath("../../Wellbeing/InstabilityComponent")
-character = NodePath("../../Character")
 blackboard = NodePath("../../Blackboard")
 dizzy_sfx = NodePath("../../Character/AudioManager/Dizzy")
 thrust_puncture_sfx = NodePath("../../Character/AudioManager/ThrustPuncture")
 hit_sfx = NodePath("../../Character/AudioManager/Hit")
 
-[node name="BackstabComponent" parent="Combat" node_paths=PackedStringArray("entity", "lock_on_component", "health_component", "notice_component", "puncture_sound") instance=ExtResource("49_g4pr2")]
+[node name="BackstabComponent" parent="Combat" node_paths=PackedStringArray("entity", "health_component", "notice_component", "puncture_sound") instance=ExtResource("49_g4pr2")]
 entity = NodePath("../..")
-lock_on_component = NodePath("../../Interface/LockOnComponent")
 health_component = NodePath("../../Wellbeing/HealthComponent")
 notice_component = NodePath("../NoticeComponent")
 puncture_sound = NodePath("../../Character/AudioManager/ThrustPuncture")
 
 [node name="NoticeComponent" parent="Combat" node_paths=PackedStringArray("entity", "head_attachment", "blackboard", "hud_info") instance=ExtResource("50_ihkl4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 entity = NodePath("../..")
 head_attachment = NodePath("../../Character/Armature_004/GeneralSkeleton/HeadAttachment")
 blackboard = NodePath("../../Blackboard")
@@ -1562,9 +1532,8 @@ attack_animations = NodePath("../../Character/AttackAnimations")
 [node name="SpellComponent" type="Node" parent="Combat"]
 script = ExtResource("58_53fyx")
 
-[node name="BlockComponent" parent="Combat" node_paths=PackedStringArray("character") instance=ExtResource("52_7xv8k")]
+[node name="BlockComponent" parent="Combat" instance=ExtResource("52_7xv8k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
-character = NodePath("../../Character")
 
 [node name="ParryComponent" parent="Combat" node_paths=PackedStringArray("hitbox_component", "block_component") instance=ExtResource("53_bdrox")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -1681,6 +1650,7 @@ wait_id = 75627888
 wait_id = 31695564
 
 [node name="Wait" parent="BeehaveTree/SelectorComposite/Suspicious/CheckSuspicion/MoveToTarget" index="1"]
+reset_wait_after = null
 wait_id = 10868496
 
 [node name="Aggro" type="Node" parent="BeehaveTree/SelectorComposite"]

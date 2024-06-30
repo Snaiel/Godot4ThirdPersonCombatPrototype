@@ -70,10 +70,15 @@ func _physics_process(_delta: float) -> void:
 	blackboard.set_value("debug", debug)
 	navigation_agent.debug_enabled = debug
 	
-	#if debug:
-		#prints(
-			#notice_component.current_state
-		#)
+	if debug:
+		prints(
+			locomotion_component.speed,
+			blackboard.get_value("attack"),
+			locomotion_component.can_move,
+			blackboard.get_value("can_move"),
+			blackboard.get_value("input_direction"),
+			blackboard.get_value("agent_target_reachable")
+		)
 	
 	## Target
 	var target_dist: float = global_position.distance_to(target.global_position)

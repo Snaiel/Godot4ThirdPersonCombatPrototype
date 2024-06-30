@@ -12,6 +12,7 @@ func _process(_delta: float) -> void:
 		attack_level = blackboard.get_value("attack_level", 0)
 		attack()
 	blackboard.set_value("attacking", attacking)
+	if blackboard.get_value("debug"): print(attacking)
 
 
 func set_can_damage_of_all_weapons(flag: bool) -> void:

@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://t8wg0g461fli" path="res://scenes/beehave/wait/ResetWait.tscn" id="5_h0iya"]
 [ext_resource type="PackedScene" uid="uid://ch58eya8rlua6" path="res://scenes/beehave/compare_actions/IsLookedAroundFalse.tscn" id="6_1kgwm"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_set.gd" id="6_o0oe3"]
-[ext_resource type="PackedScene" uid="uid://chv25a2oggqaw" path="res://scenes/beehave/wait/WaitBlock.tscn" id="7_gyiuy"]
 [ext_resource type="PackedScene" uid="uid://dka5as0tjf4rh" path="res://scenes/beehave/set_actions/SetRotateTowardsTargetFalse.tscn" id="7_l3n5i"]
+[ext_resource type="Script" path="res://scripts/beehave/wait/wait.gd" id="8_dfk31"]
 [ext_resource type="PackedScene" uid="uid://rnknofcns6ch" path="res://scenes/beehave/inputs/InputLeft.tscn" id="8_n7c65"]
 [ext_resource type="PackedScene" uid="uid://bpmbb56ftoyja" path="res://scenes/beehave/inputs/InputRight.tscn" id="9_pe7t2"]
 [ext_resource type="PackedScene" uid="uid://bdnrgdpa3fa5c" path="res://scenes/beehave/wait/Wait.tscn" id="10_ocgtl"]
@@ -45,33 +45,51 @@ script = ExtResource("2_4t6t0")
 
 [node name="InputNone" parent="StayIfClose/LookAround/CheckOutArea" instance=ExtResource("4_d3e5r")]
 
-[node name="WaitBlock" parent="StayIfClose/LookAround/CheckOutArea" instance=ExtResource("7_gyiuy")]
-wait_time = 2.0
+[node name="Wait" type="Node" parent="StayIfClose/LookAround/CheckOutArea"]
+script = ExtResource("8_dfk31")
+time = 2.0
+reset_wait_after = true
+wait_id = 93418242
 
 [node name="InputLeft" parent="StayIfClose/LookAround/CheckOutArea" instance=ExtResource("8_n7c65")]
 
-[node name="WaitBlock2" parent="StayIfClose/LookAround/CheckOutArea" instance=ExtResource("7_gyiuy")]
-wait_time = 1.0
+[node name="Wait2" type="Node" parent="StayIfClose/LookAround/CheckOutArea"]
+script = ExtResource("8_dfk31")
+time = 1.0
+reset_wait_after = true
+wait_id = 70488111
 
 [node name="InputNone2" parent="StayIfClose/LookAround/CheckOutArea" instance=ExtResource("4_d3e5r")]
 
-[node name="WaitBlock3" parent="StayIfClose/LookAround/CheckOutArea" instance=ExtResource("7_gyiuy")]
-wait_time = 5.0
+[node name="Wait3" type="Node" parent="StayIfClose/LookAround/CheckOutArea"]
+script = ExtResource("8_dfk31")
+time = 5.0
+reset_wait_after = true
+wait_id = 14802385
 
 [node name="InputRight" parent="StayIfClose/LookAround/CheckOutArea" instance=ExtResource("9_pe7t2")]
 
-[node name="WaitBlock4" parent="StayIfClose/LookAround/CheckOutArea" instance=ExtResource("7_gyiuy")]
-wait_time = 2.0
+[node name="Wait4" type="Node" parent="StayIfClose/LookAround/CheckOutArea"]
+script = ExtResource("8_dfk31")
+time = 2.0
+reset_wait_after = true
+wait_id = 81448005
 
 [node name="InputNone3" parent="StayIfClose/LookAround/CheckOutArea" instance=ExtResource("4_d3e5r")]
 
-[node name="WaitBlock5" parent="StayIfClose/LookAround/CheckOutArea" instance=ExtResource("7_gyiuy")]
-wait_time = 5.0
+[node name="Wait5" type="Node" parent="StayIfClose/LookAround/CheckOutArea"]
+script = ExtResource("8_dfk31")
+time = 5.0
+reset_wait_after = true
+wait_id = 46779820
 
 [node name="InputLeft2" parent="StayIfClose/LookAround/CheckOutArea" instance=ExtResource("8_n7c65")]
 
-[node name="WaitBlock6" parent="StayIfClose/LookAround/CheckOutArea" instance=ExtResource("7_gyiuy")]
-wait_time = 1.0
+[node name="Wait6" type="Node" parent="StayIfClose/LookAround/CheckOutArea"]
+script = ExtResource("8_dfk31")
+time = 1.0
+reset_wait_after = true
+wait_id = 77672671
 
 [node name="SetLookedAroundTrue" type="Node" parent="StayIfClose/LookAround/CheckOutArea"]
 script = ExtResource("6_o0oe3")

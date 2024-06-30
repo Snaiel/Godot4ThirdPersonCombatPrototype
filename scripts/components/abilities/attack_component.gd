@@ -1,8 +1,10 @@
 class_name AttackComponent
 extends Node
 
+
 signal can_rotate(flag: bool)
 
+@export var debug: bool = false
 @export var attack_animations: AttackAnimations
 @export var locomotion_component: LocomotionComponent
 @export var weapons: Dictionary
@@ -35,6 +37,10 @@ func _ready() -> void:
 	attack_animations.can_attack_again.connect(_receive_can_attack_again)
 	attack_animations.can_play_animation.connect(_receive_can_play_animation)
 	attack_animations.attacking_finished.connect(_receive_attacking_finished)
+
+
+func _process(_delta):
+	if debug: print(attacking)
 
 
 func attack(can_stop: bool = true) -> void:

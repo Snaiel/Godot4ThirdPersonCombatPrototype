@@ -4,6 +4,7 @@ class_name Wait
 extends ActionLeaf
 
 @export var time: float
+@export var reset_wait_after: bool = false
 @export var wait_id: int
 @export var generate_wait_id: bool
 
@@ -43,6 +44,7 @@ func tick(_actor: Node, blackboard: Blackboard) -> int:
 		return SUCCESS
 	
 	if _finished:
+		blackboard.set_value("wait_" + str(wait_id), reset_wait_after)
 		return SUCCESS
 	else:
 		return RUNNING

@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://cv8knl5vavfyy"]
+[gd_scene load_steps=76 format=3 uid="uid://cv8knl5vavfyy"]
 
 [ext_resource type="Script" path="res://scripts/entities/enemy.gd" id="1_nrck3"]
 [ext_resource type="PackedScene" uid="uid://x0oxbha36o2h" path="res://scenes/entities/YBotCharacter.tscn" id="2_0tr8h"]
@@ -42,7 +42,6 @@
 [ext_resource type="Script" path="res://scripts/components/combat/backstab_component.gd" id="22_yq2kx"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_random.gd" id="23_4n8cs"]
 [ext_resource type="PackedScene" uid="uid://buwmvh65dccg5" path="res://scenes/beehave/compare_actions/IsStateAggro.tscn" id="23_augt0"]
-[ext_resource type="PackedScene" uid="uid://chv25a2oggqaw" path="res://scenes/beehave/wait/WaitBlock.tscn" id="24_ac52a"]
 [ext_resource type="PackedScene" uid="uid://8q4shgtn2rdm" path="res://scenes/beehave/set_actions/SetCanAttackTrue.tscn" id="24_ugq3t"]
 [ext_resource type="Script" path="res://scripts/components/combat/interaction/interaction_component.gd" id="25_o4t4g"]
 [ext_resource type="Script" path="res://scripts/components/combat/interaction/handlers/backstab_interaction_handler.gd" id="26_8ptli"]
@@ -56,7 +55,6 @@
 [ext_resource type="Script" path="res://scripts/components/utility/void_death_component.gd" id="29_tsncg"]
 [ext_resource type="Script" path="res://scripts/components/combat/interaction/handlers/block_interaction_handler.gd" id="30_x3hvr"]
 [ext_resource type="Script" path="res://scripts/components/combat/interaction/handlers/parry_interaction_handler.gd" id="31_v2ntu"]
-[ext_resource type="PackedScene" uid="uid://cfuiyhthukrn0" path="res://scenes/beehave/attacks/SingleRandomAttack.tscn" id="33_gbbqm"]
 [ext_resource type="Script" path="res://scripts/beehave/execute_expression.gd" id="34_eiv28"]
 [ext_resource type="PackedScene" uid="uid://b4vbjom07vuli" path="res://scenes/beehave/set_actions/SetWalkSpeed.tscn" id="40_6x0m4"]
 [ext_resource type="PackedScene" uid="uid://rnknofcns6ch" path="res://scenes/beehave/inputs/InputLeft.tscn" id="41_aqpna"]
@@ -65,8 +63,14 @@
 [ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_set.gd" id="43_dysgc"]
 [ext_resource type="PackedScene" uid="uid://d1wjh32ysekoi" path="res://scenes/beehave/set_actions/SetRunSpeed.tscn" id="44_a2t2c"]
 [ext_resource type="PackedScene" uid="uid://ppcsagqgu032" path="res://scenes/beehave/inputs/InputForwards.tscn" id="45_kskia"]
+[ext_resource type="PackedScene" uid="uid://bdnrgdpa3fa5c" path="res://scenes/beehave/wait/Wait.tscn" id="47_rrk24"]
 [ext_resource type="Script" path="res://scripts/beehave/wait/reset_wait.gd" id="49_tfh3i"]
 [ext_resource type="Script" path="res://scripts/beehave/wait/wait.gd" id="50_mbudd"]
+[ext_resource type="PackedScene" uid="uid://dpuaj53mlpdfw" path="res://scenes/beehave/set_actions/SetCanMoveFalse.tscn" id="55_bde1g"]
+[ext_resource type="Script" path="res://scripts/beehave/attack/random_attack.gd" id="57_4hdcj"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/until_fail.gd" id="58_aqiu6"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/delayer.gd" id="58_ul8n7"]
+[ext_resource type="PackedScene" uid="uid://ynuik1v6nsyt" path="res://scenes/beehave/set_actions/SetCanMoveTrue.tscn" id="58_vceuq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i1ddg"]
 render_priority = 0
@@ -129,7 +133,7 @@ surface_material_override/0 = ExtResource("4_yduye")
 surface_material_override/0 = SubResource("ShaderMaterial_i1ddg")
 
 [node name="Sword" parent="Character/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("entity", "attack_component") instance=ExtResource("4_r63io")]
-transform = Transform3D(-0.18487, -0.251437, 0.950054, 0.31849, -0.929873, -0.184121, 0.929724, 0.268544, 0.251986, -0.307707, 0.879604, -0.227201)
+transform = Transform3D(8.64318e-07, -1, -8.60392e-05, 2.44333e-06, 8.60392e-05, -1, 1, 8.64363e-07, 2.44341e-06, -0.735542, 1.43565, -0.0720902)
 entity = NodePath("../../../..")
 attack_component = NodePath("../../../../Abilities/AttackComponent")
 
@@ -137,10 +141,10 @@ attack_component = NodePath("../../../../Abilities/AttackComponent")
 collision_mask = 2
 
 [node name="LockOnAttachment" parent="Character/Armature_004/GeneralSkeleton" index="3"]
-transform = Transform3D(0.942295, -0.128871, -0.308986, -0.0148774, 0.905912, -0.423205, 0.334453, 0.403381, 0.851719, 0.0211761, 1.27706, -0.0177619)
+transform = Transform3D(1, -7.20253e-12, 4.0193e-12, 7.20253e-12, 1, -3.01674e-08, -4.0193e-12, 3.01674e-08, 1, 0.00226485, 1.34721, -0.053138)
 
 [node name="HeadAttachment" parent="Character/Armature_004/GeneralSkeleton" index="4"]
-transform = Transform3D(0.997935, -0.0642367, -0.000251293, 0.0622928, 0.968676, -0.240387, 0.0156852, 0.239875, 0.970677, -0.0225228, 1.49531, 0.111815)
+transform = Transform3D(1, 7.38663e-14, 3.99088e-12, -7.38663e-14, 1, -2.97017e-08, -3.99088e-12, 2.97017e-08, 1, 0.00224288, 1.60075, -0.0137847)
 
 [node name="AnimationTree" parent="Character" index="2"]
 "parameters/Dizzy Finisher Which One/current_state" = ""
@@ -392,9 +396,10 @@ expression_string = "print(\"ENEMY GOT HIT\")"
 
 [node name="InputNone" parent="BeehaveTree/SelectorComposite/GotHit" instance=ExtResource("17_6rhnw")]
 
-[node name="WaitBlock" parent="BeehaveTree/SelectorComposite/GotHit" instance=ExtResource("24_ac52a")]
-wait_id = 89884236
-wait_time = 0.8
+[node name="Wait" parent="BeehaveTree/SelectorComposite/GotHit" instance=ExtResource("47_rrk24")]
+time = 0.8
+reset_wait_after = true
+wait_id = 77876613
 
 [node name="LeafExecuteExpression2" type="Node" parent="BeehaveTree/SelectorComposite/GotHit"]
 script = ExtResource("34_eiv28")
@@ -417,24 +422,6 @@ script = ExtResource("17_sr624")
 [node name="SetLookAtTargetTrue" parent="BeehaveTree/SelectorComposite/Suspicious" instance=ExtResource("20_1isai")]
 
 [node name="CheckSuspicion" parent="BeehaveTree/SelectorComposite/Suspicious" instance=ExtResource("17_4we3r")]
-
-[node name="WaitBlock" parent="BeehaveTree/SelectorComposite/Suspicious/CheckSuspicion/StayIfClose/LookAround/CheckOutArea" index="2"]
-wait_id = 96447004
-
-[node name="WaitBlock2" parent="BeehaveTree/SelectorComposite/Suspicious/CheckSuspicion/StayIfClose/LookAround/CheckOutArea" index="4"]
-wait_id = 29712614
-
-[node name="WaitBlock3" parent="BeehaveTree/SelectorComposite/Suspicious/CheckSuspicion/StayIfClose/LookAround/CheckOutArea" index="6"]
-wait_id = 60900737
-
-[node name="WaitBlock4" parent="BeehaveTree/SelectorComposite/Suspicious/CheckSuspicion/StayIfClose/LookAround/CheckOutArea" index="8"]
-wait_id = 54819208
-
-[node name="WaitBlock5" parent="BeehaveTree/SelectorComposite/Suspicious/CheckSuspicion/StayIfClose/LookAround/CheckOutArea" index="10"]
-wait_id = 75627888
-
-[node name="WaitBlock6" parent="BeehaveTree/SelectorComposite/Suspicious/CheckSuspicion/StayIfClose/LookAround/CheckOutArea" index="12"]
-wait_id = 31695564
 
 [node name="Wait" parent="BeehaveTree/SelectorComposite/Suspicious/CheckSuspicion/MoveToTarget" index="1"]
 wait_id = 10868496
@@ -478,6 +465,10 @@ script = ExtResource("12_qw7d2")
 left_operand = "get_value(\"perceives_player\")"
 right_operand = "true"
 
+[node name="InputNone" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack" instance=ExtResource("17_6rhnw")]
+
+[node name="SetCanMoveFalse" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack" instance=ExtResource("55_bde1g")]
+
 [node name="PerformAttack" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack"]
 script = ExtResource("23_4n8cs")
 
@@ -488,7 +479,9 @@ script = ExtResource("9_aj65e")
 script = ExtResource("34_eiv28")
 expression_string = "print(\"SINGLE ATTACK\")"
 
-[node name="SingleRandomAttack" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/SingleAttack" instance=ExtResource("33_gbbqm")]
+[node name="RandomAttackLeaf" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/SingleAttack"]
+script = ExtResource("57_4hdcj")
+weights = Array[float]([0.5, 0.5])
 
 [node name="DoubleAttack" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack"]
 script = ExtResource("9_aj65e")
@@ -497,15 +490,19 @@ script = ExtResource("9_aj65e")
 script = ExtResource("34_eiv28")
 expression_string = "print(\"DOUBLE ATTACK\")"
 
-[node name="SingleRandomAttack" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/DoubleAttack" instance=ExtResource("33_gbbqm")]
+[node name="RandomAttackLeaf" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/DoubleAttack"]
+script = ExtResource("57_4hdcj")
+weights = Array[float]([0.5, 0.5])
+can_attack_afterwards = true
 
-[node name="WaitBlock" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/DoubleAttack" instance=ExtResource("24_ac52a")]
-wait_id = 10658642
+[node name="DelayDecorator" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/DoubleAttack"]
+script = ExtResource("58_ul8n7")
 wait_time = 0.8
 
-[node name="SetCanAttackTrue" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/DoubleAttack" instance=ExtResource("24_ugq3t")]
-
-[node name="SingleRandomAttack2" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/DoubleAttack" instance=ExtResource("33_gbbqm")]
+[node name="RandomAttackLeaf" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/DoubleAttack/DelayDecorator"]
+script = ExtResource("57_4hdcj")
+weights = Array[float]([0.5, 0.5])
+can_attack_afterwards = true
 
 [node name="TripleAttack" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack"]
 script = ExtResource("9_aj65e")
@@ -514,23 +511,38 @@ script = ExtResource("9_aj65e")
 script = ExtResource("34_eiv28")
 expression_string = "print(\"TRIPLE ATTACK\")"
 
-[node name="SingleRandomAttack" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack" instance=ExtResource("33_gbbqm")]
+[node name="RandomAttackLeaf" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack"]
+script = ExtResource("57_4hdcj")
+weights = Array[float]([0.5, 0.5])
+can_attack_afterwards = true
 
-[node name="WaitBlock" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack" instance=ExtResource("24_ac52a")]
-wait_id = 35297727
+[node name="DelayDecorator" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack"]
+script = ExtResource("58_ul8n7")
 wait_time = 0.8
 
-[node name="SetCanAttackTrue" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack" instance=ExtResource("24_ugq3t")]
+[node name="RandomAttackLeaf" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack/DelayDecorator"]
+script = ExtResource("57_4hdcj")
+weights = Array[float]([0.5, 0.5])
+can_attack_afterwards = true
 
-[node name="SingleRandomAttack2" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack" instance=ExtResource("33_gbbqm")]
-
-[node name="WaitBlock2" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack" instance=ExtResource("24_ac52a")]
-wait_id = 94769640
+[node name="DelayDecorator2" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack"]
+script = ExtResource("58_ul8n7")
 wait_time = 0.8
 
-[node name="SetCanAttackTrue2" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack" instance=ExtResource("24_ugq3t")]
+[node name="RandomAttackLeaf" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack/DelayDecorator2"]
+script = ExtResource("57_4hdcj")
+weights = Array[float]([0.5, 0.5])
+can_attack_afterwards = true
 
-[node name="SingleRandomAttack3" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/PerformAttack/TripleAttack" instance=ExtResource("33_gbbqm")]
+[node name="UntilFailDecorator" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack"]
+script = ExtResource("58_aqiu6")
+
+[node name="IsAttackingTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack/UntilFailDecorator"]
+script = ExtResource("12_qw7d2")
+left_operand = "get_value(\"attacking\")"
+right_operand = "true"
+
+[node name="SetCanMoveTrue" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack" instance=ExtResource("58_vceuq")]
 
 [node name="StayOrChase" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget"]
 script = ExtResource("8_wqauf")
@@ -555,9 +567,10 @@ script = ExtResource("23_4n8cs")
 
 [node name="InputRight" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Unreachable/SequenceComposite/Strafe" instance=ExtResource("42_5ucrb")]
 
-[node name="WaitBlock" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Unreachable/SequenceComposite" instance=ExtResource("24_ac52a")]
-wait_id = 65281962
-wait_time = 2.0
+[node name="Wait" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Unreachable/SequenceComposite" instance=ExtResource("47_rrk24")]
+time = 2.0
+reset_wait_after = true
+wait_id = 16142381
 
 [node name="SquareUpIfClose" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase"]
 script = ExtResource("9_aj65e")
@@ -601,11 +614,11 @@ script = ExtResource("23_4n8cs")
 
 [node name="InputRight" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/SquareUpIfClose/SquareUp/Strafe" instance=ExtResource("42_5ucrb")]
 
-[node name="WaitBlock" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/SquareUpIfClose/SquareUp" instance=ExtResource("24_ac52a")]
-wait_id = 23245375
+[node name="DelayDecorator" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/SquareUpIfClose/SquareUp"]
+script = ExtResource("58_ul8n7")
 wait_time = 2.0
 
-[node name="SetCanAttackTrue" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/SquareUpIfClose/SquareUp" instance=ExtResource("24_ugq3t")]
+[node name="SetCanAttackTrue" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/SquareUpIfClose/SquareUp/DelayDecorator" instance=ExtResource("24_ugq3t")]
 
 [node name="Chase" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase"]
 script = ExtResource("9_aj65e")
@@ -617,7 +630,7 @@ right_operand = "true"
 
 [node name="IsTargetReachableTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Chase"]
 script = ExtResource("12_qw7d2")
-left_operand = "get_value(\"target_reachable\")"
+left_operand = "get_value(\"agent_target_reachable\")"
 right_operand = "true"
 
 [node name="SetCanInvestigateLastAgentPositionTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Chase"]
@@ -657,24 +670,6 @@ key = "\"investigate_last_agent_position\""
 value = "true"
 
 [node name="InvestigateLastPosition" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Investigate" instance=ExtResource("17_4we3r")]
-
-[node name="WaitBlock" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Investigate/InvestigateLastPosition/StayIfClose/LookAround/CheckOutArea" index="2"]
-wait_id = 46595952
-
-[node name="WaitBlock2" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Investigate/InvestigateLastPosition/StayIfClose/LookAround/CheckOutArea" index="4"]
-wait_id = 69733578
-
-[node name="WaitBlock3" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Investigate/InvestigateLastPosition/StayIfClose/LookAround/CheckOutArea" index="6"]
-wait_id = 51816124
-
-[node name="WaitBlock4" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Investigate/InvestigateLastPosition/StayIfClose/LookAround/CheckOutArea" index="8"]
-wait_id = 68693030
-
-[node name="WaitBlock5" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Investigate/InvestigateLastPosition/StayIfClose/LookAround/CheckOutArea" index="10"]
-wait_id = 31300344
-
-[node name="WaitBlock6" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Investigate/InvestigateLastPosition/StayIfClose/LookAround/CheckOutArea" index="12"]
-wait_id = 48134024
 
 [node name="Wait" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Investigate/InvestigateLastPosition/MoveToTarget" index="1"]
 wait_id = 82140480
