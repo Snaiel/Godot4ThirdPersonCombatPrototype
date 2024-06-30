@@ -474,7 +474,7 @@ animation = &"combat_animations_1/Blocking"
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_o5xyw"]
 filter_enabled = true
-filters = ["%GeneralSkeleton:LeftHand", "%GeneralSkeleton:LeftIndexDistal", "%GeneralSkeleton:LeftIndexIntermediate", "%GeneralSkeleton:LeftIndexProximal", "%GeneralSkeleton:LeftLittleDistal", "%GeneralSkeleton:LeftLittleIntermediate", "%GeneralSkeleton:LeftLittleProximal", "%GeneralSkeleton:LeftLowerArm", "%GeneralSkeleton:LeftMiddleDistal", "%GeneralSkeleton:LeftMiddleIntermediate", "%GeneralSkeleton:LeftMiddleProximal", "%GeneralSkeleton:LeftRingDistal", "%GeneralSkeleton:LeftRingIntermediate", "%GeneralSkeleton:LeftRingProximal", "%GeneralSkeleton:LeftShoulder", "%GeneralSkeleton:LeftThumbDistal", "%GeneralSkeleton:LeftThumbMetacarpal", "%GeneralSkeleton:LeftThumbProximal", "%GeneralSkeleton:LeftUpperArm", "%GeneralSkeleton:mixamorig_LeftHandIndex1", "%GeneralSkeleton:mixamorig_LeftHandMiddle1", "%GeneralSkeleton:mixamorig_LeftHandPinky1", "%GeneralSkeleton:mixamorig_LeftHandRing1", "%GeneralSkeleton:mixamorig_LeftHandThumb1", "ParryAnimations"]
+filters = ["%GeneralSkeleton:LeftHand", "%GeneralSkeleton:LeftIndexDistal", "%GeneralSkeleton:LeftIndexIntermediate", "%GeneralSkeleton:LeftIndexProximal", "%GeneralSkeleton:LeftLittleDistal", "%GeneralSkeleton:LeftLittleIntermediate", "%GeneralSkeleton:LeftLittleProximal", "%GeneralSkeleton:LeftLowerArm", "%GeneralSkeleton:LeftMiddleDistal", "%GeneralSkeleton:LeftMiddleIntermediate", "%GeneralSkeleton:LeftMiddleProximal", "%GeneralSkeleton:LeftRingDistal", "%GeneralSkeleton:LeftRingIntermediate", "%GeneralSkeleton:LeftRingProximal", "%GeneralSkeleton:LeftShoulder", "%GeneralSkeleton:LeftThumbDistal", "%GeneralSkeleton:LeftThumbMetacarpal", "%GeneralSkeleton:LeftThumbProximal", "%GeneralSkeleton:LeftUpperArm", "%GeneralSkeleton:mixamorig_LeftHandIndex1", "%GeneralSkeleton:mixamorig_LeftHandMiddle1", "%GeneralSkeleton:mixamorig_LeftHandPinky1", "%GeneralSkeleton:mixamorig_LeftHandRing1", "%GeneralSkeleton:mixamorig_LeftHandThumb1", "Animations/Parry", "Animations/ParryAnimations", "ParryAnimations"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_316ac"]
 animation = &"movement_animations_1/Run-Forwards"
@@ -548,6 +548,7 @@ animation = &"interaction_animations_1/Sitting Idle"
 animation = &"movement_animations_1/Walk-Forwards"
 
 [resource]
+graph_offset = Vector2(1512.79, 486.236)
 nodes/Attack/node = SubResource("AnimationNodeTransition_gr1qy")
 nodes/Attack/position = Vector2(860, 1160)
 "nodes/Attack Forward Thrust/node" = SubResource("AnimationNodeBlendTree_ws83a")

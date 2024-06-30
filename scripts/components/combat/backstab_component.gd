@@ -7,6 +7,7 @@ extends Node3D
 @export var entity: CharacterBody3D
 @export var attachment_point: Node3D
 @export var health_component: HealthComponent
+# used by backstab system to check state
 @export var notice_component: NoticeComponent
 @export var crosshair: Crosshair
 @export var puncture_sound: AudioStreamPlayer3D

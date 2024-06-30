@@ -102,7 +102,7 @@ character = NodePath("Character")
 hitbox_component = NodePath("HitboxComponent")
 lock_on_component = NodePath("Utility/LockOnComponent")
 locomotion_component = NodePath("LocomotionComponent")
-movement_animations = NodePath("Character/Movement")
+movement_animations = NodePath("Character/Animations/Movement")
 rotation_component = NodePath("Rotation/RotationComponent")
 head_rotation_component = NodePath("Rotation/HeadRotationComponent")
 health_component = NodePath("Wellbeing/HealthComponent")
@@ -110,8 +110,8 @@ instability_component = NodePath("Wellbeing/InstabilityComponent")
 backstab_component = NodePath("Combat/BackstabComponent")
 dizzy_component = NodePath("Combat/DizzyComponent")
 notice_component = NodePath("Combat/NoticeComponent")
-dizzy_victim_animations = NodePath("Character/DizzyVictimAnimations")
-hit_and_death_animations = NodePath("Character/HitAndDeathAnimations")
+dizzy_victim_animations = NodePath("Character/Animations/DizzyVictim")
+hit_and_death_animations = NodePath("Character/Animations/HitAndDeath")
 beehave_tree = NodePath("BeehaveTree")
 blackboard = NodePath("Blackboard")
 navigation_agent = NodePath("NavigationAgent")
@@ -149,9 +149,6 @@ transform = Transform3D(0.997935, -0.0642358, -0.000251025, 0.062292, 0.968677, 
 "parameters/Dizzy From Damage/current_index" = -1
 "parameters/Dizzy Which One/current_state" = ""
 "parameters/Dizzy Which One/current_index" = -1
-
-[node name="Footsteps" parent="Character/AudioManager" index="0"]
-volume_db = -25.0
 
 [node name="Collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
@@ -225,7 +222,7 @@ max_instability = 100.0
 [node name="AttackComponent" type="Node" parent="Abilities" node_paths=PackedStringArray("blackboard", "attack_animations", "locomotion_component")]
 script = ExtResource("19_gnnqg")
 blackboard = NodePath("../../Blackboard")
-attack_animations = NodePath("../../Character/AttackAnimations")
+attack_animations = NodePath("../../Character/Animations/Attack")
 locomotion_component = NodePath("../../LocomotionComponent")
 weapons = {
 "right_hand": NodePath("../../Character/Armature_004/GeneralSkeleton/Sword")
@@ -235,7 +232,7 @@ weapons = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
 entity = NodePath("../..")
 locomotion_component = NodePath("../../LocomotionComponent")
-block_animations = NodePath("../../Character/BlockAnimations")
+block_animations = NodePath("../../Character/Animations/Block")
 
 [node name="ParryComponent" type="Node3D" parent="Abilities" node_paths=PackedStringArray("hitbox_component", "block_component")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -253,21 +250,22 @@ locomotion_component = NodePath("../../LocomotionComponent")
 health_component = NodePath("../../Wellbeing/HealthComponent")
 attack_component = NodePath("../../Abilities/AttackComponent")
 instability_component = NodePath("../../Wellbeing/InstabilityComponent")
-dizzy_victim_animations = NodePath("../../Character/DizzyVictimAnimations")
+dizzy_victim_animations = NodePath("../../Character/Animations/DizzyVictim")
 attachment_point = NodePath("../../Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint")
 crosshair = NodePath("../../Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint/Crosshair")
 blackboard = NodePath("../../Blackboard")
-dizzy_sfx = NodePath("../../Character/AudioManager/Dizzy")
-thrust_puncture_sfx = NodePath("../../Character/AudioManager/ThrustPuncture")
-hit_sfx = NodePath("../../Character/AudioManager/Hit")
+dizzy_sfx = NodePath("../../Character/Audio/Dizzy")
+thrust_puncture_sfx = NodePath("../../Character/Audio/ThrustPuncture")
+hit_sfx = NodePath("../../Character/Audio/Hit")
 
-[node name="BackstabComponent" type="Node3D" parent="Combat" node_paths=PackedStringArray("entity", "attachment_point", "health_component", "crosshair", "puncture_sound")]
+[node name="BackstabComponent" type="Node3D" parent="Combat" node_paths=PackedStringArray("entity", "attachment_point", "health_component", "notice_component", "crosshair", "puncture_sound")]
 script = ExtResource("22_yq2kx")
 entity = NodePath("../..")
 attachment_point = NodePath("../../Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint")
 health_component = NodePath("../../Wellbeing/HealthComponent")
+notice_component = NodePath("../NoticeComponent")
 crosshair = NodePath("../../Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint/Crosshair")
-puncture_sound = NodePath("../../Character/AudioManager/ThrustPuncture")
+puncture_sound = NodePath("../../Character/Audio/ThrustPuncture")
 
 [node name="NoticeComponent" parent="Combat" node_paths=PackedStringArray("entity", "head_attachment", "blackboard", "hud_info") instance=ExtResource("10_rxy6t")]
 entity = NodePath("../..")
@@ -305,8 +303,8 @@ blackboard = NodePath("../../../../Blackboard")
 health_component = NodePath("../../../../Wellbeing/HealthComponent")
 instability_component = NodePath("../../../../Wellbeing/InstabilityComponent")
 locomotion_component = NodePath("../../../../LocomotionComponent")
-hit_and_death_animations = NodePath("../../../../Character/HitAndDeathAnimations")
-hit_sfx = NodePath("../../../../Character/AudioManager/Hit")
+hit_and_death_animations = NodePath("../../../../Character/Animations/HitAndDeath")
+hit_sfx = NodePath("../../../../Character/Audio/Hit")
 
 [node name="Block" type="Node" parent="Combat/InteractionComponent/Outcomes" node_paths=PackedStringArray("blackboard", "block_component", "health_component", "instability_component", "block_sfx")]
 script = ExtResource("30_x3hvr")
@@ -314,15 +312,15 @@ blackboard = NodePath("../../../../Blackboard")
 block_component = NodePath("../../../../Abilities/BlockComponent")
 health_component = NodePath("../../../../Wellbeing/HealthComponent")
 instability_component = NodePath("../../../../Wellbeing/InstabilityComponent")
-block_sfx = NodePath("../../../../Character/AudioManager/Block")
+block_sfx = NodePath("../../../../Character/Audio/Block")
 
 [node name="Parry" type="Node" parent="Combat/InteractionComponent/Outcomes" node_paths=PackedStringArray("blackboard", "parry_component", "parry_animations", "block_component", "parry_sfx", "instability_component")]
 script = ExtResource("31_v2ntu")
 blackboard = NodePath("../../../../Blackboard")
 parry_component = NodePath("../../../../Abilities/ParryComponent")
-parry_animations = NodePath("../../../../Character/ParryAnimations")
+parry_animations = NodePath("../../../../Character/Animations/Parry")
 block_component = NodePath("../../../../Abilities/BlockComponent")
-parry_sfx = NodePath("../../../../Character/AudioManager/Parry")
+parry_sfx = NodePath("../../../../Character/Audio/Parry")
 instability_component = NodePath("../../../../Wellbeing/InstabilityComponent")
 
 [node name="Utility" type="Node3D" parent="."]
