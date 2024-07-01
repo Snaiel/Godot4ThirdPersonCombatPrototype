@@ -548,7 +548,7 @@ animation = &"interaction_animations_1/Sitting Idle"
 animation = &"movement_animations_1/Walk-Forwards"
 
 [resource]
-graph_offset = Vector2(2417.91, 524.096)
+graph_offset = Vector2(-207.668, 266.343)
 nodes/Attack/node = SubResource("AnimationNodeTransition_gr1qy")
 nodes/Attack/position = Vector2(860, 1160)
 "nodes/Attack Forward Thrust/node" = SubResource("AnimationNodeBlendTree_ws83a")

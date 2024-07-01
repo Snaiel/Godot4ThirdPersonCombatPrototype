@@ -19,7 +19,7 @@ func _ready() -> void:
 
 
 func execute(target: String, method: StringName, args) -> void:
-	prints("EXECUTE", target, method, args)
+	if debug: prints("EXECUTE", target, method, args)
 	
 	if not _recipients.has(target):
 		return

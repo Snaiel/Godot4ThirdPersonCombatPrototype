@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cfip2n0nvr8n3"]
+[gd_scene load_steps=38 format=3 uid="uid://cfip2n0nvr8n3"]
 
 [ext_resource type="Script" path="res://scripts/utilities/level.gd" id="1_du374"]
 [ext_resource type="Material" uid="uid://qml1qedtuxl6" path="res://materials/grid.tres" id="2_5uhq1"]
@@ -20,6 +20,7 @@
 [ext_resource type="AudioStream" uid="uid://bcu6lpb4pl0c5" path="res://audio/music/Hyper Ultra-Racing.ogg" id="15_ug2pn"]
 [ext_resource type="Script" path="res://scripts/utilities/void_death_system.gd" id="19_q8ont"]
 [ext_resource type="PackedScene" uid="uid://biuqyf53m0ive" path="res://scenes/utilities/VoidArea.tscn" id="20_pa5m1"]
+[ext_resource type="PackedScene" uid="uid://b34rhh2gbadoy" path="res://scenes/entities/enemies/BaseEnemy.tscn" id="21_r2b66"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bb732"]
 radius = 10.0
@@ -1211,6 +1212,9 @@ parry_weight = 0.5
 
 [node name="Enemy" parent="Level1/Enemies/Section1/Enemies" instance=ExtResource("2_oia4d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5215, 1, 48.5749)
+
+[node name="BaseEnemy" parent="Level1/Enemies/Section1/Enemies" instance=ExtResource("21_r2b66")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.0274, 1, 51.0381)
 
 [node name="Section2" type="Area3D" parent="Level1/Enemies"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43, 0, -76)

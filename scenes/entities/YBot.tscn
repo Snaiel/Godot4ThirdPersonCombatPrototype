@@ -1,13 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://dvwkf086vv2aa"]
+[gd_scene load_steps=6 format=3 uid="uid://dvwkf086vv2aa"]
 
 [ext_resource type="PackedScene" uid="uid://q3eag1ltsb0y" path="res://models/ybot.blend" id="1_e6dyl"]
 [ext_resource type="Material" uid="uid://dp5o22jl53pqh" path="res://materials/player_shader_mat.tres" id="2_6v3jt"]
 [ext_resource type="Material" uid="uid://bgbid1wqcdi4p" path="res://materials/joints_shader.tres" id="2_rfs5t"]
+[ext_resource type="Script" path="res://scripts/animations/character_animations.gd" id="2_ynuay"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_bbyns"]
+graph_offset = Vector2(0, -208)
 
 [node name="YBot" instance=ExtResource("1_e6dyl")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+script = ExtResource("2_ynuay")
 
 [node name="Alpha_Joints" parent="Armature_004/GeneralSkeleton" index="0"]
 surface_material_override/0 = ExtResource("2_rfs5t")
@@ -27,6 +30,9 @@ transform = Transform3D(1, 2.09768e-20, 0, 2.09768e-20, 1, 0, 0, 0, 1, 0, 0, 0.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.45549e-05, 1.60075, -0.00340771)
 bone_name = "Head"
 bone_idx = 6
+
+[node name="AnimationPlayer" parent="." index="1"]
+root_motion_track = NodePath("%GeneralSkeleton:Root")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
 root_motion_track = NodePath("%GeneralSkeleton:Root")
