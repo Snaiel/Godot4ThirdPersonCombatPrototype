@@ -12,7 +12,7 @@ func enter():
 	change_state(prepare_state)
 
 func process_player():
-	if not player.attack_component.attacking and current_state == attack_state:
+	if not player.melee_component.attacking and current_state == attack_state:
 		parent_state.change_state(parent_state.default_state)
 		return
 

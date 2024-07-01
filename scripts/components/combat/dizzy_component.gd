@@ -14,7 +14,7 @@ extends Node3D
 @export_category("Components")
 @export var locomotion_component: LocomotionComponent
 @export var health_component: HealthComponent
-@export var attack_component: AttackComponent
+@export var melee_component: MeleeComponent
 @export var instability_component: InstabilityComponent
 
 @export_category("Utility")
@@ -110,8 +110,8 @@ func _on_instability_component_full_instability():
 		entity.look_at(player.global_position)
 		_from_damage_knockback()
 	
-	if attack_component:
-		attack_component.interrupt_attack()
+	if melee_component:
+		melee_component.interrupt_attack()
 
 
 func _from_parry_knockback() -> void:

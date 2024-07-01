@@ -1,5 +1,5 @@
-class_name EnemyAttackComponent
-extends AttackComponent
+class_name EnemyMeleeComponent
+extends MeleeComponent
 
 
 @export var blackboard: Blackboard

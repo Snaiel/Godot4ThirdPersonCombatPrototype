@@ -47,7 +47,7 @@ func enter():
 	
 	player.locomotion_component.can_move = false
 	player.character.hit_and_death_animations.hit()
-	player.attack_component.interrupt_attack()
+	player.melee_component.interrupt_attack()
 	player.instability_component.come_out_of_full_instability(0)
 	
 	_pressed_attack = false

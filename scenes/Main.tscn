@@ -1211,7 +1211,6 @@ parry_weight = 0.5
 
 [node name="Enemy" parent="Level1/Enemies/Section1/Enemies" instance=ExtResource("2_oia4d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5215, 1, 48.5749)
-debug = true
 
 [node name="Section2" type="Area3D" parent="Level1/Enemies"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43, 0, -76)

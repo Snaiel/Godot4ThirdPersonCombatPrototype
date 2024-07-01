@@ -11,7 +11,7 @@ signal weapon_hit(weapon: Weapon)
 
 var _weapons_in_hitbox: Array[Weapon] = []
 
-# Weapon as key, wepaon.attack_component.instance as value
+# Weapon as key, wepaon.melee_component.instance as value
 var _successful_hits: Dictionary
 
 @onready var dizzy_system: DizzySystem = Globals.dizzy_system
@@ -50,7 +50,7 @@ func _process(_delta: float) -> void:
 		# this weapon has already successfully gotten a hit in
 		# and so this subsequent detection should be ignored.
 		if _successful_hits.has(weapon) and \
-		weapon.attack_component.instance == _successful_hits[weapon]:
+		weapon.melee_component.instance == _successful_hits[weapon]:
 			continue
 		
 		# if an entity is being finished while it is
@@ -70,9 +70,9 @@ func _process(_delta: float) -> void:
 		weapon.entity == Globals.player:
 			continue
 		
-		prints("HIT", entity, weapon, weapon.attack_component.instance)
+		prints("HIT", entity, weapon, weapon.melee_component.instance)
 		
-		_successful_hits[weapon] = weapon.attack_component.instance
+		_successful_hits[weapon] = weapon.melee_component.instance
 		print(_successful_hits)
 		
 		weapon_hit.emit(weapon)

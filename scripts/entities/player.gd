@@ -14,7 +14,7 @@ extends CharacterBody3D
 @export var dodge_component: DodgeComponent
 @export var rotation_component: PlayerRotationComponent
 @export var head_rotation_component: HeadRotationComponent
-@export var attack_component: AttackComponent
+@export var melee_component: MeleeComponent
 @export var parry_component: ParryComponent
 @export var fade_component: FadeComponent
 @export var health_charge_component: HealthChargeComponent
@@ -46,7 +46,7 @@ var _holding_down_run_timer: Timer
 func _ready() -> void:
 	hitbox_component.weapon_hit.connect(_on_hitbox_component_weapon_hit)
 	
-	attack_component.can_rotate.connect(
+	melee_component.can_rotate.connect(
 		func(flag: bool):
 			rotation_component.can_rotate = flag
 	)

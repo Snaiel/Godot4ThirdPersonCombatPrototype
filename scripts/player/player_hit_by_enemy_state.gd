@@ -52,7 +52,7 @@ func enter():
 		_incoming_weapon.entity.global_position
 	)
 	player.character.hit_and_death_animations.hit()
-	player.attack_component.interrupt_attack()
+	player.melee_component.interrupt_attack()
 	
 	_pressed_attack = false
 	

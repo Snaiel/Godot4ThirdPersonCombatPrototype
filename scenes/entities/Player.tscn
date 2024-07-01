@@ -60,7 +60,7 @@ shader_parameter/alpha_clip = 0.0
 radius = 0.3
 height = 1.8
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("state_machine", "character", "locomotion_component", "hitbox_component", "health_component", "instability_component", "jump_component", "block_component", "dodge_component", "rotation_component", "head_rotation_component", "attack_component", "parry_component", "fade_component", "health_charge_component", "weapon", "lock_on_attachment_point", "footsteps") groups=["player"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("state_machine", "character", "locomotion_component", "hitbox_component", "health_component", "instability_component", "jump_component", "block_component", "dodge_component", "rotation_component", "head_rotation_component", "melee_component", "parry_component", "fade_component", "health_charge_component", "weapon", "lock_on_attachment_point", "footsteps") groups=["player"]]
 collision_layer = 2
 collision_mask = 9
 script = ExtResource("1_lgfyt")
@@ -75,7 +75,7 @@ block_component = NodePath("Combat/BlockComponent")
 dodge_component = NodePath("Movement/DodgeComponent")
 rotation_component = NodePath("Rotation/PlayerRotationComponent")
 head_rotation_component = NodePath("Rotation/HeadRotationComponent")
-attack_component = NodePath("Combat/AttackComponent")
+melee_component = NodePath("Combat/MeleeComponent")
 parry_component = NodePath("Combat/ParryComponent")
 fade_component = NodePath("FadeComponent")
 health_charge_component = NodePath("HealthChargeComponent")
@@ -97,7 +97,6 @@ dizzy_victim_animations = NodePath("Animations/DizzyVictim")
 dizzy_finisher_animations = NodePath("Animations/DizzyFinisher")
 drink_animations = NodePath("Animations/Drink")
 sitting_animations = NodePath("Animations/Sitting")
-debug = true
 
 [node name="GeneralSkeleton" parent="Character/Armature_004" index="0"]
 bones/0/position = Vector3(0.00145094, -6.43877e-09, -0.0540123)
@@ -170,10 +169,10 @@ surface_material_override/0 = SubResource("ShaderMaterial_kr42x")
 layers = 2
 surface_material_override/0 = ExtResource("4_ysu0o")
 
-[node name="Sword" parent="Character/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("entity", "attack_component") instance=ExtResource("5_vtx6o")]
+[node name="Sword" parent="Character/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("entity", "melee_component") instance=ExtResource("5_vtx6o")]
 transform = Transform3D(7.54791e-07, -1, -8.41021e-05, 5.5829e-07, 8.41021e-05, -1, 1, 7.54744e-07, 5.58354e-07, -0.736368, 1.32129, -0.115726)
 entity = NodePath("../../../..")
-attack_component = NodePath("../../../../Combat/AttackComponent")
+melee_component = NodePath("../../../../Combat/MeleeComponent")
 
 [node name="LockOnAttachment" parent="Character/Armature_004/GeneralSkeleton" index="3"]
 transform = Transform3D(1, 7.35419e-12, -2.66409e-12, -7.35419e-12, 1, -7.87391e-09, 2.66409e-12, 7.87391e-09, 1, 0.00143849, 1.23284, -0.0967738)
@@ -420,7 +419,7 @@ blood_scene = ExtResource("27_63iim")
 
 [node name="Combat" type="Node3D" parent="."]
 
-[node name="AttackComponent" parent="Combat" node_paths=PackedStringArray("attack_animations", "locomotion_component") instance=ExtResource("28_no1kf")]
+[node name="MeleeComponent" parent="Combat" node_paths=PackedStringArray("attack_animations", "locomotion_component") instance=ExtResource("28_no1kf")]
 attack_animations = NodePath("../../Character/Animations/Attack")
 locomotion_component = NodePath("../../Movement/LocomotionComponent")
 weapons = {

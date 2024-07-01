@@ -32,7 +32,7 @@
 [ext_resource type="Script" path="res://scripts/components/wellbeing/instability_component.gd" id="17_dsieu"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_reactive.gd" id="17_sr624"]
 [ext_resource type="PackedScene" uid="uid://csbpq6cbn8rvn" path="res://scenes/beehave/compare_actions/IsStateSuspicious.tscn" id="18_e0yjj"]
-[ext_resource type="Script" path="res://scripts/components/abilities/enemy_attack_component.gd" id="19_gnnqg"]
+[ext_resource type="Script" path="res://scripts/components/abilities/enemy_melee_component.gd" id="19_gnnqg"]
 [ext_resource type="PackedScene" uid="uid://c4jualprb4d24" path="res://scenes/beehave/compare_actions/IsStateGettingSuspicious.tscn" id="19_l4d6w"]
 [ext_resource type="PackedScene" uid="uid://cryed6dtlo286" path="res://scenes/beehave/set_actions/SetRotateTowardsTargetTrue.tscn" id="20_1isai"]
 [ext_resource type="PackedScene" uid="uid://b2vrwljrc7cpp" path="res://scenes/beehave/set_actions/SetLockedOnTrue.tscn" id="21_dq1l1"]
@@ -132,10 +132,10 @@ surface_material_override/0 = ExtResource("4_yduye")
 [node name="Alpha_Surface" parent="Character/Armature_004/GeneralSkeleton" index="1"]
 surface_material_override/0 = SubResource("ShaderMaterial_i1ddg")
 
-[node name="Sword" parent="Character/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("entity", "attack_component") instance=ExtResource("4_r63io")]
+[node name="Sword" parent="Character/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("entity", "melee_component") instance=ExtResource("4_r63io")]
 transform = Transform3D(8.64318e-07, -1, -8.60392e-05, 2.44333e-06, 8.60392e-05, -1, 1, 8.64363e-07, 2.44341e-06, -0.735542, 1.43565, -0.0720902)
 entity = NodePath("../../../..")
-attack_component = NodePath("../../../../Abilities/AttackComponent")
+melee_component = NodePath("../../../../Abilities/AttackComponent")
 
 [node name="Area" parent="Character/Armature_004/GeneralSkeleton/Sword" index="1"]
 collision_mask = 2
@@ -226,11 +226,13 @@ max_instability = 100.0
 [node name="AttackComponent" type="Node" parent="Abilities" node_paths=PackedStringArray("blackboard", "attack_animations", "locomotion_component")]
 script = ExtResource("19_gnnqg")
 blackboard = NodePath("../../Blackboard")
+debug = null
 attack_animations = NodePath("../../Character/Animations/Attack")
 locomotion_component = NodePath("../../LocomotionComponent")
 weapons = {
 "right_hand": NodePath("../../Character/Armature_004/GeneralSkeleton/Sword")
 }
+can_attack = null
 
 [node name="BlockComponent" parent="Abilities" node_paths=PackedStringArray("entity", "locomotion_component", "block_animations") instance=ExtResource("16_ckq0d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
@@ -247,12 +249,15 @@ parry_particles_colour = Color(0.439216, 0.0392157, 0.0392157, 1)
 
 [node name="Combat" type="Node3D" parent="."]
 
-[node name="DizzyComponent" type="Node3D" parent="Combat" node_paths=PackedStringArray("entity", "locomotion_component", "health_component", "attack_component", "instability_component", "dizzy_victim_animations", "attachment_point", "crosshair", "blackboard", "dizzy_sfx", "thrust_puncture_sfx", "hit_sfx")]
+[node name="DizzyComponent" type="Node3D" parent="Combat" node_paths=PackedStringArray("entity", "locomotion_component", "health_component", "instability_component", "dizzy_victim_animations", "attachment_point", "crosshair", "blackboard", "dizzy_sfx", "thrust_puncture_sfx", "hit_sfx")]
 script = ExtResource("22_cfyy2")
+debug = null
+enabled = null
 entity = NodePath("../..")
+dizzy_from_parry_length = null
+dizzy_from_damage_length = null
 locomotion_component = NodePath("../../LocomotionComponent")
 health_component = NodePath("../../Wellbeing/HealthComponent")
-attack_component = NodePath("../../Abilities/AttackComponent")
 instability_component = NodePath("../../Wellbeing/InstabilityComponent")
 dizzy_victim_animations = NodePath("../../Character/Animations/DizzyVictim")
 attachment_point = NodePath("../../Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint")

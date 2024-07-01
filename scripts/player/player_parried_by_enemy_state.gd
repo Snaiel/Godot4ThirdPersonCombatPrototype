@@ -33,7 +33,7 @@ func _ready():
 
 func enter():
 	_timer.start()
-	player.attack_component.interrupt_attack()
+	player.melee_component.interrupt_attack()
 	_pressed_attack = false
 
 

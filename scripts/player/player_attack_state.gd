@@ -21,9 +21,9 @@ func enter():
 	player.locomotion_component.can_move = false
 	
 	if parent_state.previous_state is PlayerBlockState:
-		player.attack_component.attack(false)
+		player.melee_component.attack(false)
 	else:
-		player.attack_component.attack()
+		player.melee_component.attack()
 
 
 func process_player():
@@ -34,19 +34,19 @@ func process_player():
 	if Input.is_action_just_pressed("attack"):
 		if check_for_dizzy_finisher():
 			return
-		player.attack_component.attack()
+		player.melee_component.attack()
 	
-	if not player.attack_component.attacking:
+	if not player.melee_component.attacking:
 		parent_state.transition_to_default_state()
 		return
 	
 	if Input.is_action_just_pressed("block") and \
-	player.attack_component.stop_attacking():
+	player.melee_component.stop_attacking():
 		parent_state.change_state(parry_state)
 		return
 	
 	if Input.is_action_pressed("block") and \
-	player.attack_component.stop_attacking():
+	player.melee_component.stop_attacking():
 		parent_state.change_state(block_state)
 		return
 	
@@ -54,7 +54,7 @@ func process_player():
 
 func exit():
 	player.locomotion_component.can_move = true
-	player.attack_component.interrupt_attack()
+	player.melee_component.interrupt_attack()
 
 
 func check_for_dizzy_finisher() -> bool:

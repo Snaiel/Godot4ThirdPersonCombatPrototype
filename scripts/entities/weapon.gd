@@ -5,7 +5,7 @@ extends BoneAttachment3D
 signal parried
 
 @export var entity: CharacterBody3D
-@export var attack_component: AttackComponent
+@export var melee_component: MeleeComponent
 @export var debug: bool = false
 
 @export var damage: float = 25.0

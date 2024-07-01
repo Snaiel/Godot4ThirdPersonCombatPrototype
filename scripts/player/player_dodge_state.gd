@@ -11,7 +11,7 @@ func _ready():
 
 
 func enter():
-	player.attack_component.interrupt_attack()
+	player.melee_component.interrupt_attack()
 	player.dodge_component.intent_to_dodge = true
 	player.hitbox_component.enabled = false
 

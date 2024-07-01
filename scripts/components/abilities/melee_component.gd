@@ -1,4 +1,4 @@
-class_name AttackComponent
+class_name MeleeComponent
 extends Node
 
 

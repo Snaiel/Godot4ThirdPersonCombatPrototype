@@ -7,8 +7,8 @@ func _ready():
 
 func enter():
 	player.rotation_component.rotate_towards_target = true
-	player.attack_component.attack_level = 2
-	player.attack_component.attack()
+	player.melee_component.attack_level = 2
+	player.melee_component.attack()
 	player.hitbox_component.enabled = false
 	player.locomotion_component.can_move = false
 

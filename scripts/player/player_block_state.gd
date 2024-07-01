@@ -49,7 +49,7 @@ func _ready():
 
 func enter():
 	player.block_component.blocking = true
-	player.attack_component.interrupt_attack()
+	player.melee_component.interrupt_attack()
 	
 	_can_reduce_instability = false
 	_pause_before_reducing_instability_timer.start()

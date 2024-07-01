@@ -21,13 +21,13 @@ func _ready():
 func enter():
 	player.parry_component.parry()
 	player.block_component.blocking = true
-	player.attack_component.interrupt_attack()
+	player.melee_component.interrupt_attack()
 
 
 func process_player():
 	if Input.is_action_just_pressed("block") and (
-		not player.attack_component.attacking or \
-		player.attack_component.stop_attacking()
+		not player.melee_component.attacking or \
+		player.melee_component.stop_attacking()
 	):
 		print("PLEASE PARRY")
 		player.parry_component.parry()

@@ -23,8 +23,8 @@ func enter():
 	_finished = false
 	player.locomotion_component.can_move = false
 	player.weapon.can_damage = false
-	player.attack_component.instance += 1
-	player.attack_component.disable_attack_interrupted()
+	player.melee_component.instance += 1
+	player.melee_component.disable_attack_interrupted()
 	player.character.dizzy_finisher_animations.play_from_damage_finisher()
 	dizzy_system.victim_being_killed = true
 
