@@ -37,6 +37,10 @@ func _ready() -> void:
 	attack_animations.can_attack_again.connect(_receive_can_attack_again)
 	attack_animations.can_play_animation.connect(_receive_can_play_animation)
 	attack_animations.attacking_finished.connect(_receive_attacking_finished)
+	
+	for i in weapons.values():
+		var weapon: Weapon = get_node(i)
+		weapon.melee_component = self
 
 
 func _process(_delta):

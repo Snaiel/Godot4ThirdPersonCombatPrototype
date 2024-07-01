@@ -132,10 +132,9 @@ surface_material_override/0 = ExtResource("4_yduye")
 [node name="Alpha_Surface" parent="Character/Armature_004/GeneralSkeleton" index="1"]
 surface_material_override/0 = SubResource("ShaderMaterial_i1ddg")
 
-[node name="Sword" parent="Character/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("entity", "melee_component") instance=ExtResource("4_r63io")]
+[node name="Sword" parent="Character/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("entity") instance=ExtResource("4_r63io")]
 transform = Transform3D(8.64318e-07, -1, -8.60392e-05, 2.44333e-06, 8.60392e-05, -1, 1, 8.64363e-07, 2.44341e-06, -0.735542, 1.43565, -0.0720902)
 entity = NodePath("../../../..")
-melee_component = NodePath("../../../../Abilities/AttackComponent")
 
 [node name="Area" parent="Character/Armature_004/GeneralSkeleton/Sword" index="1"]
 collision_mask = 2
@@ -226,13 +225,11 @@ max_instability = 100.0
 [node name="AttackComponent" type="Node" parent="Abilities" node_paths=PackedStringArray("blackboard", "attack_animations", "locomotion_component")]
 script = ExtResource("19_gnnqg")
 blackboard = NodePath("../../Blackboard")
-debug = null
 attack_animations = NodePath("../../Character/Animations/Attack")
 locomotion_component = NodePath("../../LocomotionComponent")
 weapons = {
 "right_hand": NodePath("../../Character/Armature_004/GeneralSkeleton/Sword")
 }
-can_attack = null
 
 [node name="BlockComponent" parent="Abilities" node_paths=PackedStringArray("entity", "locomotion_component", "block_animations") instance=ExtResource("16_ckq0d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)

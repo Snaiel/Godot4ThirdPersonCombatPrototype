@@ -169,10 +169,9 @@ surface_material_override/0 = SubResource("ShaderMaterial_kr42x")
 layers = 2
 surface_material_override/0 = ExtResource("4_ysu0o")
 
-[node name="Sword" parent="Character/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("entity", "melee_component") instance=ExtResource("5_vtx6o")]
+[node name="Sword" parent="Character/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("entity") instance=ExtResource("5_vtx6o")]
 transform = Transform3D(7.54791e-07, -1, -8.41021e-05, 5.5829e-07, 8.41021e-05, -1, 1, 7.54744e-07, 5.58354e-07, -0.736368, 1.32129, -0.115726)
 entity = NodePath("../../../..")
-melee_component = NodePath("../../../../Combat/MeleeComponent")
 
 [node name="LockOnAttachment" parent="Character/Armature_004/GeneralSkeleton" index="3"]
 transform = Transform3D(1, 7.35419e-12, -2.66409e-12, -7.35419e-12, 1, -7.87391e-09, 2.66409e-12, 7.87391e-09, 1, 0.00143849, 1.23284, -0.0967738)
