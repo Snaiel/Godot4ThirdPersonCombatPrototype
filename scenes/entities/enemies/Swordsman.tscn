@@ -133,17 +133,17 @@ surface_material_override/0 = ExtResource("4_yduye")
 surface_material_override/0 = SubResource("ShaderMaterial_i1ddg")
 
 [node name="Sword" parent="Character/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("entity") instance=ExtResource("4_r63io")]
-transform = Transform3D(8.64318e-07, -1, -8.60392e-05, 2.44333e-06, 8.60392e-05, -1, 1, 8.64363e-07, 2.44341e-06, -0.735542, 1.43565, -0.0720902)
+transform = Transform3D(0.0120772, -0.805885, 0.591949, 0.551475, -0.488451, -0.676233, 0.834104, 0.334612, 0.438526, -0.159962, 0.996657, -0.314603)
 entity = NodePath("../../../..")
 
 [node name="Area" parent="Character/Armature_004/GeneralSkeleton/Sword" index="1"]
 collision_mask = 2
 
 [node name="LockOnAttachment" parent="Character/Armature_004/GeneralSkeleton" index="3"]
-transform = Transform3D(1, -7.20253e-12, 4.0193e-12, 7.20253e-12, 1, -3.01674e-08, -4.0193e-12, 3.01674e-08, 1, 0.00226485, 1.34721, -0.053138)
+transform = Transform3D(0.352511, -0.272304, -0.895314, -0.286439, 0.879412, -0.380247, 0.890892, 0.390494, 0.232003, -0.0204647, 1.15646, 0.0711627)
 
 [node name="HeadAttachment" parent="Character/Armature_004/GeneralSkeleton" index="4"]
-transform = Transform3D(1, 7.38663e-14, 3.99088e-12, -7.38663e-14, 1, -2.97017e-08, -3.99088e-12, 2.97017e-08, 1, 0.00224288, 1.60075, -0.0137847)
+transform = Transform3D(0.958633, -0.0682423, -0.276343, -0.00715312, 0.964754, -0.263058, 0.284555, 0.254152, 0.924357, -0.124513, 1.36128, 0.184456)
 
 [node name="AnimationTree" parent="Character" index="2"]
 "parameters/Dizzy Finisher Which One/current_state" = ""
@@ -225,7 +225,7 @@ max_instability = 100.0
 [node name="MeleeComponent" type="Node" parent="Abilities" node_paths=PackedStringArray("blackboard", "melee_animations", "locomotion_component")]
 script = ExtResource("19_gnnqg")
 blackboard = NodePath("../../Blackboard")
-melee_animations = NodePath("../../Character/Animations/Attack")
+melee_animations = NodePath("../../Character/Animations/Melee")
 locomotion_component = NodePath("../../LocomotionComponent")
 weapons = {
 "right_hand": NodePath("../../Character/Armature_004/GeneralSkeleton/Sword")
