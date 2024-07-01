@@ -1,5 +1,5 @@
-class_name OutwardAttackStrategy
-extends AttackStrategy
+class_name OutwardMeleeAttack
+extends MeleeAttack
 
 
 func _ready():

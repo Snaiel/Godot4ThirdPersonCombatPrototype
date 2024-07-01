@@ -5,7 +5,7 @@ extends CharacterAnimations
 @export var movement_animations: MovementAnimations
 @export var walk_or_jog_animations: WalkOrJogAnimations
 @export var jump_animations: JumpAnimations
-@export var attack_animations: AttackAnimations
+@export var melee_animations: MeleeAnimations
 @export var block_animations: BlockAnimations
 @export var parry_animations: ParryAnimations
 @export var hit_and_death_animations: HitAndDeathAnimations

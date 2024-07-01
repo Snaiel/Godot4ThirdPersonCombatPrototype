@@ -1,5 +1,5 @@
-class_name SimpleAttackStrategy
-extends AttackStrategy
+class_name SimpleMeleeAttack
+extends MeleeAttack
 
 
 @export var _attack_name: String

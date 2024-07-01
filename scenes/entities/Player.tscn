@@ -83,13 +83,13 @@ weapon = NodePath("Character/Armature_004/GeneralSkeleton/Sword")
 lock_on_attachment_point = NodePath("Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint")
 footsteps = NodePath("Character/Audio/Footsteps")
 
-[node name="Character" parent="." node_paths=PackedStringArray("movement_animations", "walk_or_jog_animations", "jump_animations", "attack_animations", "block_animations", "parry_animations", "hit_and_death_animations", "dizzy_victim_animations", "dizzy_finisher_animations", "drink_animations", "sitting_animations") instance=ExtResource("5_gusos")]
+[node name="Character" parent="." node_paths=PackedStringArray("movement_animations", "walk_or_jog_animations", "jump_animations", "melee_animations", "block_animations", "parry_animations", "hit_and_death_animations", "dizzy_victim_animations", "dizzy_finisher_animations", "drink_animations", "sitting_animations") instance=ExtResource("5_gusos")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 script = ExtResource("3_2hud5")
 movement_animations = NodePath("Animations/Movement")
 walk_or_jog_animations = NodePath("Animations/Movement/FreeWalkOrJog")
 jump_animations = NodePath("Animations/Jump")
-attack_animations = NodePath("Animations/Attack")
+melee_animations = NodePath("Animations/Attack")
 block_animations = NodePath("Animations/Block")
 parry_animations = NodePath("Animations/Parry")
 hit_and_death_animations = NodePath("Animations/HitAndDeath")
@@ -418,8 +418,8 @@ blood_scene = ExtResource("27_63iim")
 
 [node name="Combat" type="Node3D" parent="."]
 
-[node name="MeleeComponent" parent="Combat" node_paths=PackedStringArray("attack_animations", "locomotion_component") instance=ExtResource("28_no1kf")]
-attack_animations = NodePath("../../Character/Animations/Attack")
+[node name="MeleeComponent" parent="Combat" node_paths=PackedStringArray("melee_animations", "locomotion_component") instance=ExtResource("28_no1kf")]
+melee_animations = NodePath("../../Character/Animations/Attack")
 locomotion_component = NodePath("../../Movement/LocomotionComponent")
 weapons = {
 "right_hand": NodePath("../../Character/Armature_004/GeneralSkeleton/Sword")

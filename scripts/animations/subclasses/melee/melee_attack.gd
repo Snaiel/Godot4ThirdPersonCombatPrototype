@@ -1,4 +1,4 @@
-class_name AttackStrategy
+class_name MeleeAttack
 extends BaseAnimations
 
 

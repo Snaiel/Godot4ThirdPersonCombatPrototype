@@ -1,5 +1,5 @@
-class_name QuickSlashAttackStrategy
-extends AttackStrategy
+class_name QuickSlashMeleeAttack
+extends MeleeAttack
 
 
 func _ready():

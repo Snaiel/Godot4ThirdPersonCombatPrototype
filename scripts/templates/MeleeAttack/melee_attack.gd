@@ -2,8 +2,8 @@
 # meta-default: true
 # meta-space-indent: 4
 
-class_name NewAttackStrategy
-extends AttackStrategy
+class_name NewMeleeAttack
+extends MeleeAttack
 
 
 func _ready():

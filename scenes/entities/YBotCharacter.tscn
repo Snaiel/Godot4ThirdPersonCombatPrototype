@@ -20,17 +20,17 @@
 [ext_resource type="Script" path="res://scripts/animations/subclasses/movement/running_animations.gd" id="13_mvol6"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/drink_animations.gd" id="13_yftnk"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/sitting_animations.gd" id="15_rxgn1"]
+[ext_resource type="Script" path="res://scripts/animations/subclasses/melee/melee_animations.gd" id="16_3je46"]
 [ext_resource type="AudioStream" uid="uid://bd1ks0felifw2" path="res://audio/footsteps/footstep00.wav" id="16_abtj0"]
-[ext_resource type="Script" path="res://scripts/animations/subclasses/attacks/attack_animations.gd" id="16_jnfae"]
+[ext_resource type="Script" path="res://scripts/animations/subclasses/melee/attacks/inward_slash.gd" id="17_2ilx2"]
 [ext_resource type="AudioStream" uid="uid://cavo4qpxknfh2" path="res://audio/footsteps/footstep01.wav" id="17_kbmfv"]
-[ext_resource type="Script" path="res://scripts/animations/subclasses/attacks/strategies/inward_slash.gd" id="17_oej8k"]
+[ext_resource type="Script" path="res://scripts/animations/subclasses/melee/attacks/outward_slash.gd" id="18_tonxa"]
 [ext_resource type="AudioStream" uid="uid://dkk215uq2twwa" path="res://audio/footsteps/footstep02.wav" id="18_u4dji"]
-[ext_resource type="Script" path="res://scripts/animations/subclasses/attacks/strategies/outward_slash.gd" id="18_v5yvh"]
-[ext_resource type="Script" path="res://scripts/animations/subclasses/attacks/strategies/thrust.gd" id="19_67vtr"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/dizzy_victim_animations.gd" id="19_gd7l1"]
 [ext_resource type="Script" path="res://scripts/audio/audio_footsteps.gd" id="19_if0sk"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/dizzy_finisher_animations.gd" id="19_q2ig4"]
-[ext_resource type="Script" path="res://scripts/animations/subclasses/attacks/strategies/quick_slash.gd" id="20_1ft2m"]
+[ext_resource type="Script" path="res://scripts/animations/subclasses/melee/attacks/thrust.gd" id="19_txup5"]
+[ext_resource type="Script" path="res://scripts/animations/subclasses/melee/attacks/quick_slash.gd" id="20_chv0l"]
 [ext_resource type="AudioStream" uid="uid://d2hx1psw3kw3j" path="res://audio/jump_land.wav" id="20_dne06"]
 [ext_resource type="AudioStream" uid="uid://dp8kx7ob5g52l" path="res://audio/jump.wav" id="20_me88f"]
 [ext_resource type="AudioStream" uid="uid://bju8g4kcmxeps" path="res://audio/weapon_swing.wav" id="21_2ltyf"]
@@ -725,23 +725,24 @@ script = ExtResource("6_olmu2")
 anim_tree = NodePath("../../AnimationTree")
 
 [node name="Attack" type="Node" parent="Animations" index="2" node_paths=PackedStringArray("anim_tree")]
-script = ExtResource("16_jnfae")
+script = ExtResource("16_3je46")
 anim_tree = NodePath("../../AnimationTree")
+debug = null
 
 [node name="Inward" type="Node" parent="Animations/Attack" index="0" node_paths=PackedStringArray("anim_tree")]
-script = ExtResource("17_oej8k")
+script = ExtResource("17_2ilx2")
 anim_tree = NodePath("../../../AnimationTree")
 
 [node name="Outward" type="Node" parent="Animations/Attack" index="1" node_paths=PackedStringArray("anim_tree")]
-script = ExtResource("18_v5yvh")
+script = ExtResource("18_tonxa")
 anim_tree = NodePath("../../../AnimationTree")
 
 [node name="Thrust" type="Node" parent="Animations/Attack" index="2" node_paths=PackedStringArray("anim_tree")]
-script = ExtResource("19_67vtr")
+script = ExtResource("19_txup5")
 anim_tree = NodePath("../../../AnimationTree")
 
 [node name="QuickSlash" type="Node" parent="Animations/Attack" index="3" node_paths=PackedStringArray("anim_tree")]
-script = ExtResource("20_1ft2m")
+script = ExtResource("20_chv0l")
 anim_tree = NodePath("../../../AnimationTree")
 
 [node name="Block" type="Node" parent="Animations" index="3" node_paths=PackedStringArray("walk_or_jog_animations", "anim_tree")]

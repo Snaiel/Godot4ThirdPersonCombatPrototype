@@ -1,5 +1,5 @@
-class_name ThrustAttackStrategy
-extends AttackStrategy
+class_name ThrustMeleeAttack
+extends MeleeAttack
 
 
 func _ready():

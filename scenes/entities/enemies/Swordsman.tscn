@@ -222,10 +222,10 @@ max_instability = 100.0
 
 [node name="Abilities" type="Node3D" parent="."]
 
-[node name="AttackComponent" type="Node" parent="Abilities" node_paths=PackedStringArray("blackboard", "attack_animations", "locomotion_component")]
+[node name="MeleeComponent" type="Node" parent="Abilities" node_paths=PackedStringArray("blackboard", "melee_animations", "locomotion_component")]
 script = ExtResource("19_gnnqg")
 blackboard = NodePath("../../Blackboard")
-attack_animations = NodePath("../../Character/Animations/Attack")
+melee_animations = NodePath("../../Character/Animations/Attack")
 locomotion_component = NodePath("../../LocomotionComponent")
 weapons = {
 "right_hand": NodePath("../../Character/Armature_004/GeneralSkeleton/Sword")
@@ -692,8 +692,8 @@ script = ExtResource("12_q7h63")
 
 [node name="NavigationAgent" type="NavigationAgent3D" parent="."]
 
-[connection signal="dead" from="." to="Abilities/AttackComponent" method="set_can_damage_of_all_weapons" binds= [false]]
-[connection signal="interaction" from="Combat/InteractionComponent/Outcomes" to="Abilities/AttackComponent" method="interrupt_attack"]
+[connection signal="dead" from="." to="Abilities/MeleeComponent" method="set_can_damage_of_all_weapons" binds= [false]]
+[connection signal="interaction" from="Combat/InteractionComponent/Outcomes" to="Abilities/MeleeComponent" method="interrupt_attack"]
 
 [editable path="Character"]
 [editable path="Character/Armature_004/GeneralSkeleton/Sword"]

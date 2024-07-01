@@ -5,7 +5,7 @@ extends Node
 signal can_rotate(flag: bool)
 
 @export var debug: bool = false
-@export var attack_animations: AttackAnimations
+@export var melee_animations: MeleeAnimations
 @export var locomotion_component: LocomotionComponent
 @export var weapons: Dictionary
 @export var can_attack: bool = true
@@ -31,12 +31,12 @@ var _attack_interrupted: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	attack_animations.secondary_movement.connect(_receive_movement)
-	attack_animations.can_rotate.connect(_receive_rotation)
-	attack_animations.can_damage.connect(_receive_can_damage)
-	attack_animations.can_attack_again.connect(_receive_can_attack_again)
-	attack_animations.can_play_animation.connect(_receive_can_play_animation)
-	attack_animations.attacking_finished.connect(_receive_attacking_finished)
+	melee_animations.secondary_movement.connect(_receive_movement)
+	melee_animations.can_rotate.connect(_receive_rotation)
+	melee_animations.can_damage.connect(_receive_can_damage)
+	melee_animations.can_attack_again.connect(_receive_can_attack_again)
+	melee_animations.can_play_animation.connect(_receive_can_play_animation)
+	melee_animations.attacking_finished.connect(_receive_attacking_finished)
 	
 	for i in weapons.values():
 		var weapon: Weapon = get_node(i)
@@ -67,7 +67,7 @@ func attack(can_stop: bool = true) -> void:
 	
 	can_rotate.emit(true)
 	
-	attack_animations.attack(attack_level, _manually_set_attack_level)
+	melee_animations.attack(attack_level, _manually_set_attack_level)
 		
 	_manually_set_attack_level = false
 
@@ -99,7 +99,7 @@ func interrupt_attack() -> void:
 	can_attack = true
 	_can_attack_again = false
 	
-	attack_animations.stop_attacking()
+	melee_animations.stop_attacking()
 	
 	set_can_damage_of_all_weapons(false)
 
@@ -128,17 +128,17 @@ func _receive_rotation(flag: bool) -> void:
 	can_rotate.emit(flag)
 
 
-func _receive_movement(attack_strat: AttackStrategy) -> void:
+func _receive_movement(melee_attack: MeleeAttack) -> void:
 	_can_stop_attack = false
 	
 	if _attack_interrupted:
 		return
 	
 	locomotion_component.set_secondary_movement(
-		attack_strat.move_speed,
-		attack_strat.time,
-		attack_strat.friction,
-		attack_strat.direction
+		melee_attack.move_speed,
+		melee_attack.time,
+		melee_attack.friction,
+		melee_attack.direction
 	)
 
 

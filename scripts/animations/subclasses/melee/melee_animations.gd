@@ -1,8 +1,8 @@
-class_name AttackAnimations
+class_name MeleeAnimations
 extends BaseAnimations
 
 
-signal secondary_movement(attack: AttackStrategy)
+signal secondary_movement(attack: MeleeAttack)
 signal can_damage(flag: bool, weapon_names: Array[StringName])
 signal can_rotate(flag: bool)
 signal can_attack_again(flag: bool)
@@ -10,7 +10,7 @@ signal can_play_animation
 signal attacking_finished
 
 
-var attacks: Array[AttackStrategy]
+var attacks: Array[MeleeAttack]
 
 # this means if an attacking animation is currently occurring
 var attacking: bool = false
