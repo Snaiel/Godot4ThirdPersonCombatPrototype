@@ -39,6 +39,7 @@ func perform_legs_transition():
 			0.3
 		)
 	)
+	blend = anim_tree.get(&"parameters/Attack Inward Slash Copy/Inward Slash and Walk Blend/blend_amount")
 	anim_tree.set(
 		&"parameters/Attack Inward Slash Copy/Inward Slash and Walk Blend/blend_amount",
 		lerp(

@@ -11,8 +11,11 @@ signal can_rotate(flag: bool)
 @export var can_attack: bool = true
 
 var attacking: bool = false
-var attack_level: int = 0:
-	set = set_attack_level
+
+# this is pretty much read only. changing this wont affect
+# the attack level when attack() is called. you must supply
+# the desired level as a parameter in the attack() function.
+var attack_level: int = 0
 
 ## The label of a single attack occurrence.
 # Used to make sure an entity is only hit
@@ -23,7 +26,6 @@ var attack_level: int = 0:
 # it's in the same animation/instance.
 var instance: int = 0
 
-var _manually_set_attack_level: bool = false
 var _can_stop_attack: bool = true
 var _can_attack_again: bool = false
 var _attack_interrupted: bool = false
@@ -47,7 +49,12 @@ func _process(_delta):
 	if debug: print(attacking)
 
 
-func attack(can_stop: bool = true) -> void:
+func attack(
+		level: int = 0,
+		override_can_play: bool = false,
+		can_stop: bool = true
+	) -> void:
+		
 	instance += 1
 	
 	if not can_attack:
@@ -57,19 +64,13 @@ func attack(can_stop: bool = true) -> void:
 	_can_stop_attack = can_stop
 	_attack_interrupted = false
 	
-	if not _manually_set_attack_level:
-		if _can_attack_again and attack_level < 1:
-			attack_level += 1
-		else:
-			attack_level = 0
+	attack_level = level
 	
 	can_attack = false
 	
 	can_rotate.emit(true)
 	
-	melee_animations.attack(attack_level, _manually_set_attack_level)
-		
-	_manually_set_attack_level = false
+	melee_animations.attack(attack_level, override_can_play)
 
 
 func disable_attack_interrupted() -> void:
@@ -102,11 +103,6 @@ func interrupt_attack() -> void:
 	melee_animations.stop_attacking()
 	
 	set_can_damage_of_all_weapons(false)
-
-
-func set_attack_level(level: int) -> void:
-	attack_level = level
-	_manually_set_attack_level = true
 
 
 func _receive_can_attack_again(can_attack_again: bool) -> void:

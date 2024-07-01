@@ -179,7 +179,7 @@ transform = Transform3D(1, 7.35419e-12, -2.66409e-12, -7.35419e-12, 1, -7.87391e
 enabled = false
 
 [node name="HeadAttachment" parent="Character/Armature_004/GeneralSkeleton" index="4"]
-transform = Transform3D(0.708642, -0.0384168, 0.704521, -0.17155, 0.959172, 0.224856, -0.684395, -0.280204, 0.673119, 0.00141653, 1.48639, -0.0574205)
+transform = Transform3D(0.62284, -0.0205345, 0.78208, -0.364645, 0.876813, 0.313421, -0.692174, -0.480392, 0.538626, 0.00141653, 1.48639, -0.0574205)
 
 [node name="AnimationTree" parent="Character" index="2"]
 "parameters/Dizzy Finisher Which One/current_state" = ""
