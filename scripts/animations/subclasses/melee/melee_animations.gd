@@ -25,7 +25,7 @@ var _intent_to_attack: bool = false
 # this means that the attack animation can play
 # meant to control when the next attack plays
 # when doing successive attacks
-var _can_play_animation: bool = false
+var _can_play_animation: bool = true
 
 # will be checked to decide whether to stop
 # the attacking animatino
@@ -56,11 +56,8 @@ func _physics_process(_delta: float) -> void:
 		attacks[_level].end_legs_transition()
 	
 	if _can_play_animation and _intent_to_attack:
-		
 		_transition_legs = 0
-		
 		attacks[_level].play_attack()
-		
 		_can_play_animation = false
 		_intent_to_attack = false
 	
@@ -80,8 +77,9 @@ func attack(level: int, override_can_play: bool = false) -> void:
 	attacking = true
 	_intent_to_attack = true
 	_intend_to_stop_attacking = false
-	if level == 0 or override_can_play:
+	if override_can_play:
 		_can_play_animation = true
+	
 	_level = level
 
 
