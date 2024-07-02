@@ -632,9 +632,6 @@ stream_0/weight = 1.0
 
 [node name="Swordsman" instance=ExtResource("1_mc312")]
 
-[node name="Character" parent="." index="0"]
-debug = true
-
 [node name="GeneralSkeleton" parent="Character/Armature_004" index="0"]
 bones/0/position = Vector3(0, 0, 0)
 bones/1/position = Vector3(-6.75701e-08, 0.997919, 3.87323e-07)

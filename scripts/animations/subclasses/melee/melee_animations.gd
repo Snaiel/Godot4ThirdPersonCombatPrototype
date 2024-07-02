@@ -129,7 +129,6 @@ func receive_can_attack_again() -> void:
 
 func receive_cannot_attack_again() -> void:
 	can_attack_again.emit(false)
-				
 
 
 func recieve_can_play_animation() -> void:

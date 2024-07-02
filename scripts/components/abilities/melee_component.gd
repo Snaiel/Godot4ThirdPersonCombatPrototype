@@ -105,21 +105,6 @@ func interrupt_attack() -> void:
 	set_can_damage_of_all_weapons(false)
 
 
-func _receive_can_attack_again(can_attack_again: bool) -> void:
-	can_attack = true
-	if not _attack_interrupted:
-		_can_attack_again = can_attack_again
-
-
-func _receive_can_play_animation() -> void:
-	_can_stop_attack = true
-
-
-func _receive_attacking_finished() -> void:
-	can_attack = true
-	stop_attacking()
-
-
 func _receive_rotation(flag: bool) -> void:
 	can_rotate.emit(flag)
 
@@ -154,3 +139,18 @@ func _receive_can_damage(can_damage: bool, weapon_names: Array[StringName]) -> v
 		
 		var weapon: Weapon = get_node(weapons[weapon_name])
 		weapon.can_damage = can_damage
+
+
+func _receive_can_attack_again(can_attack_again: bool) -> void:
+	can_attack = true
+	if not _attack_interrupted:
+		_can_attack_again = can_attack_again
+
+
+func _receive_can_play_animation() -> void:
+	_can_stop_attack = true
+
+
+func _receive_attacking_finished() -> void:
+	can_attack = true
+	stop_attacking()
