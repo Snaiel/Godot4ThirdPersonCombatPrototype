@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxonsgblcaits"]
+
+[ext_resource type="Script" path="res://scripts/beehave/wait/skip_wait.gd" id="1_w1ht4"]
+
+[node name="SkipWait" type="Node"]
+script = ExtResource("1_w1ht4")
+wait_id = 61967809

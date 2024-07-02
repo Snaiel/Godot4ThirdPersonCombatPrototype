@@ -18,10 +18,10 @@
 [ext_resource type="Script" path="res://scripts/utilities/music_system.gd" id="14_oqh6a"]
 [ext_resource type="AudioStream" uid="uid://bcy3kyjij5qj1" path="res://audio/death.wav" id="14_uh7dv"]
 [ext_resource type="AudioStream" uid="uid://bcu6lpb4pl0c5" path="res://audio/music/Hyper Ultra-Racing.ogg" id="15_ug2pn"]
-[ext_resource type="PackedScene" uid="uid://dmtsn22tgr3b1" path="res://scenes/entities/enemies/NewSwordsman.tscn" id="17_gtvyg"]
+[ext_resource type="PackedScene" uid="uid://cn68ggj4dxvj3" path="res://scenes/entities/enemies/Zombie.tscn" id="16_jk13c"]
 [ext_resource type="Script" path="res://scripts/utilities/void_death_system.gd" id="19_q8ont"]
 [ext_resource type="PackedScene" uid="uid://biuqyf53m0ive" path="res://scenes/utilities/VoidArea.tscn" id="20_pa5m1"]
-[ext_resource type="PackedScene" uid="uid://b34rhh2gbadoy" path="res://scenes/entities/enemies/BaseEnemy.tscn" id="21_r2b66"]
+[ext_resource type="PackedScene" uid="uid://dmtsn22tgr3b1" path="res://scenes/entities/enemies/NewSwordsman.tscn" id="22_eolcu"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bb732"]
 radius = 10.0
@@ -1211,14 +1211,8 @@ hit_weight = 0.0
 block_weight = 0.5
 parry_weight = 0.5
 
-[node name="Enemy" parent="Level1/Enemies/Section1/Enemies" instance=ExtResource("2_oia4d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5215, 1, 48.5749)
-
-[node name="BaseEnemy" parent="Level1/Enemies/Section1/Enemies" instance=ExtResource("21_r2b66")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.0274, 1, 51.0381)
-
-[node name="Swordsman" parent="Level1/Enemies/Section1/Enemies" instance=ExtResource("17_gtvyg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 1, 52)
+[node name="Zombie" parent="Level1/Enemies/Section1/Enemies" instance=ExtResource("16_jk13c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.8439, 1, 49.8562)
 
 [node name="Section2" type="Area3D" parent="Level1/Enemies"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43, 0, -76)
@@ -1316,6 +1310,9 @@ script = ExtResource("19_q8ont")
 
 [node name="VoidArea2" parent="VoidDeathSystem" instance=ExtResource("20_pa5m1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84, 5, -23)
+
+[node name="Swordsman" parent="." instance=ExtResource("22_eolcu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.73318, 11, 0.901908)
 
 [connection signal="area_entered" from="LockOnSystem" to="LockOnSystem" method="_on_area_entered"]
 [connection signal="area_exited" from="LockOnSystem" to="LockOnSystem" method="_on_area_exited"]

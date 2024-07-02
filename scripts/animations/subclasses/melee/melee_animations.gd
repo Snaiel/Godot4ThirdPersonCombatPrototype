@@ -131,7 +131,7 @@ func receive_cannot_attack_again() -> void:
 	can_attack_again.emit(false)
 
 
-func recieve_can_play_animation() -> void:
+func receive_can_play_animation() -> void:
 	can_play_animation.emit()
 	_can_play_animation = true
 

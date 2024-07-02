@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://tabdgh0vgxwq"]
+
+[ext_resource type="Script" path="res://scripts/entities/weapon.gd" id="1_yolyp"]
+
+[node name="Weapon" type="BoneAttachment3D"]
+bone_name = "RightHand"
+bone_idx = 35
+script = ExtResource("1_yolyp")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+layers = 2
+
+[node name="Area" type="Area3D" parent="." groups=["weapon"]]
+collision_layer = 4
+collision_mask = 8
+
+[node name="Collider" type="CollisionShape3D" parent="Area"]

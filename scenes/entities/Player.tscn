@@ -173,17 +173,17 @@ layers = 2
 surface_material_override/0 = ExtResource("4_ysu0o")
 
 [node name="Sword" parent="Character/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("entity") instance=ExtResource("5_vtx6o")]
-transform = Transform3D(-0.0163397, -0.657761, 0.75305, 0.868006, -0.383158, -0.31584, 0.496284, 0.648491, 0.577201, -0.232197, 0.955684, -0.228368)
+transform = Transform3D(-0.0163409, -0.65776, 0.753051, 0.868006, -0.383159, -0.315839, 0.496284, 0.648491, 0.577201, -0.232196, 0.955684, -0.228368)
 entity = NodePath("../../../..")
 
 [node name="LockOnAttachment" parent="Character/Armature_004/GeneralSkeleton" index="3"]
-transform = Transform3D(0.569024, -0.204976, -0.796365, -0.15501, 0.924337, -0.348673, 0.807579, 0.321847, 0.494197, -0.00635795, 1.20438, -0.00167448)
+transform = Transform3D(0.569024, -0.204976, -0.796364, -0.15501, 0.924337, -0.348673, 0.807579, 0.321848, 0.494197, -0.00635797, 1.20438, -0.00167449)
 
 [node name="Crosshair" parent="Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint" index="0"]
 enabled = false
 
 [node name="HeadAttachment" parent="Character/Armature_004/GeneralSkeleton" index="4"]
-transform = Transform3D(0.965584, -0.0226215, -0.259105, -0.00711979, 0.993538, -0.113275, 0.259993, 0.111221, 0.959184, -0.0873294, 1.42387, 0.103346)
+transform = Transform3D(0.965584, -0.0226216, -0.259106, -0.00711986, 0.993538, -0.113275, 0.259994, 0.111221, 0.959184, -0.0873294, 1.42387, 0.103346)
 
 [node name="AnimationTree" parent="Character" index="2"]
 "parameters/Dizzy Finisher Which One/current_state" = ""

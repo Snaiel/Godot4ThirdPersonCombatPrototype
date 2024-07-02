@@ -22,11 +22,13 @@ func execute(target: String, method: StringName, args) -> void:
 	if debug: prints("EXECUTE", target, method, args)
 	
 	if not _recipients.has(target):
+		if debug: prints("DOES NOT CONTAIN", target)
 		return
 	
 	var node: Node = _recipients[target]
 	
 	if not node.has_method(method):
+		if debug: prints(target, "HAS NO METHOD", method)
 		return
 	
 	if args == null:

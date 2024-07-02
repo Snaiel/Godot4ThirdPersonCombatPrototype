@@ -16,4 +16,3 @@ func _process(_delta: float) -> void:
 		blackboard.set_value("attack", false)
 		attack(blackboard.get_value("attack_level", 0))
 	blackboard.set_value("attacking", attacking)
-	if blackboard.get_value("debug"): print(attacking)

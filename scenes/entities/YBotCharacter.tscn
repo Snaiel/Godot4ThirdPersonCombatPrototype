@@ -10,7 +10,7 @@
 [ext_resource type="Script" path="res://scripts/animations/subclasses/jump_animations.gd" id="6_olmu2"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/movement/movement_animations.gd" id="8_aq5jl"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/block_animations.gd" id="8_hx2j7"]
-[ext_resource type="AnimationNodeBlendTree" uid="uid://bb1v4nbj15atd" path="res://scenes/blend_trees/DefaultBlendTree.tres" id="8_tr2sm"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://bb1v4nbj15atd" path="res://animations/blend_trees/DefaultBlendTree.tres" id="8_tr2sm"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/movement/locked_on_movement_animations.gd" id="9_0vb2t"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/parry_animations.gd" id="9_347er"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/hit_and_death_animations.gd" id="9_qcdnc"]

@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=107 format=3 uid="uid://b5hblhvekj3pr"]
+[gd_resource type="AnimationNodeBlendTree" load_steps=91 format=3 uid="uid://b5hblhvekj3pr"]
 
 [sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_gr1qy"]
 xfade_time = 0.2
@@ -24,17 +24,6 @@ input_5/reset = true
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_vrma0"]
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1g7vj"]
-animation = &"combat_animations_1/Blocking"
-
-[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_hegij"]
-
-[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_qy2by"]
-
-[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_pv8rc"]
-filter_enabled = true
-filters = ["%GeneralSkeleton:LeftHand", "%GeneralSkeleton:LeftIndexDistal", "%GeneralSkeleton:LeftIndexIntermediate", "%GeneralSkeleton:LeftIndexProximal", "%GeneralSkeleton:LeftLittleDistal", "%GeneralSkeleton:LeftLittleIntermediate", "%GeneralSkeleton:LeftLittleProximal", "%GeneralSkeleton:LeftLowerArm", "%GeneralSkeleton:LeftMiddleDistal", "%GeneralSkeleton:LeftMiddleIntermediate", "%GeneralSkeleton:LeftMiddleProximal", "%GeneralSkeleton:LeftRingDistal", "%GeneralSkeleton:LeftRingIntermediate", "%GeneralSkeleton:LeftRingProximal", "%GeneralSkeleton:LeftShoulder", "%GeneralSkeleton:LeftThumbDistal", "%GeneralSkeleton:LeftThumbMetacarpal", "%GeneralSkeleton:LeftThumbProximal", "%GeneralSkeleton:LeftUpperArm", "%GeneralSkeleton:mixamorig_LeftHandIndex1", "%GeneralSkeleton:mixamorig_LeftHandMiddle1", "%GeneralSkeleton:mixamorig_LeftHandPinky1", "%GeneralSkeleton:mixamorig_LeftHandRing1", "%GeneralSkeleton:mixamorig_LeftHandThumb1"]
-
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_era1v"]
 
 [sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_jbigd"]
@@ -58,30 +47,6 @@ input_1/auto_advance = false
 input_1/reset = true
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_3rnpj"]
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wtbwl"]
-animation = &"combat_animations_1/Finisher on Kneeling Victim"
-
-[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_yiouf"]
-
-[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_ijgrp"]
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ovki7"]
-animation = &"combat_animations_1/Upward Thrust"
-
-[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_5d1rd"]
-
-[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_e48q0"]
-
-[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_oldk3"]
-input_0/name = "from_parry"
-input_0/auto_advance = false
-input_0/reset = true
-input_1/name = "from_damage"
-input_1/auto_advance = false
-input_1/reset = true
-
-[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_vbytd"]
 
 [sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_ykc1s"]
 xfade_time = 0.3
@@ -251,17 +216,6 @@ sync = true
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_sq418"]
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f1g3g"]
-animation = &"combat_animations_1/Blocking"
-
-[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_m2dko"]
-
-[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_hpc7t"]
-
-[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_o5xyw"]
-filter_enabled = true
-filters = ["%GeneralSkeleton:LeftHand", "%GeneralSkeleton:LeftIndexDistal", "%GeneralSkeleton:LeftIndexIntermediate", "%GeneralSkeleton:LeftIndexProximal", "%GeneralSkeleton:LeftLittleDistal", "%GeneralSkeleton:LeftLittleIntermediate", "%GeneralSkeleton:LeftLittleProximal", "%GeneralSkeleton:LeftLowerArm", "%GeneralSkeleton:LeftMiddleDistal", "%GeneralSkeleton:LeftMiddleIntermediate", "%GeneralSkeleton:LeftMiddleProximal", "%GeneralSkeleton:LeftRingDistal", "%GeneralSkeleton:LeftRingIntermediate", "%GeneralSkeleton:LeftRingProximal", "%GeneralSkeleton:LeftShoulder", "%GeneralSkeleton:LeftThumbDistal", "%GeneralSkeleton:LeftThumbMetacarpal", "%GeneralSkeleton:LeftThumbProximal", "%GeneralSkeleton:LeftUpperArm", "%GeneralSkeleton:mixamorig_LeftHandIndex1", "%GeneralSkeleton:mixamorig_LeftHandMiddle1", "%GeneralSkeleton:mixamorig_LeftHandPinky1", "%GeneralSkeleton:mixamorig_LeftHandRing1", "%GeneralSkeleton:mixamorig_LeftHandThumb1", "ParryAnimations"]
-
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_316ac"]
 animation = &"movement_animations_1/Run-Forwards"
 
@@ -419,65 +373,41 @@ graph_offset = Vector2(-573, -66)
 node_connections = [&"Zombie Smash Speed", 0, &"Zombie Smash Trim", &"Zombie Smash Trim", 0, &"Zombie Smash", &"output", 0, &"Zombie Smash Speed"]
 
 [resource]
-graph_offset = Vector2(3540.63, 1049.09)
+graph_offset = Vector2(124.834, 347.478)
 nodes/Attack/node = SubResource("AnimationNodeTransition_gr1qy")
 nodes/Attack/position = Vector2(860, 1160)
 nodes/Attacking/node = SubResource("AnimationNodeBlend2_vrma0")
 nodes/Attacking/position = Vector2(1200, 640)
-nodes/Blocking/node = SubResource("AnimationNodeBlend2_pv8rc")
-nodes/Blocking/position = Vector2(2040, 680)
-"nodes/Blocking Animation/node" = SubResource("AnimationNodeAnimation_1g7vj")
-"nodes/Blocking Animation/position" = Vector2(1320, 920)
-"nodes/Blocking Speed/node" = SubResource("AnimationNodeTimeScale_hegij")
-"nodes/Blocking Speed/position" = Vector2(1860, 920)
-"nodes/Blocking Trim/node" = SubResource("AnimationNodeTimeSeek_qy2by")
-"nodes/Blocking Trim/position" = Vector2(1660, 920)
 nodes/Death/node = SubResource("AnimationNodeBlend2_3rnpj")
-nodes/Death/position = Vector2(7248, 1600)
+nodes/Death/position = Vector2(4640, 1200)
 "nodes/Death 1 Speed/node" = SubResource("AnimationNodeTimeScale_era1v")
-"nodes/Death 1 Speed/position" = Vector2(6704, 1744)
+"nodes/Death 1 Speed/position" = Vector2(4100, 1340)
 "nodes/Death 1 Trim/node" = SubResource("AnimationNodeTimeSeek_jbigd")
-"nodes/Death 1 Trim/position" = Vector2(6496, 1744)
+"nodes/Death 1 Trim/position" = Vector2(3900, 1340)
 "nodes/Death 2 Speed/node" = SubResource("AnimationNodeTimeScale_2xovq")
-"nodes/Death 2 Speed/position" = Vector2(6704, 1920)
+"nodes/Death 2 Speed/position" = Vector2(4100, 1520)
 "nodes/Death 2 Trim/node" = SubResource("AnimationNodeTimeSeek_5gs3k")
-"nodes/Death 2 Trim/position" = Vector2(6496, 1920)
+"nodes/Death 2 Trim/position" = Vector2(3900, 1520)
 "nodes/Death Animation/node" = SubResource("AnimationNodeAnimation_vsvsm")
-"nodes/Death Animation/position" = Vector2(6032, 1744)
+"nodes/Death Animation/position" = Vector2(3420, 1340)
 "nodes/Death Backstab Animation/node" = SubResource("AnimationNodeAnimation_l3xmt")
-"nodes/Death Backstab Animation/position" = Vector2(6032, 1920)
+"nodes/Death Backstab Animation/position" = Vector2(3420, 1520)
 "nodes/Death Which One/node" = SubResource("AnimationNodeTransition_vq7r5")
-"nodes/Death Which One/position" = Vector2(7008, 1824)
+"nodes/Death Which One/position" = Vector2(4400, 1420)
 nodes/Dizzy/node = SubResource("AnimationNodeBlend2_myeho")
-nodes/Dizzy/position = Vector2(5936, 1408)
-"nodes/Dizzy Finisher/node" = SubResource("AnimationNodeBlend2_vbytd")
-"nodes/Dizzy Finisher/position" = Vector2(4496, 1264)
-"nodes/Dizzy Finisher From Damage Animation/node" = SubResource("AnimationNodeAnimation_wtbwl")
-"nodes/Dizzy Finisher From Damage Animation/position" = Vector2(2864, 1584)
-"nodes/Dizzy Finisher From Damage Speed/node" = SubResource("AnimationNodeTimeScale_yiouf")
-"nodes/Dizzy Finisher From Damage Speed/position" = Vector2(3744, 1584)
-"nodes/Dizzy Finisher From Damage Trim/node" = SubResource("AnimationNodeTimeSeek_ijgrp")
-"nodes/Dizzy Finisher From Damage Trim/position" = Vector2(3376, 1584)
-"nodes/Dizzy Finisher From Parry Animation/node" = SubResource("AnimationNodeAnimation_ovki7")
-"nodes/Dizzy Finisher From Parry Animation/position" = Vector2(2992, 1376)
-"nodes/Dizzy Finisher From Parry Speed/node" = SubResource("AnimationNodeTimeScale_5d1rd")
-"nodes/Dizzy Finisher From Parry Speed/position" = Vector2(3776, 1376)
-"nodes/Dizzy Finisher From Parry Trim/node" = SubResource("AnimationNodeTimeSeek_e48q0")
-"nodes/Dizzy Finisher From Parry Trim/position" = Vector2(3408, 1376)
-"nodes/Dizzy Finisher Which One/node" = SubResource("AnimationNodeTransition_oldk3")
-"nodes/Dizzy Finisher Which One/position" = Vector2(4144, 1440)
+nodes/Dizzy/position = Vector2(3340, 1000)
 "nodes/Dizzy From Damage/node" = SubResource("AnimationNodeTransition_ykc1s")
-"nodes/Dizzy From Damage/position" = Vector2(5264, 1856)
+"nodes/Dizzy From Damage/position" = Vector2(2660, 1460)
 "nodes/Dizzy Idle Animation/node" = SubResource("AnimationNodeAnimation_y1xna")
-"nodes/Dizzy Idle Animation/position" = Vector2(5168, 1568)
+"nodes/Dizzy Idle Animation/position" = Vector2(2560, 1160)
 "nodes/Dizzy Kneeling Animation/node" = SubResource("AnimationNodeAnimation_byhug")
-"nodes/Dizzy Kneeling Animation/position" = Vector2(4272, 1728)
+"nodes/Dizzy Kneeling Animation/position" = Vector2(1660, 1320)
 "nodes/Dizzy Kneeling Speed/node" = SubResource("AnimationNodeTimeScale_74xre")
-"nodes/Dizzy Kneeling Speed/position" = Vector2(4896, 1728)
+"nodes/Dizzy Kneeling Speed/position" = Vector2(2300, 1320)
 "nodes/Dizzy Kneeling Trim/node" = SubResource("AnimationNodeTimeSeek_6ghbn")
-"nodes/Dizzy Kneeling Trim/position" = Vector2(4656, 1728)
+"nodes/Dizzy Kneeling Trim/position" = Vector2(2060, 1320)
 "nodes/Dizzy Which One/node" = SubResource("AnimationNodeTransition_ijofm")
-"nodes/Dizzy Which One/position" = Vector2(5648, 1648)
+"nodes/Dizzy Which One/position" = Vector2(3040, 1240)
 "nodes/Fall Animation/node" = SubResource("AnimationNodeAnimation_pia0b")
 "nodes/Fall Animation/position" = Vector2(-300, 760)
 "nodes/Free Idle/node" = SubResource("AnimationNodeAnimation_met48")
@@ -501,15 +431,15 @@ nodes/Dizzy/position = Vector2(5936, 1408)
 "nodes/Jump and Fall Blend/node" = SubResource("AnimationNodeBlend2_tbxkj")
 "nodes/Jump and Fall Blend/position" = Vector2(220, 540)
 "nodes/Kneel to Stand Animation/node" = SubResource("AnimationNodeAnimation_q2sun")
-"nodes/Kneel to Stand Animation/position" = Vector2(4208, 2128)
+"nodes/Kneel to Stand Animation/position" = Vector2(1600, 1720)
 "nodes/Kneel to Stand Speed/node" = SubResource("AnimationNodeTimeScale_fk50i")
-"nodes/Kneel to Stand Speed/position" = Vector2(4912, 2128)
+"nodes/Kneel to Stand Speed/position" = Vector2(2300, 1720)
 "nodes/Kneel to Stand Trim/node" = SubResource("AnimationNodeTimeSeek_j2ebb")
-"nodes/Kneel to Stand Trim/position" = Vector2(4624, 2128)
+"nodes/Kneel to Stand Trim/position" = Vector2(2020, 1720)
 "nodes/Kneeling Idle Animation/node" = SubResource("AnimationNodeAnimation_eecak")
-"nodes/Kneeling Idle Animation/position" = Vector2(4528, 1920)
+"nodes/Kneeling Idle Animation/position" = Vector2(1920, 1520)
 "nodes/Kneeling Idle Speed/node" = SubResource("AnimationNodeTimeScale_02gek")
-"nodes/Kneeling Idle Speed/position" = Vector2(4912, 1920)
+"nodes/Kneeling Idle Speed/position" = Vector2(2300, 1520)
 "nodes/Locked On Idle/node" = SubResource("AnimationNodeAnimation_baww8")
 "nodes/Locked On Idle/position" = Vector2(-2240, -160)
 "nodes/Locked On Movement/node" = SubResource("AnimationNodeTransition_0mwvr")
@@ -520,14 +450,6 @@ nodes/Dizzy/position = Vector2(5936, 1408)
 "nodes/Locked On Walk Direction/position" = Vector2(-2368, 16)
 "nodes/Locked On Walk Speed/node" = SubResource("AnimationNodeTimeScale_1bqjp")
 "nodes/Locked On Walk Speed/position" = Vector2(-2096, 16)
-nodes/Parry/node = SubResource("AnimationNodeBlend2_o5xyw")
-nodes/Parry/position = Vector2(3000, 740)
-"nodes/Parry Animation/node" = SubResource("AnimationNodeAnimation_f1g3g")
-"nodes/Parry Animation/position" = Vector2(2260, 940)
-"nodes/Parry Speed/node" = SubResource("AnimationNodeTimeScale_m2dko")
-"nodes/Parry Speed/position" = Vector2(2780, 940)
-"nodes/Parry Trim/node" = SubResource("AnimationNodeTimeSeek_hpc7t")
-"nodes/Parry Trim/position" = Vector2(2600, 940)
 "nodes/Run Forwards/node" = SubResource("AnimationNodeAnimation_316ac")
 "nodes/Run Forwards/position" = Vector2(-1380, 740)
 nodes/Running/node = SubResource("AnimationNodeBlend2_seau3")
@@ -552,5 +474,5 @@ nodes/Running/position = Vector2(-640, 180)
 "nodes/Zombie Smash/position" = Vector2(560, 1200)
 "nodes/Zombie Smash Copy/node" = SubResource("AnimationNodeBlendTree_366vf")
 "nodes/Zombie Smash Copy/position" = Vector2(520, 1320)
-nodes/output/position = Vector2(7984, 1296)
-node_connections = [&"Attack", 0, &"Zombie Smack", &"Attack", 1, &"Zombie Smack Copy", &"Attack", 2, &"Zombie Smash", &"Attack", 3, &"Zombie Smash Copy", &"Attack", 4, &"Zombie Kick", &"Attack", 5, &"Zombie Kick Copy", &"Attacking", 0, &"Vertical Movement", &"Attacking", 1, &"Attack", &"Blocking", 0, &"Attacking", &"Blocking", 1, &"Blocking Speed", &"Blocking Speed", 0, &"Blocking Trim", &"Blocking Trim", 0, &"Blocking Animation", &"Death", 0, &"Dizzy", &"Death", 1, &"Death Which One", &"Death 1 Speed", 0, &"Death 1 Trim", &"Death 1 Trim", 0, &"Death Animation", &"Death 2 Speed", 0, &"Death 2 Trim", &"Death 2 Trim", 0, &"Death Backstab Animation", &"Death Which One", 0, &"Death 1 Speed", &"Death Which One", 1, &"Death 2 Speed", &"Dizzy", 0, &"Dizzy Finisher", &"Dizzy", 1, &"Dizzy Which One", &"Dizzy Finisher", 0, &"Parry", &"Dizzy Finisher", 1, &"Dizzy Finisher Which One", &"Dizzy Finisher From Damage Speed", 0, &"Dizzy Finisher From Damage Trim", &"Dizzy Finisher From Damage Trim", 0, &"Dizzy Finisher From Damage Animation", &"Dizzy Finisher From Parry Speed", 0, &"Dizzy Finisher From Parry Trim", &"Dizzy Finisher From Parry Trim", 0, &"Dizzy Finisher From Parry Animation", &"Dizzy Finisher Which One", 0, &"Dizzy Finisher From Parry Speed", &"Dizzy Finisher Which One", 1, &"Dizzy Finisher From Damage Speed", &"Dizzy From Damage", 0, &"Dizzy Kneeling Speed", &"Dizzy From Damage", 1, &"Kneeling Idle Speed", &"Dizzy From Damage", 2, &"Kneel to Stand Speed", &"Dizzy Kneeling Speed", 0, &"Dizzy Kneeling Trim", &"Dizzy Kneeling Trim", 0, &"Dizzy Kneeling Animation", &"Dizzy Which One", 0, &"Dizzy Idle Animation", &"Dizzy Which One", 1, &"Dizzy From Damage", &"Free Jog Speed", 0, &"Jog Forward", &"Free Movement", 0, &"Free Idle", &"Free Movement", 1, &"Free Walk Or Jog", &"Free Walk Or Jog", 0, &"Free Walk Speed", &"Free Walk Or Jog", 1, &"Free Jog Speed", &"Free Walk Speed", 0, &"Walk Forward", &"Jump Handler", 0, &"Jump 1", &"Jump Handler", 1, &"Jump 2", &"Jump and Fall Blend", 0, &"Jump Handler", &"Jump and Fall Blend", 1, &"Fall Animation", &"Kneel to Stand Speed", 0, &"Kneel to Stand Trim", &"Kneel to Stand Trim", 0, &"Kneel to Stand Animation", &"Kneeling Idle Speed", 0, &"Kneeling Idle Animation", &"Locked On Movement", 0, &"Locked On Walk", &"Locked On Movement", 1, &"Free Movement", &"Locked On Walk", 0, &"Locked On Idle", &"Locked On Walk", 1, &"Locked On Walk Speed", &"Locked On Walk Speed", 0, &"Locked On Walk Direction", &"Parry", 0, &"Blocking", &"Parry", 1, &"Parry Speed", &"Parry Speed", 0, &"Parry Trim", &"Parry Trim", 0, &"Parry Animation", &"Running", 0, &"Locked On Movement", &"Running", 1, &"Running Locked On", &"Running Locked On", 0, &"Running Lock On Look Direction", &"Running Locked On", 1, &"Run Forwards", &"Vertical Movement", 0, &"Running", &"Vertical Movement", 1, &"Jump and Fall Blend", &"output", 0, &"Death"]
+nodes/output/position = Vector2(5380, 900)
+node_connections = [&"Attack", 0, &"Zombie Smack", &"Attack", 1, &"Zombie Smack Copy", &"Attack", 2, &"Zombie Smash", &"Attack", 3, &"Zombie Smash Copy", &"Attack", 4, &"Zombie Kick", &"Attack", 5, &"Zombie Kick Copy", &"Attacking", 0, &"Vertical Movement", &"Attacking", 1, &"Attack", &"Death", 0, &"Dizzy", &"Death", 1, &"Death Which One", &"Death 1 Speed", 0, &"Death 1 Trim", &"Death 1 Trim", 0, &"Death Animation", &"Death 2 Speed", 0, &"Death 2 Trim", &"Death 2 Trim", 0, &"Death Backstab Animation", &"Death Which One", 0, &"Death 1 Speed", &"Death Which One", 1, &"Death 2 Speed", &"Dizzy", 0, &"Attacking", &"Dizzy", 1, &"Dizzy Which One", &"Dizzy From Damage", 0, &"Dizzy Kneeling Speed", &"Dizzy From Damage", 1, &"Kneeling Idle Speed", &"Dizzy From Damage", 2, &"Kneel to Stand Speed", &"Dizzy Kneeling Speed", 0, &"Dizzy Kneeling Trim", &"Dizzy Kneeling Trim", 0, &"Dizzy Kneeling Animation", &"Dizzy Which One", 0, &"Dizzy Idle Animation", &"Dizzy Which One", 1, &"Dizzy From Damage", &"Free Jog Speed", 0, &"Jog Forward", &"Free Movement", 0, &"Free Idle", &"Free Movement", 1, &"Free Walk Or Jog", &"Free Walk Or Jog", 0, &"Free Walk Speed", &"Free Walk Or Jog", 1, &"Free Jog Speed", &"Free Walk Speed", 0, &"Walk Forward", &"Jump Handler", 0, &"Jump 1", &"Jump Handler", 1, &"Jump 2", &"Jump and Fall Blend", 0, &"Jump Handler", &"Jump and Fall Blend", 1, &"Fall Animation", &"Kneel to Stand Speed", 0, &"Kneel to Stand Trim", &"Kneel to Stand Trim", 0, &"Kneel to Stand Animation", &"Kneeling Idle Speed", 0, &"Kneeling Idle Animation", &"Locked On Movement", 0, &"Locked On Walk", &"Locked On Movement", 1, &"Free Movement", &"Locked On Walk", 0, &"Locked On Idle", &"Locked On Walk", 1, &"Locked On Walk Speed", &"Locked On Walk Speed", 0, &"Locked On Walk Direction", &"Running", 0, &"Locked On Movement", &"Running", 1, &"Running Locked On", &"Running Locked On", 0, &"Running Lock On Look Direction", &"Running Locked On", 1, &"Run Forwards", &"Vertical Movement", 0, &"Running", &"Vertical Movement", 1, &"Jump and Fall Blend", &"output", 0, &"Death"]
