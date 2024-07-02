@@ -50,7 +50,7 @@ func process_player():
 	
 	
 	if not Globals.backstab_system.backstab_victim:
-		main_state.transition_to_previous_state()
+		main_state.transition_to_default_state()
 
 
 func process_movement_animations() -> void:

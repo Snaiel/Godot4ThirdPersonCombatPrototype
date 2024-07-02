@@ -13,7 +13,7 @@ func enter():
 
 func process_player():
 	if not player.melee_component.attacking and current_state == attack_state:
-		parent_state.change_state(parent_state.default_state)
+		parent_state.transition_to_default_state()
 		return
 
 func exit():
