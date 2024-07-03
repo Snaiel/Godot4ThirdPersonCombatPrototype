@@ -5,12 +5,12 @@
 [sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_t11ec"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q70m2"]
-animation = &"magic_animations_1/Magic Attack Beam"
+animation = &"magic_animations_1/Magic Action Energy Beam"
 
 [resource]
-graph_offset = Vector2(-636, -108)
+graph_offset = Vector2(-635, -14)
 "nodes/Energy Beam/node" = SubResource("AnimationNodeAnimation_q70m2")
-"nodes/Energy Beam/position" = Vector2(-600, 140)
+"nodes/Energy Beam/position" = Vector2(-660, 140)
 "nodes/Energy Beam Speed/node" = SubResource("AnimationNodeTimeScale_pc0rr")
 "nodes/Energy Beam Speed/position" = Vector2(40, 140)
 "nodes/Energy Beam Trim/node" = SubResource("AnimationNodeTimeSeek_t11ec")

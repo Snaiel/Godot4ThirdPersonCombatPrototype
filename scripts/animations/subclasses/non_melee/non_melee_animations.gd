@@ -61,6 +61,7 @@ func _physics_process(_delta: float) -> void:
 
 
 func start_action(level: int, override_can_play: bool = false) -> void:
+	print(level)
 	active = true
 	_intent_to_perform = true
 	_intend_to_stop_performing = false
@@ -102,7 +103,7 @@ func receive_cannot_perform_again() -> void:
 	can_perform_again.emit(false)
 
 
-func recieve_can_play_animation() -> void:
+func receive_can_play_animation() -> void:
 	can_play_animation.emit()
 	_can_play_animation = true
 

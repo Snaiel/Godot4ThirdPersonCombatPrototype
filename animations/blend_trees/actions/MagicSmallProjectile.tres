@@ -5,10 +5,10 @@
 [sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_h5kt5"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rhhk0"]
-animation = &"magic_animations_1/Magic Attack Small Projectile"
+animation = &"magic_animations_1/Magic Action Small Projectile"
 
 [resource]
-graph_offset = Vector2(-568, -117)
+graph_offset = Vector2(-642, -35)
 "nodes/Small Projectile/node" = SubResource("AnimationNodeAnimation_rhhk0")
 "nodes/Small Projectile/position" = Vector2(-780, 140)
 "nodes/Small Projectile Scale/node" = SubResource("AnimationNodeTimeScale_ke5fk")

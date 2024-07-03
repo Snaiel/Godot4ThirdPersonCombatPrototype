@@ -31,10 +31,10 @@ animation/remove_immutable_tracks=true
 import_script/path=""
 _subresources={
 "animations": {
-"Magic Attack Beam": {
-"save_to_file/enabled": false,
-"save_to_file/keep_custom_tracks": false,
-"save_to_file/path": "",
+"Magic Action Big Projectile": {
+"save_to_file/enabled": true,
+"save_to_file/keep_custom_tracks": true,
+"save_to_file/path": "res://animations/magic_animations_1/magic_animations_1_action_big_projectile.res",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
@@ -1830,10 +1830,10 @@ _subresources={
 "slice_99/start_frame": 0,
 "slices/amount": 0
 },
-"Magic Attack Big Projectile": {
-"save_to_file/enabled": false,
-"save_to_file/keep_custom_tracks": false,
-"save_to_file/path": "",
+"Magic Action Energy Beam": {
+"save_to_file/enabled": true,
+"save_to_file/keep_custom_tracks": true,
+"save_to_file/path": "res://animations/magic_animations_1/magic_animations_1_action_energy_beam.res",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
@@ -3629,10 +3629,10 @@ _subresources={
 "slice_99/start_frame": 0,
 "slices/amount": 0
 },
-"Magic Attack Small Projectile": {
-"save_to_file/enabled": false,
-"save_to_file/keep_custom_tracks": false,
-"save_to_file/path": "",
+"Magic Action Small Projectile": {
+"save_to_file/enabled": true,
+"save_to_file/keep_custom_tracks": true,
+"save_to_file/path": "res://animations/magic_animations_1/magic_animations_1_action_small_projectile.res",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
