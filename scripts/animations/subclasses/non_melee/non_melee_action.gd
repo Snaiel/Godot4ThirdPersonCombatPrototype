@@ -1,4 +1,4 @@
-class_name SpellStrategy
+class_name NonMeleeAction
 extends BaseAnimations
 
 
@@ -11,8 +11,7 @@ extends BaseAnimations
 
 
 # A flag that signifies whether to play
-# the attack 1 animation or the copy
-# of the attack 1 animation. This is done
+# the original or copy. This is done
 # to rectify the issue of instant
 # transitions when the transition node
 # in the blend tree is requested to play
@@ -20,7 +19,7 @@ extends BaseAnimations
 var _play_copy: bool = false
 
 
-func play_casting_animation() -> void:
+func play_animation() -> void:
 	if _play_copy:
 		pass
 	else:

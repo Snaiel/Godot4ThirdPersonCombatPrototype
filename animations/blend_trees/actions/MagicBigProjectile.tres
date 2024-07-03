@@ -1,0 +1,18 @@
+[gd_resource type="AnimationNodeBlendTree" load_steps=4 format=3 uid="uid://ecdqd7pa5x54"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_c85b4"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_p52w5"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t2tqv"]
+animation = &"magic_animations_1/Magic Attack Big Projectile"
+
+[resource]
+graph_offset = Vector2(-721.661, -95.3223)
+"nodes/Big Projectile/node" = SubResource("AnimationNodeAnimation_t2tqv")
+"nodes/Big Projectile/position" = Vector2(-660, 140)
+"nodes/Big Projectile Speed/node" = SubResource("AnimationNodeTimeScale_c85b4")
+"nodes/Big Projectile Speed/position" = Vector2(40, 140)
+"nodes/Big Projectile Trim/node" = SubResource("AnimationNodeTimeSeek_p52w5")
+"nodes/Big Projectile Trim/position" = Vector2(-200, 140)
+node_connections = [&"Big Projectile Speed", 0, &"Big Projectile Trim", &"Big Projectile Trim", 0, &"Big Projectile", &"output", 0, &"Big Projectile Speed"]

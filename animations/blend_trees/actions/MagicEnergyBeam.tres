@@ -1,0 +1,18 @@
+[gd_resource type="AnimationNodeBlendTree" load_steps=4 format=3 uid="uid://bpek80d8drs4e"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_pc0rr"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_t11ec"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q70m2"]
+animation = &"magic_animations_1/Magic Attack Beam"
+
+[resource]
+graph_offset = Vector2(-636, -108)
+"nodes/Energy Beam/node" = SubResource("AnimationNodeAnimation_q70m2")
+"nodes/Energy Beam/position" = Vector2(-600, 140)
+"nodes/Energy Beam Speed/node" = SubResource("AnimationNodeTimeScale_pc0rr")
+"nodes/Energy Beam Speed/position" = Vector2(40, 140)
+"nodes/Energy Beam Trim/node" = SubResource("AnimationNodeTimeSeek_t11ec")
+"nodes/Energy Beam Trim/position" = Vector2(-200, 140)
+node_connections = [&"Energy Beam Speed", 0, &"Energy Beam Trim", &"Energy Beam Trim", 0, &"Energy Beam", &"output", 0, &"Energy Beam Speed"]

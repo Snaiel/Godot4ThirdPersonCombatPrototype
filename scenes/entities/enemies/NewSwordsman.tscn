@@ -20,7 +20,7 @@
 [ext_resource type="Script" path="res://scripts/components/abilities/parry_component.gd" id="17_oabxi"]
 [ext_resource type="Script" path="res://scripts/components/combat/interaction/handlers/block_interaction_handler.gd" id="18_g4go8"]
 [ext_resource type="Script" path="res://scripts/components/combat/interaction/handlers/parry_interaction_handler.gd" id="19_leb5d"]
-[ext_resource type="PackedScene" uid="uid://d1p0cwvn1hlcs" path="res://scenes/beehave/trees/CheckSuspicion.tscn" id="20_omyll"]
+[ext_resource type="PackedScene" uid="uid://d1p0cwvn1hlcs" path="res://scenes/beehave/branches/CheckSuspicion.tscn" id="20_omyll"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="21_763qd"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/decorators/failer.gd" id="22_ce0i6"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="23_mp67g"]
@@ -74,28 +74,24 @@ stream_0/weight = 1.0
 [node name="Swordsman" instance=ExtResource("1_mc312")]
 
 [node name="GeneralSkeleton" parent="Character/Armature_004" index="0"]
-bones/8/rotation = Quaternion(0.500032, 0.499969, 0.500032, -0.499968)
-bones/10/rotation = Quaternion(-4.21468e-08, -0.707107, 0, 0.707107)
-bones/11/rotation = Quaternion(-7.10043e-09, 0.707107, -7.10043e-09, 0.707107)
 bones/12/rotation = Quaternion(-0.0916109, 0.0960743, -0.0539683, 0.989679)
-bones/13/rotation = Quaternion(-0.214187, 0.673887, 0.214187, 0.673887)
-bones/14/rotation = Quaternion(-4.47035e-08, 2.98023e-08, 4.44089e-16, 1)
 bones/16/rotation = Quaternion(0.255734, -0.0158478, 0.030775, 0.966127)
 bones/20/rotation = Quaternion(0.260783, -0.00603721, -0.00891706, 0.965338)
 bones/24/rotation = Quaternion(0.281692, -0.00498191, -0.0169056, 0.959343)
-bones/34/rotation = Quaternion(-4.21468e-08, 0.707107, 0, 0.707107)
-bones/35/rotation = Quaternion(-2.81893e-08, -0.707107, -1.39575e-08, 0.707107)
 bones/36/rotation = Quaternion(0.178976, -0.098394, 0.059281, 0.977124)
-bones/37/rotation = Quaternion(-0.214187, -0.673887, -0.214187, 0.673887)
 bones/40/rotation = Quaternion(0.576473, -0.00316178, 0.0747119, 0.813688)
 bones/44/rotation = Quaternion(0.590048, 5.37187e-05, 0.0718343, 0.804166)
 bones/48/rotation = Quaternion(0.590849, 0.00424349, 0.0662239, 0.804048)
 bones/52/rotation = Quaternion(0.557745, 0.00959263, 0.0536825, 0.828219)
-bones/58/rotation = Quaternion(-1.20905e-09, 0.707107, -0.707107, 2.41295e-09)
-bones/63/rotation = Quaternion(1.60006e-09, 0.707107, -0.707107, -3.75576e-10)
 
 [node name="Alpha_Surface" parent="Character/Armature_004/GeneralSkeleton" index="1"]
 surface_material_override/0 = SubResource("ShaderMaterial_yud2m")
+
+[node name="LockOnAttachment" parent="Character/Armature_004/GeneralSkeleton" index="2"]
+transform = Transform3D(1, 7.35419e-12, -2.66409e-12, -7.35419e-12, 1, -7.87391e-09, 2.66409e-12, 7.87391e-09, 1, -2.25913e-05, 1.34721, -0.042761)
+
+[node name="HeadAttachment" parent="Character/Armature_004/GeneralSkeleton" index="3"]
+transform = Transform3D(1, 7.81293e-14, -2.66409e-12, -7.81293e-14, 1, -8.33958e-09, 2.66409e-12, 8.33958e-09, 1, -4.45549e-05, 1.60075, -0.00340771)
 
 [node name="Sword" parent="Character/Armature_004/GeneralSkeleton" index="4" node_paths=PackedStringArray("entity") instance=ExtResource("3_frnup")]
 transform = Transform3D(7.54791e-07, -1, -8.41021e-05, 5.5829e-07, 8.41021e-05, -1, 1, 7.54744e-07, 5.58354e-07, -0.737829, 1.43565, -0.0617133)
