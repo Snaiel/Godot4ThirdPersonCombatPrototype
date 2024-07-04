@@ -45,8 +45,6 @@ func _process(_delta: float) -> void:
 		if not damage_source_entity_in_groups:
 			continue
 		
-		print(_successful_hits)
-		
 		# this damage_source has already successfully gotten a hit in
 		# and so this subsequent detection should be ignored.
 		if _successful_hits.has(damage_source) and \
@@ -77,6 +75,8 @@ func _process(_delta: float) -> void:
 		
 		damage_source_hit.emit(damage_source)
 		_damage_sources_in_hitbox.erase(damage_source)
+		if damage_source.hit_considered():
+			_successful_hits.erase(damage_source)
 
 
 func _on_area_entered(area: Area3D) -> void:

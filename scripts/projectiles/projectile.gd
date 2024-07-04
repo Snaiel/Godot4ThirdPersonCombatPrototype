@@ -18,3 +18,8 @@ func _ready():
 
 func _process(delta: float) -> void:
 	position += direction * speed * delta
+
+
+func hit_considered() -> bool:
+	queue_free()
+	return true

@@ -26,3 +26,8 @@ func _process(_delta):
 
 func get_parried() -> void:
 	parried.emit()
+
+
+func hit_considered() -> bool:
+	# should return whether to its going to free itsself
+	return false
