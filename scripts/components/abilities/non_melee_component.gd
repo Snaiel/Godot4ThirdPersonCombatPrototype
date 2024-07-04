@@ -102,11 +102,11 @@ func _receive_movement(action: NonMeleeAction) -> void:
 	)
 
 
-func _receive_action_effect():
+func _receive_action_effect(_index: int) -> void:
 	pass
 
 
-func _receive_end_effect():
+func _receive_end_effect(_index: int) -> void:
 	pass
 
 

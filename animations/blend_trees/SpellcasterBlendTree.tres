@@ -61,7 +61,7 @@ input_1/reset = true
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_myeho"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_met48"]
-animation = &"movement_animations_1/Idle Inactive"
+animation = &"magic_animations_1/Magic Idle Inactive"
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_4ihs2"]
 
@@ -87,7 +87,7 @@ animation = &"combat_animations_1/Kneel Idle"
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_02gek"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_baww8"]
-animation = &"movement_animations_1/Idle Active"
+animation = &"magic_animations_1/Magic Idle Active"
 
 [sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_0mwvr"]
 xfade_time = 0.3
@@ -230,7 +230,7 @@ sync = true
 animation = &"movement_animations_1/Walk-Forwards"
 
 [resource]
-graph_offset = Vector2(1555.4, 1023.62)
+graph_offset = Vector2(200.858, 510.939)
 "nodes/Big Projectile/node" = ExtResource("1_ehb1b")
 "nodes/Big Projectile/position" = Vector2(2860, 1660)
 "nodes/Big Projectile Copy/node" = ExtResource("1_ehb1b")

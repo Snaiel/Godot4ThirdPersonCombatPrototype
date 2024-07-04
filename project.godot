@@ -132,6 +132,7 @@ exit={
 3d_physics/layer_3="weapon"
 3d_physics/layer_4="enemy"
 3d_physics/layer_5="lock_on"
+3d_physics/layer_6="projectile"
 
 [network]
 

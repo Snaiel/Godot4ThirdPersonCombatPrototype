@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dknx4ugv65pc0"]
+[gd_scene load_steps=24 format=3 uid="uid://dknx4ugv65pc0"]
 
 [ext_resource type="PackedScene" uid="uid://b34rhh2gbadoy" path="res://scenes/entities/enemies/BaseEnemy.tscn" id="1_if71p"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/non_melee/non_melee_animations.gd" id="3_ih2eg"]
@@ -9,10 +9,14 @@
 [ext_resource type="AnimationLibrary" uid="uid://cpdmlmb5om1d3" path="res://animations/combat_animations_1/combat_animations_1.blend" id="6_stn53"]
 [ext_resource type="AnimationLibrary" uid="uid://d1ywvl0gyvm8" path="res://animations/magic_animations_1/magic_animations_1.blend" id="7_ph4i1"]
 [ext_resource type="AnimationLibrary" uid="uid://c6e3lwlt6ukuj" path="res://animations/movement_animations_1/movement_animations_1.blend" id="8_f4207"]
+[ext_resource type="PackedScene" uid="uid://cjqxshxme0ma8" path="res://scenes/projectiles/Projectile.tscn" id="10_1tv5p"]
+[ext_resource type="Script" path="res://scripts/projectiles/small_projectile.gd" id="10_bu2va"]
 [ext_resource type="PackedScene" uid="uid://cryed6dtlo286" path="res://scenes/beehave/set_actions/SetRotateTowardsTargetTrue.tscn" id="10_m7wae"]
 [ext_resource type="PackedScene" uid="uid://b2vrwljrc7cpp" path="res://scenes/beehave/set_actions/SetLockedOnTrue.tscn" id="11_fajlc"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_set.gd" id="12_0318b"]
+[ext_resource type="Script" path="res://scripts/projectiles/sweep_projectile.gd" id="12_ipj62"]
 [ext_resource type="PackedScene" uid="uid://bdnrgdpa3fa5c" path="res://scenes/beehave/wait/Wait.tscn" id="13_ev5sh"]
+[ext_resource type="Script" path="res://scripts/projectiles/energy_beam.gd" id="13_t4d4w"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="14_oclvu"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_compare.gd" id="15_67cyn"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_random.gd" id="16_kn5u8"]
@@ -507,6 +511,21 @@ blackboard = NodePath("../../Blackboard")
 non_melee_animations = NodePath("../../Character/Animations/NonMelee")
 locomotion_component = NodePath("../../LocomotionComponent")
 
+[node name="SmallProjectile" type="Node" parent="Abilities/NonMeleeComponent" index="0" node_paths=PackedStringArray("entity")]
+script = ExtResource("10_bu2va")
+projectile_scene = ExtResource("10_1tv5p")
+entity = NodePath("../../..")
+
+[node name="BigProjectile" type="Node" parent="Abilities/NonMeleeComponent" index="1" node_paths=PackedStringArray("entity")]
+script = ExtResource("12_ipj62")
+projectile_scene = ExtResource("10_1tv5p")
+entity = NodePath("../../..")
+
+[node name="EnergyBeam" type="Node" parent="Abilities/NonMeleeComponent" index="2" node_paths=PackedStringArray("entity")]
+script = ExtResource("13_t4d4w")
+projectile_scene = ExtResource("10_1tv5p")
+entity = NodePath("../../..")
+
 [node name="SetRotateTowardsTargetTrue" parent="BeehaveTree/SelectorComposite/Aggro" index="2" instance=ExtResource("10_m7wae")]
 
 [node name="SetLockedOnTrue" parent="BeehaveTree/SelectorComposite/Aggro" index="3" instance=ExtResource("11_fajlc")]
@@ -517,7 +536,7 @@ key = "\"can_perform_action\""
 value = "true"
 
 [node name="Wait" parent="BeehaveTree/SelectorComposite/Aggro" index="5" instance=ExtResource("13_ev5sh")]
-time = 2.0
+time = 4.0
 reset_wait_after = true
 wait_id = 35573601
 
@@ -533,7 +552,7 @@ right_operand = "true"
 script = ExtResource("15_67cyn")
 left_operand = "get_value(\"target_dist\")"
 operator = 3
-right_operand = "10"
+right_operand = "20"
 
 [node name="IsPerceivesPlayerTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/CastSpell" index="2"]
 script = ExtResource("15_67cyn")

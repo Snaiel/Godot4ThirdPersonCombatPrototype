@@ -4,8 +4,8 @@ extends BaseAnimations
 
 signal can_rotate(flag: bool)
 signal secondary_movement(action: NonMeleeAction)
-signal action_effect
-signal end_effect
+signal action_effect(index: int)
+signal end_effect(index: int)
 signal can_perform_again(flag: bool)
 signal can_play_animation
 signal animation_finished
@@ -87,11 +87,11 @@ func receive_secondary_movement() -> void:
 
 
 func receive_action_effect() -> void:
-	action_effect.emit()
+	action_effect.emit(_level)
 
 
 func receive_end_effect() -> void:
-	end_effect.emit()
+	end_effect.emit(_level)
 
 
 func receive_can_perform_again() -> void:

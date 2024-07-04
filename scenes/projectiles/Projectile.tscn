@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjqxshxme0ma8"]
+
+[ext_resource type="Script" path="res://scripts/projectiles/projectile.gd" id="1_u5txg"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5nhf5"]
+radius = 0.2
+
+[sub_resource type="SphereMesh" id="SphereMesh_bqy7v"]
+radius = 0.2
+height = 0.4
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_yrgpe"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.3
+
+[node name="Projectile" type="Area3D"]
+collision_layer = 32
+collision_mask = 11
+script = ExtResource("1_u5txg")
+speed = 10.0
+
+[node name="Collider" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_5nhf5")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_bqy7v")
+
+[node name="Mesh2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.194818)
+mesh = SubResource("CylinderMesh_yrgpe")
+skeleton = NodePath("../Mesh")
