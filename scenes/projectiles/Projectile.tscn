@@ -14,17 +14,22 @@ top_radius = 0.1
 bottom_radius = 0.1
 height = 0.3
 
-[node name="Projectile" type="Area3D"]
-collision_layer = 32
-collision_mask = 11
+[node name="Projectile" type="Node3D"]
 script = ExtResource("1_u5txg")
-speed = 10.0
+damage = 5.0
+knockback = 1.0
+can_damage = true
 
-[node name="Collider" type="CollisionShape3D" parent="."]
+[node name="Area" type="Area3D" parent="." groups=["damage_source"]]
+collision_layer = 36
+collision_mask = 11
+
+[node name="Collider" type="CollisionShape3D" parent="Area"]
 shape = SubResource("SphereShape3D_5nhf5")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_bqy7v")
+skeleton = NodePath("../Area")
 
 [node name="Mesh2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.194818)

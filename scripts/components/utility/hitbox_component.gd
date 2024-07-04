@@ -11,7 +11,7 @@ signal damage_source_hit(source: DamageSource)
 
 var _damage_sources_in_hitbox: Array[DamageSource] = []
 
-# DamageSource as key, wepaon.instance as value
+# DamageSource as key, damage_source.instance as value
 var _successful_hits: Dictionary
 
 @onready var dizzy_system: DizzySystem = Globals.dizzy_system

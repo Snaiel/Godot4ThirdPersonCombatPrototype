@@ -1,5 +1,5 @@
 class_name DamageSource
-extends BoneAttachment3D
+extends Node3D
 
 
 signal parried

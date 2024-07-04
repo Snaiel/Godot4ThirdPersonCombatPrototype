@@ -424,25 +424,15 @@ _data = {
 debug = true
 
 [node name="GeneralSkeleton" parent="Character/Armature_004" index="0"]
-bones/8/rotation = Quaternion(0.500032, 0.499969, 0.500032, -0.499968)
-bones/10/rotation = Quaternion(-4.21468e-08, -0.707107, 0, 0.707107)
-bones/11/rotation = Quaternion(-7.10043e-09, 0.707107, -7.10043e-09, 0.707107)
 bones/12/rotation = Quaternion(-0.074107, -0.0132345, 0.0666707, 0.994931)
-bones/13/rotation = Quaternion(-0.214187, 0.673887, 0.214187, 0.673887)
-bones/14/rotation = Quaternion(-4.47035e-08, 2.98023e-08, 4.44089e-16, 1)
 bones/16/rotation = Quaternion(-0.0932844, 0.114881, 0.0215377, 0.988755)
 bones/20/rotation = Quaternion(0.00617206, 0.0741798, 0.00405508, 0.997218)
 bones/24/rotation = Quaternion(0.137452, 0.0492687, -0.0329413, 0.988734)
-bones/34/rotation = Quaternion(-4.21468e-08, 0.707107, 0, 0.707107)
-bones/35/rotation = Quaternion(-2.81893e-08, -0.707107, -1.39575e-08, 0.707107)
 bones/36/rotation = Quaternion(-0.0946599, 0.00543667, -0.0860102, 0.991772)
-bones/37/rotation = Quaternion(-0.214187, -0.673887, -0.214187, 0.673887)
 bones/40/rotation = Quaternion(-0.0951366, -0.156542, -0.110701, 0.976826)
 bones/44/rotation = Quaternion(-0.0400209, -0.0371465, -0.0187036, 0.998333)
 bones/48/rotation = Quaternion(0.0553964, 0.0652089, 0.094565, 0.991835)
 bones/52/rotation = Quaternion(0.0790353, 0.174582, 0.169442, 0.966728)
-bones/58/rotation = Quaternion(-1.20905e-09, 0.707107, -0.707107, 2.41295e-09)
-bones/63/rotation = Quaternion(1.60006e-09, 0.707107, -0.707107, -3.75576e-10)
 
 [node name="Alpha_Surface" parent="Character/Armature_004/GeneralSkeleton" index="1"]
 surface_material_override/0 = SubResource("ShaderMaterial_me5f0")

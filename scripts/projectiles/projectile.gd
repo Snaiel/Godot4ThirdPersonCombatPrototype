@@ -1,18 +1,19 @@
 class_name Projectile
-extends Area3D
+extends DamageSource
 
 
 @export var speed: float = 2
 
-var entity: Node
 var direction: Vector3 = Vector3.FORWARD
+
+@onready var area: Area3D = $Area 
 
 
 func _ready():
-	body_entered.connect(
+	area.body_entered.connect(
 		func(body: Node) -> void:
 			if body == entity: return
-			queue_free()
+			#queue_free()
 	)
 
 func _process(delta: float) -> void:
