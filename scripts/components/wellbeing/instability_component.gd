@@ -9,8 +9,8 @@ signal full_instability
 @export_category("Configuration")
 @export var enabled: bool = true
 @export var hitbox: HitboxComponent
-@export var weapons: Array[Weapon]
-@export var receive_weapon_parried: bool = true
+@export var weapons: Array[DamageSource]
+@export var instability_when_parried: bool = true
 
 @export_category("Instability")
 @export var max_instability: float = 50.0
@@ -43,12 +43,8 @@ func _ready():
 	for weapon in weapons:
 		weapon.parried.connect(
 			func():
-				if not enabled:
-					return
-				
-				if not receive_weapon_parried:
-					return
-				
+				if not enabled: return
+				if not instability_when_parried: return
 				increment_instability(35, true)
 		)
 

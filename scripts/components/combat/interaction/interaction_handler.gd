@@ -5,5 +5,5 @@ extends Node
 signal interaction
 
 
-func handle_interaction(_incoming_weapon: Weapon) -> bool:
+func handle_interaction(_incoming_damage_source: DamageSource) -> bool:
 	return true

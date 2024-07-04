@@ -10,7 +10,7 @@ extends InteractionHandler
 @export var instability_component: InstabilityComponent
 
 
-func handle_interaction(incoming_weapon: Weapon) -> bool:
+func handle_interaction(incoming_damage_source: DamageSource) -> bool:
 	interaction.emit()
 	
 	parry_component.in_parry_window = true
@@ -18,7 +18,7 @@ func handle_interaction(incoming_weapon: Weapon) -> bool:
 	parry_animations.parry()
 	block_component.anim.play("parried")
 	instability_component.process_parry()
-	incoming_weapon.parry_weapon()
+	incoming_damage_source.get_parried()
 	if parry_sfx: parry_sfx.play()
 	
 	return true

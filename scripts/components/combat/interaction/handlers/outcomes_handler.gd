@@ -24,14 +24,14 @@ func _ready() -> void:
 	)
 
 
-func handle_interaction(incoming_weapon: Weapon) -> bool:
+func handle_interaction(incoming_damage_source: DamageSource) -> bool:
 	interaction.emit()
 	
 	blackboard.set_value("interrupt_timers", true)
 	blackboard.set_value("can_attack", false)
 	blackboard.set_value("attack", false)
 	
-	locomotion_component.knockback(incoming_weapon.entity.global_position)
+	locomotion_component.knockback(incoming_damage_source.entity.global_position)
 	notice_component.transition_to_aggro()
 	
 	var rng: float = RandomNumberGenerator.new().randf() * _total_weight
@@ -50,6 +50,6 @@ func handle_interaction(incoming_weapon: Weapon) -> bool:
 			break
 	
 	var handler: InteractionHandler = get_child(which_outcome)
-	handler.handle_interaction(incoming_weapon) 
+	handler.handle_interaction(incoming_damage_source) 
 	
 	return true

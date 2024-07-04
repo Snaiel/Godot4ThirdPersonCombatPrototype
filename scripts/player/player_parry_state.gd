@@ -9,11 +9,11 @@ extends PlayerStateMachine
 func _ready():
 	super._ready()
 	
-	player.hitbox_component.weapon_hit.connect(
-		func(incoming_weapon: Weapon):
+	player.hitbox_component.damage_source_hit.connect(
+		func(incoming_damage_source: DamageSource):
 			if parent_state.current_state == self:
 				player.locomotion_component.knockback(
-					incoming_weapon.entity.global_position
+					incoming_damage_source.entity.global_position
 				)
 	)
 

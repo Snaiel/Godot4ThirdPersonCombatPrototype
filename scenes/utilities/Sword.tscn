@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://b78ctcv6lulvi"]
 
-[ext_resource type="Script" path="res://scripts/entities/weapon.gd" id="1_bx4em"]
+[ext_resource type="Script" path="res://scripts/utilities/damage_source.gd" id="1_iykgl"]
 [ext_resource type="Shader" path="res://shaders/fade.gdshader" id="2_fbolq"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_dg00e"]
@@ -26,7 +26,7 @@ radius = 0.02
 transform = Transform3D(0, -1, 0, 0, 0, -1, 1, 0, 0, -0.734268, 1.43559, -0.0641424)
 bone_name = "RightHand"
 bone_idx = 35
-script = ExtResource("1_bx4em")
+script = ExtResource("1_iykgl")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.891467, -0.453089, -3.91618e-05, 0.453089, -0.891468, -0.000158824, 3.70497e-05, -0.00015933, 1, 0.168411, 0.443186, 0.0233156)
@@ -34,7 +34,7 @@ layers = 2
 mesh = SubResource("CylinderMesh_dg00e")
 surface_material_override/0 = SubResource("ShaderMaterial_5w3p4")
 
-[node name="Area" type="Area3D" parent="." groups=["weapon"]]
+[node name="Area" type="Area3D" parent="." groups=["damage_source"]]
 transform = Transform3D(1, 0, 0, 0, 1, 4.70233e-13, 0, 4.70233e-13, 1, 0, 0, 0)
 collision_layer = 4
 collision_mask = 8

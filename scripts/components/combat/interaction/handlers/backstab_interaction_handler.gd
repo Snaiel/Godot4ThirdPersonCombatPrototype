@@ -7,14 +7,14 @@ extends InteractionHandler
 @export var locomotion_component: LocomotionComponent
 
 
-func handle_interaction(incoming_weapon: Weapon) -> bool:
+func handle_interaction(incoming_damage_source: DamageSource) -> bool:
 	if Globals.backstab_system.backstab_victim != backstab_component:
 		return false
 	
 	interaction.emit()
 	
 	backstab_component.process_hit()
-	health_component.damage_from_weapon(incoming_weapon)
-	locomotion_component.knockback(incoming_weapon.entity.global_position)
+	health_component.incoming_damage(incoming_damage_source)
+	locomotion_component.knockback(incoming_damage_source.entity.global_position)
 	
 	return true

@@ -72,7 +72,7 @@ func _process(_delta):
 		return
 
 
-func process_hit(weapon: Weapon):
+func process_hit(weapon: DamageSource):
 	if dizzy_system.dizzy_victim == self and weapon.entity == player:
 		locomotion_component.set_active_strategy("root_motion")
 		health_component.deal_max_damage = true

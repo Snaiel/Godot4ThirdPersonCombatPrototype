@@ -20,7 +20,7 @@ extends CharacterBody3D
 @export var health_charge_component: HealthChargeComponent
 
 @export_category("Character")
-@export var weapon: Weapon
+@export var weapon: DamageSource
 @export var lock_on_attachment_point: Node3D
 
 @export_category("Audio")
@@ -44,7 +44,7 @@ var _holding_down_run_timer: Timer
 
 
 func _ready() -> void:
-	hitbox_component.weapon_hit.connect(_on_hitbox_component_weapon_hit)
+	hitbox_component.damage_source_hit.connect(_on_hitbox_component_damage_source_hit)
 	
 	melee_component.can_rotate.connect(
 		func(flag: bool):
@@ -155,11 +155,11 @@ func _on_lock_on_system_lock_on(target: LockOnComponent) -> void:
 	lock_on_target = target
 
 
-func _on_hitbox_component_weapon_hit(incoming_weapon: Weapon) -> void:
+func _on_hitbox_component_damage_source_hit(incoming_damage_source: DamageSource) -> void:
 	if state_machine.current_state is PlayerParryState or \
 	state_machine.current_state is PlayerParriedEnemyHitState or \
 	state_machine.current_state is PlayerBlockState:
 		return
 	
-	health_component.damage_from_weapon(incoming_weapon)
+	health_component.incoming_damage(incoming_damage_source)
 	instability_component.process_hit()

@@ -10,11 +10,11 @@ extends InteractionHandler
 @export var hit_sfx: AudioStreamPlayer3D
 
 
-func handle_interaction(incoming_weapon: Weapon) -> bool:
+func handle_interaction(incoming_damage_source: DamageSource) -> bool:
 	interaction.emit()
 	
 	blackboard.set_value("got_hit", true)
-	health_component.damage_from_weapon(incoming_weapon)
+	health_component.incoming_damage(incoming_damage_source)
 	instability_component.process_hit()
 	hit_and_death_animations.hit()
 	if hit_sfx: hit_sfx.play()

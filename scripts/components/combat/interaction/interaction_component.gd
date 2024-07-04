@@ -6,11 +6,11 @@ extends Node
 
 
 func _ready() -> void:
-	hitbox_component.weapon_hit.connect(_handle_incoming_weapon)
+	hitbox_component.damage_source_hit.connect(_handle_incoming_damage_source)
 
 
-func _handle_incoming_weapon(incoming_weapon: Weapon) -> void:
+func _handle_incoming_damage_source(incoming_damage_source: DamageSource) -> void:
 	for child in get_children():
 		var handler: InteractionHandler = child
-		if handler.handle_interaction(incoming_weapon):
+		if handler.handle_interaction(incoming_damage_source):
 			return

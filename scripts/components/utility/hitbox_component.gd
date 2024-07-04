@@ -2,55 +2,55 @@ class_name HitboxComponent
 extends Area3D
 
 
-signal weapon_hit(weapon: Weapon)
+signal damage_source_hit(source: DamageSource)
 
 @export var debug: bool = false
 @export var entity: CharacterBody3D
 @export var enabled: bool = true
 @export var groups: Array[String]
 
-var _weapons_in_hitbox: Array[Weapon] = []
+var _damage_sources_in_hitbox: Array[DamageSource] = []
 
-# Weapon as key, wepaon.melee_component.instance as value
+# DamageSource as key, wepaon.instance as value
 var _successful_hits: Dictionary
 
 @onready var dizzy_system: DizzySystem = Globals.dizzy_system
 
 
 func _process(_delta: float) -> void:
-#	if debug: print(_weapons_in_hitbox)
+#	if debug: print(_damage_sources_in_hitbox)
 	
 	if not enabled:
 		return
 	
-	if len(_weapons_in_hitbox) == 0:
+	if len(_damage_sources_in_hitbox) == 0:
 		return
 	
-	for weapon in _weapons_in_hitbox:
-		if not weapon.can_damage:
+	for damage_source in _damage_sources_in_hitbox:
+		if not damage_source.can_damage:
 			continue
 		
-		# dont detect the weapon of the owner of this hitbox
-		if weapon.entity == entity:
+		# dont detect the damage_source of the owner of this hitbox
+		if damage_source.entity == entity:
 			continue
 		
 		# ignore entities not in the specified groups
-		var weapon_entity_in_groups: bool = false
+		var damage_source_entity_in_groups: bool = false
 		for group in groups:
-			if weapon_entity_in_groups:
+			if damage_source_entity_in_groups:
 				break
-			elif weapon.entity.is_in_group(group):
-				weapon_entity_in_groups = true
+			elif damage_source.entity.is_in_group(group):
+				damage_source_entity_in_groups = true
 		
-		if not weapon_entity_in_groups:
+		if not damage_source_entity_in_groups:
 			continue
 		
 		print(_successful_hits)
 		
-		# this weapon has already successfully gotten a hit in
+		# this damage_source has already successfully gotten a hit in
 		# and so this subsequent detection should be ignored.
-		if _successful_hits.has(weapon) and \
-		weapon.melee_component.instance == _successful_hits[weapon]:
+		if _successful_hits.has(damage_source) and \
+		damage_source.instance == _successful_hits[damage_source]:
 			continue
 		
 		# if an entity is being finished while it is
@@ -67,26 +67,26 @@ func _process(_delta: float) -> void:
 				dizzy_system.saved_victim.entity != entity
 			)
 		) and \
-		weapon.entity == Globals.player:
+		damage_source.entity == Globals.player:
 			continue
 		
-		prints("HIT", entity, weapon, weapon.melee_component.instance)
+		prints("HIT", entity, damage_source, damage_source.instance)
 		
-		_successful_hits[weapon] = weapon.melee_component.instance
+		_successful_hits[damage_source] = damage_source.instance
 		print(_successful_hits)
 		
-		weapon_hit.emit(weapon)
-		_weapons_in_hitbox.erase(weapon)
+		damage_source_hit.emit(damage_source)
+		_damage_sources_in_hitbox.erase(damage_source)
 
 
 func _on_area_entered(area: Area3D) -> void:
-	if area.is_in_group("weapon") and area.get_parent() not in _weapons_in_hitbox:
-		var weapon: Weapon = area.get_parent()
-		_weapons_in_hitbox.append(weapon)
+	if area.is_in_group("damage_source") and area.get_parent() not in _damage_sources_in_hitbox:
+		var damage_source: DamageSource = area.get_parent()
+		_damage_sources_in_hitbox.append(damage_source)
 
 
 func _on_area_exited(area: Area3D) -> void:
-	if area.is_in_group("weapon"):
-		var weapon: Weapon = area.get_parent()
-		if weapon in _weapons_in_hitbox:
-			_weapons_in_hitbox.erase(weapon)
+	if area.is_in_group("damage_source"):
+		var damage_source: DamageSource = area.get_parent()
+		if damage_source in _damage_sources_in_hitbox:
+			_damage_sources_in_hitbox.erase(damage_source)

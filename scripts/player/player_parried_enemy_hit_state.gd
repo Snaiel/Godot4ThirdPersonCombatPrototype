@@ -11,7 +11,7 @@ extends PlayerStateMachine
 
 @export var sfx: AudioStreamPlayer3D
 
-var _incoming_weapon: Weapon
+var _incoming_damage_source: DamageSource
 
 var _timer: Timer
 var _timer_length: float = 0.5
@@ -21,8 +21,8 @@ func _ready():
 	super._ready()
 	
 	player.parry_component.parried_incoming_hit.connect(
-		func(incoming_weapon: Weapon):
-			_incoming_weapon = incoming_weapon
+		func(incoming_damage_source: DamageSource):
+			_incoming_damage_source = incoming_damage_source
 			if Globals.dizzy_system.dizzy_victim == null:
 				parent_state.change_state(self)
 	)
@@ -50,10 +50,10 @@ func enter():
 	player.character.parry_animations.parry()
 	player.block_component.anim.stop()
 	player.block_component.anim.play("parried")
-	_incoming_weapon.parry_weapon()
+	_incoming_damage_source.get_parried()
 	if not player.dizzy_system.dizzy_victim:
 		player.locomotion_component.knockback(
-			_incoming_weapon.entity.global_position
+			_incoming_damage_source.entity.global_position
 		)
 	
 	sfx.play()

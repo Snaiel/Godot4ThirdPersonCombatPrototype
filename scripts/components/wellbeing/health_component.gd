@@ -33,18 +33,18 @@ func is_alive() -> bool:
 	return health > 0
 
 
-func damage_from_weapon(weapon: Weapon) -> void:
+func incoming_damage(source: DamageSource) -> void:
 	if not enabled:
 		return
 	
 	if blood_scene:
 		var blood_particle: GPUParticles3D = blood_scene.instantiate()
 		add_child(blood_particle)
-		blood_particle.look_at(weapon.global_position)
+		blood_particle.look_at(source.global_position)
 		blood_particle.rotate_y(PI)
 		blood_particle.restart()
 	
-	decrement_health(weapon.damage)
+	decrement_health(source.damage)
 
 
 func decrement_health(amount: float) -> void:

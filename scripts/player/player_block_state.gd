@@ -28,13 +28,13 @@ func _ready():
 	)
 	add_child(_pause_before_reducing_instability_timer)
 	
-	player.hitbox_component.weapon_hit.connect(
-		func(incoming_weapon: Weapon):
+	player.hitbox_component.damage_source_hit.connect(
+		func(incoming_damage_source: DamageSource):
 			if parent_state.current_state != self:
 				return
 			
 			player.locomotion_component.knockback(
-				incoming_weapon.entity.global_position
+				incoming_damage_source.entity.global_position
 			)
 			
 			_can_reduce_instability = false

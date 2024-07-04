@@ -8,7 +8,7 @@ extends PlayerStateMachine
 
 @export var sfx: AudioStreamPlayer3D
 
-var _incoming_weapon: Weapon
+var _incoming_damage_source: DamageSource
 
 var _can_block_or_parry: bool = false
 
@@ -21,12 +21,12 @@ var _pressed_attack: bool = false
 func _ready():
 	super._ready()
 	
-	player.hitbox_component.weapon_hit.connect(
-		func(incoming_weapon: Weapon):
+	player.hitbox_component.damage_source_hit.connect(
+		func(incoming_damage_source: DamageSource):
 			if not parent_state.current_state is PlayerParriedEnemyHitState and \
 			not parent_state.current_state is PlayerParryState and \
 			not parent_state.current_state is PlayerBlockState:
-				_incoming_weapon = incoming_weapon
+				_incoming_damage_source = incoming_damage_source
 				parent_state.change_state(self)
 	)
 	
@@ -49,7 +49,7 @@ func enter():
 	
 	player.locomotion_component.can_move = false
 	player.locomotion_component.knockback(
-		_incoming_weapon.entity.global_position
+		_incoming_damage_source.entity.global_position
 	)
 	player.character.hit_and_death_animations.hit()
 	player.melee_component.interrupt_attack()

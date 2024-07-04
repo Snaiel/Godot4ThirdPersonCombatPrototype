@@ -9,7 +9,7 @@ extends InteractionHandler
 @export var block_sfx: AudioStreamPlayer3D
 
 
-func handle_interaction(_incoming_weapon: Weapon) -> bool:
+func handle_interaction(_incoming_damage_source: DamageSource) -> bool:
 	interaction.emit()
 	
 	block_component.blocking = true
