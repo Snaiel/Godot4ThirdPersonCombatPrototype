@@ -36,6 +36,10 @@ func shoot(pos: Vector3, offset: Vector3, target_pos: Vector3) -> void:
 	projectile.entity = entity
 	add_child(projectile)
 	
+	projectile.parried.connect(
+		entity.instability_component.got_parried.bind(20)
+	)
+	
 	projectile.speed = 5
 	
 	var dir: Vector3 = entity\

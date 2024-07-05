@@ -41,17 +41,18 @@ func _ready():
 	add_child(_instability_reduction_pause_timer)
 	
 	for weapon in weapons:
-		weapon.parried.connect(
-			func():
-				if not enabled: return
-				if not instability_when_parried: return
-				increment_instability(35, true)
-		)
+		weapon.parried.connect(got_parried.bind(35))
 
 
 func _physics_process(_delta):
 	if _reduce_instability and can_reduce_instability:
 		instability -= reduction_rate * _delta
+
+
+func got_parried(amount: float) -> void:
+	if not enabled: return
+	if not instability_when_parried: return
+	increment_instability(amount, true)
 
 
 func come_out_of_full_instability(multiplier: float) -> void:

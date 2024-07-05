@@ -9,6 +9,10 @@ func effect() -> void:
 	projectile.entity = entity
 	add_child(projectile)
 	
+	projectile.parried.connect(
+		entity.instability_component.got_parried.bind(35)
+	)
+	
 	projectile.speed = 20
 	
 	projectile.global_position = entity\

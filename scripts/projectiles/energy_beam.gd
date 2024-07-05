@@ -33,6 +33,10 @@ func shoot() -> void:
 	projectile.entity = entity
 	add_child(projectile)
 	
+	projectile.parried.connect(
+		entity.instability_component.got_parried.bind(15)
+	)
+	
 	projectile.speed = 15
 	
 	projectile.global_position = entity\
