@@ -7,11 +7,6 @@ signal dead
 
 @export var debug: bool = false
 
-@export_category("Incoming DamageSource Hit Weights")
-@export var hit_weight: float = 0.4
-@export var block_weight: float = 0.4
-@export var parry_weight: float = 0.2
-
 @export_category("Utility")
 @export var character: CharacterAnimations
 @export var hitbox_component: HitboxComponent

@@ -4,11 +4,14 @@ extends MeleeComponent
 
 @export var entity: Enemy
 @export var blackboard: Blackboard
+@export var outcomes_handler: OutcomesInteractionHandler
 
 
 func _ready():
 	super()
 	entity.dead.connect(set_can_damage_of_all_weapons.bind(false))
+	outcomes_handler.interaction.connect(interrupt_attack)
+
 
 func _process(_delta: float) -> void:
 	if blackboard.get_value("can_attack", false) and blackboard.get_value("attack", false):
