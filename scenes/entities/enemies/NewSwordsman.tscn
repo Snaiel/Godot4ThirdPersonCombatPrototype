@@ -72,29 +72,87 @@ stream_0/stream = ExtResource("14_826dm")
 stream_0/weight = 1.0
 
 [node name="Swordsman" instance=ExtResource("1_mc312")]
+debug = true
+
+[node name="Character" parent="." index="0"]
+debug = true
 
 [node name="GeneralSkeleton" parent="Character/Armature_004" index="0"]
-bones/12/rotation = Quaternion(-0.0916109, 0.0960743, -0.0539683, 0.989679)
-bones/16/rotation = Quaternion(0.255734, -0.0158478, 0.030775, 0.966127)
-bones/20/rotation = Quaternion(0.260783, -0.00603721, -0.00891706, 0.965338)
-bones/24/rotation = Quaternion(0.281692, -0.00498191, -0.0169056, 0.959343)
-bones/36/rotation = Quaternion(0.178976, -0.098394, 0.059281, 0.977124)
-bones/40/rotation = Quaternion(0.576473, -0.00316178, 0.0747119, 0.813688)
-bones/44/rotation = Quaternion(0.590048, 5.37187e-05, 0.0718343, 0.804166)
-bones/48/rotation = Quaternion(0.590849, 0.00424349, 0.0662239, 0.804048)
-bones/52/rotation = Quaternion(0.557745, 0.00959263, 0.0536825, 0.828219)
+bones/1/position = Vector3(5.51687e-05, 0.365759, -3.60042e-08)
+bones/1/rotation = Quaternion(0.102635, -0.0818113, 0.0279639, 0.990955)
+bones/2/rotation = Quaternion(0.153232, -0.00612388, -0.0226654, 0.987911)
+bones/3/rotation = Quaternion(0.0232132, -0.00158815, -0.00132794, 0.999729)
+bones/4/rotation = Quaternion(0.0232152, -0.00173526, -0.00125477, 0.999728)
+bones/5/rotation = Quaternion(-0.03181, 0.00421077, 0.00131987, 0.999484)
+bones/6/rotation = Quaternion(-0.253916, 0.0396397, -0.0256934, 0.966072)
+bones/8/rotation = Quaternion(0.459265, 0.498936, 0.621821, -0.391762)
+bones/9/rotation = Quaternion(0.0977496, 0.783752, -0.610864, -0.0549856)
+bones/10/rotation = Quaternion(0.438617, -0.55463, 0.438617, 0.554631)
+bones/11/rotation = Quaternion(0.114751, 0.798692, -0.415719, 0.419644)
+bones/12/rotation = Quaternion(-0.088691, -0.120656, -0.0303963, 0.988257)
+bones/13/rotation = Quaternion(-0.0594327, 0.815903, 0.0168131, 0.574881)
+bones/14/rotation = Quaternion(0.00383492, 0.0133354, -0.130563, 0.991343)
+bones/15/rotation = Quaternion(0, -5.96047e-08, 5.96047e-08, 1)
+bones/16/rotation = Quaternion(0.0676227, -0.00179513, -0.0130727, 0.997624)
+bones/17/rotation = Quaternion(-2.98023e-08, -2.98023e-08, 2.98023e-08, 1)
+bones/18/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
+bones/19/rotation = Quaternion(-2.98023e-08, -5.96046e-08, -2.98023e-08, 1)
+bones/20/rotation = Quaternion(0.133228, -0.00259592, -0.0311317, 0.990593)
+bones/21/rotation = Quaternion(0.277801, -1.78814e-07, -0.0284681, 0.960217)
+bones/22/rotation = Quaternion(0.000182614, 7.45058e-08, -1.86563e-05, 1)
+bones/23/rotation = Quaternion(-1.49012e-08, 1.49012e-08, 1.49012e-08, 1)
+bones/24/rotation = Quaternion(0.200967, 0.00256567, -0.0703925, 0.977062)
+bones/25/rotation = Quaternion(0.328694, -3.27826e-07, -0.0336833, 0.943835)
+bones/26/rotation = Quaternion(0.000263348, -1.49012e-08, -2.67625e-05, 1)
+bones/27/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
+bones/28/rotation = Quaternion(0.230111, 0.00834949, -0.0954186, 0.968439)
+bones/29/rotation = Quaternion(0.359226, -2.68221e-07, -0.0368123, 0.932524)
+bones/30/rotation = Quaternion(2.92808e-05, -1.49012e-08, -2.98023e-06, 1)
+bones/31/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
+bones/32/rotation = Quaternion(0.46016, -0.499816, -0.604758, -0.415578)
+bones/33/rotation = Quaternion(-0.0950951, 0.775827, -0.623709, 0.00607794)
+bones/34/rotation = Quaternion(0.39595, 0.585853, -0.395949, 0.585853)
+bones/35/rotation = Quaternion(0.0648966, -0.754722, 0.334441, 0.560654)
+bones/36/rotation = Quaternion(-0.20265, 0.0275474, 0.0355379, 0.978218)
+bones/37/rotation = Quaternion(-0.125984, -0.740839, -0.129074, 0.647013)
+bones/38/rotation = Quaternion(0.0538825, -0.0381911, 0.126567, 0.989757)
+bones/39/rotation = Quaternion(2.98023e-08, 5.96046e-08, 8.94069e-08, 1)
+bones/40/rotation = Quaternion(0.16301, -0.0176107, 0.148851, 0.975172)
+bones/41/rotation = Quaternion(0.141203, 8.9407e-08, 0.0115027, 0.989914)
+bones/42/rotation = Quaternion(-1.49012e-08, 0, 1.49012e-08, 1)
+bones/43/rotation = Quaternion(-1.49012e-08, 0, 1.49012e-08, 1)
+bones/44/rotation = Quaternion(0.181875, -0.0135393, 0.121157, 0.975735)
+bones/45/rotation = Quaternion(0.205443, 1.63913e-07, 0.0167356, 0.978526)
+bones/46/rotation = Quaternion(-0.000134736, 5.96047e-08, -1.10269e-05, 1)
+bones/47/rotation = Quaternion(-1.49012e-08, 1.49012e-08, 1.49012e-08, 1)
+bones/48/rotation = Quaternion(0.167974, -0.0142757, 0.129276, 0.977174)
+bones/49/rotation = Quaternion(0.279653, 1.93715e-07, 0.0227808, 0.959831)
+bones/50/rotation = Quaternion(-0.000218078, 2.98023e-08, -1.76579e-05, 1)
+bones/51/rotation = Quaternion(-1.49012e-08, 0, 1.49012e-08, 1)
+bones/52/rotation = Quaternion(0.0922449, -0.00968558, 0.136066, 0.986348)
+bones/53/rotation = Quaternion(0.339125, 2.23517e-07, 0.0276256, 0.940336)
+bones/54/rotation = Quaternion(-2.75821e-05, 5.96047e-08, -2.33948e-06, 1)
+bones/55/rotation = Quaternion(-1.49012e-08, 0, 1.49012e-08, 1)
+bones/56/rotation = Quaternion(-0.0499316, 0.549321, 0.81946, -0.155684)
+bones/57/rotation = Quaternion(-0.0750863, 0.255116, -0.963841, 0.0169783)
+bones/58/rotation = Quaternion(0.0556251, 0.730889, -0.677808, 0.0572997)
+bones/59/rotation = Quaternion(-0.19093, 0.616467, 0.76385, 0.00685288)
+bones/61/rotation = Quaternion(-0.0160922, 0.498795, 0.832919, 0.239144)
+bones/62/rotation = Quaternion(0.0425431, 0.288067, -0.956663, -0.00172871)
+bones/63/rotation = Quaternion(-0.106236, 0.80911, -0.571203, -0.0882191)
+bones/64/rotation = Quaternion(0.115134, 0.92397, 0.0158671, 0.36438)
 
 [node name="Alpha_Surface" parent="Character/Armature_004/GeneralSkeleton" index="1"]
 surface_material_override/0 = SubResource("ShaderMaterial_yud2m")
 
 [node name="LockOnAttachment" parent="Character/Armature_004/GeneralSkeleton" index="2"]
-transform = Transform3D(1, 7.35419e-12, -2.66409e-12, -7.35419e-12, 1, -7.87391e-09, 2.66409e-12, 7.87391e-09, 1, -2.25913e-05, 1.34721, -0.042761)
+transform = Transform3D(0.985962, -0.0823082, -0.14527, -0.0160123, 0.81943, -0.572956, 0.166198, 0.567239, 0.806609, -0.0197987, 0.695154, 0.109749)
 
 [node name="HeadAttachment" parent="Character/Armature_004/GeneralSkeleton" index="3"]
-transform = Transform3D(1, 7.81293e-14, -2.66409e-12, -7.81293e-14, 1, -8.33958e-09, 2.66409e-12, 8.33958e-09, 1, -4.45549e-05, 1.60075, -0.00340771)
+transform = Transform3D(0.996868, 0.0331772, -0.0717842, -0.0357323, 0.998762, -0.0346068, 0.0705472, 0.0370636, 0.99682, -0.045628, 0.885631, 0.280971)
 
 [node name="Sword" parent="Character/Armature_004/GeneralSkeleton" index="4" node_paths=PackedStringArray("entity") instance=ExtResource("3_frnup")]
-transform = Transform3D(7.54791e-07, -1, -8.41021e-05, 5.5829e-07, 8.41021e-05, -1, 1, 7.54744e-07, 5.58354e-07, -0.737829, 1.43565, -0.0617133)
+transform = Transform3D(0.451442, 0.606559, 0.654436, 0.408577, -0.792538, 0.452713, 0.793262, 0.0630134, -0.605611, -0.143189, 0.301114, 0.164421)
 entity = NodePath("../../../..")
 
 [node name="Area" parent="Character/Armature_004/GeneralSkeleton/Sword" index="1"]
@@ -139,6 +197,9 @@ parameters/Blocking/blend_amount = 0
 parameters/Parry/blend_amount = 0
 "parameters/Parry Speed/scale" = 1.0
 "parameters/Parry Trim/seek_request" = -1.0
+
+[node name="DizzyVictim" parent="Character/Animations" index="2"]
+debug = true
 
 [node name="Melee" type="Node" parent="Character/Animations" index="3" node_paths=PackedStringArray("anim_tree")]
 script = ExtResource("4_u07yk")
@@ -220,8 +281,11 @@ hitbox_component = NodePath("../../HitboxComponent")
 block_component = NodePath("../BlockComponent")
 parry_particles_colour = Color(0.439216, 0.0392157, 0.0392157, 1)
 
+[node name="DizzyComponent" parent="Combat" index="0" node_paths=PackedStringArray("melee_component")]
+melee_component = NodePath("../../Abilities/MeleeComponent")
+
 [node name="Outcomes" parent="Combat/InteractionComponent" index="2"]
-outcome_weights = Array[float]([0.0, 0.0, 0.2])
+outcome_weights = Array[float]([1.0, 0.0, 0.0])
 
 [node name="Block" type="Node" parent="Combat/InteractionComponent/Outcomes" index="1" node_paths=PackedStringArray("blackboard", "block_component", "health_component", "instability_component", "block_sfx")]
 script = ExtResource("18_g4go8")
@@ -242,7 +306,11 @@ instability_component = NodePath("../../../../Wellbeing/InstabilityComponent")
 
 [node name="CheckSuspicion" parent="BeehaveTree/SelectorComposite/Suspicious" index="3" instance=ExtResource("20_omyll")]
 
-[node name="AggroTarget" type="Node" parent="BeehaveTree/SelectorComposite/Aggro" index="2"]
+[node name="PrintBruh" type="Node" parent="BeehaveTree/SelectorComposite/Aggro" index="1"]
+script = ExtResource("30_qug18")
+expression_string = "print(\"bruh moment\")"
+
+[node name="AggroTarget" type="Node" parent="BeehaveTree/SelectorComposite/Aggro" index="3"]
 script = ExtResource("21_763qd")
 
 [node name="AlwaysFailDecorator" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget" index="0"]

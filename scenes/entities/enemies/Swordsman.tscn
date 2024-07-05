@@ -249,16 +249,16 @@ parry_particles_colour = Color(0.439216, 0.0392157, 0.0392157, 1)
 
 [node name="Combat" type="Node3D" parent="."]
 
-[node name="DizzyComponent" type="Node3D" parent="Combat" node_paths=PackedStringArray("entity", "locomotion_component", "health_component", "instability_component", "dizzy_victim_animations", "attachment_point", "crosshair", "blackboard", "dizzy_sfx", "thrust_puncture_sfx", "hit_sfx")]
+[node name="DizzyComponent" type="Node3D" parent="Combat" node_paths=PackedStringArray("entity", "locomotion_component", "health_component", "melee_component", "instability_component", "dizzy_victim_animations", "attachment_point", "crosshair", "dizzy_sfx", "thrust_puncture_sfx", "hit_sfx")]
 script = ExtResource("22_cfyy2")
 entity = NodePath("../..")
 locomotion_component = NodePath("../../LocomotionComponent")
 health_component = NodePath("../../Wellbeing/HealthComponent")
+melee_component = NodePath("../../Abilities/MeleeComponent")
 instability_component = NodePath("../../Wellbeing/InstabilityComponent")
 dizzy_victim_animations = NodePath("../../Character/Animations/DizzyVictim")
 attachment_point = NodePath("../../Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint")
 crosshair = NodePath("../../Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint/Crosshair")
-blackboard = NodePath("../../Blackboard")
 dizzy_sfx = NodePath("../../Character/Audio/Dizzy")
 thrust_puncture_sfx = NodePath("../../Character/Audio/ThrustPuncture")
 hit_sfx = NodePath("../../Character/Audio/Hit")

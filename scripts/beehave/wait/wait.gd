@@ -15,7 +15,10 @@ var _waiting: bool = false
 
 func _ready():
 	if not Engine.is_editor_hint():
-		_timer.timeout.connect(_timer_finished)
+		_timer.timeout.connect(
+			func():
+				_finished = true
+		)
 		_timer.wait_time = time
 		_timer.one_shot = true
 		add_child(_timer)
@@ -31,26 +34,27 @@ func _process(_delta):
 ## Executes this node and returns a status code.
 ## This method must be overwritten.
 func tick(_actor: Node, blackboard: Blackboard) -> int:
-	
+	# fail if interrupt_timers in blackboard is true
 	if blackboard.get_value("interrupt_timers", false):
+		_waiting = false
 		return FAILURE
 	
 	if blackboard.get_value("wait_" + str(wait_id), true):
+		# id in blackboard is true. this means start waiting.
 		_finished = false
 		if not _waiting:
 			_waiting = true
 			_timer.start()
 		blackboard.set_value("wait_" + str(wait_id), false)
 	elif not _waiting:
+		# success if id is false and no waiting.
+		# just a failsafe if the _finished flag doesn't work.
 		return SUCCESS
 	
 	if _finished:
+		# timer finished
 		blackboard.set_value("wait_" + str(wait_id), reset_wait_after)
 		_waiting = false
 		return SUCCESS
-	else:
-		return RUNNING
-
-
-func _timer_finished() -> void:
-	_finished = true
+	
+	return RUNNING

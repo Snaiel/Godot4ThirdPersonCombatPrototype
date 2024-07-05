@@ -67,12 +67,10 @@ func _physics_process(_delta: float) -> void:
 	
 	if debug:
 		prints(
-			locomotion_component.speed,
-			blackboard.get_value("attack"),
-			locomotion_component.can_move,
+			blackboard.get_value("interrupt_timers"),
+			blackboard.get_value("dizzy"),
 			blackboard.get_value("can_move"),
-			blackboard.get_value("input_direction"),
-			blackboard.get_value("agent_target_reachable")
+			locomotion_component.desired_velocity
 		)
 	
 	## Target

@@ -9,7 +9,7 @@ extends Node3D
 
 @export_category("Dizzy Lengths")
 @export var dizzy_from_parry_length: float = 2.0
-@export var dizzy_from_damage_length: float = 3.0
+@export var dizzy_from_damage_length: float = 10
 
 @export_category("Components")
 @export var locomotion_component: LocomotionComponent
@@ -21,7 +21,6 @@ extends Node3D
 @export var dizzy_victim_animations: DizzyVictimAnimations
 @export var attachment_point: Node3D
 @export var crosshair: Crosshair
-@export var blackboard: Blackboard
 
 @export_category("Audio")
 @export var dizzy_sfx: AudioStreamPlayer3D
@@ -84,8 +83,9 @@ func process_hit(weapon: DamageSource):
 
 
 func _on_instability_component_full_instability():
-	blackboard.set_value("dizzy", true)
-	blackboard.set_value("interrupt_timers", true)
+	entity.beehave_tree.interrupt()
+	entity.blackboard.set_value("dizzy", true)
+	entity.blackboard.set_value("interrupt_timers", true)
 	
 	_dizzy_timer.stop()
 	_come_out_of_damage_dizzy_timer.stop()
@@ -101,12 +101,12 @@ func _on_instability_component_full_instability():
 		locomotion_component.set_active_strategy("root_motion")
 		dizzy_victim_animations.dizzy_from_parry()
 		_dizzy_timer.start(dizzy_from_parry_length)
-		blackboard.set_value("rotate_towards_target", true)
+		entity.blackboard.set_value("rotate_towards_target", true)
 		_from_parry_knockback()
 	else:
 		dizzy_victim_animations.dizzy_from_damage()
 		_dizzy_timer.start(dizzy_from_damage_length)
-		blackboard.set_value("rotate_towards_target", false)
+		entity.blackboard.set_value("rotate_towards_target", false)
 		entity.look_at(player.global_position)
 		_from_damage_knockback()
 	
@@ -161,6 +161,6 @@ func _come_out_of_dizzy() -> void:
 
 
 func _back_to_normal() -> void:
-	blackboard.set_value("interrupt_timers", false)
-	blackboard.set_value("dizzy", false)
+	entity.blackboard.set_value("interrupt_timers", false)
+	entity.blackboard.set_value("dizzy", false)
 	locomotion_component.set_active_strategy("programmatic")

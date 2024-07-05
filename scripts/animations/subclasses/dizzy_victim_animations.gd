@@ -41,12 +41,17 @@ func _physics_process(_delta):
 	)
 
 
+# Call this function to play the dizzy animation
+# if caused by a parry. Should be the standing up
+# dizzy animation.
 func dizzy_from_parry() -> void:
 	_dizzy_from_parry = true
 	anim_tree.set(&"parameters/Dizzy Which One/transition_request", &"from_parry")
 	_blend_dizzy = true
 
 
+# Call this function to play the dizzy animation
+# if caused by damage. Should come to a kneel.
 func dizzy_from_damage() -> void:
 	_dizzy_from_parry = false
 	_ignore_finish_standing_up = true
@@ -58,7 +63,11 @@ func dizzy_from_damage() -> void:
 	_blend_dizzy = true
 
 
+# Call this to come out of dizzy.
+# From parry will just blend out.
+# From damage needs to stand back up again.
 func disable_blend_dizzy() -> void:
+	
 	if _dizzy_from_parry:
 		_blend_dizzy = false
 	else:
@@ -66,16 +75,22 @@ func disable_blend_dizzy() -> void:
 		anim_tree.set(&"parameters/Dizzy From Damage/transition_request", &"to_stand")
 
 
+# Just a keyframe call from the animation track
+# to signfiy that the stand to kneel animation has
+# reached the point where they are kneeling so you
+# can transition to the kneel idle loop.
 func receive_now_kneeling() -> void:
-	if _ignore_receive_kneel:
-		return
-
+	if _ignore_receive_kneel: return
 	_ignore_finish_standing_up = false
 	
 	anim_tree.set(&"parameters/Dizzy Kneeling Speed/scale", 0.0)
+	anim_tree.set(&"parameters/Kneeling Idle Speed/scale", 0.2)
 	anim_tree.set(&"parameters/Dizzy From Damage/transition_request", &"kneel")
 
 
+# Animation track keyframe call to signify that
+# it is now standing after playing the sit to
+# stand animatino.
 func receive_finished_standing_up() -> void:
 	if _ignore_finish_standing_up:
 		return
@@ -83,6 +98,9 @@ func receive_finished_standing_up() -> void:
 	_blend_dizzy = false
 
 
+# Called when the the kneeling idle is already playing
+# and the entity got hit which should play the animation
+# where they die from this kneeling position.
 func play_death_kneeling() -> void:
 	_ignore_receive_kneel = true
 	
