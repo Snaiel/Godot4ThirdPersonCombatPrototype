@@ -23,8 +23,8 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	var _input_direction: Vector3 = blackboard.get_value("input_direction", Vector3.ZERO)
-	var _can_move: bool = locomotion_component.can_move
-	var _velocity: Vector3 = locomotion_component.desired_velocity
+	#var _can_move: bool = locomotion_component.can_move
+	#var _velocity: Vector3 = locomotion_component.desired_velocity
 
 #	print(_blackboard.has_value("rotate_towards_target"))
 	move_direction = _input_direction
