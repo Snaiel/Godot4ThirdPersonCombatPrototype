@@ -78,8 +78,8 @@ func process_player():
 	else:
 		player.rotation_component.rotate_towards_target = false
 
+
 func exit():
-	player.block_component.blocking = false
 	_pause_before_reducing_instability_timer.stop()
-	
+	player.block_component.blocking = false
 	blocking_sfx.stop()

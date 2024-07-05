@@ -13,7 +13,7 @@ var blocking: bool = false:
 
 var _particles: GPUParticles3D
 
-@onready var _mesh: MeshInstance3D = $Mesh
+@onready var mesh: MeshInstance3D = $Mesh
 @onready var anim: AnimationPlayer = $AnimationPlayer
 
 
@@ -28,14 +28,14 @@ func _physics_process(_delta: float) -> void:
 	if blocking:
 		if entity.is_on_floor():
 			locomotion_component.speed = walk_speed_while_blocking
-		_mesh.transparency = lerp(
-			_mesh.transparency,
+		mesh.transparency = lerp(
+			mesh.transparency,
 			transparency,
 			0.2
 		)
 	elif not anim.is_playing():
-		_mesh.transparency = lerp(
-			_mesh.transparency,
+		mesh.transparency = lerp(
+			mesh.transparency,
 			1.0,
 			0.2
 		)
@@ -47,7 +47,8 @@ func set_blocking(value: bool) -> void:
 
 
 func blocked() -> void:
-	if not anim.is_playing():
+	if anim.current_animation != "blocked":
 		print("BLOCKED")
+		blocking = true
 		anim.play("blocked")
 	_particles.restart()

@@ -357,6 +357,7 @@ sfx = NodePath("../../Character/Audio/Dodge")
 [node name="InstabilityComponent" parent="Wellbeing" node_paths=PackedStringArray("hitbox", "weapons") instance=ExtResource("26_nvu4k")]
 hitbox = NodePath("../../HitboxComponent")
 weapons = [NodePath("../../Character/Armature_004/GeneralSkeleton/Sword")]
+max_instability = 1000.0
 reduction_pause_length = 5.0
 reduction_rate = 5.0
 

@@ -23,8 +23,17 @@ func _ready():
 	player.parry_component.parried_incoming_hit.connect(
 		func(incoming_damage_source: DamageSource):
 			_incoming_damage_source = incoming_damage_source
+			
 			if Globals.dizzy_system.dizzy_victim == null:
 				parent_state.change_state(self)
+	)
+	
+	player.hitbox_component.damage_source_hit.connect(
+		func(_damage_source: DamageSource):
+			if parent_state.current_state == self:
+				block_state.block_sfx.play()
+				player.block_component.blocking = true
+				player.block_component.blocked()
 	)
 	
 	_timer = Timer.new()
@@ -72,10 +81,6 @@ func process_player():
 		
 	if Input.is_action_just_pressed("block"):
 		parent_state.change_state(parry_state)
-		return
-	
-	if Input.is_action_pressed("block"):
-		parent_state.change_state(block_state)
 		return
 
 
