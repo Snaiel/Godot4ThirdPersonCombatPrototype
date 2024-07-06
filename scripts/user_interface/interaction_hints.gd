@@ -2,7 +2,9 @@ class_name InteractionHints
 extends Control
 
 
-var counter: int
+var counter: int:
+	set(value):
+		counter = max(0, value)
 
 @onready var checkpoint_hint = $CheckpointHint
 
