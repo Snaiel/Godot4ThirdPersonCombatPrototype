@@ -26,8 +26,10 @@ func enter() -> void:
 
 
 func process_player() -> void:
-	if Input.is_action_just_pressed("attack") and \
-	dizzy_system.can_kill_victim:
+	if (
+		Input.is_action_just_pressed("attack") and \
+		dizzy_system.can_kill_victim
+	) or not dizzy_system.readied_finisher:
 		player.melee_component.increment_weapon_instance()
 		player.melee_component.disable_attack_interrupted()
 		player.character.dizzy_finisher_animations.play_from_parry_finisher()
