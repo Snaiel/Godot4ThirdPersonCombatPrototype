@@ -11,7 +11,6 @@ extends Node
 @onready var cam = Globals.camera_controller.cam
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if not enabled:
 		return
@@ -21,6 +20,5 @@ func _process(_delta):
 	)
 	
 	var opacity: float = clamp(dist - margin, min_opacity, 1.0)
-	
 	for mesh in meshes:
 		mesh.set_instance_shader_parameter("opacity", opacity)

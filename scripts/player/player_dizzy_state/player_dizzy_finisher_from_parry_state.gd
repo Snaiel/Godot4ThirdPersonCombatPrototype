@@ -21,7 +21,6 @@ func enter() -> void:
 	player.rotation_component.target = Globals.dizzy_system.dizzy_victim.entity
 	player.rotation_component.rotate_towards_target = true
 	player.locomotion_component.can_move = false
-	player.fade_component.enabled = false
 	player.character.parry_animations.receive_parry_finished()
 
 
@@ -50,3 +49,4 @@ func process_player() -> void:
 func exit() -> void:
 	player.locomotion_component.can_move = true
 	dizzy_system.victim_being_killed = false
+	
