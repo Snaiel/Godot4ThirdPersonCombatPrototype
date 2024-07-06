@@ -67,7 +67,6 @@ func _physics_process(_delta: float) -> void:
 	
 	if debug:
 		prints(
-			blackboard.get_value("interrupt_timers"),
 			blackboard.get_value("dizzy"),
 			blackboard.get_value("can_move"),
 			locomotion_component.desired_velocity
@@ -166,7 +165,7 @@ func _on_health_component_zero_health() -> void:
 	disable_mode = CollisionObject3D.DISABLE_MODE_MAKE_STATIC
 	
 	blackboard.set_value("dead", true)
-	blackboard.set_value("interrupt_timers", true)
+	beehave_tree.interrupt()
 	
 	collision_layer = 0
 	collision_mask = 1

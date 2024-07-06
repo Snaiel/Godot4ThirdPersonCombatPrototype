@@ -2,6 +2,7 @@ class_name OutcomesInteractionHandler
 extends InteractionHandler
 
 
+@export var beehave_tree: BeehaveTree
 @export var blackboard: Blackboard
 @export var outcome_weights: Array[float]
 @export var locomotion_component: LocomotionComponent
@@ -27,9 +28,9 @@ func _ready() -> void:
 func handle_interaction(incoming_damage_source: DamageSource) -> bool:
 	interaction.emit()
 	
-	blackboard.set_value("interrupt_timers", true)
 	blackboard.set_value("can_attack", false)
 	blackboard.set_value("attack", false)
+	beehave_tree.interrupt()
 	
 	locomotion_component.knockback(incoming_damage_source.entity.global_position)
 	notice_component.transition_to_aggro()

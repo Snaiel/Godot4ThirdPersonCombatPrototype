@@ -34,11 +34,6 @@ func _process(_delta):
 ## Executes this node and returns a status code.
 ## This method must be overwritten.
 func tick(_actor: Node, blackboard: Blackboard) -> int:
-	# fail if interrupt_timers in blackboard is true
-	if blackboard.get_value("interrupt_timers", false):
-		_waiting = false
-		return FAILURE
-	
 	if blackboard.get_value("wait_" + str(wait_id), true):
 		# id in blackboard is true. this means start waiting.
 		_finished = false

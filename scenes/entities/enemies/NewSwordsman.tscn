@@ -284,7 +284,11 @@ parry_particles_colour = Color(0.439216, 0.0392157, 0.0392157, 1)
 [node name="DizzyComponent" parent="Combat" index="0" node_paths=PackedStringArray("melee_component")]
 melee_component = NodePath("../../Abilities/MeleeComponent")
 
-[node name="Outcomes" parent="Combat/InteractionComponent" index="2"]
+[node name="NoticeComponent" parent="Combat" index="2" node_paths=PackedStringArray("beehave_tree")]
+beehave_tree = NodePath("../../BeehaveTree")
+
+[node name="Outcomes" parent="Combat/InteractionComponent" index="2" node_paths=PackedStringArray("beehave_tree")]
+beehave_tree = NodePath("../../../BeehaveTree")
 outcome_weights = Array[float]([1.0, 0.0, 0.0])
 
 [node name="Block" type="Node" parent="Combat/InteractionComponent/Outcomes" index="1" node_paths=PackedStringArray("blackboard", "block_component", "health_component", "instability_component", "block_sfx")]

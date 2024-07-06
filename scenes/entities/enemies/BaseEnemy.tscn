@@ -1,4 +1,4 @@
-[gd_scene load_steps=133 format=3 uid="uid://b34rhh2gbadoy"]
+[gd_scene load_steps=132 format=3 uid="uid://b34rhh2gbadoy"]
 
 [ext_resource type="Script" path="res://scripts/entities/enemy.gd" id="1_vb1mm"]
 [ext_resource type="Script" path="res://scripts/utilities/wellbeing_stats.gd" id="2_282ix"]
@@ -54,7 +54,6 @@
 [ext_resource type="Script" path="res://scripts/components/combat/interaction/handlers/hit_interaction_handler.gd" id="29_40e4g"]
 [ext_resource type="PackedScene" uid="uid://8q4shgtn2rdm" path="res://scenes/beehave/set_actions/SetCanAttackTrue.tscn" id="30_bsktq"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_compare.gd" id="31_xpiur"]
-[ext_resource type="PackedScene" uid="uid://34ehm7k44ywn" path="res://scenes/beehave/set_actions/SetInterruptTimersFalse.tscn" id="32_glrl1"]
 [ext_resource type="Script" path="res://scripts/beehave/execute_expression.gd" id="33_ljfpn"]
 [ext_resource type="PackedScene" uid="uid://cryed6dtlo286" path="res://scenes/beehave/set_actions/SetRotateTowardsTargetTrue.tscn" id="34_5vf0q"]
 [ext_resource type="Script" path="res://scripts/components/utility/void_death_component.gd" id="34_bt82y"]
@@ -1096,11 +1095,11 @@ notice_component = NodePath("../NoticeComponent")
 crosshair = NodePath("../../Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint/Crosshair")
 puncture_sound = NodePath("../../Character/Audio/ThrustPuncture")
 
-[node name="NoticeComponent" parent="Combat" node_paths=PackedStringArray("entity", "head_attachment", "blackboard", "hud_info") instance=ExtResource("18_oqi8p")]
+[node name="NoticeComponent" parent="Combat" node_paths=PackedStringArray("entity", "head_attachment", "hud_info", "blackboard") instance=ExtResource("18_oqi8p")]
 entity = NodePath("../..")
 head_attachment = NodePath("../../Character/Armature_004/GeneralSkeleton/HeadAttachment")
-blackboard = NodePath("../../Blackboard")
 hud_info = NodePath("../../Utility/HUDInfoPos")
+blackboard = NodePath("../../Blackboard")
 
 [node name="InteractionComponent" type="Node" parent="Combat" node_paths=PackedStringArray("hitbox_component")]
 script = ExtResource("25_h0vxh")
@@ -1194,9 +1193,7 @@ script = ExtResource("31_xpiur")
 left_operand = "get_value(\"got_hit\", false)"
 right_operand = "true"
 
-[node name="SetInterruptTimersFalse" parent="BeehaveTree/SelectorComposite/GotHit" instance=ExtResource("32_glrl1")]
-
-[node name="LeafExecuteExpression" type="Node" parent="BeehaveTree/SelectorComposite/GotHit"]
+[node name="Print ENEMY GOT HIT" type="Node" parent="BeehaveTree/SelectorComposite/GotHit"]
 script = ExtResource("33_ljfpn")
 expression_string = "print(\"ENEMY GOT HIT\")"
 
@@ -1211,7 +1208,7 @@ time = 0.8
 reset_wait_after = true
 wait_id = 77876613
 
-[node name="LeafExecuteExpression2" type="Node" parent="BeehaveTree/SelectorComposite/GotHit"]
+[node name="Print WAIT DONE" type="Node" parent="BeehaveTree/SelectorComposite/GotHit"]
 script = ExtResource("33_ljfpn")
 expression_string = "print(\"WAIT DONE\")"
 
@@ -1235,8 +1232,6 @@ script = ExtResource("38_2q4h2")
 script = ExtResource("26_84km0")
 
 [node name="IsStateAggro" parent="BeehaveTree/SelectorComposite/Aggro" instance=ExtResource("42_q75sc")]
-
-[node name="SetInterruptTimersFalse" parent="BeehaveTree/SelectorComposite/Aggro" instance=ExtResource("32_glrl1")]
 
 [node name="Idle" type="Node" parent="BeehaveTree/SelectorComposite"]
 script = ExtResource("26_84km0")

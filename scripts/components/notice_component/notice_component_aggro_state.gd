@@ -19,8 +19,7 @@ func _ready():
 	_aggro_timer.one_shot = true
 	_aggro_timer.autostart = false
 	_aggro_timer.timeout.connect(
-		func(): 
-			_check_to_leave_aggro = true
+		func(): _check_to_leave_aggro = true
 	)
 	add_child(_aggro_timer)
 
@@ -33,10 +32,7 @@ func enter() -> void:
 	)
 	
 	if notice_component.blackboard.get_value("got_hit", false) == false:
-		notice_component.blackboard.set_value(
-			"interrupt_timers",
-			true
-		)
+		notice_component.beehave_tree.interrupt()
 	
 	_expand_x = 0
 	_check_to_leave_aggro = false

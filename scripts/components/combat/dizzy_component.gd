@@ -85,7 +85,7 @@ func process_hit(weapon: DamageSource):
 func _on_instability_component_full_instability():
 	entity.beehave_tree.interrupt()
 	entity.blackboard.set_value("dizzy", true)
-	entity.blackboard.set_value("interrupt_timers", true)
+	entity.beehave_tree.interrupt()
 	
 	_dizzy_timer.stop()
 	_come_out_of_damage_dizzy_timer.stop()
@@ -161,6 +161,5 @@ func _come_out_of_dizzy() -> void:
 
 
 func _back_to_normal() -> void:
-	entity.blackboard.set_value("interrupt_timers", false)
 	entity.blackboard.set_value("dizzy", false)
 	locomotion_component.set_active_strategy("programmatic")

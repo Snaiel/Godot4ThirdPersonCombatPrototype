@@ -7,12 +7,15 @@ extends Node
 @export var enabled: bool = true
 @export var entity: Enemy
 @export var head_attachment: BoneAttachment3D
-@export var notice_triangle_scene: PackedScene
-@export var off_camera_notice_triangle_scene: PackedScene
+@export var hud_info: Node3D
+
+@export_category("Behaviour")
+@export var beehave_tree: BeehaveTree
+@export var blackboard: Blackboard
+
+@export_category("States")
 @export var initial_state: NoticeComponentState
 @export var aggro_state: NoticeComponentAggroState
-@export var blackboard: Blackboard
-@export var hud_info: Node3D
 
 @export_category("Notice Thresholds")
 @export var inner_angle: float = 50.0
@@ -26,6 +29,8 @@ extends Node
 @export var notice_val_curve: Curve
 
 @export_category("Notice Triangle")
+@export var notice_triangle_scene: PackedScene
+@export var off_camera_notice_triangle_scene: PackedScene
 @export var suspicion_color: Color
 @export var aggro_color: Color
 @export var background_color: Color
@@ -93,7 +98,7 @@ func _physics_process(delta) -> void:
 		_is_inside_outer_threshold = true
 		blackboard.set_value("perceives_player", true)
 		if current_state is NoticeComponentAggroState:
-			blackboard.set_value("interrupt_timers", true)
+			beehave_tree.interrupt()
 			blackboard.set_value(
 				"agent_target_position",
 				null
