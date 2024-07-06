@@ -74,9 +74,6 @@ stream_0/weight = 1.0
 [node name="Swordsman" instance=ExtResource("1_mc312")]
 debug = true
 
-[node name="Character" parent="." index="0"]
-debug = true
-
 [node name="GeneralSkeleton" parent="Character/Armature_004" index="0"]
 bones/1/position = Vector3(5.51687e-05, 0.365759, -3.60042e-08)
 bones/1/rotation = Quaternion(0.102635, -0.0818113, 0.0279639, 0.990955)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=132 format=3 uid="uid://b34rhh2gbadoy"]
+[gd_scene load_steps=131 format=3 uid="uid://b34rhh2gbadoy"]
 
 [ext_resource type="Script" path="res://scripts/entities/enemy.gd" id="1_vb1mm"]
 [ext_resource type="Script" path="res://scripts/utilities/wellbeing_stats.gd" id="2_282ix"]
@@ -67,7 +67,6 @@
 [ext_resource type="PackedScene" uid="uid://nc8fs0at3l7x" path="res://scenes/beehave/set_actions/SetLockedOnFalse.tscn" id="53_q01iq"]
 [ext_resource type="PackedScene" uid="uid://t7wqbcml070v" path="res://scenes/beehave/set_actions/SetLookedAroundFalse.tscn" id="54_qc5xp"]
 [ext_resource type="Script" path="res://addons/beehave/blackboard.gd" id="55_ei0pf"]
-[ext_resource type="PackedScene" uid="uid://dpuaj53mlpdfw" path="res://scenes/beehave/set_actions/SetCanMoveFalse.tscn" id="56_sg0sb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eeii3"]
 render_priority = 0
@@ -1182,8 +1181,6 @@ left_operand = "get_value(\"dizzy\")"
 right_operand = "true"
 
 [node name="InputNone" parent="BeehaveTree/SelectorComposite/Dizzy" instance=ExtResource("28_wisp6")]
-
-[node name="SetCanMoveFalse" parent="BeehaveTree/SelectorComposite/Dizzy" instance=ExtResource("56_sg0sb")]
 
 [node name="GotHit" type="Node" parent="BeehaveTree/SelectorComposite"]
 script = ExtResource("26_84km0")
