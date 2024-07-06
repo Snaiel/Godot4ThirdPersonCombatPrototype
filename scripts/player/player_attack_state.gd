@@ -9,13 +9,13 @@ extends PlayerStateMachine
 var _transition_to_dizzy_finisher: bool = false
 
 
-func _ready():
+func _ready() -> void:
 	super._ready()
 
 
-func enter():
+func enter() -> void:
 	_transition_to_dizzy_finisher = false
-	if check_for_dizzy_finisher():
+	if _check_for_dizzy_finisher():
 		return
 	
 	player.locomotion_component.can_move = false
@@ -26,14 +26,13 @@ func enter():
 		player.melee_component.attack()
 
 
-func process_player():
+func process_player() -> void:
 	if _transition_to_dizzy_finisher:
-		transition_to_dizzy_finisher()
+		parent_state.change_state(dizzy_finisher_state)
 		return
 	
 	if Input.is_action_just_pressed("attack"):
-		if check_for_dizzy_finisher():
-			return
+		if _check_for_dizzy_finisher(): return
 		var attack_level = player.melee_component.attack_level
 		player.melee_component.attack(not attack_level)
 	
@@ -53,18 +52,13 @@ func process_player():
 	
 
 
-func exit():
+func exit() -> void:
 	player.locomotion_component.can_move = true
 	player.melee_component.interrupt_attack()
 
 
-func check_for_dizzy_finisher() -> bool:
-	var dizzy_victim: DizzyComponent = Globals.dizzy_system.dizzy_victim
-	if dizzy_victim and not dizzy_victim.instability_component.full_instability_from_parry:
+func _check_for_dizzy_finisher() -> bool:
+	var dizzy_system: DizzySystem = Globals.dizzy_system
+	if dizzy_system.dizzy_victim and dizzy_system.can_kill_victim:
 		_transition_to_dizzy_finisher = true
 	return _transition_to_dizzy_finisher
-
-
-func transition_to_dizzy_finisher() -> void:
-	if _transition_to_dizzy_finisher:
-		parent_state.change_state(dizzy_finisher_state)

@@ -148,6 +148,9 @@ surface_material_override/0 = SubResource("ShaderMaterial_yud2m")
 [node name="LockOnAttachment" parent="Character/Armature_004/GeneralSkeleton" index="2"]
 transform = Transform3D(0.985962, -0.0823082, -0.14527, -0.0160123, 0.81943, -0.572956, 0.166198, 0.567239, 0.806609, -0.0197987, 0.695154, 0.109749)
 
+[node name="Crosshair" parent="Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint" index="0"]
+debug = true
+
 [node name="HeadAttachment" parent="Character/Armature_004/GeneralSkeleton" index="3"]
 transform = Transform3D(0.996868, 0.0331772, -0.0717842, -0.0357323, 0.998762, -0.0346068, 0.0705472, 0.0370636, 0.99682, -0.045628, 0.885631, 0.280971)
 
@@ -314,7 +317,7 @@ instability_component = NodePath("../../../../Wellbeing/InstabilityComponent")
 script = ExtResource("30_qug18")
 expression_string = "print(\"bruh moment\")"
 
-[node name="AggroTarget" type="Node" parent="BeehaveTree/SelectorComposite/Aggro" index="3"]
+[node name="AggroTarget" type="Node" parent="BeehaveTree/SelectorComposite/Aggro" index="2"]
 script = ExtResource("21_763qd")
 
 [node name="AlwaysFailDecorator" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget" index="0"]

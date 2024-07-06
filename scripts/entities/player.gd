@@ -44,7 +44,9 @@ var _holding_down_run_timer: Timer
 
 
 func _ready() -> void:
-	hitbox_component.damage_source_hit.connect(_on_hitbox_component_damage_source_hit)
+	hitbox_component.damage_source_hit.connect(
+		_on_hitbox_component_damage_source_hit
+	)
 	
 	melee_component.can_rotate.connect(
 		func(flag: bool):

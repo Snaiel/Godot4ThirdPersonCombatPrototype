@@ -3,6 +3,7 @@ extends Sprite3D
 
 
 @export var enabled: bool = true
+@export var debug: bool = false
 @export var show_crosshair: bool = false
 
 var callbacks: Array[Callable]
@@ -23,13 +24,20 @@ func _physics_process(_delta: float) -> void:
 			show_crosshair = true
 			break
 	
+	#if debug:
+		#prints(
+			#show_crosshair,
+			#modulate.a,
+			#visible
+		#)
+	
 	if show_crosshair and modulate.a < 1.0:
 		modulate.a = move_toward(
 			modulate.a,
 			1.0,
 			0.05
 		)
-	elif modulate.a > 0.0:
+	elif not show_crosshair and modulate.a > 0.0:
 		modulate.a = move_toward(
 			modulate.a,
 			0.0,

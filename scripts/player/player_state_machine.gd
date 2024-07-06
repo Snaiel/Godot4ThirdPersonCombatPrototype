@@ -11,7 +11,7 @@ var default_state: PlayerStateMachine
 var has_sub_states: bool = false
 
 
-func _ready():
+func _ready() -> void:
 	if get_child_count() > 0:
 		has_sub_states = true
 	else:

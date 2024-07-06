@@ -42,8 +42,10 @@ func _ready():
 	
 	if crosshair: crosshair.register_callback(
 		func():
-			return dizzy_system.dizzy_victim != null and \
-			dizzy_system.dizzy_victim == self
+			if dizzy_system.dizzy_victim == null: return false
+			if dizzy_system.dizzy_victim != self: return false
+			if dizzy_system.can_kill_victim: return true
+			return false
 	)
 	
 	_dizzy_timer = Timer.new()

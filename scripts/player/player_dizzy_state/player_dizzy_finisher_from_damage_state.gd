@@ -14,7 +14,6 @@ func _ready():
 		func():
 			if parent_state.current_state != self:
 				return
-			
 			_finished = true
 	)
 

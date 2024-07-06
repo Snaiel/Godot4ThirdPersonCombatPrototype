@@ -38,13 +38,13 @@ func _process(_delta):
 	if victim_being_killed:
 		return
 	elif not dizzy_victim:
-		# after the attack concludes, saved victim is no
-		# longer needed
+		# after the attack concludes, saved victim is no longer needed
 		saved_victim = null
 		return
 	
 	if not dizzy_victim.instability_component.full_instability_from_parry and \
-	dizzy_victim.entity.global_position.distance_to(player.global_position) > finisher_distance:
+	dizzy_victim.entity.global_position.distance_to(player.global_position) \
+	> finisher_distance:
 		can_kill_victim = false
 	else:
 		can_kill_victim = true
