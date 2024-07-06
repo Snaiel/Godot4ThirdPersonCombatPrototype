@@ -313,9 +313,7 @@ instability_component = NodePath("../../../../Wellbeing/InstabilityComponent")
 
 [node name="CheckSuspicion" parent="BeehaveTree/SelectorComposite/Suspicious" index="3" instance=ExtResource("20_omyll")]
 
-[node name="PrintBruh" type="Node" parent="BeehaveTree/SelectorComposite/Aggro" index="1"]
-script = ExtResource("30_qug18")
-expression_string = "print(\"bruh moment\")"
+[node name="SetCanMoveTrue" parent="BeehaveTree/SelectorComposite/Aggro" index="1" instance=ExtResource("34_1528r")]
 
 [node name="AggroTarget" type="Node" parent="BeehaveTree/SelectorComposite/Aggro" index="2"]
 script = ExtResource("21_763qd")
