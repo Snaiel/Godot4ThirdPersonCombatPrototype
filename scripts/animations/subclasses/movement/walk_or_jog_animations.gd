@@ -18,35 +18,29 @@ func _physics_process(_delta) -> void:
 	if blend == null: return
 	anim_tree.set(
 		&"parameters/Free Walk Or Jog/blend_amount",
-			lerp(
-				float(blend),
-				1.0 if _walk else 0.0,
-				0.2
-			)
+		lerp(
+			float(blend),
+			0.0 if _walk else 1.0,
+			0.2
 		)
+	)
 
 
 func reset_walk_speed() -> void:
 	set_walk_speed(_default_walk_speed)
 
 
-func set_walk_speed(speed: float):
-	if not can_change_speed:
-		return
-	
+func set_walk_speed(speed: float) -> void:
+	if not can_change_speed: return
 	anim_tree.set(&"parameters/Free Walk Speed/scale", speed)
 	anim_tree.set(&"parameters/Locked On Walk Speed/scale", speed)
 
 
 func to_walking() -> void:
-	if not can_change_state:
-		return
-	
+	if not can_change_state: return
 	_walk = true
 
 
 func to_jogging() -> void:
-	if not can_change_state:
-		return
-	
+	if not can_change_state: return
 	_walk = false
