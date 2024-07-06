@@ -2,11 +2,13 @@ class_name EnemyNonMeleeComponent
 extends NonMeleeComponent
 
 
+@export var instability_component: InstabilityComponent
 @export var blackboard: Blackboard
 
 
 func _ready() -> void:
 	super()
+	instability_component.full_instability.connect(interrupt_action)
 
 
 func _process(_delta: float) -> void:
@@ -17,17 +19,3 @@ func _process(_delta: float) -> void:
 		action_index = blackboard.get_value("action_index", 0)
 		perform_action(action_index)
 	blackboard.set_value("executing_action", executing_action)
-
-
-func _receive_action_effect(index: int) -> void:
-	var child = get_child(index)
-	if not (child is NonMeleeActionEffect): return
-	var effect: NonMeleeActionEffect = child
-	effect.effect()
-
-
-func _receive_end_effect(index: int) -> void:
-	var child = get_child(index)
-	if not (child is NonMeleeActionEffect): return
-	var effect: NonMeleeActionEffect = child
-	effect.end()

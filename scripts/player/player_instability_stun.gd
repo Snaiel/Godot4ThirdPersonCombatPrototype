@@ -20,7 +20,7 @@ func _ready():
 	super._ready()
 	
 	player.instability_component.full_instability.connect(
-		func(_readied_finisher: bool):
+		func():
 			get_tree().create_timer(0.1).timeout.connect(
 				func():
 					if not (parent_state.current_state is PlayerDeathState):

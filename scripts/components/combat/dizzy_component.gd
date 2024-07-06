@@ -9,13 +9,12 @@ extends Node3D
 
 @export_category("Dizzy Lengths")
 @export var dizzy_from_parry_length: float = 2.0
-@export var dizzy_from_unreadied_finisher_length: float = 5.0
+@export var dizzy_from_unreadied_finisher_length: float = 7.0
 @export var dizzy_from_damage_length: float = 3.0
 
 @export_category("Components")
 @export var locomotion_component: LocomotionComponent
 @export var health_component: HealthComponent
-@export var melee_component: MeleeComponent
 @export var instability_component: InstabilityComponent
 
 @export_category("Utility")
@@ -85,7 +84,7 @@ func process_hit(weapon: DamageSource):
 			hit_sfx.play()
 
 
-func _on_instability_component_full_instability(readied_finisher: bool):
+func _on_instability_component_full_instability():
 	entity.beehave_tree.interrupt()
 	entity.blackboard.set_value("dizzy", true)
 	entity.beehave_tree.interrupt()
@@ -95,7 +94,8 @@ func _on_instability_component_full_instability(readied_finisher: bool):
 	
 	if dizzy_system.dizzy_victim == self: return
 	dizzy_system.dizzy_victim = self
-	dizzy_system.readied_finisher = readied_finisher
+	dizzy_system.readied_finisher = instability_component\
+		.source_causes_readied_finisher
 	
 	dizzy_sfx.play()
 	
@@ -104,7 +104,7 @@ func _on_instability_component_full_instability(readied_finisher: bool):
 		dizzy_victim_animations.dizzy_from_parry()
 		_dizzy_timer.start(
 			dizzy_from_parry_length 
-			if readied_finisher else 
+			if instability_component.source_causes_readied_finisher else 
 			dizzy_from_unreadied_finisher_length
 		)
 		entity.blackboard.set_value("rotate_towards_target", true)
@@ -115,9 +115,6 @@ func _on_instability_component_full_instability(readied_finisher: bool):
 		entity.blackboard.set_value("rotate_towards_target", false)
 		entity.look_at(player.global_position)
 		_from_damage_knockback()
-	
-	if melee_component:
-		melee_component.interrupt_attack()
 
 
 func _from_parry_knockback() -> void:

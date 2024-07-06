@@ -3,7 +3,7 @@ extends Node
 
 
 signal instability_increased
-signal full_instability(readied_finisher: bool)
+signal full_instability
 
 
 @export_category("Configuration")
@@ -24,6 +24,7 @@ signal full_instability(readied_finisher: bool)
 @export var reduction_rate: float = 1
 
 var full_instability_from_parry: bool = false
+var source_causes_readied_finisher: bool = true
 
 var _instability_reduction_pause_timer: Timer
 var _reduce_instability: bool = false
@@ -78,9 +79,11 @@ func increment_instability(
 	
 	instability_increased.emit()
 	
+	source_causes_readied_finisher = readied_finisher
+	
 	if is_equal_approx(instability, max_instability):
 		full_instability_from_parry = from_parry
-		full_instability.emit(readied_finisher)
+		full_instability.emit()
 	else:
 		_instability_reduction_pause_timer.start()
 

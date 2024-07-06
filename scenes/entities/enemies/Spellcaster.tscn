@@ -489,8 +489,9 @@ has_copy = true
 secondary_movement = false
 anim_tree = NodePath("../../../AnimationTree")
 
-[node name="NonMeleeComponent" type="Node" parent="Abilities" index="0" node_paths=PackedStringArray("blackboard", "non_melee_animations", "locomotion_component")]
+[node name="NonMeleeComponent" type="Node" parent="Abilities" index="0" node_paths=PackedStringArray("instability_component", "blackboard", "non_melee_animations", "locomotion_component")]
 script = ExtResource("5_vtwji")
+instability_component = NodePath("../../Wellbeing/InstabilityComponent")
 blackboard = NodePath("../../Blackboard")
 non_melee_animations = NodePath("../../Character/Animations/NonMelee")
 locomotion_component = NodePath("../../LocomotionComponent")

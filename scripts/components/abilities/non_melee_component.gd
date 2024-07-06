@@ -82,6 +82,11 @@ func interrupt_action() -> void:
 	_can_perform_again = false
 	
 	non_melee_animations.stop_action()
+	
+	for child in get_children():
+		if not (child is NonMeleeActionEffect): continue
+		var effect: NonMeleeActionEffect = child
+		effect.end()
 
 
 func _receive_rotation(flag: bool) -> void:
@@ -102,12 +107,18 @@ func _receive_movement(action: NonMeleeAction) -> void:
 	)
 
 
-func _receive_action_effect(_index: int) -> void:
-	pass
+func _receive_action_effect(index: int) -> void:
+	var child = get_child(index)
+	if not (child is NonMeleeActionEffect): return
+	var effect: NonMeleeActionEffect = child
+	effect.effect()
 
 
-func _receive_end_effect(_index: int) -> void:
-	pass
+func _receive_end_effect(index: int) -> void:
+	var child = get_child(index)
+	if not (child is NonMeleeActionEffect): return
+	var effect: NonMeleeActionEffect = child
+	effect.end()
 
 
 func _receive_can_perform_again(can_perform_again: bool) -> void:

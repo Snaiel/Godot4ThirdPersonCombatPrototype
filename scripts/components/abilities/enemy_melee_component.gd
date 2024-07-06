@@ -4,12 +4,14 @@ extends MeleeComponent
 
 @export var entity: Enemy
 @export var blackboard: Blackboard
+@export var instability_component: InstabilityComponent
 @export var outcomes_handler: OutcomesInteractionHandler
 
 
 func _ready():
 	super()
 	entity.dead.connect(set_can_damage_of_all_weapons.bind(false))
+	instability_component.full_instability.connect(interrupt_attack)
 	outcomes_handler.interaction.connect(interrupt_attack)
 
 

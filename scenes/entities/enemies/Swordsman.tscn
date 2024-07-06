@@ -223,10 +223,11 @@ max_instability = 100.0
 
 [node name="Abilities" type="Node3D" parent="."]
 
-[node name="MeleeComponent" type="Node" parent="Abilities" node_paths=PackedStringArray("entity", "blackboard", "outcomes_handler", "melee_animations", "locomotion_component")]
+[node name="MeleeComponent" type="Node" parent="Abilities" node_paths=PackedStringArray("entity", "blackboard", "instability_component", "outcomes_handler", "melee_animations", "locomotion_component")]
 script = ExtResource("19_gnnqg")
 entity = NodePath("../..")
 blackboard = NodePath("../../Blackboard")
+instability_component = NodePath("../../Wellbeing/InstabilityComponent")
 outcomes_handler = NodePath("../../Combat/InteractionComponent/Outcomes")
 melee_animations = NodePath("../../Character/Animations/Melee")
 locomotion_component = NodePath("../../LocomotionComponent")
@@ -249,12 +250,11 @@ parry_particles_colour = Color(0.439216, 0.0392157, 0.0392157, 1)
 
 [node name="Combat" type="Node3D" parent="."]
 
-[node name="DizzyComponent" type="Node3D" parent="Combat" node_paths=PackedStringArray("entity", "locomotion_component", "health_component", "melee_component", "instability_component", "dizzy_victim_animations", "attachment_point", "crosshair", "dizzy_sfx", "thrust_puncture_sfx", "hit_sfx")]
+[node name="DizzyComponent" type="Node3D" parent="Combat" node_paths=PackedStringArray("entity", "locomotion_component", "health_component", "instability_component", "dizzy_victim_animations", "attachment_point", "crosshair", "dizzy_sfx", "thrust_puncture_sfx", "hit_sfx")]
 script = ExtResource("22_cfyy2")
 entity = NodePath("../..")
 locomotion_component = NodePath("../../LocomotionComponent")
 health_component = NodePath("../../Wellbeing/HealthComponent")
-melee_component = NodePath("../../Abilities/MeleeComponent")
 instability_component = NodePath("../../Wellbeing/InstabilityComponent")
 dizzy_victim_animations = NodePath("../../Character/Animations/DizzyVictim")
 attachment_point = NodePath("../../Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint")

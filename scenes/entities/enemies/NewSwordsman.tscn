@@ -146,16 +146,16 @@ bones/64/rotation = Quaternion(0.115134, 0.92397, 0.0158671, 0.36438)
 surface_material_override/0 = SubResource("ShaderMaterial_yud2m")
 
 [node name="LockOnAttachment" parent="Character/Armature_004/GeneralSkeleton" index="2"]
-transform = Transform3D(0.985962, -0.0823082, -0.14527, -0.0160123, 0.81943, -0.572956, 0.166198, 0.567239, 0.806609, -0.0197987, 0.695154, 0.109749)
+transform = Transform3D(0.985963, -0.0823081, -0.14527, -0.0160124, 0.81943, -0.572956, 0.166197, 0.56724, 0.806609, -0.0197987, 0.695154, 0.109749)
 
 [node name="Crosshair" parent="Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint" index="0"]
 debug = true
 
 [node name="HeadAttachment" parent="Character/Armature_004/GeneralSkeleton" index="3"]
-transform = Transform3D(0.996868, 0.0331772, -0.0717842, -0.0357323, 0.998762, -0.0346068, 0.0705472, 0.0370636, 0.99682, -0.045628, 0.885631, 0.280971)
+transform = Transform3D(0.996868, 0.0331772, -0.0717839, -0.0357323, 0.998762, -0.0346081, 0.0705469, 0.0370648, 0.99682, -0.045628, 0.885631, 0.280971)
 
 [node name="Sword" parent="Character/Armature_004/GeneralSkeleton" index="4" node_paths=PackedStringArray("entity") instance=ExtResource("3_frnup")]
-transform = Transform3D(0.451442, 0.606559, 0.654436, 0.408577, -0.792538, 0.452713, 0.793262, 0.0630134, -0.605611, -0.143189, 0.301114, 0.164421)
+transform = Transform3D(0.451443, 0.606559, 0.654436, 0.408576, -0.792538, 0.452714, 0.793263, 0.063012, -0.605611, -0.143189, 0.301114, 0.164421)
 entity = NodePath("../../../..")
 
 [node name="Area" parent="Character/Armature_004/GeneralSkeleton/Sword" index="1"]
@@ -260,10 +260,11 @@ max_distance = 20.0
 [node name="InstabilityComponent" parent="Wellbeing" index="2" node_paths=PackedStringArray("weapons")]
 weapons = [NodePath("../../Character/Armature_004/GeneralSkeleton/Sword")]
 
-[node name="MeleeComponent" type="Node" parent="Abilities" index="0" node_paths=PackedStringArray("entity", "blackboard", "outcomes_handler", "melee_animations", "locomotion_component")]
+[node name="MeleeComponent" type="Node" parent="Abilities" index="0" node_paths=PackedStringArray("entity", "blackboard", "instability_component", "outcomes_handler", "melee_animations", "locomotion_component")]
 script = ExtResource("15_pkaik")
 entity = NodePath("../..")
 blackboard = NodePath("../../Blackboard")
+instability_component = NodePath("../../Wellbeing/InstabilityComponent")
 outcomes_handler = NodePath("../../Combat/InteractionComponent/Outcomes")
 melee_animations = NodePath("../../Character/Animations/Melee")
 locomotion_component = NodePath("../../LocomotionComponent")
@@ -283,9 +284,6 @@ script = ExtResource("17_oabxi")
 hitbox_component = NodePath("../../HitboxComponent")
 block_component = NodePath("../BlockComponent")
 parry_particles_colour = Color(0.439216, 0.0392157, 0.0392157, 1)
-
-[node name="DizzyComponent" parent="Combat" index="0" node_paths=PackedStringArray("melee_component")]
-melee_component = NodePath("../../Abilities/MeleeComponent")
 
 [node name="NoticeComponent" parent="Combat" index="2" node_paths=PackedStringArray("beehave_tree")]
 beehave_tree = NodePath("../../BeehaveTree")
