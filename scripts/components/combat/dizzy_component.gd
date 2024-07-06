@@ -84,7 +84,8 @@ func process_hit(weapon: DamageSource):
 			hit_sfx.play()
 
 
-func _on_instability_component_full_instability():
+func _on_instability_component_full_instability(readied_finisher: bool):
+	prints("WHAT THE HECK", readied_finisher)
 	entity.beehave_tree.interrupt()
 	entity.blackboard.set_value("dizzy", true)
 	entity.beehave_tree.interrupt()
@@ -92,10 +93,9 @@ func _on_instability_component_full_instability():
 	_dizzy_timer.stop()
 	_come_out_of_damage_dizzy_timer.stop()
 	
-	if dizzy_system.dizzy_victim == self:
-		return
-	
+	if dizzy_system.dizzy_victim == self: return
 	dizzy_system.dizzy_victim = self
+	dizzy_system.readied_finisher = readied_finisher
 	
 	dizzy_sfx.play()
 	

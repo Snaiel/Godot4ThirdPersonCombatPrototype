@@ -10,7 +10,7 @@ func effect() -> void:
 	add_child(projectile)
 	
 	projectile.parried.connect(
-		entity.instability_component.got_parried.bind(35)
+		entity.instability_component.got_parried.bind(35, false)
 	)
 	
 	projectile.speed = 20

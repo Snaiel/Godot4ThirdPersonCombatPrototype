@@ -11,8 +11,7 @@ func _ready():
 	super._ready()
 	
 	player.character.dizzy_finisher_animations.dizzy_finisher_finished.connect(
-		func():
-			_finished = true
+		func(): _finished = true
 	)
 
 
@@ -36,7 +35,10 @@ func process_player() -> void:
 	
 	if not dizzy_system.victim_being_killed and \
 	dizzy_system.saved_victim != null:
-		player.character.dizzy_finisher_animations.receive_dizzy_finisher_finished()
+		player\
+			.character\
+			.dizzy_finisher_animations\
+			.receive_dizzy_finisher_finished()
 	
 	if _finished:
 		parent_state.parent_state.transition_to_default_state()

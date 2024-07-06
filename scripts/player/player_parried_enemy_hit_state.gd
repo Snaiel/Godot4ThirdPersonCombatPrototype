@@ -16,6 +16,8 @@ var _incoming_damage_source: DamageSource
 var _timer: Timer
 var _timer_length: float = 0.5
 
+@onready var dizzy_system: DizzySystem = Globals.dizzy_system
+
 
 func _ready():
 	super._ready()
@@ -71,7 +73,7 @@ func enter() -> void:
 
 
 func process_player() -> void:
-	if Globals.dizzy_system.dizzy_victim:
+	if dizzy_system.dizzy_victim and dizzy_system.readied_finisher:
 		parent_state.change_state(dizzy_finisher_state)
 		return
 	

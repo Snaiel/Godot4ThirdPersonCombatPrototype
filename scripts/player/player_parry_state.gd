@@ -5,6 +5,7 @@ extends PlayerStateMachine
 @export var block_state: PlayerBlockState
 @export var dizzy_finisher_state: PlayerStateMachine
 
+@onready var dizzy_system: DizzySystem = Globals.dizzy_system
 
 func _ready():
 	super._ready()
@@ -42,7 +43,7 @@ func process_player() -> void:
 	
 	player.set_rotation_target_to_lock_on_target()
 	
-	if Globals.dizzy_system.dizzy_victim:
+	if dizzy_system.dizzy_victim and dizzy_system.readied_finisher:
 		parent_state.change_state(dizzy_finisher_state)
 
 

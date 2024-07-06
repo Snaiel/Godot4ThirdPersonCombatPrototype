@@ -3,7 +3,7 @@ extends Node
 
 
 signal instability_increased
-signal full_instability
+signal full_instability(readied_finisher: bool)
 
 
 @export_category("Configuration")
@@ -49,10 +49,10 @@ func _physics_process(_delta):
 		instability -= reduction_rate * _delta
 
 
-func got_parried(amount: float) -> void:
+func got_parried(amount: float, readied_finisher: bool = true) -> void:
 	if not enabled: return
 	if not instability_when_parried: return
-	increment_instability(amount, true)
+	increment_instability(amount, true, readied_finisher)
 
 
 func come_out_of_full_instability(multiplier: float) -> void:
@@ -64,9 +64,12 @@ func is_full_instability() -> bool:
 	return instability >= max_instability
 
 
-func increment_instability(value: float, from_parry: bool = false):
-	if is_full_instability():
-		return
+func increment_instability(
+		value: float,
+		from_parry: bool = false,
+		readied_finisher: bool = false
+	) -> void:
+	if is_full_instability(): return
 	
 	instability += value
 	
@@ -77,7 +80,7 @@ func increment_instability(value: float, from_parry: bool = false):
 	
 	if is_equal_approx(instability, max_instability):
 		full_instability_from_parry = from_parry
-		full_instability.emit()
+		full_instability.emit(readied_finisher)
 	else:
 		_instability_reduction_pause_timer.start()
 

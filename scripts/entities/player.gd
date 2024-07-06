@@ -78,7 +78,7 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	#prints(state_machine.current_state, block_component.blocking)
+	#prints(state_machine.current_state)
 	
 	if Input.is_action_just_pressed("exit"):
 		get_tree().quit()

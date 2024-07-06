@@ -34,7 +34,7 @@ func shoot() -> void:
 	add_child(projectile)
 	
 	projectile.parried.connect(
-		entity.instability_component.got_parried.bind(0)
+		entity.instability_component.got_parried.bind(10, false)
 	)
 	
 	projectile.speed = 15
