@@ -9,7 +9,8 @@ extends Node3D
 
 @export_category("Dizzy Lengths")
 @export var dizzy_from_parry_length: float = 2.0
-@export var dizzy_from_damage_length: float = 10
+@export var dizzy_from_unreadied_finisher_length: float = 5.0
+@export var dizzy_from_damage_length: float = 3.0
 
 @export_category("Components")
 @export var locomotion_component: LocomotionComponent
@@ -85,7 +86,6 @@ func process_hit(weapon: DamageSource):
 
 
 func _on_instability_component_full_instability(readied_finisher: bool):
-	prints("WHAT THE HECK", readied_finisher)
 	entity.beehave_tree.interrupt()
 	entity.blackboard.set_value("dizzy", true)
 	entity.beehave_tree.interrupt()
@@ -102,7 +102,11 @@ func _on_instability_component_full_instability(readied_finisher: bool):
 	if instability_component.full_instability_from_parry:
 		locomotion_component.set_active_strategy("root_motion")
 		dizzy_victim_animations.dizzy_from_parry()
-		_dizzy_timer.start(dizzy_from_parry_length)
+		_dizzy_timer.start(
+			dizzy_from_parry_length 
+			if readied_finisher else 
+			dizzy_from_unreadied_finisher_length
+		)
 		entity.blackboard.set_value("rotate_towards_target", true)
 		_from_parry_knockback()
 	else:
