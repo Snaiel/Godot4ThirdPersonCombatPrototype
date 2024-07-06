@@ -67,9 +67,8 @@ func _physics_process(_delta: float) -> void:
 	
 	#if debug:
 		#prints(
-			#blackboard.get_value("dizzy"),
-			#blackboard.get_value("can_move"),
-			#locomotion_component.desired_velocity
+			#blackboard.get_value("attacking"),
+			#blackboard.get_value("executing_action")
 		#)
 	
 	## Target

@@ -272,10 +272,11 @@ notice_component = NodePath("../NoticeComponent")
 crosshair = NodePath("../../Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint/Crosshair")
 puncture_sound = NodePath("../../Character/Audio/ThrustPuncture")
 
-[node name="NoticeComponent" parent="Combat" node_paths=PackedStringArray("entity", "head_attachment", "hud_info", "blackboard") instance=ExtResource("10_rxy6t")]
+[node name="NoticeComponent" parent="Combat" node_paths=PackedStringArray("entity", "head_attachment", "hud_info", "beehave_tree", "blackboard") instance=ExtResource("10_rxy6t")]
 entity = NodePath("../..")
 head_attachment = NodePath("../../Character/Armature_004/GeneralSkeleton/HeadAttachment")
 hud_info = NodePath("../../Utility/HUDInfoPos")
+beehave_tree = NodePath("../../BeehaveTree")
 blackboard = NodePath("../../Blackboard")
 
 [node name="InteractionComponent" type="Node" parent="Combat" node_paths=PackedStringArray("hitbox_component")]
@@ -295,8 +296,9 @@ health_component = NodePath("../../../Wellbeing/HealthComponent")
 instability_component = NodePath("../../../Wellbeing/InstabilityComponent")
 locomotion_component = NodePath("../../../LocomotionComponent")
 
-[node name="Outcomes" type="Node" parent="Combat/InteractionComponent" node_paths=PackedStringArray("blackboard", "locomotion_component", "notice_component")]
+[node name="Outcomes" type="Node" parent="Combat/InteractionComponent" node_paths=PackedStringArray("beehave_tree", "blackboard", "locomotion_component", "notice_component")]
 script = ExtResource("28_kaytl")
+beehave_tree = NodePath("../../../BeehaveTree")
 blackboard = NodePath("../../../Blackboard")
 outcome_weights = Array[float]([4.0, 4.0, 2.0])
 locomotion_component = NodePath("../../../LocomotionComponent")

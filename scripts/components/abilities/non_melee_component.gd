@@ -5,6 +5,7 @@ extends Node
 signal can_rotate(flag: bool)
 
 
+@export var debug: bool = false
 @export var non_melee_animations: NonMeleeAnimations
 @export var locomotion_component: LocomotionComponent
 @export var can_perform_action: bool = true
@@ -48,9 +49,10 @@ func perform_action(
 	if not can_perform_action:
 		return
 	
+	executing_action = true
+	
 	can_rotate.emit(true)
 	
-	executing_action = true
 	action_index = index
 	can_perform_action = false
 	

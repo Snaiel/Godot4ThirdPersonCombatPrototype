@@ -492,10 +492,10 @@ bones/64/rotation = Quaternion(4.59335e-08, 1, 0, 3.5726e-08)
 surface_material_override/0 = SubResource("ShaderMaterial_me5f0")
 
 [node name="LockOnAttachment" parent="Character/Armature_004/GeneralSkeleton" index="2"]
-transform = Transform3D(0.997691, 0.052241, -0.0434033, -0.0460714, 0.990089, 0.132667, 0.0499038, -0.130361, 0.99021, 0.00420833, 1.29077, -0.0952334)
+transform = Transform3D(0.997691, 0.0522409, -0.0434034, -0.0460713, 0.990089, 0.132668, 0.0499039, -0.130362, 0.99021, 0.00420832, 1.29077, -0.0952335)
 
 [node name="HeadAttachment" parent="Character/Armature_004/GeneralSkeleton" index="3"]
-transform = Transform3D(0.993811, 0.0323869, 0.10626, 0.0162108, 0.904034, -0.427154, -0.109897, 0.426233, 0.897913, 0.011401, 1.54493, -0.079268)
+transform = Transform3D(0.993811, 0.0323866, 0.10626, 0.0162109, 0.904034, -0.427153, -0.109896, 0.426232, 0.897914, 0.011401, 1.54493, -0.0792681)
 
 [node name="AnimationPlayer" parent="Character" index="1"]
 libraries = {
