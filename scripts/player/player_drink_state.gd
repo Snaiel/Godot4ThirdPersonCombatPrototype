@@ -15,13 +15,13 @@ func _ready():
 	)
 
 
-func enter():
+func enter() -> void:
 	health_charge_component.consume_health_charge()
 	player.head_rotation_component.enabled = false
 	locomotion_component.speed = 0.8
 
 
-func process_player():
+func process_player() -> void:
 	player.set_rotation_target_to_lock_on_target()
 	
 	if player.lock_on_target:
@@ -30,6 +30,6 @@ func process_player():
 		player.rotation_component.rotate_towards_target = false
 
 
-func exit():
+func exit() -> void:
 	player.head_rotation_component.enabled = true
 	player.health_charge_component.interupt()

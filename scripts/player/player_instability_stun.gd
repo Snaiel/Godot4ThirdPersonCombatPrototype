@@ -42,7 +42,7 @@ func _ready():
 	add_child(_timer)
 
 
-func enter():
+func enter() -> void:
 	_can_block_or_parry = false
 	
 	player.locomotion_component.can_move = false
@@ -57,7 +57,7 @@ func enter():
 	_timer.start()
 
 
-func process_player():
+func process_player() -> void:
 
 	
 	if _can_block_or_parry:
@@ -83,6 +83,6 @@ func process_movement_animations() -> void:
 	)
 
 
-func exit():
+func exit() -> void:
 	player.locomotion_component.can_move = true
 	_timer.stop()

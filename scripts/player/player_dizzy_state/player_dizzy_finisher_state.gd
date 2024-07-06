@@ -14,7 +14,7 @@ func _ready():
 	super._ready()
 
 
-func enter():
+func enter() -> void:
 	player.hitbox_component.enabled = false
 	locomotion_component.speed = 3
 	
@@ -28,9 +28,9 @@ func enter():
 		change_state(state)
 
 
-func process_player():
+func process_player() -> void:
 	pass
 
 
-func exit():
+func exit() -> void:
 	player.hitbox_component.enabled = true

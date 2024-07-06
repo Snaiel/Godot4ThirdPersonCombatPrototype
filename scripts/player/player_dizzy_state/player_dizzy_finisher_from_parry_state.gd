@@ -16,7 +16,7 @@ func _ready():
 	)
 
 
-func enter():
+func enter() -> void:
 	_finished = false
 	player.character.dizzy_finisher_animations.play_from_parry_pre_finisher()
 	player.rotation_component.target = Globals.dizzy_system.dizzy_victim.entity
@@ -26,7 +26,7 @@ func enter():
 	player.character.parry_animations.receive_parry_finished()
 
 
-func process_player():
+func process_player() -> void:
 	if Input.is_action_just_pressed("attack") and \
 	dizzy_system.can_kill_victim:
 		player.melee_component.increment_weapon_instance()
@@ -43,6 +43,6 @@ func process_player():
 		return
 
 
-func exit():
+func exit() -> void:
 	player.locomotion_component.can_move = true
 	dizzy_system.victim_being_killed = false

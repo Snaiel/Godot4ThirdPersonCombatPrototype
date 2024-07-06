@@ -15,11 +15,11 @@ func _ready():
 	super._ready()
 
 
-func enter():
+func enter() -> void:
 	main_state = parent_state.parent_state
 
 
-func process_player():
+func process_player() -> void:
 	var victim: = Globals.backstab_system.backstab_victim
 	if victim:
 		player.rotation_component.target = victim
@@ -61,5 +61,5 @@ func process_movement_animations() -> void:
 	)
 
 
-func exit():
+func exit() -> void:
 	pass

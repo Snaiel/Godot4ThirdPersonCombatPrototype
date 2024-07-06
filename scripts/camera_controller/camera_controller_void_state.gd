@@ -12,11 +12,11 @@ func _ready():
 	)
 
 
-func enter():
+func enter() -> void:
 	pass
 
 
-func process_camera():
+func process_camera() -> void:
 	camera.fov = move_toward(
 		camera.fov,
 		camera_controller.camera_fov,
@@ -77,10 +77,10 @@ func process_camera():
 	)
 
 
-func process_unhandled_input(_event: InputEvent):
+func process_unhandled_input(_event: InputEvent) -> void:
 	pass
 
 
-func exit():
+func exit() -> void:
 	pass
 

@@ -47,7 +47,7 @@ func _ready():
 	)
 
 
-func enter():
+func enter() -> void:
 	player.block_component.blocking = true
 	player.melee_component.interrupt_attack()
 	
@@ -57,7 +57,7 @@ func enter():
 	blocking_sfx.play()
 
 
-func process_player():
+func process_player() -> void:
 	if Input.is_action_just_pressed("block"):
 		parent_state.change_state(parry_state)
 		return
@@ -79,7 +79,7 @@ func process_player():
 		player.rotation_component.rotate_towards_target = false
 
 
-func exit():
+func exit() -> void:
 	_pause_before_reducing_instability_timer.stop()
 	player.block_component.blocking = false
 	blocking_sfx.stop()

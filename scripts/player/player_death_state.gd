@@ -37,7 +37,7 @@ func _ready():
 	)
 
 
-func enter():
+func enter() -> void:
 	player.locomotion_component.set_active_strategy("root_motion")
 	
 	Globals.lock_on_system.reset_target()
@@ -58,11 +58,11 @@ func enter():
 	Globals.music_system.fade_out()
 
 
-func process_player():
+func process_player() -> void:
 	pass
 
 
-func process_movement_animations():
+func process_movement_animations() -> void:
 	player.character.movement_animations.move(
 		Vector3.ZERO,
 		player.lock_on_target != null, 
@@ -70,7 +70,7 @@ func process_movement_animations():
 	)
 
 
-func exit():
+func exit() -> void:
 	player.locomotion_component.set_active_strategy("programmatic")
 	
 	Globals.lock_on_system.enabled = true

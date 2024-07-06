@@ -30,7 +30,7 @@ func _ready():
 	)
 
 
-func enter():
+func enter() -> void:
 	_exiting = false
 	
 	player.character.sitting_animations.sit_down()
@@ -48,7 +48,7 @@ func enter():
 	user_interface.hud.enabled = false
 
 
-func process_player():
+func process_player() -> void:
 	pass
 
 func process_movement_animations() -> void:
@@ -59,7 +59,7 @@ func process_movement_animations() -> void:
 	)
 
 
-func exit():
+func exit() -> void:
 	player.locomotion_component.set_active_strategy("programmatic")
 	player.rotation_component.can_rotate = true
 	player.hitbox_component.enabled = true

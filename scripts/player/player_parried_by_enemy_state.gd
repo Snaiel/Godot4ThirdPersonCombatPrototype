@@ -31,16 +31,16 @@ func _ready():
 	add_child(_timer)
 
 
-func enter():
+func enter() -> void:
 	_timer.start()
 	player.melee_component.interrupt_attack()
 	_pressed_attack = false
 
 
-func process_player():
+func process_player() -> void:
 	if Input.is_action_just_pressed("attack"):
 		_pressed_attack = true
 
 
-func exit():
+func exit() -> void:
 	_timer.stop()

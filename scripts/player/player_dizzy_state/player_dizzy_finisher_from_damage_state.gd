@@ -18,7 +18,7 @@ func _ready():
 	)
 
 
-func enter():
+func enter() -> void:
 	_finished = false
 	player.locomotion_component.can_move = false
 	player.weapon.can_damage = false
@@ -28,12 +28,12 @@ func enter():
 	dizzy_system.victim_being_killed = true
 
 
-func process_player():
+func process_player() -> void:
 	if _finished:
 		parent_state.parent_state.transition_to_default_state()
 		return
 
 
-func exit():
+func exit() -> void:
 	player.locomotion_component.can_move = true
 	dizzy_system.victim_being_killed = false

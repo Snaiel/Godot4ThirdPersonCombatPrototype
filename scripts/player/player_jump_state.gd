@@ -20,14 +20,14 @@ func _ready():
 	)
 
 
-func enter():
+func enter() -> void:
 	player.jump_component.start_jump()
 	
 	if parent_state.previous_state == walk_state:
 		locomotion_component.speed = 3.5
 
 
-func process_player():
+func process_player() -> void:
 	if Input.is_action_just_pressed("attack"):
 		parent_state.change_state(attack_state)
 		return

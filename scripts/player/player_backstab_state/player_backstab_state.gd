@@ -8,13 +8,13 @@ func _ready():
 	super._ready()
 
 
-func enter():
+func enter() -> void:
 	change_state(prepare_state)
 
-func process_player():
+func process_player() -> void:
 	if not player.melee_component.attacking and current_state == attack_state:
 		parent_state.transition_to_default_state()
 		return
 
-func exit():
+func exit() -> void:
 	pass

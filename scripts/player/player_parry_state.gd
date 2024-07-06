@@ -18,13 +18,13 @@ func _ready():
 	)
 
 
-func enter():
+func enter() -> void:
 	player.parry_component.parry()
 	player.block_component.blocking = true
 	player.melee_component.interrupt_attack()
 
 
-func process_player():
+func process_player() -> void:
 	if Input.is_action_just_pressed("block") and (
 		not player.melee_component.attacking or \
 		player.melee_component.stop_attacking()
@@ -46,5 +46,5 @@ func process_player():
 		parent_state.change_state(dizzy_finisher_state)
 
 
-func exit():
+func exit() -> void:
 	player.block_component.blocking = false

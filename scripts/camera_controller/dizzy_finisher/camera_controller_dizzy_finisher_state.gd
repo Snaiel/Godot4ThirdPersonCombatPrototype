@@ -12,7 +12,7 @@ func _ready():
 	super._ready()
 
 
-func enter():
+func enter() -> void:
 	var state: CameraControllerStateMachine
 	if dizzy_system.dizzy_victim.instability_component.full_instability_from_parry:
 		state = from_parry
@@ -23,14 +23,14 @@ func enter():
 		change_state(state)
 
 
-func process_camera():
+func process_camera() -> void:
 	pass
 
 
-func process_unhandled_input(_event: InputEvent):
+func process_unhandled_input(_event: InputEvent) -> void:
 	pass
 
 
-func exit():
+func exit() -> void:
 	pass
 

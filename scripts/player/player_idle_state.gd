@@ -19,7 +19,7 @@ func _ready():
 	super._ready()
 	lock_on_system.lock_on.connect(_on_lock_on_system_lock_on)
 
-func enter():
+func enter() -> void:
 	player.rotation_component.move_direction = Vector3.ZERO
 	player.rotation_component.can_rotate = true
 

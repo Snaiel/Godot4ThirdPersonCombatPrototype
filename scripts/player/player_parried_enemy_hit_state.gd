@@ -47,7 +47,7 @@ func _ready():
 	add_child(_timer)
 
 
-func enter():
+func enter() -> void:
 	locomotion_component.speed = 3
 	player.block_component.blocking = true
 	
@@ -70,7 +70,7 @@ func enter():
 	_timer.start()
 
 
-func process_player():
+func process_player() -> void:
 	if Globals.dizzy_system.dizzy_victim:
 		parent_state.change_state(dizzy_finisher_state)
 		return
@@ -84,6 +84,6 @@ func process_player():
 		return
 
 
-func exit():
+func exit() -> void:
 	player.block_component.blocking = false
 	_timer.stop()
