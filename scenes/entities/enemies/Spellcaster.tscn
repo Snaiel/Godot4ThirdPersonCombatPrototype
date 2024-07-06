@@ -437,12 +437,6 @@ bones/52/rotation = Quaternion(0.0790353, 0.174582, 0.169442, 0.966728)
 [node name="Alpha_Surface" parent="Character/Armature_004/GeneralSkeleton" index="1"]
 surface_material_override/0 = SubResource("ShaderMaterial_me5f0")
 
-[node name="LockOnAttachment" parent="Character/Armature_004/GeneralSkeleton" index="2"]
-transform = Transform3D(1, 7.35419e-12, -2.66409e-12, -7.35419e-12, 1, -7.87391e-09, 2.66409e-12, 7.87391e-09, 1, -2.25913e-05, 1.34721, -0.042761)
-
-[node name="HeadAttachment" parent="Character/Armature_004/GeneralSkeleton" index="3"]
-transform = Transform3D(1, 7.81293e-14, -2.66409e-12, -7.81293e-14, 1, -8.33958e-09, 2.66409e-12, 8.33958e-09, 1, -4.45549e-05, 1.60075, -0.00340771)
-
 [node name="AnimationPlayer" parent="Character" index="1"]
 libraries = {
 "": SubResource("AnimationLibrary_jlhwm"),
@@ -516,21 +510,24 @@ script = ExtResource("13_t4d4w")
 projectile_scene = ExtResource("10_1tv5p")
 entity = NodePath("../../..")
 
-[node name="SetRotateTowardsTargetTrue" parent="BeehaveTree/SelectorComposite/Aggro" index="2" instance=ExtResource("10_m7wae")]
+[node name="NoticeComponent" parent="Combat" index="2" node_paths=PackedStringArray("beehave_tree")]
+beehave_tree = NodePath("../../BeehaveTree")
 
-[node name="SetLockedOnTrue" parent="BeehaveTree/SelectorComposite/Aggro" index="3" instance=ExtResource("11_fajlc")]
+[node name="SetRotateTowardsTargetTrue" parent="BeehaveTree/SelectorComposite/Aggro" index="1" instance=ExtResource("10_m7wae")]
 
-[node name="SetCanPerformActionTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro" index="4"]
+[node name="SetLockedOnTrue" parent="BeehaveTree/SelectorComposite/Aggro" index="2" instance=ExtResource("11_fajlc")]
+
+[node name="SetCanPerformActionTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro" index="3"]
 script = ExtResource("12_0318b")
 key = "\"can_perform_action\""
 value = "true"
 
-[node name="Wait" parent="BeehaveTree/SelectorComposite/Aggro" index="5" instance=ExtResource("13_ev5sh")]
+[node name="Wait" parent="BeehaveTree/SelectorComposite/Aggro" index="4" instance=ExtResource("13_ev5sh")]
 time = 4.0
 reset_wait_after = true
 wait_id = 35573601
 
-[node name="CastSpell" type="Node" parent="BeehaveTree/SelectorComposite/Aggro" index="6"]
+[node name="CastSpell" type="Node" parent="BeehaveTree/SelectorComposite/Aggro" index="5"]
 script = ExtResource("14_oclvu")
 
 [node name="IsCanPerformActionTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/CastSpell" index="0"]

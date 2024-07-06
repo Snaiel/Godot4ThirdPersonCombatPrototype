@@ -7,7 +7,9 @@ signal parried_incoming_hit(incoming_damage_source: DamageSource)
 
 @export var hitbox_component: HitboxComponent
 @export var block_component: BlockComponent
-@export var parry_particles_scene: PackedScene = preload("res://scenes/particles/ParryParticles.tscn")
+@export var parry_particles_scene: PackedScene = preload(
+	"res://scenes/particles/ParryParticles.tscn"
+)
 @export var parry_particles_colour: Color
 
 var in_parry_window: bool = false:
@@ -52,7 +54,7 @@ func _ready() -> void:
 		1, 
 		parry_particles_colour
 	)
-	add_child(_parry_particles)
+	#add_child(_parry_particles)
 	
 	
 	_parry_timer = Timer.new()
@@ -110,4 +112,7 @@ func reset_parry_cooldown() -> void:
 
 
 func play_parry_particles() -> void:
-	_parry_particles.restart()
+	var particles: GPUParticles3D = _parry_particles.duplicate()
+	add_child(particles)
+	particles.finished.connect(particles.queue_free)
+	particles.restart()

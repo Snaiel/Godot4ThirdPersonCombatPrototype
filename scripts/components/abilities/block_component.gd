@@ -6,7 +6,9 @@ extends Node3D
 @export var block_animations: BlockAnimations
 @export var walk_speed_while_blocking: float = 0.8
 @export var transparency: float = 0.7
-@export var block_particles_scene: PackedScene = preload("res://scenes/particles/BlockParticles.tscn")
+@export var block_particles_scene: PackedScene = preload(
+	"res://scenes/particles/BlockParticles.tscn"
+)
 
 var blocking: bool = false:
 	set = set_blocking
@@ -19,7 +21,6 @@ var _particles: GPUParticles3D
 
 func _ready():
 	_particles = block_particles_scene.instantiate()
-	add_child(_particles)
 
 
 func _physics_process(_delta: float) -> void:
@@ -51,4 +52,7 @@ func blocked() -> void:
 		print("BLOCKED")
 		blocking = true
 		anim.play("blocked")
-	_particles.restart()
+	var particles: GPUParticles3D = _particles.duplicate()
+	add_child(particles)
+	particles.finished.connect(particles.queue_free)
+	particles.restart()

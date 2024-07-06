@@ -1,4 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://q45nlnwpb1bf"]
+[gd_scene load_steps=8 format=3 uid="uid://q45nlnwpb1bf"]
+
+[sub_resource type="Gradient" id="Gradient_mobdd"]
+offsets = PackedFloat32Array(0.097561, 0.390244)
+colors = PackedColorArray(1, 1, 1, 1, 0.18359, 0.18359, 0.18359, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7066b"]
+gradient = SubResource("Gradient_mobdd")
 
 [sub_resource type="Curve" id="Curve_dr1d2"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.756944, 0.726316), -0.985263, -0.985263, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -16,7 +23,7 @@ initial_velocity_max = 5.0
 scale_min = 0.1
 scale_max = 0.2
 scale_curve = SubResource("CurveTexture_fkb70")
-color = Color(0.501961, 0.501961, 0.501961, 1)
+color_ramp = SubResource("GradientTexture1D_7066b")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_viv2t"]
 shading_mode = 0

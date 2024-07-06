@@ -34,7 +34,7 @@ func shoot() -> void:
 	add_child(projectile)
 	
 	projectile.parried.connect(
-		entity.instability_component.got_parried.bind(1)
+		entity.instability_component.got_parried.bind(0)
 	)
 	
 	projectile.speed = 15
@@ -50,5 +50,9 @@ func shoot() -> void:
 	else:
 		target_pos = entity.target.global_positio
 	
-	projectile.direction = entity.lock_on_component.attachment_point.global_position.direction_to(target_pos)
+	projectile.direction = entity\
+		.lock_on_component\
+		.attachment_point\
+		.global_position\
+		.direction_to(target_pos)
 	projectile.look_at(entity.target.global_position)

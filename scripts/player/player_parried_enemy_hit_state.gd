@@ -23,17 +23,16 @@ func _ready():
 	player.parry_component.parried_incoming_hit.connect(
 		func(incoming_damage_source: DamageSource):
 			_incoming_damage_source = incoming_damage_source
-			
 			if Globals.dizzy_system.dizzy_victim == null:
 				parent_state.change_state(self)
 	)
 	
 	player.hitbox_component.damage_source_hit.connect(
 		func(_damage_source: DamageSource):
-			if parent_state.current_state == self:
-				block_state.block_sfx.play()
-				player.block_component.blocking = true
-				player.block_component.blocked()
+			if parent_state.current_state != self: return
+			block_state.block_sfx.play()
+			player.block_component.blocking = true
+			player.block_component.blocked()
 	)
 	
 	_timer = Timer.new()
@@ -41,8 +40,7 @@ func _ready():
 	_timer.autostart = false
 	_timer.one_shot = true
 	_timer.timeout.connect(
-		func():
-			parent_state.transition_to_default_state()
+		func(): parent_state.transition_to_default_state()
 	)
 	add_child(_timer)
 
@@ -57,8 +55,10 @@ func enter() -> void:
 	player.parry_component.play_parry_particles()
 	
 	player.character.parry_animations.parry()
+	
 	player.block_component.anim.stop()
 	player.block_component.anim.play("parried")
+	
 	_incoming_damage_source.get_parried()
 	if not player.dizzy_system.dizzy_victim:
 		player.locomotion_component.knockback(
