@@ -37,7 +37,7 @@ func _ready() -> void:
 	speed = default_speed
 	
 	_secondary_movement_timer = Timer.new()
-	_secondary_movement_timer.timeout.connect(reset__secondary_movement)
+	_secondary_movement_timer.timeout.connect(reset_secondary_movement)
 	add_child(_secondary_movement_timer)
 	
 	if strategies.has(default_strategy):
@@ -119,7 +119,7 @@ func knockback(knockback_origin: Vector3) -> void:
 	set_secondary_movement(3, 5, 5, -direction)
 
 
-func reset__secondary_movement() -> void:
+func reset_secondary_movement() -> void:
 	_secondary_movement_direction = Vector3.ZERO
 	_secondary_movement_speed = 0.0
 	_secondary_movement_friction = 0.0
