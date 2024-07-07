@@ -57,7 +57,8 @@ func _process(_delta: float) -> void:
 	
 	if _player_angle < max_angle and \
 	not _previously_enabled_hint and \
-	_player.is_on_floor():
+	_player.is_on_floor() and \
+	not (_player.state_machine.current_state is PlayerDeathState):
 		can_sit_at_checkpoint = true
 		_checkpoint_system.enable_hint()
 		_previously_enabled_hint = true

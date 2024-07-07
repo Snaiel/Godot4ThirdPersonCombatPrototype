@@ -63,22 +63,18 @@ func _ready() -> void:
 	)
 	
 	melee_component.can_rotate.connect(
-		func(flag: bool):
-			rotation_component.can_rotate = flag
+		func(flag: bool): rotation_component.can_rotate = flag
 	)
 	
 	_holding_down_run_timer = Timer.new()
 	_holding_down_run_timer.timeout.connect(
-		func():
-			holding_down_run = true
+		func(): holding_down_run = true
 	)
 	add_child(_holding_down_run_timer)
 	
 	state_machine.enter_state_machine()
 	
 	character.walk_or_jog_animations.to_jogging()
-	
-	
 
 
 func _physics_process(_delta: float) -> void:
@@ -96,10 +92,12 @@ func _physics_process(_delta: float) -> void:
 	state_machine.process_movement_animations_state_machine()
 	
 	# player inputs
-	input_direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
-	input_direction.z = Input.get_action_strength("backward") - Input.get_action_strength("forward")
-
-	last_input_on_ground = input_direction if is_on_floor() else last_input_on_ground
+	input_direction.x = Input.get_action_strength("right") - \
+		Input.get_action_strength("left")
+	input_direction.z = Input.get_action_strength("backward") - \
+		Input.get_action_strength("forward")
+	last_input_on_ground = input_direction if is_on_floor() else \
+		last_input_on_ground
 	
 	
 	# make sure the user is actually holding down
@@ -118,6 +116,7 @@ func _physics_process(_delta: float) -> void:
 	
 	if Input.is_action_just_pressed("interact") and \
 	not state_machine.current_state is PlayerCheckpointState and \
+	not state_machine.current_state is PlayerDeathState and \
 	checkpoint_system.current_checkpoint and \
 	checkpoint_system.current_checkpoint.can_sit_at_checkpoint:
 		state_machine.change_state(checkpoint_state)

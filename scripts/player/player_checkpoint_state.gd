@@ -51,6 +51,7 @@ func enter() -> void:
 func process_player() -> void:
 	pass
 
+
 func process_movement_animations() -> void:
 	player.character.movement_animations.move(
 		Vector3.ZERO,
@@ -76,8 +77,6 @@ func exit() -> void:
 
 func _stand_up() -> void:
 	player.character.sitting_animations.stand_up()
-	
 	user_interface.checkpoint_interface.hide_menu()
-	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	_exiting = true

@@ -7,32 +7,26 @@ func _ready():
 	
 	player.health_component.zero_health.connect(
 		func():
-			if parent_state.current_state != self:
-				parent_state.change_state(self)
+			if parent_state.current_state == self: return
+			parent_state.change_state(self)
 	)
 	
 	Globals.user_interface.death_screen.respawn.connect(
 		func():
-			if parent_state.current_state != self:
-				return
-			
+			if parent_state.current_state != self: return
 			player.character.hit_and_death_animations.reset_death()
 			player.character.sitting_animations.blend_to_idle()
 	)
 	
 	Globals.user_interface.death_screen.stand_up.connect(
 		func():
-			if parent_state.current_state != self:
-				return
-			
+			if parent_state.current_state != self: return
 			player.character.sitting_animations.stand_up()
 	)
 	
 	player.character.sitting_animations.finished.connect(
 		func():
-			if parent_state.current_state != self:
-				return
-			
+			if parent_state.current_state != self: return
 			parent_state.transition_to_default_state()
 	)
 
@@ -78,3 +72,6 @@ func exit() -> void:
 	player.rotation_component.can_rotate = true
 	player.head_rotation_component.enabled = true
 	player.hitbox_component.enabled = true
+	
+	if Globals.checkpoint_system.current_checkpoint:
+		Globals.checkpoint_system.enable_hint()
