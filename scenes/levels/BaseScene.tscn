@@ -130,7 +130,6 @@ collision_mask = 2
 script = ExtResource("14_ax55c")
 
 [node name="AreaCollider" type="CollisionShape3D" parent="Level/Enemies/Section"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
 shape = SubResource("BoxShape3D_d3a26")
 
 [node name="Enemies" type="Node3D" parent="Level/Enemies/Section"]
