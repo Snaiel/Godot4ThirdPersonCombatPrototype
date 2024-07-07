@@ -62,7 +62,7 @@ func enter() -> void:
 	player.block_component.anim.play("parried")
 	
 	_incoming_damage_source.get_parried()
-	if not player.dizzy_system.dizzy_victim:
+	if not dizzy_system.dizzy_victim:
 		player.locomotion_component.knockback(
 			_incoming_damage_source.entity.global_position
 		)

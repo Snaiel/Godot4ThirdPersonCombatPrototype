@@ -30,12 +30,12 @@ sky_top_color = Color(0.384314, 0.454902, 0.54902, 1)
 sky_horizon_color = Color(0.646078, 0.655975, 0.670505, 1)
 ground_horizon_color = Color(0.646078, 0.655975, 0.670505, 1)
 
-[sub_resource type="Sky" id="Sky_qudfu"]
+[sub_resource type="Sky" id="Sky_s353b"]
 sky_material = SubResource("ProceduralSkyMaterial_co0qk")
 
 [sub_resource type="Environment" id="Environment_32f71"]
 background_mode = 2
-sky = SubResource("Sky_qudfu")
+sky = SubResource("Sky_s353b")
 tonemap_mode = 2
 fog_density = 0.02
 fog_height_density = 0.2
@@ -1291,7 +1291,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.94591, 11, -1.47406)
 
 [connection signal="area_entered" from="LockOnSystem" to="LockOnSystem" method="_on_area_entered"]
 [connection signal="area_exited" from="LockOnSystem" to="LockOnSystem" method="_on_area_exited"]
-[connection signal="lock_on" from="LockOnSystem" to="Player" method="_on_lock_on_system_lock_on"]
 [connection signal="timeout" from="LockOnSystem/ChangeTargetTimer" to="LockOnSystem" method="_on_change_target_timer_timeout"]
 
 [editable path="Level1/World/NavigationRegion3D/Checkpoints/Checkpoint4"]

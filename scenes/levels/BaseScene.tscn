@@ -1,0 +1,136 @@
+[gd_scene load_steps=23 format=3 uid="uid://c2uj0la6nf7y"]
+
+[ext_resource type="Script" path="res://scripts/utilities/level.gd" id="1_sny18"]
+[ext_resource type="PackedScene" uid="uid://cy5wvw01aul4m" path="res://scenes/utilities/CameraController.tscn" id="2_na8o1"]
+[ext_resource type="PackedScene" uid="uid://b075d85nmca7s" path="res://scenes/utilities/UserInterface.tscn" id="3_ukieh"]
+[ext_resource type="PackedScene" uid="uid://dujukbu10vbmm" path="res://scenes/entities/Player.tscn" id="4_p4re0"]
+[ext_resource type="Script" path="res://scripts/utilities/backstab_system.gd" id="5_arg4d"]
+[ext_resource type="Script" path="res://scripts/utilities/dizzy_system.gd" id="6_wq7xd"]
+[ext_resource type="PackedScene" uid="uid://xg0hjxcilbsl" path="res://scenes/utilities/LockOnSystem.tscn" id="7_js3aj"]
+[ext_resource type="PackedScene" uid="uid://y7vsh6qub2m1" path="res://scenes/utilities/CheckpointSystem.tscn" id="8_sfixx"]
+[ext_resource type="PackedScene" uid="uid://cchf2jr3d13xj" path="res://scenes/utilities/MusicSystem.tscn" id="9_cdq8y"]
+[ext_resource type="Texture2D" uid="uid://bcln5bjy3tb8y" path="res://assets/kenney-prototype-texture-light-06.png" id="12_g4oaw"]
+[ext_resource type="Script" path="res://scripts/utilities/void_death_system.gd" id="13_nxq7q"]
+[ext_resource type="PackedScene" uid="uid://k32oq3ivgjxf" path="res://scenes/utilities/Checkpoint.tscn" id="13_s6axi"]
+[ext_resource type="Script" path="res://scripts/utilities/enemy_section.gd" id="14_ax55c"]
+[ext_resource type="PackedScene" uid="uid://biuqyf53m0ive" path="res://scenes/utilities/VoidArea.tscn" id="14_mabsj"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wqkpv"]
+sky_top_color = Color(0.384314, 0.454902, 0.54902, 1)
+sky_horizon_color = Color(0.646078, 0.655975, 0.670505, 1)
+ground_horizon_color = Color(0.646078, 0.655975, 0.670505, 1)
+
+[sub_resource type="Sky" id="Sky_qudfu"]
+sky_material = SubResource("ProceduralSkyMaterial_wqkpv")
+
+[sub_resource type="Environment" id="Environment_7nmub"]
+background_mode = 2
+sky = SubResource("Sky_qudfu")
+tonemap_mode = 2
+fog_density = 0.02
+fog_height_density = 0.2
+volumetric_fog_albedo = Color(0.905882, 0.980392, 1, 1)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_8usqq"]
+vertices = PackedVector3Array(-14.5, 1, -14.5, -14.5, 1, 14.5, 14.5, 1, 14.5, 14.5, 1, -14.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wgdno"]
+albedo_color = Color(0.261719, 0.261719, 0.261719, 1)
+albedo_texture = ExtResource("12_g4oaw")
+metallic_specular = 0.0
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_o2qxc"]
+lightmap_size_hint = Vector2i(304, 166)
+material = SubResource("StandardMaterial3D_wgdno")
+size = Vector3(30, 1, 30)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ur8po"]
+data = PackedVector3Array(-15, 0.5, 15, 15, 0.5, 15, -15, -0.5, 15, 15, 0.5, 15, 15, -0.5, 15, -15, -0.5, 15, 15, 0.5, -15, -15, 0.5, -15, 15, -0.5, -15, -15, 0.5, -15, -15, -0.5, -15, 15, -0.5, -15, 15, 0.5, 15, 15, 0.5, -15, 15, -0.5, 15, 15, 0.5, -15, 15, -0.5, -15, 15, -0.5, 15, -15, 0.5, -15, -15, 0.5, 15, -15, -0.5, -15, -15, 0.5, 15, -15, -0.5, 15, -15, -0.5, -15, 15, 0.5, 15, -15, 0.5, 15, 15, 0.5, -15, -15, 0.5, 15, -15, 0.5, -15, 15, 0.5, -15, -15, -0.5, 15, 15, -0.5, 15, -15, -0.5, -15, 15, -0.5, 15, 15, -0.5, -15, -15, -0.5, -15)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d3a26"]
+size = Vector3(70, 500, 130)
+
+[node name="BaseScene" type="Node3D" node_paths=PackedStringArray("player", "user_interface", "camera_controller", "lock_on_system", "backstab_system", "dizzy_system", "checkpoint_system", "music_system", "void_death_system")]
+script = ExtResource("1_sny18")
+player = NodePath("Player")
+user_interface = NodePath("UserInterface")
+camera_controller = NodePath("CameraController")
+lock_on_system = NodePath("LockOnSystem")
+backstab_system = NodePath("BackstabSystem")
+dizzy_system = NodePath("DizzySystem")
+checkpoint_system = NodePath("CheckpointSystem")
+music_system = NodePath("MusicSystem")
+void_death_system = NodePath("Level/VoidDeathSystem")
+
+[node name="CameraController" parent="." instance=ExtResource("2_na8o1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.6934, 0)
+not_running_spin_speed = 3.5
+running_spin_speed = 4.0
+
+[node name="UserInterface" parent="." instance=ExtResource("3_ukieh")]
+
+[node name="Player" parent="." instance=ExtResource("4_p4re0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)
+
+[node name="BackstabSystem" type="Node3D" parent="."]
+script = ExtResource("5_arg4d")
+
+[node name="DizzySystem" type="Node3D" parent="."]
+script = ExtResource("6_wq7xd")
+
+[node name="LockOnSystem" parent="." instance=ExtResource("7_js3aj")]
+
+[node name="CheckpointSystem" parent="." node_paths=PackedStringArray("level", "initial_checkpoint", "enemies") instance=ExtResource("8_sfixx")]
+level = NodePath("../Level")
+initial_checkpoint = NodePath("../Level/Environment/NavigationRegion3D/Checkpoints/Checkpoint")
+enemies = NodePath("../Level/Enemies")
+
+[node name="MusicSystem" parent="." instance=ExtResource("9_cdq8y")]
+
+[node name="Level" type="Node3D" parent="."]
+
+[node name="Environment" type="Node3D" parent="Level"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Level/Environment"]
+environment = SubResource("Environment_7nmub")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Level/Environment"]
+transform = Transform3D(0.819796, 0.154633, 0.551382, -0.555326, 0.449744, 0.699531, -0.13981, -0.87967, 0.45457, 0, 17.9363, 0)
+shadow_enabled = true
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="Level/Environment"]
+navigation_mesh = SubResource("NavigationMesh_8usqq")
+
+[node name="Floor" type="MeshInstance3D" parent="Level/Environment/NavigationRegion3D"]
+mesh = SubResource("BoxMesh_o2qxc")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/Environment/NavigationRegion3D/Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Environment/NavigationRegion3D/Floor/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_ur8po")
+
+[node name="Checkpoints" type="Node3D" parent="Level/Environment/NavigationRegion3D"]
+
+[node name="Checkpoint" parent="Level/Environment/NavigationRegion3D/Checkpoints" instance=ExtResource("13_s6axi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.888793, 0)
+
+[node name="VoidDeathSystem" type="Node3D" parent="Level"]
+script = ExtResource("13_nxq7q")
+
+[node name="VoidArea" parent="Level/VoidDeathSystem" instance=ExtResource("14_mabsj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
+
+[node name="Enemies" type="Node3D" parent="Level"]
+
+[node name="Section" type="Area3D" parent="Level/Enemies"]
+collision_mask = 2
+script = ExtResource("14_ax55c")
+
+[node name="AreaCollider" type="CollisionShape3D" parent="Level/Enemies/Section"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+shape = SubResource("BoxShape3D_d3a26")
+
+[node name="Enemies" type="Node3D" parent="Level/Enemies/Section"]

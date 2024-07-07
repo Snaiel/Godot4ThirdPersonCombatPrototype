@@ -6,19 +6,16 @@ signal lock_on(target: LockOnComponent)
 
 
 @export var enabled: bool = true
-@export var retain_distance: float = 25.0
-
-@export_category("Enemies")
-@export var target: LockOnComponent = null
-@export var potential_target: LockOnComponent = null
 @export var target_detection_range: float = 20.0
-
+@export var retain_distance: float = 25.0
 
 @export_category("Changing Target")
 @export var change_target_mouse_threshold: float = 60.0
 @export var change_target_controller_threshold: float = 0.2
 @export var change_target_wait_time: float = 0.5
 @export var can_change_target = true
+
+var target: LockOnComponent = null
 
 var _targets_nearby: Array[LockOnComponent]
 

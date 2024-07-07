@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://xg0hjxcilbsl"]
+
+[ext_resource type="Script" path="res://scripts/utilities/lock_on_system.gd" id="1_2u5t0"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ksm3o"]
+radius = 10.0
+
+[node name="LockOnSystem" type="Area3D"]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("1_2u5t0")
+
+[node name="EnemyDetectionSphere" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_ksm3o")
+
+[node name="ChangeTargetTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="timeout" from="ChangeTargetTimer" to="." method="_on_change_target_timer_timeout"]

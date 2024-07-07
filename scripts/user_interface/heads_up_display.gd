@@ -51,10 +51,11 @@ func _on_lock_on_system_lock_on(target: LockOnComponent) -> void:
 
 
 func _process_lock_on() -> void:
-	if not _lock_on_target:
-		return
+	if not _lock_on_target: return
 	
-	var pos: Vector2 = Globals.camera_controller.get_lock_on_position(_lock_on_target)
+	var pos: Vector2 = Globals.camera_controller.get_lock_on_position(
+		_lock_on_target
+	)
 	var lock_on_pos: Vector2 = Vector2(
 		pos.x - _lock_on_texture.size.x / 2,
 		pos.y - _lock_on_texture.size.y / 2

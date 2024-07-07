@@ -146,9 +146,9 @@ func _physics_process(delta: float) -> void:
 		player.rotation.y = lerp_angle(player.rotation.y, target_look, 0.03)		
 
 
-func get_lock_on_rotation_difference() -> float:
+func get_rotation_difference(t: Node3D) -> float:
 	var _looking_direction: Vector3 = -player.global_position.direction_to(
-		player.lock_on_target.global_position
+		t.global_position
 	)
-	target_look = atan2(_looking_direction.x, _looking_direction.z)
-	return abs(player.rotation.y - target_look)
+	var r: float = atan2(_looking_direction.x, _looking_direction.z)
+	return abs(player.rotation.y - r)

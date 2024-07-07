@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://y7vsh6qub2m1"]
+
+[ext_resource type="Script" path="res://scripts/utilities/checkpoint_system.gd" id="1_6uln4"]
+[ext_resource type="AudioStream" uid="uid://bcy3kyjij5qj1" path="res://audio/death.wav" id="2_q80p5"]
+
+[node name="CheckpointSystem" type="Node" node_paths=PackedStringArray("level", "initial_checkpoint", "enemies")]
+script = ExtResource("1_6uln4")
+level = NodePath("")
+initial_checkpoint = NodePath("")
+enemies = NodePath("")
+
+[node name="DeathSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_q80p5")
+volume_db = -8.0

@@ -38,12 +38,26 @@ var _holding_down_run_timer: Timer
 @onready var drink_state: PlayerDrinkState = $StateMachine/Drink
 @onready var checkpoint_state: PlayerCheckpointState = $StateMachine/Checkpoint
 
-@onready var dizzy_system: DizzySystem = Globals.dizzy_system
 @onready var backstab_system: BackstabSystem = Globals.backstab_system
 @onready var checkpoint_system: CheckpointSystem = Globals.checkpoint_system
 
 
 func _ready() -> void:
+	Globals.lock_on_system.lock_on.connect(
+		func(target: LockOnComponent): lock_on_target = target
+	)
+	
+	Globals.dizzy_system.dizzy_victim_killed.connect(
+		func(): instability_component.instability = 0.0
+	)
+	
+	Globals.void_death_system.fallen_into_the_void.connect(
+		func(body: Node3D):
+			if not (body is Player): return
+			health_component.deal_max_damage = true
+			health_component.decrement_health(1)
+	)
+	
 	hitbox_component.damage_source_hit.connect(
 		_on_hitbox_component_damage_source_hit
 	)
@@ -60,21 +74,11 @@ func _ready() -> void:
 	)
 	add_child(_holding_down_run_timer)
 	
-	dizzy_system.dizzy_victim_killed.connect(
-		func():
-			instability_component.instability = 0.0
-	)
-	
 	state_machine.enter_state_machine()
 	
 	character.walk_or_jog_animations.to_jogging()
 	
-	Globals.void_death_system.fallen_into_the_void.connect(
-		func(body: Node3D):
-			if body is Player:
-				health_component.deal_max_damage = true
-				health_component.decrement_health(1)
-	)
+	
 
 
 func _physics_process(_delta: float) -> void:
@@ -154,6 +158,7 @@ func process_default_movement_animations() -> void:
 
 
 func _on_lock_on_system_lock_on(target: LockOnComponent) -> void:
+	print('hi')
 	lock_on_target = target
 
 

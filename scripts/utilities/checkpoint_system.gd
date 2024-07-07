@@ -28,8 +28,7 @@ var _packed_enemies: PackedScene
 
 
 func _ready():
-	if not enemies:
-		return
+	if not enemies: return
 	
 	set_enemies_chldren_owner()
 	

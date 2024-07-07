@@ -74,19 +74,21 @@ func process_movement_animations() -> void:
 
 
 func _on_lock_on_system_lock_on(target: LockOnComponent) -> void:
-	if target and \
-	player.rotation_component.get_lock_on_rotation_difference() > 0.1:
-		
-		var diff: float = player.rotation_component\
-			.get_lock_on_rotation_difference()
-		
-		_locked_on_turning_in_place = true
-		
-		var duration: float = clamp(diff / PI * 0.18, 0.1, 0.18)
-		var pressed_lock_on_timer: SceneTreeTimer = get_tree()\
-			.create_timer(duration)
-		
-		pressed_lock_on_timer.timeout.connect(
-			func():
-				_locked_on_turning_in_place = false
-		)
+	if not target: return
+	
+	var rotation_difference: float = player\
+		.rotation_component\
+		.get_rotation_difference(target)
+	
+	if rotation_difference < 0.1: return
+	
+	_locked_on_turning_in_place = true
+	
+	var duration: float = clamp(rotation_difference / PI * 0.18, 0.1, 0.18)
+	var pressed_lock_on_timer: SceneTreeTimer = get_tree()\
+		.create_timer(duration)
+	
+	pressed_lock_on_timer.timeout.connect(
+		func():
+			_locked_on_turning_in_place = false
+	)
