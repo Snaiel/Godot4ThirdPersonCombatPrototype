@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://dmtsn22tgr3b1"]
+[gd_scene load_steps=52 format=3 uid="uid://dmtsn22tgr3b1"]
 
 [ext_resource type="PackedScene" uid="uid://b34rhh2gbadoy" path="res://scenes/entities/enemies/BaseEnemy.tscn" id="1_mc312"]
 [ext_resource type="Shader" path="res://shaders/fade.gdshader" id="2_433ld"]
@@ -45,6 +45,8 @@
 [ext_resource type="PackedScene" uid="uid://8q4shgtn2rdm" path="res://scenes/beehave/set_actions/SetCanAttackTrue.tscn" id="42_y1g46"]
 [ext_resource type="PackedScene" uid="uid://d1wjh32ysekoi" path="res://scenes/beehave/set_actions/SetRunSpeed.tscn" id="43_pqqby"]
 [ext_resource type="PackedScene" uid="uid://ppcsagqgu032" path="res://scenes/beehave/inputs/InputForwards.tscn" id="44_tsc7e"]
+[ext_resource type="PackedScene" uid="uid://nc8fs0at3l7x" path="res://scenes/beehave/set_actions/SetLockedOnFalse.tscn" id="46_40per"]
+[ext_resource type="PackedScene" uid="uid://t8wg0g461fli" path="res://scenes/beehave/wait/ResetWait.tscn" id="47_wnrcf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yud2m"]
 render_priority = 0
@@ -559,23 +561,51 @@ value = "true"
 wait_id = 82140480
 
 [node name="Patrol" type="Node" parent="BeehaveTree/SelectorComposite" index="5"]
+script = ExtResource("21_763qd")
+
+[node name="Stationary" type="Node" parent="BeehaveTree/SelectorComposite/Patrol" index="0"]
 script = ExtResource("23_mp67g")
 
-[node name="SetRotateTowardsTargetTrue" parent="BeehaveTree/SelectorComposite/Patrol" index="0" instance=ExtResource("24_quvof")]
+[node name="IsPatrolMoveFalse" type="Node" parent="BeehaveTree/SelectorComposite/Patrol/Stationary" index="0"]
+script = ExtResource("26_t4uqh")
+left_operand = "get_value(\"patrol_move\")"
+right_operand = "false"
 
-[node name="SetHeadRotationEnabledFalse" type="Node" parent="BeehaveTree/SelectorComposite/Patrol" index="1"]
+[node name="PatrolDist" type="Node" parent="BeehaveTree/SelectorComposite/Patrol/Stationary" index="1"]
+script = ExtResource("26_t4uqh")
+left_operand = "get_value(\"patrol_dist\")"
+operator = 3
+right_operand = "1"
+
+[node name="InputNone" parent="BeehaveTree/SelectorComposite/Patrol/Stationary" index="2" instance=ExtResource("27_r7c2x")]
+
+[node name="Wait" parent="BeehaveTree/SelectorComposite/Patrol/Stationary" index="3" instance=ExtResource("38_s64ne")]
+time = 3.0
+wait_id = 22789821
+
+[node name="SetLockedOnFalse" parent="BeehaveTree/SelectorComposite/Patrol/Stationary" index="4" instance=ExtResource("46_40per")]
+
+[node name="Move" type="Node" parent="BeehaveTree/SelectorComposite/Patrol" index="1"]
+script = ExtResource("23_mp67g")
+
+[node name="ResetWait" parent="BeehaveTree/SelectorComposite/Patrol/Move" index="0" instance=ExtResource("47_wnrcf")]
+wait_id = 22789821
+
+[node name="SetRotateTowardsTargetTrue" parent="BeehaveTree/SelectorComposite/Patrol/Move" index="1" instance=ExtResource("24_quvof")]
+
+[node name="SetHeadRotationEnabledFalse" type="Node" parent="BeehaveTree/SelectorComposite/Patrol/Move" index="2"]
 script = ExtResource("39_yg2yw")
 key = "\"head_rotation_enabled\""
 value = "false"
 
-[node name="SetLockedOnTrue" parent="BeehaveTree/SelectorComposite/Patrol" index="2" instance=ExtResource("25_5kxm6")]
+[node name="SetLockedOnTrue" parent="BeehaveTree/SelectorComposite/Patrol/Move" index="3" instance=ExtResource("25_5kxm6")]
 
-[node name="SetCanMoveTrue" parent="BeehaveTree/SelectorComposite/Patrol" index="3" instance=ExtResource("34_1528r")]
+[node name="SetCanMoveTrue" parent="BeehaveTree/SelectorComposite/Patrol/Move" index="4" instance=ExtResource("34_1528r")]
 
-[node name="SetWalkSpeed" parent="BeehaveTree/SelectorComposite/Patrol" index="4" instance=ExtResource("43_pqqby")]
+[node name="SetWalkSpeed" parent="BeehaveTree/SelectorComposite/Patrol/Move" index="5" instance=ExtResource("43_pqqby")]
 value = "1"
 
-[node name="InputForwards" parent="BeehaveTree/SelectorComposite/Patrol" index="5" instance=ExtResource("44_tsc7e")]
+[node name="InputForwards" parent="BeehaveTree/SelectorComposite/Patrol/Move" index="6" instance=ExtResource("44_tsc7e")]
 
 [editable path="Character"]
 [editable path="Character/Armature_004/GeneralSkeleton/Sword"]

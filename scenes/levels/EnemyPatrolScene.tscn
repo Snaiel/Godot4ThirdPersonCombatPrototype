@@ -2,14 +2,14 @@
 
 [ext_resource type="PackedScene" uid="uid://c2uj0la6nf7y" path="res://scenes/levels/BaseScene.tscn" id="1_rur2h"]
 [ext_resource type="PackedScene" uid="uid://dmtsn22tgr3b1" path="res://scenes/entities/enemies/NewSwordsman.tscn" id="2_myj8i"]
-[ext_resource type="Script" path="res://scripts/utilities/patrol_follow.gd" id="3_tqxbe"]
+[ext_resource type="Script" path="res://scripts/utilities/patrol_instance.gd" id="3_tqxbe"]
 
 [sub_resource type="Curve3D" id="Curve3D_2ie1q"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 3.80775, -1.42455e-05, 6.11599, 1.69491, 5.96046e-08, 0.834004, -1.69491, -5.96046e-08, -0.834004, -1.27699, -1.41859e-05, 7.03071, 1.26446, 0, -0.0538063, -1.26446, 0, 0.0538063, -5.95818, -1.44839e-05, 3.15662, 0.564971, -1.19209e-07, -1.6142, -0.564971, 1.19209e-07, 1.6142, -10.9891, -1.43051e-05, 5.52412, -0.0538063, -5.96046e-08, -0.726391, 0.0538063, 5.96046e-08, 0.726391, -9.77846, -1.39475e-05, 9.26369, 0, 0, 0, 0, 0, 0, -11.2312, -1.37091e-05, 12.0347),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 3.80775, -1.42455e-05, 6.11599, 1.69491, 5.96046e-08, 0.834004, -1.69491, -5.96046e-08, -0.834004, -0.2055, -1.41859e-05, 7.02409, -1.68867, -2.38419e-07, -2.77814, 1.68867, 2.38419e-07, 2.77814, -3.33771, -1.38283e-05, 10.7555),
+"tilts": PackedFloat32Array(0, 0, 0)
 }
-point_count = 6
+point_count = 3
 
 [sub_resource type="BoxMesh" id="BoxMesh_ukey6"]
 
@@ -27,7 +27,7 @@ transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0.5
 curve = SubResource("Curve3D_2ie1q")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D" index="0"]
-transform = Transform3D(-0.177048, 1.13539e-08, 0.984174, 4.44077e-16, 1, -1.15359e-08, -0.984174, -2.04252e-09, -0.177048, 3.80775, -1.42455e-05, 6.11599)
+transform = Transform3D(-0.220689, 1.41262e-08, 0.975316, 0, 1, -1.44829e-08, -0.975316, -3.1964e-09, -0.220689, 3.80775, -1.42455e-05, 6.11599)
 script = ExtResource("3_tqxbe")
 speed = 1.0
 

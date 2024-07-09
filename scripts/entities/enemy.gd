@@ -36,7 +36,7 @@ signal dead
 @export var blackboard: Blackboard
 @export var navigation_agent: NavigationAgent3D
 
-@export var patrol: Node3D
+@export var patrol: PathFollow3D
 
 var target: Node3D
 
@@ -52,6 +52,9 @@ func _enter_tree():
 func _ready() -> void:
 	if patrol:
 		target = patrol
+		patrol.move.connect(
+			func(flag: bool): blackboard.set_value("patrol_move", flag)
+		)
 	else:
 		target = Globals.player
 	
@@ -148,6 +151,13 @@ func _physics_process(_delta: float) -> void:
 	navigation_agent.target_position = blackboard.get_value(
 		"agent_target_position",
 		target.global_position
+	)
+	
+	
+	## Patrol
+	blackboard.set_value(
+		"patrol_dist",
+		global_position.distance_to(patrol.global_position)
 	)
 
 
