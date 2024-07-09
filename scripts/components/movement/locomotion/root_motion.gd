@@ -18,7 +18,7 @@ func handle_movement(delta: float, context: LocomotionComponent) -> void:
 			.rotated(Vector3.UP, context.entity.rotation.y + PI)
 	) / delta
 	
-	if debug: prints(v, root_motion_speed)
+	#if debug: prints(v, root_motion_speed)
 	
 	root_motion_speed = v.length()
 	
