@@ -8,7 +8,7 @@ extends Node
 @export var entity: CharacterBody3D
 
 @export var strategies: Dictionary
-@export var default_strategy: StringName
+@export var default_strategy: String
 
 @export var default_speed: float = 5
 @export var speed: float
@@ -24,7 +24,7 @@ var vertical_movement: bool = false
 var can_disable_vertical_movement: bool = false
 
 
-var _active_strategy: LocomotionStrategy
+var active_strategy: LocomotionStrategy
 
 var _secondary_movement_direction: Vector3
 var _secondary_movement_speed: float = 0.0
@@ -41,16 +41,17 @@ func _ready() -> void:
 	add_child(_secondary_movement_timer)
 	
 	if strategies.has(default_strategy):
-		_active_strategy = get_node(strategies[default_strategy])
+		active_strategy = get_node(strategies[default_strategy])
 	elif strategies.size() > 0:
-		_active_strategy = get_node(strategies.values()[0])
+		active_strategy = get_node(strategies.values()[0])
 
 
 func _physics_process(delta):
-	if not enabled:
-		return
+	if not enabled: return
 	
-	_active_strategy.handle_movement(delta, self)
+	#if debug: prints(desired_velocity)
+	
+	active_strategy.handle_movement(delta, self)
 	handle__secondary_movement(delta)
 	
 	if not can_move and \
@@ -68,9 +69,9 @@ func _physics_process(delta):
 	entity.move_and_slide()
 
 
-func set_active_strategy(strategy: StringName):
+func setactive_strategy(strategy: StringName):
 	if strategies.has(strategy):
-		_active_strategy = get_node(strategies[strategy])
+		active_strategy = get_node(strategies[strategy])
 
 
 func handle__secondary_movement(delta: float) -> void:

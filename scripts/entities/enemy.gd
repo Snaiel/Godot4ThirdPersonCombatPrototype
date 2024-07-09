@@ -36,6 +36,8 @@ signal dead
 @export var blackboard: Blackboard
 @export var navigation_agent: NavigationAgent3D
 
+@export var patrol: Node3D
+
 var target: Node3D
 
 
@@ -48,7 +50,9 @@ func _enter_tree():
 
 
 func _ready() -> void:
-	if target == null:
+	if patrol:
+		target = patrol
+	else:
 		target = Globals.player
 	
 	health_component.zero_health.connect(_on_health_component_zero_health)
@@ -67,8 +71,7 @@ func _physics_process(_delta: float) -> void:
 	
 	#if debug:
 		#prints(
-			#blackboard.get_value("attacking"),
-			#blackboard.get_value("executing_action")
+			#locomotion_component.active_strategy
 		#)
 	
 	## Target
@@ -102,6 +105,10 @@ func _physics_process(_delta: float) -> void:
 	)
 	
 	## Head Rotation Component
+	head_rotation_component.enabled = blackboard.get_value(
+		"head_rotation_enabled",
+		false
+	)
 	if blackboard.get_value("agent_target_position") == null and \
 	blackboard.get_value("rotate_towards_target"):
 		if target == Globals.player:
@@ -121,6 +128,7 @@ func _physics_process(_delta: float) -> void:
 	## Character Animations
 	character.anim_tree.set(&"parameters/Locked On Walk Direction/4/TimeScale/scale", 0.5)
 	character.anim_tree.set(&"parameters/Locked On Walk Direction/5/TimeScale/scale", 0.5)
+	character.anim_tree.set(&"parameters/Locked On Walk Speed/scale", 0.6)
 	movement_animations.move(
 		blackboard.get_value("input_direction", Vector3.ZERO), 
 		blackboard.get_value("locked_on", false), 
