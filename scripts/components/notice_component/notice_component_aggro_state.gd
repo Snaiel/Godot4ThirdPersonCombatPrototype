@@ -26,6 +26,8 @@ func _ready():
 
 func enter() -> void:
 	
+	notice_component.entity.switch_target(true)
+	
 	notice_component.blackboard.set_value(
 		"agent_target_position",
 		null

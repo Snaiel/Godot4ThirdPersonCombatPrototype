@@ -29,6 +29,7 @@ curve = SubResource("Curve3D_2ie1q")
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D" index="0"]
 transform = Transform3D(-0.220689, 1.41262e-08, 0.975316, 0, 1, -1.44829e-08, -0.975316, -3.1964e-09, -0.220689, 3.80775, -1.42455e-05, 6.11599)
 script = ExtResource("3_tqxbe")
+patrol_type = 1
 speed = 1.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D/PathFollow3D" index="0"]

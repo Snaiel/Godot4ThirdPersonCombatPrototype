@@ -72,24 +72,22 @@ func _physics_process(_delta: float) -> void:
 	blackboard.set_value("debug", debug)
 	navigation_agent.debug_enabled = debug
 	
-	#if debug:
-		#prints(
-			#locomotion_component.active_strategy
-		#)
+	if debug:
+		prints(
+			navigation_agent.distance_to_target()
+		)
 	
 	## Target
-	var target_dist: float = global_position.distance_to(target.global_position)
-	var target_dir: Vector3 = global_position.direction_to(target.global_position)
-	var target_dir_angle: float = target_dir.angle_to(
-		Vector3.FORWARD.rotated(
-			Vector3.UP,
-			global_rotation.y
-		)
+	_set_target_values()
+	
+	## Navigation Agent
+	_set_agent_values()
+	
+	## Patrol
+	if patrol: blackboard.set_value(
+		"patrol_dist",
+		global_position.distance_to(patrol.global_position)
 	)
-	blackboard.set_value("target", target)
-	blackboard.set_value("target_dist", target_dist)
-	blackboard.set_value("target_dir", target_dir)
-	blackboard.set_value("target_dir_angle", target_dir_angle)
 	
 	## Locomotion Component
 	locomotion_component.can_move = blackboard.get_value(
@@ -137,9 +135,34 @@ func _physics_process(_delta: float) -> void:
 		blackboard.get_value("locked_on", false), 
 		false
 	)
-	
-	## Navigation Agent
-	blackboard.set_value("agent_target_dist", navigation_agent.distance_to_target())
+
+
+func switch_target(player: bool) -> void:
+	target = Globals.player as Node3D if player else patrol as Node3D
+	_set_target_values()
+	_set_agent_values()
+
+
+func _set_target_values() -> void:
+	var target_dist: float = global_position.distance_to(target.global_position)
+	var target_dir: Vector3 = global_position.direction_to(target.global_position)
+	var target_dir_angle: float = target_dir.angle_to(
+		Vector3.FORWARD.rotated(
+			Vector3.UP,
+			global_rotation.y
+		)
+	)
+	blackboard.set_value("target", target)
+	blackboard.set_value("target_dist", target_dist)
+	blackboard.set_value("target_dir", target_dir)
+	blackboard.set_value("target_dir_angle", target_dir_angle)
+
+
+func _set_agent_values() -> void:
+	blackboard.set_value(
+		"agent_target_dist",
+		navigation_agent.distance_to_target()
+	)
 	call_deferred("_set_agent_target_reachable")
 	if blackboard.get_value("investigate_last_agent_position"):
 		blackboard.set_value("can_set_investigate_last_agent_position", false)
@@ -152,18 +175,14 @@ func _physics_process(_delta: float) -> void:
 		"agent_target_position",
 		target.global_position
 	)
-	
-	
-	## Patrol
-	blackboard.set_value(
-		"patrol_dist",
-		global_position.distance_to(patrol.global_position)
-	)
 
 
 func _set_agent_target_reachable():
 	await get_tree().physics_frame
-	blackboard.set_value("agent_target_reachable", navigation_agent.is_target_reachable())
+	blackboard.set_value(
+		"agent_target_reachable",
+		navigation_agent.is_target_reachable()
+	)
 
 
 func _on_health_component_zero_health() -> void:

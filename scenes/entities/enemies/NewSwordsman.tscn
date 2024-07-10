@@ -319,7 +319,12 @@ instability_component = NodePath("../../../../Wellbeing/InstabilityComponent")
 
 [node name="SetCanMoveTrue" parent="BeehaveTree/SelectorComposite/Aggro" index="1" instance=ExtResource("34_1528r")]
 
-[node name="AggroTarget" type="Node" parent="BeehaveTree/SelectorComposite/Aggro" index="2"]
+[node name="SetHeadRotationEnabledTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro" index="2"]
+script = ExtResource("39_yg2yw")
+key = "\"head_rotation_enabled\""
+value = "true"
+
+[node name="AggroTarget" type="Node" parent="BeehaveTree/SelectorComposite/Aggro" index="3"]
 script = ExtResource("21_763qd")
 
 [node name="AlwaysFailDecorator" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget" index="0"]

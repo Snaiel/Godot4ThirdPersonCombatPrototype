@@ -13,11 +13,11 @@
 
 [node name="NoticeComponent" type="Node" node_paths=PackedStringArray("initial_state", "aggro_state")]
 script = ExtResource("1_611qe")
-notice_triangle_scene = ExtResource("2_2dsee")
-off_camera_notice_triangle_scene = ExtResource("3_i1p7x")
 initial_state = NodePath("Idle")
 aggro_state = NodePath("Aggro")
 notice_val_curve = ExtResource("3_ibel0")
+notice_triangle_scene = ExtResource("2_2dsee")
+off_camera_notice_triangle_scene = ExtResource("3_i1p7x")
 suspicion_color = Color(0.815686, 0.654902, 0.105882, 1)
 aggro_color = Color(0.631373, 0.207843, 0.188235, 1)
 background_color = Color(0.196078, 0.196078, 0.196078, 1)
