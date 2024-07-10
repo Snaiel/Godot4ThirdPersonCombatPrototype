@@ -7,5 +7,7 @@ extends ActionLeaf
 
 
 func tick(_actor: Node, _blackboard: Blackboard) -> int:
-	entity.set_root_motion(root_motion)
+	entity.locomotion_component.set_active_strategy(
+		"root_motion" if root_motion else "programmatic"
+	)
 	return SUCCESS

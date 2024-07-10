@@ -64,6 +64,9 @@ func _ready() -> void:
 	blackboard.set_value("can_attack", true)
 	blackboard.set_value("dead", false)
 	
+	$Character/Animations/Movement/FreeWalkOrJog.to_jogging()
+	
+	
 	print(name)
 
 
@@ -72,16 +75,17 @@ func _physics_process(_delta: float) -> void:
 	blackboard.set_value("debug", debug)
 	navigation_agent.debug_enabled = debug
 	
-	if debug:
-		prints(
-			navigation_agent.distance_to_target()
-		)
+	#if debug:
+		#prints(
+			#navigation_agent.distance_to_target()
+		#)
 	
 	## Target
 	_set_target_values()
 	
 	## Navigation Agent
 	_set_agent_values()
+	
 	
 	## Patrol
 	if patrol: blackboard.set_value(
@@ -127,9 +131,10 @@ func _physics_process(_delta: float) -> void:
 	)
 	
 	## Character Animations
-	character.anim_tree.set(&"parameters/Locked On Walk Direction/4/TimeScale/scale", 0.5)
-	character.anim_tree.set(&"parameters/Locked On Walk Direction/5/TimeScale/scale", 0.5)
-	character.anim_tree.set(&"parameters/Locked On Walk Speed/scale", 0.6)
+	character.anim_tree.set(
+		&"parameters/Locked On Walk Speed/scale",
+		blackboard.get_value("anim_lock_on_walk_speed", 1.0)
+	)
 	movement_animations.move(
 		blackboard.get_value("input_direction", Vector3.ZERO), 
 		blackboard.get_value("locked_on", false), 

@@ -1,8 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://djitgmcgcng4u"]
+[gd_scene load_steps=7 format=3 uid="uid://djitgmcgcng4u"]
 
 [ext_resource type="PackedScene" uid="uid://c2uj0la6nf7y" path="res://scenes/levels/BaseScene.tscn" id="1_rur2h"]
 [ext_resource type="PackedScene" uid="uid://dmtsn22tgr3b1" path="res://scenes/entities/enemies/NewSwordsman.tscn" id="2_myj8i"]
 [ext_resource type="Script" path="res://scripts/utilities/patrol_instance.gd" id="3_tqxbe"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_15dvy"]
+vertices = PackedVector3Array(-14.5, 1, 0, -0.75, 1, 0, -0.75, 1, -0.5, -0.75, 1, -0.5, 0, 1, -0.75, 0, 1, -14.5, -14.5, 1, -14.5, -14.5, 1, 0, 0, 1, -14.5, 0, 1, -0.75, 0.5, 1, -0.75, 0.5, 1, -0.75, 0.75, 1, 0, 14.5, 1, 0, 14.5, 1, -14.5, 0, 1, -14.5, -0.75, 1, 0.5, -0.75, 1, 0, -14.5, 1, 0, 0, 1, 14.5, 0, 1, 0.75, -0.75, 1, 0.5, -14.5, 1, 0, -14.5, 1, 14.5, 0.5, 1, 0.75, 0, 1, 0.75, 0, 1, 14.5, 14.5, 1, 0, 0.75, 1, 0, 0.5, 1, 0.75, 0, 1, 14.5, 14.5, 1, 14.5)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 5), PackedInt32Array(5, 3, 6), PackedInt32Array(6, 3, 7), PackedInt32Array(10, 9, 8), PackedInt32Array(12, 11, 13), PackedInt32Array(13, 11, 14), PackedInt32Array(14, 11, 15), PackedInt32Array(18, 17, 16), PackedInt32Array(20, 19, 21), PackedInt32Array(21, 19, 23), PackedInt32Array(21, 23, 22), PackedInt32Array(26, 25, 24), PackedInt32Array(28, 27, 29), PackedInt32Array(29, 27, 31), PackedInt32Array(29, 31, 30)]
+geometry_parsed_geometry_type = 1
 
 [sub_resource type="Curve3D" id="Curve3D_2ie1q"]
 _data = {
@@ -17,6 +22,9 @@ point_count = 3
 
 [node name="Player" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.23368, 1, 3.06796)
+
+[node name="NavigationRegion3D" parent="Level/Environment" index="2"]
+navigation_mesh = SubResource("NavigationMesh_15dvy")
 
 [node name="Swordsman" parent="Level/Enemies/Section/Enemies" index="0" node_paths=PackedStringArray("patrol") instance=ExtResource("2_myj8i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.01596, 0.5, -3.1909)

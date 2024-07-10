@@ -47,12 +47,16 @@ func _ready() -> void:
 
 
 func _physics_process(delta):
+	if debug: prints(
+		enabled,
+		active_strategy,
+		desired_velocity
+	)
+	
 	if not enabled: return
 	
-	#if debug: prints(desired_velocity)
-	
 	active_strategy.handle_movement(delta, self)
-	handle__secondary_movement(delta)
+	handle_secondary_movement(delta)
 	
 	if not can_move and \
 	is_zero_approx(_secondary_movement_speed) and \
@@ -69,12 +73,12 @@ func _physics_process(delta):
 	entity.move_and_slide()
 
 
-func setactive_strategy(strategy: StringName):
+func set_active_strategy(strategy: StringName):
 	if strategies.has(strategy):
 		active_strategy = get_node(strategies[strategy])
 
 
-func handle__secondary_movement(delta: float) -> void:
+func handle_secondary_movement(delta: float) -> void:
 	if _secondary_movement_speed > 0.0 and entity.is_on_floor():
 		desired_velocity.x = \
 			_secondary_movement_direction.x * _secondary_movement_speed

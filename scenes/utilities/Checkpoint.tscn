@@ -106,7 +106,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.05145, -0.367655, 0.819638)
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RespawnPoint"]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0.451712, -0.206719)
 mesh = SubResource("CapsuleMesh_2fhdd")
-skeleton = NodePath("../..")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CylinderMesh_5621l")
