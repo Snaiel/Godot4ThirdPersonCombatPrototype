@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c2uj0la6nf7y"]
+[gd_scene load_steps=24 format=3 uid="uid://c2uj0la6nf7y"]
 
 [ext_resource type="Script" path="res://scripts/utilities/level.gd" id="1_sny18"]
 [ext_resource type="PackedScene" uid="uid://cy5wvw01aul4m" path="res://scenes/utilities/CameraController.tscn" id="2_na8o1"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://xg0hjxcilbsl" path="res://scenes/utilities/LockOnSystem.tscn" id="7_js3aj"]
 [ext_resource type="PackedScene" uid="uid://y7vsh6qub2m1" path="res://scenes/utilities/CheckpointSystem.tscn" id="8_sfixx"]
 [ext_resource type="PackedScene" uid="uid://cchf2jr3d13xj" path="res://scenes/utilities/MusicSystem.tscn" id="9_cdq8y"]
+[ext_resource type="PackedScene" uid="uid://ia1adrmqd0lf" path="res://scenes/components/LockOnComponent.tscn" id="12_d2s5w"]
 [ext_resource type="Texture2D" uid="uid://bcln5bjy3tb8y" path="res://assets/kenney-prototype-texture-light-06.png" id="12_g4oaw"]
 [ext_resource type="Script" path="res://scripts/utilities/void_death_system.gd" id="13_nxq7q"]
 [ext_resource type="PackedScene" uid="uid://k32oq3ivgjxf" path="res://scenes/utilities/Checkpoint.tscn" id="13_s6axi"]
@@ -116,6 +117,9 @@ shape = SubResource("ConcavePolygonShape3D_ur8po")
 
 [node name="Checkpoint" parent="Level/Environment/NavigationRegion3D/Checkpoints" instance=ExtResource("13_s6axi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.888793, 0)
+
+[node name="LockOnComponent" parent="Level/Environment/NavigationRegion3D/Checkpoints/Checkpoint" node_paths=PackedStringArray("component_owner") instance=ExtResource("12_d2s5w")]
+component_owner = NodePath("..")
 
 [node name="VoidDeathSystem" type="Node3D" parent="Level"]
 script = ExtResource("13_nxq7q")

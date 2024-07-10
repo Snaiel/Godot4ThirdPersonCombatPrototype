@@ -2,6 +2,7 @@ class_name PlayerAnimations
 extends CharacterAnimations
 
 
+@export var idle_animations: IdleAnimations
 @export var movement_animations: MovementAnimations
 @export var jump_animations: JumpAnimations
 @export var melee_animations: MeleeAnimations

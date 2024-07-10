@@ -83,9 +83,10 @@ weapon = NodePath("Character/Armature_004/GeneralSkeleton/Sword")
 lock_on_attachment_point = NodePath("Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint")
 footsteps = NodePath("Character/Audio/Footsteps")
 
-[node name="Character" parent="." node_paths=PackedStringArray("movement_animations", "jump_animations", "melee_animations", "block_animations", "parry_animations", "hit_and_death_animations", "dizzy_victim_animations", "dizzy_finisher_animations", "drink_animations", "sitting_animations") instance=ExtResource("5_gusos")]
+[node name="Character" parent="." node_paths=PackedStringArray("idle_animations", "movement_animations", "jump_animations", "melee_animations", "block_animations", "parry_animations", "hit_and_death_animations", "dizzy_victim_animations", "dizzy_finisher_animations", "drink_animations", "sitting_animations") instance=ExtResource("5_gusos")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 script = ExtResource("3_2hud5")
+idle_animations = NodePath("Animations/Idle")
 movement_animations = NodePath("Animations/Movement")
 jump_animations = NodePath("Animations/Jump")
 melee_animations = NodePath("Animations/Melee")
@@ -96,7 +97,6 @@ dizzy_victim_animations = NodePath("Animations/DizzyVictim")
 dizzy_finisher_animations = NodePath("Animations/DizzyFinisher")
 drink_animations = NodePath("Animations/Drink")
 sitting_animations = NodePath("Animations/Sitting")
-debug = true
 
 [node name="GeneralSkeleton" parent="Character/Armature_004" index="0"]
 bones/0/position = Vector3(0.00145094, -6.43877e-09, -0.0540123)
@@ -332,10 +332,11 @@ parry_state = NodePath("../Parry")
 sfx = NodePath("../../Character/Audio/Hit")
 player = NodePath("../..")
 
-[node name="Drink" type="Node" parent="StateMachine" node_paths=PackedStringArray("locomotion_component", "health_charge_component", "player")]
+[node name="Drink" type="Node" parent="StateMachine" node_paths=PackedStringArray("locomotion_component", "health_charge_component", "walk_animations", "player")]
 script = ExtResource("22_47iaw")
 locomotion_component = NodePath("../../Movement/LocomotionComponent")
 health_charge_component = NodePath("../../HealthChargeComponent")
+walk_animations = NodePath("../../Character/Animations/Movement/Walk")
 player = NodePath("../..")
 
 [node name="Checkpoint" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]

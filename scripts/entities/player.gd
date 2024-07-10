@@ -4,7 +4,7 @@ extends CharacterBody3D
 
 @export_category("Mechanisms")
 @export var state_machine: PlayerStateMachine
-@export var character: CharacterAnimations
+@export var character: PlayerAnimations
 @export var locomotion_component: LocomotionComponent
 @export var hitbox_component: HitboxComponent
 @export var health_component: HealthComponent
@@ -141,21 +141,20 @@ func set_rotation_target_to_lock_on_target() -> void:
 
 func process_default_movement_animations() -> void:
 	var dir: Vector3 = input_direction
-	var lock_on: bool = lock_on_target != null
+	var idle_active: bool = lock_on_target != null
 	
 	if locomotion_component.has_secondary_movement():
 		dir = Vector3.ZERO
-		lock_on = true
+		idle_active = true
 	
-	character.movement_animations.move(
-		dir,
-		lock_on, 
-		false
+	character.idle_animations.active = idle_active
+	character.movement_animations.dir = dir
+	character.movement_animations.set_state(
+		"walk" if idle_active else "jog"
 	)
 
 
 func _on_lock_on_system_lock_on(target: LockOnComponent) -> void:
-	print('hi')
 	lock_on_target = target
 
 

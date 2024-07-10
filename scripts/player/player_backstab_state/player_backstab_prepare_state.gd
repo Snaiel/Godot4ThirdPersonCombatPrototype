@@ -54,11 +54,8 @@ func process_player() -> void:
 
 
 func process_movement_animations() -> void:
-	player.character.movement_animations.move(
-		player.input_direction,
-		true, 
-		false
-	)
+	player.character.idle_animations.active = true
+	player.character.movement_animations.dir = player.input_direction
 
 
 func exit() -> void:

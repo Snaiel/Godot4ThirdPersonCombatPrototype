@@ -66,11 +66,8 @@ func process_movement_animations() -> void:
 	if _locked_on_turning_in_place:
 		_animation_input_dir = Vector3.FORWARD
 	
-	player.character.movement_animations.move(
-		_animation_input_dir,
-		player.lock_on_target != null, 
-		false
-	)
+	player.character.idle_animations.active = player.lock_on_target != null
+	player.character.movement_animations.dir = _animation_input_dir
 
 
 func _on_lock_on_system_lock_on(target: LockOnComponent) -> void:

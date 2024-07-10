@@ -62,8 +62,6 @@ func process_player() -> void:
 
 
 func process_movement_animations() -> void:
-	player.character.movement_animations.move(
-		player.input_direction,
-		player.lock_on_target != null, 
-		true
-	)
+	player.character.idle_animations.active = player.lock_on_target != null
+	player.character.movement_animations.dir = player.input_direction
+	player.character.movement_animations.set_state("run")

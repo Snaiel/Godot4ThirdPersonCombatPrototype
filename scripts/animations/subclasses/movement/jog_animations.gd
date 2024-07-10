@@ -2,7 +2,7 @@ class_name JogAnimations
 extends BaseMovementAnimations
 
 
-func move(dir: Vector2, locked_on: bool, running: bool) -> void:
+func move(dir: Vector2, active_state: bool) -> void:
 	var param: StringName = &"parameters/Jog/blend_amount"
 	if not param in anim_tree: return
 	var blend = anim_tree.get(param)
@@ -10,11 +10,7 @@ func move(dir: Vector2, locked_on: bool, running: bool) -> void:
 		param,
 		lerp(
 			float(blend),
-			1.0 if (
-				dir.length() > 0.5 and \
-				not locked_on and \
-				not running
-			) else 0.0,
+			1.0 if dir.length() > 0.5 and active_state else 0.0,
 			0.1
 		)
 	)

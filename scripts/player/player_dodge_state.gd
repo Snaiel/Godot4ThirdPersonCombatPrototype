@@ -37,11 +37,8 @@ func process_movement_animations() -> void:
 	if _animation_input_dir.length() < 0.1:
 		_animation_input_dir = Vector3.FORWARD
 	
-	player.character.movement_animations.move(
-		_animation_input_dir,
-		player.lock_on_target != null, 
-		false
-	)
+	player.character.idle_animations.active = player.lock_on_target != null
+	player.character.movement_animations.dir = _animation_input_dir
 
 
 func exit() -> void:
