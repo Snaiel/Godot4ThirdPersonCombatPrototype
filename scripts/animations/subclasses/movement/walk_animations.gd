@@ -2,12 +2,6 @@ class_name WalkAnimations
 extends BaseMovementAnimations
 
 
-var speed: float = 1.0:
-	set(value):
-		if speed == value: return
-		speed = value
-
-
 func move(dir: Vector2, active_state: bool) -> void:
 	var param: StringName = &"parameters/Walk/blend_amount"
 	if not param in anim_tree: return

@@ -734,9 +734,8 @@ anim_tree = NodePath("../../../AnimationTree")
 script = ExtResource("20_chv0l")
 anim_tree = NodePath("../../../AnimationTree")
 
-[node name="Block" type="Node" parent="Animations" index="4" node_paths=PackedStringArray("walk_or_jog_animations", "anim_tree")]
+[node name="Block" type="Node" parent="Animations" index="4" node_paths=PackedStringArray("anim_tree")]
 script = ExtResource("8_hx2j7")
-walk_or_jog_animations = NodePath("")
 anim_tree = NodePath("../../AnimationTree")
 
 [node name="Parry" type="Node" parent="Animations" index="5" node_paths=PackedStringArray("anim_tree")]

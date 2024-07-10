@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_set.gd" id="1_tu2im"]
 
-[node name="SetAnimLockOnWalkSpeed" type="Node"]
+[node name="SetAnimMoveSpeed" type="Node"]
 script = ExtResource("1_tu2im")
-key = "\"anim_lock_on_walk_speed\""
+key = "\"anim_move_speed\""
 value = "1.0"

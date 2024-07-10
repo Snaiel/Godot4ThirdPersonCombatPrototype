@@ -76,8 +76,10 @@ streams_count = 1
 stream_0/stream = ExtResource("14_826dm")
 stream_0/weight = 1.0
 
-[node name="Swordsman" instance=ExtResource("1_mc312")]
+[node name="Swordsman" node_paths=PackedStringArray("idle_animations", "movement_animations") instance=ExtResource("1_mc312")]
 debug = true
+idle_animations = NodePath("Character/Animations/Idle")
+movement_animations = NodePath("Character/Animations/Movement")
 
 [node name="GeneralSkeleton" parent="Character/Armature_004" index="0"]
 bones/1/position = Vector3(1.04539e-06, 0.98594, -9.42647e-08)
@@ -148,16 +150,16 @@ bones/64/rotation = Quaternion(-1.87027e-07, 0.999059, 0.0433735, -1.4488e-08)
 surface_material_override/0 = SubResource("ShaderMaterial_yud2m")
 
 [node name="LockOnAttachment" parent="Character/Armature_004/GeneralSkeleton" index="2"]
-transform = Transform3D(0.996583, -0.0401053, -0.0722028, 0.0228043, 0.973824, -0.226156, 0.0793828, 0.223737, 0.971411, -0.00184697, 1.33714, 0.00196784)
+transform = Transform3D(0.996583, -0.0401052, -0.0722027, 0.0228043, 0.973824, -0.226156, 0.0793827, 0.223737, 0.971411, -0.00184699, 1.33714, 0.00196789)
 
 [node name="Crosshair" parent="Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint" index="0"]
 debug = true
 
 [node name="HeadAttachment" parent="Character/Armature_004/GeneralSkeleton" index="3"]
-transform = Transform3D(0.999132, -0.000613454, 0.0416435, 0.00726353, 0.987134, -0.159729, -0.0410097, 0.159893, 0.986282, -0.0132346, 1.57563, 0.0962338)
+transform = Transform3D(0.999132, -0.000613376, 0.0416435, 0.00726347, 0.987134, -0.159729, -0.0410098, 0.159893, 0.986282, -0.0132346, 1.57563, 0.0962339)
 
 [node name="Sword" parent="Character/Armature_004/GeneralSkeleton" index="4" node_paths=PackedStringArray("entity") instance=ExtResource("3_frnup")]
-transform = Transform3D(0.528835, -5.95786e-05, 0.848725, 0.30639, -0.932552, -0.190975, 0.791492, 0.361035, -0.493148, -0.296106, 0.875564, 0.113913)
+transform = Transform3D(0.528834, -5.90859e-05, 0.848725, 0.306389, -0.932553, -0.190974, 0.791492, 0.361034, -0.493148, -0.296106, 0.875563, 0.113913)
 entity = NodePath("../../../..")
 
 [node name="Area" parent="Character/Armature_004/GeneralSkeleton/Sword" index="1"]
@@ -203,9 +205,6 @@ parameters/Parry/blend_amount = 0
 "parameters/Parry Speed/scale" = 1.0
 "parameters/Parry Trim/seek_request" = -1.0
 
-[node name="DizzyVictim" parent="Character/Animations" index="2"]
-debug = true
-
 [node name="Melee" type="Node" parent="Character/Animations" index="3" node_paths=PackedStringArray("anim_tree")]
 script = ExtResource("4_u07yk")
 anim_tree = NodePath("../../AnimationTree")
@@ -226,14 +225,16 @@ anim_tree = NodePath("../../../AnimationTree")
 script = ExtResource("8_yh5sq")
 anim_tree = NodePath("../../../AnimationTree")
 
-[node name="Block" type="Node" parent="Character/Animations" index="4" node_paths=PackedStringArray("walk_or_jog_animations", "anim_tree")]
+[node name="Block" type="Node" parent="Character/Animations" index="4" node_paths=PackedStringArray("anim_tree")]
 script = ExtResource("9_5b35b")
-walk_or_jog_animations = NodePath("../Movement/FreeWalkOrJog")
 anim_tree = NodePath("../../AnimationTree")
 
 [node name="Parry" type="Node" parent="Character/Animations" index="5" node_paths=PackedStringArray("anim_tree")]
 script = ExtResource("10_ud5j4")
 anim_tree = NodePath("../../AnimationTree")
+
+[node name="DizzyVictim" parent="Character/Animations" index="6"]
+debug = true
 
 [node name="WeaponSwing" type="AudioStreamPlayer3D" parent="Character/Audio" index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
@@ -501,7 +502,7 @@ script = ExtResource("23_mp67g")
 [node name="SetRootMotionTrue" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/SquareUpIfClose/SquareUp" index="0" node_paths=PackedStringArray("entity") instance=ExtResource("43_hnti8")]
 entity = NodePath("../../../../../../../..")
 
-[node name="SetAnimLockOnWalkSpeed" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/SquareUpIfClose/SquareUp" index="1" instance=ExtResource("48_2s4yo")]
+[node name="SetAnimMoveSpeed" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/SquareUpIfClose/SquareUp" index="1" instance=ExtResource("48_2s4yo")]
 value = "0.5"
 
 [node name="Strafe" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/SquareUpIfClose/SquareUp" index="2"]
@@ -549,7 +550,7 @@ wait_id = 23169934
 [node name="SetRootMotionFalse" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Chase" index="6" node_paths=PackedStringArray("entity") instance=ExtResource("46_6cua7")]
 entity = NodePath("../../../../../../..")
 
-[node name="SetAnimLockOnWalkSpeed" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Chase" index="7" instance=ExtResource("48_2s4yo")]
+[node name="SetAnimMoveSpeed" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Chase" index="7" instance=ExtResource("48_2s4yo")]
 value = "1"
 
 [node name="WalkSpeed" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Chase" index="8" instance=ExtResource("35_jegxc")]
@@ -620,7 +621,7 @@ value = "false"
 
 [node name="SetCanMoveTrue" parent="BeehaveTree/SelectorComposite/Patrol/Move" index="4" instance=ExtResource("34_1528r")]
 
-[node name="SetAnimLockOnWalkSpeed" parent="BeehaveTree/SelectorComposite/Patrol/Move" index="5" instance=ExtResource("48_2s4yo")]
+[node name="SetAnimMoveSpeed" parent="BeehaveTree/SelectorComposite/Patrol/Move" index="5" instance=ExtResource("48_2s4yo")]
 value = "0.6"
 
 [node name="SetRootMotionFalse" parent="BeehaveTree/SelectorComposite/Patrol/Move" index="6" node_paths=PackedStringArray("entity") instance=ExtResource("46_6cua7")]

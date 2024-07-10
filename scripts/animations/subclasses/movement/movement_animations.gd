@@ -7,6 +7,11 @@ extends BaseAnimations
 var movement_animations: Array[BaseMovementAnimations]
 var current_state: BaseMovementAnimations
 
+var speed: float = 1.0:
+	set(value):
+		if speed == value: return
+		speed = value
+
 var dir: Vector3 = Vector3.ZERO
 
 var _input_dir: Vector2 = Vector2.ZERO
@@ -27,6 +32,7 @@ func _physics_process(_delta: float) -> void:
 			_input_dir,
 			anim == current_state
 		)
+		anim.speed = speed
 	
 	if _input_dir.length() > 0.01:
 		audio_footsteps.can_play = true

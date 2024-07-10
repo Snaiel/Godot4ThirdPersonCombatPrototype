@@ -14,6 +14,7 @@ signal dead
 
 @export_category("Movement")
 @export var locomotion_component: LocomotionComponent
+@export var idle_animations: IdleAnimations
 @export var movement_animations: MovementAnimations
 
 @export_category("Rotation")
@@ -64,9 +65,6 @@ func _ready() -> void:
 	blackboard.set_value("can_attack", true)
 	blackboard.set_value("dead", false)
 	
-	$Character/Animations/Movement/FreeWalkOrJog.to_jogging()
-	
-	
 	print(name)
 
 
@@ -77,7 +75,7 @@ func _physics_process(_delta: float) -> void:
 	
 	#if debug:
 		#prints(
-			#navigation_agent.distance_to_target()
+			#movement_animations.speed
 		#)
 	
 	## Target
@@ -131,13 +129,22 @@ func _physics_process(_delta: float) -> void:
 	)
 	
 	## Character Animations
-	character.anim_tree.set(
-		&"parameters/Locked On Walk Speed/scale",
-		blackboard.get_value("anim_lock_on_walk_speed", 1.0)
+	movement_animations.set_state(
+		blackboard.get_value(
+			"anim_move_state",
+			"walk"
+		)
 	)
-	movement_animations.move(
-		blackboard.get_value("input_direction", Vector3.ZERO), 
-		blackboard.get_value("locked_on", false), 
+	movement_animations.speed = blackboard.get_value(
+		"anim_move_speed",
+		1.0
+	)
+	movement_animations.dir = blackboard.get_value(
+		"input_direction",
+		Vector3.ZERO
+	)
+	idle_animations.active = blackboard.get_value(
+		"locked_on",
 		false
 	)
 
