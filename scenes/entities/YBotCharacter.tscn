@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://x0oxbha36o2h"]
+[gd_scene load_steps=53 format=3 uid="uid://x0oxbha36o2h"]
 
 [ext_resource type="PackedScene" uid="uid://q3eag1ltsb0y" path="res://models/ybot.blend" id="1_ml8ck"]
 [ext_resource type="Script" path="res://scripts/animations/character_animations.gd" id="2_l62dg"]
@@ -11,17 +11,16 @@
 [ext_resource type="Script" path="res://scripts/animations/subclasses/movement/movement_animations.gd" id="8_aq5jl"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/block_animations.gd" id="8_hx2j7"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://bb1v4nbj15atd" path="res://animations/blend_trees/DefaultBlendTree.tres" id="8_tr2sm"]
-[ext_resource type="Script" path="res://scripts/animations/subclasses/movement/locked_on_movement_animations.gd" id="9_0vb2t"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/parry_animations.gd" id="9_347er"]
+[ext_resource type="Script" path="res://scripts/animations/subclasses/idle_animations.gd" id="9_phcew"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/hit_and_death_animations.gd" id="9_qcdnc"]
-[ext_resource type="Script" path="res://scripts/animations/subclasses/movement/locked_on_walk_animations.gd" id="10_1n8qx"]
-[ext_resource type="Script" path="res://scripts/animations/subclasses/movement/free_movement_animations.gd" id="11_a5ffn"]
-[ext_resource type="Script" path="res://scripts/animations/subclasses/movement/walk_or_jog_animations.gd" id="12_8jamv"]
-[ext_resource type="Script" path="res://scripts/animations/subclasses/movement/running_animations.gd" id="13_mvol6"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/drink_animations.gd" id="13_yftnk"]
+[ext_resource type="Script" path="res://scripts/animations/subclasses/movement/walk_animations.gd" id="15_qcssh"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/sitting_animations.gd" id="15_rxgn1"]
+[ext_resource type="Script" path="res://scripts/animations/subclasses/movement/run_animations.gd" id="15_u84q0"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/melee/melee_animations.gd" id="16_3je46"]
 [ext_resource type="AudioStream" uid="uid://bd1ks0felifw2" path="res://audio/footsteps/footstep00.wav" id="16_abtj0"]
+[ext_resource type="Script" path="res://scripts/animations/subclasses/movement/jog_animations.gd" id="16_ljuu8"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/melee/attacks/inward_slash.gd" id="17_2ilx2"]
 [ext_resource type="AudioStream" uid="uid://cavo4qpxknfh2" path="res://audio/footsteps/footstep01.wav" id="17_kbmfv"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/melee/attacks/outward_slash.gd" id="18_tonxa"]
@@ -651,10 +650,15 @@ parameters/Dizzy/blend_amount = 0.0
 parameters/Drinking/blend_amount = 0.0
 "parameters/Drinking Speed/scale" = 1.0
 "parameters/Drinking Trim/seek_request" = -1.0
-"parameters/Free Jog Speed/scale" = 1.0
-"parameters/Free Movement/blend_amount" = 0
-"parameters/Free Walk Or Jog/blend_amount" = 0
-"parameters/Free Walk Speed/scale" = 1.0
+parameters/Idle/current_state = ""
+parameters/Idle/transition_request = ""
+parameters/Idle/current_index = -1
+"parameters/Idle Active Speed/scale" = 1.0
+"parameters/Idle Active Trim/seek_request" = -1.0
+"parameters/Idle Inactive Speed/scale" = 1.0
+"parameters/Idle Inactive Trim/seek_request" = -1.0
+parameters/Jog/blend_amount = 0
+"parameters/Jog Speed/scale" = 1.0
 "parameters/Jump 1/Jump Speed/scale" = 1.0
 "parameters/Jump 1/Jump Trim/seek_request" = -1.0
 "parameters/Jump 2/Jump Speed/scale" = 1.0
@@ -664,22 +668,12 @@ parameters/Drinking/blend_amount = 0.0
 "parameters/Kneel to Stand Speed/scale" = 1.0
 "parameters/Kneel to Stand Trim/seek_request" = -1.0
 "parameters/Kneeling Idle Speed/scale" = 0.2
-"parameters/Locked On Movement/current_state" = "locked_on"
-"parameters/Locked On Movement/transition_request" = ""
-"parameters/Locked On Movement/current_index" = 0
-"parameters/Locked On Walk/blend_amount" = 0
-"parameters/Locked On Walk Direction/blend_position" = Vector2(0, 0)
-"parameters/Locked On Walk Direction/4/TimeScale/scale" = 1.0
-"parameters/Locked On Walk Direction/5/TimeScale/scale" = 1.0
-"parameters/Locked On Walk Speed/scale" = 1.0
 parameters/Parry/blend_amount = 0
 "parameters/Parry Speed/scale" = 1.0
 "parameters/Parry Trim/seek_request" = -1.0
-parameters/Running/blend_amount = 0.0
-"parameters/Running Lock On Look Direction/blend_position" = Vector2(0, 0)
-"parameters/Running Locked On/current_state" = "locked_on"
-"parameters/Running Locked On/transition_request" = ""
-"parameters/Running Locked On/current_index" = 0
+parameters/Run/blend_amount = 0.0
+"parameters/Run Direction/blend_position" = Vector2(0, 0)
+"parameters/Run Speed/scale" = 1.0
 "parameters/Sit to Stand Speed/scale" = 1.0
 "parameters/Sit to Stand Trim/seek_request" = -1.0
 parameters/Sitting/blend_amount = 0
@@ -687,6 +681,11 @@ parameters/Sitting/blend_amount = 0
 "parameters/Sitting Idle Trim/seek_request" = -1.0
 "parameters/Sitting or Standing/blend_amount" = 0
 "parameters/Vertical Movement/blend_amount" = 0.0
+parameters/Walk/blend_amount = 0
+"parameters/Walk Direction/blend_position" = Vector2(0, 0)
+"parameters/Walk Direction/4/TimeScale/scale" = 1.0
+"parameters/Walk Direction/5/TimeScale/scale" = 1.0
+"parameters/Walk Speed/scale" = 1.0
 
 [node name="Animations" type="Node" parent="." index="3"]
 
@@ -695,26 +694,20 @@ script = ExtResource("8_aq5jl")
 audio_footsteps = NodePath("../../Audio/Footsteps")
 anim_tree = NodePath("../../AnimationTree")
 
-[node name="LockedOnMovement" type="Node" parent="Animations/Movement" index="0" node_paths=PackedStringArray("anim_tree")]
-script = ExtResource("9_0vb2t")
+[node name="Idle" type="Node" parent="Animations/Movement" index="0" node_paths=PackedStringArray("anim_tree")]
+script = ExtResource("9_phcew")
 anim_tree = NodePath("../../../AnimationTree")
 
-[node name="LockedOnWalk" type="Node" parent="Animations/Movement" index="1" node_paths=PackedStringArray("audio_footsteps", "anim_tree")]
-script = ExtResource("10_1n8qx")
-audio_footsteps = NodePath("../../../Audio/Footsteps")
+[node name="Walk" type="Node" parent="Animations/Movement" index="1" node_paths=PackedStringArray("anim_tree")]
+script = ExtResource("15_qcssh")
 anim_tree = NodePath("../../../AnimationTree")
 
-[node name="FreeMovement" type="Node" parent="Animations/Movement" index="2" node_paths=PackedStringArray("audio_footsteps", "anim_tree")]
-script = ExtResource("11_a5ffn")
-audio_footsteps = NodePath("../../../Audio/Footsteps")
+[node name="Jog" type="Node" parent="Animations/Movement" index="2" node_paths=PackedStringArray("anim_tree")]
+script = ExtResource("16_ljuu8")
 anim_tree = NodePath("../../../AnimationTree")
 
-[node name="FreeWalkOrJog" type="Node" parent="Animations/Movement" index="3" node_paths=PackedStringArray("anim_tree")]
-script = ExtResource("12_8jamv")
-anim_tree = NodePath("../../../AnimationTree")
-
-[node name="Running" type="Node" parent="Animations/Movement" index="4" node_paths=PackedStringArray("anim_tree")]
-script = ExtResource("13_mvol6")
+[node name="Run" type="Node" parent="Animations/Movement" index="3" node_paths=PackedStringArray("anim_tree")]
+script = ExtResource("15_u84q0")
 anim_tree = NodePath("../../../AnimationTree")
 
 [node name="Jump" type="Node" parent="Animations" index="1" node_paths=PackedStringArray("anim_tree")]
@@ -743,7 +736,7 @@ anim_tree = NodePath("../../../AnimationTree")
 
 [node name="Block" type="Node" parent="Animations" index="3" node_paths=PackedStringArray("walk_or_jog_animations", "anim_tree")]
 script = ExtResource("8_hx2j7")
-walk_or_jog_animations = NodePath("../Movement/FreeWalkOrJog")
+walk_or_jog_animations = NodePath("")
 anim_tree = NodePath("../../AnimationTree")
 
 [node name="Parry" type="Node" parent="Animations" index="4" node_paths=PackedStringArray("anim_tree")]
@@ -768,7 +761,7 @@ anim_tree = NodePath("../../AnimationTree")
 
 [node name="Drink" type="Node" parent="Animations" index="8" node_paths=PackedStringArray("walk_or_jog_animations", "anim_tree")]
 script = ExtResource("13_yftnk")
-walk_or_jog_animations = NodePath("../Movement/FreeWalkOrJog")
+walk_or_jog_animations = NodePath("")
 anim_tree = NodePath("../../AnimationTree")
 
 [node name="Sitting" type="Node" parent="Animations" index="9" node_paths=PackedStringArray("anim_tree")]

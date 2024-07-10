@@ -19,7 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://ia1adrmqd0lf" path="res://scenes/components/LockOnComponent.tscn" id="11_53efy"]
 [ext_resource type="Script" path="res://scripts/components/movement/locomotion/programmatic_movement.gd" id="11_yept1"]
 [ext_resource type="Script" path="res://scripts/components/movement/locomotion/root_motion.gd" id="12_7phcu"]
-[ext_resource type="Script" path="res://scripts/animations/subclasses/movement/running_animations.gd" id="12_dpibl"]
+[ext_resource type="Script" path="res://scripts/animations/subclasses/movement/run_animations.gd" id="12_dpibl"]
 [ext_resource type="PackedScene" uid="uid://cko2lhqdu4n44" path="res://scenes/components/HitboxComponent.tscn" id="12_yrsss"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/hit_and_death_animations.gd" id="13_atg6k"]
 [ext_resource type="Script" path="res://scripts/components/interface/wellbeing_component.gd" id="13_lfiap"]
