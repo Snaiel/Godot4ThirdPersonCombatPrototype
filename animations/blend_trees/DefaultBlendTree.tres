@@ -459,7 +459,6 @@ sync = true
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_6w0ak"]
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_seau3"]
-sync = true
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ngpt6"]
 animation = &"interaction_animations_1/Standing Up"
@@ -539,7 +538,7 @@ sync = true
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_xtrod"]
 
 [resource]
-graph_offset = Vector2(-2780.06, -622.238)
+graph_offset = Vector2(-1190.08, -33.631)
 nodes/Attack/node = SubResource("AnimationNodeTransition_gr1qy")
 nodes/Attack/position = Vector2(860, 1160)
 "nodes/Attack Forward Thrust/node" = SubResource("AnimationNodeBlendTree_ws83a")

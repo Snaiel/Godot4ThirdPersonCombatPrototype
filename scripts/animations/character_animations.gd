@@ -15,7 +15,17 @@ func _ready() -> void:
 	anim_tree.active = true
 	_add_base_recipient(animations)
 	_add_base_recipient(audio)
-	if debug: print(_recipients)
+	if debug:
+		for i in _recipients:
+			print(i)
+		for i in anim_tree.get_property_list():
+			print(i)
+
+
+#func _process(delta):
+	#if debug: prints(
+		#anim_tree.get(&"parameters/Jog Animation/time")
+	#)
 
 
 func execute(target: String, method: StringName, args) -> void:

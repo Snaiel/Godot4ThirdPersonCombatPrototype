@@ -97,6 +97,7 @@ dizzy_victim_animations = NodePath("Animations/DizzyVictim")
 dizzy_finisher_animations = NodePath("Animations/DizzyFinisher")
 drink_animations = NodePath("Animations/Drink")
 sitting_animations = NodePath("Animations/Sitting")
+debug = true
 
 [node name="GeneralSkeleton" parent="Character/Armature_004" index="0"]
 bones/0/position = Vector3(0.00145094, -6.43877e-09, -0.0540123)
@@ -173,17 +174,17 @@ layers = 2
 surface_material_override/0 = ExtResource("4_ysu0o")
 
 [node name="Sword" parent="Character/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("entity") instance=ExtResource("5_vtx6o")]
-transform = Transform3D(0.39629, 0.0233149, 0.91783, 0.0690643, -0.997602, -0.00447848, 0.915524, 0.0651641, -0.39695, -0.245007, 0.84236, -0.0546277)
+transform = Transform3D(0.396289, 0.0233159, 0.91783, 0.0690642, -0.997602, -0.00447724, 0.915524, 0.0651633, -0.396949, -0.245006, 0.842359, -0.0546283)
 entity = NodePath("../../../..")
 
 [node name="LockOnAttachment" parent="Character/Armature_004/GeneralSkeleton" index="3"]
-transform = Transform3D(0.997519, -0.0447109, -0.0543836, 0.0429941, 0.998552, -0.0323398, 0.0557507, 0.0299214, 0.997996, 0.00969123, 1.33813, -0.101891)
+transform = Transform3D(0.997519, -0.0447109, -0.0543836, 0.0429941, 0.998552, -0.0323397, 0.0557508, 0.0299212, 0.997996, 0.00969121, 1.33813, -0.101891)
 
 [node name="Crosshair" parent="Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint" index="0"]
 enabled = false
 
 [node name="HeadAttachment" parent="Character/Armature_004/GeneralSkeleton" index="4"]
-transform = Transform3D(0.998201, -0.0491425, -0.0343569, 0.0492584, 0.998783, 0.00253493, 0.0341905, -0.00422274, 0.999406, -0.00505421, 1.5861, -0.0452439)
+transform = Transform3D(0.998201, -0.0491426, -0.0343569, 0.0492585, 0.998783, 0.00253479, 0.0341905, -0.0042226, 0.999406, -0.00505424, 1.5861, -0.0452439)
 
 [node name="AnimationTree" parent="Character" index="2"]
 active = true
@@ -195,6 +196,7 @@ active = true
 "parameters/Dizzy Which One/current_index" = -1
 parameters/Idle/current_state = "inactive"
 parameters/Idle/current_index = 0
+parameters/Jog/blend_amount = 0.0
 parameters/Walk/blend_amount = 0.0
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("player")]
@@ -260,10 +262,11 @@ block_state = NodePath("../Block")
 dizzy_finisher_state = NodePath("../DizzyFinisher")
 player = NodePath("../..")
 
-[node name="Block" type="Node" parent="StateMachine" node_paths=PackedStringArray("parry_state", "attack_state", "blocking_sfx", "block_sfx", "player")]
+[node name="Block" type="Node" parent="StateMachine" node_paths=PackedStringArray("parry_state", "attack_state", "walk_animations", "blocking_sfx", "block_sfx", "player")]
 script = ExtResource("9_t1v34")
 parry_state = NodePath("../Parry")
 attack_state = NodePath("../Attack")
+walk_animations = NodePath("../../Character/Animations/Movement/Walk")
 blocking_sfx = NodePath("../../Character/Audio/Blocking")
 block_sfx = NodePath("../../Character/Audio/Block")
 player = NodePath("../..")

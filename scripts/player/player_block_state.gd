@@ -5,6 +5,7 @@ extends PlayerStateMachine
 @export var parry_state: PlayerParryState
 @export var attack_state: PlayerAttackState
 @export var reduce_instability_rate: float = 0.8
+@export var walk_animations: WalkAnimations
 
 @export var blocking_sfx: AudioStreamPlayer3D
 @export var block_sfx: AudioStreamPlayer3D
@@ -12,6 +13,8 @@ extends PlayerStateMachine
 var _can_reduce_instability: bool = true
 var _pause_before_reducing_instability_timer: Timer
 var _pause_before_reducing_instability_length: float = 2.0
+
+var _prev_anim_walk_speed: float
 
 
 func _ready():
@@ -54,6 +57,8 @@ func enter() -> void:
 	_can_reduce_instability = false
 	_pause_before_reducing_instability_timer.start()
 	
+	_prev_anim_walk_speed = walk_animations.speed
+	
 	blocking_sfx.play()
 
 
@@ -79,7 +84,15 @@ func process_player() -> void:
 		player.rotation_component.rotate_towards_target = false
 
 
+func process_movement_animations() -> void:
+	player.character.idle_animations.active = player.lock_on_target != null
+	player.character.movement_animations.dir = player.input_direction
+	player.character.movement_animations.set_state("walk")
+	walk_animations.speed = 0.5
+
+
 func exit() -> void:
 	_pause_before_reducing_instability_timer.stop()
 	player.block_component.blocking = false
 	blocking_sfx.stop()
+	walk_animations.speed = _prev_anim_walk_speed
