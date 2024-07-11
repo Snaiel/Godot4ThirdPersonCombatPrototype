@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://omrbmdb01ho3"]
+
+[ext_resource type="PackedScene" uid="uid://c2uj0la6nf7y" path="res://scenes/levels/BaseScene.tscn" id="1_gtv8h"]
+[ext_resource type="PackedScene" uid="uid://cn68ggj4dxvj3" path="res://scenes/entities/enemies/Zombie.tscn" id="2_b6nm2"]
+
+[node name="ZombieScene" instance=ExtResource("1_gtv8h")]
+
+[node name="Zombie" parent="Level/Enemies/Section/Enemies" index="0" instance=ExtResource("2_b6nm2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.58521, 0.707604, -3.76447)

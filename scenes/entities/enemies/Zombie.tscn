@@ -514,13 +514,13 @@ bones/64/rotation = Quaternion(-2.41399e-07, 1, 6.05707e-06, -5.29816e-08)
 surface_material_override/0 = SubResource("ShaderMaterial_jybam")
 
 [node name="LockOnAttachment" parent="Character/Armature_004/GeneralSkeleton" index="2"]
-transform = Transform3D(0.611725, 0.556958, 0.561775, 0.153209, 0.613286, -0.774859, -0.776093, 0.56007, 0.289831, 0.179918, 1.10735, 0.305256)
+transform = Transform3D(0.611725, 0.556958, 0.561775, 0.153209, 0.613286, -0.77486, -0.776093, 0.56007, 0.289831, 0.179918, 1.10735, 0.305257)
 
 [node name="HeadAttachment" parent="Character/Armature_004/GeneralSkeleton" index="3"]
-transform = Transform3D(0.864592, 0.237294, -0.442913, -0.285411, 0.957385, -0.0442113, 0.413547, 0.164637, 0.895474, 0.314635, 1.21925, 0.485599)
+transform = Transform3D(0.864592, 0.237295, -0.442913, -0.285412, 0.957385, -0.044212, 0.413547, 0.164638, 0.895474, 0.314635, 1.21925, 0.485599)
 
 [node name="LeftHand" parent="Character/Armature_004/GeneralSkeleton" index="4" node_paths=PackedStringArray("entity") instance=ExtResource("2_4v0im")]
-transform = Transform3D(0.733437, 0.00373834, -0.679748, -0.618275, -0.411916, -0.669374, -0.282501, 0.911214, -0.299803, 0.440274, 0.793935, 0.193745)
+transform = Transform3D(0.733435, 0.00373907, -0.679749, -0.618275, -0.411917, -0.669373, -0.282503, 0.911213, -0.299803, 0.440273, 0.793935, 0.193745)
 bone_name = "LeftHand"
 bone_idx = 11
 entity = NodePath("../../../..")
@@ -535,7 +535,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 6.94228e-13, 0, 6.94281e-13, 1, -8.9407e-
 shape = SubResource("SphereShape3D_h0oc0")
 
 [node name="RightFoot" parent="Character/Armature_004/GeneralSkeleton" index="5" node_paths=PackedStringArray("entity") instance=ExtResource("2_4v0im")]
-transform = Transform3D(-0.678613, 0.734065, 0.0251837, 0.219083, 0.169569, 0.960859, 0.701062, 0.657568, -0.275892, -0.0820928, 0.132362, 0.749101)
+transform = Transform3D(-0.678612, 0.734065, 0.0251848, 0.219084, 0.169568, 0.960859, 0.701062, 0.657568, -0.275892, -0.0820929, 0.132362, 0.7491)
 bone_name = "RightFoot"
 bone_idx = 63
 entity = NodePath("../../../..")
@@ -563,13 +563,7 @@ parameters/Attack/current_state = ""
 parameters/Attack/transition_request = ""
 parameters/Attack/current_index = -1
 parameters/Attacking/blend_amount = 0
-"parameters/Jump 1/Jump Speed/scale" = 1.0
-"parameters/Jump 1/Jump Trim/seek_request" = -1.0
-"parameters/Jump 2/Jump Speed/scale" = 1.0
-"parameters/Jump 2/Jump Trim/seek_request" = -1.0
-"parameters/Jump Handler/blend_amount" = 0
-"parameters/Jump and Fall Blend/blend_amount" = 0
-"parameters/Vertical Movement/blend_amount" = 0
+parameters/Idle/transition_request = "inactive"
 "parameters/Zombie Kick/Zombie Kick Speed/scale" = 1.0
 "parameters/Zombie Kick/Zombie Kick Trim/seek_request" = -1.0
 "parameters/Zombie Kick Copy/Zombie Kick Speed/scale" = 1.0
@@ -620,10 +614,12 @@ default_strategy = &"root_motion"
 [node name="InstabilityComponent" parent="Wellbeing" index="2" node_paths=PackedStringArray("weapons")]
 weapons = [NodePath("../../Character/Armature_004/GeneralSkeleton/LeftHand"), NodePath("../../Character/Armature_004/GeneralSkeleton/RightFoot")]
 
-[node name="MeleeComponent" type="Node" parent="Abilities" index="0" node_paths=PackedStringArray("entity", "blackboard", "melee_animations", "locomotion_component")]
+[node name="MeleeComponent" type="Node" parent="Abilities" index="0" node_paths=PackedStringArray("entity", "blackboard", "instability_component", "outcomes_handler", "melee_animations", "locomotion_component")]
 script = ExtResource("11_x7u6u")
 entity = NodePath("../..")
 blackboard = NodePath("../../Blackboard")
+instability_component = NodePath("../../Wellbeing/InstabilityComponent")
+outcomes_handler = NodePath("../../Combat/InteractionComponent/Outcomes")
 debug = true
 melee_animations = NodePath("../../Character/Animations/Melee")
 locomotion_component = NodePath("../../LocomotionComponent")
@@ -632,7 +628,7 @@ weapons = {
 "right_foot": NodePath("../../Character/Armature_004/GeneralSkeleton/RightFoot")
 }
 
-[node name="AggroTarget" type="Node" parent="BeehaveTree/SelectorComposite/Aggro" index="2"]
+[node name="AggroTarget" type="Node" parent="BeehaveTree/SelectorComposite/Aggro" index="1"]
 script = ExtResource("48_teisf")
 
 [node name="AlwaysFailDecorator" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget" index="0"]

@@ -832,7 +832,7 @@ max_instability = 100.0
 initial_instability = 0.0
 can_reduce_instability = true
 
-[node name="BaseEnemy" type="CharacterBody3D" node_paths=PackedStringArray("character", "hitbox_component", "lock_on_component", "locomotion_component", "movement_animations", "rotation_component", "head_rotation_component", "health_component", "instability_component", "backstab_component", "dizzy_component", "notice_component", "dizzy_victim_animations", "hit_and_death_animations", "beehave_tree", "blackboard", "navigation_agent") groups=["enemy"]]
+[node name="BaseEnemy" type="CharacterBody3D" node_paths=PackedStringArray("character", "hitbox_component", "lock_on_component", "locomotion_component", "idle_animations", "movement_animations", "rotation_component", "head_rotation_component", "health_component", "instability_component", "backstab_component", "dizzy_component", "notice_component", "dizzy_victim_animations", "hit_and_death_animations", "beehave_tree", "blackboard", "navigation_agent") groups=["enemy"]]
 collision_layer = 8
 collision_mask = 11
 script = ExtResource("1_vb1mm")
@@ -840,7 +840,8 @@ character = NodePath("Character")
 hitbox_component = NodePath("HitboxComponent")
 lock_on_component = NodePath("Utility/LockOnComponent")
 locomotion_component = NodePath("LocomotionComponent")
-movement_animations = NodePath("")
+idle_animations = NodePath("Character/Animations/Idle")
+movement_animations = NodePath("Character/Animations/Movement")
 rotation_component = NodePath("Rotation/RotationComponent")
 head_rotation_component = NodePath("Rotation/HeadRotationComponent")
 health_component = NodePath("Wellbeing/HealthComponent")
@@ -1140,10 +1141,11 @@ notice_component = NodePath("../NoticeComponent")
 crosshair = NodePath("../../Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint/Crosshair")
 puncture_sound = NodePath("../../Character/Audio/ThrustPuncture")
 
-[node name="NoticeComponent" parent="Combat" node_paths=PackedStringArray("entity", "head_attachment", "hud_info", "blackboard") instance=ExtResource("18_oqi8p")]
+[node name="NoticeComponent" parent="Combat" node_paths=PackedStringArray("entity", "head_attachment", "hud_info", "beehave_tree", "blackboard") instance=ExtResource("18_oqi8p")]
 entity = NodePath("../..")
 head_attachment = NodePath("../../Character/Armature_004/GeneralSkeleton/HeadAttachment")
 hud_info = NodePath("../../Utility/HUDInfoPos")
+beehave_tree = NodePath("../../BeehaveTree")
 blackboard = NodePath("../../Blackboard")
 
 [node name="InteractionComponent" type="Node" parent="Combat" node_paths=PackedStringArray("hitbox_component")]
@@ -1163,8 +1165,9 @@ health_component = NodePath("../../../Wellbeing/HealthComponent")
 instability_component = NodePath("../../../Wellbeing/InstabilityComponent")
 locomotion_component = NodePath("../../../LocomotionComponent")
 
-[node name="Outcomes" type="Node" parent="Combat/InteractionComponent" node_paths=PackedStringArray("blackboard", "locomotion_component", "notice_component")]
+[node name="Outcomes" type="Node" parent="Combat/InteractionComponent" node_paths=PackedStringArray("beehave_tree", "blackboard", "locomotion_component", "notice_component")]
 script = ExtResource("28_8ik02")
+beehave_tree = NodePath("../../../BeehaveTree")
 blackboard = NodePath("../../../Blackboard")
 outcome_weights = Array[float]([1.0])
 locomotion_component = NodePath("../../../LocomotionComponent")
