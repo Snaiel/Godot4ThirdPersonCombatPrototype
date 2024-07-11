@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=99 format=3 uid="uid://b1i4ehh2wfpw7"]
+[gd_resource type="AnimationNodeBlendTree" load_steps=107 format=3 uid="uid://b1i4ehh2wfpw7"]
 
 [ext_resource type="AnimationNodeBlendTree" uid="uid://ecdqd7pa5x54" path="res://animations/blend_trees/actions/MagicBigProjectile.tres" id="1_c4re0"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://bpek80d8drs4e" path="res://animations/blend_trees/actions/MagicEnergyBeam.tres" id="2_v0lqa"]
@@ -318,8 +318,6 @@ animation = &"movement_animations_1/Jog Forward"
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_4ihs2"]
 
-[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_vxaje"]
-
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q2sun"]
 animation = &"combat_animations_1/Kneel to Stand"
 
@@ -331,6 +329,19 @@ animation = &"combat_animations_1/Kneel to Stand"
 animation = &"combat_animations_1/Kneel Idle"
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_02gek"]
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_ct61j"]
+input_0/name = "walk"
+input_0/auto_advance = false
+input_0/reset = true
+input_1/name = "jog"
+input_1/auto_advance = false
+input_1/reset = true
+input_2/name = "run"
+input_2/auto_advance = false
+input_2/reset = true
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_bqxp5"]
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_5871d"]
 
@@ -364,6 +375,40 @@ animation = &"combat_animations_1/Blocking"
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_o5xyw"]
 filter_enabled = true
 filters = ["%GeneralSkeleton:LeftHand", "%GeneralSkeleton:LeftIndexDistal", "%GeneralSkeleton:LeftIndexIntermediate", "%GeneralSkeleton:LeftIndexProximal", "%GeneralSkeleton:LeftLittleDistal", "%GeneralSkeleton:LeftLittleIntermediate", "%GeneralSkeleton:LeftLittleProximal", "%GeneralSkeleton:LeftLowerArm", "%GeneralSkeleton:LeftMiddleDistal", "%GeneralSkeleton:LeftMiddleIntermediate", "%GeneralSkeleton:LeftMiddleProximal", "%GeneralSkeleton:LeftRingDistal", "%GeneralSkeleton:LeftRingIntermediate", "%GeneralSkeleton:LeftRingProximal", "%GeneralSkeleton:LeftShoulder", "%GeneralSkeleton:LeftThumbDistal", "%GeneralSkeleton:LeftThumbMetacarpal", "%GeneralSkeleton:LeftThumbProximal", "%GeneralSkeleton:LeftUpperArm", "%GeneralSkeleton:mixamorig_LeftHandIndex1", "%GeneralSkeleton:mixamorig_LeftHandMiddle1", "%GeneralSkeleton:mixamorig_LeftHandPinky1", "%GeneralSkeleton:mixamorig_LeftHandRing1", "%GeneralSkeleton:mixamorig_LeftHandThumb1", ".", "Animations/Parry", "Animations/ParryAnimations", "ParryAnimations"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kpaqi"]
+animation = &"movement_animations_1/Run-Forwards"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_iio2y"]
+animation = &"movement_animations_1/Run-Forwards"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2rb7c"]
+animation = &"movement_animations_1/Run-Forwards"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ltlec"]
+animation = &"movement_animations_1/Run-Forwards"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gforb"]
+animation = &"movement_animations_1/Run-Left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g8xdx"]
+animation = &"movement_animations_1/Run-Right"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_abqrf"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_kpaqi")
+blend_point_0/pos = Vector2(0, -1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_iio2y")
+blend_point_1/pos = Vector2(0, 1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_2rb7c")
+blend_point_2/pos = Vector2(1, 1)
+blend_point_3/node = SubResource("AnimationNodeAnimation_ltlec")
+blend_point_3/pos = Vector2(-1, 1)
+blend_point_4/node = SubResource("AnimationNodeAnimation_gforb")
+blend_point_4/pos = Vector2(-1, 0)
+blend_point_5/node = SubResource("AnimationNodeAnimation_g8xdx")
+blend_point_5/pos = Vector2(1, 0)
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_lnx82"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dotnv"]
 animation = &"movement_animations_1/Walk-Backwards"
@@ -420,10 +465,8 @@ sync = true
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_1bqjp"]
 
-[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_sq418"]
-
 [resource]
-graph_offset = Vector2(-832.268, -154.496)
+graph_offset = Vector2(-911.216, 257.749)
 nodes/Attack/node = SubResource("AnimationNodeTransition_gr1qy")
 nodes/Attack/position = Vector2(680, 1060)
 "nodes/Attack Forward Thrust/node" = SubResource("AnimationNodeBlendTree_ws83a")
@@ -492,12 +535,10 @@ nodes/Idle/position = Vector2(-1160, -100)
 "nodes/Idle Active Animation/position" = Vector2(-1600, 0)
 "nodes/Idle Inactive Animation/node" = SubResource("AnimationNodeAnimation_met48")
 "nodes/Idle Inactive Animation/position" = Vector2(-1620, -140)
-nodes/Jog/node = SubResource("AnimationNodeBlend2_vxaje")
-nodes/Jog/position = Vector2(180, 360)
 "nodes/Jog Animation/node" = SubResource("AnimationNodeAnimation_s6br3")
-"nodes/Jog Animation/position" = Vector2(-480, 500)
+"nodes/Jog Animation/position" = Vector2(-1260, 580)
 "nodes/Jog Speed/node" = SubResource("AnimationNodeTimeScale_4ihs2")
-"nodes/Jog Speed/position" = Vector2(-60, 500)
+"nodes/Jog Speed/position" = Vector2(-840, 580)
 "nodes/Kneel to Stand Animation/node" = SubResource("AnimationNodeAnimation_q2sun")
 "nodes/Kneel to Stand Animation/position" = Vector2(4120, 2000)
 "nodes/Kneel to Stand Speed/node" = SubResource("AnimationNodeTimeScale_fk50i")
@@ -508,6 +549,10 @@ nodes/Jog/position = Vector2(180, 360)
 "nodes/Kneeling Idle Animation/position" = Vector2(4440, 1800)
 "nodes/Kneeling Idle Speed/node" = SubResource("AnimationNodeTimeScale_02gek")
 "nodes/Kneeling Idle Speed/position" = Vector2(4820, 1800)
+nodes/Movement/node = SubResource("AnimationNodeBlend2_bqxp5")
+nodes/Movement/position = Vector2(-80, 280)
+"nodes/Movement Method/node" = SubResource("AnimationNodeTransition_ct61j")
+"nodes/Movement Method/position" = Vector2(-540, 520)
 nodes/NonMelee/node = SubResource("AnimationNodeBlend2_5871d")
 nodes/NonMelee/position = Vector2(2100, 740)
 nodes/NonMeleeAction/node = SubResource("AnimationNodeTransition_wp6y4")
@@ -520,15 +565,17 @@ nodes/Parry/position = Vector2(4260, 1020)
 "nodes/Parry Speed/position" = Vector2(4040, 1220)
 "nodes/Parry Trim/node" = SubResource("AnimationNodeTimeSeek_hpc7t")
 "nodes/Parry Trim/position" = Vector2(3860, 1220)
+"nodes/Run Direction/node" = SubResource("AnimationNodeBlendSpace2D_abqrf")
+"nodes/Run Direction/position" = Vector2(-1100, 780)
+"nodes/Run Speed/node" = SubResource("AnimationNodeTimeScale_lnx82")
+"nodes/Run Speed/position" = Vector2(-840, 780)
 "nodes/Small Projectile/node" = ExtResource("3_nfv8h")
 "nodes/Small Projectile/position" = Vector2(1440, 960)
 "nodes/Small Projectile Copy/node" = ExtResource("3_nfv8h")
 "nodes/Small Projectile Copy/position" = Vector2(1400, 1080)
-nodes/Walk/node = SubResource("AnimationNodeBlend2_sq418")
-nodes/Walk/position = Vector2(-540, 120)
 "nodes/Walk Direction/node" = SubResource("AnimationNodeBlendSpace2D_pudql")
-"nodes/Walk Direction/position" = Vector2(-1140, 260)
+"nodes/Walk Direction/position" = Vector2(-1120, 380)
 "nodes/Walk Speed/node" = SubResource("AnimationNodeTimeScale_1bqjp")
-"nodes/Walk Speed/position" = Vector2(-860, 260)
+"nodes/Walk Speed/position" = Vector2(-840, 380)
 nodes/output/position = Vector2(8020, 1300)
-node_connections = [&"Attack", 0, &"Attack Inward Slash", &"Attack", 1, &"Attack Inward Slash Copy", &"Attack", 2, &"Attack Outward Slash", &"Attack", 3, &"Attack Outward Slash Copy", &"Attack", 4, &"Attack Forward Thrust", &"Attack", 5, &"Attack Quick Slash", &"Attacking", 0, &"Jog", &"Attacking", 1, &"Attack", &"Blocking", 0, &"NonMelee", &"Blocking", 1, &"Blocking Speed", &"Blocking Speed", 0, &"Blocking Trim", &"Blocking Trim", 0, &"Blocking Animation", &"Death", 0, &"Dizzy", &"Death", 1, &"Death Which One", &"Death 1 Speed", 0, &"Death 1 Trim", &"Death 1 Trim", 0, &"Death Animation", &"Death 2 Speed", 0, &"Death 2 Trim", &"Death 2 Trim", 0, &"Death Backstab Animation", &"Death Which One", 0, &"Death 1 Speed", &"Death Which One", 1, &"Death 2 Speed", &"Dizzy", 0, &"Parry", &"Dizzy", 1, &"Dizzy Which One", &"Dizzy From Damage", 0, &"Dizzy Kneeling Speed", &"Dizzy From Damage", 1, &"Kneeling Idle Speed", &"Dizzy From Damage", 2, &"Kneel to Stand Speed", &"Dizzy Kneeling Speed", 0, &"Dizzy Kneeling Trim", &"Dizzy Kneeling Trim", 0, &"Dizzy Kneeling Animation", &"Dizzy Which One", 0, &"Dizzy Idle Animation", &"Dizzy Which One", 1, &"Dizzy From Damage", &"Idle", 0, &"Idle Inactive Animation", &"Idle", 1, &"Idle Active Animation", &"Jog", 0, &"Walk", &"Jog", 1, &"Jog Speed", &"Jog Speed", 0, &"Jog Animation", &"Kneel to Stand Speed", 0, &"Kneel to Stand Trim", &"Kneel to Stand Trim", 0, &"Kneel to Stand Animation", &"Kneeling Idle Speed", 0, &"Kneeling Idle Animation", &"NonMelee", 0, &"Attacking", &"NonMelee", 1, &"NonMeleeAction", &"NonMeleeAction", 0, &"Small Projectile", &"NonMeleeAction", 1, &"Small Projectile Copy", &"NonMeleeAction", 2, &"Big Projectile", &"NonMeleeAction", 3, &"Big Projectile Copy", &"NonMeleeAction", 4, &"Energy Beam", &"NonMeleeAction", 5, &"Energy Beam Copy", &"Parry", 0, &"Blocking", &"Parry", 1, &"Parry Speed", &"Parry Speed", 0, &"Parry Trim", &"Parry Trim", 0, &"Parry Animation", &"Walk", 0, &"Idle", &"Walk", 1, &"Walk Speed", &"Walk Speed", 0, &"Walk Direction", &"output", 0, &"Death"]
+node_connections = [&"Attack", 0, &"Attack Inward Slash", &"Attack", 1, &"Attack Inward Slash Copy", &"Attack", 2, &"Attack Outward Slash", &"Attack", 3, &"Attack Outward Slash Copy", &"Attack", 4, &"Attack Forward Thrust", &"Attack", 5, &"Attack Quick Slash", &"Attacking", 0, &"Movement", &"Attacking", 1, &"Attack", &"Blocking", 0, &"NonMelee", &"Blocking", 1, &"Blocking Speed", &"Blocking Speed", 0, &"Blocking Trim", &"Blocking Trim", 0, &"Blocking Animation", &"Death", 0, &"Dizzy", &"Death", 1, &"Death Which One", &"Death 1 Speed", 0, &"Death 1 Trim", &"Death 1 Trim", 0, &"Death Animation", &"Death 2 Speed", 0, &"Death 2 Trim", &"Death 2 Trim", 0, &"Death Backstab Animation", &"Death Which One", 0, &"Death 1 Speed", &"Death Which One", 1, &"Death 2 Speed", &"Dizzy", 0, &"Parry", &"Dizzy", 1, &"Dizzy Which One", &"Dizzy From Damage", 0, &"Dizzy Kneeling Speed", &"Dizzy From Damage", 1, &"Kneeling Idle Speed", &"Dizzy From Damage", 2, &"Kneel to Stand Speed", &"Dizzy Kneeling Speed", 0, &"Dizzy Kneeling Trim", &"Dizzy Kneeling Trim", 0, &"Dizzy Kneeling Animation", &"Dizzy Which One", 0, &"Dizzy Idle Animation", &"Dizzy Which One", 1, &"Dizzy From Damage", &"Idle", 0, &"Idle Inactive Animation", &"Idle", 1, &"Idle Active Animation", &"Jog Speed", 0, &"Jog Animation", &"Kneel to Stand Speed", 0, &"Kneel to Stand Trim", &"Kneel to Stand Trim", 0, &"Kneel to Stand Animation", &"Kneeling Idle Speed", 0, &"Kneeling Idle Animation", &"Movement", 0, &"Idle", &"Movement", 1, &"Movement Method", &"Movement Method", 0, &"Walk Speed", &"Movement Method", 1, &"Jog Speed", &"Movement Method", 2, &"Run Speed", &"NonMelee", 0, &"Attacking", &"NonMelee", 1, &"NonMeleeAction", &"NonMeleeAction", 0, &"Small Projectile", &"NonMeleeAction", 1, &"Small Projectile Copy", &"NonMeleeAction", 2, &"Big Projectile", &"NonMeleeAction", 3, &"Big Projectile Copy", &"NonMeleeAction", 4, &"Energy Beam", &"NonMeleeAction", 5, &"Energy Beam Copy", &"Parry", 0, &"Blocking", &"Parry", 1, &"Parry Speed", &"Parry Speed", 0, &"Parry Trim", &"Parry Trim", 0, &"Parry Animation", &"Run Speed", 0, &"Run Direction", &"Walk Speed", 0, &"Walk Direction", &"output", 0, &"Death"]

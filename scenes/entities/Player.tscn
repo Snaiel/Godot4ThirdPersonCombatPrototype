@@ -102,16 +102,16 @@ debug = true
 [node name="GeneralSkeleton" parent="Character/Armature_004" index="0"]
 bones/0/position = Vector3(0.00145094, -6.43877e-09, -0.0540123)
 bones/1/position = Vector3(6.94653e-07, 0.98996, -9.63814e-08)
-bones/1/rotation = Quaternion(-0.035972, -0.0464458, -0.02582, 0.997939)
-bones/2/rotation = Quaternion(0.0343638, 0.017902, 0.0249145, 0.998938)
-bones/3/rotation = Quaternion(0.011315, 0.00482728, 0.0144812, 0.99982)
-bones/4/rotation = Quaternion(0.0111493, 0.00506234, 0.0145031, 0.99982)
-bones/5/rotation = Quaternion(0.0531439, -0.00184402, 0.00275568, 0.998581)
-bones/6/rotation = Quaternion(-0.0742728, 0.00853066, -0.000841839, 0.997201)
-bones/8/rotation = Quaternion(0.457653, 0.499006, 0.634564, -0.37266)
-bones/9/rotation = Quaternion(0.128525, 0.805033, -0.566356, -0.121013)
-bones/10/rotation = Quaternion(0.0109838, -0.707021, 0.0109837, 0.707022)
-bones/11/rotation = Quaternion(0.0523403, 0.473027, -0.00691312, 0.879465)
+bones/1/rotation = Quaternion(-0.0319434, -0.0460476, -0.0288428, 0.998012)
+bones/2/rotation = Quaternion(0.0291198, 0.0127742, 0.0220343, 0.999251)
+bones/3/rotation = Quaternion(0.0100965, 0.0028306, 0.0135898, 0.999853)
+bones/4/rotation = Quaternion(0.00987334, 0.00302615, 0.013618, 0.999854)
+bones/5/rotation = Quaternion(0.049056, -0.000893555, 0.00395111, 0.998788)
+bones/6/rotation = Quaternion(-0.0659366, 0.0119233, -0.00149593, 0.997751)
+bones/8/rotation = Quaternion(0.457455, 0.499835, 0.632451, -0.375375)
+bones/9/rotation = Quaternion(0.123069, 0.803944, -0.567855, -0.12676)
+bones/10/rotation = Quaternion(0.00901698, -0.707049, 0.00901694, 0.707049)
+bones/11/rotation = Quaternion(0.0531773, 0.475265, -0.0152579, 0.878102)
 bones/12/rotation = Quaternion(-0.0420418, -0.00498506, -0.0190783, 0.998921)
 bones/13/rotation = Quaternion(-0.152845, 0.81215, -0.0148129, 0.562878)
 bones/14/rotation = Quaternion(0.0400131, -0.052876, -0.128588, 0.989479)
@@ -132,10 +132,10 @@ bones/28/rotation = Quaternion(0.233867, -0.00350565, -0.0490086, 0.971026)
 bones/29/rotation = Quaternion(0.151258, -7.45058e-08, -0.0155004, 0.988373)
 bones/30/rotation = Quaternion(0.143498, -1.3411e-07, -0.0147051, 0.989541)
 bones/31/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
-bones/32/rotation = Quaternion(0.475348, -0.478691, -0.63891, -0.36972)
-bones/33/rotation = Quaternion(-0.145775, 0.82885, -0.496517, 0.212669)
-bones/34/rotation = Quaternion(0.0412544, 0.705902, -0.0412545, 0.705902)
-bones/35/rotation = Quaternion(0.0403158, -0.569057, 0.0335108, 0.820625)
+bones/32/rotation = Quaternion(0.476171, -0.479096, -0.634667, -0.375401)
+bones/33/rotation = Quaternion(-0.151596, 0.827236, -0.497296, 0.213062)
+bones/34/rotation = Quaternion(0.0412578, 0.705902, -0.041258, 0.705902)
+bones/35/rotation = Quaternion(0.0458193, -0.571087, 0.0374694, 0.818753)
 bones/36/rotation = Quaternion(-0.0367837, 0.014466, 0.00205664, 0.999216)
 bones/37/rotation = Quaternion(-0.121712, -0.819574, 0.0371683, 0.558662)
 bones/38/rotation = Quaternion(0.0455455, 0.0460792, 0.161693, 0.984712)
@@ -156,14 +156,14 @@ bones/52/rotation = Quaternion(0.228493, 0.00340301, 0.0429806, 0.97259)
 bones/53/rotation = Quaternion(0.151548, 7.45058e-08, 0.0123454, 0.988373)
 bones/54/rotation = Quaternion(0.143773, 1.49012e-07, 0.0117119, 0.989541)
 bones/55/rotation = Quaternion(-4.47035e-08, 0, -4.47035e-08, 1)
-bones/56/rotation = Quaternion(0.139859, 0.0751165, 0.984302, -0.0771092)
-bones/57/rotation = Quaternion(-0.0382848, 0.992616, -0.114813, 0.00816522)
-bones/58/rotation = Quaternion(-0.0423601, 0.708214, -0.702925, 0.0503501)
+bones/56/rotation = Quaternion(0.134773, 0.0845074, 0.984377, -0.0754818)
+bones/57/rotation = Quaternion(-0.0382602, 0.992701, -0.113544, 0.0137497)
+bones/58/rotation = Quaternion(-0.0408457, 0.711173, -0.700171, 0.0482138)
 bones/59/rotation = Quaternion(8.23181e-10, 0.999075, 0.0429962, -1.07013e-08)
-bones/61/rotation = Quaternion(-0.0925565, -0.016531, 0.995185, -0.0277047)
-bones/62/rotation = Quaternion(0.0344834, 0.993838, -0.0645021, -0.08328)
-bones/63/rotation = Quaternion(0.0117074, 0.677241, -0.735164, -0.0272276)
-bones/64/rotation = Quaternion(-1.66768e-07, 0.998097, 0.0616635, -1.81744e-08)
+bones/61/rotation = Quaternion(-0.0907232, -0.00982679, 0.995417, -0.0285846)
+bones/62/rotation = Quaternion(0.0330748, 0.99437, -0.0564608, -0.0833526)
+bones/63/rotation = Quaternion(0.0095147, 0.685712, -0.727228, -0.0291443)
+bones/64/rotation = Quaternion(-3.65492e-07, 0.998003, 0.0631675, -3.81956e-08)
 
 [node name="Alpha_Joints" parent="Character/Armature_004/GeneralSkeleton" index="0"]
 layers = 2
@@ -174,17 +174,17 @@ layers = 2
 surface_material_override/0 = ExtResource("4_ysu0o")
 
 [node name="Sword" parent="Character/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("entity") instance=ExtResource("5_vtx6o")]
-transform = Transform3D(0.40789, 0.0313398, 0.912493, 0.0670122, -0.997743, 0.00431277, 0.910569, 0.059389, -0.409069, -0.238138, 0.836427, -0.0545936)
+transform = Transform3D(0.396289, 0.0233159, 0.91783, 0.0690642, -0.997602, -0.00447724, 0.915524, 0.0651633, -0.396949, -0.245006, 0.842359, -0.0546283)
 entity = NodePath("../../../..")
 
 [node name="LockOnAttachment" parent="Character/Armature_004/GeneralSkeleton" index="3"]
-transform = Transform3D(0.997558, -0.0598897, -0.0359332, 0.0584584, 0.997503, -0.0396415, 0.0382175, 0.0374441, 0.998568, 0.00556646, 1.33809, -0.101884)
+transform = Transform3D(0.997519, -0.0447109, -0.0543836, 0.0429941, 0.998552, -0.0323397, 0.0557508, 0.0299212, 0.997996, 0.00969121, 1.33813, -0.101891)
 
 [node name="Crosshair" parent="Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint" index="0"]
 enabled = false
 
 [node name="HeadAttachment" parent="Character/Armature_004/GeneralSkeleton" index="4"]
-transform = Transform3D(0.997685, -0.0630247, -0.0255271, 0.0631329, 0.997999, 0.003455, 0.0252583, -0.00505862, 0.999668, -0.0118997, 1.58507, -0.0425063)
+transform = Transform3D(0.998201, -0.0491426, -0.0343569, 0.0492585, 0.998783, 0.00253479, 0.0341905, -0.0042226, 0.999406, -0.00505424, 1.5861, -0.0452439)
 
 [node name="AnimationTree" parent="Character" index="2"]
 active = true

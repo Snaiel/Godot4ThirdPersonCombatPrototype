@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://x0oxbha36o2h"]
+[gd_scene load_steps=50 format=3 uid="uid://x0oxbha36o2h"]
 
 [ext_resource type="PackedScene" uid="uid://q3eag1ltsb0y" path="res://models/ybot.blend" id="1_ml8ck"]
 [ext_resource type="Script" path="res://scripts/animations/character_animations.gd" id="2_l62dg"]
@@ -8,13 +8,12 @@
 [ext_resource type="AnimationLibrary" uid="uid://bsfa8d3deue20" path="res://animations/interaction_animations_1/interaction_animations_1.blend" id="4_e2apr"]
 [ext_resource type="Script" path="res://scripts/utilities/crosshair.gd" id="4_htgrv"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/jump_animations.gd" id="6_olmu2"]
-[ext_resource type="Script" path="res://scripts/animations/subclasses/movement/movement_animations.gd" id="8_aq5jl"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/block_animations.gd" id="8_hx2j7"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://bb1v4nbj15atd" path="res://animations/blend_trees/DefaultBlendTree.tres" id="8_tr2sm"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/parry_animations.gd" id="9_347er"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/idle_animations.gd" id="9_phcew"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/hit_and_death_animations.gd" id="9_qcdnc"]
-[ext_resource type="Script" path="res://scripts/animations/subclasses/movement/base_movement_animations.gd" id="11_38yi7"]
+[ext_resource type="Script" path="res://scripts/animations/subclasses/movement_animations.gd" id="10_3eb7k"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/drink_animations.gd" id="13_yftnk"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/sitting_animations.gd" id="15_rxgn1"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/melee/melee_animations.gd" id="16_3je46"]
@@ -558,7 +557,7 @@ extra_cull_margin = 1.0
 lod_bias = 0.7
 
 [node name="LockOnAttachment" type="BoneAttachment3D" parent="Armature_004/GeneralSkeleton" index="2"]
-transform = Transform3D(0.984832, 0.0477116, 0.16682, 0.0193441, 0.925264, -0.37883, -0.172428, 0.376311, 0.910307, -0.00291815, 1.30722, -0.00711993)
+transform = Transform3D(0.984832, 0.0477116, 0.166821, 0.0193441, 0.925264, -0.378829, -0.172428, 0.37631, 0.910307, -0.00291816, 1.30722, -0.0071201)
 bone_name = "UpperChest"
 bone_idx = 4
 
@@ -574,7 +573,7 @@ texture = ExtResource("3_bk74o")
 script = ExtResource("4_htgrv")
 
 [node name="HeadAttachment" type="BoneAttachment3D" parent="Armature_004/GeneralSkeleton" index="3"]
-transform = Transform3D(0.999879, 0.0155447, -0.0007765, -0.0155096, 0.990971, -0.133179, -0.00130074, 0.133175, 0.991092, 0.0144019, 1.528, 0.122923)
+transform = Transform3D(0.999879, 0.0155446, -0.000776365, -0.0155095, 0.990971, -0.133178, -0.00130083, 0.133174, 0.991092, 0.0144018, 1.528, 0.122923)
 bone_name = "Head"
 bone_idx = 6
 
@@ -699,24 +698,10 @@ script = ExtResource("9_phcew")
 anim_tree = NodePath("../../AnimationTree")
 
 [node name="Movement" type="Node" parent="Animations" index="1" node_paths=PackedStringArray("audio_footsteps", "anim_tree")]
-script = ExtResource("8_aq5jl")
+script = ExtResource("10_3eb7k")
+movement_animations = Array[String](["Walk", "Jog", "Run"])
 audio_footsteps = NodePath("../../Audio/Footsteps")
 anim_tree = NodePath("../../AnimationTree")
-
-[node name="Walk" type="Node" parent="Animations/Movement" index="0" node_paths=PackedStringArray("anim_tree")]
-script = ExtResource("11_38yi7")
-anim_name = "Walk"
-anim_tree = NodePath("../../../AnimationTree")
-
-[node name="Jog" type="Node" parent="Animations/Movement" index="1" node_paths=PackedStringArray("anim_tree")]
-script = ExtResource("11_38yi7")
-anim_name = "Jog"
-anim_tree = NodePath("../../../AnimationTree")
-
-[node name="Run" type="Node" parent="Animations/Movement" index="2" node_paths=PackedStringArray("anim_tree")]
-script = ExtResource("11_38yi7")
-anim_name = "Run"
-anim_tree = NodePath("../../../AnimationTree")
 
 [node name="Jump" type="Node" parent="Animations" index="2" node_paths=PackedStringArray("anim_tree")]
 script = ExtResource("6_olmu2")

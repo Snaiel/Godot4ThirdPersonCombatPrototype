@@ -524,6 +524,10 @@ parameters/NonMeleeAction/current_index = -1
 "parameters/Small Projectile Copy/Small Projectile Scale/scale" = 1.0
 "parameters/Small Projectile Copy/Small Projectile Trim/seek_request" = -1.0
 
+[node name="Movement" parent="Character/Animations" index="1"]
+enabled = false
+movement_animations = Array[String]([])
+
 [node name="NonMelee" type="Node" parent="Character/Animations" index="3" node_paths=PackedStringArray("anim_tree")]
 script = ExtResource("3_ih2eg")
 anim_tree = NodePath("../../AnimationTree")

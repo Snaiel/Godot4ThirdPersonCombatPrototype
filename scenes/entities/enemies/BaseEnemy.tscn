@@ -1,4 +1,4 @@
-[gd_scene load_steps=142 format=3 uid="uid://b34rhh2gbadoy"]
+[gd_scene load_steps=138 format=3 uid="uid://b34rhh2gbadoy"]
 
 [ext_resource type="Script" path="res://scripts/entities/enemy.gd" id="1_vb1mm"]
 [ext_resource type="Script" path="res://scripts/utilities/wellbeing_stats.gd" id="2_282ix"]
@@ -9,16 +9,13 @@
 [ext_resource type="AnimationLibrary" uid="uid://cpdmlmb5om1d3" path="res://animations/combat_animations_1/combat_animations_1.blend" id="5_n7fst"]
 [ext_resource type="AnimationLibrary" uid="uid://c6e3lwlt6ukuj" path="res://animations/movement_animations_1/movement_animations_1.blend" id="6_1i3jk"]
 [ext_resource type="PackedScene" uid="uid://bjbif8ix55ckv" path="res://scenes/components/EnemyRotationComponent.tscn" id="7_1wm5n"]
-[ext_resource type="Script" path="res://scripts/animations/subclasses/movement/movement_animations.gd" id="7_ta7r4"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/idle_animations.gd" id="8_cmxyp"]
 [ext_resource type="Script" path="res://scripts/components/rotation/enemy_rotation_component.gd" id="8_mud5f"]
-[ext_resource type="Script" path="res://scripts/animations/subclasses/movement/walk_animations.gd" id="10_25lg7"]
+[ext_resource type="Script" path="res://scripts/animations/subclasses/movement_animations.gd" id="9_wul3b"]
 [ext_resource type="Script" path="res://scripts/components/movement/locomotion/locomotion_component.gd" id="10_nv1oh"]
 [ext_resource type="PackedScene" uid="uid://ia1adrmqd0lf" path="res://scenes/components/LockOnComponent.tscn" id="11_53efy"]
-[ext_resource type="Script" path="res://scripts/animations/subclasses/movement/jog_animations.gd" id="11_k525u"]
 [ext_resource type="Script" path="res://scripts/components/movement/locomotion/programmatic_movement.gd" id="11_yept1"]
 [ext_resource type="Script" path="res://scripts/components/movement/locomotion/root_motion.gd" id="12_7phcu"]
-[ext_resource type="Script" path="res://scripts/animations/subclasses/movement/run_animations.gd" id="12_dpibl"]
 [ext_resource type="PackedScene" uid="uid://cko2lhqdu4n44" path="res://scenes/components/HitboxComponent.tscn" id="12_yrsss"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/hit_and_death_animations.gd" id="13_atg6k"]
 [ext_resource type="Script" path="res://scripts/components/interface/wellbeing_component.gd" id="13_lfiap"]
@@ -551,8 +548,6 @@ animation = &"movement_animations_1/Jog Forward"
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_4ihs2"]
 
-[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_csqnq"]
-
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wpde5"]
 animation = &"movement_animations_1/Jump"
 
@@ -603,6 +598,19 @@ animation = &"combat_animations_1/Kneel Idle"
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_02gek"]
 
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_yunlw"]
+input_0/name = "walk"
+input_0/auto_advance = false
+input_0/reset = true
+input_1/name = "jog"
+input_1/auto_advance = false
+input_1/reset = true
+input_2/name = "run"
+input_2/auto_advance = false
+input_2/reset = true
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_ts0lu"]
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ucbo1"]
 animation = &"movement_animations_1/Run-Left"
 
@@ -637,9 +645,6 @@ blend_point_5/pos = Vector2(1, 1)
 sync = true
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_6w0ak"]
-
-[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_seau3"]
-sync = true
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_ox7cf"]
 
@@ -698,10 +703,8 @@ sync = true
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_1bqjp"]
 
-[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_xtrod"]
-
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_16iwy"]
-graph_offset = Vector2(-495.933, -45.8941)
+graph_offset = Vector2(-866.743, -85.5163)
 nodes/Death/node = SubResource("AnimationNodeBlend2_3rnpj")
 nodes/Death/position = Vector2(6200, 1580)
 "nodes/Death 1 Speed/node" = SubResource("AnimationNodeTimeScale_era1v")
@@ -748,12 +751,10 @@ nodes/Idle/position = Vector2(-1660, 0)
 "nodes/Idle Inactive Speed/position" = Vector2(-1920, -40)
 "nodes/Idle Inactive Trim/node" = SubResource("AnimationNodeTimeSeek_t0t7g")
 "nodes/Idle Inactive Trim/position" = Vector2(-2140, -40)
-nodes/Jog/node = SubResource("AnimationNodeBlend2_csqnq")
-nodes/Jog/position = Vector2(-700, 560)
 "nodes/Jog Animation/node" = SubResource("AnimationNodeAnimation_s6br3")
-"nodes/Jog Animation/position" = Vector2(-1320, 680)
+"nodes/Jog Animation/position" = Vector2(-1560, 720)
 "nodes/Jog Speed/node" = SubResource("AnimationNodeTimeScale_4ihs2")
-"nodes/Jog Speed/position" = Vector2(-920, 680)
+"nodes/Jog Speed/position" = Vector2(-1160, 720)
 "nodes/Jump 1/node" = SubResource("AnimationNodeBlendTree_qb1it")
 "nodes/Jump 1/position" = Vector2(40, 1000)
 "nodes/Jump 2/node" = SubResource("AnimationNodeBlendTree_6g7ih")
@@ -772,22 +773,22 @@ nodes/Jog/position = Vector2(-700, 560)
 "nodes/Kneeling Idle Animation/position" = Vector2(3480, 1900)
 "nodes/Kneeling Idle Speed/node" = SubResource("AnimationNodeTimeScale_02gek")
 "nodes/Kneeling Idle Speed/position" = Vector2(3860, 1900)
-nodes/Run/node = SubResource("AnimationNodeBlend2_seau3")
-nodes/Run/position = Vector2(-160, 740)
+nodes/Movement/node = SubResource("AnimationNodeBlend2_ts0lu")
+nodes/Movement/position = Vector2(-360, 320)
+"nodes/Movement Method/node" = SubResource("AnimationNodeTransition_yunlw")
+"nodes/Movement Method/position" = Vector2(-860, 660)
 "nodes/Run Direction/node" = SubResource("AnimationNodeBlendSpace2D_q7vgs")
-"nodes/Run Direction/position" = Vector2(-600, 920)
+"nodes/Run Direction/position" = Vector2(-1400, 920)
 "nodes/Run Speed/node" = SubResource("AnimationNodeTimeScale_6w0ak")
-"nodes/Run Speed/position" = Vector2(-360, 920)
+"nodes/Run Speed/position" = Vector2(-1160, 920)
 "nodes/Vertical Movement/node" = SubResource("AnimationNodeBlend2_ox7cf")
 "nodes/Vertical Movement/position" = Vector2(1060, 920)
-nodes/Walk/node = SubResource("AnimationNodeBlend2_xtrod")
-nodes/Walk/position = Vector2(-1200, 260)
 "nodes/Walk Direction/node" = SubResource("AnimationNodeBlendSpace2D_pudql")
-"nodes/Walk Direction/position" = Vector2(-1660, 400)
+"nodes/Walk Direction/position" = Vector2(-1400, 500)
 "nodes/Walk Speed/node" = SubResource("AnimationNodeTimeScale_1bqjp")
-"nodes/Walk Speed/position" = Vector2(-1420, 400)
+"nodes/Walk Speed/position" = Vector2(-1160, 500)
 nodes/output/position = Vector2(6940, 1280)
-node_connections = [&"Death", 0, &"Dizzy", &"Death", 1, &"Death Which One", &"Death 1 Speed", 0, &"Death 1 Trim", &"Death 1 Trim", 0, &"Death Animation", &"Death 2 Speed", 0, &"Death 2 Trim", &"Death 2 Trim", 0, &"Death Backstab Animation", &"Death Which One", 0, &"Death 1 Speed", &"Death Which One", 1, &"Death 2 Speed", &"Dizzy", 0, &"Vertical Movement", &"Dizzy", 1, &"Dizzy Which One", &"Dizzy From Damage", 0, &"Dizzy Kneeling Speed", &"Dizzy From Damage", 1, &"Kneeling Idle Speed", &"Dizzy From Damage", 2, &"Kneel to Stand Speed", &"Dizzy Kneeling Speed", 0, &"Dizzy Kneeling Trim", &"Dizzy Kneeling Trim", 0, &"Dizzy Kneeling Animation", &"Dizzy Which One", 0, &"Dizzy Idle Animation", &"Dizzy Which One", 1, &"Dizzy From Damage", &"Idle", 0, &"Idle Inactive Speed", &"Idle", 1, &"Idle Active Speed", &"Idle Active Speed", 0, &"Idle Active Trim", &"Idle Active Trim", 0, &"Idle Active Animation", &"Idle Inactive Speed", 0, &"Idle Inactive Trim", &"Idle Inactive Trim", 0, &"Idle Inactive Animation", &"Jog", 0, &"Walk", &"Jog", 1, &"Jog Speed", &"Jog Speed", 0, &"Jog Animation", &"Jump Handler", 0, &"Jump 1", &"Jump Handler", 1, &"Jump 2", &"Jump and Fall Blend", 0, &"Jump Handler", &"Jump and Fall Blend", 1, &"Fall Animation", &"Kneel to Stand Speed", 0, &"Kneel to Stand Trim", &"Kneel to Stand Trim", 0, &"Kneel to Stand Animation", &"Kneeling Idle Speed", 0, &"Kneeling Idle Animation", &"Run", 0, &"Jog", &"Run", 1, &"Run Speed", &"Run Speed", 0, &"Run Direction", &"Vertical Movement", 0, &"Run", &"Vertical Movement", 1, &"Jump and Fall Blend", &"Walk", 0, &"Idle", &"Walk", 1, &"Walk Speed", &"Walk Speed", 0, &"Walk Direction", &"output", 0, &"Death"]
+node_connections = [&"Death", 0, &"Dizzy", &"Death", 1, &"Death Which One", &"Death 1 Speed", 0, &"Death 1 Trim", &"Death 1 Trim", 0, &"Death Animation", &"Death 2 Speed", 0, &"Death 2 Trim", &"Death 2 Trim", 0, &"Death Backstab Animation", &"Death Which One", 0, &"Death 1 Speed", &"Death Which One", 1, &"Death 2 Speed", &"Dizzy", 0, &"Vertical Movement", &"Dizzy", 1, &"Dizzy Which One", &"Dizzy From Damage", 0, &"Dizzy Kneeling Speed", &"Dizzy From Damage", 1, &"Kneeling Idle Speed", &"Dizzy From Damage", 2, &"Kneel to Stand Speed", &"Dizzy Kneeling Speed", 0, &"Dizzy Kneeling Trim", &"Dizzy Kneeling Trim", 0, &"Dizzy Kneeling Animation", &"Dizzy Which One", 0, &"Dizzy Idle Animation", &"Dizzy Which One", 1, &"Dizzy From Damage", &"Idle", 0, &"Idle Inactive Speed", &"Idle", 1, &"Idle Active Speed", &"Idle Active Speed", 0, &"Idle Active Trim", &"Idle Active Trim", 0, &"Idle Active Animation", &"Idle Inactive Speed", 0, &"Idle Inactive Trim", &"Idle Inactive Trim", 0, &"Idle Inactive Animation", &"Jog Speed", 0, &"Jog Animation", &"Jump Handler", 0, &"Jump 1", &"Jump Handler", 1, &"Jump 2", &"Jump and Fall Blend", 0, &"Jump Handler", &"Jump and Fall Blend", 1, &"Fall Animation", &"Kneel to Stand Speed", 0, &"Kneel to Stand Trim", &"Kneel to Stand Trim", 0, &"Kneel to Stand Animation", &"Kneeling Idle Speed", 0, &"Kneeling Idle Animation", &"Movement", 0, &"Idle", &"Movement", 1, &"Movement Method", &"Movement Method", 0, &"Walk Speed", &"Movement Method", 1, &"Jog Speed", &"Movement Method", 2, &"Run Speed", &"Run Speed", 0, &"Run Direction", &"Vertical Movement", 0, &"Movement", &"Vertical Movement", 1, &"Jump and Fall Blend", &"Walk Speed", 0, &"Walk Direction", &"output", 0, &"Death"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_pogo0"]
 playback_mode = 1
@@ -966,7 +967,6 @@ parameters/Idle/current_index = -1
 "parameters/Idle Active Trim/seek_request" = -1.0
 "parameters/Idle Inactive Speed/scale" = 1.0
 "parameters/Idle Inactive Trim/seek_request" = -1.0
-parameters/Jog/blend_amount = 0
 "parameters/Jog Speed/scale" = 1.0
 "parameters/Jump 1/Jump Speed/scale" = 1.0
 "parameters/Jump 1/Jump Trim/seek_request" = -1.0
@@ -977,11 +977,13 @@ parameters/Jog/blend_amount = 0
 "parameters/Kneel to Stand Speed/scale" = 1.0
 "parameters/Kneel to Stand Trim/seek_request" = -1.0
 "parameters/Kneeling Idle Speed/scale" = 1.0
-parameters/Run/blend_amount = 0
+parameters/Movement/blend_amount = 0
+"parameters/Movement Method/current_state" = ""
+"parameters/Movement Method/transition_request" = ""
+"parameters/Movement Method/current_index" = -1
 "parameters/Run Direction/blend_position" = Vector2(0, 0)
 "parameters/Run Speed/scale" = 1.0
 "parameters/Vertical Movement/blend_amount" = 0
-parameters/Walk/blend_amount = 0
 "parameters/Walk Direction/blend_position" = Vector2(0, 0)
 "parameters/Walk Direction/4/TimeScale/scale" = 1.0
 "parameters/Walk Direction/5/TimeScale/scale" = 1.0
@@ -994,21 +996,10 @@ script = ExtResource("8_cmxyp")
 anim_tree = NodePath("../../AnimationTree")
 
 [node name="Movement" type="Node" parent="Character/Animations" node_paths=PackedStringArray("audio_footsteps", "anim_tree")]
-script = ExtResource("7_ta7r4")
+script = ExtResource("9_wul3b")
+movement_animations = Array[String](["Walk", "Jog", "Run"])
 audio_footsteps = NodePath("../../Audio/Footsteps")
 anim_tree = NodePath("../../AnimationTree")
-
-[node name="Walk" type="Node" parent="Character/Animations/Movement" node_paths=PackedStringArray("anim_tree")]
-script = ExtResource("10_25lg7")
-anim_tree = NodePath("../../../AnimationTree")
-
-[node name="Jog" type="Node" parent="Character/Animations/Movement" node_paths=PackedStringArray("anim_tree")]
-script = ExtResource("11_k525u")
-anim_tree = NodePath("../../../AnimationTree")
-
-[node name="Run" type="Node" parent="Character/Animations/Movement" node_paths=PackedStringArray("anim_tree")]
-script = ExtResource("12_dpibl")
-anim_tree = NodePath("../../../AnimationTree")
 
 [node name="HitAndDeath" type="Node" parent="Character/Animations" node_paths=PackedStringArray("anim_tree")]
 script = ExtResource("13_atg6k")

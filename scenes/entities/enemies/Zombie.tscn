@@ -577,6 +577,9 @@ parameters/Idle/transition_request = "inactive"
 "parameters/Zombie Smash Copy/Zombie Smash Speed/scale" = 1.0
 "parameters/Zombie Smash Copy/Zombie Smash Trim/seek_request" = -1.0
 
+[node name="Movement" parent="Character/Animations" index="1"]
+movement_animations = Array[String](["Walk"])
+
 [node name="Melee" type="Node" parent="Character/Animations" index="3" node_paths=PackedStringArray("anim_tree")]
 script = ExtResource("15_37iw6")
 anim_tree = NodePath("../../AnimationTree")
