@@ -574,12 +574,6 @@ script = ExtResource("13_t4d4w")
 projectile_scene = ExtResource("10_1tv5p")
 entity = NodePath("../../..")
 
-[node name="NoticeComponent" parent="Combat" index="2" node_paths=PackedStringArray("beehave_tree")]
-beehave_tree = NodePath("../../BeehaveTree")
-
-[node name="Outcomes" parent="Combat/InteractionComponent" index="2" node_paths=PackedStringArray("beehave_tree")]
-beehave_tree = NodePath("../../../BeehaveTree")
-
 [node name="SetRotateTowardsTargetTrue" parent="BeehaveTree/SelectorComposite/Aggro" index="1" instance=ExtResource("10_m7wae")]
 
 [node name="SetLockedOnTrue" parent="BeehaveTree/SelectorComposite/Aggro" index="2" instance=ExtResource("11_fajlc")]
