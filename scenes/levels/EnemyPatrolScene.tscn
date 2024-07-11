@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://djitgmcgcng4u"]
 
 [ext_resource type="PackedScene" uid="uid://c2uj0la6nf7y" path="res://scenes/levels/BaseScene.tscn" id="1_rur2h"]
-[ext_resource type="PackedScene" uid="uid://dmtsn22tgr3b1" path="res://scenes/entities/enemies/NewSwordsman.tscn" id="2_myj8i"]
+[ext_resource type="PackedScene" uid="uid://dmtsn22tgr3b1" path="res://scenes/entities/enemies/Swordsman.tscn" id="2_myj8i"]
 [ext_resource type="Script" path="res://scripts/utilities/patrol_instance.gd" id="3_tqxbe"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_15dvy"]
