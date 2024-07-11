@@ -89,6 +89,7 @@ initial_checkpoint = NodePath("../Level/Environment/NavigationRegion3D/Checkpoin
 enemies = NodePath("../Level/Enemies")
 
 [node name="MusicSystem" parent="." instance=ExtResource("9_cdq8y")]
+enabled = false
 
 [node name="Level" type="Node3D" parent="."]
 

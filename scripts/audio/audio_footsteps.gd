@@ -9,13 +9,16 @@ var running: bool = false
 
 func play_footstep() -> void:
 	if not can_play:
+		print("AudioFootsteps CANT PLAY")
 		return
 	
 	if not on_floor:
+		print("AudioFootsteps NOT ON FLOOR")
 		return
 	
-	if playing:
-		return
+	#if playing:
+		#print("AudioFootsteps ALREADY PLAYING")
+		#return
 	
 	if running:
 		pitch_scale = 0.7

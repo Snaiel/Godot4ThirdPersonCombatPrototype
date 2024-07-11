@@ -2,6 +2,8 @@ class_name MusicSystem
 extends Node
 
 
+@export var enabled: bool = true
+
 var idle_music: bool = true
 
 var _counter: int = 0:
@@ -15,11 +17,15 @@ var _counter: int = 0:
 @onready var anim: AnimationPlayer = $AnimationPlayer
 
 
+func _ready():
+	if enabled: idle_song.play()
+
+
 func fade_to_active() -> void:
 	_counter += 1
 	
-	if not idle_music:
-		return
+	if not enabled: return
+	if not idle_music: return
 	
 	idle_music = false
 	anim.play("FadeToActive")

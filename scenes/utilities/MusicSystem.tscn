@@ -205,7 +205,6 @@ script = ExtResource("1_owdky")
 
 [node name="IdleBackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_1xw4m")
-autoplay = true
 bus = &"Music"
 
 [node name="ActiveBackgroundMusic" type="AudioStreamPlayer" parent="."]
