@@ -574,58 +574,66 @@ value = "true"
 wait_id = 82140480
 
 [node name="Patrol" type="Node" parent="BeehaveTree/SelectorComposite" index="5"]
-script = ExtResource("21_763qd")
-
-[node name="Stationary" type="Node" parent="BeehaveTree/SelectorComposite/Patrol" index="0"]
 script = ExtResource("23_mp67g")
 
-[node name="IsPatrolMoveFalse" type="Node" parent="BeehaveTree/SelectorComposite/Patrol/Stationary" index="0"]
+[node name="IsPatrolTrue" type="Node" parent="BeehaveTree/SelectorComposite/Patrol" index="0"]
+script = ExtResource("26_t4uqh")
+left_operand = "get_value(\"patrol\")"
+right_operand = "true"
+
+[node name="PatrolSelector" type="Node" parent="BeehaveTree/SelectorComposite/Patrol" index="1"]
+script = ExtResource("21_763qd")
+
+[node name="Stationary" type="Node" parent="BeehaveTree/SelectorComposite/Patrol/PatrolSelector" index="0"]
+script = ExtResource("23_mp67g")
+
+[node name="IsPatrolMoveFalse" type="Node" parent="BeehaveTree/SelectorComposite/Patrol/PatrolSelector/Stationary" index="0"]
 script = ExtResource("26_t4uqh")
 left_operand = "get_value(\"patrol_move\")"
 right_operand = "false"
 
-[node name="PatrolDist" type="Node" parent="BeehaveTree/SelectorComposite/Patrol/Stationary" index="1"]
+[node name="PatrolDist" type="Node" parent="BeehaveTree/SelectorComposite/Patrol/PatrolSelector/Stationary" index="1"]
 script = ExtResource("26_t4uqh")
 left_operand = "get_value(\"patrol_dist\")"
 operator = 3
 right_operand = "1"
 
-[node name="InputNone" parent="BeehaveTree/SelectorComposite/Patrol/Stationary" index="2" instance=ExtResource("27_r7c2x")]
+[node name="InputNone" parent="BeehaveTree/SelectorComposite/Patrol/PatrolSelector/Stationary" index="2" instance=ExtResource("27_r7c2x")]
 
-[node name="Wait" parent="BeehaveTree/SelectorComposite/Patrol/Stationary" index="3" instance=ExtResource("38_s64ne")]
+[node name="Wait" parent="BeehaveTree/SelectorComposite/Patrol/PatrolSelector/Stationary" index="3" instance=ExtResource("38_s64ne")]
 time = 3.0
 wait_id = 22789821
 
-[node name="SetLockedOnFalse" parent="BeehaveTree/SelectorComposite/Patrol/Stationary" index="4" instance=ExtResource("46_40per")]
+[node name="SetLockedOnFalse" parent="BeehaveTree/SelectorComposite/Patrol/PatrolSelector/Stationary" index="4" instance=ExtResource("46_40per")]
 
-[node name="Move" type="Node" parent="BeehaveTree/SelectorComposite/Patrol" index="1"]
+[node name="Move" type="Node" parent="BeehaveTree/SelectorComposite/Patrol/PatrolSelector" index="1"]
 script = ExtResource("23_mp67g")
 
-[node name="ResetWait" parent="BeehaveTree/SelectorComposite/Patrol/Move" index="0" instance=ExtResource("47_wnrcf")]
+[node name="ResetWait" parent="BeehaveTree/SelectorComposite/Patrol/PatrolSelector/Move" index="0" instance=ExtResource("47_wnrcf")]
 wait_id = 22789821
 
-[node name="SetRotateTowardsTargetTrue" parent="BeehaveTree/SelectorComposite/Patrol/Move" index="1" instance=ExtResource("24_quvof")]
+[node name="SetRotateTowardsTargetTrue" parent="BeehaveTree/SelectorComposite/Patrol/PatrolSelector/Move" index="1" instance=ExtResource("24_quvof")]
 
-[node name="SetHeadRotationEnabledFalse" type="Node" parent="BeehaveTree/SelectorComposite/Patrol/Move" index="2"]
+[node name="SetHeadRotationEnabledFalse" type="Node" parent="BeehaveTree/SelectorComposite/Patrol/PatrolSelector/Move" index="2"]
 script = ExtResource("39_yg2yw")
 key = "\"head_rotation_enabled\""
 value = "false"
 
-[node name="SetLockedOnTrue" parent="BeehaveTree/SelectorComposite/Patrol/Move" index="3" instance=ExtResource("25_5kxm6")]
+[node name="SetLockedOnTrue" parent="BeehaveTree/SelectorComposite/Patrol/PatrolSelector/Move" index="3" instance=ExtResource("25_5kxm6")]
 
-[node name="SetCanMoveTrue" parent="BeehaveTree/SelectorComposite/Patrol/Move" index="4" instance=ExtResource("34_1528r")]
+[node name="SetCanMoveTrue" parent="BeehaveTree/SelectorComposite/Patrol/PatrolSelector/Move" index="4" instance=ExtResource("34_1528r")]
 
-[node name="SetAnimMoveSpeed" parent="BeehaveTree/SelectorComposite/Patrol/Move" index="5" instance=ExtResource("48_2s4yo")]
+[node name="SetAnimMoveSpeed" parent="BeehaveTree/SelectorComposite/Patrol/PatrolSelector/Move" index="5" instance=ExtResource("48_2s4yo")]
 value = "0.6"
 
-[node name="SetRootMotionFalse" parent="BeehaveTree/SelectorComposite/Patrol/Move" index="6" node_paths=PackedStringArray("entity") instance=ExtResource("46_6cua7")]
-entity = NodePath("../../../../..")
+[node name="SetRootMotionFalse" parent="BeehaveTree/SelectorComposite/Patrol/PatrolSelector/Move" index="6" node_paths=PackedStringArray("entity") instance=ExtResource("46_6cua7")]
+entity = NodePath("../../../../../..")
 root_motion = true
 
-[node name="SetWalkSpeed" parent="BeehaveTree/SelectorComposite/Patrol/Move" index="7" instance=ExtResource("43_pqqby")]
+[node name="SetWalkSpeed" parent="BeehaveTree/SelectorComposite/Patrol/PatrolSelector/Move" index="7" instance=ExtResource("43_pqqby")]
 value = "1"
 
-[node name="InputForwards" parent="BeehaveTree/SelectorComposite/Patrol/Move" index="8" instance=ExtResource("44_tsc7e")]
+[node name="InputForwards" parent="BeehaveTree/SelectorComposite/Patrol/PatrolSelector/Move" index="8" instance=ExtResource("44_tsc7e")]
 
 [editable path="Character"]
 [editable path="Character/Armature_004/GeneralSkeleton/Sword"]

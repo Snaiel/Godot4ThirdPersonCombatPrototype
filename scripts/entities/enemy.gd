@@ -86,6 +86,7 @@ func _physics_process(_delta: float) -> void:
 	
 	
 	## Patrol
+	blackboard.set_value("patrol", patrol != null)
 	if patrol: blackboard.set_value(
 		"patrol_dist",
 		global_position.distance_to(patrol.global_position)
