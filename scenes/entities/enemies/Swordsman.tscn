@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://dmtsn22tgr3b1"]
+[gd_scene load_steps=56 format=3 uid="uid://dmtsn22tgr3b1"]
 
 [ext_resource type="PackedScene" uid="uid://b34rhh2gbadoy" path="res://scenes/entities/enemies/BaseEnemy.tscn" id="1_mc312"]
 [ext_resource type="Shader" path="res://shaders/fade.gdshader" id="2_433ld"]
@@ -50,6 +50,7 @@
 [ext_resource type="PackedScene" uid="uid://nc8fs0at3l7x" path="res://scenes/beehave/set_actions/SetLockedOnFalse.tscn" id="46_40per"]
 [ext_resource type="PackedScene" uid="uid://t8wg0g461fli" path="res://scenes/beehave/wait/ResetWait.tscn" id="47_wnrcf"]
 [ext_resource type="Script" path="res://scripts/beehave/patrol_move_speed.gd" id="50_1ub2t"]
+[ext_resource type="Script" path="res://scripts/beehave/return.gd" id="51_tcvky"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yud2m"]
 render_priority = 0
@@ -629,6 +630,9 @@ min_dist = 0.3
 max_dist = 2.0
 
 [node name="InputForwards" parent="BeehaveTree/SelectorComposite/Patrol/PatrolSelector/Move" index="8" instance=ExtResource("44_tsc7e")]
+
+[node name="Return" type="Node" parent="BeehaveTree/SelectorComposite/Idle" index="0"]
+script = ExtResource("51_tcvky")
 
 [editable path="Character"]
 [editable path="Character/Armature_004/GeneralSkeleton/Sword"]

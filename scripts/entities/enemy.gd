@@ -40,6 +40,7 @@ signal dead
 @export var patrol: PathFollow3D
 
 var target: Node3D
+var original_position: Vector3
 
 
 func _enter_tree():
@@ -58,6 +59,10 @@ func _ready() -> void:
 		)
 	else:
 		target = Globals.player
+	
+	original_position = global_position
+	blackboard.set_value("original_position", original_position)
+	blackboard.set_value("original_rotation", rotation.y)
 	
 	health_component.zero_health.connect(_on_health_component_zero_health)
 	
@@ -84,6 +89,10 @@ func _physics_process(_delta: float) -> void:
 	## Navigation Agent
 	_set_agent_values()
 	
+	blackboard.set_value(
+		"dist_original_position",
+		global_position.distance_to(original_position)
+	)
 	
 	## Patrol
 	blackboard.set_value("patrol", patrol != null)
