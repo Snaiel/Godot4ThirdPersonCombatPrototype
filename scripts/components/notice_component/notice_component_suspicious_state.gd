@@ -11,9 +11,7 @@ extends NoticeComponentState
 var _expand_x: float
 var _expand_scale: float
 
-var _suspicion_timer: Timer
-var _can_start_suspicion_timer: bool = true
-var _suspicion_interval: float = 20.0
+var _prev_looked_around_val: bool = false
 var _check_to_leave_suspicion: bool = false
 
 var _before_getting_aggro_timer: Timer
@@ -22,24 +20,12 @@ var _check_to_get_aggro: bool = false
 
 
 func _ready():
-	_suspicion_timer = Timer.new()
-	_suspicion_timer.wait_time = _suspicion_interval
-	_suspicion_timer.one_shot = true
-	_suspicion_timer.autostart = false
-	_suspicion_timer.timeout.connect(
-		func(): 
-			_check_to_leave_suspicion = true
-	)
-	add_child(_suspicion_timer)
-	
-	
 	_before_getting_aggro_timer = Timer.new()
 	_before_getting_aggro_timer.wait_time = _before_getting_aggro_pause
 	_before_getting_aggro_timer.one_shot = true
 	_before_getting_aggro_timer.autostart = false
 	_before_getting_aggro_timer.timeout.connect(
-		func():
-			_check_to_get_aggro = true
+		func(): _check_to_get_aggro = true
 	)
 	add_child(_before_getting_aggro_timer)
 
@@ -48,7 +34,6 @@ func enter() -> void:
 	_expand_x = 0
 	
 	_check_to_leave_suspicion = false
-	_can_start_suspicion_timer = true
 	
 	if notice_component.previous_state is NoticeComponentGettingAggroState:
 		_expand_x = 1.0
@@ -87,9 +72,15 @@ func physics_process(delta) -> void:
 			notice_component.suspicion_color
 		)
 	
-	if _can_start_suspicion_timer:
-		_can_start_suspicion_timer = false
-		_suspicion_timer.start()
+	if _prev_looked_around_val == false and \
+	notice_component.blackboard.get_value("looked_around"):
+		get_tree().create_timer(0.3).timeout.connect(
+			func(): _check_to_leave_suspicion = true
+		)
+	_prev_looked_around_val = notice_component.blackboard.get_value(
+		"looked_around",
+		false
+	)
 	
 	if notice_component.inside_inner_threshold():
 		notice_component.transition_to_aggro()
@@ -107,4 +98,4 @@ func physics_process(delta) -> void:
 
 
 func exit() -> void:
-	_suspicion_timer.stop()
+	pass

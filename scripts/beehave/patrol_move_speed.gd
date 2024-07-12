@@ -25,6 +25,5 @@ func tick(_actor: Node, blackboard: Blackboard) -> int:
 		)
 	)
 	
-	print(patrol_anim_speed)
 	blackboard.set_value("anim_move_speed", patrol_anim_speed)
 	return SUCCESS
