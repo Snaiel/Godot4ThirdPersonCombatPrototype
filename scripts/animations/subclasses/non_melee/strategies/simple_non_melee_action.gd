@@ -32,6 +32,6 @@ func _play_action(copy: bool = false):
 		 animation_speed
 	)
 	anim_tree.set(
-		"parameters/NonMeleeAction/transition_request",
+		"parameters/Non Melee Action/transition_request",
 		 action_name.to_snake_case() + ("_copy" if copy else "")
 	)

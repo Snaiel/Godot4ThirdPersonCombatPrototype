@@ -40,7 +40,7 @@ var _transition_legs: int = 0
 
 
 func _ready() -> void:
-	anim_tree.set(&"parameters/Attacking/blend_amount", 0.0)
+	anim_tree.set(&"parameters/Melee/blend_amount", 0.0)
 	
 	for child in get_children():
 		attacks.append(child)
@@ -61,10 +61,10 @@ func _physics_process(_delta: float) -> void:
 		_can_play_animation = false
 		_intent_to_attack = false
 	
-	var blend = anim_tree.get(&"parameters/Attacking/blend_amount")
+	var blend = anim_tree.get(&"parameters/Melee/blend_amount")
 	if blend == null: return
 	anim_tree.set(
-		&"parameters/Attacking/blend_amount",
+		&"parameters/Melee/blend_amount",
 		lerp(
 			float(blend), 
 			1.0 if attacking else 0.0, 

@@ -165,9 +165,6 @@ collision_mask = 2
 
 [node name="AnimationTree" parent="Character" index="2"]
 tree_root = ExtResource("4_mkbf1")
-parameters/Attack/current_state = ""
-parameters/Attack/transition_request = ""
-parameters/Attack/current_index = -1
 "parameters/Attack Forward Thrust/Forward Thrust Speed/scale" = 1.0
 "parameters/Attack Forward Thrust/Forward Thrust Trim/seek_request" = -1.0
 "parameters/Attack Inward Slash/Inward Slash Speed/scale" = 1.0
@@ -195,10 +192,13 @@ parameters/Attack/current_index = -1
 "parameters/Attack Quick Slash/Quick Slash and Walk Blend/blend_amount" = 0
 "parameters/Attack Quick Slash/Walk Forwards Speed/scale" = 1.0
 "parameters/Attack Quick Slash/Walk Forwards Trim/seek_request" = -1.0
-parameters/Attacking/blend_amount = 0
 parameters/Block/blend_amount = 0
 "parameters/Block Speed/scale" = 1.0
 "parameters/Block Trim/seek_request" = -1.0
+parameters/Melee/blend_amount = 0
+"parameters/Melee Attack/current_state" = ""
+"parameters/Melee Attack/transition_request" = ""
+"parameters/Melee Attack/current_index" = -1
 parameters/Parry/blend_amount = 0
 "parameters/Parry Speed/scale" = 1.0
 "parameters/Parry Trim/seek_request" = -1.0

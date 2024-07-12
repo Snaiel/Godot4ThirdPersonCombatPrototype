@@ -1,29 +1,5 @@
 [gd_resource type="AnimationNodeBlendTree" load_steps=64 format=3 uid="uid://b5hblhvekj3pr"]
 
-[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_gr1qy"]
-xfade_time = 0.2
-allow_transition_to_self = true
-input_0/name = "zombie_smack"
-input_0/auto_advance = false
-input_0/reset = true
-input_1/name = "zombie_smack_copy"
-input_1/auto_advance = false
-input_1/reset = true
-input_2/name = "zombie_smash"
-input_2/auto_advance = false
-input_2/reset = true
-input_3/name = "zombie_smash_copy"
-input_3/auto_advance = false
-input_3/reset = true
-input_4/name = "zombie_kick"
-input_4/auto_advance = false
-input_4/reset = true
-input_5/name = "zombie_kick_copy"
-input_5/auto_advance = false
-input_5/reset = true
-
-[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_vrma0"]
-
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_era1v"]
 
 [sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_jbigd"]
@@ -106,6 +82,30 @@ animation = &"combat_animations_1/Kneel to Stand"
 animation = &"combat_animations_1/Kneel Idle"
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_02gek"]
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_gr1qy"]
+xfade_time = 0.2
+allow_transition_to_self = true
+input_0/name = "zombie_smack"
+input_0/auto_advance = false
+input_0/reset = true
+input_1/name = "zombie_smack_copy"
+input_1/auto_advance = false
+input_1/reset = true
+input_2/name = "zombie_smash"
+input_2/auto_advance = false
+input_2/reset = true
+input_3/name = "zombie_smash_copy"
+input_3/auto_advance = false
+input_3/reset = true
+input_4/name = "zombie_kick"
+input_4/auto_advance = false
+input_4/reset = true
+input_5/name = "zombie_kick_copy"
+input_5/auto_advance = false
+input_5/reset = true
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_vrma0"]
 
 [sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_jt5ei"]
 input_0/name = "walk"
@@ -273,11 +273,7 @@ graph_offset = Vector2(-573, -66)
 node_connections = [&"Zombie Smash Speed", 0, &"Zombie Smash Trim", &"Zombie Smash Trim", 0, &"Zombie Smash", &"output", 0, &"Zombie Smash Speed"]
 
 [resource]
-graph_offset = Vector2(-443.871, 132.85)
-nodes/Attack/node = SubResource("AnimationNodeTransition_gr1qy")
-nodes/Attack/position = Vector2(860, 1160)
-nodes/Attacking/node = SubResource("AnimationNodeBlend2_vrma0")
-nodes/Attacking/position = Vector2(1200, 640)
+graph_offset = Vector2(48.6638, 388.701)
 nodes/Death/node = SubResource("AnimationNodeBlend2_3rnpj")
 nodes/Death/position = Vector2(4640, 1200)
 "nodes/Death 1 Speed/node" = SubResource("AnimationNodeTimeScale_era1v")
@@ -324,6 +320,10 @@ nodes/Idle/position = Vector2(-420, 380)
 "nodes/Kneeling Idle Animation/position" = Vector2(1920, 1520)
 "nodes/Kneeling Idle Speed/node" = SubResource("AnimationNodeTimeScale_02gek")
 "nodes/Kneeling Idle Speed/position" = Vector2(2300, 1520)
+nodes/Melee/node = SubResource("AnimationNodeBlend2_vrma0")
+nodes/Melee/position = Vector2(1200, 640)
+"nodes/Melee Attack/node" = SubResource("AnimationNodeTransition_gr1qy")
+"nodes/Melee Attack/position" = Vector2(860, 1160)
 nodes/Movement/node = SubResource("AnimationNodeBlend2_65i5y")
 nodes/Movement/position = Vector2(340, 560)
 "nodes/Movement Method/node" = SubResource("AnimationNodeTransition_jt5ei")
@@ -345,4 +345,4 @@ nodes/Movement/position = Vector2(340, 560)
 "nodes/Zombie Smash Copy/node" = SubResource("AnimationNodeBlendTree_366vf")
 "nodes/Zombie Smash Copy/position" = Vector2(520, 1320)
 nodes/output/position = Vector2(5380, 900)
-node_connections = [&"Attack", 0, &"Zombie Smack", &"Attack", 1, &"Zombie Smack Copy", &"Attack", 2, &"Zombie Smash", &"Attack", 3, &"Zombie Smash Copy", &"Attack", 4, &"Zombie Kick", &"Attack", 5, &"Zombie Kick Copy", &"Attacking", 0, &"Movement", &"Attacking", 1, &"Attack", &"Death", 0, &"Dizzy", &"Death", 1, &"Death Which One", &"Death 1 Speed", 0, &"Death 1 Trim", &"Death 1 Trim", 0, &"Death Animation", &"Death 2 Speed", 0, &"Death 2 Trim", &"Death 2 Trim", 0, &"Death Backstab Animation", &"Death Which One", 0, &"Death 1 Speed", &"Death Which One", 1, &"Death 2 Speed", &"Dizzy", 0, &"Attacking", &"Dizzy", 1, &"Dizzy Which One", &"Dizzy From Damage", 0, &"Dizzy Kneeling Speed", &"Dizzy From Damage", 1, &"Kneeling Idle Speed", &"Dizzy From Damage", 2, &"Kneel to Stand Speed", &"Dizzy Kneeling Speed", 0, &"Dizzy Kneeling Trim", &"Dizzy Kneeling Trim", 0, &"Dizzy Kneeling Animation", &"Dizzy Which One", 0, &"Dizzy Idle Animation", &"Dizzy Which One", 1, &"Dizzy From Damage", &"Idle", 0, &"Idle Inactive Animation", &"Idle", 1, &"Idle Active Animation", &"Kneel to Stand Speed", 0, &"Kneel to Stand Trim", &"Kneel to Stand Trim", 0, &"Kneel to Stand Animation", &"Kneeling Idle Speed", 0, &"Kneeling Idle Animation", &"Movement", 0, &"Idle", &"Movement", 1, &"Movement Method", &"Movement Method", 0, &"Walk Speed", &"Walk Speed", 0, &"Walk Direction", &"output", 0, &"Death"]
+node_connections = [&"Death", 0, &"Dizzy", &"Death", 1, &"Death Which One", &"Death 1 Speed", 0, &"Death 1 Trim", &"Death 1 Trim", 0, &"Death Animation", &"Death 2 Speed", 0, &"Death 2 Trim", &"Death 2 Trim", 0, &"Death Backstab Animation", &"Death Which One", 0, &"Death 1 Speed", &"Death Which One", 1, &"Death 2 Speed", &"Dizzy", 0, &"Melee", &"Dizzy", 1, &"Dizzy Which One", &"Dizzy From Damage", 0, &"Dizzy Kneeling Speed", &"Dizzy From Damage", 1, &"Kneeling Idle Speed", &"Dizzy From Damage", 2, &"Kneel to Stand Speed", &"Dizzy Kneeling Speed", 0, &"Dizzy Kneeling Trim", &"Dizzy Kneeling Trim", 0, &"Dizzy Kneeling Animation", &"Dizzy Which One", 0, &"Dizzy Idle Animation", &"Dizzy Which One", 1, &"Dizzy From Damage", &"Idle", 0, &"Idle Inactive Animation", &"Idle", 1, &"Idle Active Animation", &"Kneel to Stand Speed", 0, &"Kneel to Stand Trim", &"Kneel to Stand Trim", 0, &"Kneel to Stand Animation", &"Kneeling Idle Speed", 0, &"Kneeling Idle Animation", &"Melee", 0, &"Movement", &"Melee", 1, &"Melee Attack", &"Melee Attack", 0, &"Zombie Smack", &"Melee Attack", 1, &"Zombie Smack Copy", &"Melee Attack", 2, &"Zombie Smash", &"Melee Attack", 3, &"Zombie Smash Copy", &"Melee Attack", 4, &"Zombie Kick", &"Melee Attack", 5, &"Zombie Kick Copy", &"Movement", 0, &"Idle", &"Movement", 1, &"Movement Method", &"Movement Method", 0, &"Walk Speed", &"Walk Speed", 0, &"Walk Direction", &"output", 0, &"Death"]

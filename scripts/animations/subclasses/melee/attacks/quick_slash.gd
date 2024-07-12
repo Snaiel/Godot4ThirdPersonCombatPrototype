@@ -10,7 +10,7 @@ func play_attack():
 	anim_tree.set(&"parameters/Attack Quick Slash/Quick Slash Trim/seek_request", 0.9)
 	anim_tree.set(&"parameters/Attack Quick Slash/Walk Forwards Trim/seek_request", 0.8)
 	anim_tree.set(&"parameters/Attack Quick Slash/Walk Forwards Speed/scale", 0.8)
-	anim_tree.set(&"parameters/Attack/transition_request", &"quick_slash")
+	anim_tree.set(&"parameters/Melee Attack/transition_request", &"quick_slash")
 
 
 func play_legs():

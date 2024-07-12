@@ -33,7 +33,7 @@ var _intend_to_stop_performing: bool = true
 
 
 func _ready() -> void:
-	anim_tree.set(&"parameters/NonMelee/blend_amount", 0.0)
+	anim_tree.set(&"parameters/Non Melee/blend_amount", 0.0)
 	for child in get_children():
 		actions.append(child)
 
@@ -48,10 +48,10 @@ func _physics_process(_delta: float) -> void:
 		_can_play_animation = false
 		_intent_to_perform = false
 	
-	var blend = anim_tree.get(&"parameters/NonMelee/blend_amount")
+	var blend = anim_tree.get(&"parameters/Non Melee/blend_amount")
 	if blend == null: return
 	anim_tree.set(
-		&"parameters/NonMelee/blend_amount",
+		&"parameters/Non Melee/blend_amount",
 		lerp(
 			float(blend), 
 			1.0 if active else 0.0,

@@ -7,7 +7,7 @@ func _ready():
 
 
 func play_attack():
-	anim_tree.set(&"parameters/Attack/transition_request", &"thrust")
+	anim_tree.set(&"parameters/Melee Attack/transition_request", &"thrust")
 
 
 func play_legs() -> void:

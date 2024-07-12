@@ -559,11 +559,11 @@ libraries = {
 
 [node name="AnimationTree" parent="Character" index="2"]
 tree_root = ExtResource("7_q608i")
-parameters/Attack/current_state = ""
-parameters/Attack/transition_request = ""
-parameters/Attack/current_index = -1
-parameters/Attacking/blend_amount = 0
 parameters/Idle/transition_request = "inactive"
+parameters/Melee/blend_amount = 0
+"parameters/Melee Attack/current_state" = ""
+"parameters/Melee Attack/transition_request" = ""
+"parameters/Melee Attack/current_index" = -1
 "parameters/Zombie Kick/Zombie Kick Speed/scale" = 1.0
 "parameters/Zombie Kick/Zombie Kick Trim/seek_request" = -1.0
 "parameters/Zombie Kick Copy/Zombie Kick Speed/scale" = 1.0

@@ -203,30 +203,6 @@ graph_offset = Vector2(-345.786, 38.8251)
 nodes/output/position = Vector2(660, 220)
 node_connections = [&"Quick Slash Speed", 0, &"Quick Slash Trim", &"Quick Slash Trim", 0, &"Quick Slash", &"Quick Slash and Walk Blend", 0, &"Quick Slash Speed", &"Quick Slash and Walk Blend", 1, &"Walk Forwards Speed", &"Walk Forwards Speed", 0, &"Walk Forwards Trim", &"Walk Forwards Trim", 0, &"Walk Forwards", &"output", 0, &"Quick Slash and Walk Blend"]
 
-[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_gr1qy"]
-xfade_time = 0.2
-allow_transition_to_self = true
-input_0/name = "inward_slash"
-input_0/auto_advance = false
-input_0/reset = true
-input_1/name = "inward_slash_copy"
-input_1/auto_advance = false
-input_1/reset = true
-input_2/name = "outward_slash"
-input_2/auto_advance = false
-input_2/reset = true
-input_3/name = "outward_slash_copy"
-input_3/auto_advance = false
-input_3/reset = true
-input_4/name = "thrust"
-input_4/auto_advance = false
-input_4/reset = true
-input_5/name = "quick_slash"
-input_5/auto_advance = false
-input_5/reset = true
-
-[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_vrma0"]
-
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1g7vj"]
 animation = &"combat_animations_1/Blocking"
 
@@ -375,6 +351,30 @@ animation = &"combat_animations_1/Kneel Idle"
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_02gek"]
 
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_gr1qy"]
+xfade_time = 0.2
+allow_transition_to_self = true
+input_0/name = "inward_slash"
+input_0/auto_advance = false
+input_0/reset = true
+input_1/name = "inward_slash_copy"
+input_1/auto_advance = false
+input_1/reset = true
+input_2/name = "outward_slash"
+input_2/auto_advance = false
+input_2/reset = true
+input_3/name = "outward_slash_copy"
+input_3/auto_advance = false
+input_3/reset = true
+input_4/name = "thrust"
+input_4/auto_advance = false
+input_4/reset = true
+input_5/name = "quick_slash"
+input_5/auto_advance = false
+input_5/reset = true
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_vrma0"]
+
 [sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_nmxyb"]
 input_0/name = "walk"
 input_0/auto_advance = false
@@ -492,9 +492,7 @@ sync = true
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_1bqjp"]
 
 [resource]
-graph_offset = Vector2(2891.54, 531.809)
-nodes/Attack/node = SubResource("AnimationNodeTransition_gr1qy")
-nodes/Attack/position = Vector2(860, 1160)
+graph_offset = Vector2(119.225, 349.55)
 "nodes/Attack Forward Thrust/node" = SubResource("AnimationNodeBlendTree_ws83a")
 "nodes/Attack Forward Thrust/position" = Vector2(540, 1520)
 "nodes/Attack Inward Slash/node" = SubResource("AnimationNodeBlendTree_kb1f6")
@@ -507,8 +505,6 @@ nodes/Attack/position = Vector2(860, 1160)
 "nodes/Attack Outward Slash Copy/position" = Vector2(500, 1380)
 "nodes/Attack Quick Slash/node" = SubResource("AnimationNodeBlendTree_y0rq4")
 "nodes/Attack Quick Slash/position" = Vector2(580, 1660)
-nodes/Attacking/node = SubResource("AnimationNodeBlend2_vrma0")
-nodes/Attacking/position = Vector2(1200, 640)
 nodes/Block/node = SubResource("AnimationNodeBlend2_pv8rc")
 nodes/Block/position = Vector2(2040, 680)
 "nodes/Block Animation/node" = SubResource("AnimationNodeAnimation_1g7vj")
@@ -585,6 +581,10 @@ nodes/Idle/position = Vector2(-2140, -560)
 "nodes/Kneeling Idle Animation/position" = Vector2(3100, 1620)
 "nodes/Kneeling Idle Speed/node" = SubResource("AnimationNodeTimeScale_02gek")
 "nodes/Kneeling Idle Speed/position" = Vector2(3480, 1620)
+nodes/Melee/node = SubResource("AnimationNodeBlend2_vrma0")
+nodes/Melee/position = Vector2(1200, 640)
+"nodes/Melee Attack/node" = SubResource("AnimationNodeTransition_gr1qy")
+"nodes/Melee Attack/position" = Vector2(860, 1160)
 nodes/Movement/node = SubResource("AnimationNodeBlend2_iwuut")
 nodes/Movement/position = Vector2(-900, -160)
 "nodes/Movement Method/node" = SubResource("AnimationNodeTransition_nmxyb")
@@ -608,4 +608,4 @@ nodes/Parry/position = Vector2(3000, 740)
 "nodes/Walk Speed/node" = SubResource("AnimationNodeTimeScale_1bqjp")
 "nodes/Walk Speed/position" = Vector2(-1580, -60)
 nodes/output/position = Vector2(6560, 1000)
-node_connections = [&"Attack", 0, &"Attack Inward Slash", &"Attack", 1, &"Attack Inward Slash Copy", &"Attack", 2, &"Attack Outward Slash", &"Attack", 3, &"Attack Outward Slash Copy", &"Attack", 4, &"Attack Forward Thrust", &"Attack", 5, &"Attack Quick Slash", &"Attacking", 0, &"Vertical Movement", &"Attacking", 1, &"Attack", &"Block", 0, &"Attacking", &"Block", 1, &"Block Speed", &"Block Speed", 0, &"Block Trim", &"Block Trim", 0, &"Block Animation", &"Death", 0, &"Dizzy", &"Death", 1, &"Death Which One", &"Death 1 Speed", 0, &"Death 1 Trim", &"Death 1 Trim", 0, &"Death Animation", &"Death 2 Speed", 0, &"Death 2 Trim", &"Death 2 Trim", 0, &"Death Backstab Animation", &"Death Which One", 0, &"Death 1 Speed", &"Death Which One", 1, &"Death 2 Speed", &"Dizzy", 0, &"Parry", &"Dizzy", 1, &"Dizzy Which One", &"Dizzy From Damage", 0, &"Dizzy Kneeling Speed", &"Dizzy From Damage", 1, &"Kneeling Idle Speed", &"Dizzy From Damage", 2, &"Kneel to Stand Speed", &"Dizzy Kneeling Speed", 0, &"Dizzy Kneeling Trim", &"Dizzy Kneeling Trim", 0, &"Dizzy Kneeling Animation", &"Dizzy Which One", 0, &"Dizzy Idle Animation", &"Dizzy Which One", 1, &"Dizzy From Damage", &"Idle", 0, &"Idle Inactive Speed", &"Idle", 1, &"Idle Active Speed", &"Idle Active Speed", 0, &"Idle Active Trim", &"Idle Active Trim", 0, &"Idle Active Animation", &"Idle Inactive Speed", 0, &"Idle Inactive Trim", &"Idle Inactive Trim", 0, &"Idle Inactive Animation", &"Jog Speed", 0, &"Jog Animation", &"Jump Handler", 0, &"Jump 1", &"Jump Handler", 1, &"Jump 2", &"Jump and Fall Blend", 0, &"Jump Handler", &"Jump and Fall Blend", 1, &"Fall Animation", &"Kneel to Stand Speed", 0, &"Kneel to Stand Trim", &"Kneel to Stand Trim", 0, &"Kneel to Stand Animation", &"Kneeling Idle Speed", 0, &"Kneeling Idle Animation", &"Movement", 0, &"Idle", &"Movement", 1, &"Movement Method", &"Movement Method", 0, &"Walk Speed", &"Movement Method", 1, &"Jog Speed", &"Movement Method", 2, &"Run Speed", &"Parry", 0, &"Block", &"Parry", 1, &"Parry Speed", &"Parry Speed", 0, &"Parry Trim", &"Parry Trim", 0, &"Parry Animation", &"Run Speed", 0, &"Run Direction", &"Vertical Movement", 0, &"Movement", &"Vertical Movement", 1, &"Jump and Fall Blend", &"Walk Speed", 0, &"Walk Direction", &"output", 0, &"Death"]
+node_connections = [&"Block", 0, &"Melee", &"Block", 1, &"Block Speed", &"Block Speed", 0, &"Block Trim", &"Block Trim", 0, &"Block Animation", &"Death", 0, &"Dizzy", &"Death", 1, &"Death Which One", &"Death 1 Speed", 0, &"Death 1 Trim", &"Death 1 Trim", 0, &"Death Animation", &"Death 2 Speed", 0, &"Death 2 Trim", &"Death 2 Trim", 0, &"Death Backstab Animation", &"Death Which One", 0, &"Death 1 Speed", &"Death Which One", 1, &"Death 2 Speed", &"Dizzy", 0, &"Parry", &"Dizzy", 1, &"Dizzy Which One", &"Dizzy From Damage", 0, &"Dizzy Kneeling Speed", &"Dizzy From Damage", 1, &"Kneeling Idle Speed", &"Dizzy From Damage", 2, &"Kneel to Stand Speed", &"Dizzy Kneeling Speed", 0, &"Dizzy Kneeling Trim", &"Dizzy Kneeling Trim", 0, &"Dizzy Kneeling Animation", &"Dizzy Which One", 0, &"Dizzy Idle Animation", &"Dizzy Which One", 1, &"Dizzy From Damage", &"Idle", 0, &"Idle Inactive Speed", &"Idle", 1, &"Idle Active Speed", &"Idle Active Speed", 0, &"Idle Active Trim", &"Idle Active Trim", 0, &"Idle Active Animation", &"Idle Inactive Speed", 0, &"Idle Inactive Trim", &"Idle Inactive Trim", 0, &"Idle Inactive Animation", &"Jog Speed", 0, &"Jog Animation", &"Jump Handler", 0, &"Jump 1", &"Jump Handler", 1, &"Jump 2", &"Jump and Fall Blend", 0, &"Jump Handler", &"Jump and Fall Blend", 1, &"Fall Animation", &"Kneel to Stand Speed", 0, &"Kneel to Stand Trim", &"Kneel to Stand Trim", 0, &"Kneel to Stand Animation", &"Kneeling Idle Speed", 0, &"Kneeling Idle Animation", &"Melee", 0, &"Vertical Movement", &"Melee", 1, &"Melee Attack", &"Melee Attack", 0, &"Attack Inward Slash", &"Melee Attack", 1, &"Attack Inward Slash Copy", &"Melee Attack", 2, &"Attack Outward Slash", &"Melee Attack", 3, &"Attack Outward Slash Copy", &"Melee Attack", 4, &"Attack Forward Thrust", &"Melee Attack", 5, &"Attack Quick Slash", &"Movement", 0, &"Idle", &"Movement", 1, &"Movement Method", &"Movement Method", 0, &"Walk Speed", &"Movement Method", 1, &"Jog Speed", &"Movement Method", 2, &"Run Speed", &"Parry", 0, &"Block", &"Parry", 1, &"Parry Speed", &"Parry Speed", 0, &"Parry Trim", &"Parry Trim", 0, &"Parry Animation", &"Run Speed", 0, &"Run Direction", &"Vertical Movement", 0, &"Movement", &"Vertical Movement", 1, &"Jump and Fall Blend", &"Walk Speed", 0, &"Walk Direction", &"output", 0, &"Death"]

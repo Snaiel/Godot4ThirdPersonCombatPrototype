@@ -36,6 +36,6 @@ func _play_attack(copy: bool = false):
 		 animation_speed
 	)
 	anim_tree.set(
-		"parameters/Attack/transition_request",
+		"parameters/Melee Attack/transition_request",
 		 _attack_name.to_snake_case() + ("_copy" if copy else "")
 	)

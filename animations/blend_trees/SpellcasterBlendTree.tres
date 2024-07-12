@@ -87,8 +87,6 @@ animation = &"combat_animations_1/Kneel Idle"
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_02gek"]
 
-[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_o465u"]
-
 [sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_4n1va"]
 xfade_time = 0.2
 input_0/name = "small_projectile"
@@ -110,8 +108,10 @@ input_5/name = "energy_beam_copy"
 input_5/auto_advance = false
 input_5/reset = true
 
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_o465u"]
+
 [resource]
-graph_offset = Vector2(2725.6, 673.831)
+graph_offset = Vector2(2641.06, 1322.62)
 "nodes/Big Projectile/node" = ExtResource("1_ehb1b")
 "nodes/Big Projectile/position" = Vector2(2860, 1660)
 "nodes/Big Projectile Copy/node" = ExtResource("1_ehb1b")
@@ -166,13 +166,13 @@ nodes/Idle/position = Vector2(2420, 1040)
 "nodes/Kneeling Idle Animation/position" = Vector2(3760, 2060)
 "nodes/Kneeling Idle Speed/node" = SubResource("AnimationNodeTimeScale_02gek")
 "nodes/Kneeling Idle Speed/position" = Vector2(4140, 2060)
-nodes/NonMelee/node = SubResource("AnimationNodeBlend2_o465u")
-nodes/NonMelee/position = Vector2(3488.2, 1179.99)
-nodes/NonMeleeAction/node = SubResource("AnimationNodeTransition_4n1va")
-nodes/NonMeleeAction/position = Vector2(3120, 1620)
+"nodes/Non Melee/node" = SubResource("AnimationNodeBlend2_o465u")
+"nodes/Non Melee/position" = Vector2(3488.2, 1179.99)
+"nodes/Non Melee Action/node" = SubResource("AnimationNodeTransition_4n1va")
+"nodes/Non Melee Action/position" = Vector2(3120, 1620)
 "nodes/Small Projectile/node" = ExtResource("1_wxhcf")
 "nodes/Small Projectile/position" = Vector2(2860, 1400)
 "nodes/Small Projectile Copy/node" = ExtResource("1_wxhcf")
 "nodes/Small Projectile Copy/position" = Vector2(2820, 1520)
 nodes/output/position = Vector2(7220, 1440)
-node_connections = [&"Death", 0, &"Dizzy", &"Death", 1, &"Death Which One", &"Death 1 Speed", 0, &"Death 1 Trim", &"Death 1 Trim", 0, &"Death Animation", &"Death 2 Speed", 0, &"Death 2 Trim", &"Death 2 Trim", 0, &"Death Backstab Animation", &"Death Which One", 0, &"Death 1 Speed", &"Death Which One", 1, &"Death 2 Speed", &"Dizzy", 0, &"NonMelee", &"Dizzy", 1, &"Dizzy Which One", &"Dizzy From Damage", 0, &"Dizzy Kneeling Speed", &"Dizzy From Damage", 1, &"Kneeling Idle Speed", &"Dizzy From Damage", 2, &"Kneel to Stand Speed", &"Dizzy Kneeling Speed", 0, &"Dizzy Kneeling Trim", &"Dizzy Kneeling Trim", 0, &"Dizzy Kneeling Animation", &"Dizzy Which One", 0, &"Dizzy Idle Animation", &"Dizzy Which One", 1, &"Dizzy From Damage", &"Idle", 0, &"Idle Inactive Animation", &"Idle", 1, &"Idle Active Animation", &"Kneel to Stand Speed", 0, &"Kneel to Stand Trim", &"Kneel to Stand Trim", 0, &"Kneel to Stand Animation", &"Kneeling Idle Speed", 0, &"Kneeling Idle Animation", &"NonMelee", 0, &"Idle", &"NonMelee", 1, &"NonMeleeAction", &"NonMeleeAction", 0, &"Small Projectile", &"NonMeleeAction", 1, &"Small Projectile Copy", &"NonMeleeAction", 2, &"Big Projectile", &"NonMeleeAction", 3, &"Big Projectile Copy", &"NonMeleeAction", 4, &"Energy Beam", &"NonMeleeAction", 5, &"Energy Beam Copy", &"output", 0, &"Death"]
+node_connections = [&"Death", 0, &"Dizzy", &"Death", 1, &"Death Which One", &"Death 1 Speed", 0, &"Death 1 Trim", &"Death 1 Trim", 0, &"Death Animation", &"Death 2 Speed", 0, &"Death 2 Trim", &"Death 2 Trim", 0, &"Death Backstab Animation", &"Death Which One", 0, &"Death 1 Speed", &"Death Which One", 1, &"Death 2 Speed", &"Dizzy", 0, &"Non Melee", &"Dizzy", 1, &"Dizzy Which One", &"Dizzy From Damage", 0, &"Dizzy Kneeling Speed", &"Dizzy From Damage", 1, &"Kneeling Idle Speed", &"Dizzy From Damage", 2, &"Kneel to Stand Speed", &"Dizzy Kneeling Speed", 0, &"Dizzy Kneeling Trim", &"Dizzy Kneeling Trim", 0, &"Dizzy Kneeling Animation", &"Dizzy Which One", 0, &"Dizzy Idle Animation", &"Dizzy Which One", 1, &"Dizzy From Damage", &"Idle", 0, &"Idle Inactive Animation", &"Idle", 1, &"Idle Active Animation", &"Kneel to Stand Speed", 0, &"Kneel to Stand Trim", &"Kneel to Stand Trim", 0, &"Kneel to Stand Animation", &"Kneeling Idle Speed", 0, &"Kneeling Idle Animation", &"Non Melee", 0, &"Idle", &"Non Melee", 1, &"Non Melee Action", &"Non Melee Action", 0, &"Small Projectile", &"Non Melee Action", 1, &"Small Projectile Copy", &"Non Melee Action", 2, &"Big Projectile", &"Non Melee Action", 3, &"Big Projectile Copy", &"Non Melee Action", 4, &"Energy Beam", &"Non Melee Action", 5, &"Energy Beam Copy", &"output", 0, &"Death"]
