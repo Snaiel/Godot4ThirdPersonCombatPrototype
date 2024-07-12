@@ -94,7 +94,11 @@ func physics_process(delta) -> void:
 				.process_alpha(0.0)
 	
 	if not notice_component.inside_outer_threshold():
-		prints(_can_start_aggro_timer, _aggro_timer.time_left, _check_to_leave_aggro)
+		prints(
+			_can_start_aggro_timer,
+			_aggro_timer.time_left,
+			_check_to_leave_aggro
+		)
 		if _check_to_leave_aggro:
 			notice_component.change_state(idle_state)
 		elif _can_start_aggro_timer:
@@ -111,5 +115,5 @@ func physics_process(delta) -> void:
 
 func exit() -> void:
 	_aggro_timer.stop()
-	print("HUH?")
+	notice_component.entity.switch_target(false)
 	Globals.music_system.fade_to_idle()

@@ -75,8 +75,7 @@ func _physics_process(_delta: float) -> void:
 	
 	#if debug:
 		#prints(
-			#rotation_component.rotate_towards_target,
-			#locomotion_component.active_strategy
+			#target
 		#)
 	
 	## Target
@@ -152,7 +151,10 @@ func _physics_process(_delta: float) -> void:
 
 
 func switch_target(player: bool) -> void:
-	target = Globals.player as Node3D if player else patrol as Node3D
+	if patrol and not player:
+		target = patrol as Node3D
+	else:
+		target = Globals.player as Node3D
 	_set_target_values()
 	_set_agent_values()
 
@@ -181,9 +183,12 @@ func _set_agent_values() -> void:
 	if blackboard.get_value("investigate_last_agent_position"):
 		blackboard.set_value("can_set_investigate_last_agent_position", false)
 		blackboard.set_value("investigate_last_agent_position", false)
-		blackboard.set_value(
-			"agent_target_position",
-			target.global_position
+		get_tree().create_timer(0.5).timeout.connect(
+			func():
+				blackboard.set_value(
+					"agent_target_position",
+					target.global_position
+				)
 		)
 	navigation_agent.target_position = blackboard.get_value(
 		"agent_target_position",
