@@ -111,7 +111,7 @@ input_5/auto_advance = false
 input_5/reset = true
 
 [resource]
-graph_offset = Vector2(631.096, 401.837)
+graph_offset = Vector2(2725.6, 673.831)
 "nodes/Big Projectile/node" = ExtResource("1_ehb1b")
 "nodes/Big Projectile/position" = Vector2(2860, 1660)
 "nodes/Big Projectile Copy/node" = ExtResource("1_ehb1b")

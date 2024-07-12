@@ -12,4 +12,4 @@ extends CharacterAnimations
 @export var dizzy_victim_animations: DizzyVictimAnimations
 @export var dizzy_finisher_animations: DizzyFinisherAnimations
 @export var drink_animations: DrinkAnimations
-@export var sitting_animations: SittingAnimations
+@export var sit_animations: SitAnimations

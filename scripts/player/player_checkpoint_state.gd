@@ -13,13 +13,13 @@ var _exiting: bool = false
 func _ready():
 	super._ready()
 	
-	player.character.sitting_animations.sat_down.connect(
+	player.character.sit_animations.sat_down.connect(
 		func():
 			if parent_state.current_state == self:
 				user_interface.checkpoint_interface.show_menu()
 	)
 	
-	player.character.sitting_animations.finished.connect(
+	player.character.sit_animations.finished.connect(
 		func():
 			if parent_state.current_state == self:
 				parent_state.transition_to_default_state()
@@ -33,7 +33,7 @@ func _ready():
 func enter() -> void:
 	_exiting = false
 	
-	player.character.sitting_animations.sit_down()
+	player.character.sit_animations.sit_down()
 	player.locomotion_component.set_active_strategy("root_motion")
 	player.hitbox_component.enabled = false
 	player.rotation_component.target = checkpoint_system.current_checkpoint
@@ -73,7 +73,7 @@ func exit() -> void:
 
 
 func _stand_up() -> void:
-	player.character.sitting_animations.stand_up()
+	player.character.sit_animations.stand_up()
 	user_interface.checkpoint_interface.hide_menu()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	_exiting = true

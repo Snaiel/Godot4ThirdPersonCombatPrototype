@@ -44,7 +44,7 @@ func _ready():
 
 func _physics_process(_delta: float):
 	interaction_hints.checkpoint_hint.visible = current_checkpoint != null
-	at_checkpoint = player.character.sitting_animations.sitting_idle
+	at_checkpoint = player.character.sit_animations.sitting_idle
 
 
 func set_enemies_chldren_owner() -> void:

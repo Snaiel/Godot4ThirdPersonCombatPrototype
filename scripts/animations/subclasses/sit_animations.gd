@@ -1,4 +1,4 @@
-class_name SittingAnimations
+class_name SitAnimations
 extends BaseAnimations
 
 
@@ -17,10 +17,10 @@ var _can_emit_finished: bool = false
 
 
 func _physics_process(_delta):
-	var sitting_blend = anim_tree.get(&"parameters/Sitting/blend_amount")
+	var sitting_blend = anim_tree.get(&"parameters/Sit/blend_amount")
 	if sitting_blend == null: return
 	anim_tree.set(
-		&"parameters/Sitting/blend_amount",
+		&"parameters/Sit/blend_amount",
 		lerp(
 			float(sitting_blend),
 			1.0 if _active else 0.0,
@@ -29,11 +29,11 @@ func _physics_process(_delta):
 	)
 	
 	var sit_or_stand_blend = anim_tree.get(
-		&"parameters/Sitting or Standing/blend_amount"
+		&"parameters/Sit or Stand/blend_amount"
 	)
 	if sit_or_stand_blend == null: return
 	anim_tree.set(
-		&"parameters/Sitting or Standing/blend_amount",
+		&"parameters/Sit or Stand/blend_amount",
 		lerp(
 			float(sit_or_stand_blend),
 			1.0 if _transitioning else 0.0,
@@ -58,7 +58,7 @@ func sit_down() -> void:
 	_ignore_method_calls = true
 	_can_emit_sat_down = true
 	
-	anim_tree.set(&"parameters/Sitting or Standing/blend_amount", 1.0)
+	anim_tree.set(&"parameters/Sit or Stand/blend_amount", 1.0)
 	anim_tree.set(&"parameters/Sit to Stand Speed/scale", -1.5)
 	anim_tree.set(&"parameters/Sit to Stand Trim/seek_request", 5.0)
 	
@@ -82,7 +82,7 @@ func stand_up() -> void:
 	_ignore_method_calls = true
 	_can_emit_finished = true
 	
-	anim_tree.set(&"parameters/Sitting or Standing/blend_amount", 0.0)
+	anim_tree.set(&"parameters/Sit or Stand/blend_amount", 0.0)
 	anim_tree.set(&"parameters/Sit to Stand Speed/scale", 2)
 	anim_tree.set(&"parameters/Sit to Stand Trim/seek_request", 0.0)
 	
