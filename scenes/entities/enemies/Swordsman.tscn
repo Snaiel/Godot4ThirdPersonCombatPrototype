@@ -44,12 +44,12 @@
 [ext_resource type="Script" path="res://scripts/beehave/wait/wait.gd" id="41_20tii"]
 [ext_resource type="PackedScene" uid="uid://8q4shgtn2rdm" path="res://scenes/beehave/set_actions/SetCanAttackTrue.tscn" id="42_y1g46"]
 [ext_resource type="PackedScene" uid="uid://cerhh2ei5vqf4" path="res://scenes/beehave/set_actions/SetRootMotionTrue.tscn" id="43_hnti8"]
-[ext_resource type="PackedScene" uid="uid://d1wjh32ysekoi" path="res://scenes/beehave/set_actions/SetRunSpeed.tscn" id="43_pqqby"]
 [ext_resource type="PackedScene" uid="uid://ppcsagqgu032" path="res://scenes/beehave/inputs/InputForwards.tscn" id="44_tsc7e"]
 [ext_resource type="PackedScene" uid="uid://bqi2hrppoou6q" path="res://scenes/beehave/set_actions/SetRootMotionFalse.tscn" id="46_6cua7"]
 [ext_resource type="PackedScene" uid="uid://nc8fs0at3l7x" path="res://scenes/beehave/set_actions/SetLockedOnFalse.tscn" id="46_40per"]
 [ext_resource type="PackedScene" uid="uid://t8wg0g461fli" path="res://scenes/beehave/wait/ResetWait.tscn" id="47_wnrcf"]
 [ext_resource type="PackedScene" uid="uid://g2idcje0d0ll" path="res://scenes/beehave/animations/SetAnimLockOnWalkSpeed.tscn" id="48_2s4yo"]
+[ext_resource type="Script" path="res://scripts/beehave/patrol_move_speed.gd" id="50_1ub2t"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yud2m"]
 render_priority = 0
@@ -260,9 +260,6 @@ max_distance = 20.0
 
 [node name="LocomotionComponent" parent="." index="4"]
 default_strategy = "root_motion"
-
-[node name="RootMotion" parent="LocomotionComponent" index="1"]
-debug = true
 
 [node name="InstabilityComponent" parent="Wellbeing" index="2" node_paths=PackedStringArray("weapons")]
 weapons = [NodePath("../../Character/Armature_004/GeneralSkeleton/Sword")]
@@ -596,7 +593,7 @@ right_operand = "false"
 script = ExtResource("26_t4uqh")
 left_operand = "get_value(\"patrol_dist\")"
 operator = 3
-right_operand = "1"
+right_operand = "0.5"
 
 [node name="InputNone" parent="BeehaveTree/SelectorComposite/Patrol/PatrolSelector/Stationary" index="2" instance=ExtResource("27_r7c2x")]
 
@@ -630,8 +627,12 @@ value = "0.6"
 entity = NodePath("../../../../../..")
 root_motion = true
 
-[node name="SetWalkSpeed" parent="BeehaveTree/SelectorComposite/Patrol/PatrolSelector/Move" index="7" instance=ExtResource("43_pqqby")]
-value = "1"
+[node name="PatrolMoveSpeed" type="Node" parent="BeehaveTree/SelectorComposite/Patrol/PatrolSelector/Move" index="7"]
+script = ExtResource("50_1ub2t")
+min_speed = 0.6
+max_speed = 1.0
+min_dist = 0.3
+max_dist = 2.0
 
 [node name="InputForwards" parent="BeehaveTree/SelectorComposite/Patrol/PatrolSelector/Move" index="8" instance=ExtResource("44_tsc7e")]
 
