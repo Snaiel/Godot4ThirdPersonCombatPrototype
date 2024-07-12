@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://g2idcje0d0ll"]
 
-[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_set.gd" id="1_tu2im"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_set.gd" id="1_a85fa"]
 
 [node name="SetAnimMoveSpeed" type="Node"]
-script = ExtResource("1_tu2im")
+script = ExtResource("1_a85fa")
 key = "\"anim_move_speed\""
 value = "1.0"

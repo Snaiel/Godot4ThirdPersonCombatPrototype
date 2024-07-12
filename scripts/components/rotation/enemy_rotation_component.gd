@@ -8,44 +8,44 @@ extends RotationComponent
 @export var agent: NavigationAgent3D
 
 var enemy: Enemy
-var speed: float = 1 # mainly for testing purporse
 
 
 func _ready() -> void:
 	enemy = entity as Enemy
-	looking_direction = looking_direction.rotated(Vector3.UP, entity.rotation.y).normalized()
+	looking_direction = looking_direction.rotated(
+		Vector3.UP,
+		entity.rotation.y
+	).normalized()
 
 
 func _physics_process(delta: float) -> void:
-	super._physics_process(delta)
+	super(delta)
 	
-	if not can_rotate:
-		return
+	if not can_rotate: return
 	
-	var _input_direction: Vector3 = blackboard.get_value("input_direction", Vector3.ZERO)
-	#var _can_move: bool = locomotion_component.can_move
-	#var _velocity: Vector3 = locomotion_component.desired_velocity
-
-#	print(_blackboard.has_value("rotate_towards_target"))
+	var _input_direction: Vector3 = blackboard.get_value(
+		"input_direction",
+		Vector3.ZERO
+	)
+	
 	move_direction = _input_direction
 	
 	if debug:
 		pass
-
+	
 	if rotate_towards_target:
 		# get the angle towards the lock on target and
 		# smoothyl rotate the player towards it
 		var _next_location: Vector3
-		if blackboard.get_value("target_reachable"):
+		if blackboard.get_value("agent_target_reachable"):
 			_next_location = agent.get_next_path_position()
 		else:
 			_next_location = enemy.target.global_position
 		looking_direction = entity.global_position.direction_to(_next_location)
 		target_look = atan2(-looking_direction.x, -looking_direction.z)
 		
-
 		var rotation_difference: float = abs(entity.rotation.y - target_look)
-
+		
 		# This makes the rotation smoother when the player is locked
 		# on and transitions from sprinting to walking
 		var rotation_weight: float
@@ -53,9 +53,13 @@ func _physics_process(delta: float) -> void:
 			rotation_weight = 0.2
 		else:
 			rotation_weight = 0.1
-
-		entity.rotation.y = lerp_angle(entity.rotation.y, target_look, rotation_weight * speed)
-
+		
+		entity.rotation.y = lerp_angle(
+			entity.rotation.y,
+			target_look,
+			rotation_weight
+		)
+		
 		# change move direction so it orbits the locked on target
 		# (not a perfect orbit, needs tuning but not unplayable)
 		if move_direction.length() > 0.2:
@@ -79,7 +83,10 @@ func _physics_process(delta: float) -> void:
 		)
 		
 		target_look = atan2(-looking_direction.x, -looking_direction.z)
-		entity.rotation.y = lerp_angle(entity.rotation.y, target_look, 0.1 * speed)
+		entity.rotation.y = lerp_angle(
+			entity.rotation.y,
+			target_look,
+			0.1
+		)
 		
 		move_direction = Vector3.ZERO
-		

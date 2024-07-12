@@ -35,7 +35,14 @@ func _physics_process(_delta: float) -> void:
 	)
 	
 	var new_dir = Vector2(dir.x, dir.z)
-	_input_dir = _input_dir.lerp(new_dir, 0.3)
+	
+	# variable lerp done so that if the length of the input direction
+	# is bigger than previous, we want a faster transition.
+	# but if it's going to zero, let it be a smoother transition.
+	_input_dir = _input_dir.lerp(
+		new_dir,
+		0.3 if (new_dir.length() - _input_dir.length()) > 0 else 0.1
+	)
 	
 	for anim in movement_animations:
 		anim_tree.set(
@@ -47,10 +54,7 @@ func _physics_process(_delta: float) -> void:
 			speed
 		)
 	
-	if _input_dir.length() > 0.01:
-		audio_footsteps.can_play = true
-	else:
-		audio_footsteps.can_play = false
+	audio_footsteps.can_play = _input_dir.length() > 0.01
 
 
 func set_state(anim_name: String) -> void:

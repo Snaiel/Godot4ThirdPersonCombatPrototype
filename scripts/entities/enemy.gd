@@ -75,7 +75,8 @@ func _physics_process(_delta: float) -> void:
 	
 	#if debug:
 		#prints(
-			#movement_animations.speed
+			#rotation_component.rotate_towards_target,
+			#locomotion_component.active_strategy
 		#)
 	
 	## Target

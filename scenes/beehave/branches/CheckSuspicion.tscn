@@ -1,19 +1,22 @@
-[gd_scene load_steps=15 format=3 uid="uid://d1p0cwvn1hlcs"]
+[gd_scene load_steps=18 format=3 uid="uid://d1p0cwvn1hlcs"]
 
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="1_iijci"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="2_4t6t0"]
 [ext_resource type="PackedScene" uid="uid://b86f1aqdcdlkw" path="res://scenes/beehave/compare_actions/CheckTargetDist.tscn" id="3_52eub"]
 [ext_resource type="PackedScene" uid="uid://5653b3wcf25p" path="res://scenes/beehave/inputs/InputNone.tscn" id="4_d3e5r"]
+[ext_resource type="PackedScene" uid="uid://bqi2hrppoou6q" path="res://scenes/beehave/set_actions/SetRootMotionFalse.tscn" id="4_vqx17"]
 [ext_resource type="PackedScene" uid="uid://t8wg0g461fli" path="res://scenes/beehave/wait/ResetWait.tscn" id="5_h0iya"]
 [ext_resource type="PackedScene" uid="uid://ch58eya8rlua6" path="res://scenes/beehave/compare_actions/IsLookedAroundFalse.tscn" id="6_1kgwm"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_set.gd" id="6_o0oe3"]
 [ext_resource type="PackedScene" uid="uid://dka5as0tjf4rh" path="res://scenes/beehave/set_actions/SetRotateTowardsTargetFalse.tscn" id="7_l3n5i"]
 [ext_resource type="Script" path="res://scripts/beehave/wait/wait.gd" id="8_dfk31"]
 [ext_resource type="PackedScene" uid="uid://rnknofcns6ch" path="res://scenes/beehave/inputs/InputLeft.tscn" id="8_n7c65"]
+[ext_resource type="PackedScene" uid="uid://g2idcje0d0ll" path="res://scenes/beehave/animations/SetAnimMoveSpeed.tscn" id="8_ttxse"]
 [ext_resource type="PackedScene" uid="uid://bpmbb56ftoyja" path="res://scenes/beehave/inputs/InputRight.tscn" id="9_pe7t2"]
 [ext_resource type="PackedScene" uid="uid://bdnrgdpa3fa5c" path="res://scenes/beehave/wait/Wait.tscn" id="10_ocgtl"]
 [ext_resource type="PackedScene" uid="uid://ppcsagqgu032" path="res://scenes/beehave/inputs/InputForwards.tscn" id="11_gr1md"]
 [ext_resource type="PackedScene" uid="uid://d1wjh32ysekoi" path="res://scenes/beehave/set_actions/SetRunSpeed.tscn" id="12_a2d64"]
+[ext_resource type="PackedScene" uid="uid://cerhh2ei5vqf4" path="res://scenes/beehave/set_actions/SetRootMotionTrue.tscn" id="13_wtlfn"]
 
 [node name="CheckSuspicion" type="Node"]
 script = ExtResource("1_iijci")
@@ -22,6 +25,10 @@ script = ExtResource("1_iijci")
 script = ExtResource("2_4t6t0")
 
 [node name="CheckTargetDist" parent="StayIfClose" instance=ExtResource("3_52eub")]
+left_operand = "get_value(\"agent_target_dist\")"
+right_operand = "0.3"
+
+[node name="SetRootMotionFalse" parent="StayIfClose" instance=ExtResource("4_vqx17")]
 
 [node name="InputNone" parent="StayIfClose" instance=ExtResource("4_d3e5r")]
 
@@ -40,6 +47,9 @@ script = ExtResource("2_4t6t0")
 
 [node name="CheckOutArea" type="Node" parent="StayIfClose/LookAround"]
 script = ExtResource("2_4t6t0")
+
+[node name="SetAnimMoveSpeed" parent="StayIfClose/LookAround/CheckOutArea" instance=ExtResource("8_ttxse")]
+value = "0.5"
 
 [node name="SetLookAtTargetFalse" parent="StayIfClose/LookAround/CheckOutArea" instance=ExtResource("7_l3n5i")]
 
@@ -98,6 +108,8 @@ value = "true"
 
 [node name="MoveToTarget" type="Node" parent="."]
 script = ExtResource("2_4t6t0")
+
+[node name="SetRootMotionTrue" parent="MoveToTarget" instance=ExtResource("13_wtlfn")]
 
 [node name="SetRunSpeed" parent="MoveToTarget" instance=ExtResource("12_a2d64")]
 
