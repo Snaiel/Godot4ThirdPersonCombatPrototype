@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://d1p0cwvn1hlcs"]
+[gd_scene load_steps=17 format=3 uid="uid://d1p0cwvn1hlcs"]
 
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="1_iijci"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="2_4t6t0"]
@@ -15,7 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://bpmbb56ftoyja" path="res://scenes/beehave/inputs/InputRight.tscn" id="9_pe7t2"]
 [ext_resource type="PackedScene" uid="uid://bdnrgdpa3fa5c" path="res://scenes/beehave/wait/Wait.tscn" id="10_ocgtl"]
 [ext_resource type="PackedScene" uid="uid://ppcsagqgu032" path="res://scenes/beehave/inputs/InputForwards.tscn" id="11_gr1md"]
-[ext_resource type="PackedScene" uid="uid://d1wjh32ysekoi" path="res://scenes/beehave/set_actions/SetRunSpeed.tscn" id="12_a2d64"]
 [ext_resource type="PackedScene" uid="uid://cerhh2ei5vqf4" path="res://scenes/beehave/set_actions/SetRootMotionTrue.tscn" id="13_wtlfn"]
 
 [node name="CheckSuspicion" type="Node"]
@@ -26,7 +25,7 @@ script = ExtResource("2_4t6t0")
 
 [node name="CheckTargetDist" parent="StayIfClose" instance=ExtResource("3_52eub")]
 left_operand = "get_value(\"agent_target_dist\")"
-right_operand = "0.3"
+right_operand = "0.5"
 
 [node name="SetRootMotionFalse" parent="StayIfClose" instance=ExtResource("4_vqx17")]
 
@@ -101,19 +100,32 @@ time = 1.0
 reset_wait_after = true
 wait_id = 77672671
 
+[node name="InputNone4" parent="StayIfClose/LookAround/CheckOutArea" instance=ExtResource("4_d3e5r")]
+
+[node name="Wait7" parent="StayIfClose/LookAround/CheckOutArea" instance=ExtResource("10_ocgtl")]
+time = 3.0
+reset_wait_after = true
+wait_id = 10629233
+
 [node name="SetLookedAroundTrue" type="Node" parent="StayIfClose/LookAround/CheckOutArea"]
 script = ExtResource("6_o0oe3")
 key = "\"looked_around\""
 value = "true"
+
+[node name="ResetWait" parent="StayIfClose/LookAround/CheckOutArea" instance=ExtResource("5_h0iya")]
+wait_id = 37654269
 
 [node name="MoveToTarget" type="Node" parent="."]
 script = ExtResource("2_4t6t0")
 
 [node name="SetRootMotionTrue" parent="MoveToTarget" instance=ExtResource("13_wtlfn")]
 
-[node name="SetRunSpeed" parent="MoveToTarget" instance=ExtResource("12_a2d64")]
+[node name="SetAnimMoveSpeed" parent="MoveToTarget" instance=ExtResource("8_ttxse")]
+
+[node name="InputNone" parent="MoveToTarget" instance=ExtResource("4_d3e5r")]
 
 [node name="Wait" parent="MoveToTarget" instance=ExtResource("10_ocgtl")]
 time = 2.0
+wait_id = 37654269
 
 [node name="InputForwards" parent="MoveToTarget" instance=ExtResource("11_gr1md")]

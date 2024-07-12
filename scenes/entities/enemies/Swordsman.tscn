@@ -562,7 +562,7 @@ value = "true"
 
 [node name="InvestigateLastPosition" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Investigate" index="1" instance=ExtResource("20_omyll")]
 
-[node name="Wait" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Investigate/InvestigateLastPosition/MoveToTarget" index="2"]
+[node name="Wait" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Investigate/InvestigateLastPosition/MoveToTarget" index="3"]
 wait_id = 82140480
 
 [node name="Patrol" type="Node" parent="BeehaveTree/SelectorComposite" index="5"]
@@ -621,9 +621,9 @@ value = "0.6"
 [node name="SetRootMotionFalse" parent="BeehaveTree/SelectorComposite/Patrol/PatrolSelector/Move" index="6" instance=ExtResource("46_6cua7")]
 root_motion = true
 
-[node name="PatrolMoveSpeed" type="Node" parent="BeehaveTree/SelectorComposite/Patrol/PatrolSelector/Move" index="7"]
+[node name="SetPatrolMoveSpeed" type="Node" parent="BeehaveTree/SelectorComposite/Patrol/PatrolSelector/Move" index="7"]
 script = ExtResource("50_1ub2t")
-min_speed = 0.6
+min_speed = 0.5
 max_speed = 1.0
 min_dist = 0.3
 max_dist = 2.0

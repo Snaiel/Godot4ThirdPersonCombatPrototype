@@ -51,8 +51,9 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Environment/NavigationRegion3D/Wall/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_ok8w4")
 
-[node name="Swordsman" parent="Level/Enemies/Section/Enemies" index="0" instance=ExtResource("2_myj8i")]
+[node name="Swordsman" parent="Level/Enemies/Section/Enemies" index="0" node_paths=PackedStringArray("patrol") instance=ExtResource("2_myj8i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.4533, 0.5, -0.154811)
+patrol = NodePath("../../../../../Path3D/PathFollow3D")
 
 [node name="Path3D" type="Path3D" parent="." index="9"]
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0.555161, 0)

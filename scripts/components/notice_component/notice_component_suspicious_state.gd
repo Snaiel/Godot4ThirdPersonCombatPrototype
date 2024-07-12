@@ -55,7 +55,7 @@ func enter() -> void:
 	else:
 		notice_component.blackboard.set_value(
 			"agent_target_position",
-			notice_component.entity.target.global_position
+			notice_component.player.global_position
 		)
 	
 	if notice_component.distance_to_player > \
