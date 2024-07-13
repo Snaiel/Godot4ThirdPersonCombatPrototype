@@ -261,6 +261,7 @@ default_strategy = "root_motion"
 
 [node name="InstabilityComponent" parent="Wellbeing" index="2" node_paths=PackedStringArray("weapons")]
 weapons = [NodePath("../../Character/Armature_004/GeneralSkeleton/Sword")]
+max_instability = 1000.0
 
 [node name="MeleeComponent" type="Node" parent="Abilities" index="0" node_paths=PackedStringArray("entity", "blackboard", "instability_component", "outcomes_handler", "melee_animations", "locomotion_component")]
 script = ExtResource("15_pkaik")

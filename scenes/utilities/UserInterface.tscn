@@ -144,28 +144,34 @@ position = Vector2(0, -4)
 
 [node name="Layer1" type="Polygon2D" parent="HUD/PlayerInstabilityBar/Glare"]
 self_modulate = Color(1, 0.235294, 0, 0.784314)
+antialiased = true
 polygon = PackedVector2Array(-96, -10, 96, -10, 136, 0, 96, 10, -96, 10, -136, 0)
 
 [node name="Layer2" type="Polygon2D" parent="HUD/PlayerInstabilityBar/Glare"]
 self_modulate = Color(1, 0.235294, 0, 0.588235)
+antialiased = true
 polygon = PackedVector2Array(-96, -10, 96, -10, 144, 0, 96, 10, -96, 10, -144, 0)
 
 [node name="Layer3" type="Polygon2D" parent="HUD/PlayerInstabilityBar/Glare"]
 self_modulate = Color(1, 0.235294, 0, 0.588235)
+antialiased = true
 polygon = PackedVector2Array(-96, -10, 96, -10, 160, 0, 96, 10, -96, 10, -160, 0)
 
 [node name="Background" type="Polygon2D" parent="HUD/PlayerInstabilityBar"]
 self_modulate = Color(0.196078, 0.196078, 0.196078, 1)
 position = Vector2(0, -4)
+antialiased = true
 polygon = PackedVector2Array(-96, -8, 96, -8, 128, 0, 96, 8, -96, 8, -128, 0)
 
 [node name="Instability" type="Polygon2D" parent="HUD/PlayerInstabilityBar"]
 self_modulate = Color(0.854902, 0.721569, 0, 1)
 position = Vector2(0, -4)
-polygon = PackedVector2Array(-116, 0, -96, -4, 96, -4, 116, 0, 96, 4, -96, 4)
+antialiased = true
+polygon = PackedVector2Array(-114, 0, -96, -4, 96, -4, 114, 0, 96, 4, -96, 4)
 
 [node name="Middle" type="Polygon2D" parent="HUD/PlayerInstabilityBar"]
 position = Vector2(0, -4)
+antialiased = true
 polygon = PackedVector2Array(-2, -5, 0, -6, 2, -5, 2, 5, 0, 6, -2, 5)
 
 [node name="PlayerHealthCharges" type="Control" parent="HUD"]

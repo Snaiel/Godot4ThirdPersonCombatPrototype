@@ -25,7 +25,8 @@ func _ready():
 		func(incoming_damage_source: DamageSource):
 			if not parent_state.current_state is PlayerParriedEnemyHitState and \
 			not parent_state.current_state is PlayerParryState and \
-			not parent_state.current_state is PlayerBlockState:
+			not parent_state.current_state is PlayerBlockState and \
+			not parent_state.current_state is PlayerDizzyState:
 				_incoming_damage_source = incoming_damage_source
 				parent_state.change_state(self)
 	)

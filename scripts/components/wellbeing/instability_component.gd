@@ -10,7 +10,10 @@ signal full_instability
 @export var enabled: bool = true
 @export var hitbox: HitboxComponent
 @export var weapons: Array[DamageSource]
+# can instability increase when an opposition parries us
 @export var instability_when_parried: bool = true
+# can we reach max instability if we parry others
+@export var max_from_parrying: bool = true
 
 @export_category("Instability")
 @export var max_instability: float = 50.0
@@ -89,18 +92,22 @@ func increment_instability(
 
 
 func process_hit():
-	if not enabled:
-		return
+	if not enabled: return
 	increment_instability(25, false)
 
 
 func process_block():
-	if not enabled:
-		return
+	if not enabled: return
 	increment_instability(15, false)
 
 
 func process_parry():
-	if not enabled:
-		return
-	increment_instability(8, false)
+	if not enabled: return
+	var value: float = 8
+	if instability + value >= max_instability and not max_from_parrying:
+		increment_instability(
+			max_instability - instability - 0.01,
+			false
+		)
+	else:
+		increment_instability(value, false)

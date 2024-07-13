@@ -121,7 +121,8 @@ func _physics_process(_delta: float) -> void:
 	
 	
 	if rotation_component.rotate_towards_target and \
-	rotation_component.target != null:
+	rotation_component.target != null and \
+	not state_machine.current_state is PlayerDizzyState:
 		head_rotation_component.desired_target_pos = \
 			rotation_component.target.global_position
 	elif backstab_system.backstab_victim != null:
@@ -161,8 +162,12 @@ func _on_lock_on_system_lock_on(target: LockOnComponent) -> void:
 func _on_hitbox_component_damage_source_hit(incoming_damage_source: DamageSource) -> void:
 	if state_machine.current_state is PlayerParryState or \
 	state_machine.current_state is PlayerParriedEnemyHitState or \
-	state_machine.current_state is PlayerBlockState:
+	state_machine.current_state is PlayerBlockState or \
+	(
+		state_machine.current_state is PlayerDizzyState and \
+		state_machine.previous_state is PlayerBlockState
+	):
 		return
-	
+	print(state_machine.current_state)
 	health_component.incoming_damage(incoming_damage_source)
 	instability_component.process_hit()

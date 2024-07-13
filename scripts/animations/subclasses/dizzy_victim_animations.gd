@@ -67,7 +67,6 @@ func dizzy_from_damage() -> void:
 # From parry will just blend out.
 # From damage needs to stand back up again.
 func disable_blend_dizzy() -> void:
-	
 	if _dizzy_from_parry:
 		_blend_dizzy = false
 	else:
