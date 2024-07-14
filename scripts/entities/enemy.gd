@@ -39,6 +39,8 @@ signal dead
 
 @export var patrol: PathFollow3D
 
+var is_dead: bool = false
+
 var target: Node3D
 var original_position: Vector3
 
@@ -80,8 +82,11 @@ func _physics_process(_delta: float) -> void:
 	
 	#if debug:
 		#prints(
-			#target
+			#locomotion_component.active_strategy,
+			#locomotion_component.can_move
 		#)
+	
+	if is_dead: return
 	
 	## Target
 	_set_target_values()
@@ -214,7 +219,11 @@ func _set_agent_target_reachable():
 
 
 func _on_health_component_zero_health() -> void:
+	is_dead = true
+	dead.emit()
+	
 	locomotion_component.set_active_strategy("root_motion")
+	locomotion_component.can_move = true
 	
 	hitbox_component.enabled = false
 	health_component.enabled = false
@@ -244,5 +253,3 @@ func _on_health_component_zero_health() -> void:
 	
 	if blackboard.get_value("notice_state") == "aggro":
 		Globals.music_system.fade_to_idle()
-	
-	dead.emit()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=139 format=3 uid="uid://b34rhh2gbadoy"]
+[gd_scene load_steps=138 format=3 uid="uid://b34rhh2gbadoy"]
 
 [ext_resource type="Script" path="res://scripts/entities/enemy.gd" id="1_3repp"]
 [ext_resource type="PackedScene" uid="uid://q3eag1ltsb0y" path="res://models/ybot.blend" id="2_7fohg"]
@@ -51,7 +51,6 @@
 [ext_resource type="PackedScene" uid="uid://q4ffp4qtwtt4" path="res://scenes/beehave/compare_actions/IsDeadTrue.tscn" id="47_05vq7"]
 [ext_resource type="PackedScene" uid="uid://5653b3wcf25p" path="res://scenes/beehave/inputs/InputNone.tscn" id="48_dmpm8"]
 [ext_resource type="PackedScene" uid="uid://dka5as0tjf4rh" path="res://scenes/beehave/set_actions/SetRotateTowardsTargetFalse.tscn" id="49_yd2bh"]
-[ext_resource type="PackedScene" uid="uid://8q4shgtn2rdm" path="res://scenes/beehave/set_actions/SetCanAttackTrue.tscn" id="50_rnbpr"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_compare.gd" id="51_8wu7b"]
 [ext_resource type="Script" path="res://scripts/beehave/execute_expression.gd" id="52_1c08p"]
 [ext_resource type="PackedScene" uid="uid://cryed6dtlo286" path="res://scenes/beehave/set_actions/SetRotateTowardsTargetTrue.tscn" id="53_6fkip"]
@@ -487,7 +486,7 @@ bones/2/rotation = Quaternion(2.11667e-10, -2.1808e-13, 2.94964e-16, 1)
 bones/3/rotation = Quaternion(3.72529e-09, -4.54747e-13, 2.84217e-14, 1)
 bones/4/rotation = Quaternion(2.77556e-17, -6.82121e-13, -3.63798e-12, 1)
 bones/5/rotation = Quaternion(2.32831e-10, 0, 3.63803e-12, 1)
-bones/8/rotation = Quaternion(0.500032, 0.499968, 0.500032, -0.499968)
+bones/8/rotation = Quaternion(0.500032, 0.499969, 0.500032, -0.499968)
 bones/9/rotation = Quaternion(-1.3411e-06, 1, 1.91033e-05, 2.08616e-07)
 bones/10/rotation = Quaternion(-4.21468e-08, -0.707107, 0, 0.707107)
 bones/11/rotation = Quaternion(-7.10043e-09, 0.707107, -7.10043e-09, 0.707107)
@@ -537,7 +536,7 @@ surface_material_override/0 = ExtResource("4_2pt2s")
 surface_material_override/0 = SubResource("ShaderMaterial_nqjgg")
 
 [node name="LockOnAttachment" type="BoneAttachment3D" parent="Character/Armature_004/GeneralSkeleton" index="2"]
-transform = Transform3D(1, 7.35418e-12, -2.66409e-12, -7.35419e-12, 1, -7.87391e-09, 2.66409e-12, 7.87391e-09, 1, -2.25913e-05, 1.34721, -0.042761)
+transform = Transform3D(1, 7.35419e-12, -2.66409e-12, -7.35419e-12, 1, -7.87391e-09, 2.66409e-12, 7.87391e-09, 1, -2.25913e-05, 1.34721, -0.042761)
 bone_name = "UpperChest"
 bone_idx = 4
 
@@ -553,7 +552,7 @@ texture = ExtResource("6_8x6ke")
 script = ExtResource("7_vqvwp")
 
 [node name="HeadAttachment" type="BoneAttachment3D" parent="Character/Armature_004/GeneralSkeleton" index="3"]
-transform = Transform3D(1, 7.81163e-14, -2.66409e-12, -7.81172e-14, 1, -8.33958e-09, 2.66409e-12, 8.33958e-09, 1, -4.45549e-05, 1.60075, -0.00340771)
+transform = Transform3D(1, 7.81293e-14, -2.66409e-12, -7.81293e-14, 1, -8.33958e-09, 2.66409e-12, 8.33958e-09, 1, -4.45549e-05, 1.60075, -0.00340771)
 bone_name = "Head"
 bone_idx = 6
 
@@ -834,12 +833,7 @@ script = ExtResource("46_nh0cs")
 
 [node name="IsDeadTrue" parent="BeehaveTree/SelectorComposite/Dead" instance=ExtResource("47_05vq7")]
 
-[node name="StandStill" parent="BeehaveTree/SelectorComposite/Dead" instance=ExtResource("48_dmpm8")]
-
-[node name="SetRotateTowardsTargetFalse" parent="BeehaveTree/SelectorComposite/Dead" instance=ExtResource("49_yd2bh")]
-
-[node name="SetCanAttackFalse" parent="BeehaveTree/SelectorComposite/Dead" instance=ExtResource("50_rnbpr")]
-value = "false"
+[node name="InputNone" parent="BeehaveTree/SelectorComposite/Dead" instance=ExtResource("48_dmpm8")]
 
 [node name="Dizzy" type="Node" parent="BeehaveTree/SelectorComposite"]
 script = ExtResource("46_nh0cs")
