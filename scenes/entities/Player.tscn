@@ -189,7 +189,7 @@ enabled = false
 transform = Transform3D(0.998201, -0.0491426, -0.0343569, 0.0492585, 0.998783, 0.00253479, 0.0341905, -0.0042226, 0.999406, -0.00505424, 1.5861, -0.0452439)
 
 [node name="DizzyStars" parent="Character/Armature_004/GeneralSkeleton/HeadAttachment" index="0" instance=ExtResource("46_gs6f7")]
-transform = Transform3D(-0.19964, 0.00985169, -0.00683808, 0.00982851, 0.199757, 0.000844519, 0.00687136, 0.000506959, -0.199881, 0.015, 0.18, -0.015)
+transform = Transform3D(-0.19964, 0.00985169, -0.0068381, 0.00982851, 0.199757, 0.00084452, 0.00687138, 0.000506958, -0.199881, 0.015, 0.18, -0.015)
 
 [node name="AnimationTree" parent="Character" index="2"]
 active = true
@@ -204,7 +204,7 @@ parameters/Idle/current_index = 0
 
 [node name="DizzySound" type="AudioStreamPlayer" parent="Character/Audio" index="11"]
 stream = ExtResource("30_8nr2i")
-volume_db = -5.0
+volume_db = -15.0
 pitch_scale = 0.8
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("player")]

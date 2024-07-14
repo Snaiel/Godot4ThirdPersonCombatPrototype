@@ -9,11 +9,11 @@ speed = 200.0
 
 [node name="Stars" type="Node3D" parent="."]
 
-[node name="star" parent="Stars" instance=ExtResource("1_remj8")]
+[node name="Star" parent="Stars" instance=ExtResource("1_remj8")]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, -1)
 
-[node name="star2" parent="Stars" instance=ExtResource("1_remj8")]
+[node name="Star2" parent="Stars" instance=ExtResource("1_remj8")]
 transform = Transform3D(0.1, 0, 0.173205, 0, 0.2, 0, -0.173205, 0, 0.1, 0.866, 0, 0.5)
 
-[node name="star3" parent="Stars" instance=ExtResource("1_remj8")]
+[node name="Star3" parent="Stars" instance=ExtResource("1_remj8")]
 transform = Transform3D(0.1, 0, -0.173205, 0, 0.2, 0, 0.173205, 0, 0.1, -0.866, 0, 0.5)
