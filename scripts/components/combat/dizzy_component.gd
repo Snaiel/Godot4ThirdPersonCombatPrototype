@@ -23,7 +23,7 @@ extends Node3D
 @export var crosshair: Crosshair
 
 @export_category("Audio")
-@export var dizzy_sfx: AudioStreamPlayer3D
+@export var dizzy_hit_sfx: AudioStreamPlayer
 @export var thrust_puncture_sfx: AudioStreamPlayer3D
 @export var hit_sfx: AudioStreamPlayer3D
 
@@ -97,7 +97,7 @@ func _on_instability_component_full_instability():
 	dizzy_system.readied_finisher = instability_component\
 		.source_causes_readied_finisher
 	
-	dizzy_sfx.play()
+	dizzy_hit_sfx.play()
 	
 	if instability_component.full_instability_from_parry:
 		locomotion_component.set_active_strategy("root_motion")

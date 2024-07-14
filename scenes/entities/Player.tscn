@@ -50,8 +50,6 @@
 [ext_resource type="Script" path="res://scripts/player/player_death_state.gd" id="24_adwl8"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/sit_animations.gd" id="25_plcx2"]
 [ext_resource type="AudioStream" uid="uid://bd1ks0felifw2" path="res://audio/footsteps/footstep00.wav" id="26_48vfb"]
-[ext_resource type="PackedScene" uid="uid://bp3sx3yshrcdb" path="res://scenes/components/wellbeing/InstabilityComponent.tscn" id="26_nvu4k"]
-[ext_resource type="PackedScene" uid="uid://cq3fjofav3npm" path="res://scenes/components/wellbeing/HealthComponent.tscn" id="26_ypb3h"]
 [ext_resource type="PackedScene" uid="uid://bsbt5fjir608i" path="res://scenes/particles/blood.tscn" id="27_63iim"]
 [ext_resource type="AudioStream" uid="uid://cavo4qpxknfh2" path="res://audio/footsteps/footstep01.wav" id="27_fiigk"]
 [ext_resource type="AudioStream" uid="uid://dkk215uq2twwa" path="res://audio/footsteps/footstep02.wav" id="28_lhu6a"]
@@ -76,6 +74,8 @@
 [ext_resource type="PackedScene" uid="uid://7qijntg00gi5" path="res://scenes/components/rotation/HeadRotationComponent.tscn" id="68_24wf0"]
 [ext_resource type="PackedScene" uid="uid://b1tn0d24q1ec1" path="res://scenes/components/movement/JumpComponent.tscn" id="72_k1lla"]
 [ext_resource type="PackedScene" uid="uid://bx034hx24dlel" path="res://scenes/components/movement/DodgeComponent.tscn" id="73_gj246"]
+[ext_resource type="PackedScene" uid="uid://bp3sx3yshrcdb" path="res://scenes/components/wellbeing/InstabilityComponent.tscn" id="74_fpaug"]
+[ext_resource type="PackedScene" uid="uid://cq3fjofav3npm" path="res://scenes/components/wellbeing/HealthComponent.tscn" id="75_ofv26"]
 [ext_resource type="PackedScene" uid="uid://1elkqdybiiu1" path="res://scenes/components/abilities/AttackComponent.tscn" id="77_sr5k1"]
 [ext_resource type="PackedScene" uid="uid://b616qwvblkmpo" path="res://scenes/components/abilities/BlockComponent.tscn" id="78_gb0qq"]
 [ext_resource type="PackedScene" uid="uid://bg5d27eyqwsfd" path="res://scenes/components/abilities/ParryComponent.tscn" id="79_4iupg"]
@@ -1122,7 +1122,7 @@ sfx = NodePath("../../Character/Audio/Dodge")
 
 [node name="Wellbeing" type="Node3D" parent="."]
 
-[node name="InstabilityComponent" parent="Wellbeing" node_paths=PackedStringArray("hitbox", "weapons") instance=ExtResource("26_nvu4k")]
+[node name="InstabilityComponent" parent="Wellbeing" node_paths=PackedStringArray("hitbox", "weapons") instance=ExtResource("74_fpaug")]
 hitbox = NodePath("../../HitboxComponent")
 weapons = [NodePath("../../Character/Armature_004/GeneralSkeleton/Sword")]
 max_from_parrying = false
@@ -1130,7 +1130,7 @@ max_instability = 30.0
 reduction_pause_length = 5.0
 reduction_rate = 5.0
 
-[node name="HealthComponent" parent="Wellbeing" instance=ExtResource("26_ypb3h")]
+[node name="HealthComponent" parent="Wellbeing" instance=ExtResource("75_ofv26")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
 max_health = 500.0
 blood_scene = ExtResource("27_63iim")

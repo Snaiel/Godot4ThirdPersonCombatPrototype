@@ -17,7 +17,8 @@ var _input_dir: Vector2 = Vector2.ZERO
 
 
 func _ready():
-	set_state(movement_animations[0].to_lower())
+	if movement_animations:
+		set_state(movement_animations[0].to_lower())
 
 
 func _physics_process(_delta: float) -> void:

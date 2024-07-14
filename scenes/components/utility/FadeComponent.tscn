@@ -1,7 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://mmj6qxe250co"]
 
-[ext_resource type="Script" path="res://scripts/components/utility/fade_component.gd" id="1_s0aha"]
+[ext_resource type="Script" path="res://scripts/components/utility/fade_component.gd" id="1_xfomx"]
 
 [node name="FadeComponent" type="Node" node_paths=PackedStringArray("meshes")]
-script = ExtResource("1_s0aha")
+script = ExtResource("1_xfomx")
 meshes = [null, null, null]

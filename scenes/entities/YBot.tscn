@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dvwkf086vv2aa"]
+[gd_scene load_steps=6 format=3 uid="uid://cjk3c3ncoopdw"]
 
 [ext_resource type="PackedScene" uid="uid://q3eag1ltsb0y" path="res://models/ybot.blend" id="1_e6dyl"]
 [ext_resource type="Material" uid="uid://dp5o22jl53pqh" path="res://materials/player_shader_mat.tres" id="2_6v3jt"]
