@@ -7,7 +7,7 @@ extends PlayerStateMachine
 @export var reduce_instability_rate: float = 0.8
 @export var movement_animations: MovementAnimations
 
-@export var blocking_sfx: AudioStreamPlayer3D
+@export var blocking_sfx: AudioStreamPlayer
 @export var block_sfx: AudioStreamPlayer3D
 
 var _can_reduce_instability: bool = true

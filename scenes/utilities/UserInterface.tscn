@@ -20,6 +20,33 @@
 [ext_resource type="Script" path="res://scripts/user_interface/death_screen.gd" id="18_bmqo6"]
 [ext_resource type="Texture2D" uid="uid://cj06tl3fnh5m4" path="res://assets/death_strip.png" id="19_1fhdx"]
 
+[sub_resource type="Animation" id="Animation_rfd6a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Glare:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedVector2Array(-96, -10, 96, -10, 136, 0, 96, 10, -96, 10, -136, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_qc4ds"]
 resource_name = "max"
 step = 0.001
@@ -46,33 +73,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [PackedVector2Array(-96, -10, 96, -10, 136, 0, 96, 10, -96, 10, -136, 0), PackedVector2Array(-96, -10, 96, -10, 320, 0, 96, 10, -96, 10, -320, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_rfd6a"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Glare:polygon")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [PackedVector2Array(-96, -10, 96, -10, 136, 0, 96, 10, -96, 10, -136, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5aluf"]
