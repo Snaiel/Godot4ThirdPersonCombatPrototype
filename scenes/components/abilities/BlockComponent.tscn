@@ -1,14 +1,14 @@
 [gd_scene load_steps=9 format=3 uid="uid://b616qwvblkmpo"]
 
 [ext_resource type="Script" path="res://scripts/components/abilities/block_component.gd" id="1_gfkgn"]
-[ext_resource type="Shader" path="res://materials/fresnel.gdshader" id="2_3i0xe"]
+[ext_resource type="Shader" path="res://shaders/fresnel.gdshader" id="2_fooab"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_h1652"]
 radius = 0.45
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lnqwu"]
 render_priority = 0
-shader = ExtResource("2_3i0xe")
+shader = ExtResource("2_fooab")
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/emission_color = Color(0.133333, 0.564706, 0.8, 1)
 shader_parameter/emission_amount = 16.0
