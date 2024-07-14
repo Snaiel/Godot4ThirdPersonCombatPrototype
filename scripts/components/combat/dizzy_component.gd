@@ -21,8 +21,10 @@ extends Node3D
 @export var dizzy_victim_animations: DizzyVictimAnimations
 @export var attachment_point: Node3D
 @export var crosshair: Crosshair
+@export var dizzy_stars: DizzyStars
 
 @export_category("Audio")
+@export var dizzy_stars_sfx: AudioStreamPlayer3D
 @export var dizzy_hit_sfx: AudioStreamPlayer
 @export var thrust_puncture_sfx: AudioStreamPlayer3D
 @export var hit_sfx: AudioStreamPlayer3D
@@ -31,11 +33,16 @@ var _dizzy_timer: Timer
 var _come_out_of_damage_dizzy_timer: Timer
 var _damage_dizzy_timer_pause: float = 1.5
 
+var _dizzy_sfx_tween: Tween
+var _default_dizzy_sfx_volume: float
+
 @onready var player: Player = Globals.player
 @onready var dizzy_system: DizzySystem = Globals.dizzy_system
 
 
 func _ready():
+	entity.dead.connect(_stop_dizzy_stars)
+	
 	instability_component.full_instability.connect(
 		_on_instability_component_full_instability
 	)
@@ -63,6 +70,9 @@ func _ready():
 	add_child(_come_out_of_damage_dizzy_timer)
 	
 	global_position = attachment_point.global_position
+	
+	dizzy_stars.visible = false
+	_default_dizzy_sfx_volume = dizzy_stars_sfx.volume_db
 
 
 func _process(_delta):
@@ -97,7 +107,11 @@ func _on_instability_component_full_instability():
 	dizzy_system.readied_finisher = instability_component\
 		.source_causes_readied_finisher
 	
+	dizzy_stars.visible = true
 	dizzy_hit_sfx.play()
+	if _dizzy_sfx_tween: _dizzy_sfx_tween.kill()
+	dizzy_stars_sfx.volume_db = _default_dizzy_sfx_volume
+	dizzy_stars_sfx.play()
 	
 	if instability_component.full_instability_from_parry:
 		locomotion_component.set_active_strategy("root_motion")
@@ -157,6 +171,8 @@ func _come_out_of_dizzy() -> void:
 	dizzy_victim_animations.disable_blend_dizzy()
 	instability_component.come_out_of_full_instability(0.7)
 	
+	_stop_dizzy_stars()
+	
 	if instability_component.full_instability_from_parry:
 		_back_to_normal()
 	else:
@@ -166,3 +182,14 @@ func _come_out_of_dizzy() -> void:
 func _back_to_normal() -> void:
 	entity.blackboard.set_value("dizzy", false)
 	locomotion_component.set_active_strategy("programmatic")
+
+
+func _stop_dizzy_stars() -> void:
+	dizzy_stars.visible = false
+	_dizzy_sfx_tween = create_tween()
+	_dizzy_sfx_tween.tween_property(
+		dizzy_stars_sfx,
+		"volume_db",
+		-80,
+		0.5
+	)

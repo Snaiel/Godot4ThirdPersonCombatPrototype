@@ -1126,7 +1126,6 @@ sfx = NodePath("../../Character/Audio/Dodge")
 hitbox = NodePath("../../HitboxComponent")
 weapons = [NodePath("../../Character/Armature_004/GeneralSkeleton/Sword")]
 max_from_parrying = false
-max_instability = 30.0
 reduction_pause_length = 5.0
 reduction_rate = 5.0
 

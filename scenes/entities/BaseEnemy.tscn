@@ -1,4 +1,4 @@
-[gd_scene load_steps=136 format=3 uid="uid://b34rhh2gbadoy"]
+[gd_scene load_steps=139 format=3 uid="uid://b34rhh2gbadoy"]
 
 [ext_resource type="Script" path="res://scripts/entities/enemy.gd" id="1_3repp"]
 [ext_resource type="PackedScene" uid="uid://q3eag1ltsb0y" path="res://models/ybot.blend" id="2_7fohg"]
@@ -7,6 +7,7 @@
 [ext_resource type="Shader" path="res://shaders/fade.gdshader" id="5_idrqo"]
 [ext_resource type="Texture2D" uid="uid://b1oqk2tqilbw" path="res://assets/crosshair.svg" id="6_8x6ke"]
 [ext_resource type="Script" path="res://scripts/user_interface/crosshair.gd" id="7_vqvwp"]
+[ext_resource type="PackedScene" uid="uid://dhqgvlu8jgy64" path="res://scenes/miscellaneous/DizzyStars.tscn" id="8_tqikb"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/idle_animations.gd" id="8_uym3l"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/movement_animations.gd" id="9_yy4rx"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/hit_and_death_animations.gd" id="10_m57qu"]
@@ -21,6 +22,7 @@
 [ext_resource type="AudioStream" uid="uid://c3tepl14wrdnl" path="res://audio/dizzy.wav" id="19_mmrji"]
 [ext_resource type="PackedScene" uid="uid://cko2lhqdu4n44" path="res://scenes/components/utility/HitboxComponent.tscn" id="20_alho4"]
 [ext_resource type="PackedScene" uid="uid://bjbif8ix55ckv" path="res://scenes/components/rotation/EnemyRotationComponent.tscn" id="21_5wtqo"]
+[ext_resource type="AudioStream" uid="uid://b4dvociu2uum" path="res://audio/dizzy_active.wav" id="21_w8uu1"]
 [ext_resource type="Script" path="res://scripts/components/rotation/enemy_rotation_component.gd" id="22_yfiug"]
 [ext_resource type="PackedScene" uid="uid://7qijntg00gi5" path="res://scenes/components/rotation/HeadRotationComponent.tscn" id="23_dl1x8"]
 [ext_resource type="Script" path="res://scripts/components/movement/locomotion/locomotion_component.gd" id="24_0xxep"]
@@ -434,6 +436,12 @@ streams_count = 1
 stream_0/stream = ExtResource("19_mmrji")
 stream_0/weight = 1.0
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_egerb"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("21_w8uu1")
+stream_0/weight = 1.0
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lwy87"]
 radius = 0.3
 height = 1.8
@@ -549,6 +557,9 @@ transform = Transform3D(1, 7.81163e-14, -2.66409e-12, -7.81172e-14, 1, -8.33958e
 bone_name = "Head"
 bone_idx = 6
 
+[node name="DizzyStars" parent="Character/Armature_004/GeneralSkeleton/HeadAttachment" instance=ExtResource("8_tqikb")]
+transform = Transform3D(-0.19964, 0.00985169, -0.0068381, 0.00982851, 0.199757, 0.00084452, 0.00687138, 0.000506958, -0.199881, 0.015, 0.18, -0.015)
+
 [node name="AnimationPlayer" parent="Character" index="1"]
 root_motion_track = NodePath("%GeneralSkeleton:Root")
 
@@ -655,7 +666,11 @@ max_distance = 20.0
 
 [node name="DizzyHit" type="AudioStreamPlayer" parent="Character/Audio"]
 stream = SubResource("AudioStreamRandomizer_yr3p8")
-volume_db = -15.0
+volume_db = -8.0
+
+[node name="Dizzy" type="AudioStreamPlayer3D" parent="Character/Audio"]
+stream = SubResource("AudioStreamRandomizer_egerb")
+volume_db = -25.0
 
 [node name="Collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
@@ -722,7 +737,7 @@ max_instability = 100.0
 
 [node name="Combat" type="Node3D" parent="."]
 
-[node name="DizzyComponent" type="Node3D" parent="Combat" node_paths=PackedStringArray("entity", "locomotion_component", "health_component", "instability_component", "dizzy_victim_animations", "attachment_point", "crosshair", "dizzy_hit_sfx", "thrust_puncture_sfx", "hit_sfx")]
+[node name="DizzyComponent" type="Node3D" parent="Combat" node_paths=PackedStringArray("entity", "locomotion_component", "health_component", "instability_component", "dizzy_victim_animations", "attachment_point", "crosshair", "dizzy_stars", "dizzy_stars_sfx", "dizzy_hit_sfx", "thrust_puncture_sfx", "hit_sfx")]
 script = ExtResource("33_0iqm6")
 entity = NodePath("../..")
 locomotion_component = NodePath("../../LocomotionComponent")
@@ -731,6 +746,8 @@ instability_component = NodePath("../../Wellbeing/InstabilityComponent")
 dizzy_victim_animations = NodePath("../../Character/Animations/DizzyVictim")
 attachment_point = NodePath("../../Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint")
 crosshair = NodePath("../../Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint/Crosshair")
+dizzy_stars = NodePath("../../Character/Armature_004/GeneralSkeleton/HeadAttachment/DizzyStars")
+dizzy_stars_sfx = NodePath("../../Character/Audio/Dizzy")
 dizzy_hit_sfx = NodePath("../../Character/Audio/DizzyHit")
 thrust_puncture_sfx = NodePath("../../Character/Audio/ThrustPuncture")
 hit_sfx = NodePath("../../Character/Audio/Hit")
