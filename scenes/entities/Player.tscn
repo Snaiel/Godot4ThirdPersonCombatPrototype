@@ -1145,6 +1145,7 @@ weapons = {
 
 [node name="BlockComponent" parent="Combat" node_paths=PackedStringArray("entity", "locomotion_component", "block_animations") instance=ExtResource("78_gb0qq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, -0.08)
+debug = true
 entity = NodePath("../..")
 locomotion_component = NodePath("../../Movement/LocomotionComponent")
 block_animations = NodePath("../../Character/Animations/Block")

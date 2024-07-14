@@ -1,9 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://b616qwvblkmpo"]
+[gd_scene load_steps=9 format=3 uid="uid://b616qwvblkmpo"]
 
 [ext_resource type="Script" path="res://scripts/components/abilities/block_component.gd" id="1_gfkgn"]
+[ext_resource type="Shader" path="res://materials/fresnel.gdshader" id="2_3i0xe"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_h1652"]
 radius = 0.45
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lnqwu"]
+render_priority = 0
+shader = ExtResource("2_3i0xe")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/emission_color = Color(0.133333, 0.564706, 0.8, 1)
+shader_parameter/emission_amount = 16.0
+shader_parameter/rim_steepness = 3.0
+shader_parameter/uv_scale = null
+shader_parameter/uv_offset = null
 
 [sub_resource type="Animation" id="Animation_y7og5"]
 resource_name = "blocked"
@@ -16,6 +27,18 @@ tracks/0/path = NodePath("Mesh")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.06, 1, 0.9, 0.9, 0.9, 0.15, 1, 0.9, 0.9, 0.9, 0.3, 1, 1, 1, 1)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mesh:surface_material_override/0:shader_parameter/emission_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.133333, 0.564706, 0.8, 1), Color(0.476562, 0.476562, 0.476562, 1), Color(0.476562, 0.476562, 0.476562, 1), Color(0.133333, 0.564706, 0.8, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_euwdf"]
 resource_name = "parried"
@@ -30,29 +53,59 @@ tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.06, 1, 1.2, 1.2, 1.2, 0.3, 1
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Mesh:transparency")
-tracks/1/interp = 2
+tracks/1/path = NodePath(".:opacity")
+tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.700741, 1.0]
+"values": [0.2, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Mesh:surface_material_override/0:shader_parameter/emission_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.133333, 0.564706, 0.8, 1), Color(0.478431, 0.478431, 0.478431, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0n5ax"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mesh:surface_material_override/0:shader_parameter/emission_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.133333, 0.564706, 0.8, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yf1n2"]
 _data = {
+"RESET": SubResource("Animation_0n5ax"),
 "blocked": SubResource("Animation_y7og5"),
 "parried": SubResource("Animation_euwdf")
 }
 
 [node name="BlockComponent" type="Node3D"]
 script = ExtResource("1_gfkgn")
+opacity = 0.2
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
-transparency = 0.700741
+transparency = 1.0
 cast_shadow = 0
 mesh = SubResource("CapsuleMesh_h1652")
+surface_material_override/0 = SubResource("ShaderMaterial_lnqwu")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

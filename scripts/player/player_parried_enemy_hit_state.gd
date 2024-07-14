@@ -58,6 +58,7 @@ func enter() -> void:
 	
 	player.character.parry_animations.parry()
 	
+	player.block_component.animating_opacity = true
 	player.block_component.anim.stop()
 	player.block_component.anim.play("parried")
 	
@@ -87,5 +88,6 @@ func process_player() -> void:
 
 
 func exit() -> void:
+	player.block_component.animating_opacity = false
 	player.block_component.blocking = false
 	_timer.stop()
