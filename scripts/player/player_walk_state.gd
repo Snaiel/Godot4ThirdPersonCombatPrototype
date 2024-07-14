@@ -28,7 +28,7 @@ func process_player() -> void:
 		parent_state.change_state(dodge_state)
 		return
 	
-	if player.holding_down_run:
+	if run_state.holding_down_run:
 		parent_state.change_state(run_state)
 		return
 	

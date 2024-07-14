@@ -17,7 +17,7 @@ func enter() -> void:
 
 
 func process_player() -> void:
-	if player.holding_down_run:
+	if run_state.holding_down_run:
 		parent_state.change_state(run_state)
 		return
 	elif not player.dodge_component.dodging:

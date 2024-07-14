@@ -13,6 +13,30 @@ extends PlayerStateMachine
 @export var parry_state: PlayerParryState
 @export var backstab_state: PlayerBackstabState
 
+var holding_down_run: bool = false
+var _holding_down_run_timer: Timer
+
+
+func _ready() -> void:
+	_holding_down_run_timer = Timer.new()
+	_holding_down_run_timer.timeout.connect(
+		func():
+			if not Input.is_action_pressed("run"): return
+			holding_down_run = true
+	)
+	add_child(_holding_down_run_timer)
+
+
+func _process(_delta: float) -> void:
+	# make sure the user is actually holding down
+	# the run key to make the player run
+	if Input.is_action_pressed("run") and \
+	_holding_down_run_timer.is_stopped():
+		_holding_down_run_timer.start(0.25)
+	if Input.is_action_just_released("run"):
+		_holding_down_run_timer.stop()
+		holding_down_run = false
+
 
 func enter() -> void:
 	locomotion_component.speed = 5
@@ -23,7 +47,7 @@ func process_player() -> void:
 		parent_state.change_state(idle_state)
 		return
 	
-	if not player.holding_down_run:
+	if not holding_down_run:
 		parent_state.change_state(walk_state)
 		return
 	

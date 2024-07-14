@@ -32,9 +32,6 @@ var last_input_on_ground: Vector3 = Vector3.ZERO
 var lock_on_target: LockOnComponent = null
 var locked_on_turning_in_place: bool = false
 
-var holding_down_run: bool = false
-var _holding_down_run_timer: Timer
-
 @onready var drink_state: PlayerDrinkState = $StateMachine/Drink
 @onready var checkpoint_state: PlayerCheckpointState = $StateMachine/Checkpoint
 
@@ -66,20 +63,13 @@ func _ready() -> void:
 		func(flag: bool): rotation_component.can_rotate = flag
 	)
 	
-	_holding_down_run_timer = Timer.new()
-	_holding_down_run_timer.timeout.connect(
-		func():
-			if not Input.is_action_pressed("run"): return
-			holding_down_run = true
-	)
-	add_child(_holding_down_run_timer)
-	
 	state_machine.enter_state_machine()
 
 
 func _physics_process(_delta: float) -> void:
 	#prints(holding_down_run)
 	
+	## Utility Inputs
 	if Input.is_action_just_pressed("exit"):
 		get_tree().quit()
 	elif Input.is_action_just_pressed("ui_text_backspace"):
@@ -88,27 +78,17 @@ func _physics_process(_delta: float) -> void:
 	not checkpoint_system.at_checkpoint:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
+	## State Machine
 	state_machine.process_player_state_machine()
 	state_machine.process_movement_animations_state_machine()
 	
-	# player inputs
+	## Player Movement Inputs
 	input_direction.x = Input.get_action_strength("right") - \
 		Input.get_action_strength("left")
 	input_direction.z = Input.get_action_strength("backward") - \
 		Input.get_action_strength("forward")
 	last_input_on_ground = input_direction if is_on_floor() else \
 		last_input_on_ground
-	
-	
-	# make sure the user is actually holding down
-	# the run key to make the player run
-	if Input.is_action_pressed("run") and \
-	_holding_down_run_timer.is_stopped():
-		_holding_down_run_timer.start(0.25)
-	if Input.is_action_just_released("run"):
-		_holding_down_run_timer.stop()
-		holding_down_run = false
-	
 	
 	if Input.is_action_just_pressed("consume_item") and \
 	not state_machine.current_state is PlayerDrinkState and \
@@ -122,7 +102,7 @@ func _physics_process(_delta: float) -> void:
 	checkpoint_system.current_checkpoint.can_sit_at_checkpoint:
 		state_machine.change_state(checkpoint_state)
 	
-	
+	## Head Rotation
 	if rotation_component.rotate_towards_target and \
 	rotation_component.target != null and \
 	not state_machine.current_state is PlayerDizzyState:
