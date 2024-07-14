@@ -10,11 +10,8 @@ var direction: Vector3 = Vector3.FORWARD
 
 
 func _ready():
-	area.body_entered.connect(
-		func(body: Node) -> void:
-			if body == entity: return
-			#queue_free()
-	)
+	get_tree().create_timer(10.0).timeout.connect(queue_free)
+
 
 func _process(delta: float) -> void:
 	position += direction * speed * delta
