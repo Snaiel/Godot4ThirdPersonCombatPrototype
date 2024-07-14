@@ -15,8 +15,6 @@ extends PlayerStateMachine
 @export var dizzy_sfx: AudioStreamPlayer
 
 var _timer: Timer
-var _can_block_or_parry: bool = false
-var _pressed_attack: bool = false
 
 var _dizzy_sfx_tween: Tween
 var _default_dizzy_sfx_volume: float
@@ -47,11 +45,7 @@ func _ready():
 	_timer.autostart = false
 	_timer.one_shot = true
 	_timer.timeout.connect(
-		func():
-			if _pressed_attack:
-				parent_state.change_state(attack_state)
-			else:
-				parent_state.transition_to_default_state()
+		func(): parent_state.transition_to_default_state()
 	)
 	add_child(_timer)
 	
@@ -60,16 +54,12 @@ func _ready():
 
 
 func enter() -> void:
-	_can_block_or_parry = false
-	
 	player.melee_component.interrupt_attack()
 	player.rotation_component.can_rotate = false
 	player.locomotion_component.set_active_strategy("root_motion")
 	player.character.dizzy_victim_animations.dizzy_from_parry()
 	
 	Globals.user_interface.hud.instability_bar.play_max_instability()
-	
-	_pressed_attack = false
 	
 	dizzy_stars.visible = true
 	
@@ -82,18 +72,6 @@ func enter() -> void:
 
 
 func process_player() -> void:
-	if _can_block_or_parry:
-		if Input.is_action_just_pressed("block"):
-			parent_state.change_state(parry_state)
-			return
-		
-		if Input.is_action_pressed("block"):
-			parent_state.change_state(block_state)
-			return
-	
-	if Input.is_action_just_pressed("attack"):
-		_pressed_attack = true
-	
 	player.set_rotation_target_to_lock_on_target()
 
 
