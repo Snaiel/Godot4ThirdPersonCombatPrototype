@@ -11,7 +11,7 @@ var _exiting: bool = false
 
 
 func _ready():
-	super._ready()
+	super()
 	
 	player.character.sit_animations.sat_down.connect(
 		func():
@@ -28,6 +28,15 @@ func _ready():
 	user_interface.checkpoint_interface.exit_checkpoint.connect(
 		_stand_up
 	)
+
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("interact") and \
+	not parent_state.current_state is PlayerDeathState and \
+	parent_state.current_state != self and \
+	checkpoint_system.current_checkpoint and \
+	checkpoint_system.current_checkpoint.can_sit_at_checkpoint:
+		parent_state.change_state(self)
 
 
 func enter() -> void:

@@ -69,6 +69,11 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	#prints(holding_down_run)
 	
+	## State Machine
+	state_machine.process_player_state_machine()
+	state_machine.process_movement_animations_state_machine()
+	
+	
 	## Utility Inputs
 	if Input.is_action_just_pressed("exit"):
 		get_tree().quit()
@@ -79,11 +84,6 @@ func _physics_process(_delta: float) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	
-	## State Machine
-	state_machine.process_player_state_machine()
-	state_machine.process_movement_animations_state_machine()
-	
-	
 	## Player Movement Inputs
 	input_direction.x = Input.get_action_strength("right") - \
 		Input.get_action_strength("left")
@@ -91,14 +91,6 @@ func _physics_process(_delta: float) -> void:
 		Input.get_action_strength("forward")
 	last_input_on_ground = input_direction if is_on_floor() else \
 		last_input_on_ground
-	
-	
-	if Input.is_action_just_pressed("interact") and \
-	not state_machine.current_state is PlayerCheckpointState and \
-	not state_machine.current_state is PlayerDeathState and \
-	checkpoint_system.current_checkpoint and \
-	checkpoint_system.current_checkpoint.can_sit_at_checkpoint:
-		state_machine.change_state(checkpoint_state)
 	
 	
 	## Head Rotation
@@ -114,6 +106,7 @@ func _physics_process(_delta: float) -> void:
 		head_rotation_component.desired_target_pos = Vector3.INF
 	
 	
+	## Footsteps
 	footsteps.on_floor = is_on_floor()
 	footsteps.running = state_machine.current_state is PlayerRunState
 
