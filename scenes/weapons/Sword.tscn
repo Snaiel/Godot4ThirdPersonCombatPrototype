@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://b78ctcv6lulvi"]
 
-[ext_resource type="Script" path="res://scripts/utilities/damage_source.gd" id="1_iykgl"]
-[ext_resource type="Shader" path="res://shaders/fade.gdshader" id="2_fbolq"]
+[ext_resource type="Script" path="res://scripts/miscellaneous/damage_source.gd" id="1_5h0xx"]
+[ext_resource type="Shader" path="res://shaders/fade.gdshader" id="2_8x6u6"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_dg00e"]
 top_radius = 0.02
@@ -10,7 +10,7 @@ height = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5w3p4"]
 render_priority = 0
-shader = ExtResource("2_fbolq")
+shader = ExtResource("2_8x6u6")
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
@@ -26,7 +26,7 @@ radius = 0.02
 transform = Transform3D(0, -1, 0, 0, 0, -1, 1, 0, 0, -0.734268, 1.43559, -0.0641424)
 bone_name = "RightHand"
 bone_idx = 35
-script = ExtResource("1_iykgl")
+script = ExtResource("1_5h0xx")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.891467, -0.453089, -3.91618e-05, 0.453089, -0.891468, -0.000158824, 3.70497e-05, -0.00015933, 1, 0.168411, 0.443186, 0.0233156)

@@ -9,15 +9,16 @@
 [ext_resource type="Material" uid="uid://bgbid1wqcdi4p" path="res://materials/joints_shader.tres" id="4_vmu5i"]
 [ext_resource type="Texture2D" uid="uid://b1oqk2tqilbw" path="res://assets/crosshair.svg" id="4_ycfyj"]
 [ext_resource type="Material" uid="uid://dp5o22jl53pqh" path="res://materials/player_shader_mat.tres" id="4_ysu0o"]
-[ext_resource type="Script" path="res://scripts/utilities/crosshair.gd" id="5_n2wxq"]
-[ext_resource type="PackedScene" uid="uid://b78ctcv6lulvi" path="res://scenes/utilities/Sword.tscn" id="5_vtx6o"]
+[ext_resource type="PackedScene" uid="uid://b78ctcv6lulvi" path="res://scenes/weapons/Sword.tscn" id="6_61m17"]
 [ext_resource type="Script" path="res://scripts/player/player_run_state.gd" id="6_nj3fe"]
 [ext_resource type="AnimationLibrary" uid="uid://cpdmlmb5om1d3" path="res://animations/combat_animations_1/combat_animations_1.blend" id="7_2kwv7"]
 [ext_resource type="Script" path="res://scripts/player/player_dodge_state.gd" id="7_e0tbh"]
 [ext_resource type="PackedScene" uid="uid://cko2lhqdu4n44" path="res://scenes/components/HitboxComponent.tscn" id="8_2xenc"]
 [ext_resource type="Script" path="res://scripts/player/player_attack_state.gd" id="8_bojn3"]
+[ext_resource type="Script" path="res://scripts/user_interface/crosshair.gd" id="8_fgt07"]
 [ext_resource type="Script" path="res://scripts/player/player_jump_state.gd" id="8_jgsl3"]
 [ext_resource type="AnimationLibrary" uid="uid://bsfa8d3deue20" path="res://animations/interaction_animations_1/interaction_animations_1.blend" id="8_u3lgo"]
+[ext_resource type="PackedScene" uid="uid://dhqgvlu8jgy64" path="res://scenes/miscellaneous/DizzyStars.tscn" id="9_mbn6r"]
 [ext_resource type="Script" path="res://scripts/player/player_block_state.gd" id="9_t1v34"]
 [ext_resource type="AnimationLibrary" uid="uid://c6e3lwlt6ukuj" path="res://animations/movement_animations_1/movement_animations_1.blend" id="9_w0bux"]
 [ext_resource type="PackedScene" uid="uid://b616qwvblkmpo" path="res://scenes/components/BlockComponent.tscn" id="10_hjlwj"]
@@ -80,7 +81,6 @@
 [ext_resource type="AudioStream" uid="uid://cd4rhj6wa6w2o" path="res://audio/hit.wav" id="37_x5xuy"]
 [ext_resource type="AudioStream" uid="uid://c3tepl14wrdnl" path="res://audio/dizzy.wav" id="38_wp7hd"]
 [ext_resource type="AudioStream" uid="uid://y01bxihxcn8q" path="res://audio/dodge.wav" id="39_itg1c"]
-[ext_resource type="PackedScene" uid="uid://dhqgvlu8jgy64" path="res://scenes/utilities/DizzyStars.tscn" id="46_gs6f7"]
 
 [sub_resource type="Animation" id="Animation_sc1df"]
 resource_name = "Y Bot"
@@ -628,7 +628,7 @@ surface_material_override/0 = ExtResource("4_vmu5i")
 [node name="Alpha_Surface" parent="Character/Armature_004/GeneralSkeleton" index="1"]
 surface_material_override/0 = ExtResource("4_ysu0o")
 
-[node name="Sword" parent="Character/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("entity") instance=ExtResource("5_vtx6o")]
+[node name="Sword" parent="Character/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("entity") instance=ExtResource("6_61m17")]
 transform = Transform3D(7.54791e-07, -1, -8.41021e-05, 5.5829e-07, 8.41021e-05, -1, 1, 7.54744e-07, 5.58354e-07, -0.737829, 1.43565, -0.0617133)
 entity = NodePath("../../../..")
 
@@ -646,7 +646,7 @@ billboard = 1
 no_depth_test = true
 texture_filter = 1
 texture = ExtResource("4_ycfyj")
-script = ExtResource("5_n2wxq")
+script = ExtResource("8_fgt07")
 enabled = false
 
 [node name="HeadAttachment" type="BoneAttachment3D" parent="Character/Armature_004/GeneralSkeleton" index="4"]
@@ -654,7 +654,7 @@ transform = Transform3D(1, 7.81293e-14, -2.66409e-12, -7.81293e-14, 1, -8.33958e
 bone_name = "Head"
 bone_idx = 6
 
-[node name="DizzyStars" parent="Character/Armature_004/GeneralSkeleton/HeadAttachment" instance=ExtResource("46_gs6f7")]
+[node name="DizzyStars" parent="Character/Armature_004/GeneralSkeleton/HeadAttachment" instance=ExtResource("9_mbn6r")]
 transform = Transform3D(-0.19964, 0.00985169, -0.0068381, 0.00982851, 0.199757, 0.00084452, 0.00687138, 0.000506958, -0.199881, 0.015, 0.18, -0.015)
 
 [node name="AnimationPlayer" parent="Character" index="1"]

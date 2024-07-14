@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhqgvlu8jgy64"]
+
+[ext_resource type="Script" path="res://scripts/miscellaneous/dizzy_stars.gd" id="1_ga1t3"]
+[ext_resource type="PackedScene" uid="uid://dffngpkb0hd4v" path="res://scenes/miscellaneous/Star.tscn" id="2_85qkm"]
+
+[node name="DizzyStars" type="Node3D"]
+script = ExtResource("1_ga1t3")
+speed = 200.0
+
+[node name="Stars" type="Node3D" parent="."]
+
+[node name="Star" parent="Stars" instance=ExtResource("2_85qkm")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, -1)
+
+[node name="Star2" parent="Stars" instance=ExtResource("2_85qkm")]
+transform = Transform3D(0.1, 0, 0.173205, 0, 0.2, 0, -0.173205, 0, 0.1, 0.866, 0, 0.5)
+
+[node name="Star3" parent="Stars" instance=ExtResource("2_85qkm")]
+transform = Transform3D(0.1, 0, -0.173205, 0, 0.2, 0, 0.173205, 0, 0.1, -0.866, 0, 0.5)

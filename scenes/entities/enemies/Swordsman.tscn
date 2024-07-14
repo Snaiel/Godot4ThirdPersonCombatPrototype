@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b34rhh2gbadoy" path="res://scenes/entities/enemies/BaseEnemy.tscn" id="1_mc312"]
 [ext_resource type="Shader" path="res://shaders/fade.gdshader" id="2_433ld"]
-[ext_resource type="PackedScene" uid="uid://b78ctcv6lulvi" path="res://scenes/utilities/Sword.tscn" id="3_frnup"]
+[ext_resource type="PackedScene" uid="uid://b78ctcv6lulvi" path="res://scenes/weapons/Sword.tscn" id="3_frnup"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://blk4xf2ldjjxa" path="res://animations/blend_trees/SwordsmanBlendTree.tres" id="4_mkbf1"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/melee/melee_animations.gd" id="4_u07yk"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/melee/attacks/inward_slash.gd" id="5_pfmts"]

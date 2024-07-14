@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cce0kkdsdv4rt"]
 
 [ext_resource type="Script" path="res://scripts/components/interface/wellbeing_component.gd" id="1_8f71p"]
-[ext_resource type="PackedScene" uid="uid://clbe1nrax10m8" path="res://scenes/utilities/WellbeingWidget.tscn" id="2_cobr1"]
+[ext_resource type="PackedScene" uid="uid://clbe1nrax10m8" path="res://scenes/user_interface/WellbeingWidget.tscn" id="2_cobr1"]
 
 [node name="WellbeingComponent" type="Node"]
 script = ExtResource("1_8f71p")

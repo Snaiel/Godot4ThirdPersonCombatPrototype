@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=3 uid="uid://k32oq3ivgjxf"]
 
 [ext_resource type="Texture2D" uid="uid://ceqnrmp0444y5" path="res://assets/location-check-svgrepo-com.svg" id="1_duys1"]
-[ext_resource type="Script" path="res://scripts/utilities/checkpoint.gd" id="1_oer0l"]
+[ext_resource type="Script" path="res://scripts/miscellaneous/checkpoint.gd" id="1_oer0l"]
 [ext_resource type="AudioStream" uid="uid://c6ljxehpyx37p" path="res://audio/recover.wav" id="3_l5o21"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_2fhdd"]

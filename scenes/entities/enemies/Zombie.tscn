@@ -1,7 +1,7 @@
 [gd_scene load_steps=42 format=3 uid="uid://cn68ggj4dxvj3"]
 
 [ext_resource type="PackedScene" uid="uid://b34rhh2gbadoy" path="res://scenes/entities/enemies/BaseEnemy.tscn" id="1_83e20"]
-[ext_resource type="PackedScene" uid="uid://tabdgh0vgxwq" path="res://scenes/utilities/Weapon.tscn" id="2_4v0im"]
+[ext_resource type="PackedScene" uid="uid://tabdgh0vgxwq" path="res://scenes/weapons/Weapon.tscn" id="2_4v0im"]
 [ext_resource type="Shader" path="res://shaders/fade.gdshader" id="5_gycrj"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://b5hblhvekj3pr" path="res://animations/blend_trees/ZombieBlendTree.tres" id="7_q608i"]
 [ext_resource type="AnimationLibrary" uid="uid://cpdmlmb5om1d3" path="res://animations/combat_animations_1/combat_animations_1.blend" id="9_4gv0h"]

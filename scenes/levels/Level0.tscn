@@ -2,7 +2,7 @@
 
 [ext_resource type="Material" uid="uid://qml1qedtuxl6" path="res://materials/grid.tres" id="1_1ul2y"]
 [ext_resource type="PackedScene" uid="uid://ia1adrmqd0lf" path="res://scenes/components/LockOnComponent.tscn" id="2_ovf3o"]
-[ext_resource type="PackedScene" uid="uid://k32oq3ivgjxf" path="res://scenes/utilities/Checkpoint.tscn" id="3_a2ywk"]
+[ext_resource type="PackedScene" uid="uid://k32oq3ivgjxf" path="res://scenes/miscellaneous/Checkpoint.tscn" id="3_a2ywk"]
 [ext_resource type="PackedScene" uid="uid://dmtsn22tgr3b1" path="res://scenes/entities/enemies/Swordsman.tscn" id="4_nh38s"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_88g5d"]

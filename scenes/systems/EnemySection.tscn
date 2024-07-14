@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://kprsqtbxvcxx"]
 
-[ext_resource type="Script" path="res://scripts/utilities/enemy_section.gd" id="1_ewjba"]
+[ext_resource type="Script" path="res://scripts/systems/enemy_section.gd" id="1_ewjba"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_svx3x"]
 size = Vector3(60, 500, 130)

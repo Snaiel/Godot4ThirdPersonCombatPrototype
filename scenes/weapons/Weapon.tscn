@@ -1,11 +1,11 @@
 [gd_scene load_steps=2 format=3 uid="uid://tabdgh0vgxwq"]
 
-[ext_resource type="Script" path="res://scripts/utilities/damage_source.gd" id="1_ccnwy"]
+[ext_resource type="Script" path="res://scripts/miscellaneous/damage_source.gd" id="1_ynrip"]
 
 [node name="Weapon" type="BoneAttachment3D"]
 bone_name = "RightHand"
 bone_idx = 35
-script = ExtResource("1_ccnwy")
+script = ExtResource("1_ynrip")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 layers = 2

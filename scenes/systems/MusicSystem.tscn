@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://cchf2jr3d13xj"]
 
-[ext_resource type="Script" path="res://scripts/utilities/music_system.gd" id="1_owdky"]
+[ext_resource type="Script" path="res://scripts/systems/music_system.gd" id="1_owdky"]
 [ext_resource type="AudioStream" uid="uid://c7k25fiayfnor" path="res://audio/music/Crystal Cave.ogg" id="2_1xw4m"]
 [ext_resource type="AudioStream" uid="uid://bcu6lpb4pl0c5" path="res://audio/music/Hyper Ultra-Racing.ogg" id="3_1gpef"]
 

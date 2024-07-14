@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://da664p5ek0cgr"]
 
 [ext_resource type="Script" path="res://scripts/components/notice_component/notice_component.gd" id="1_611qe"]
-[ext_resource type="PackedScene" uid="uid://dt6i863shdkev" path="res://scenes/utilities/NoticeTriangle.tscn" id="2_2dsee"]
-[ext_resource type="PackedScene" uid="uid://dxqwv56gkjhbf" path="res://scenes/utilities/OffCameraNoticeTriangle.tscn" id="3_i1p7x"]
+[ext_resource type="PackedScene" uid="uid://dt6i863shdkev" path="res://scenes/user_interface/NoticeTriangle.tscn" id="2_2dsee"]
+[ext_resource type="PackedScene" uid="uid://dxqwv56gkjhbf" path="res://scenes/user_interface/OffCameraNoticeTriangle.tscn" id="3_i1p7x"]
 [ext_resource type="Curve" uid="uid://bxbb6mv0mtdp0" path="res://resources/notice_value_curve.tres" id="3_ibel0"]
 [ext_resource type="Script" path="res://scripts/components/notice_component/notice_component_idle_state.gd" id="3_uu8gw"]
 [ext_resource type="Script" path="res://scripts/components/notice_component/notice_component_getting_suspicious_state.gd" id="4_xr38t"]

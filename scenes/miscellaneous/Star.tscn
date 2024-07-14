@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dffngpkb0hd4v"]
 
-[ext_resource type="PackedScene" uid="uid://y1ipykv7uj8k" path="res://models/star.blend" id="1_0mp8q"]
-[ext_resource type="Script" path="res://scenes/utilities/trail.gd" id="2_43yyb"]
+[ext_resource type="PackedScene" uid="uid://y1ipykv7uj8k" path="res://models/star.blend" id="1_4kafh"]
+[ext_resource type="Script" path="res://scripts/miscellaneous/trail.gd" id="2_hs6sy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bfpap"]
 albedo_color = Color(1, 0.960938, 0, 1)
@@ -14,7 +14,7 @@ cull_mode = 2
 shading_mode = 0
 vertex_color_use_as_albedo = true
 
-[node name="Star" instance=ExtResource("1_0mp8q")]
+[node name="Star" instance=ExtResource("1_4kafh")]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 
 [node name="Circle" parent="." index="0"]
@@ -23,7 +23,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_bfpap")
 [node name="Trail" type="MeshInstance3D" parent="." index="1"]
 transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 0.2, 0)
 material_override = SubResource("StandardMaterial3D_00di1")
-script = ExtResource("2_43yyb")
+script = ExtResource("2_hs6sy")
 _lifespan = 0.3
 _start_color = Color(1, 0.867188, 0, 1)
 _end_color = Color(1, 0.866667, 0, 0)

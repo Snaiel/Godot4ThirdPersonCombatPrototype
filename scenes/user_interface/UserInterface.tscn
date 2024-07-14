@@ -1,24 +1,24 @@
 [gd_scene load_steps=27 format=3 uid="uid://b075d85nmca7s"]
 
-[ext_resource type="Script" path="res://scripts/utilities/user_interface.gd" id="1_2nhxu"]
-[ext_resource type="Texture2D" uid="uid://dishehhur7io2" path="res://assets/white_dot.png" id="1_v2w42"]
-[ext_resource type="Script" path="res://scripts/utilities/fps_counter.gd" id="2_rxxh1"]
-[ext_resource type="Script" path="res://scripts/user_interface/heads_up_display.gd" id="3_bcps2"]
-[ext_resource type="PackedScene" uid="uid://dt6i863shdkev" path="res://scenes/utilities/NoticeTriangle.tscn" id="4_rjkcx"]
-[ext_resource type="PackedScene" uid="uid://clbe1nrax10m8" path="res://scenes/utilities/WellbeingWidget.tscn" id="5_5c8kv"]
-[ext_resource type="PackedScene" uid="uid://dxqwv56gkjhbf" path="res://scenes/utilities/OffCameraNoticeTriangle.tscn" id="6_for7l"]
-[ext_resource type="Script" path="res://scripts/user_interface/player_health_bar.gd" id="7_d0aas"]
-[ext_resource type="Script" path="res://scripts/user_interface/player_instability_bar.gd" id="8_gg83b"]
-[ext_resource type="Gradient" uid="uid://ch0fcpiyhmlkr" path="res://resources/instability_colour_gradient.tres" id="9_vla3l"]
-[ext_resource type="Script" path="res://scripts/user_interface/player_health_charges.gd" id="10_3s5wg"]
-[ext_resource type="Texture2D" uid="uid://b80p5j73bgwl1" path="res://assets/square.png" id="10_nh3cc"]
-[ext_resource type="Texture2D" uid="uid://byhp3ghf2qiij" path="res://assets/flask.svg" id="11_dmhdx"]
-[ext_resource type="Texture2D" uid="uid://06ykk08io3p2" path="res://assets/letter-uppercase-square-e.svg" id="13_440m2"]
-[ext_resource type="Script" path="res://scripts/user_interface/interaction_hints.gd" id="13_mkuun"]
-[ext_resource type="Texture2D" uid="uid://c42vaoia0lped" path="res://assets/checkpoint_menu_background.png" id="16_no8c8"]
-[ext_resource type="Script" path="res://scripts/user_interface/checkpoint_interface.gd" id="16_xyxjr"]
-[ext_resource type="Script" path="res://scripts/user_interface/death_screen.gd" id="18_bmqo6"]
-[ext_resource type="Texture2D" uid="uid://cj06tl3fnh5m4" path="res://assets/death_strip.png" id="19_1fhdx"]
+[ext_resource type="Script" path="res://scripts/user_interface/user_interface.gd" id="1_fei3a"]
+[ext_resource type="Script" path="res://scripts/user_interface/fps_counter.gd" id="2_b26wl"]
+[ext_resource type="Texture2D" uid="uid://dishehhur7io2" path="res://assets/white_dot.png" id="3_jfxbm"]
+[ext_resource type="Script" path="res://scripts/user_interface/heads_up_display.gd" id="4_x3dcn"]
+[ext_resource type="PackedScene" uid="uid://dt6i863shdkev" path="res://scenes/user_interface/NoticeTriangle.tscn" id="5_q0i7v"]
+[ext_resource type="PackedScene" uid="uid://clbe1nrax10m8" path="res://scenes/user_interface/WellbeingWidget.tscn" id="6_3d4tg"]
+[ext_resource type="PackedScene" uid="uid://dxqwv56gkjhbf" path="res://scenes/user_interface/OffCameraNoticeTriangle.tscn" id="7_xgn82"]
+[ext_resource type="Script" path="res://scripts/user_interface/player_health_bar.gd" id="8_opu4r"]
+[ext_resource type="Script" path="res://scripts/user_interface/player_instability_bar.gd" id="9_oh42p"]
+[ext_resource type="Gradient" uid="uid://ch0fcpiyhmlkr" path="res://resources/instability_colour_gradient.tres" id="10_be1b2"]
+[ext_resource type="Script" path="res://scripts/user_interface/player_health_charges.gd" id="11_dm5po"]
+[ext_resource type="Texture2D" uid="uid://b80p5j73bgwl1" path="res://assets/square.png" id="12_w4pfp"]
+[ext_resource type="Texture2D" uid="uid://byhp3ghf2qiij" path="res://assets/flask.svg" id="13_qxi5u"]
+[ext_resource type="Script" path="res://scripts/user_interface/interaction_hints.gd" id="14_lj2ih"]
+[ext_resource type="Texture2D" uid="uid://06ykk08io3p2" path="res://assets/letter-uppercase-square-e.svg" id="15_dh0uu"]
+[ext_resource type="Script" path="res://scripts/user_interface/checkpoint_interface.gd" id="16_kf5c6"]
+[ext_resource type="Texture2D" uid="uid://c42vaoia0lped" path="res://assets/checkpoint_menu_background.png" id="17_up4la"]
+[ext_resource type="Script" path="res://scripts/user_interface/death_screen.gd" id="18_xmmct"]
+[ext_resource type="Texture2D" uid="uid://cj06tl3fnh5m4" path="res://assets/death_strip.png" id="19_l3dc3"]
 
 [sub_resource type="Animation" id="Animation_rfd6a"]
 length = 0.001
@@ -102,7 +102,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-script = ExtResource("1_2nhxu")
+script = ExtResource("1_fei3a")
 
 [node name="FPSCounter" type="Label" parent="."]
 visible = false
@@ -116,13 +116,13 @@ offset_right = 92.0
 offset_bottom = 26.0
 text = "FPS: 0
 "
-script = ExtResource("2_rxxh1")
+script = ExtResource("2_b26wl")
 
 [node name="DebugWhiteDot" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(560, 396)
 scale = Vector2(0.02, 0.02)
-texture = ExtResource("1_v2w42")
+texture = ExtResource("3_jfxbm")
 
 [node name="HUD" type="Control" parent="."]
 layout_mode = 1
@@ -132,24 +132,24 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-script = ExtResource("3_bcps2")
+script = ExtResource("4_x3dcn")
 
 [node name="LockOn" type="TextureRect" parent="HUD"]
 layout_mode = 1
 offset_right = 10.0
 offset_bottom = 10.0
-texture = ExtResource("1_v2w42")
+texture = ExtResource("3_jfxbm")
 expand_mode = 1
 
 [node name="NoticeTriangles" type="Node2D" parent="HUD"]
 
-[node name="NoticeTriangle" parent="HUD/NoticeTriangles" instance=ExtResource("4_rjkcx")]
+[node name="NoticeTriangle" parent="HUD/NoticeTriangles" instance=ExtResource("5_q0i7v")]
 visible = false
 position = Vector2(31, 28)
 
 [node name="WellbeingWidgets" type="Node2D" parent="HUD"]
 
-[node name="WellbeingWidget" parent="HUD/WellbeingWidgets" instance=ExtResource("5_5c8kv")]
+[node name="WellbeingWidget" parent="HUD/WellbeingWidgets" instance=ExtResource("6_3d4tg")]
 visible = false
 position = Vector2(105, 32)
 
@@ -162,7 +162,7 @@ anchor_bottom = 0.55
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="OffCameraNoticeTriangle" parent="HUD/OffCameraNoticeTriangles" instance=ExtResource("6_for7l")]
+[node name="OffCameraNoticeTriangle" parent="HUD/OffCameraNoticeTriangles" instance=ExtResource("7_xgn82")]
 visible = false
 
 [node name="PlayerHealthBar" type="Control" parent="HUD"]
@@ -172,7 +172,7 @@ anchor_top = 0.92
 anchor_right = 0.05
 anchor_bottom = 0.92
 grow_vertical = 0
-script = ExtResource("7_d0aas")
+script = ExtResource("8_opu4r")
 
 [node name="Background" type="Polygon2D" parent="HUD/PlayerHealthBar"]
 self_modulate = Color(0.196078, 0.196078, 0.196078, 1)
@@ -197,8 +197,8 @@ anchor_right = 0.5
 anchor_bottom = 0.85
 grow_horizontal = 2
 grow_vertical = 0
-script = ExtResource("8_gg83b")
-color_gradient = ExtResource("9_vla3l")
+script = ExtResource("9_oh42p")
+color_gradient = ExtResource("10_be1b2")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="HUD/PlayerInstabilityBar"]
 libraries = {
@@ -237,7 +237,7 @@ anchor_right = 0.95
 anchor_bottom = 0.92
 grow_horizontal = 0
 grow_vertical = 0
-script = ExtResource("10_3s5wg")
+script = ExtResource("11_dm5po")
 flask_color = Color(0.0823529, 0.596078, 0.815686, 1)
 no_charges_color = Color(0.392157, 0.501961, 0.666667, 1)
 
@@ -245,13 +245,13 @@ no_charges_color = Color(0.392157, 0.501961, 0.666667, 1)
 self_modulate = Color(0.196078, 0.196078, 0.196078, 1)
 position = Vector2(-40, -40)
 scale = Vector2(0.8, 0.8)
-texture = ExtResource("10_nh3cc")
+texture = ExtResource("12_w4pfp")
 
 [node name="Flask" type="Sprite2D" parent="HUD/PlayerHealthCharges"]
 self_modulate = Color(0.0823529, 0.596078, 0.815686, 1)
 position = Vector2(-40, -40)
 scale = Vector2(0.9, 0.9)
-texture = ExtResource("11_dmhdx")
+texture = ExtResource("13_qxi5u")
 
 [node name="Label" type="Label" parent="HUD/PlayerHealthCharges"]
 layout_mode = 0
@@ -272,7 +272,7 @@ anchor_right = 0.5
 anchor_bottom = 0.94
 grow_horizontal = 2
 grow_vertical = 0
-script = ExtResource("13_mkuun")
+script = ExtResource("14_lj2ih")
 
 [node name="CheckpointHint" type="Control" parent="HUD/InteractionHints"]
 anchors_preset = 0
@@ -282,7 +282,7 @@ pivot_offset = Vector2(70, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="HUD/InteractionHints/CheckpointHint"]
 scale = Vector2(0.8, 0.8)
-texture = ExtResource("13_440m2")
+texture = ExtResource("15_dh0uu")
 
 [node name="Label" type="Label" parent="HUD/InteractionHints/CheckpointHint"]
 layout_mode = 0
@@ -302,7 +302,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("16_xyxjr")
+script = ExtResource("16_kf5c6")
 
 [node name="Fade" type="TextureRect" parent="CheckpointInterface"]
 self_modulate = Color(0, 0, 0, 0)
@@ -312,7 +312,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("10_nh3cc")
+texture = ExtResource("12_w4pfp")
 
 [node name="Menu" type="Control" parent="CheckpointInterface"]
 layout_mode = 1
@@ -329,7 +329,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("16_no8c8")
+texture = ExtResource("17_up4la")
 expand_mode = 3
 
 [node name="Buttons" type="VBoxContainer" parent="CheckpointInterface/Menu"]
@@ -368,7 +368,7 @@ anchor_left = 0.45
 anchor_top = 0.15
 anchor_right = 0.85
 anchor_bottom = 0.5
-texture = ExtResource("10_nh3cc")
+texture = ExtResource("12_w4pfp")
 
 [node name="GridContainer" type="GridContainer" parent="CheckpointInterface/Menu/Attributes"]
 layout_mode = 1
@@ -392,7 +392,7 @@ text = "Health
 
 [node name="PlayerHealthBar" type="Control" parent="CheckpointInterface/Menu/Attributes/GridContainer/Health"]
 layout_mode = 2
-script = ExtResource("7_d0aas")
+script = ExtResource("8_opu4r")
 
 [node name="Background" type="Polygon2D" parent="CheckpointInterface/Menu/Attributes/GridContainer/Health/PlayerHealthBar"]
 self_modulate = Color(0.196078, 0.196078, 0.196078, 1)
@@ -410,20 +410,20 @@ polygon = PackedVector2Array(0, -4, 0, 4, 92, 4, 92, -4)
 
 [node name="PlayerHealthCharges" type="Control" parent="CheckpointInterface/Menu/Attributes/GridContainer"]
 layout_mode = 2
-script = ExtResource("10_3s5wg")
+script = ExtResource("11_dm5po")
 flask_color = Color(0.0823529, 0.596078, 0.815686, 1)
 no_charges_color = Color(0.392157, 0.501961, 0.666667, 1)
 
 [node name="Background" type="Sprite2D" parent="CheckpointInterface/Menu/Attributes/GridContainer/PlayerHealthCharges"]
 self_modulate = Color(0.196078, 0.196078, 0.196078, 1)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("10_nh3cc")
+texture = ExtResource("12_w4pfp")
 centered = false
 
 [node name="Flask" type="Sprite2D" parent="CheckpointInterface/Menu/Attributes/GridContainer/PlayerHealthCharges"]
 self_modulate = Color(0.0823529, 0.596078, 0.815686, 1)
 scale = Vector2(0.6, 0.6)
-texture = ExtResource("11_dmhdx")
+texture = ExtResource("13_qxi5u")
 centered = false
 offset = Vector2(10, 10)
 
@@ -448,7 +448,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-script = ExtResource("18_bmqo6")
+script = ExtResource("18_xmmct")
 
 [node name="DeathMessage" type="Control" parent="DeathScreen"]
 layout_mode = 1
@@ -465,7 +465,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("19_1fhdx")
+texture = ExtResource("19_l3dc3")
 expand_mode = 2
 
 [node name="Label" type="Label" parent="DeathScreen/DeathMessage"]
@@ -494,4 +494,4 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("10_nh3cc")
+texture = ExtResource("12_w4pfp")
