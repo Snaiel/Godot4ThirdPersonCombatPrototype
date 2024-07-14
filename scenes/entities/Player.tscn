@@ -37,8 +37,8 @@
 [ext_resource type="PackedScene" uid="uid://c8qyy3wuwlus6" path="res://scenes/components/RootMotionComponent.tscn" id="27_4dpfb"]
 [ext_resource type="PackedScene" uid="uid://bx034hx24dlel" path="res://scenes/components/DodgeComponent.tscn" id="27_7sekg"]
 [ext_resource type="PackedScene" uid="uid://bsbt5fjir608i" path="res://scenes/particles/blood.tscn" id="27_63iim"]
-[ext_resource type="Script" path="res://scripts/player/player_dizzy.gd" id="28_416mw"]
 [ext_resource type="PackedScene" uid="uid://1elkqdybiiu1" path="res://scenes/components/AttackComponent.tscn" id="28_no1kf"]
+[ext_resource type="Script" path="res://scripts/player/player_dizzy_state.gd" id="30_7iy7n"]
 [ext_resource type="AudioStream" uid="uid://b4dvociu2uum" path="res://audio/dizzy_active.wav" id="30_8nr2i"]
 [ext_resource type="PackedScene" uid="uid://bg5d27eyqwsfd" path="res://scenes/components/ParryComponent.tscn" id="30_ceaq1"]
 [ext_resource type="Script" path="res://scripts/components/movement/locomotion/locomotion_component.gd" id="31_ctbj8"]
@@ -358,7 +358,7 @@ script = ExtResource("24_adwl8")
 player = NodePath("../..")
 
 [node name="Dizzy" type="Node" parent="StateMachine" node_paths=PackedStringArray("attack_state", "block_state", "parry_state", "dizzy_stars", "hit_sfx", "dizzy_hit_sfx", "dizzy_sfx", "player")]
-script = ExtResource("28_416mw")
+script = ExtResource("30_7iy7n")
 attack_state = NodePath("../Attack")
 block_state = NodePath("../Block")
 parry_state = NodePath("../Parry")
