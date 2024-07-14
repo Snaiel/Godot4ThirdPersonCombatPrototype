@@ -62,9 +62,10 @@ func _ready():
 func enter() -> void:
 	_can_block_or_parry = false
 	
+	player.melee_component.interrupt_attack()
+	player.rotation_component.can_rotate = false
 	player.locomotion_component.set_active_strategy("root_motion")
 	player.character.dizzy_victim_animations.dizzy_from_parry()
-	player.melee_component.interrupt_attack()
 	
 	_pressed_attack = false
 	
@@ -79,7 +80,6 @@ func enter() -> void:
 
 
 func process_player() -> void:
-	print(dizzy_sfx.volume_db)
 	if _can_block_or_parry:
 		if Input.is_action_just_pressed("block"):
 			parent_state.change_state(parry_state)
@@ -101,6 +101,7 @@ func process_movement_animations() -> void:
 
 
 func exit() -> void:
+	player.rotation_component.can_rotate = true
 	player.locomotion_component.set_active_strategy("programmatic")
 	player.character.dizzy_victim_animations.disable_blend_dizzy()
 	player.instability_component.come_out_of_full_instability(0)
@@ -110,6 +111,6 @@ func exit() -> void:
 		dizzy_sfx,
 		"volume_db",
 		-80,
-		1.5
+		0.5
 	)
 	_timer.stop()
