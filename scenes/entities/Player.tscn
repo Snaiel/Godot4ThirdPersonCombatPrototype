@@ -13,7 +13,6 @@
 [ext_resource type="Script" path="res://scripts/player/player_run_state.gd" id="6_nj3fe"]
 [ext_resource type="AnimationLibrary" uid="uid://cpdmlmb5om1d3" path="res://animations/combat_animations_1/combat_animations_1.blend" id="7_2kwv7"]
 [ext_resource type="Script" path="res://scripts/player/player_dodge_state.gd" id="7_e0tbh"]
-[ext_resource type="PackedScene" uid="uid://cko2lhqdu4n44" path="res://scenes/components/HitboxComponent.tscn" id="8_2xenc"]
 [ext_resource type="Script" path="res://scripts/player/player_attack_state.gd" id="8_bojn3"]
 [ext_resource type="Script" path="res://scripts/user_interface/crosshair.gd" id="8_fgt07"]
 [ext_resource type="Script" path="res://scripts/player/player_jump_state.gd" id="8_jgsl3"]
@@ -21,7 +20,6 @@
 [ext_resource type="PackedScene" uid="uid://dhqgvlu8jgy64" path="res://scenes/miscellaneous/DizzyStars.tscn" id="9_mbn6r"]
 [ext_resource type="Script" path="res://scripts/player/player_block_state.gd" id="9_t1v34"]
 [ext_resource type="AnimationLibrary" uid="uid://c6e3lwlt6ukuj" path="res://animations/movement_animations_1/movement_animations_1.blend" id="9_w0bux"]
-[ext_resource type="PackedScene" uid="uid://b616qwvblkmpo" path="res://scenes/components/BlockComponent.tscn" id="10_hjlwj"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://bb1v4nbj15atd" path="res://animations/blend_trees/DefaultBlendTree.tres" id="10_hp5ti"]
 [ext_resource type="Script" path="res://scripts/player/player_parry_state.gd" id="10_xd0pu"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/idle_animations.gd" id="11_t68mh"]
@@ -44,43 +42,45 @@
 [ext_resource type="Script" path="res://scripts/animations/subclasses/parry_animations.gd" id="20_qqpek"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/hit_and_death_animations.gd" id="21_odsns"]
 [ext_resource type="Script" path="res://scripts/player/player_hit_by_enemy_state.gd" id="21_x55ju"]
-[ext_resource type="PackedScene" uid="uid://bgb0pw8dklo4j" path="res://scenes/components/PlayerRotationComponent.tscn" id="22_23hj7"]
 [ext_resource type="Script" path="res://scripts/player/player_drink_state.gd" id="22_47iaw"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/dizzy_victim_animations.gd" id="22_xr6v5"]
-[ext_resource type="PackedScene" uid="uid://7qijntg00gi5" path="res://scenes/components/HeadRotationComponent.tscn" id="23_0vsx7"]
 [ext_resource type="Script" path="res://scripts/player/player_checkpoint_state.gd" id="23_3gyf7"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/dizzy_finisher_animations.gd" id="23_foyhq"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/drink_animations.gd" id="24_3gunj"]
 [ext_resource type="Script" path="res://scripts/player/player_death_state.gd" id="24_adwl8"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/sit_animations.gd" id="25_plcx2"]
 [ext_resource type="AudioStream" uid="uid://bd1ks0felifw2" path="res://audio/footsteps/footstep00.wav" id="26_48vfb"]
-[ext_resource type="PackedScene" uid="uid://bp3sx3yshrcdb" path="res://scenes/components/InstabilityComponent.tscn" id="26_nvu4k"]
-[ext_resource type="PackedScene" uid="uid://b1tn0d24q1ec1" path="res://scenes/components/JumpComponent.tscn" id="26_w2wp7"]
-[ext_resource type="PackedScene" uid="uid://cq3fjofav3npm" path="res://scenes/components/HealthComponent.tscn" id="26_ypb3h"]
-[ext_resource type="PackedScene" uid="uid://bx034hx24dlel" path="res://scenes/components/DodgeComponent.tscn" id="27_7sekg"]
+[ext_resource type="PackedScene" uid="uid://bp3sx3yshrcdb" path="res://scenes/components/wellbeing/InstabilityComponent.tscn" id="26_nvu4k"]
+[ext_resource type="PackedScene" uid="uid://cq3fjofav3npm" path="res://scenes/components/wellbeing/HealthComponent.tscn" id="26_ypb3h"]
 [ext_resource type="PackedScene" uid="uid://bsbt5fjir608i" path="res://scenes/particles/blood.tscn" id="27_63iim"]
 [ext_resource type="AudioStream" uid="uid://cavo4qpxknfh2" path="res://audio/footsteps/footstep01.wav" id="27_fiigk"]
 [ext_resource type="AudioStream" uid="uid://dkk215uq2twwa" path="res://audio/footsteps/footstep02.wav" id="28_lhu6a"]
-[ext_resource type="PackedScene" uid="uid://1elkqdybiiu1" path="res://scenes/components/AttackComponent.tscn" id="28_no1kf"]
 [ext_resource type="Script" path="res://scripts/audio/audio_footsteps.gd" id="29_lvjem"]
 [ext_resource type="Script" path="res://scripts/player/player_dizzy_state.gd" id="30_7iy7n"]
 [ext_resource type="AudioStream" uid="uid://b4dvociu2uum" path="res://audio/dizzy_active.wav" id="30_8nr2i"]
-[ext_resource type="PackedScene" uid="uid://bg5d27eyqwsfd" path="res://scenes/components/ParryComponent.tscn" id="30_ceaq1"]
 [ext_resource type="AudioStream" uid="uid://dp8kx7ob5g52l" path="res://audio/jump.wav" id="30_kft4w"]
 [ext_resource type="Script" path="res://scripts/components/movement/locomotion/locomotion_component.gd" id="31_ctbj8"]
 [ext_resource type="AudioStream" uid="uid://d2hx1psw3kw3j" path="res://audio/jump_land.wav" id="31_wdlko"]
-[ext_resource type="PackedScene" uid="uid://mmj6qxe250co" path="res://scenes/components/FadeComponent.tscn" id="31_y5b1e"]
 [ext_resource type="Script" path="res://scripts/components/movement/locomotion/programmatic_movement.gd" id="32_3p3ec"]
 [ext_resource type="AudioStream" uid="uid://bju8g4kcmxeps" path="res://audio/weapon_swing.wav" id="32_rx7lg"]
 [ext_resource type="Script" path="res://scripts/components/movement/locomotion/root_motion.gd" id="33_l377w"]
 [ext_resource type="AudioStream" uid="uid://bwkd4ivuxm0ny" path="res://audio/thrust_puncture.wav" id="33_ww8fg"]
 [ext_resource type="AudioStream" uid="uid://cliluvk2ijjfu" path="res://audio/parry.wav" id="34_meu86"]
 [ext_resource type="AudioStream" uid="uid://b6gbnrwod81th" path="res://audio/blocking.wav" id="35_ea5f0"]
-[ext_resource type="PackedScene" uid="uid://cbs5mcpj3x6im" path="res://scenes/components/HealthChargeComponent.tscn" id="36_ay03g"]
 [ext_resource type="AudioStream" uid="uid://b15aeyitorki7" path="res://audio/block.wav" id="36_uev41"]
 [ext_resource type="AudioStream" uid="uid://cd4rhj6wa6w2o" path="res://audio/hit.wav" id="37_x5xuy"]
 [ext_resource type="AudioStream" uid="uid://c3tepl14wrdnl" path="res://audio/dizzy.wav" id="38_wp7hd"]
 [ext_resource type="AudioStream" uid="uid://y01bxihxcn8q" path="res://audio/dodge.wav" id="39_itg1c"]
+[ext_resource type="PackedScene" uid="uid://cko2lhqdu4n44" path="res://scenes/components/utility/HitboxComponent.tscn" id="66_wy87f"]
+[ext_resource type="PackedScene" uid="uid://bgb0pw8dklo4j" path="res://scenes/components/rotation/PlayerRotationComponent.tscn" id="67_pt31b"]
+[ext_resource type="PackedScene" uid="uid://7qijntg00gi5" path="res://scenes/components/rotation/HeadRotationComponent.tscn" id="68_24wf0"]
+[ext_resource type="PackedScene" uid="uid://b1tn0d24q1ec1" path="res://scenes/components/movement/JumpComponent.tscn" id="72_k1lla"]
+[ext_resource type="PackedScene" uid="uid://bx034hx24dlel" path="res://scenes/components/movement/DodgeComponent.tscn" id="73_gj246"]
+[ext_resource type="PackedScene" uid="uid://1elkqdybiiu1" path="res://scenes/components/abilities/AttackComponent.tscn" id="77_sr5k1"]
+[ext_resource type="PackedScene" uid="uid://b616qwvblkmpo" path="res://scenes/components/abilities/BlockComponent.tscn" id="78_gb0qq"]
+[ext_resource type="PackedScene" uid="uid://bg5d27eyqwsfd" path="res://scenes/components/abilities/ParryComponent.tscn" id="79_4iupg"]
+[ext_resource type="PackedScene" uid="uid://cbs5mcpj3x6im" path="res://scenes/components/utility/HealthChargeComponent.tscn" id="80_ipdct"]
+[ext_resource type="PackedScene" uid="uid://mmj6qxe250co" path="res://scenes/components/utility/FadeComponent.tscn" id="81_wg583"]
 
 [sub_resource type="Animation" id="Animation_sc1df"]
 resource_name = "Y Bot"
@@ -1072,7 +1072,7 @@ player = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 shape = SubResource("CapsuleShape3D_lnhvg")
 
-[node name="HitboxComponent" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("8_2xenc")]
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("66_wy87f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 collision_layer = 2
 entity = NodePath("..")
@@ -1080,10 +1080,10 @@ groups = Array[String](["enemy"])
 
 [node name="Rotation" type="Node3D" parent="."]
 
-[node name="PlayerRotationComponent" parent="Rotation" node_paths=PackedStringArray("entity") instance=ExtResource("22_23hj7")]
+[node name="PlayerRotationComponent" parent="Rotation" node_paths=PackedStringArray("entity") instance=ExtResource("67_pt31b")]
 entity = NodePath("../..")
 
-[node name="HeadRotationComponent" parent="Rotation" node_paths=PackedStringArray("skeleton") instance=ExtResource("23_0vsx7")]
+[node name="HeadRotationComponent" parent="Rotation" node_paths=PackedStringArray("skeleton") instance=ExtResource("68_24wf0")]
 skeleton = NodePath("../../Character/Armature_004/GeneralSkeleton")
 
 [node name="Movement" type="Node3D" parent="."]
@@ -1105,7 +1105,7 @@ rotation_component = NodePath("../../../Rotation/PlayerRotationComponent")
 script = ExtResource("33_l377w")
 character = NodePath("../../../Character")
 
-[node name="JumpComponent" parent="Movement" node_paths=PackedStringArray("entity", "animations", "rotation_component", "locomotion_component", "jump_sfx", "land_sfx") instance=ExtResource("26_w2wp7")]
+[node name="JumpComponent" parent="Movement" node_paths=PackedStringArray("entity", "animations", "rotation_component", "locomotion_component", "jump_sfx", "land_sfx") instance=ExtResource("72_k1lla")]
 entity = NodePath("../..")
 animations = NodePath("../../Character")
 rotation_component = NodePath("../../Rotation/PlayerRotationComponent")
@@ -1113,7 +1113,7 @@ locomotion_component = NodePath("../LocomotionComponent")
 jump_sfx = NodePath("../../Character/Audio/Jump")
 land_sfx = NodePath("../../Character/Audio/JumpLand")
 
-[node name="DodgeComponent" parent="Movement" node_paths=PackedStringArray("entity", "rotation_component", "locomotion_component", "jump_component", "sfx") instance=ExtResource("27_7sekg")]
+[node name="DodgeComponent" parent="Movement" node_paths=PackedStringArray("entity", "rotation_component", "locomotion_component", "jump_component", "sfx") instance=ExtResource("73_gj246")]
 entity = NodePath("../..")
 rotation_component = NodePath("../../Rotation/PlayerRotationComponent")
 locomotion_component = NodePath("../LocomotionComponent")
@@ -1137,33 +1137,33 @@ blood_scene = ExtResource("27_63iim")
 
 [node name="Combat" type="Node3D" parent="."]
 
-[node name="MeleeComponent" parent="Combat" node_paths=PackedStringArray("melee_animations", "locomotion_component") instance=ExtResource("28_no1kf")]
+[node name="MeleeComponent" parent="Combat" node_paths=PackedStringArray("melee_animations", "locomotion_component") instance=ExtResource("77_sr5k1")]
 melee_animations = NodePath("../../Character/Animations/Melee")
 locomotion_component = NodePath("../../Movement/LocomotionComponent")
 weapons = {
 "right_hand": NodePath("../../Character/Armature_004/GeneralSkeleton/Sword")
 }
 
-[node name="BlockComponent" parent="Combat" node_paths=PackedStringArray("entity", "locomotion_component", "block_animations") instance=ExtResource("10_hjlwj")]
+[node name="BlockComponent" parent="Combat" node_paths=PackedStringArray("entity", "locomotion_component", "block_animations") instance=ExtResource("78_gb0qq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, -0.08)
 entity = NodePath("../..")
 locomotion_component = NodePath("../../Movement/LocomotionComponent")
 block_animations = NodePath("../../Character/Animations/Block")
 
-[node name="ParryComponent" parent="Combat" node_paths=PackedStringArray("hitbox_component", "block_component") instance=ExtResource("30_ceaq1")]
+[node name="ParryComponent" parent="Combat" node_paths=PackedStringArray("hitbox_component", "block_component") instance=ExtResource("79_4iupg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 hitbox_component = NodePath("../../HitboxComponent")
 block_component = NodePath("../BlockComponent")
 parry_particles_colour = Color(0.027451, 0.278431, 0.427451, 1)
 
-[node name="HealthChargeComponent" parent="." node_paths=PackedStringArray("entity", "drink_animations", "health_component") instance=ExtResource("36_ay03g")]
+[node name="HealthChargeComponent" parent="." node_paths=PackedStringArray("entity", "drink_animations", "health_component") instance=ExtResource("80_ipdct")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.27364, 0)
 entity = NodePath("..")
 drink_animations = NodePath("../Character/Animations/Drink")
 health_component = NodePath("../Wellbeing/HealthComponent")
 max_charges = 3
 
-[node name="FadeComponent" parent="." node_paths=PackedStringArray("origin_point", "meshes") instance=ExtResource("31_y5b1e")]
+[node name="FadeComponent" parent="." node_paths=PackedStringArray("origin_point", "meshes") instance=ExtResource("81_wg583")]
 origin_point = NodePath("../Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint")
 meshes = [NodePath("../Character/Armature_004/GeneralSkeleton/Alpha_Joints"), NodePath("../Character/Armature_004/GeneralSkeleton/Alpha_Surface"), NodePath("../Character/Armature_004/GeneralSkeleton/Sword/Mesh")]
 

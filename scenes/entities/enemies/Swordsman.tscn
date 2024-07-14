@@ -16,7 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://b6gbnrwod81th" path="res://audio/blocking.wav" id="13_4430o"]
 [ext_resource type="AudioStream" uid="uid://b15aeyitorki7" path="res://audio/block.wav" id="14_826dm"]
 [ext_resource type="Script" path="res://scripts/components/abilities/enemy_melee_component.gd" id="15_pkaik"]
-[ext_resource type="PackedScene" uid="uid://b616qwvblkmpo" path="res://scenes/components/BlockComponent.tscn" id="16_ai8tk"]
+[ext_resource type="PackedScene" uid="uid://b616qwvblkmpo" path="res://scenes/components/abilities/BlockComponent.tscn" id="16_ai8tk"]
 [ext_resource type="Script" path="res://scripts/components/abilities/parry_component.gd" id="17_oabxi"]
 [ext_resource type="Script" path="res://scripts/components/combat/interaction/handlers/block_interaction_handler.gd" id="18_g4go8"]
 [ext_resource type="Script" path="res://scripts/components/combat/interaction/handlers/parry_interaction_handler.gd" id="19_leb5d"]

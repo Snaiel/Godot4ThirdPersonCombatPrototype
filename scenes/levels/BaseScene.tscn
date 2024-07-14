@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://xg0hjxcilbsl" path="res://scenes/systems/LockOnSystem.tscn" id="7_js3aj"]
 [ext_resource type="PackedScene" uid="uid://y7vsh6qub2m1" path="res://scenes/systems/CheckpointSystem.tscn" id="8_sfixx"]
 [ext_resource type="PackedScene" uid="uid://cchf2jr3d13xj" path="res://scenes/systems/MusicSystem.tscn" id="9_cdq8y"]
-[ext_resource type="PackedScene" uid="uid://ia1adrmqd0lf" path="res://scenes/components/LockOnComponent.tscn" id="12_d2s5w"]
+[ext_resource type="PackedScene" uid="uid://ia1adrmqd0lf" path="res://scenes/components/utility/LockOnComponent.tscn" id="12_d2s5w"]
 [ext_resource type="Texture2D" uid="uid://bcln5bjy3tb8y" path="res://assets/kenney-prototype-texture-light-06.png" id="12_g4oaw"]
 [ext_resource type="Script" path="res://scripts/systems/void_death_system.gd" id="13_nxq7q"]
 [ext_resource type="PackedScene" uid="uid://k32oq3ivgjxf" path="res://scenes/miscellaneous/Checkpoint.tscn" id="13_s6axi"]
