@@ -10,10 +10,17 @@ var _prev_walk_speed: float
 
 
 func _ready():
-	super._ready()
+	super()
 	health_charge_component.finished_drinking.connect(
 		func(): parent_state.transition_to_default_state()
 	)
+
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("consume_item") and \
+	parent_state.current_state != PlayerDrinkState and \
+	not parent_state.current_state is PlayerCheckpointState:
+		parent_state.change_state(self)
 
 
 func enter() -> void:

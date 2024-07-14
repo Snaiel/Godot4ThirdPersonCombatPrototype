@@ -78,9 +78,11 @@ func _physics_process(_delta: float) -> void:
 	not checkpoint_system.at_checkpoint:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
+	
 	## State Machine
 	state_machine.process_player_state_machine()
 	state_machine.process_movement_animations_state_machine()
+	
 	
 	## Player Movement Inputs
 	input_direction.x = Input.get_action_strength("right") - \
@@ -90,10 +92,6 @@ func _physics_process(_delta: float) -> void:
 	last_input_on_ground = input_direction if is_on_floor() else \
 		last_input_on_ground
 	
-	if Input.is_action_just_pressed("consume_item") and \
-	not state_machine.current_state is PlayerDrinkState and \
-	not state_machine.current_state is PlayerCheckpointState:
-		state_machine.change_state(drink_state)
 	
 	if Input.is_action_just_pressed("interact") and \
 	not state_machine.current_state is PlayerCheckpointState and \
@@ -101,6 +99,7 @@ func _physics_process(_delta: float) -> void:
 	checkpoint_system.current_checkpoint and \
 	checkpoint_system.current_checkpoint.can_sit_at_checkpoint:
 		state_machine.change_state(checkpoint_state)
+	
 	
 	## Head Rotation
 	if rotation_component.rotate_towards_target and \
