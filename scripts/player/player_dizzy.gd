@@ -67,6 +67,8 @@ func enter() -> void:
 	player.locomotion_component.set_active_strategy("root_motion")
 	player.character.dizzy_victim_animations.dizzy_from_parry()
 	
+	Globals.user_interface.hud.instability_bar.play_max_instability()
+	
 	_pressed_attack = false
 	
 	dizzy_stars.visible = true
@@ -105,6 +107,10 @@ func exit() -> void:
 	player.locomotion_component.set_active_strategy("programmatic")
 	player.character.dizzy_victim_animations.disable_blend_dizzy()
 	player.instability_component.come_out_of_full_instability(0)
+	
+	Globals.user_interface.hud.instability_bar.reset()
+	Globals.user_interface.hud.instability_bar.hide_bar()
+	
 	dizzy_stars.visible = false
 	_dizzy_sfx_tween = create_tween()
 	_dizzy_sfx_tween.tween_property(
@@ -113,4 +119,5 @@ func exit() -> void:
 		-80,
 		0.5
 	)
+	
 	_timer.stop()

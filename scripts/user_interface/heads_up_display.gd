@@ -10,6 +10,7 @@ var _lock_on_target: LockOnComponent = null
 @onready var off_camera_notice_triangles: Control = $OffCameraNoticeTriangles
 @onready var wellbeing_widgets: Node2D = $WellbeingWidgets
 @onready var interaction_hints: InteractionHints = $InteractionHints
+@onready var instability_bar: PlayerInstabilityBar = $PlayerInstabilityBar
 
 @onready var _lock_on_texture: TextureRect = $LockOn
 

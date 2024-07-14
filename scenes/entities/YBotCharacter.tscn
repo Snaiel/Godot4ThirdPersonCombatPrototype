@@ -557,7 +557,7 @@ extra_cull_margin = 1.0
 lod_bias = 0.7
 
 [node name="LockOnAttachment" type="BoneAttachment3D" parent="Armature_004/GeneralSkeleton" index="2"]
-transform = Transform3D(0.998118, 0.0528234, -0.0311465, -0.0537652, 0.998096, -0.0302152, 0.0294912, 0.0318329, 0.999058, 0.00982634, 0.376828, -0.227863)
+transform = Transform3D(0.998118, 0.0528233, -0.0311465, -0.053765, 0.998096, -0.0302142, 0.0294912, 0.0318318, 0.999058, 0.00982634, 0.376828, -0.227863)
 bone_name = "UpperChest"
 bone_idx = 4
 
@@ -573,7 +573,7 @@ texture = ExtResource("3_bk74o")
 script = ExtResource("4_htgrv")
 
 [node name="HeadAttachment" type="BoneAttachment3D" parent="Armature_004/GeneralSkeleton" index="3"]
-transform = Transform3D(0.99771, -0.0108079, -0.0667649, 0.0211501, 0.987499, 0.156204, 0.064242, -0.157258, 0.985466, 0.0148129, 0.631611, -0.190403)
+transform = Transform3D(0.99771, -0.010808, -0.0667648, 0.0211503, 0.987498, 0.156205, 0.0642419, -0.157259, 0.985466, 0.0148128, 0.631611, -0.190403)
 bone_name = "Head"
 bone_idx = 6
 
