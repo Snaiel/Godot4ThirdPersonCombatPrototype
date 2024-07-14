@@ -164,8 +164,8 @@ func _from_damage_knockback() -> void:
 
 
 func _come_out_of_dizzy() -> void:
-	if not health_component.is_alive():
-		return
+	if not health_component.is_alive(): return
+	if dizzy_system.victim_being_killed: return
 	
 	dizzy_system.dizzy_victim = null
 	dizzy_victim_animations.disable_blend_dizzy()
