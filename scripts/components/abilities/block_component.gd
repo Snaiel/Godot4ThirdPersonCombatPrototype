@@ -1,3 +1,5 @@
+@tool
+
 class_name BlockComponent
 extends Node3D
 
@@ -11,7 +13,9 @@ extends Node3D
 	"res://scenes/particles/BlockParticles.tscn"
 )
 
-@export var opacity: float = 0.0
+@export_category("Shader")
+@export var color: Color = Color.WHITE
+@export var opacity: float = 0.2
 
 var animating_opacity: bool = false
 var blocking: bool = false:
@@ -20,28 +24,56 @@ var blocking: bool = false:
 		blocking = value
 
 var _particles: GPUParticles3D
+var _animation_library: AnimationLibrary
 
 @onready var mesh: MeshInstance3D = $Mesh
-@onready var anim: AnimationPlayer = $AnimationPlayer
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 func _ready():
 	_particles = block_particles_scene.instantiate()
 	opacity = 0
+	
+	_animation_library = animation_player.get_animation_library(&"")
+	_animation_library = _animation_library.duplicate()
+	animation_player.remove_animation_library("")
+	animation_player.add_animation_library("", _animation_library)
+	
+	_duplicate_animation("RESET").track_set_key_value(0, 0, color)
+	_duplicate_animation("parried").track_set_key_value(1, 0, color)
+	var blocked_anim = _duplicate_animation("blocked")
+	blocked_anim.track_set_key_value(1, 0, color)
+	blocked_anim.track_set_key_value(1, 3, color)
+	
+	#prints(_animation_library, blocked_anim)
 
 
 func _physics_process(_delta: float) -> void:
-	#if debug: prints(
-		#opacity,
-		#mesh.get_instance_shader_parameter("opacity")
-	#)
-	
-	block_animations.process_block(blocking)
-	
 	mesh.set_instance_shader_parameter(
 		"opacity",
 		opacity
 	)
+	
+	if Engine.is_editor_hint():
+		mesh.get_surface_override_material(0).set(
+			"shader_parameter/emission_color",
+			color
+		)
+		return
+	
+	#prints(
+		#animation_player.get_animation_library(""),
+		#animation_player.get_animation("blocked"),
+		#entity
+	#)
+	
+	#if debug: prints(
+		#opacity,
+		#mesh.get_instance_shader_parameter("opacity"),
+		#animating_opacity
+	#)
+	
+	block_animations.process_block(blocking)
 	
 	if animating_opacity: return
 	
@@ -53,7 +85,7 @@ func _physics_process(_delta: float) -> void:
 			0.2,
 			0.2
 		)
-	elif not anim.is_playing():
+	elif not animation_player.is_playing():
 		opacity = lerp(
 			opacity,
 			0.0,
@@ -62,11 +94,19 @@ func _physics_process(_delta: float) -> void:
 
 
 func blocked() -> void:
-	if anim.current_animation != "blocked":
+	if animation_player.current_animation != "blocked":
 		print("BLOCKED")
 		blocking = true
-		anim.play("blocked")
+		animation_player.play("blocked")
 	var particles: GPUParticles3D = _particles.duplicate()
 	add_child(particles)
 	particles.finished.connect(particles.queue_free)
 	particles.restart()
+
+
+func _duplicate_animation(animation_name: String) -> Animation:
+	var animation = animation_player.get_animation(animation_name)
+	animation = animation.duplicate()
+	_animation_library.remove_animation(animation_name)
+	_animation_library.add_animation(animation_name, animation)
+	return animation

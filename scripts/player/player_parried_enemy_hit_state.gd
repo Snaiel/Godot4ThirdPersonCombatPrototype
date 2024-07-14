@@ -59,8 +59,8 @@ func enter() -> void:
 	player.character.parry_animations.parry()
 	
 	player.block_component.animating_opacity = true
-	player.block_component.anim.stop()
-	player.block_component.anim.play("parried")
+	player.block_component.animation_player.stop()
+	player.block_component.animation_player.play("parried")
 	
 	_incoming_damage_source.get_parried()
 	if not dizzy_system.dizzy_victim:

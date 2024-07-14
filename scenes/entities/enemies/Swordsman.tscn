@@ -485,13 +485,13 @@ bones/52/rotation = Quaternion(-4.47035e-08, 0, -4.47035e-08, 1)
 surface_material_override/0 = SubResource("ShaderMaterial_yud2m")
 
 [node name="LockOnAttachment" parent="Character/Armature_004/GeneralSkeleton" index="2"]
-transform = Transform3D(1, 7.35419e-12, -2.66409e-12, -7.35419e-12, 1, -7.87391e-09, 2.66409e-12, 7.87391e-09, 1, -0.00160425, 1.34721, -0.0407335)
+transform = Transform3D(1, 7.35419e-12, -2.66409e-12, -7.35419e-12, 1, -7.87391e-09, 2.66409e-12, 7.87391e-09, 1, -0.00160424, 1.34721, -0.0407335)
 
 [node name="Crosshair" parent="Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint" index="0"]
 debug = true
 
 [node name="HeadAttachment" parent="Character/Armature_004/GeneralSkeleton" index="3"]
-transform = Transform3D(1, 7.81293e-14, -2.66409e-12, -7.81293e-14, 1, -8.33958e-09, 2.66409e-12, 8.33958e-09, 1, -0.00162621, 1.60075, -0.00138024)
+transform = Transform3D(1, 7.81293e-14, -2.66409e-12, -7.81293e-14, 1, -8.33958e-09, 2.66409e-12, 8.33958e-09, 1, -0.0016262, 1.60075, -0.00138024)
 
 [node name="Sword" parent="Character/Armature_004/GeneralSkeleton" index="4" node_paths=PackedStringArray("entity") instance=ExtResource("3_frnup")]
 transform = Transform3D(7.54791e-07, -1, -8.41021e-05, 5.5829e-07, 8.41021e-05, -1, 1, 7.54744e-07, 5.58354e-07, -0.739411, 1.43565, -0.0596858)
@@ -629,6 +629,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
 entity = NodePath("../..")
 locomotion_component = NodePath("../../LocomotionComponent")
 block_animations = NodePath("../../Character/Animations/Block")
+color = Color(0.8, 0.133333, 0.133333, 1)
 
 [node name="ParryComponent" type="Node3D" parent="Abilities" index="2" node_paths=PackedStringArray("hitbox_component", "block_component")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -638,7 +639,7 @@ block_component = NodePath("../BlockComponent")
 parry_particles_colour = Color(0.439216, 0.0392157, 0.0392157, 1)
 
 [node name="Outcomes" parent="Combat/InteractionComponent" index="2"]
-outcome_weights = Array[float]([1.0, 0.0, 0.0])
+outcome_weights = Array[float]([0.0, 1.0, 1.0])
 
 [node name="Block" type="Node" parent="Combat/InteractionComponent/Outcomes" index="1" node_paths=PackedStringArray("blackboard", "block_component", "health_component", "instability_component", "block_sfx")]
 script = ExtResource("18_g4go8")

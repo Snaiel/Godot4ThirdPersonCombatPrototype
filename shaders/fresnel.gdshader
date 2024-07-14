@@ -1,15 +1,24 @@
 shader_type spatial;
 
-// Simple 3D shader to create a force-field effect inspired by Faultless Defense from Guilty Gear Xrd.
-// In summary, it takes logic used for simple rim lighting and uses it to create the alpha instead.
+// https://godotshaders.com/shader/simple-energy-shield/
 
-render_mode blend_mix,depth_draw_never,cull_back,diffuse_burley,specular_schlick_ggx;//depth_test_disable;
+// Simple 3D shader to create a force-field effect inspired by
+// Faultless Defense from Guilty Gear Xrd. In summary,
+// it takes logic used for simple rim lighting and uses
+// it to create the alpha instead.
+
+render_mode blend_mix,
+	depth_draw_never,
+	cull_back,
+	diffuse_burley,
+	specular_schlick_ggx;
 
 uniform vec4 albedo : source_color;
 uniform vec4 emission_color : source_color;
 uniform sampler2D texture_albedo : source_color;
 uniform float emission_amount: hint_range(0.0, 16.0) = 5.0f; 
-uniform float rim_steepness : hint_range(0.0f, 16.0f) = 3.0f; //higher values mean a smaller rim.
+//higher values mean a smaller rim.
+uniform float rim_steepness : hint_range(0.0f, 16.0f) = 3.0f;
 uniform vec3 uv_scale;
 uniform vec3 uv_offset;
 
