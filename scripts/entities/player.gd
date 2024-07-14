@@ -68,7 +68,9 @@ func _ready() -> void:
 	
 	_holding_down_run_timer = Timer.new()
 	_holding_down_run_timer.timeout.connect(
-		func(): holding_down_run = true
+		func():
+			if not Input.is_action_pressed("run"): return
+			holding_down_run = true
 	)
 	add_child(_holding_down_run_timer)
 	
@@ -76,7 +78,7 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	#prints(state_machine.current_state)
+	#prints(holding_down_run)
 	
 	if Input.is_action_just_pressed("exit"):
 		get_tree().quit()
@@ -100,8 +102,9 @@ func _physics_process(_delta: float) -> void:
 	
 	# make sure the user is actually holding down
 	# the run key to make the player run
-	if Input.is_action_just_pressed("run"):
-		_holding_down_run_timer.start(0.1)
+	if Input.is_action_pressed("run") and \
+	_holding_down_run_timer.is_stopped():
+		_holding_down_run_timer.start(0.25)
 	if Input.is_action_just_released("run"):
 		_holding_down_run_timer.stop()
 		holding_down_run = false

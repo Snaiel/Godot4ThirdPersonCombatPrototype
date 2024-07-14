@@ -99,7 +99,6 @@ dizzy_victim_animations = NodePath("Animations/DizzyVictim")
 dizzy_finisher_animations = NodePath("Animations/DizzyFinisher")
 drink_animations = NodePath("Animations/Drink")
 sit_animations = NodePath("Animations/Sit")
-debug = true
 
 [node name="GeneralSkeleton" parent="Character/Armature_004" index="0"]
 bones/0/position = Vector3(0.00145094, -6.43877e-09, -0.0540123)
