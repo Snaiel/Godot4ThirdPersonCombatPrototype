@@ -76,7 +76,7 @@
 [ext_resource type="PackedScene" uid="uid://bx034hx24dlel" path="res://scenes/components/movement/DodgeComponent.tscn" id="73_gj246"]
 [ext_resource type="PackedScene" uid="uid://bp3sx3yshrcdb" path="res://scenes/components/wellbeing/InstabilityComponent.tscn" id="74_fpaug"]
 [ext_resource type="PackedScene" uid="uid://cq3fjofav3npm" path="res://scenes/components/wellbeing/HealthComponent.tscn" id="75_ofv26"]
-[ext_resource type="PackedScene" uid="uid://1elkqdybiiu1" path="res://scenes/components/abilities/AttackComponent.tscn" id="77_sr5k1"]
+[ext_resource type="PackedScene" uid="uid://1elkqdybiiu1" path="res://scenes/components/abilities/MeleeComponent.tscn" id="77_sr5k1"]
 [ext_resource type="PackedScene" uid="uid://b616qwvblkmpo" path="res://scenes/components/abilities/ShieldComponent.tscn" id="78_gb0qq"]
 [ext_resource type="PackedScene" uid="uid://bg5d27eyqwsfd" path="res://scenes/components/abilities/ParryComponent.tscn" id="79_4iupg"]
 [ext_resource type="PackedScene" uid="uid://cbs5mcpj3x6im" path="res://scenes/components/utility/HealthChargeComponent.tscn" id="80_ipdct"]
