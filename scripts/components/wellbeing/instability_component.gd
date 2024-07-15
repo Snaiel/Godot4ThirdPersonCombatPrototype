@@ -115,4 +115,4 @@ func process_block():
 
 func process_parry():
 	if not enabled: return
-	increment_instability(8, max_from_parrying, true)
+	increment_instability(8, not max_from_parrying, true)
