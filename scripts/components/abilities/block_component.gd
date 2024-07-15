@@ -36,12 +36,12 @@ func _ready():
 	
 	_animation_library = animation_player.get_animation_library(&"")
 	_animation_library = _animation_library.duplicate()
-	animation_player.remove_animation_library("")
-	animation_player.add_animation_library("", _animation_library)
+	animation_player.remove_animation_library(&"")
+	animation_player.add_animation_library(&"", _animation_library)
 	
-	_duplicate_animation("RESET").track_set_key_value(0, 0, color)
-	_duplicate_animation("parried").track_set_key_value(1, 0, color)
-	var blocked_anim = _duplicate_animation("blocked")
+	_duplicate_animation(&"RESET").track_set_key_value(0, 0, color)
+	_duplicate_animation(&"parried").track_set_key_value(1, 0, color)
+	var blocked_anim = _duplicate_animation(&"blocked")
 	blocked_anim.track_set_key_value(1, 0, color)
 	blocked_anim.track_set_key_value(1, 3, color)
 	
@@ -104,7 +104,7 @@ func blocked() -> void:
 	particles.restart()
 
 
-func _duplicate_animation(animation_name: String) -> Animation:
+func _duplicate_animation(animation_name: StringName) -> Animation:
 	var animation = animation_player.get_animation(animation_name)
 	animation = animation.duplicate()
 	_animation_library.remove_animation(animation_name)
