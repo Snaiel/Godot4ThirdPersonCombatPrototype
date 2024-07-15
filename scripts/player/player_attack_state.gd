@@ -49,7 +49,6 @@ func process_player() -> void:
 	player.melee_component.stop_attacking():
 		parent_state.change_state(block_state)
 		return
-	
 
 
 func exit() -> void:
