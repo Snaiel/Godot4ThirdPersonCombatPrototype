@@ -1115,6 +1115,7 @@ jump_sfx = NodePath("../../Character/Audio/Jump")
 land_sfx = NodePath("../../Character/Audio/JumpLand")
 
 [node name="DodgeComponent" parent="Movement" node_paths=PackedStringArray("entity", "rotation_component", "locomotion_component", "jump_component", "sfx") instance=ExtResource("73_gj246")]
+dodge_strength = 6.0
 entity = NodePath("../..")
 rotation_component = NodePath("../../Rotation/PlayerRotationComponent")
 locomotion_component = NodePath("../LocomotionComponent")

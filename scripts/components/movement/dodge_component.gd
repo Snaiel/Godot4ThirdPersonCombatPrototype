@@ -59,9 +59,9 @@ func _dodge() -> void:
 	
 	if rotation_component.move_direction.length() > 0.05:
 		locomotion_component.desired_velocity += rotation_component\
-			.move_direction.normalized() * dodge_strength
+			.move_direction.normalized() * dodge_strength * 1.2
 	elif entity.lock_on_target:
-		locomotion_component.desired_velocity += -Vector3(
+		locomotion_component.desired_velocity = -Vector3(
 			rotation_component.looking_direction.x,
 			0,
 			rotation_component.looking_direction.z
@@ -69,6 +69,11 @@ func _dodge() -> void:
 	else:
 		locomotion_component.desired_velocity += rotation_component\
 			.looking_direction.normalized() * dodge_strength
+	
+	#prints(
+		#locomotion_component.desired_velocity,
+		#locomotion_component.desired_velocity.length()
+	#)
 	
 	sfx.play()
 	
