@@ -145,4 +145,4 @@ func _on_hitbox_component_damage_source_hit(incoming_damage_source: DamageSource
 		return
 	print(state_machine.current_state)
 	health_component.incoming_damage(incoming_damage_source)
-	instability_component.process_hit()
+	instability_component.got_hit()

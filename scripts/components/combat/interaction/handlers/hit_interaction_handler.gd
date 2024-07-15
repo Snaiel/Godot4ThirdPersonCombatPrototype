@@ -15,7 +15,7 @@ func handle_interaction(incoming_damage_source: DamageSource) -> bool:
 	
 	blackboard.set_value("got_hit", true)
 	health_component.incoming_damage(incoming_damage_source)
-	instability_component.process_hit()
+	instability_component.got_hit()
 	hit_and_death_animations.hit()
 	if hit_sfx: hit_sfx.play()
 	

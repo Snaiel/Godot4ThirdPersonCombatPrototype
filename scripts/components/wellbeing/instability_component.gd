@@ -10,9 +10,11 @@ signal full_instability
 @export var enabled: bool = true
 @export var hitbox: HitboxComponent
 @export var weapons: Array[DamageSource]
-# can instability increase when an opposition parries us
+## can instability increase when we get parried
 @export var instability_when_parried: bool = true
-# can we reach max instability if we parry others
+## can we reach max instability if we get parried
+@export var max_from_parried: bool = true
+## can we reach max instability if we parry others
 @export var max_from_parrying: bool = true
 
 @export_category("Instability")
@@ -53,27 +55,17 @@ func _physics_process(_delta):
 		instability -= reduction_rate * _delta
 
 
-func got_parried(amount: float, readied_finisher: bool = true) -> void:
-	if not enabled: return
-	if not instability_when_parried: return
-	increment_instability(amount, true, readied_finisher)
-
-
-func come_out_of_full_instability(multiplier: float) -> void:
-	_reduce_instability = true
-	instability = instability * multiplier
-
-
-func is_full_instability() -> bool:
-	return instability >= max_instability
-
-
 func increment_instability(
 		value: float,
+		capped: bool = false,
 		from_parry: bool = false,
 		readied_finisher: bool = false
 	) -> void:
+	if not enabled: return
 	if is_full_instability(): return
+	
+	if capped and instability + value >= max_instability:
+		value = max_instability - instability - 0.01
 	
 	instability += value
 	
@@ -91,23 +83,36 @@ func increment_instability(
 		_instability_reduction_pause_timer.start()
 
 
-func process_hit():
+func come_out_of_full_instability(multiplier: float) -> void:
+	_reduce_instability = true
+	instability = instability * multiplier
+
+
+func is_full_instability() -> bool:
+	return instability >= max_instability
+
+
+func got_hit():
 	if not enabled: return
-	increment_instability(25, false)
+	increment_instability(25)
+
+
+func got_parried(amount: float, readied_finisher: bool = true) -> void:
+	if not enabled: return
+	if not instability_when_parried: return
+	increment_instability(
+		amount,
+		not max_from_parried,
+		true,
+		readied_finisher
+	)
 
 
 func process_block():
 	if not enabled: return
-	increment_instability(15, false)
+	increment_instability(15)
 
 
 func process_parry():
 	if not enabled: return
-	var value: float = 8
-	if instability + value >= max_instability and not max_from_parrying:
-		increment_instability(
-			max_instability - instability - 0.01,
-			false
-		)
-	else:
-		increment_instability(value, false)
+	increment_instability(8, max_from_parrying, true)

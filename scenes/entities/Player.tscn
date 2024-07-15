@@ -1125,6 +1125,7 @@ sfx = NodePath("../../Character/Audio/Dodge")
 [node name="InstabilityComponent" parent="Wellbeing" node_paths=PackedStringArray("hitbox", "weapons") instance=ExtResource("74_fpaug")]
 hitbox = NodePath("../../HitboxComponent")
 weapons = [NodePath("../../Character/Armature_004/GeneralSkeleton/Sword")]
+max_from_parried = false
 max_from_parrying = false
 reduction_pause_length = 5.0
 reduction_rate = 5.0
