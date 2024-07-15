@@ -610,7 +610,7 @@ default_strategy = "root_motion"
 
 [node name="InstabilityComponent" parent="Wellbeing" index="2" node_paths=PackedStringArray("weapons")]
 weapons = [NodePath("../../Character/Armature_004/GeneralSkeleton/Sword")]
-max_instability = 5.0
+max_instability = 1000.0
 
 [node name="MeleeComponent" type="Node" parent="Abilities" index="0" node_paths=PackedStringArray("entity", "blackboard", "instability_component", "outcomes_handler", "melee_animations", "locomotion_component")]
 script = ExtResource("15_pkaik")
@@ -778,7 +778,22 @@ right_operand = "true"
 
 [node name="SetCanMoveTrue" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack" index="7" instance=ExtResource("34_1528r")]
 
-[node name="StayOrChase" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget" index="2"]
+[node name="ParriedHit" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget" index="2"]
+script = ExtResource("23_mp67g")
+
+[node name="IsParriedHitTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ParriedHit" index="0"]
+script = ExtResource("26_t4uqh")
+left_operand = "get_value(\"parried_hit\")"
+right_operand = "true"
+
+[node name="SetCanAttackTrue" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ParriedHit" index="1" instance=ExtResource("42_y1g46")]
+
+[node name="SetParriedHitFalse" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/ParriedHit" index="2"]
+script = ExtResource("39_yg2yw")
+key = "\"parried_hit\""
+value = "false"
+
+[node name="StayOrChase" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget" index="3"]
 script = ExtResource("21_763qd")
 
 [node name="Unreachable" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase" index="0"]

@@ -13,6 +13,8 @@ extends InteractionHandler
 func handle_interaction(incoming_damage_source: DamageSource) -> bool:
 	interaction.emit()
 	
+	blackboard.set_value("parried_hit", true)
+	
 	parry_component.in_parry_window = true
 	parry_component.play_parry_particles()
 	parry_animations.parry()
