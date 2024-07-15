@@ -77,7 +77,7 @@
 [ext_resource type="PackedScene" uid="uid://bp3sx3yshrcdb" path="res://scenes/components/wellbeing/InstabilityComponent.tscn" id="74_fpaug"]
 [ext_resource type="PackedScene" uid="uid://cq3fjofav3npm" path="res://scenes/components/wellbeing/HealthComponent.tscn" id="75_ofv26"]
 [ext_resource type="PackedScene" uid="uid://1elkqdybiiu1" path="res://scenes/components/abilities/AttackComponent.tscn" id="77_sr5k1"]
-[ext_resource type="PackedScene" uid="uid://b616qwvblkmpo" path="res://scenes/components/abilities/BlockComponent.tscn" id="78_gb0qq"]
+[ext_resource type="PackedScene" uid="uid://b616qwvblkmpo" path="res://scenes/components/abilities/ShieldComponent.tscn" id="78_gb0qq"]
 [ext_resource type="PackedScene" uid="uid://bg5d27eyqwsfd" path="res://scenes/components/abilities/ParryComponent.tscn" id="79_4iupg"]
 [ext_resource type="PackedScene" uid="uid://cbs5mcpj3x6im" path="res://scenes/components/utility/HealthChargeComponent.tscn" id="80_ipdct"]
 [ext_resource type="PackedScene" uid="uid://mmj6qxe250co" path="res://scenes/components/utility/FadeComponent.tscn" id="81_wg583"]
@@ -1127,6 +1127,7 @@ hitbox = NodePath("../../HitboxComponent")
 weapons = [NodePath("../../Character/Armature_004/GeneralSkeleton/Sword")]
 max_from_parried = false
 max_from_parrying = false
+max_instability = 500.0
 reduction_pause_length = 5.0
 reduction_rate = 5.0
 
@@ -1150,7 +1151,6 @@ debug = true
 entity = NodePath("../..")
 locomotion_component = NodePath("../../Movement/LocomotionComponent")
 block_animations = NodePath("../../Character/Animations/Block")
-default_opacity = 0.2
 
 [node name="ParryComponent" parent="Combat" node_paths=PackedStringArray("hitbox_component", "shield_component") instance=ExtResource("79_4iupg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

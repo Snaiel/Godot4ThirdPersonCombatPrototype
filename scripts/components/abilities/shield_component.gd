@@ -31,10 +31,13 @@ var _animation_library: AnimationLibrary
 
 @onready var mesh: MeshInstance3D = $Mesh
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var light: OmniLight3D = $Light
 
 
 func _ready():
 	_particles = block_particles_scene.instantiate()
+	light.light_energy = 0
+	
 	opacity = 0
 	
 	_animation_library = animation_player.get_animation_library(&"")
