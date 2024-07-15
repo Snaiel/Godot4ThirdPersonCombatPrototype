@@ -984,12 +984,13 @@ block_state = NodePath("../Block")
 dizzy_finisher_state = NodePath("../DizzyFinisher")
 player = NodePath("../..")
 
-[node name="ParriedEnemyHit" type="Node" parent="StateMachine" node_paths=PackedStringArray("locomotion_component", "attack_state", "block_state", "parry_state", "dizzy_finisher_state", "sfx", "player")]
+[node name="ParriedEnemyHit" type="Node" parent="StateMachine" node_paths=PackedStringArray("locomotion_component", "attack_state", "block_state", "parry_state", "dodge_state", "dizzy_finisher_state", "sfx", "player")]
 script = ExtResource("20_1olui")
 locomotion_component = NodePath("../../Movement/LocomotionComponent")
 attack_state = NodePath("../Attack")
 block_state = NodePath("../Block")
 parry_state = NodePath("../Parry")
+dodge_state = NodePath("../Dodge")
 dizzy_finisher_state = NodePath("../DizzyFinisher")
 sfx = NodePath("../../Character/Audio/Parry")
 player = NodePath("../..")

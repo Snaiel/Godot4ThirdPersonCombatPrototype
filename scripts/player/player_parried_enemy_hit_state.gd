@@ -7,6 +7,7 @@ extends PlayerStateMachine
 @export var attack_state: PlayerAttackState
 @export var block_state: PlayerBlockState
 @export var parry_state: PlayerParryState
+@export var dodge_state: PlayerDodgeState
 @export var dizzy_finisher_state: PlayerDizzyFinisherState
 
 @export var sfx: AudioStreamPlayer3D
@@ -84,6 +85,11 @@ func process_player() -> void:
 		
 	if Input.is_action_just_pressed("block"):
 		parent_state.change_state(parry_state)
+		return
+	
+	if Input.is_action_just_pressed("run"):
+		player.locomotion_component.reset_secondary_movement()
+		parent_state.change_state(dodge_state)
 		return
 
 
