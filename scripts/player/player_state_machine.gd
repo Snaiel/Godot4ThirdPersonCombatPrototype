@@ -2,6 +2,7 @@ class_name PlayerStateMachine
 extends Node
 
 
+@export var debug: bool = false
 @export var player: Player
 
 var current_state: PlayerStateMachine
@@ -12,10 +13,8 @@ var has_sub_states: bool = false
 
 
 func _ready() -> void:
-	if get_child_count() > 0:
-		has_sub_states = true
-	else:
-		return
+	if get_child_count() <= 0: return
+	has_sub_states = true
 	
 	default_state = get_child(0)
 	current_state = default_state
@@ -26,9 +25,9 @@ func _ready() -> void:
 
 
 func change_state(new_state: PlayerStateMachine) -> void:
-	prints(current_state, new_state)
-	if not has_sub_states:
-		return
+	if debug: prints(current_state, new_state)
+	
+	if not has_sub_states: return
 	
 	current_state.exit_state_machine()
 	previous_state = current_state
@@ -37,34 +36,24 @@ func change_state(new_state: PlayerStateMachine) -> void:
 
 
 func transition_to_default_state() -> void:
-	if not default_state:
-		return
-	
+	if not default_state: return
 	change_state(default_state)
 
 
 func transition_to_previous_state() -> void:
-	if not previous_state:
-		return
-	
+	if not previous_state: return
 	change_state(previous_state)
 
 
 func enter_state_machine() -> void:
 	enter()
-	
-	if not has_sub_states:
-		return
-	
+	if not has_sub_states: return
 	current_state.enter_state_machine()
 
 
 func process_player_state_machine() -> void:
 	process_player()
-	
-	if not has_sub_states:
-		return
-	
+	if not has_sub_states: return
 	current_state.process_player_state_machine()
 
 
@@ -77,10 +66,7 @@ func process_movement_animations_state_machine() -> void:
 
 func exit_state_machine() -> void:
 	exit()
-	
-	if not has_sub_states:
-		return
-	
+	if not has_sub_states: return
 	current_state.exit_state_machine()
 
 
