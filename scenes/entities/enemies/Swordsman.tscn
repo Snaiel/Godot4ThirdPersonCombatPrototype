@@ -560,6 +560,7 @@ anim_tree = NodePath("../../../AnimationTree")
 
 [node name="Outward" type="Node" parent="Character/Animations/Melee" index="1" node_paths=PackedStringArray("anim_tree")]
 script = ExtResource("6_8p66y")
+trim = 0.2
 anim_tree = NodePath("../../../AnimationTree")
 
 [node name="Thrust" type="Node" parent="Character/Animations/Melee" index="2" node_paths=PackedStringArray("anim_tree")]
