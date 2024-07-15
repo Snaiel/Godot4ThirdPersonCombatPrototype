@@ -43,7 +43,7 @@ func _ready():
 			_can_reduce_instability = false
 			_pause_before_reducing_instability_timer.start()
 			
-			player.block_component.blocked()
+			player.shield_component.blocked()
 			player.instability_component.process_block()
 			
 			block_sfx.play()
@@ -51,7 +51,7 @@ func _ready():
 
 
 func enter() -> void:
-	player.block_component.blocking = true
+	player.shield_component.blocking = true
 	player.melee_component.interrupt_attack()
 	
 	_can_reduce_instability = false
@@ -93,6 +93,6 @@ func process_movement_animations() -> void:
 
 func exit() -> void:
 	_pause_before_reducing_instability_timer.stop()
-	player.block_component.blocking = false
+	player.shield_component.blocking = false
 	blocking_sfx.stop()
 	movement_animations.speed = _prev_anim_walk_speed

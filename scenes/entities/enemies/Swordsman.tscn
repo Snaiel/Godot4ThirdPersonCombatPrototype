@@ -624,38 +624,38 @@ weapons = {
 "right_hand": NodePath("../../Character/Armature_004/GeneralSkeleton/Sword")
 }
 
-[node name="BlockComponent" parent="Abilities" index="1" node_paths=PackedStringArray("entity", "locomotion_component", "block_animations") instance=ExtResource("16_ai8tk")]
+[node name="ShieldComponent" parent="Abilities" index="1" node_paths=PackedStringArray("entity", "locomotion_component", "block_animations") instance=ExtResource("16_ai8tk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
 entity = NodePath("../..")
 locomotion_component = NodePath("../../LocomotionComponent")
 block_animations = NodePath("../../Character/Animations/Block")
 color = Color(0.8, 0.133333, 0.133333, 1)
-opacity = 0.0
+default_opacity = 0.2
 
-[node name="ParryComponent" type="Node3D" parent="Abilities" index="2" node_paths=PackedStringArray("hitbox_component", "block_component")]
+[node name="ParryComponent" type="Node3D" parent="Abilities" index="2" node_paths=PackedStringArray("hitbox_component", "shield_component")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("17_oabxi")
 hitbox_component = NodePath("../../HitboxComponent")
-block_component = NodePath("../BlockComponent")
+shield_component = NodePath("../ShieldComponent")
 parry_particles_colour = Color(0.439216, 0.0392157, 0.0392157, 1)
 
 [node name="Outcomes" parent="Combat/InteractionComponent" index="2"]
 outcome_weights = Array[float]([0.0, 1.0, 1.0])
 
-[node name="Block" type="Node" parent="Combat/InteractionComponent/Outcomes" index="1" node_paths=PackedStringArray("blackboard", "block_component", "health_component", "instability_component", "block_sfx")]
+[node name="Block" type="Node" parent="Combat/InteractionComponent/Outcomes" index="1" node_paths=PackedStringArray("blackboard", "shield_component", "health_component", "instability_component", "block_sfx")]
 script = ExtResource("18_g4go8")
 blackboard = NodePath("../../../../Blackboard")
-block_component = NodePath("../../../../Abilities/BlockComponent")
+shield_component = NodePath("../../../../Abilities/ShieldComponent")
 health_component = NodePath("../../../../Wellbeing/HealthComponent")
 instability_component = NodePath("../../../../Wellbeing/InstabilityComponent")
 block_sfx = NodePath("../../../../Character/Audio/Block")
 
-[node name="Parry" type="Node" parent="Combat/InteractionComponent/Outcomes" index="2" node_paths=PackedStringArray("blackboard", "parry_component", "parry_animations", "block_component", "parry_sfx", "instability_component")]
+[node name="Parry" type="Node" parent="Combat/InteractionComponent/Outcomes" index="2" node_paths=PackedStringArray("blackboard", "parry_component", "parry_animations", "shield_component", "parry_sfx", "instability_component")]
 script = ExtResource("19_leb5d")
 blackboard = NodePath("../../../../Blackboard")
 parry_component = NodePath("../../../../Abilities/ParryComponent")
 parry_animations = NodePath("../../../../Character/Animations/Parry")
-block_component = NodePath("../../../../Abilities/BlockComponent")
+shield_component = NodePath("../../../../Abilities/ShieldComponent")
 parry_sfx = NodePath("../../../../Character/Audio/Parry")
 instability_component = NodePath("../../../../Wellbeing/InstabilityComponent")
 

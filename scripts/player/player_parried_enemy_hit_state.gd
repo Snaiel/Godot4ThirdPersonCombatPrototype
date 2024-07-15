@@ -33,8 +33,8 @@ func _ready():
 		func(_damage_source: DamageSource):
 			if parent_state.current_state != self: return
 			block_state.block_sfx.play()
-			player.block_component.blocking = true
-			player.block_component.blocked()
+			player.shield_component.blocking = true
+			player.shield_component.blocked()
 	)
 	
 	_timer = Timer.new()
@@ -49,7 +49,7 @@ func _ready():
 
 func enter() -> void:
 	locomotion_component.speed = 3
-	player.block_component.blocking = true
+	player.shield_component.blocking = true
 	
 	player.instability_component.process_parry()
 	
@@ -58,9 +58,9 @@ func enter() -> void:
 	
 	player.character.parry_animations.parry()
 	
-	player.block_component.animating_opacity = true
-	player.block_component.animation_player.stop()
-	player.block_component.animation_player.play("parried")
+	player.shield_component.animating_opacity = true
+	player.shield_component.animation_player.stop()
+	player.shield_component.animation_player.play("parried")
 	
 	_incoming_damage_source.get_parried()
 	if not dizzy_system.dizzy_victim:
@@ -88,6 +88,6 @@ func process_player() -> void:
 
 
 func exit() -> void:
-	player.block_component.animating_opacity = false
-	player.block_component.blocking = false
+	player.shield_component.animating_opacity = false
+	player.shield_component.blocking = false
 	_timer.stop()

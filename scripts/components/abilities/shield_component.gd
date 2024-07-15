@@ -1,12 +1,14 @@
 @tool
 
-class_name BlockComponent
+class_name ShieldComponent
 extends Node3D
 
 
 @export var debug: bool = false
 @export var entity: CharacterBody3D
 @export var locomotion_component: LocomotionComponent
+
+@export_category("Blocking")
 @export var block_animations: BlockAnimations
 @export var walk_speed_while_blocking: float = 0.8
 @export var block_particles_scene: PackedScene = preload(
@@ -15,8 +17,9 @@ extends Node3D
 
 @export_category("Shader")
 @export var color: Color = Color.WHITE
-@export var opacity: float = 0.2
+@export_range(0, 1.0) var default_opacity: float = 0.2
 
+var opacity: float = 0.0
 var animating_opacity: bool = false
 var blocking: bool = false:
 	set(value):
@@ -49,32 +52,26 @@ func _ready():
 
 
 func _physics_process(_delta: float) -> void:
+	
+	mesh.get_surface_override_material(0).set(
+		"shader_parameter/emission_color",
+		color
+	)
+	
+	mesh.set_instance_shader_parameter(
+		"opacity",
+		default_opacity
+	)
+	
+	if Engine.is_editor_hint(): return
+	
 	mesh.set_instance_shader_parameter(
 		"opacity",
 		opacity
 	)
 	
-	if Engine.is_editor_hint():
-		mesh.get_surface_override_material(0).set(
-			"shader_parameter/emission_color",
-			color
-		)
-		return
-	
-	#prints(
-		#animation_player.get_animation_library(""),
-		#animation_player.get_animation("blocked"),
-		#entity
-	#)
-	
-	#if debug: prints(
-		#opacity,
-		#mesh.get_instance_shader_parameter("opacity"),
-		#animating_opacity
-	#)
-	
 	block_animations.process_block(blocking)
-	
+
 	if animating_opacity: return
 	
 	if blocking:
@@ -82,7 +79,7 @@ func _physics_process(_delta: float) -> void:
 			locomotion_component.speed = walk_speed_while_blocking
 		opacity = lerp(
 			opacity,
-			0.2,
+			default_opacity,
 			0.2
 		)
 	elif not animation_player.is_playing():

@@ -10,7 +10,7 @@ extends CharacterBody3D
 @export var health_component: HealthComponent
 @export var instability_component: InstabilityComponent
 @export var jump_component: JumpComponent
-@export var block_component: BlockComponent
+@export var shield_component: ShieldComponent
 @export var dodge_component: DodgeComponent
 @export var rotation_component: PlayerRotationComponent
 @export var head_rotation_component: HeadRotationComponent

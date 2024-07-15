@@ -6,7 +6,7 @@ signal parried_incoming_hit(incoming_damage_source: DamageSource)
 
 
 @export var hitbox_component: HitboxComponent
-@export var block_component: BlockComponent
+@export var shield_component: ShieldComponent
 @export var parry_particles_scene: PackedScene = preload(
 	"res://scenes/particles/ParryParticles.tscn"
 )

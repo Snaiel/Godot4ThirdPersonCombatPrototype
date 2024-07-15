@@ -535,7 +535,7 @@ stream_0/weight = 1.0
 radius = 0.3
 height = 1.8
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("state_machine", "character", "locomotion_component", "hitbox_component", "health_component", "instability_component", "jump_component", "block_component", "dodge_component", "rotation_component", "head_rotation_component", "melee_component", "parry_component", "fade_component", "health_charge_component", "weapon", "lock_on_attachment_point", "footsteps") groups=["player"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("state_machine", "character", "locomotion_component", "hitbox_component", "health_component", "instability_component", "jump_component", "shield_component", "dodge_component", "rotation_component", "head_rotation_component", "melee_component", "parry_component", "fade_component", "health_charge_component", "weapon", "lock_on_attachment_point", "footsteps") groups=["player"]]
 collision_layer = 2
 collision_mask = 9
 script = ExtResource("1_lgfyt")
@@ -546,7 +546,7 @@ hitbox_component = NodePath("HitboxComponent")
 health_component = NodePath("Wellbeing/HealthComponent")
 instability_component = NodePath("Wellbeing/InstabilityComponent")
 jump_component = NodePath("Movement/JumpComponent")
-block_component = NodePath("Combat/BlockComponent")
+shield_component = NodePath("Combat/ShieldComponent")
 dodge_component = NodePath("Movement/DodgeComponent")
 rotation_component = NodePath("Rotation/PlayerRotationComponent")
 head_rotation_component = NodePath("Rotation/HeadRotationComponent")
@@ -1144,17 +1144,18 @@ weapons = {
 "right_hand": NodePath("../../Character/Armature_004/GeneralSkeleton/Sword")
 }
 
-[node name="BlockComponent" parent="Combat" node_paths=PackedStringArray("entity", "locomotion_component", "block_animations") instance=ExtResource("78_gb0qq")]
+[node name="ShieldComponent" parent="Combat" node_paths=PackedStringArray("entity", "locomotion_component", "block_animations") instance=ExtResource("78_gb0qq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, -0.08)
 debug = true
 entity = NodePath("../..")
 locomotion_component = NodePath("../../Movement/LocomotionComponent")
 block_animations = NodePath("../../Character/Animations/Block")
+default_opacity = 0.2
 
-[node name="ParryComponent" parent="Combat" node_paths=PackedStringArray("hitbox_component", "block_component") instance=ExtResource("79_4iupg")]
+[node name="ParryComponent" parent="Combat" node_paths=PackedStringArray("hitbox_component", "shield_component") instance=ExtResource("79_4iupg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 hitbox_component = NodePath("../../HitboxComponent")
-block_component = NodePath("../BlockComponent")
+shield_component = NodePath("../ShieldComponent")
 parry_particles_colour = Color(0.027451, 0.278431, 0.427451, 1)
 
 [node name="HealthChargeComponent" parent="." node_paths=PackedStringArray("entity", "drink_animations", "health_component") instance=ExtResource("80_ipdct")]

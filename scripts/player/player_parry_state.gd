@@ -21,7 +21,7 @@ func _ready():
 
 func enter() -> void:
 	player.parry_component.parry()
-	player.block_component.blocking = true
+	player.shield_component.blocking = true
 	player.melee_component.interrupt_attack()
 
 
@@ -48,4 +48,4 @@ func process_player() -> void:
 
 
 func exit() -> void:
-	player.block_component.blocking = false
+	player.shield_component.blocking = false
