@@ -77,16 +77,15 @@ func process_player() -> void:
 		return
 	
 	player.set_rotation_target_to_lock_on_target()
-	
-	if player.lock_on_target:
-		player.rotation_component.rotate_towards_target = true
-	else:
-		player.rotation_component.rotate_towards_target = false
+	player.rotation_component.rotate_towards_target = \
+		true if player.lock_on_target else false
 
 
 func process_movement_animations() -> void:
-	player.character.idle_animations.active = player.lock_on_target != null
-	player.character.movement_animations.dir = player.input_direction
+	var locked_on: bool = player.lock_on_target != null
+	player.character.idle_animations.active = locked_on
+	player.character.movement_animations.dir = \
+		player.input_direction if locked_on else Vector3.FORWARD
 	player.character.movement_animations.set_state("walk")
 	movement_animations.speed = 0.5
 
