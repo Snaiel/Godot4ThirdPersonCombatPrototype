@@ -2,11 +2,10 @@ class_name MeleeAttack
 extends BaseAnimations
 
 
-@export_category("Secondary Movement Settings")
-@export var move_speed: float = 6
-@export var time: float = 5
-@export var friction: float = 15
-@export var direction: Vector3 = Vector3.ZERO
+@export var damage_attributes: DamageAttributes = \
+	preload("res://resources/DefaultDamageAttributes.tres")
+@export var secondary_movement: SecondaryMovement = \
+	preload("res://resources/DefaultMeleeAttackSecondaryMovement.tres")
 
 var attack_name: StringName
 

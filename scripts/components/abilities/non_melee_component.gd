@@ -102,10 +102,7 @@ func _receive_movement(action: NonMeleeAction) -> void:
 		return
 	
 	locomotion_component.set_secondary_movement(
-		action.move_speed,
-		action.time,
-		action.friction,
-		action.direction
+		action.secondary_movement
 	)
 
 

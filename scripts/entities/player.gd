@@ -55,10 +55,6 @@ func _ready() -> void:
 			health_component.decrement_health(1)
 	)
 	
-	hitbox_component.damage_source_hit.connect(
-		_on_hitbox_component_damage_source_hit
-	)
-	
 	melee_component.can_rotate.connect(
 		func(flag: bool): rotation_component.can_rotate = flag
 	)
@@ -132,17 +128,3 @@ func process_default_movement_animations() -> void:
 
 func _on_lock_on_system_lock_on(target: LockOnComponent) -> void:
 	lock_on_target = target
-
-
-func _on_hitbox_component_damage_source_hit(incoming_damage_source: DamageSource) -> void:
-	if state_machine.current_state is PlayerParryState or \
-	state_machine.current_state is PlayerParriedEnemyHitState or \
-	state_machine.current_state is PlayerBlockState or \
-	(
-		state_machine.current_state is PlayerDizzyState and \
-		state_machine.previous_state is PlayerBlockState
-	):
-		return
-	print(state_machine.current_state)
-	health_component.incoming_damage(incoming_damage_source)
-	instability_component.got_hit()

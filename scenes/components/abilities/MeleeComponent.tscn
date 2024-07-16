@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://scripts/components/abilities/melee_component.gd" id="1_kkb76"]
 
-[node name="AttackComponent" type="Node"]
+[node name="MeleeComponent" type="Node"]
 script = ExtResource("1_kkb76")

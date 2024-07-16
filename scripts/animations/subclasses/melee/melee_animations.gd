@@ -3,6 +3,7 @@ extends BaseAnimations
 
 
 signal secondary_movement(attack: MeleeAttack)
+signal damage_attributes(attributes: DamageAttributes)
 signal can_damage(flag: bool, weapon_names: Array[StringName])
 signal can_rotate(flag: bool)
 signal can_attack_again(flag: bool)
@@ -58,6 +59,7 @@ func _physics_process(_delta: float) -> void:
 	if _can_play_animation and _intent_to_attack:
 		_transition_legs = 0
 		attacks[_level].play_attack()
+		damage_attributes.emit(attacks[_level].damage_attributes)
 		_can_play_animation = false
 		_intent_to_attack = false
 	

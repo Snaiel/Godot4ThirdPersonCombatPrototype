@@ -4,6 +4,7 @@ extends Node
 
 signal can_rotate(flag: bool)
 
+
 @export var debug: bool = false
 @export var melee_animations: MeleeAnimations
 @export var locomotion_component: LocomotionComponent
@@ -25,6 +26,7 @@ var _attack_interrupted: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	melee_animations.secondary_movement.connect(_receive_movement)
+	melee_animations.damage_attributes.connect(_receive_damage_attributes)
 	melee_animations.can_rotate.connect(_receive_rotation)
 	melee_animations.can_damage.connect(_receive_can_damage)
 	melee_animations.can_attack_again.connect(_receive_can_attack_again)
@@ -108,16 +110,18 @@ func _receive_movement(melee_attack: MeleeAttack) -> void:
 		return
 	
 	locomotion_component.set_secondary_movement(
-		melee_attack.move_speed,
-		melee_attack.time,
-		melee_attack.friction,
-		melee_attack.direction
+		melee_attack.secondary_movement
 	)
 
 
+func _receive_damage_attributes(attributes: DamageAttributes) -> void:
+	for weapon_path in weapons.values():
+		var weapon: DamageSource = get_node(weapon_path)
+		weapon.damage_attributes = attributes
+
+
 func _receive_can_damage(can_damage: bool, weapon_names: Array[StringName]) -> void:
-	if _attack_interrupted:
-		return
+	if _attack_interrupted: return
 	
 	prints(can_damage, weapon_names)
 	
@@ -126,11 +130,11 @@ func _receive_can_damage(can_damage: bool, weapon_names: Array[StringName]) -> v
 		return
 	
 	for weapon_name in weapon_names:
-		if not weapons.has(weapon_name):
-			continue
-		
+		prints(weapon_name, weapons)
+		if not weapons.has(weapon_name): continue
 		var weapon: DamageSource = get_node(weapons[weapon_name])
 		weapon.can_damage = can_damage
+		prints(weapon, weapon.can_damage)
 
 
 func _receive_can_attack_again(can_attack_again: bool) -> void:

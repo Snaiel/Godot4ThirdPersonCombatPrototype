@@ -47,7 +47,11 @@ func _ready():
 	add_child(_instability_reduction_pause_timer)
 	
 	for weapon in weapons:
-		weapon.parried.connect(got_parried.bind(35))
+		weapon.parried.connect(
+			got_parried.bind(
+				weapon.damage_attributes.got_parried_instability
+			)
+		)
 
 
 func _physics_process(_delta):
@@ -92,11 +96,7 @@ func is_full_instability() -> bool:
 	return instability >= max_instability
 
 
-func got_hit():
-	if not enabled: return
-	increment_instability(25)
-
-
+## This entity got parried by another entity
 func got_parried(amount: float, readied_finisher: bool = true) -> void:
 	if not enabled: return
 	if not instability_when_parried: return
@@ -108,11 +108,11 @@ func got_parried(amount: float, readied_finisher: bool = true) -> void:
 	)
 
 
-func process_block():
+## This entity parries an incoming weapon
+func process_parry(amount: float):
 	if not enabled: return
-	increment_instability(15)
-
-
-func process_parry():
-	if not enabled: return
-	increment_instability(8, not max_from_parrying, true)
+	increment_instability(
+		amount,
+		not max_from_parrying,
+		true
+	)

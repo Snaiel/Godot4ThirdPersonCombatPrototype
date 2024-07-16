@@ -32,7 +32,10 @@ func handle_interaction(incoming_damage_source: DamageSource) -> bool:
 	blackboard.set_value("attack", false)
 	beehave_tree.interrupt()
 	
-	locomotion_component.knockback(incoming_damage_source.entity.global_position)
+	locomotion_component.knockback(
+		incoming_damage_source.damage_attributes.knockback,
+		incoming_damage_source.entity.global_position
+	)
 	notice_component.transition_to_aggro()
 	
 	var rng: float = RandomNumberGenerator.new().randf() * _total_weight

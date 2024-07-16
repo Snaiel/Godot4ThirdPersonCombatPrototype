@@ -33,10 +33,10 @@ func _ready():
 	
 	player.hitbox_component.damage_source_hit.connect(
 		func(incoming_damage_source: DamageSource):
-			if parent_state.current_state != self:
-				return
+			if parent_state.current_state != self: return
 			
 			player.locomotion_component.knockback(
+				incoming_damage_source.damage_attributes.knockback,
 				incoming_damage_source.entity.global_position
 			)
 			
@@ -44,7 +44,10 @@ func _ready():
 			_pause_before_reducing_instability_timer.start()
 			
 			player.shield_component.blocked()
-			player.instability_component.process_block()
+			player.instability_component.increment_instability(
+				incoming_damage_source.damage_attributes.block_instability
+			)
+			print(incoming_damage_source.damage_attributes.block_instability)
 			
 			block_sfx.play()
 	)

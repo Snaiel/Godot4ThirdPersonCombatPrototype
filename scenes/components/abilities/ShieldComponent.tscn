@@ -17,7 +17,7 @@ shader_parameter/rim_steepness = 3.0
 shader_parameter/uv_scale = null
 shader_parameter/uv_offset = null
 
-[sub_resource type="Animation" id="Animation_y0k87"]
+[sub_resource type="Animation" id="Animation_0m2ax"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -32,7 +32,7 @@ tracks/0/keys = {
 "values": [Color(0.133333, 0.564706, 0.8, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_h3rnd"]
+[sub_resource type="Animation" id="Animation_25tl1"]
 resource_name = "parried"
 length = 0.35
 step = 0.01
@@ -80,7 +80,7 @@ tracks/3/keys = {
 "values": [0.0, 0.5, 0.0]
 }
 
-[sub_resource type="Animation" id="Animation_6phek"]
+[sub_resource type="Animation" id="Animation_5udoa"]
 resource_name = "blocked"
 length = 0.3
 step = 0.01
@@ -104,12 +104,12 @@ tracks/1/keys = {
 "values": [Color(0.133333, 0.564706, 0.8, 1), Color(0.476562, 0.476562, 0.476562, 1), Color(0.476562, 0.476562, 0.476562, 1), Color(0.133333, 0.564706, 0.8, 1)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_xc7ud"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m08vr"]
 resource_local_to_scene = true
 _data = {
-"RESET": SubResource("Animation_y0k87"),
-"blocked": SubResource("Animation_6phek"),
-"parried": SubResource("Animation_h3rnd")
+"RESET": SubResource("Animation_0m2ax"),
+"blocked": SubResource("Animation_5udoa"),
+"parried": SubResource("Animation_25tl1")
 }
 
 [node name="ShieldComponent" type="Node3D"]
@@ -125,8 +125,9 @@ surface_material_override/0 = SubResource("ShaderMaterial_lnqwu")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_xc7ud")
+"": SubResource("AnimationLibrary_m08vr")
 }
 
 [node name="Light" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.688195)
+light_energy = 0.0

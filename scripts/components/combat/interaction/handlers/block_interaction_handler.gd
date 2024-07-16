@@ -9,14 +9,16 @@ extends InteractionHandler
 @export var block_sfx: AudioStreamPlayer3D
 
 
-func handle_interaction(_incoming_damage_source: DamageSource) -> bool:
+func handle_interaction(incoming_damage_source: DamageSource) -> bool:
 	interaction.emit()
 	
 	shield_component.blocking = true
 	shield_component.blocked()
 	if block_sfx: block_sfx.play()
 	
-	instability_component.process_block()
+	instability_component.increment_instability(
+		incoming_damage_source.damage_attributes.block_instability
+	)
 	instability_component.enabled = false
 	health_component.enabled = false
 	get_tree().create_timer(0.3).timeout.connect(

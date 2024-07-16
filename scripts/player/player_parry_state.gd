@@ -14,6 +14,7 @@ func _ready():
 		func(incoming_damage_source: DamageSource):
 			if parent_state.current_state == self:
 				player.locomotion_component.knockback(
+					incoming_damage_source.damage_attributes.knockback,
 					incoming_damage_source.entity.global_position
 				)
 	)

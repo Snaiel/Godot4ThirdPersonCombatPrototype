@@ -2,12 +2,8 @@ class_name NonMeleeAction
 extends BaseAnimations
 
 
-@export_category("Secondary Movement Settings")
-@export var secondary_movement: bool = true
-@export var move_speed: float = 6
-@export var time: float = 5
-@export var friction: float = 15
-@export var direction: Vector3 = Vector3.ZERO
+@export var secondary_movement: SecondaryMovement = \
+	preload("res://resources/DefaultMeleeAttackSecondaryMovement.tres")
 
 
 # A flag that signifies whether to play

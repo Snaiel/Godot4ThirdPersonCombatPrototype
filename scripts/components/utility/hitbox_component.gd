@@ -20,18 +20,15 @@ var _successful_hits: Dictionary
 func _process(_delta: float) -> void:
 #	if debug: print(_damage_sources_in_hitbox)
 	
-	if not enabled:
-		return
-	
-	if len(_damage_sources_in_hitbox) == 0:
-		return
+	if not enabled: return
+	if len(_damage_sources_in_hitbox) == 0: return
 	
 	for damage_source in _damage_sources_in_hitbox:
-		if not damage_source.can_damage:
-			continue
-		
 		# dont detect the damage_source of the owner of this hitbox
 		if damage_source.entity == entity:
+			continue
+		
+		if not damage_source.can_damage:
 			continue
 		
 		# ignore entities not in the specified groups

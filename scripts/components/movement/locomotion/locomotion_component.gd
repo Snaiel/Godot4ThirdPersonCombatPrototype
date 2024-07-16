@@ -94,34 +94,29 @@ func has_secondary_movement() -> bool:
 	return _secondary_movement_speed > 0
 
 
-func set_secondary_movement(
-		secondary_speed: float,
-		time: float,
-		friction: float = 0.0,
-		direction: Vector3 = Vector3.ZERO
-	) -> void:
+func set_secondary_movement(movement: SecondaryMovement) -> void:
 	
 	_secondary_movement_timer.stop()
-	_secondary_movement_friction = friction
+	_secondary_movement_friction = movement.friction
 	
-	if direction == Vector3.ZERO:
+	if movement.direction == Vector3.ZERO:
 		_secondary_movement_direction = Vector3.FORWARD.rotated(
 			Vector3.UP,
 			entity.rotation.y
 		)
 	else:
-		_secondary_movement_direction = direction
+		_secondary_movement_direction = movement.direction
 	_secondary_movement_direction = _secondary_movement_direction.normalized()
 	
-	_secondary_movement_speed = secondary_speed
-	_secondary_movement_timer.start(time)
+	_secondary_movement_speed = movement.speed
+	_secondary_movement_timer.start(movement.time)
 
 
-func knockback(knockback_origin: Vector3) -> void:
-	var direction: Vector3 = entity\
+func knockback(movement: SecondaryMovement, origin: Vector3) -> void:
+	movement.direction = -entity\
 		.global_position\
-		.direction_to(knockback_origin)
-	set_secondary_movement(3, 5, 5, -direction)
+		.direction_to(origin)
+	set_secondary_movement(movement)
 
 
 func reset_secondary_movement() -> void:

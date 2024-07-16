@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="DamageAttributes" load_steps=3 format=3 uid="uid://bhexahemtou8r"]
+
+[ext_resource type="Resource" uid="uid://fxdd066f1ofx" path="res://resources/DefaultSecondaryMovement.tres" id="1_kt1y8"]
+[ext_resource type="Script" path="res://scripts/resources/damage_attributes.gd" id="2_uqoft"]
+
+[resource]
+script = ExtResource("2_uqoft")
+health = 10.0
+hit_instability = 20.0
+block_instability = 20.0
+parry_instability = 5.0
+got_parried_instability = 30.0
+knockback = ExtResource("1_kt1y8")

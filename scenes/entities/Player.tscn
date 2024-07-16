@@ -1076,6 +1076,7 @@ shape = SubResource("CapsuleShape3D_lnhvg")
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("66_wy87f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 collision_layer = 2
+debug = true
 entity = NodePath("..")
 groups = Array[String](["enemy"])
 
@@ -1096,7 +1097,6 @@ strategies = {
 "programmatic": NodePath("ProgrammaticMovement"),
 "root_motion": NodePath("RootMotion")
 }
-default_strategy = &"programmatic"
 
 [node name="ProgrammaticMovement" type="Node" parent="Movement/LocomotionComponent" node_paths=PackedStringArray("rotation_component")]
 script = ExtResource("32_3p3ec")
@@ -1129,13 +1129,12 @@ hitbox = NodePath("../../HitboxComponent")
 weapons = [NodePath("../../Character/Armature_004/GeneralSkeleton/Sword")]
 max_from_parried = false
 max_from_parrying = false
-max_instability = 1000.0
+max_instability = 100.0
 reduction_pause_length = 5.0
 reduction_rate = 5.0
 
 [node name="HealthComponent" parent="Wellbeing" instance=ExtResource("75_ofv26")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
-max_health = 500.0
 blood_scene = ExtResource("27_63iim")
 
 [node name="Combat" type="Node3D" parent="."]

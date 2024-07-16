@@ -34,6 +34,7 @@ func _ready():
 		func(incoming_damage_source: DamageSource):
 			if not parent_state.current_state == self: return
 			player.locomotion_component.knockback(
+				incoming_damage_source.damage_attributes.knockback,
 				incoming_damage_source.entity.global_position
 			)
 			player.character.hit_and_death_animations.hit()

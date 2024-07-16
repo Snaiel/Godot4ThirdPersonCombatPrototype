@@ -48,8 +48,14 @@ func _ready():
 func enter() -> void:
 	_can_block_or_parry = false
 	
+	player.health_component.incoming_damage(_incoming_damage_source)
+	player.instability_component.increment_instability(
+		_incoming_damage_source.damage_attributes.hit_instability
+	)
+	
 	player.locomotion_component.can_move = false
 	player.locomotion_component.knockback(
+		_incoming_damage_source.damage_attributes.knockback,
 		_incoming_damage_source.entity.global_position
 	)
 	player.character.hit_and_death_animations.hit()

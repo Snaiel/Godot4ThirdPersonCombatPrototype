@@ -52,7 +52,9 @@ func enter() -> void:
 	locomotion_component.speed = 3
 	player.shield_component.blocking = true
 	
-	player.instability_component.process_parry()
+	player.instability_component.process_parry(
+		_incoming_damage_source.damage_attributes.parry_instability
+	)
 	
 	player.parry_component.reset_parry_cooldown()
 	player.parry_component.play_parry_particles()
@@ -66,6 +68,7 @@ func enter() -> void:
 	_incoming_damage_source.get_parried()
 	if not dizzy_system.dizzy_victim:
 		player.locomotion_component.knockback(
+			_incoming_damage_source.damage_attributes.knockback,
 			_incoming_damage_source.entity.global_position
 		)
 	

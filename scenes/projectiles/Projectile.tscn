@@ -16,8 +16,6 @@ height = 0.3
 
 [node name="Projectile" type="Node3D"]
 script = ExtResource("1_u5txg")
-damage = 5.0
-knockback = 1.0
 can_damage = true
 
 [node name="Area" type="Area3D" parent="." groups=["damage_source"]]

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SecondaryMovement" load_steps=2 format=3 uid="uid://fxdd066f1ofx"]
+
+[ext_resource type="Script" path="res://scripts/resources/secondary_movement.gd" id="1_g7iiy"]
+
+[resource]
+script = ExtResource("1_g7iiy")
+speed = 3.0
+time = 5.0
+friction = 5.0
+direction = Vector3(0, 0, 0)

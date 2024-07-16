@@ -20,17 +20,14 @@ func _physics_process(_delta) -> void:
 
 
 func parry() -> void:
-	print("PARRRRY???????????")
 	_parrying = true
 	anim_tree.set(&"parameters/Parry Trim/seek_request", 0.35)
 	anim_tree.set(&"parameters/Parry Speed/scale", 2.0)
 
 
 func receive_parry_recovery() -> void:
-	print("WHAT")
 	anim_tree.set(&"parameters/Parry Speed/scale", 0.5)
 
 
 func receive_parry_finished() -> void:
-	print("HELLO")
 	_parrying = false

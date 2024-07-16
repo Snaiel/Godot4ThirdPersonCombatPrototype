@@ -143,10 +143,12 @@ func _from_parry_knockback() -> void:
 	weight = inverse_lerp(2.0, 0.0, weight)
 	weight = lerp(0.0, 5.0, weight)
 	locomotion_component.set_secondary_movement(
-		weight,
-		5,
-		10,
-		-direction
+		SecondaryMovement.create(
+			weight,
+			5,
+			10,
+			-direction
+		)
 	)
 
 
@@ -156,10 +158,12 @@ func _from_damage_knockback() -> void:
 		opponent_position
 	)
 	locomotion_component.set_secondary_movement(
-		5,
-		5,
-		10,
-		-direction
+		SecondaryMovement.create(
+			5,
+			5,
+			10,
+			-direction
+		)
 	)
 
 

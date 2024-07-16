@@ -29,7 +29,7 @@
 [ext_resource type="Script" path="res://scripts/components/movement/locomotion/programmatic_movement.gd" id="25_17jcg"]
 [ext_resource type="Script" path="res://scripts/components/movement/locomotion/root_motion.gd" id="26_gvxp0"]
 [ext_resource type="Script" path="res://scripts/components/interface/wellbeing_component.gd" id="27_xelte"]
-[ext_resource type="Script" path="res://scripts/miscellaneous/wellbeing_stats.gd" id="28_sh8q6"]
+[ext_resource type="Script" path="res://scripts/resources/wellbeing_stats.gd" id="28_sh8q6"]
 [ext_resource type="PackedScene" uid="uid://clbe1nrax10m8" path="res://scenes/user_interface/WellbeingWidget.tscn" id="29_w7h5a"]
 [ext_resource type="Script" path="res://scripts/components/wellbeing/health_component.gd" id="30_4f8nt"]
 [ext_resource type="PackedScene" uid="uid://bsbt5fjir608i" path="res://scenes/particles/blood.tscn" id="31_d5e1s"]
@@ -699,7 +699,6 @@ strategies = {
 "programmatic": NodePath("ProgrammaticMovement"),
 "root_motion": NodePath("RootMotion")
 }
-default_strategy = &"programmatic"
 
 [node name="ProgrammaticMovement" type="Node" parent="LocomotionComponent" node_paths=PackedStringArray("rotation_component")]
 script = ExtResource("25_17jcg")

@@ -17,6 +17,9 @@ func handle_interaction(incoming_damage_source: DamageSource) -> bool:
 	dizzy_component.process_hit(incoming_damage_source)
 	health_component.incoming_damage(incoming_damage_source)
 	if instability_component.full_instability_from_parry:
-		locomotion_component.knockback(incoming_damage_source.entity.global_position)
+		locomotion_component.knockback(
+			incoming_damage_source.damage_attributes.knockback,
+			incoming_damage_source.entity.global_position
+		)
 	
 	return true
