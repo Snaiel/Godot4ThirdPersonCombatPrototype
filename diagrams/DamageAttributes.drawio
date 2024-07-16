@@ -1,0 +1,213 @@
+<mxfile host="Electron" modified="2024-07-16T10:42:47.547Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.6.4 Chrome/124.0.6367.207 Electron/30.0.6 Safari/537.36" etag="F_u8wvWdLLxWl_x5hlWs" version="24.6.4" type="device">
+  <diagram name="Page-1" id="8PMdhWGGEyfKpI_qBaPO">
+    <mxGraphModel dx="1434" dy="870" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2le-LsOrdKh3sSlawplv-105" style="edgeStyle=none;shape=connector;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=diamond;endFill=1;curved=0;" parent="1" source="2le-LsOrdKh3sSlawplv-99" target="2le-LsOrdKh3sSlawplv-102" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="605" y="141" />
+              <mxPoint x="1495" y="141" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-106" value="Knockback" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;" parent="2le-LsOrdKh3sSlawplv-105" vertex="1" connectable="0">
+          <mxGeometry x="-0.0068" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-94" style="edgeStyle=none;shape=connector;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=diamond;endFill=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;curved=0;" parent="1" source="2le-LsOrdKh3sSlawplv-56" target="2le-LsOrdKh3sSlawplv-99" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1365.7167241379311" y="355" as="sourcePoint" />
+            <mxPoint x="665" y="500.9999999999998" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1229" y="196" />
+              <mxPoint x="650" y="196" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-96" value="Specifies the DamageAttributes of this attack" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;" parent="2le-LsOrdKh3sSlawplv-94" vertex="1" connectable="0">
+          <mxGeometry x="0.2088" y="1" relative="1" as="geometry">
+            <mxPoint x="203" y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-49" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;curved=0;" parent="1" source="2le-LsOrdKh3sSlawplv-47" target="2le-LsOrdKh3sSlawplv-48" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-97" value="Is able to move independantly&lt;div style=&quot;line-height: 250%;&quot;&gt;Configures DamageAttributes directly&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;" parent="2le-LsOrdKh3sSlawplv-49" vertex="1" connectable="0">
+          <mxGeometry x="0.0731" relative="1" as="geometry">
+            <mxPoint y="13" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-47" value="Projectile" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e51400;fontColor=#ffffff;strokeColor=#B20000;" parent="1" vertex="1">
+          <mxGeometry x="343.33" y="712.71" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-90" style="edgeStyle=none;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=diamond;endFill=1;" parent="1" source="2le-LsOrdKh3sSlawplv-48" edge="1" target="2le-LsOrdKh3sSlawplv-99">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="481" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-48" value="DamageSource" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e51400;fontColor=#ffffff;strokeColor=#B20000;" parent="1" vertex="1">
+          <mxGeometry x="343.33" y="466" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-51" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=diamond;endFill=0;" parent="1" source="2le-LsOrdKh3sSlawplv-50" target="2le-LsOrdKh3sSlawplv-47" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-69" value="Creates" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;" parent="2le-LsOrdKh3sSlawplv-51" vertex="1" connectable="0">
+          <mxGeometry x="0.0565" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-50" value="NonMeleeActionEffect" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d80073;strokeColor=#A50040;fontColor=#ffffff;" parent="1" vertex="1">
+          <mxGeometry x="589" y="712.71" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-53" style="edgeStyle=none;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=diamond;endFill=1;" parent="1" source="2le-LsOrdKh3sSlawplv-52" target="2le-LsOrdKh3sSlawplv-50" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-74" value="Performs" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;" parent="2le-LsOrdKh3sSlawplv-53" vertex="1" connectable="0">
+          <mxGeometry x="-0.0426" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-60" style="edgeStyle=none;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=open;endFill=0;startArrow=open;startFill=0;" parent="1" source="2le-LsOrdKh3sSlawplv-52" target="2le-LsOrdKh3sSlawplv-57" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-73" value="Receives what to perform" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;" parent="2le-LsOrdKh3sSlawplv-60" vertex="1" connectable="0">
+          <mxGeometry x="-0.0671" y="-3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-52" value="NonMeleeComponent" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6a00ff;fontColor=#ffffff;strokeColor=#3700CC;" parent="1" vertex="1">
+          <mxGeometry x="839" y="712.71" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-67" style="edgeStyle=none;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=open;endFill=0;startArrow=open;startFill=0;" parent="1" source="2le-LsOrdKh3sSlawplv-54" target="2le-LsOrdKh3sSlawplv-55" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-75" value="Receives attack status" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;" parent="2le-LsOrdKh3sSlawplv-67" vertex="1" connectable="0">
+          <mxGeometry x="0.1" y="-2" relative="1" as="geometry">
+            <mxPoint x="2" y="-2" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-76" style="edgeStyle=orthogonalEdgeStyle;shape=connector;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=open;endFill=0;curved=0;jumpStyle=arc;" parent="1" source="2le-LsOrdKh3sSlawplv-54" target="2le-LsOrdKh3sSlawplv-48" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="439" y="245" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-77" value="Specifies when it can and cannot do damage&lt;div style=&quot;line-height: 250%;&quot;&gt;Specifies DamageAttributes from MeleeAttack&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;" parent="2le-LsOrdKh3sSlawplv-76" vertex="1" connectable="0">
+          <mxGeometry x="-0.381" y="-1" relative="1" as="geometry">
+            <mxPoint x="-226" y="91" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-54" value="MeleeComponent" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6a00ff;fontColor=#ffffff;strokeColor=#3700CC;" parent="1" vertex="1">
+          <mxGeometry x="839" y="230" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-61" style="edgeStyle=none;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=diamond;endFill=1;" parent="1" source="2le-LsOrdKh3sSlawplv-55" target="2le-LsOrdKh3sSlawplv-56" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-70" value="Text" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;" parent="2le-LsOrdKh3sSlawplv-61" vertex="1" connectable="0">
+          <mxGeometry x="-0.0544" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-71" value="Performs" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;" parent="2le-LsOrdKh3sSlawplv-61" vertex="1" connectable="0">
+          <mxGeometry x="-0.0171" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-64" style="edgeStyle=none;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=block;endFill=1;" parent="1" source="2le-LsOrdKh3sSlawplv-55" target="2le-LsOrdKh3sSlawplv-62" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-78" value="Handles blending branch&lt;div&gt;in animation tree&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;" parent="2le-LsOrdKh3sSlawplv-64" vertex="1" connectable="0">
+          <mxGeometry x="-0.2137" relative="1" as="geometry">
+            <mxPoint x="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-55" value="MeleeAnimations" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" parent="1" vertex="1">
+          <mxGeometry x="839" y="320" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-65" style="edgeStyle=none;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=block;endFill=1;" parent="1" source="2le-LsOrdKh3sSlawplv-56" target="2le-LsOrdKh3sSlawplv-62" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1186.0025" y="480" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-79" value="Handles playing the attacks&lt;div&gt;the would move around the&lt;/div&gt;&lt;div&gt;weapon (DamageSource)&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;" parent="2le-LsOrdKh3sSlawplv-65" vertex="1" connectable="0">
+          <mxGeometry x="-0.101" relative="1" as="geometry">
+            <mxPoint x="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-103" style="edgeStyle=none;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=diamond;endFill=1;" parent="1" source="2le-LsOrdKh3sSlawplv-56" target="2le-LsOrdKh3sSlawplv-102" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-56" value="MeleeAttack" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" parent="1" vertex="1">
+          <mxGeometry x="1138.73" y="320" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-59" style="edgeStyle=none;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=diamond;endFill=1;" parent="1" source="2le-LsOrdKh3sSlawplv-57" target="2le-LsOrdKh3sSlawplv-58" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-72" value="Performs" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;" parent="2le-LsOrdKh3sSlawplv-59" vertex="1" connectable="0">
+          <mxGeometry x="-0.0544" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-63" style="edgeStyle=none;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=block;endFill=1;" parent="1" source="2le-LsOrdKh3sSlawplv-57" target="2le-LsOrdKh3sSlawplv-62" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-80" value="Handles blending branch&lt;div&gt;in animation tree&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;" parent="2le-LsOrdKh3sSlawplv-63" vertex="1" connectable="0">
+          <mxGeometry x="-0.0149" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-57" value="NonMeleeAnimations" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" parent="1" vertex="1">
+          <mxGeometry x="839" y="612.71" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-66" style="edgeStyle=none;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=block;endFill=1;" parent="1" source="2le-LsOrdKh3sSlawplv-58" target="2le-LsOrdKh3sSlawplv-62" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1186.69" y="510" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-81" value="Handles playing the actions&lt;div&gt;that would specify when&lt;/div&gt;&lt;div&gt;actions take effect&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;" parent="2le-LsOrdKh3sSlawplv-66" vertex="1" connectable="0">
+          <mxGeometry x="0.0202" y="-2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-104" style="edgeStyle=none;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=diamond;endFill=1;" parent="1" source="2le-LsOrdKh3sSlawplv-58" target="2le-LsOrdKh3sSlawplv-102" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-58" value="NonMeleeAction" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" parent="1" vertex="1">
+          <mxGeometry x="1138.73" y="612.71" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-62" value="BaseAnimations" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" parent="1" vertex="1">
+          <mxGeometry x="980" y="466" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-99" value="DamageAttributes" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" parent="1" vertex="1">
+          <mxGeometry x="560" y="466" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-101" style="edgeStyle=none;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=open;endFill=0;" parent="1" source="2le-LsOrdKh3sSlawplv-100" target="2le-LsOrdKh3sSlawplv-48" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-100" value="Logic handling incoming damage&lt;div&gt;sources access the damage attributes&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;" parent="1" vertex="1">
+          <mxGeometry x="60" y="461" width="210" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-102" value="SecondaryMovement" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" parent="1" vertex="1">
+          <mxGeometry x="1360" y="466" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-107" value="Resources" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" parent="1" vertex="1">
+          <mxGeometry x="40" y="80" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-109" value="BaseAnimations" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" parent="1" vertex="1">
+          <mxGeometry x="40" y="40" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-112" value="Components" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6a00ff;fontColor=#ffffff;strokeColor=#3700CC;" parent="1" vertex="1">
+          <mxGeometry x="40" y="120" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-113" value="DamageSrouce" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e51400;fontColor=#ffffff;strokeColor=#B20000;" parent="1" vertex="1">
+          <mxGeometry x="40" y="160" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="2le-LsOrdKh3sSlawplv-115" value="Other" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d80073;strokeColor=#A50040;fontColor=#ffffff;" parent="1" vertex="1">
+          <mxGeometry x="40" y="202.71000000000004" width="180" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -20,3 +20,6 @@ mono_crash.*.json
 
 # Audacity ignores
 *.aup3-wal
+
+# Draw.io ignores
+*.bkp
