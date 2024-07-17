@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bndxl0xm0nwyf"]
 
-[ext_resource type="PackedScene" uid="uid://c2uj0la6nf7y" path="res://scenes/levels/BaseScene.tscn" id="1_d4mnf"]
+[ext_resource type="PackedScene" uid="uid://c2uj0la6nf7y" path="res://scenes/scenes/BaseScene.tscn" id="1_d4mnf"]
 [ext_resource type="PackedScene" uid="uid://dmtsn22tgr3b1" path="res://scenes/entities/enemies/Swordsman.tscn" id="2_yn3qr"]
 
 [node name="SwordsmanScene" instance=ExtResource("1_d4mnf")]

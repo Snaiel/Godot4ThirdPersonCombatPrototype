@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://djitgmcgcng4u"]
 
-[ext_resource type="PackedScene" uid="uid://c2uj0la6nf7y" path="res://scenes/levels/BaseScene.tscn" id="1_rur2h"]
+[ext_resource type="PackedScene" uid="uid://c2uj0la6nf7y" path="res://scenes/scenes/BaseScene.tscn" id="1_rur2h"]
 [ext_resource type="Texture2D" uid="uid://bcln5bjy3tb8y" path="res://assets/kenney-prototype-texture-light-06.png" id="2_ddnow"]
 [ext_resource type="PackedScene" uid="uid://dmtsn22tgr3b1" path="res://scenes/entities/enemies/Swordsman.tscn" id="2_myj8i"]
 [ext_resource type="Script" path="res://scripts/miscellaneous/patrol_instance.gd" id="3_tqxbe"]

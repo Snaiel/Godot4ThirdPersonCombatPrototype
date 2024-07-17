@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dnybkl1qs1612"]
 
-[ext_resource type="PackedScene" uid="uid://c2uj0la6nf7y" path="res://scenes/levels/BaseScene.tscn" id="1_fgb5o"]
+[ext_resource type="PackedScene" uid="uid://c2uj0la6nf7y" path="res://scenes/scenes/BaseScene.tscn" id="1_fgb5o"]
 [ext_resource type="PackedScene" uid="uid://dknx4ugv65pc0" path="res://scenes/entities/enemies/Spellcaster.tscn" id="2_yu7t0"]
 
 [node name="SpellcasterScene" instance=ExtResource("1_fgb5o")]

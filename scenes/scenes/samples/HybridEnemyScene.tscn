@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cf6chynfdsprg"]
 
-[ext_resource type="PackedScene" uid="uid://c2uj0la6nf7y" path="res://scenes/levels/BaseScene.tscn" id="1_o7mnd"]
+[ext_resource type="PackedScene" uid="uid://c2uj0la6nf7y" path="res://scenes/scenes/BaseScene.tscn" id="1_o7mnd"]
 [ext_resource type="PackedScene" uid="uid://dtbfffampqtqg" path="res://scenes/entities/enemies/HybridEnemy.tscn" id="2_lxj2g"]
 
 [node name="HybridEnemyScene" instance=ExtResource("1_o7mnd")]
