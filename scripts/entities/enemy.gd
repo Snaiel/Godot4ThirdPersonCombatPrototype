@@ -6,38 +6,31 @@ signal dead
 
 
 @export var debug: bool = false
-
-@export_category("Utility")
-@export var character: CharacterAnimations
-@export var hitbox_component: HitboxComponent
-@export var lock_on_component: LockOnComponent
-
-@export_category("Movement")
-@export var locomotion_component: LocomotionComponent
-@export var idle_animations: IdleAnimations
-@export var movement_animations: MovementAnimations
-
-@export_category("Rotation")
-@export var rotation_component: RotationComponent
-@export var head_rotation_component: HeadRotationComponent
-
-@export_category("Wellbeing")
-@export var health_component: HealthComponent
-@export var instability_component: InstabilityComponent
-
-@export_category("Combat")
-@export var backstab_component: BackstabComponent
-@export var dizzy_component: DizzyComponent
-@export var notice_component: NoticeComponent
-@export var dizzy_victim_animations: DizzyVictimAnimations
-@export var hit_and_death_animations: HitAndDeathAnimations
-
-@export_category("AI Behaviour")
-@export var beehave_tree: BeehaveTree
-@export var blackboard: Blackboard
-@export var navigation_agent: NavigationAgent3D
-
 @export var patrol: PathFollow3D
+
+@onready var character: CharacterAnimations = $Character
+@onready var hitbox_component: HitboxComponent = $HitboxComponent
+@onready var lock_on_component: LockOnComponent = $Utility/LockOnComponent
+
+@onready var locomotion_component: LocomotionComponent = $LocomotionComponent
+@onready var idle_animations: IdleAnimations = $Character/Animations/Idle
+@onready var movement_animations: MovementAnimations = $Character/Animations/Movement
+
+@onready var rotation_component: RotationComponent = $Rotation/RotationComponent
+@onready var head_rotation_component: HeadRotationComponent = $Rotation/HeadRotationComponent
+
+@onready var health_component: HealthComponent = $Wellbeing/HealthComponent
+@onready var instability_component: InstabilityComponent = $Wellbeing/InstabilityComponent
+
+@onready var backstab_component: BackstabComponent = $Combat/BackstabComponent
+@onready var dizzy_component: DizzyComponent = $Combat/DizzyComponent
+@onready var notice_component: NoticeComponent = $Combat/NoticeComponent
+@onready var dizzy_victim_animations: DizzyVictimAnimations = $Character/Animations/DizzyVictim
+@onready var hit_and_death_animations: HitAndDeathAnimations = $Character/Animations/HitAndDeath
+
+var beehave_tree: BeehaveTree
+@onready var blackboard: Blackboard = $Blackboard
+@onready var navigation_agent: NavigationAgent3D = $NavigationAgent
 
 var is_dead: bool = false
 
