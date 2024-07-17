@@ -453,28 +453,10 @@ max_instability = 100.0
 initial_instability = 0.0
 can_reduce_instability = true
 
-[node name="BaseEnemy" type="CharacterBody3D" node_paths=PackedStringArray("character", "hitbox_component", "lock_on_component", "locomotion_component", "idle_animations", "movement_animations", "rotation_component", "head_rotation_component", "health_component", "instability_component", "backstab_component", "dizzy_component", "notice_component", "dizzy_victim_animations", "hit_and_death_animations", "beehave_tree", "blackboard", "navigation_agent") groups=["enemy"]]
+[node name="BaseEnemy" type="CharacterBody3D" groups=["enemy"]]
 collision_layer = 8
 collision_mask = 11
 script = ExtResource("1_3repp")
-character = NodePath("Character")
-hitbox_component = NodePath("HitboxComponent")
-lock_on_component = NodePath("Utility/LockOnComponent")
-locomotion_component = NodePath("LocomotionComponent")
-idle_animations = NodePath("Character/Animations/Idle")
-movement_animations = NodePath("Character/Animations/Movement")
-rotation_component = NodePath("Rotation/RotationComponent")
-head_rotation_component = NodePath("Rotation/HeadRotationComponent")
-health_component = NodePath("Wellbeing/HealthComponent")
-instability_component = NodePath("Wellbeing/InstabilityComponent")
-backstab_component = NodePath("Combat/BackstabComponent")
-dizzy_component = NodePath("Combat/DizzyComponent")
-notice_component = NodePath("Combat/NoticeComponent")
-dizzy_victim_animations = NodePath("Character/Animations/DizzyVictim")
-hit_and_death_animations = NodePath("Character/Animations/HitAndDeath")
-beehave_tree = NodePath("BeehaveTree")
-blackboard = NodePath("Blackboard")
-navigation_agent = NodePath("NavigationAgent")
 
 [node name="Character" parent="." instance=ExtResource("2_7fohg")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
