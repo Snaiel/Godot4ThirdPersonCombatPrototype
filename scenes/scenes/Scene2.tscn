@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cd738rigq1w2v"]
+[gd_scene load_steps=30 format=3 uid="uid://cd738rigq1w2v"]
 
 [ext_resource type="Script" path="res://scripts/systems/level.gd" id="1_e4p23"]
 [ext_resource type="PackedScene" uid="uid://cy5wvw01aul4m" path="res://scenes/systems/CameraController.tscn" id="2_ebvse"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://biuqyf53m0ive" path="res://scenes/systems/VoidArea.tscn" id="15_yey3c"]
 [ext_resource type="Script" path="res://scripts/systems/enemy_section.gd" id="16_fqjbt"]
 [ext_resource type="PackedScene" uid="uid://dmtsn22tgr3b1" path="res://scenes/entities/enemies/Swordsman.tscn" id="17_85uvr"]
+[ext_resource type="PackedScene" uid="uid://70i30fboge8u" path="res://models/levels/level2.blend" id="19_bfis0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wqkpv"]
 sky_top_color = Color(0.384314, 0.454902, 0.54902, 1)
@@ -78,7 +79,7 @@ running_spin_speed = 4.0
 [node name="UserInterface" parent="." instance=ExtResource("3_im4q1")]
 
 [node name="Player" parent="." instance=ExtResource("4_km71j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -77.0562, 13.3039, 191.131)
 
 [node name="BackstabSystem" type="Node3D" parent="."]
 script = ExtResource("5_lt6ye")
@@ -302,7 +303,14 @@ transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 
 [node name="Enemy4" parent="Level/Enemies/Section3/Enemies" instance=ExtResource("17_85uvr")]
 transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 58.7528, -5, 22.4458)
 
+[node name="level2" parent="." instance=ExtResource("19_bfis0")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 19.2616, 0, 54.5015)
+
+[node name="Cube" parent="level2" index="0"]
+surface_material_override/0 = ExtResource("12_wrl4e")
+
 [editable path="Level/Environment/NavigationRegion3D/level1"]
 [editable path="Level/Environment/NavigationRegion3D/Checkpoints/Checkpoint5"]
 [editable path="Level/Environment/NavigationRegion3D/Checkpoints/Checkpoint6"]
 [editable path="Level/VoidDeathSystem/VoidArea2"]
+[editable path="level2"]
