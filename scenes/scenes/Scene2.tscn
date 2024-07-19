@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cd738rigq1w2v"]
+[gd_scene load_steps=33 format=3 uid="uid://cd738rigq1w2v"]
 
 [ext_resource type="Script" path="res://scripts/systems/level.gd" id="1_e4p23"]
 [ext_resource type="PackedScene" uid="uid://cy5wvw01aul4m" path="res://scenes/systems/CameraController.tscn" id="2_ebvse"]
@@ -12,15 +12,16 @@
 [ext_resource type="ArrayOccluder3D" uid="uid://c6fnidkmdcr07" path="res://occluders/Level1.occ" id="10_74xf0"]
 [ext_resource type="PackedScene" uid="uid://dsubhagnir7ns" path="res://models/levels/level1.blend" id="11_d4bpw"]
 [ext_resource type="PackedScene" uid="uid://k32oq3ivgjxf" path="res://scenes/miscellaneous/Checkpoint.tscn" id="12_clpmb"]
-[ext_resource type="Material" uid="uid://bi2l1p46blr1g" path="res://materials/level.tres" id="12_wrl4e"]
+[ext_resource type="Material" uid="uid://bi2l1p46blr1g" path="res://materials/grey1.tres" id="12_wrl4e"]
 [ext_resource type="PackedScene" uid="uid://ia1adrmqd0lf" path="res://scenes/components/utility/LockOnComponent.tscn" id="13_x5cut"]
 [ext_resource type="Script" path="res://scripts/systems/void_death_system.gd" id="14_1aqi0"]
 [ext_resource type="PackedScene" uid="uid://biuqyf53m0ive" path="res://scenes/systems/VoidArea.tscn" id="15_yey3c"]
 [ext_resource type="Script" path="res://scripts/systems/enemy_section.gd" id="16_fqjbt"]
 [ext_resource type="PackedScene" uid="uid://dmtsn22tgr3b1" path="res://scenes/entities/enemies/Swordsman.tscn" id="17_85uvr"]
 [ext_resource type="PackedScene" uid="uid://70i30fboge8u" path="res://models/levels/level2.blend" id="19_bfis0"]
-[ext_resource type="Material" uid="uid://bfjk24bxyratg" path="res://materials/dark_grey.tres" id="20_hslmi"]
-[ext_resource type="Material" uid="uid://c3wpac6u0t4w6" path="res://materials/dark_blue.tres" id="21_jgiix"]
+[ext_resource type="Material" uid="uid://bfjk24bxyratg" path="res://materials/grey2.tres" id="20_hslmi"]
+[ext_resource type="Material" uid="uid://c3wpac6u0t4w6" path="res://materials/blue2.tres" id="21_jgiix"]
+[ext_resource type="Material" uid="uid://dooew5nmgy7hf" path="res://materials/grey3.tres" id="22_s8p5f"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wqkpv"]
 sky_top_color = Color(0.384314, 0.454902, 0.54902, 1)
@@ -333,9 +334,12 @@ surface_material_override/0 = ExtResource("20_hslmi")
 surface_material_override/0 = ExtResource("12_wrl4e")
 
 [node name="Cube_001" parent="level2" index="10"]
-surface_material_override/0 = ExtResource("20_hslmi")
+surface_material_override/0 = ExtResource("21_jgiix")
 
 [node name="Cube_002" parent="level2" index="11"]
+surface_material_override/0 = ExtResource("20_hslmi")
+
+[node name="Cube_003-col" parent="level2" index="12"]
 surface_material_override/0 = ExtResource("20_hslmi")
 
 [node name="Cube_004" parent="level2" index="13"]
@@ -381,29 +385,29 @@ surface_material_override/0 = ExtResource("20_hslmi")
 surface_material_override/0 = ExtResource("20_hslmi")
 
 [node name="Cube_016" parent="level2" index="27"]
-surface_material_override/0 = ExtResource("20_hslmi")
+surface_material_override/0 = ExtResource("22_s8p5f")
 
 [node name="Cube_017" parent="level2" index="28"]
-surface_material_override/0 = ExtResource("20_hslmi")
+surface_material_override/0 = ExtResource("22_s8p5f")
 
 [node name="Cube_018" parent="level2" index="29"]
 transform = Transform3D(1.02123, 0, 1.11944, 0, 15.8719, 0, -5.45035, 0, 0.209747, 104.109, 6.50082, 101.005)
-surface_material_override/0 = ExtResource("20_hslmi")
+surface_material_override/0 = ExtResource("22_s8p5f")
 
 [node name="Cube_019" parent="level2" index="30"]
 transform = Transform3D(1.02123, 0, 1.11944, 0, 15.8719, 0, -5.45035, 0, 0.209747, 92.7196, 6.50082, 101.548)
-surface_material_override/0 = ExtResource("20_hslmi")
+surface_material_override/0 = ExtResource("22_s8p5f")
 
 [node name="Cube_020" parent="level2" index="31"]
 transform = Transform3D(1.02123, 0, 1.11944, 0, 15.8719, 0, -5.45035, 0, 0.209747, 95.4975, 6.50082, 89.9735)
-surface_material_override/0 = ExtResource("20_hslmi")
+surface_material_override/0 = ExtResource("22_s8p5f")
 
 [node name="Cube_021" parent="level2" index="32"]
-surface_material_override/0 = ExtResource("20_hslmi")
+surface_material_override/0 = ExtResource("22_s8p5f")
 
 [node name="Cube_022" parent="level2" index="33"]
 transform = Transform3D(1.02123, 0, 1.11944, 0, 15.8719, 0, -5.45035, 0, 0.209747, 101.207, 6.50082, 114.856)
-surface_material_override/0 = ExtResource("20_hslmi")
+surface_material_override/0 = ExtResource("22_s8p5f")
 
 [node name="Cube_023" parent="level2" index="34"]
 transform = Transform3D(2.96211, 0, 2.61197, 0, 15.8719, 0, -13.4365, 0, 0.575814, 74.3837, 6.50082, 107.457)
@@ -436,7 +440,7 @@ transform = Transform3D(14.8798, 0, 2.058, 0, 15.8719, 0, -10.4099, 0, 2.94167, 
 surface_material_override/0 = ExtResource("20_hslmi")
 
 [node name="Cube_031" parent="level2" index="42"]
-surface_material_override/0 = ExtResource("20_hslmi")
+surface_material_override/0 = ExtResource("22_s8p5f")
 
 [node name="Cube_030" parent="level2" index="43"]
 surface_material_override/0 = ExtResource("20_hslmi")
@@ -454,7 +458,7 @@ transform = Transform3D(1, 0, -1.49012e-08, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 surface_material_override/0 = ExtResource("21_jgiix")
 
 [node name="Cube_003" parent="level2" index="47"]
-surface_material_override/0 = ExtResource("20_hslmi")
+surface_material_override/0 = ExtResource("22_s8p5f")
 
 [editable path="Level/Environment/NavigationRegion3D/level1"]
 [editable path="Level/Environment/NavigationRegion3D/Checkpoints/Checkpoint5"]
