@@ -83,7 +83,7 @@ running_spin_speed = 4.0
 [node name="UserInterface" parent="." instance=ExtResource("3_im4q1")]
 
 [node name="Player" parent="." instance=ExtResource("4_km71j")]
-transform = Transform3D(-0.992461, 0, 0.122562, 0, 1, 0, -0.122562, 0, -0.992461, -72.8438, 26.1631, 155.964)
+transform = Transform3D(-0.992461, 0, 0.122562, 0, 1, 0, -0.122562, 0, -0.992461, 4.75333, 26.1631, 142.197)
 
 [node name="BackstabSystem" type="Node3D" parent="."]
 script = ExtResource("5_lt6ye")
@@ -342,6 +342,12 @@ surface_material_override/0 = ExtResource("20_hslmi")
 surface_material_override/0 = ExtResource("20_hslmi")
 
 [node name="Cube_003-col" parent="level2" index="12"]
+surface_material_override/0 = ExtResource("20_hslmi")
+
+[node name="Cube_004-col" parent="level2" index="13"]
+surface_material_override/0 = ExtResource("20_hslmi")
+
+[node name="Cube_005-col" parent="level2" index="14"]
 surface_material_override/0 = ExtResource("20_hslmi")
 
 [node name="Cube_006" parent="level2" index="15"]
