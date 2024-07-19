@@ -79,7 +79,7 @@ running_spin_speed = 4.0
 [node name="UserInterface" parent="." instance=ExtResource("3_im4q1")]
 
 [node name="Player" parent="." instance=ExtResource("4_km71j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -234.184, 62.5013, 79.1369)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -66.3784, 62.5013, 156.586)
 
 [node name="BackstabSystem" type="Node3D" parent="."]
 script = ExtResource("5_lt6ye")
@@ -306,10 +306,34 @@ transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 58.7528, -
 [node name="level2" parent="." instance=ExtResource("19_bfis0")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 19.2616, 0, 54.5015)
 
-[node name="Cube-col" parent="level2" index="0"]
+[node name="10" parent="level2" index="0"]
 surface_material_override/0 = ExtResource("12_wrl4e")
 
-[node name="Cube" parent="level2" index="1"]
+[node name="9" parent="level2" index="1"]
+surface_material_override/0 = ExtResource("12_wrl4e")
+
+[node name="7" parent="level2" index="2"]
+surface_material_override/0 = ExtResource("12_wrl4e")
+
+[node name="8" parent="level2" index="3"]
+surface_material_override/0 = ExtResource("12_wrl4e")
+
+[node name="6" parent="level2" index="4"]
+surface_material_override/0 = ExtResource("12_wrl4e")
+
+[node name="5" parent="level2" index="5"]
+surface_material_override/0 = ExtResource("12_wrl4e")
+
+[node name="4" parent="level2" index="6"]
+surface_material_override/0 = ExtResource("12_wrl4e")
+
+[node name="3" parent="level2" index="7"]
+surface_material_override/0 = ExtResource("12_wrl4e")
+
+[node name="1" parent="level2" index="8"]
+surface_material_override/0 = ExtResource("12_wrl4e")
+
+[node name="2" parent="level2" index="9"]
 surface_material_override/0 = ExtResource("12_wrl4e")
 
 [editable path="Level/Environment/NavigationRegion3D/level1"]
