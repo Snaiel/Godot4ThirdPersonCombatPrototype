@@ -335,19 +335,13 @@ surface_material_override/0 = ExtResource("20_hslmi")
 [node name="2" parent="level2" index="9"]
 surface_material_override/0 = ExtResource("12_wrl4e")
 
-[node name="Cube_001-col" parent="level2" index="10"]
-surface_material_override/0 = ExtResource("21_jgiix")
+[node name="Cube_005" parent="level2" index="10"]
+surface_material_override/0 = ExtResource("20_hslmi")
 
 [node name="Cube_002-col" parent="level2" index="11"]
 surface_material_override/0 = ExtResource("20_hslmi")
 
 [node name="Cube_003-col" parent="level2" index="12"]
-surface_material_override/0 = ExtResource("20_hslmi")
-
-[node name="Cube_004" parent="level2" index="13"]
-surface_material_override/0 = ExtResource("20_hslmi")
-
-[node name="Cube_005" parent="level2" index="14"]
 surface_material_override/0 = ExtResource("20_hslmi")
 
 [node name="Cube_006" parent="level2" index="15"]
@@ -359,8 +353,8 @@ surface_material_override/0 = ExtResource("20_hslmi")
 [node name="Cube_009" parent="level2" index="17"]
 surface_material_override/0 = ExtResource("20_hslmi")
 
-[node name="Cube_001_002" parent="level2" index="18"]
-surface_material_override/0 = ExtResource("22_s8p5f")
+[node name="Cube_001" parent="level2" index="18"]
+surface_material_override/0 = ExtResource("21_jgiix")
 
 [node name="3" parent="level2" index="19"]
 surface_material_override/0 = ExtResource("12_wrl4e")
@@ -402,22 +396,22 @@ surface_material_override/0 = ExtResource("22_s8p5f")
 surface_material_override/0 = ExtResource("22_s8p5f")
 
 [node name="Cube_018" parent="level2" index="32"]
-transform = Transform3D(1.02123, 0, 1.11944, 0, 15.8719, 0, -5.45035, 0, 0.209747, 92.4096, 6.50082, 66.8365)
+transform = Transform3D(1.21421, 0, 1.11128, 0, 15.8719, 0, -5.41063, 0, 0.249385, 107.212, 6.50082, 86.1082)
 surface_material_override/0 = ExtResource("22_s8p5f")
 
 [node name="Cube_019" parent="level2" index="33"]
-transform = Transform3D(1.02123, 0, 1.11944, 0, 15.8719, 0, -5.45035, 0, 0.209747, 79.8631, 6.50082, 72.2403)
+transform = Transform3D(1.21421, 0, 1.11128, 0, 15.8719, 0, -5.41063, 0, 0.249385, 94.4814, 6.50082, 91.0628)
 surface_material_override/0 = ExtResource("22_s8p5f")
 
 [node name="Cube_020" parent="level2" index="34"]
-transform = Transform3D(1.02123, 0, 1.11944, 0, 15.8719, 0, -5.45035, 0, 0.209747, 83.2968, 6.50082, 57.2709)
+transform = Transform3D(1.02123, 0, 1.11944, 0, 15.8719, 0, -5.45035, 0, 0.209747, 98.4447, 6.50082, 76.2249)
 surface_material_override/0 = ExtResource("22_s8p5f")
 
 [node name="Cube_021" parent="level2" index="35"]
 surface_material_override/0 = ExtResource("22_s8p5f")
 
 [node name="Cube_022" parent="level2" index="36"]
-transform = Transform3D(1.02123, 0, 1.11944, 0, 15.8719, 0, -5.45035, 0, 0.209747, 87.8107, 6.50082, 89.1362)
+transform = Transform3D(1.21421, 0, 1.11128, 0, 15.8719, 0, -5.41063, 0, 0.249385, 101.824, 6.50082, 108.23)
 surface_material_override/0 = ExtResource("22_s8p5f")
 
 [node name="Cube_023" parent="level2" index="37"]
@@ -435,7 +429,7 @@ surface_material_override/0 = ExtResource("20_hslmi")
 surface_material_override/0 = ExtResource("20_hslmi")
 
 [node name="Cube_027" parent="level2" index="41"]
-transform = Transform3D(6.39555, 0, -2.27329, 0, 28.3732, 0, 2.27329, 0, 6.39555, 48.5743, 18.8833, 64.8898)
+transform = Transform3D(6.39555, 0, -2.27329, 0, 28.3732, 0, 2.27329, 0, 6.39555, 63.4735, 18.8833, 82.6054)
 surface_material_override/0 = ExtResource("21_jgiix")
 
 [node name="Cube_033" parent="level2" index="42"]
@@ -456,35 +450,68 @@ surface_material_override/0 = ExtResource("20_hslmi")
 [node name="Cube_013" parent="level2" index="48"]
 surface_material_override/0 = ExtResource("20_hslmi")
 
-[node name="5" parent="level2" index="49"]
+[node name="Cube_010_008" parent="level2" index="49"]
+surface_material_override/0 = ExtResource("23_e4en7")
+
+[node name="Cube_010_009" parent="level2" index="50"]
+surface_material_override/0 = ExtResource("23_e4en7")
+
+[node name="Cube_010_010" parent="level2" index="51"]
+surface_material_override/0 = ExtResource("23_e4en7")
+
+[node name="Cube_010_011" parent="level2" index="52"]
+surface_material_override/0 = ExtResource("23_e4en7")
+
+[node name="Cube_010_012" parent="level2" index="53"]
+surface_material_override/0 = ExtResource("23_e4en7")
+
+[node name="Cube_010_013" parent="level2" index="54"]
+surface_material_override/0 = ExtResource("23_e4en7")
+
+[node name="Cube_010_014" parent="level2" index="55"]
+surface_material_override/0 = ExtResource("23_e4en7")
+
+[node name="Cube_010_015" parent="level2" index="56"]
+surface_material_override/0 = ExtResource("23_e4en7")
+
+[node name="Cube_010_016" parent="level2" index="57"]
+surface_material_override/0 = ExtResource("23_e4en7")
+
+[node name="Cube_010_017" parent="level2" index="58"]
+surface_material_override/0 = ExtResource("23_e4en7")
+
+[node name="Cube_010_018" parent="level2" index="59"]
+surface_material_override/0 = ExtResource("23_e4en7")
+
+[node name="5" parent="level2" index="60"]
 surface_material_override/0 = ExtResource("12_wrl4e")
 
-[node name="Cube_028" parent="level2" index="50"]
+[node name="Cube_028" parent="level2" index="61"]
 surface_material_override/0 = ExtResource("20_hslmi")
 
-[node name="Cube_029" parent="level2" index="51"]
+[node name="Cube_029" parent="level2" index="62"]
 transform = Transform3D(14.8798, 0, 2.058, 0, 15.8719, 0, -10.4099, 0, 2.94167, 53.7443, 6.50082, 141.313)
 surface_material_override/0 = ExtResource("20_hslmi")
 
-[node name="Cube_031" parent="level2" index="52"]
+[node name="Cube_031" parent="level2" index="63"]
 surface_material_override/0 = ExtResource("22_s8p5f")
 
-[node name="Cube_030" parent="level2" index="53"]
+[node name="Cube_030" parent="level2" index="64"]
 surface_material_override/0 = ExtResource("20_hslmi")
 
-[node name="Cube_032" parent="level2" index="54"]
+[node name="Cube_032" parent="level2" index="65"]
 surface_material_override/0 = ExtResource("21_jgiix")
 
-[node name="Cube_001_001" parent="level2" index="55"]
+[node name="Cube_001_001" parent="level2" index="66"]
 surface_material_override/0 = ExtResource("20_hslmi")
 
 [node name="CollisionShape3D" parent="level2/Cube_001_001/StaticBody3D" index="0"]
 transform = Transform3D(1, 0, -1.49012e-08, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
-[node name="Cube_002_001" parent="level2" index="56"]
+[node name="Cube_002_001" parent="level2" index="67"]
 surface_material_override/0 = ExtResource("21_jgiix")
 
-[node name="Cube_003" parent="level2" index="57"]
+[node name="Cube_003" parent="level2" index="68"]
 surface_material_override/0 = ExtResource("22_s8p5f")
 
 [editable path="Level/Environment/NavigationRegion3D/level1"]
