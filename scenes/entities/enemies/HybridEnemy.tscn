@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://dtbfffampqtqg"]
+[gd_scene load_steps=64 format=3 uid="uid://dtbfffampqtqg"]
 
 [ext_resource type="PackedScene" uid="uid://b34rhh2gbadoy" path="res://scenes/entities/BaseEnemy.tscn" id="1_m0vya"]
 [ext_resource type="Shader" path="res://shaders/fade.gdshader" id="2_8j143"]
@@ -42,6 +42,7 @@
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_random.gd" id="31_idrt6"]
 [ext_resource type="Script" path="res://scripts/beehave/execute_expression.gd" id="32_s130s"]
 [ext_resource type="Script" path="res://scripts/beehave/attack/random_attack.gd" id="33_ru7ct"]
+[ext_resource type="PackedScene" uid="uid://chahljohpb0da" path="res://scenes/beehave/set_actions/SetHeadRotationEnabledTrue.tscn" id="33_u7p3h"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/decorators/delayer.gd" id="34_hbnxt"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/decorators/until_fail.gd" id="35_5s1rq"]
 [ext_resource type="PackedScene" uid="uid://b4vbjom07vuli" path="res://scenes/beehave/set_actions/SetWalkSpeed.tscn" id="36_rp0gi"]
@@ -52,13 +53,15 @@
 [ext_resource type="Script" path="res://scripts/beehave/wait/reset_wait.gd" id="41_8f7v1"]
 [ext_resource type="Script" path="res://scripts/beehave/wait/wait.gd" id="42_0xx7c"]
 [ext_resource type="PackedScene" uid="uid://8q4shgtn2rdm" path="res://scenes/beehave/set_actions/SetCanAttackTrue.tscn" id="43_hc4un"]
-[ext_resource type="PackedScene" uid="uid://d1wjh32ysekoi" path="res://scenes/beehave/set_actions/SetRunSpeed.tscn" id="44_1satl"]
 [ext_resource type="PackedScene" uid="uid://ppcsagqgu032" path="res://scenes/beehave/inputs/InputForwards.tscn" id="45_l7ro5"]
+[ext_resource type="PackedScene" uid="uid://cerhh2ei5vqf4" path="res://scenes/beehave/set_actions/SetRootMotionTrue.tscn" id="54_hdna1"]
+[ext_resource type="PackedScene" uid="uid://g2idcje0d0ll" path="res://scenes/beehave/animations/SetAnimMoveSpeed.tscn" id="55_4d8a6"]
+[ext_resource type="PackedScene" uid="uid://bqi2hrppoou6q" path="res://scenes/beehave/set_actions/SetRootMotionFalse.tscn" id="56_lrosl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_730gq"]
 render_priority = 0
 shader = ExtResource("2_8j143")
-shader_parameter/albedo = Color(0, 0.976562, 1, 1)
+shader_parameter/albedo = Color(0.976562, 0.638306, 0.110626, 1)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
 shader_parameter/roughness = 1.0
@@ -470,66 +473,11 @@ stream_0/weight = 1.0
 [node name="HybridEnemy" instance=ExtResource("1_m0vya")]
 debug = true
 
-[node name="GeneralSkeleton" parent="Character/Armature_004" index="0"]
-bones/1/rotation = Quaternion(0, 2.2904e-14, -6.7831e-14, 1)
-bones/2/rotation = Quaternion(2.11667e-10, -2.1808e-13, 2.94964e-16, 1)
-bones/3/rotation = Quaternion(3.72529e-09, -4.54747e-13, 2.84217e-14, 1)
-bones/4/rotation = Quaternion(2.77556e-17, -6.82121e-13, -3.63798e-12, 1)
-bones/5/rotation = Quaternion(2.32831e-10, 0, 3.63803e-12, 1)
-bones/8/rotation = Quaternion(0.500032, 0.499969, 0.500032, -0.499968)
-bones/9/rotation = Quaternion(-1.3411e-06, 1, 1.91033e-05, 2.08616e-07)
-bones/10/rotation = Quaternion(-4.21468e-08, -0.707107, 0, 0.707107)
-bones/11/rotation = Quaternion(-7.10043e-09, 0.707107, -7.10043e-09, 0.707107)
-bones/13/rotation = Quaternion(-0.214187, 0.673887, 0.214187, 0.673887)
-bones/14/rotation = Quaternion(-4.47035e-08, 2.98023e-08, 4.44089e-16, 1)
-bones/15/rotation = Quaternion(0, -5.96046e-08, -2.98023e-08, 1)
-bones/18/rotation = Quaternion(0, -5.96046e-08, 0, 1)
-bones/19/rotation = Quaternion(2.98023e-08, 2.98023e-08, -2.98023e-08, 1)
-bones/21/rotation = Quaternion(2.98023e-08, -2.98023e-08, 2.98023e-08, 1)
-bones/22/rotation = Quaternion(2.98023e-08, -2.98023e-08, 2.98023e-08, 1)
-bones/23/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 1.49012e-08, 1)
-bones/25/rotation = Quaternion(-4.47035e-08, -4.47035e-08, 0, 1)
-bones/26/rotation = Quaternion(-1.49012e-08, -1.49012e-08, -1.49012e-08, 1)
-bones/27/rotation = Quaternion(0, -5.96046e-08, 0, 1)
-bones/28/rotation = Quaternion(-2.72691e-06, 2.98023e-08, -0.000141129, 1)
-bones/29/rotation = Quaternion(6.22869e-06, 1.04308e-07, 0.000368372, 1)
-bones/30/rotation = Quaternion(-3.57628e-06, 0, -0.000229612, 1)
-bones/31/rotation = Quaternion(1.49012e-08, -1.49012e-08, 0, 1)
-bones/32/rotation = Quaternion(0.499969, -0.500031, -0.499969, -0.500031)
-bones/33/rotation = Quaternion(-4.17233e-07, 1, -1.99974e-05, -2.83122e-07)
-bones/34/rotation = Quaternion(-4.21468e-08, 0.707107, 0, 0.707107)
-bones/35/rotation = Quaternion(-2.81893e-08, -0.707107, -1.39575e-08, 0.707107)
-bones/37/rotation = Quaternion(-0.214187, -0.673887, -0.214187, 0.673887)
-bones/38/rotation = Quaternion(-2.98023e-08, 1.49012e-08, 2.22045e-16, 1)
-bones/39/rotation = Quaternion(0, -8.9407e-08, 0, 1)
-bones/41/rotation = Quaternion(0, 5.96046e-08, 5.96046e-08, 1)
-bones/46/rotation = Quaternion(0, 5.96046e-08, 5.96046e-08, 1)
-bones/47/rotation = Quaternion(2.98023e-08, -1.49012e-08, 1.49012e-08, 1)
-bones/49/rotation = Quaternion(-1.49012e-08, 4.47035e-08, 5.96046e-08, 1)
-bones/50/rotation = Quaternion(-1.49012e-08, 1.49012e-08, -1.49012e-08, 1)
-bones/53/rotation = Quaternion(1.49012e-07, -8.9407e-08, -1.05202e-05, 1)
-bones/54/rotation = Quaternion(-2.98023e-08, 8.9407e-08, 1.05351e-05, 1)
-bones/55/rotation = Quaternion(2.98023e-08, -2.98023e-08, -2.98023e-08, 1)
-bones/56/rotation = Quaternion(8.25414e-09, 1.02951e-05, 1, -8.79593e-08)
-bones/57/rotation = Quaternion(1.39698e-09, 1, -1.97939e-05, -5.46588e-08)
-bones/58/rotation = Quaternion(-1.20905e-09, 0.707107, -0.707107, 2.41295e-09)
-bones/59/rotation = Quaternion(8.23181e-10, 1, 5.96046e-08, -8.23181e-10)
-bones/61/rotation = Quaternion(-1.3356e-12, -6.52502e-10, 1, 2.1827e-11)
-bones/62/rotation = Quaternion(-2.32831e-10, 1, 1.39698e-09, -1.09139e-11)
-bones/63/rotation = Quaternion(1.60006e-09, 0.707107, -0.707107, -3.75576e-10)
-bones/64/rotation = Quaternion(-2.63418e-09, 1, 0, 0)
-
 [node name="Alpha_Surface" parent="Character/Armature_004/GeneralSkeleton" index="1"]
 surface_material_override/0 = SubResource("ShaderMaterial_730gq")
 
-[node name="LockOnAttachment" parent="Character/Armature_004/GeneralSkeleton" index="2"]
-transform = Transform3D(1, 7.35419e-12, -2.66409e-12, -7.35419e-12, 1, -7.87391e-09, 2.66409e-12, 7.87391e-09, 1, -2.25913e-05, 1.34721, -0.042761)
-
 [node name="Crosshair" parent="Character/Armature_004/GeneralSkeleton/LockOnAttachment/AttachmentPoint" index="0"]
 debug = true
-
-[node name="HeadAttachment" parent="Character/Armature_004/GeneralSkeleton" index="3"]
-transform = Transform3D(1, 7.81293e-14, -2.66409e-12, -7.81293e-14, 1, -8.33958e-09, 2.66409e-12, 8.33958e-09, 1, -4.45549e-05, 1.60075, -0.00340771)
 
 [node name="Sword" parent="Character/Armature_004/GeneralSkeleton" index="4" node_paths=PackedStringArray("entity") instance=ExtResource("3_ubs2k")]
 transform = Transform3D(7.54791e-07, -1, -8.41021e-05, 5.5829e-07, 8.41021e-05, -1, 1, 7.54744e-07, 5.58354e-07, -0.737829, 1.43565, -0.0617133)
@@ -608,10 +556,13 @@ anim_tree = NodePath("../../AnimationTree")
 
 [node name="Inward" type="Node" parent="Character/Animations/Melee" index="0" node_paths=PackedStringArray("anim_tree")]
 script = ExtResource("6_kk740")
+trim = 0.2
+speed = 1.8
 anim_tree = NodePath("../../../AnimationTree")
 
 [node name="Outward" type="Node" parent="Character/Animations/Melee" index="1" node_paths=PackedStringArray("anim_tree")]
 script = ExtResource("7_epeh7")
+trim = 0.5
 anim_tree = NodePath("../../../AnimationTree")
 
 [node name="Thrust" type="Node" parent="Character/Animations/Melee" index="2" node_paths=PackedStringArray("anim_tree")]
@@ -638,21 +589,18 @@ anim_tree = NodePath("../../AnimationTree")
 script = ExtResource("13_ehp2r")
 action_name = "Small Projectile"
 has_copy = true
-secondary_movement = false
 anim_tree = NodePath("../../../AnimationTree")
 
 [node name="BigProjectile" type="Node" parent="Character/Animations/NonMelee" index="1" node_paths=PackedStringArray("anim_tree")]
 script = ExtResource("13_ehp2r")
 action_name = "Big Projectile"
 has_copy = true
-secondary_movement = false
 anim_tree = NodePath("../../../AnimationTree")
 
 [node name="EnergyBeam" type="Node" parent="Character/Animations/NonMelee" index="2" node_paths=PackedStringArray("anim_tree")]
 script = ExtResource("13_ehp2r")
 action_name = "Energy Beam"
 has_copy = true
-secondary_movement = false
 anim_tree = NodePath("../../../AnimationTree")
 
 [node name="DizzyVictim" parent="Character/Animations" index="7"]
@@ -682,8 +630,12 @@ stream = SubResource("AudioStreamRandomizer_bf7lm")
 volume_db = -5.0
 max_distance = 20.0
 
+[node name="HealthComponent" parent="Wellbeing" index="1"]
+max_health = 200.0
+
 [node name="InstabilityComponent" parent="Wellbeing" index="2" node_paths=PackedStringArray("weapons")]
 weapons = [NodePath("../../Character/Armature_004/GeneralSkeleton/Sword")]
+max_instability = 200.0
 
 [node name="MeleeComponent" type="Node" parent="Abilities" index="0" node_paths=PackedStringArray("entity", "blackboard", "instability_component", "outcomes_handler", "melee_animations", "locomotion_component")]
 script = ExtResource("16_1jr2w")
@@ -697,18 +649,18 @@ weapons = {
 "right_hand": NodePath("../../Character/Armature_004/GeneralSkeleton/Sword")
 }
 
-[node name="BlockComponent" parent="Abilities" index="1" node_paths=PackedStringArray("entity", "locomotion_component", "block_animations") instance=ExtResource("17_yertk")]
+[node name="ShieldComponent" parent="Abilities" index="1" node_paths=PackedStringArray("entity", "locomotion_component", "block_animations") instance=ExtResource("17_yertk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
 entity = NodePath("../..")
 locomotion_component = NodePath("../../LocomotionComponent")
 block_animations = NodePath("../../Character/Animations/Block")
+color = Color(0.976471, 0.639216, 0.109804, 1)
 
-[node name="ParryComponent" type="Node3D" parent="Abilities" index="2" node_paths=PackedStringArray("hitbox_component", "block_component")]
+[node name="ParryComponent" type="Node3D" parent="Abilities" index="2" node_paths=PackedStringArray("hitbox_component")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("18_ds13n")
 hitbox_component = NodePath("../../HitboxComponent")
-block_component = NodePath("../BlockComponent")
-parry_particles_colour = Color(0, 0.976471, 1, 1)
+parry_particles_colour = Color(0.976471, 0.639216, 0.109804, 1)
 
 [node name="NonMeleeComponent" type="Node" parent="Abilities" index="3" node_paths=PackedStringArray("instability_component", "blackboard", "non_melee_animations", "locomotion_component")]
 script = ExtResource("21_u4f4s")
@@ -736,20 +688,20 @@ entity = NodePath("../../..")
 [node name="Outcomes" parent="Combat/InteractionComponent" index="2"]
 outcome_weights = Array[float]([0.2, 0.4, 0.4])
 
-[node name="Block" type="Node" parent="Combat/InteractionComponent/Outcomes" index="1" node_paths=PackedStringArray("blackboard", "block_component", "health_component", "instability_component", "block_sfx")]
+[node name="Block" type="Node" parent="Combat/InteractionComponent/Outcomes" index="1" node_paths=PackedStringArray("blackboard", "shield_component", "health_component", "instability_component", "block_sfx")]
 script = ExtResource("19_u1fei")
 blackboard = NodePath("../../../../Blackboard")
-block_component = NodePath("../../../../Abilities/BlockComponent")
+shield_component = NodePath("../../../../Abilities/ShieldComponent")
 health_component = NodePath("../../../../Wellbeing/HealthComponent")
 instability_component = NodePath("../../../../Wellbeing/InstabilityComponent")
 block_sfx = NodePath("../../../../Character/Audio/Block")
 
-[node name="Parry" type="Node" parent="Combat/InteractionComponent/Outcomes" index="2" node_paths=PackedStringArray("blackboard", "parry_component", "parry_animations", "block_component", "parry_sfx", "instability_component")]
+[node name="Parry" type="Node" parent="Combat/InteractionComponent/Outcomes" index="2" node_paths=PackedStringArray("blackboard", "parry_component", "parry_animations", "shield_component", "parry_sfx", "instability_component")]
 script = ExtResource("20_3i2rj")
 blackboard = NodePath("../../../../Blackboard")
 parry_component = NodePath("../../../../Abilities/ParryComponent")
 parry_animations = NodePath("../../../../Character/Animations/Parry")
-block_component = NodePath("../../../../Abilities/BlockComponent")
+shield_component = NodePath("../../../../Abilities/ShieldComponent")
 parry_sfx = NodePath("../../../../Character/Audio/Parry")
 instability_component = NodePath("../../../../Wellbeing/InstabilityComponent")
 
@@ -757,11 +709,13 @@ instability_component = NodePath("../../../../Wellbeing/InstabilityComponent")
 
 [node name="SetCanMoveTrue" parent="BeehaveTree/SelectorComposite/Aggro" index="1" instance=ExtResource("22_x0n3s")]
 
-[node name="SetRotateTowardsTargetTrue" parent="BeehaveTree/SelectorComposite/Aggro" index="2" instance=ExtResource("26_tkltp")]
+[node name="SetHeadRotationEnabledTrue" parent="BeehaveTree/SelectorComposite/Aggro" index="2" instance=ExtResource("33_u7p3h")]
 
-[node name="SetLockedOnTrue" parent="BeehaveTree/SelectorComposite/Aggro" index="3" instance=ExtResource("27_ohwhg")]
+[node name="SetRotateTowardsTargetTrue" parent="BeehaveTree/SelectorComposite/Aggro" index="3" instance=ExtResource("26_tkltp")]
 
-[node name="MeleeOrNonMelee" type="Node" parent="BeehaveTree/SelectorComposite/Aggro" index="4"]
+[node name="SetLockedOnTrue" parent="BeehaveTree/SelectorComposite/Aggro" index="4" instance=ExtResource("27_ohwhg")]
+
+[node name="MeleeOrNonMelee" type="Node" parent="BeehaveTree/SelectorComposite/Aggro" index="5"]
 script = ExtResource("23_madgx")
 
 [node name="Melee" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/MeleeOrNonMelee" index="0"]
@@ -874,7 +828,22 @@ right_operand = "true"
 
 [node name="SetCanMoveTrue" parent="BeehaveTree/SelectorComposite/Aggro/MeleeOrNonMelee/Melee/MeleeCombat/Attack" index="7" instance=ExtResource("22_x0n3s")]
 
-[node name="StayOrChase" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/MeleeOrNonMelee/Melee/MeleeCombat" index="1"]
+[node name="ParriedHit" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/MeleeOrNonMelee/Melee/MeleeCombat" index="1"]
+script = ExtResource("25_82h45")
+
+[node name="IsParriedHitTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/MeleeOrNonMelee/Melee/MeleeCombat/ParriedHit" index="0"]
+script = ExtResource("28_5vof2")
+left_operand = "get_value(\"parried_hit\")"
+right_operand = "true"
+
+[node name="SetCanAttackTrue" parent="BeehaveTree/SelectorComposite/Aggro/MeleeOrNonMelee/Melee/MeleeCombat/ParriedHit" index="1" instance=ExtResource("43_hc4un")]
+
+[node name="SetParriedHitFalse" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/MeleeOrNonMelee/Melee/MeleeCombat/ParriedHit" index="2"]
+script = ExtResource("40_tgk0l")
+key = "\"parried_hit\""
+value = "false"
+
+[node name="StayOrChase" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/MeleeOrNonMelee/Melee/MeleeCombat" index="2"]
 script = ExtResource("23_madgx")
 
 [node name="Unreachable" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/MeleeOrNonMelee/Melee/MeleeCombat/StayOrChase" index="0"]
@@ -935,16 +904,19 @@ wait_id = 61967809
 [node name="SquareUp" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/MeleeOrNonMelee/Melee/MeleeCombat/StayOrChase/SquareUpIfClose" index="6"]
 script = ExtResource("25_82h45")
 
-[node name="WalkSpeed" parent="BeehaveTree/SelectorComposite/Aggro/MeleeOrNonMelee/Melee/MeleeCombat/StayOrChase/SquareUpIfClose/SquareUp" index="0" instance=ExtResource("36_rp0gi")]
+[node name="SetRootMotionTrue" parent="BeehaveTree/SelectorComposite/Aggro/MeleeOrNonMelee/Melee/MeleeCombat/StayOrChase/SquareUpIfClose/SquareUp" index="0" instance=ExtResource("54_hdna1")]
 
-[node name="Strafe" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/MeleeOrNonMelee/Melee/MeleeCombat/StayOrChase/SquareUpIfClose/SquareUp" index="1"]
+[node name="SetAnimMoveSpeed" parent="BeehaveTree/SelectorComposite/Aggro/MeleeOrNonMelee/Melee/MeleeCombat/StayOrChase/SquareUpIfClose/SquareUp" index="1" instance=ExtResource("55_4d8a6")]
+value = "0.5"
+
+[node name="Strafe" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/MeleeOrNonMelee/Melee/MeleeCombat/StayOrChase/SquareUpIfClose/SquareUp" index="2"]
 script = ExtResource("31_idrt6")
 
 [node name="InputLeft" parent="BeehaveTree/SelectorComposite/Aggro/MeleeOrNonMelee/Melee/MeleeCombat/StayOrChase/SquareUpIfClose/SquareUp/Strafe" index="0" instance=ExtResource("37_mf6of")]
 
 [node name="InputRight" parent="BeehaveTree/SelectorComposite/Aggro/MeleeOrNonMelee/Melee/MeleeCombat/StayOrChase/SquareUpIfClose/SquareUp/Strafe" index="1" instance=ExtResource("38_foqxw")]
 
-[node name="DelayDecorator" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/MeleeOrNonMelee/Melee/MeleeCombat/StayOrChase/SquareUpIfClose/SquareUp" index="2"]
+[node name="DelayDecorator" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/MeleeOrNonMelee/Melee/MeleeCombat/StayOrChase/SquareUpIfClose/SquareUp" index="3"]
 script = ExtResource("34_hbnxt")
 wait_time = 2.0
 
@@ -974,14 +946,20 @@ wait_id = 61967809
 
 [node name="InputNone" parent="BeehaveTree/SelectorComposite/Aggro/MeleeOrNonMelee/Melee/MeleeCombat/StayOrChase/Chase" index="4" instance=ExtResource("29_xy0rs")]
 
-[node name="SetRunSpeed" parent="BeehaveTree/SelectorComposite/Aggro/MeleeOrNonMelee/Melee/MeleeCombat/StayOrChase/Chase" index="5" instance=ExtResource("44_1satl")]
-
-[node name="WaitBeforeChase" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/MeleeOrNonMelee/Melee/MeleeCombat/StayOrChase/Chase" index="6"]
+[node name="WaitBeforeChase" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/MeleeOrNonMelee/Melee/MeleeCombat/StayOrChase/Chase" index="5"]
 script = ExtResource("42_0xx7c")
 time = 2.0
 wait_id = 23169934
 
-[node name="InputForwards" parent="BeehaveTree/SelectorComposite/Aggro/MeleeOrNonMelee/Melee/MeleeCombat/StayOrChase/Chase" index="7" instance=ExtResource("45_l7ro5")]
+[node name="SetRootMotionFalse" parent="BeehaveTree/SelectorComposite/Aggro/MeleeOrNonMelee/Melee/MeleeCombat/StayOrChase/Chase" index="6" instance=ExtResource("56_lrosl")]
+
+[node name="SetAnimMoveSpeed" parent="BeehaveTree/SelectorComposite/Aggro/MeleeOrNonMelee/Melee/MeleeCombat/StayOrChase/Chase" index="7" instance=ExtResource("55_4d8a6")]
+value = "1"
+
+[node name="WalkSpeed" parent="BeehaveTree/SelectorComposite/Aggro/MeleeOrNonMelee/Melee/MeleeCombat/StayOrChase/Chase" index="8" instance=ExtResource("36_rp0gi")]
+value = "3"
+
+[node name="InputForwards" parent="BeehaveTree/SelectorComposite/Aggro/MeleeOrNonMelee/Melee/MeleeCombat/StayOrChase/Chase" index="9" instance=ExtResource("45_l7ro5")]
 
 [node name="Investigate" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/MeleeOrNonMelee/Melee/MeleeCombat/StayOrChase" index="3"]
 script = ExtResource("23_madgx")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://dmtsn22tgr3b1"]
+[gd_scene load_steps=61 format=3 uid="uid://dmtsn22tgr3b1"]
 
 [ext_resource type="PackedScene" uid="uid://b34rhh2gbadoy" path="res://scenes/entities/BaseEnemy.tscn" id="1_mc312"]
 [ext_resource type="Shader" path="res://shaders/fade.gdshader" id="2_433ld"]
@@ -27,6 +27,7 @@
 [ext_resource type="Script" path="res://addons/beehave/nodes/decorators/failer.gd" id="22_ce0i6"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="23_mp67g"]
 [ext_resource type="PackedScene" uid="uid://cryed6dtlo286" path="res://scenes/beehave/set_actions/SetRotateTowardsTargetTrue.tscn" id="24_quvof"]
+[ext_resource type="PackedScene" uid="uid://chahljohpb0da" path="res://scenes/beehave/set_actions/SetHeadRotationEnabledTrue.tscn" id="25_4kidf"]
 [ext_resource type="PackedScene" uid="uid://b2vrwljrc7cpp" path="res://scenes/beehave/set_actions/SetLockedOnTrue.tscn" id="25_5kxm6"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_compare.gd" id="26_t4uqh"]
 [ext_resource type="PackedScene" uid="uid://5653b3wcf25p" path="res://scenes/beehave/inputs/InputNone.tscn" id="27_r7c2x"]
@@ -662,10 +663,7 @@ instability_component = NodePath("../../../../Wellbeing/InstabilityComponent")
 
 [node name="SetCanMoveTrue" parent="BeehaveTree/SelectorComposite/Aggro" index="1" instance=ExtResource("34_1528r")]
 
-[node name="SetHeadRotationEnabledTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro" index="2"]
-script = ExtResource("39_yg2yw")
-key = "\"head_rotation_enabled\""
-value = "true"
+[node name="SetHeadRotationEnabledTrue" parent="BeehaveTree/SelectorComposite/Aggro" index="2" instance=ExtResource("25_4kidf")]
 
 [node name="AggroTarget" type="Node" parent="BeehaveTree/SelectorComposite/Aggro" index="3"]
 script = ExtResource("21_763qd")

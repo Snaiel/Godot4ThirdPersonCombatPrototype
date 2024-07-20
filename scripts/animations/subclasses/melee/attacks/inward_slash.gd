@@ -2,6 +2,10 @@ class_name InwardMeleeAttack
 extends MeleeAttack
 
 
+@export var trim: float = 0.0
+@export var speed: float = 1.5
+
+
 func _ready():
 	attack_name = "inward_slash"
 
@@ -9,16 +13,16 @@ func _ready():
 func play_attack():
 	if _play_copy:
 		anim_tree.set(&"parameters/Attack Inward Slash Copy/Inward Slash and Walk Blend/blend_amount", 0.0)
-		anim_tree.set(&"parameters/Attack Inward Slash Copy/Inward Slash Trim/seek_request", 0.0)
-		anim_tree.set(&"parameters/Attack Inward Slash Copy/Inward Slash Speed/scale", 1.5)
+		anim_tree.set(&"parameters/Attack Inward Slash Copy/Inward Slash Trim/seek_request", trim)
+		anim_tree.set(&"parameters/Attack Inward Slash Copy/Inward Slash Speed/scale", speed)
 		anim_tree.set(&"parameters/Attack Inward Slash Copy/Walk Forwards Trim/seek_request", 0.55)
 		anim_tree.set(&"parameters/Attack Inward Slash Copy/Walk Forwards Speed/scale", 0.0)
 		anim_tree.set(&"parameters/Melee Attack/transition_request", &"inward_slash_copy")
 		_play_copy = false
 	else:
 		anim_tree.set(&"parameters/Attack Inward Slash/Inward Slash and Walk Blend/blend_amount", 0.0)
-		anim_tree.set(&"parameters/Attack Inward Slash/Inward Slash Trim/seek_request", 0.0)
-		anim_tree.set(&"parameters/Attack Inward Slash/Inward Slash Speed/scale", 1.5)
+		anim_tree.set(&"parameters/Attack Inward Slash/Inward Slash Trim/seek_request", trim)
+		anim_tree.set(&"parameters/Attack Inward Slash/Inward Slash Speed/scale", speed)
 		anim_tree.set(&"parameters/Attack Inward Slash/Walk Forwards Trim/seek_request", 0.55)
 		anim_tree.set(&"parameters/Attack Inward Slash/Walk Forwards Speed/scale", 0.0)
 		anim_tree.set(&"parameters/Melee Attack/transition_request", &"inward_slash")
