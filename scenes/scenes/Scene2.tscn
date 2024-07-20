@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cd738rigq1w2v"]
+[gd_scene load_steps=42 format=3 uid="uid://cd738rigq1w2v"]
 
 [ext_resource type="Script" path="res://scripts/systems/level.gd" id="1_e4p23"]
 [ext_resource type="PackedScene" uid="uid://cy5wvw01aul4m" path="res://scenes/systems/CameraController.tscn" id="2_ebvse"]
@@ -24,6 +24,7 @@
 [ext_resource type="Material" uid="uid://c3wpac6u0t4w6" path="res://materials/blue2.tres" id="21_jgiix"]
 [ext_resource type="Material" uid="uid://dooew5nmgy7hf" path="res://materials/grey3.tres" id="22_s8p5f"]
 [ext_resource type="Material" uid="uid://0t5e1ojcjjtp" path="res://materials/blue1.tres" id="23_e4en7"]
+[ext_resource type="PackedScene" uid="uid://kprsqtbxvcxx" path="res://scenes/systems/EnemySection.tscn" id="25_7opv3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wqkpv"]
 sky_top_color = Color(0.384314, 0.454902, 0.54902, 1)
@@ -75,6 +76,15 @@ size = Vector3(89.5908, 1, 193.188)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_eddj4"]
 size = Vector3(136.163, 1, 193.188)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pe25b"]
+size = Vector3(67.5359, 500, 83.4856)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7crfn"]
+size = Vector3(93.4712, 500, 99.914)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5nirt"]
+size = Vector3(100.682, 500, 91.2832)
 
 [node name="Scene2" type="Node3D" node_paths=PackedStringArray("player", "user_interface", "camera_controller", "lock_on_system", "backstab_system", "dizzy_system", "checkpoint_system", "music_system", "void_death_system")]
 script = ExtResource("1_e4p23")
@@ -552,6 +562,33 @@ shape = SubResource("BoxShape3D_eddj4")
 
 [node name="Enemies" type="Node3D" parent="Level2"]
 
+[node name="Section1" parent="Level2/Enemies" instance=ExtResource("25_7opv3")]
+transform = Transform3D(0.919623, 0, -0.392803, 0, 1, 0, 0.392803, 0, 0.919623, 10.1663, 0, 37.9078)
+
+[node name="AreaCollider" parent="Level2/Enemies/Section1" index="0"]
+transform = Transform3D(0.990054, 0, 0.140623, 0, 1, 0, -0.140623, 0, 0.990054, 7.97047, 0, 17.3518)
+
+[node name="Section2" parent="Level2/Enemies" instance=ExtResource("25_7opv3")]
+transform = Transform3D(0.919623, 0, -0.392803, 0, 1, 0, 0.392803, 0, 0.919623, -42.5184, 0, 78.9883)
+
+[node name="AreaCollider" parent="Level2/Enemies/Section2" index="0"]
+transform = Transform3D(0.629666, 0, 0.776864, 0, 1, 0, -0.776864, 0, 0.629666, -6.35876, 0, 11.0974)
+shape = SubResource("BoxShape3D_pe25b")
+
+[node name="Section3" parent="Level2/Enemies" instance=ExtResource("25_7opv3")]
+transform = Transform3D(0.919623, 0, -0.392803, 0, 1, 0, 0.392803, 0, 0.919623, -80.6162, 0, 99.1345)
+
+[node name="AreaCollider" parent="Level2/Enemies/Section3" index="0"]
+transform = Transform3D(0.990423, 0, 0.138068, 0, 1, 0, -0.138068, 0, 0.990423, -14.928, 0, -7.506)
+shape = SubResource("BoxShape3D_7crfn")
+
+[node name="Section4" parent="Level2/Enemies" instance=ExtResource("25_7opv3")]
+transform = Transform3D(0.919623, 0, -0.392803, 0, 1, 0, 0.392803, 0, 0.919623, -148.653, 0, 73.6203)
+
+[node name="AreaCollider" parent="Level2/Enemies/Section4" index="0"]
+transform = Transform3D(0.990063, 0, 0.140625, 0, 1, 0, -0.140625, 0, 0.990063, 6.68057, 0, 5.59087)
+shape = SubResource("BoxShape3D_5nirt")
+
 [editable path="Level1/Environment/NavigationRegion3D/level1"]
 [editable path="Level1/Environment/NavigationRegion3D/Checkpoints/Checkpoint5"]
 [editable path="Level1/Environment/NavigationRegion3D/Checkpoints/Checkpoint6"]
@@ -559,3 +596,7 @@ shape = SubResource("BoxShape3D_eddj4")
 [editable path="Level2/Environment/NavigationRegion3D/level2"]
 [editable path="Level2/VoidColliders/VoidArea"]
 [editable path="Level2/VoidColliders/VoidArea2"]
+[editable path="Level2/Enemies/Section1"]
+[editable path="Level2/Enemies/Section2"]
+[editable path="Level2/Enemies/Section3"]
+[editable path="Level2/Enemies/Section4"]

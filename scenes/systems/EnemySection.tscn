@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/systems/enemy_section.gd" id="1_ewjba"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_svx3x"]
-size = Vector3(60, 500, 130)
+size = Vector3(93.4712, 500, 156.586)
 
 [node name="EnemySection" type="Area3D"]
 collision_mask = 2
