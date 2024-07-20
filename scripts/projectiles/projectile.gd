@@ -11,6 +11,17 @@ var direction: Vector3 = Vector3.FORWARD
 
 func _ready():
 	get_tree().create_timer(10.0).timeout.connect(queue_free)
+	area.body_entered.connect(
+		func(body: Node3D):
+			if not body is StaticBody3D: return
+			var static_body: StaticBody3D = body
+			var layers: String = String.num_uint64(
+				static_body.collision_layer,
+				2
+			)
+			if not layers.ends_with("1"): return
+			queue_free()
+	)
 
 
 func _process(delta: float) -> void:

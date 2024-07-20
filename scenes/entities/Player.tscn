@@ -1147,7 +1147,6 @@ reduction_rate = 5.0
 
 [node name="HealthComponent" parent="Wellbeing" instance=ExtResource("75_ofv26")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
-max_health = 50.0
 blood_scene = ExtResource("27_63iim")
 
 [node name="Combat" type="Node3D" parent="."]
