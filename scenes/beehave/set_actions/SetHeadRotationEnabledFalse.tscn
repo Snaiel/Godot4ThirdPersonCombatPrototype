@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cg1kloq5w8ssv"]
+
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_set.gd" id="1_ufm45"]
+
+[node name="SetHeadRotationEnabledFalse" type="Node"]
+script = ExtResource("1_ufm45")
+key = "\"head_rotation_enabled\""
+value = "false"

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8xsea0s2ra0"]
+
+[ext_resource type="PackedScene" uid="uid://fq3siafml2od" path="res://scenes/systems/PatrolInstance.tscn" id="1_k4uap"]
+
+[node name="PatrolPath" type="Path3D"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0)
+
+[node name="PatrolInstance" parent="." instance=ExtResource("1_k4uap")]
+transform = Transform3D(0.999973, 0, 0, 0, 1, 0, 0, 0, 0.999973, 0, 0, 0)

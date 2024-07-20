@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://dtbfffampqtqg"]
+[gd_scene load_steps=65 format=3 uid="uid://dtbfffampqtqg"]
 
 [ext_resource type="PackedScene" uid="uid://b34rhh2gbadoy" path="res://scenes/entities/BaseEnemy.tscn" id="1_m0vya"]
 [ext_resource type="Shader" path="res://shaders/fade.gdshader" id="2_8j143"]
@@ -57,6 +57,7 @@
 [ext_resource type="PackedScene" uid="uid://cerhh2ei5vqf4" path="res://scenes/beehave/set_actions/SetRootMotionTrue.tscn" id="54_hdna1"]
 [ext_resource type="PackedScene" uid="uid://g2idcje0d0ll" path="res://scenes/beehave/animations/SetAnimMoveSpeed.tscn" id="55_4d8a6"]
 [ext_resource type="PackedScene" uid="uid://bqi2hrppoou6q" path="res://scenes/beehave/set_actions/SetRootMotionFalse.tscn" id="56_lrosl"]
+[ext_resource type="PackedScene" uid="uid://ca5elfnoopl6y" path="res://scenes/beehave/trees/Patrol.tscn" id="58_nfd3d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_730gq"]
 render_priority = 0
@@ -1051,6 +1052,8 @@ script = ExtResource("35_5s1rq")
 script = ExtResource("28_5vof2")
 left_operand = "get_value(\"executing_action\")"
 right_operand = "true"
+
+[node name="Patrol" parent="BeehaveTree/SelectorComposite" index="5" instance=ExtResource("58_nfd3d")]
 
 [editable path="Character"]
 [editable path="Character/Armature_004/GeneralSkeleton/Sword"]

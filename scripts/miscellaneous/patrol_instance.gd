@@ -12,6 +12,7 @@ enum PatrolType {LINEAR, OSCILLATE, CIRCUIT}
 @export var patrol: bool = true
 @export var speed: float = 3.0
 @export var stationary_time: float = 8.0
+@export var initial_delay: float = 0.0
 
 var direction: int = 1
 
@@ -37,6 +38,12 @@ func _ready():
 				direction = 1
 	)
 	add_child(_stationary_timer)
+	
+	if initial_delay > 0:
+		patrol = false
+		get_tree().create_timer(initial_delay).timeout.connect(
+			func(): patrol = true
+		)
 	
 	move.emit(true)
 
