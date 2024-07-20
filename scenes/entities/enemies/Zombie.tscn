@@ -456,7 +456,6 @@ bones/9/rotation = Quaternion(-1.35601e-06, 1, 1.90586e-05, 1.78814e-07)
 bones/10/rotation = Quaternion(0, -0.707107, 0, 0.707107)
 bones/11/rotation = Quaternion(2.10734e-08, 0.707107, -2.10734e-08, 0.707107)
 bones/12/rotation = Quaternion(-2.98023e-08, 2.98023e-08, 2.98023e-08, 1)
-bones/13/rotation = Quaternion(-0.214187, 0.673887, 0.214187, 0.673887)
 bones/14/rotation = Quaternion(2.98023e-08, 4.47035e-08, 6.66134e-16, 1)
 bones/15/rotation = Quaternion(-1.49012e-08, -1.49012e-08, 2.98023e-08, 1)
 bones/16/rotation = Quaternion(-2.98023e-08, 2.98023e-08, 2.98023e-08, 1)
@@ -480,7 +479,6 @@ bones/33/rotation = Quaternion(-4.17232e-07, 1, -2.00272e-05, -2.23517e-07)
 bones/34/rotation = Quaternion(0, 0.707107, -2.10734e-08, 0.707107)
 bones/35/rotation = Quaternion(-2.10734e-08, -0.707107, -2.10734e-08, 0.707107)
 bones/36/rotation = Quaternion(-2.98023e-08, -2.98023e-08, -2.98023e-08, 1)
-bones/37/rotation = Quaternion(-0.214187, -0.673887, -0.214187, 0.673887)
 bones/38/rotation = Quaternion(-1.49012e-08, 0, 0, 1)
 bones/39/rotation = Quaternion(5.96046e-08, 8.9407e-08, 2.98023e-08, 1)
 bones/40/rotation = Quaternion(-4.47035e-08, 0, -4.47035e-08, 1)
@@ -586,21 +584,18 @@ anim_tree = NodePath("../../AnimationTree")
 script = ExtResource("21_v3y6e")
 _attack_name = "Zombie Smack"
 has_copy = true
-time = 7.0
 anim_tree = NodePath("../../../AnimationTree")
 
 [node name="Smash" type="Node" parent="Character/Animations/Melee" index="1" node_paths=PackedStringArray("anim_tree")]
 script = ExtResource("21_v3y6e")
 _attack_name = "Zombie Smash"
 has_copy = true
-time = 7.0
 anim_tree = NodePath("../../../AnimationTree")
 
 [node name="Kick" type="Node" parent="Character/Animations/Melee" index="2" node_paths=PackedStringArray("anim_tree")]
 script = ExtResource("21_v3y6e")
 _attack_name = "Zombie Kick"
 has_copy = true
-time = 7.0
 anim_tree = NodePath("../../../AnimationTree")
 
 [node name="WeaponSwing" type="AudioStreamPlayer3D" parent="Character/Audio" index="4"]

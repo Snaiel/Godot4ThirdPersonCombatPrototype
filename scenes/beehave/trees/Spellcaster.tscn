@@ -26,7 +26,7 @@
 
 [node name="BeehaveTree" type="Node" node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("1_6c1hr")
-blackboard = NodePath("@Node@45024")
+blackboard = NodePath("@Node@97868")
 actor = NodePath("")
 
 [node name="SelectorComposite" type="Node" parent="."]
@@ -99,7 +99,7 @@ script = ExtResource("15_n1ol2")
 
 [node name="CheckSuspicion" parent="SelectorComposite/Suspicious" instance=ExtResource("18_ryys6")]
 
-[node name="Wait" parent="SelectorComposite/Suspicious/CheckSuspicion/MoveToTarget" index="1"]
+[node name="Wait" parent="SelectorComposite/Suspicious/CheckSuspicion/MoveToTarget" index="3"]
 wait_id = 10868496
 
 [node name="Aggro" type="Node" parent="SelectorComposite"]

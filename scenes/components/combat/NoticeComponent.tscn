@@ -15,6 +15,7 @@
 script = ExtResource("1_611qe")
 initial_state = NodePath("Idle")
 aggro_state = NodePath("Aggro")
+outer_distance = 20.0
 notice_val_curve = ExtResource("3_ibel0")
 notice_triangle_scene = ExtResource("2_2dsee")
 off_camera_notice_triangle_scene = ExtResource("3_i1p7x")

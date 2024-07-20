@@ -639,7 +639,7 @@ shield_component = NodePath("../ShieldComponent")
 parry_particles_colour = Color(0.439216, 0.0392157, 0.0392157, 1)
 
 [node name="Outcomes" parent="Combat/InteractionComponent" index="2"]
-outcome_weights = Array[float]([0.0, 0.0, 1.0])
+outcome_weights = Array[float]([0.4, 0.4, 0.2])
 
 [node name="Block" type="Node" parent="Combat/InteractionComponent/Outcomes" index="1" node_paths=PackedStringArray("blackboard", "shield_component", "health_component", "instability_component", "block_sfx")]
 script = ExtResource("18_g4go8")

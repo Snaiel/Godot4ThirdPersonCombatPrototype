@@ -20,8 +20,8 @@ extends Node
 @export_category("Notice Thresholds")
 @export var inner_angle: float = 50.0
 @export var outer_angle: float = 70.0
-@export var inner_distance: float = 8.5
-@export var outer_distance: float = 15.0
+@export var inner_distance: float = 10.0
+@export var outer_distance: float = 10.0
 
 @export_category("Notice Value")
 @export var min_notice_step: float = 0.15

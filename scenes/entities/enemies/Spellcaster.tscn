@@ -420,9 +420,6 @@ _data = {
 
 [node name="Spellcaster" instance=ExtResource("1_oaqw0")]
 
-[node name="Character" parent="." index="0"]
-debug = true
-
 [node name="GeneralSkeleton" parent="Character/Armature_004" index="0"]
 bones/12/rotation = Quaternion(-0.0308084, -0.114377, -0.201263, 0.972349)
 bones/16/rotation = Quaternion(0.170211, -1.78814e-07, -0.0205409, 0.985194)
@@ -511,6 +508,10 @@ entity = NodePath("../../..")
 script = ExtResource("13_t4d4w")
 projectile_scene = ExtResource("10_1tv5p")
 entity = NodePath("../../..")
+
+[node name="NoticeComponent" parent="Combat" index="2"]
+inner_distance = 15.0
+outer_distance = 30.0
 
 [node name="SetRotateTowardsTargetTrue" parent="BeehaveTree/SelectorComposite/Aggro" index="1" instance=ExtResource("10_m7wae")]
 
