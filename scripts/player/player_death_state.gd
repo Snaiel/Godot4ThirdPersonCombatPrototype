@@ -2,6 +2,9 @@ class_name PlayerDeathState
 extends PlayerStateMachine
 
 
+@export var dizzy_hit_sfx: AudioStreamPlayer3D
+
+
 func _ready():
 	super._ready()
 	
@@ -50,6 +53,10 @@ func enter() -> void:
 	player.rotation_component.rotate_towards_target = false
 	
 	Globals.music_system.fade_out()
+	
+	if player.instability_component.is_full_instability():
+		Globals.user_interface.hud.instability_bar.play_max_instability()
+		dizzy_hit_sfx.play()
 
 
 func process_player() -> void:

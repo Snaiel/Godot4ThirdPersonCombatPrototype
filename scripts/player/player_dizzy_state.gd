@@ -19,6 +19,8 @@ var _timer: Timer
 var _dizzy_sfx_tween: Tween
 var _default_dizzy_sfx_volume: float
 
+var _skip_damage: bool = false
+
 
 func _ready():
 	super._ready()
@@ -32,13 +34,17 @@ func _ready():
 	
 	player.hitbox_component.damage_source_hit.connect(
 		func(incoming_damage_source: DamageSource):
-			if not parent_state.current_state == self: return
+			if parent_state.current_state != self: return
 			player.locomotion_component.knockback(
 				incoming_damage_source.damage_attributes.knockback,
 				incoming_damage_source.entity.global_position
 			)
 			player.character.hit_and_death_animations.hit()
 			hit_sfx.play()
+			if _skip_damage:
+				_skip_damage = false
+				return
+			player.health_component.incoming_damage(incoming_damage_source)
 	)
 	
 	_timer = Timer.new()
@@ -61,6 +67,10 @@ func enter() -> void:
 	player.character.dizzy_victim_animations.dizzy_from_parry()
 	
 	Globals.user_interface.hud.instability_bar.play_max_instability()
+	
+	_skip_damage = false
+	if parent_state.previous_state is PlayerBlockState:
+		_skip_damage = true
 	
 	dizzy_stars.visible = true
 	

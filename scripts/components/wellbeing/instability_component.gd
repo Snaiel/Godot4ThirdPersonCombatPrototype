@@ -80,7 +80,7 @@ func increment_instability(
 	
 	source_causes_readied_finisher = readied_finisher
 	
-	if is_equal_approx(instability, max_instability):
+	if is_full_instability():
 		full_instability_from_parry = from_parry
 		full_instability.emit()
 	else:

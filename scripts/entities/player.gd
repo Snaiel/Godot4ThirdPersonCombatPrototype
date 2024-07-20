@@ -63,7 +63,7 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	#prints(holding_down_run)
+	#prints(state_machine.current_state)
 	
 	## State Machine
 	state_machine.process_player_state_machine()

@@ -5,6 +5,8 @@ extends PlayerStateMachine
 @export var attack_state: PlayerAttackState
 @export var block_state: PlayerBlockState
 @export var parry_state: PlayerParryState
+@export var dizzy_state: PlayerDizzyState
+@export var death_state: PlayerDeathState
 
 @export var sfx: AudioStreamPlayer3D
 
@@ -37,6 +39,7 @@ func _ready():
 	_timer.one_shot = true
 	_timer.timeout.connect(
 		func():
+			if parent_state.current_state != self: return
 			if _pressed_attack:
 				parent_state.change_state(attack_state)
 			else:
@@ -69,6 +72,14 @@ func enter() -> void:
 
 
 func process_player() -> void:
+	if not player.health_component.is_alive():
+		parent_state.change_state(death_state)
+		return
+	
+	if player.instability_component.is_full_instability():
+		parent_state.change_state(dizzy_state)
+		return
+	
 	if _timer.time_left <= 0.25:
 		_can_block_or_parry = true
 	
