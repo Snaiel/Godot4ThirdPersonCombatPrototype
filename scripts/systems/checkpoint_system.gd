@@ -28,12 +28,10 @@ var _packed_enemies: PackedScene
 
 
 func _ready():
-	if not enemies: return
-	
-	set_enemies_chldren_owner()
-	
-	_packed_enemies = PackedScene.new()
-	_packed_enemies.pack(enemies)
+	if enemies:
+		set_enemies_chldren_owner()
+		_packed_enemies = PackedScene.new()
+		_packed_enemies.pack(enemies)
 	
 	checkpoint_interface.perform_recovery.connect(
 		_recover
@@ -86,13 +84,14 @@ func recover_after_death() -> void:
 
 
 func _recover() -> void:
-	enemies.queue_free()
-	Globals.user_interface.hud.clear_enemy_hud_elements()
 	Globals.camera_controller.reset()
 	
-	var new_enemies: Node = _packed_enemies.instantiate()
-	level.add_child(new_enemies)
-	enemies = new_enemies
+	if enemies:
+		Globals.user_interface.hud.clear_enemy_hud_elements()
+		enemies.queue_free()
+		var new_enemies: Node = _packed_enemies.instantiate()
+		level.add_child(new_enemies)
+		enemies = new_enemies
 	
 	player.health_component.health = player.health_component.max_health
 	player.instability_component.instability = 0
@@ -100,6 +99,7 @@ func _recover() -> void:
 
 
 func _set_node_owner_to_enemies(node: Node) -> void:
+	if not enemies: return
 	for child in node.get_children():
 		child.owner = enemies
 		if child.get_child_count() > 0 and not child is Enemy:
