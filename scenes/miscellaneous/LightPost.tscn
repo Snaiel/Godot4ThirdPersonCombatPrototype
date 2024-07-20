@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqlpcxf26e4lj"]
+[gd_scene load_steps=6 format=3 uid="uid://dqlpcxf26e4lj"]
 
 [ext_resource type="Material" uid="uid://bi2l1p46blr1g" path="res://materials/grey1.tres" id="1_ubi6n"]
 
@@ -14,13 +14,18 @@ emission_energy_multiplier = 0.5
 [sub_resource type="BoxMesh" id="BoxMesh_utbyq"]
 size = Vector3(0.4, 1, 0.4)
 
-[node name="LightPost" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_fedsb"]
+size = Vector3(0.4, 1.3, 0.4)
+
+[node name="LightPost" type="StaticBody3D"]
 
 [node name="Light" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.10841, 0)
 light_color = Color(1, 0.636292, 0.210938, 1)
 light_energy = 5.0
 shadow_opacity = 0.4
+distance_fade_enabled = true
+distance_fade_begin = 30.0
 omni_range = 10.0
 
 [node name="Head" type="MeshInstance3D" parent="."]
@@ -34,3 +39,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.481704, 0)
 mesh = SubResource("BoxMesh_utbyq")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("1_ubi6n")
+
+[node name="Collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.625878, 0)
+shape = SubResource("BoxShape3D_fedsb")
