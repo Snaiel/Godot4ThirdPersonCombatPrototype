@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://cd738rigq1w2v"]
+[gd_scene load_steps=43 format=3 uid="uid://cd738rigq1w2v"]
 
 [ext_resource type="Script" path="res://scripts/systems/level.gd" id="1_e4p23"]
 [ext_resource type="PackedScene" uid="uid://cy5wvw01aul4m" path="res://scenes/systems/CameraController.tscn" id="2_ebvse"]
@@ -25,6 +25,7 @@
 [ext_resource type="Material" uid="uid://dooew5nmgy7hf" path="res://materials/grey3.tres" id="22_s8p5f"]
 [ext_resource type="Material" uid="uid://0t5e1ojcjjtp" path="res://materials/blue1.tres" id="23_e4en7"]
 [ext_resource type="PackedScene" uid="uid://kprsqtbxvcxx" path="res://scenes/systems/EnemySection.tscn" id="25_7opv3"]
+[ext_resource type="PackedScene" uid="uid://dqlpcxf26e4lj" path="res://scenes/miscellaneous/LightPost.tscn" id="26_0mnik"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wqkpv"]
 sky_top_color = Color(0.384314, 0.454902, 0.54902, 1)
@@ -38,8 +39,10 @@ sky_material = SubResource("ProceduralSkyMaterial_wqkpv")
 background_mode = 2
 sky = SubResource("Sky_qudfu")
 tonemap_mode = 2
+fog_enabled = true
 fog_light_color = Color(0.183105, 0.294189, 0.46875, 1)
 fog_height_density = 0.1
+volumetric_fog_enabled = true
 volumetric_fog_albedo = Color(0.535156, 0.716736, 1, 1)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_a4owr"]
@@ -575,6 +578,8 @@ transform = Transform3D(-0.967294, 0, 0.253657, 0, 1, 0, -0.253657, 0, -0.967294
 [node name="MeshInstance3D" parent="Level2/Environment/NavigationRegion3D/Checkpoints/Checkpoint3/RespawnPoint" index="0"]
 transform = Transform3D(-0.838709, 0.27229, -0.47162, 4.99369e-09, 0.866025, 0.5, 0.54458, 0.419354, -0.726342, 1.70531, 0.451712, -2.2872)
 
+[node name="Lights" type="Node3D" parent="Level2/Environment/NavigationRegion3D"]
+
 [node name="Enemies" type="Node3D" parent="Level2"]
 
 [node name="Section1" parent="Level2/Enemies" instance=ExtResource("25_7opv3")]
@@ -623,6 +628,69 @@ transform = Transform3D(0.245443, 0, -0.969411, 0, 1, 0, 0.969411, 0, 0.245443, 
 [node name="CollisionShape3D" parent="Level2/VoidColliders/VoidArea2" index="0"]
 transform = Transform3D(0.918318, 0, -0.395833, 0, 1, 0, 0.395833, 0, 0.918318, -37.0644, 0, 26.6946)
 shape = SubResource("BoxShape3D_eddj4")
+
+[node name="LightPost" parent="." instance=ExtResource("26_0mnik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 135.235, 19.532, 51.4645)
+
+[node name="LightPost2" parent="." instance=ExtResource("26_0mnik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 122.765, 19.532, 50.9001)
+
+[node name="LightPost3" parent="." instance=ExtResource("26_0mnik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 126.21, 19.9656, 79.811)
+
+[node name="LightPost4" parent="." instance=ExtResource("26_0mnik")]
+transform = Transform3D(0.785727, 0, 0.618573, 0, 1, 0, -0.618573, 0, 0.785727, 73.0209, 14.8704, 68.2385)
+
+[node name="LightPost5" parent="." instance=ExtResource("26_0mnik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.4701, 18.2203, 87.2771)
+
+[node name="LightPost6" parent="." instance=ExtResource("26_0mnik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.0992, 21.5576, 108.627)
+
+[node name="LightPost7" parent="." instance=ExtResource("26_0mnik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.9297, 23.5532, 115.881)
+
+[node name="LightPost8" parent="." instance=ExtResource("26_0mnik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 85.7121, 20.3675, 116.639)
+
+[node name="LightPost9" parent="." instance=ExtResource("26_0mnik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95.2975, 20.3675, 91.3826)
+
+[node name="LightPost10" parent="." instance=ExtResource("26_0mnik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 74.5004, 20.3675, 90.0594)
+
+[node name="LightPost11" parent="." instance=ExtResource("26_0mnik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.241, 22.3836, 131.402)
+
+[node name="LightPost12" parent="." instance=ExtResource("26_0mnik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.955, 22.3836, 89.9134)
+
+[node name="LightPost13" parent="." instance=ExtResource("26_0mnik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.6667, 22.3836, 100.87)
+
+[node name="LightPost14" parent="." instance=ExtResource("26_0mnik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.8977, 22.3836, 92.4409)
+
+[node name="LightPost15" parent="." instance=ExtResource("26_0mnik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.46623, 26.8363, 123.802)
+
+[node name="LightPost16" parent="." instance=ExtResource("26_0mnik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5655, 26.8362, 115.917)
+
+[node name="LightPost17" parent="." instance=ExtResource("26_0mnik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.18474, 29.1713, 97.6555)
+
+[node name="LightPost18" parent="." instance=ExtResource("26_0mnik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.9777, 26.8362, 102.191)
+
+[node name="LightPost19" parent="." instance=ExtResource("26_0mnik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 115.519, 14.8704, 78.4669)
+
+[node name="LightPost20" parent="." instance=ExtResource("26_0mnik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 110.154, 14.8704, 58.7846)
+
+[node name="LightPost21" parent="." instance=ExtResource("26_0mnik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 104.79, 20.3911, 97.0889)
 
 [editable path="Level1/Environment/NavigationRegion3D/level1"]
 [editable path="Level1/Environment/NavigationRegion3D/Checkpoints/Checkpoint5"]
