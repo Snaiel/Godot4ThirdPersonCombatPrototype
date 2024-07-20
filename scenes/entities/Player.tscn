@@ -916,6 +916,7 @@ volume_db = -15.0
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("2_4ql4h")
+debug = true
 player = NodePath("..")
 
 [node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("walk_state", "dodge_state", "jump_state", "attack_state", "block_state", "parry_state", "backstab_state", "player")]

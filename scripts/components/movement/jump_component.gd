@@ -53,7 +53,7 @@ func _process(_delta: float) -> void:
 	if entity.is_on_floor() and _can_emit_just_landed:
 		_can_emit_just_landed = false
 		jumping = false
-		animations.jump_animations.fade_out()		
+		animations.jump_animations.fade_out()
 		just_landed.emit()
 		land_sfx.play()
 	

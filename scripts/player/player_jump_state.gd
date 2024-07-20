@@ -16,7 +16,7 @@ func _ready():
 	player.jump_component.just_landed.connect(
 		func():
 			if parent_state.current_state == self:
-				parent_state.transition_to_previous_state()
+				parent_state.transition_to_default_state()
 	)
 
 

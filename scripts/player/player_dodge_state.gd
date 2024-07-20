@@ -17,16 +17,17 @@ func enter() -> void:
 
 
 func process_player() -> void:
-	if run_state.holding_down_run:
-		parent_state.change_state(run_state)
-		return
-	elif not player.dodge_component.dodging:
-		parent_state.transition_to_default_state()
-		return
-	
 	if Input.is_action_just_pressed("jump") and \
 	player.is_on_floor():
 		parent_state.change_state(jump_state)
+		return
+	
+	if run_state.holding_down_run:
+		parent_state.change_state(run_state)
+		return
+	
+	if not player.dodge_component.dodging:
+		parent_state.transition_to_default_state()
 		return
 	
 	player.set_rotation_target_to_lock_on_target()
