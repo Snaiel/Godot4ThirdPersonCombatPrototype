@@ -6,5 +6,5 @@
 script = ExtResource("1_j0d2d")
 speed = 6.0
 time = 5.0
-friction = 15.0
+friction = 12.0
 direction = Vector3(0, 0, 0)

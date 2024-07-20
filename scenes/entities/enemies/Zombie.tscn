@@ -1,13 +1,15 @@
-[gd_scene load_steps=42 format=3 uid="uid://cn68ggj4dxvj3"]
+[gd_scene load_steps=50 format=3 uid="uid://cn68ggj4dxvj3"]
 
 [ext_resource type="PackedScene" uid="uid://b34rhh2gbadoy" path="res://scenes/entities/BaseEnemy.tscn" id="1_83e20"]
 [ext_resource type="PackedScene" uid="uid://tabdgh0vgxwq" path="res://scenes/weapons/Weapon.tscn" id="2_4v0im"]
 [ext_resource type="Shader" path="res://shaders/fade.gdshader" id="5_gycrj"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://b5hblhvekj3pr" path="res://animations/blend_trees/ZombieBlendTree.tres" id="7_q608i"]
 [ext_resource type="AnimationLibrary" uid="uid://cpdmlmb5om1d3" path="res://animations/combat_animations_1/combat_animations_1.blend" id="9_4gv0h"]
+[ext_resource type="Script" path="res://scripts/resources/secondary_movement.gd" id="10_5x6pp"]
 [ext_resource type="AnimationLibrary" uid="uid://c6e3lwlt6ukuj" path="res://animations/movement_animations_1/movement_animations_1.blend" id="11_6g2f5"]
 [ext_resource type="Script" path="res://scripts/components/abilities/enemy_melee_component.gd" id="11_x7u6u"]
 [ext_resource type="AnimationLibrary" uid="uid://cmm0t4aso30ee" path="res://animations/zombie_animations_1/zombie_animations_1.blend" id="11_x24c1"]
+[ext_resource type="Script" path="res://scripts/resources/damage_attributes.gd" id="11_xo2gg"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/melee/melee_animations.gd" id="15_37iw6"]
 [ext_resource type="PackedScene" uid="uid://dpuaj53mlpdfw" path="res://scenes/beehave/set_actions/SetCanMoveFalse.tscn" id="19_wxlb4"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/melee/attacks/simple_melee_attack.gd" id="21_v3y6e"]
@@ -437,6 +439,52 @@ _data = {
 "Y Bot": SubResource("Animation_sc1df")
 }
 
+[sub_resource type="Resource" id="Resource_74hfi"]
+script = ExtResource("10_5x6pp")
+speed = 10.0
+time = 8.0
+friction = 12.0
+direction = Vector3(0, 0, 0)
+
+[sub_resource type="Resource" id="Resource_qxeju"]
+script = ExtResource("11_xo2gg")
+health = 10.0
+hit_instability = 20.0
+block_instability = 20.0
+parry_instability = 5.0
+got_parried_instability = 30.0
+knockback = SubResource("Resource_74hfi")
+
+[sub_resource type="Resource" id="Resource_lle7g"]
+script = ExtResource("10_5x6pp")
+speed = 12.0
+time = 9.0
+friction = 15.0
+direction = Vector3(0, 0, 0)
+
+[sub_resource type="Resource" id="Resource_85vta"]
+script = ExtResource("11_xo2gg")
+health = 10.0
+hit_instability = 20.0
+block_instability = 20.0
+parry_instability = 5.0
+got_parried_instability = 30.0
+knockback = SubResource("Resource_74hfi")
+
+[sub_resource type="Resource" id="Resource_hb36w"]
+script = ExtResource("10_5x6pp")
+speed = 12.0
+time = 9.0
+friction = 15.0
+direction = Vector3(0, 0, 0)
+
+[sub_resource type="Resource" id="Resource_km3yu"]
+script = ExtResource("10_5x6pp")
+speed = 12.0
+time = 9.0
+friction = 15.0
+direction = Vector3(0, 0, 0)
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_rnvsh"]
 streams_count = 1
 stream_0/stream = ExtResource("25_oa7s1")
@@ -584,18 +632,24 @@ anim_tree = NodePath("../../AnimationTree")
 script = ExtResource("21_v3y6e")
 _attack_name = "Zombie Smack"
 has_copy = true
+damage_attributes = SubResource("Resource_qxeju")
+secondary_movement = SubResource("Resource_lle7g")
 anim_tree = NodePath("../../../AnimationTree")
 
 [node name="Smash" type="Node" parent="Character/Animations/Melee" index="1" node_paths=PackedStringArray("anim_tree")]
 script = ExtResource("21_v3y6e")
 _attack_name = "Zombie Smash"
 has_copy = true
+damage_attributes = SubResource("Resource_85vta")
+secondary_movement = SubResource("Resource_hb36w")
 anim_tree = NodePath("../../../AnimationTree")
 
 [node name="Kick" type="Node" parent="Character/Animations/Melee" index="2" node_paths=PackedStringArray("anim_tree")]
 script = ExtResource("21_v3y6e")
 _attack_name = "Zombie Kick"
 has_copy = true
+damage_attributes = SubResource("Resource_85vta")
+secondary_movement = SubResource("Resource_km3yu")
 anim_tree = NodePath("../../../AnimationTree")
 
 [node name="WeaponSwing" type="AudioStreamPlayer3D" parent="Character/Audio" index="4"]
@@ -603,9 +657,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
 stream = SubResource("AudioStreamRandomizer_rnvsh")
 volume_db = -15.0
 max_distance = 20.0
-
-[node name="LocomotionComponent" parent="." index="4"]
-default_strategy = &"root_motion"
 
 [node name="InstabilityComponent" parent="Wellbeing" index="2" node_paths=PackedStringArray("weapons")]
 weapons = [NodePath("../../Character/Armature_004/GeneralSkeleton/LeftHand"), NodePath("../../Character/Armature_004/GeneralSkeleton/RightFoot")]
@@ -649,7 +700,7 @@ right_operand = "true"
 script = ExtResource("54_3f5dv")
 left_operand = "get_value(\"target_dist\")"
 operator = 3
-right_operand = "2"
+right_operand = "5"
 
 [node name="IsPerceivesPlayerTrue" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/Attack" index="2"]
 script = ExtResource("54_3f5dv")
@@ -770,7 +821,7 @@ script = ExtResource("49_ahbd6")
 script = ExtResource("54_3f5dv")
 left_operand = "get_value(\"target_dist\")"
 operator = 3
-right_operand = "1.9"
+right_operand = "4.9"
 
 [node name="SetAgentTargetPositionNull" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/SquareUpIfClose" index="1"]
 script = ExtResource("71_hlhqy")

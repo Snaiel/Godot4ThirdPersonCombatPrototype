@@ -10,6 +10,7 @@ extends PlayerStateMachine
 @export var dodge_state: PlayerDodgeState
 @export var dizzy_finisher_state: PlayerDizzyFinisherState
 
+@export var default_knockback: SecondaryMovement
 @export var sfx: AudioStreamPlayer3D
 
 var _incoming_damage_source: DamageSource
@@ -66,7 +67,13 @@ func enter() -> void:
 	player.shield_component.animation_player.play("parried")
 	
 	_incoming_damage_source.get_parried()
-	if not dizzy_system.dizzy_victim:
+	if dizzy_system.dizzy_victim:
+		locomotion_component.reset_secondary_movement()
+		player.locomotion_component.knockback(
+			default_knockback,
+			_incoming_damage_source.entity.global_position
+		)
+	else:
 		player.locomotion_component.knockback(
 			_incoming_damage_source.damage_attributes.knockback,
 			_incoming_damage_source.entity.global_position

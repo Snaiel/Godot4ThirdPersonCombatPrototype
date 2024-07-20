@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=3 uid="uid://dujukbu10vbmm"]
+[gd_scene load_steps=98 format=3 uid="uid://dujukbu10vbmm"]
 
 [ext_resource type="Script" path="res://scripts/entities/player.gd" id="1_lgfyt"]
 [ext_resource type="Script" path="res://scripts/player/player_state_machine.gd" id="2_4ql4h"]
@@ -69,6 +69,7 @@
 [ext_resource type="AudioStream" uid="uid://cd4rhj6wa6w2o" path="res://audio/hit.wav" id="37_x5xuy"]
 [ext_resource type="AudioStream" uid="uid://c3tepl14wrdnl" path="res://audio/dizzy.wav" id="38_wp7hd"]
 [ext_resource type="AudioStream" uid="uid://y01bxihxcn8q" path="res://audio/dodge.wav" id="39_itg1c"]
+[ext_resource type="Script" path="res://scripts/resources/secondary_movement.gd" id="54_3jeuy"]
 [ext_resource type="PackedScene" uid="uid://cko2lhqdu4n44" path="res://scenes/components/utility/HitboxComponent.tscn" id="66_wy87f"]
 [ext_resource type="PackedScene" uid="uid://bgb0pw8dklo4j" path="res://scenes/components/rotation/PlayerRotationComponent.tscn" id="67_pt31b"]
 [ext_resource type="PackedScene" uid="uid://7qijntg00gi5" path="res://scenes/components/rotation/HeadRotationComponent.tscn" id="68_24wf0"]
@@ -531,6 +532,13 @@ streams_count = 1
 stream_0/stream = ExtResource("30_8nr2i")
 stream_0/weight = 1.0
 
+[sub_resource type="Resource" id="Resource_0tfmq"]
+script = ExtResource("54_3jeuy")
+speed = 3.0
+time = 5.0
+friction = 8.0
+direction = Vector3(0, 0, 0)
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lnhvg"]
 radius = 0.3
 height = 1.8
@@ -992,6 +1000,7 @@ block_state = NodePath("../Block")
 parry_state = NodePath("../Parry")
 dodge_state = NodePath("../Dodge")
 dizzy_finisher_state = NodePath("../DizzyFinisher")
+default_knockback = SubResource("Resource_0tfmq")
 sfx = NodePath("../../Character/Audio/Parry")
 player = NodePath("../..")
 
@@ -1076,7 +1085,6 @@ shape = SubResource("CapsuleShape3D_lnhvg")
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("66_wy87f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 collision_layer = 2
-debug = true
 entity = NodePath("..")
 groups = Array[String](["enemy"])
 
