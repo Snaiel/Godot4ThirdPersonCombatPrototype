@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://cd738rigq1w2v"]
+[gd_scene load_steps=44 format=3 uid="uid://cd738rigq1w2v"]
 
 [ext_resource type="Script" path="res://scripts/systems/level.gd" id="1_e4p23"]
 [ext_resource type="PackedScene" uid="uid://cy5wvw01aul4m" path="res://scenes/systems/CameraController.tscn" id="2_ebvse"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cchf2jr3d13xj" path="res://scenes/systems/MusicSystem.tscn" id="9_r1r5g"]
 [ext_resource type="ArrayOccluder3D" uid="uid://c6fnidkmdcr07" path="res://occluders/Level1.occ" id="10_74xf0"]
 [ext_resource type="PackedScene" uid="uid://dsubhagnir7ns" path="res://models/levels/level1.blend" id="11_d4bpw"]
+[ext_resource type="Script" path="res://scripts/systems/world_environment.gd" id="11_vj8k8"]
 [ext_resource type="PackedScene" uid="uid://k32oq3ivgjxf" path="res://scenes/miscellaneous/Checkpoint.tscn" id="12_clpmb"]
 [ext_resource type="Material" uid="uid://bi2l1p46blr1g" path="res://materials/grey1.tres" id="12_wrl4e"]
 [ext_resource type="PackedScene" uid="uid://ia1adrmqd0lf" path="res://scenes/components/utility/LockOnComponent.tscn" id="13_x5cut"]
@@ -107,7 +108,7 @@ running_spin_speed = 4.0
 [node name="UserInterface" parent="." instance=ExtResource("3_im4q1")]
 
 [node name="Player" parent="." instance=ExtResource("4_km71j")]
-transform = Transform3D(-0.992461, 0, 0.122562, 0, 1, 0, -0.122562, 0, -0.992461, 127.538, 26.1631, 47.1202)
+transform = Transform3D(-0.992461, 0, 0.122562, 0, 1, 0, -0.122562, 0, -0.992461, 67.6756, 26.1631, 108.156)
 
 [node name="BackstabSystem" type="Node3D" parent="."]
 script = ExtResource("5_lt6ye")
@@ -128,6 +129,8 @@ enabled = false
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_xfaio")
+script = ExtResource("11_vj8k8")
+enable_fog = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.819796, 0.154633, 0.551382, -0.555326, 0.449744, 0.699531, -0.13981, -0.87967, 0.45457, 0, 17.9363, 0)
