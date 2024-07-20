@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://chqo23127k51m"]
+
+[ext_resource type="Script" path="res://scripts/systems/void_death_system.gd" id="1_sub52"]
+
+[node name="VoidDeathSystem" type="Node"]
+script = ExtResource("1_sub52")

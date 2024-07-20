@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/systems/backstab_system.gd" id="5_lt6ye"]
 [ext_resource type="Script" path="res://scripts/systems/dizzy_system.gd" id="6_yqv35"]
 [ext_resource type="PackedScene" uid="uid://xg0hjxcilbsl" path="res://scenes/systems/LockOnSystem.tscn" id="7_j3kdn"]
+[ext_resource type="PackedScene" uid="uid://chqo23127k51m" path="res://scenes/systems/VoidDeathSystem.tscn" id="8_m1wb1"]
 [ext_resource type="PackedScene" uid="uid://y7vsh6qub2m1" path="res://scenes/systems/CheckpointSystem.tscn" id="8_sw1gf"]
 [ext_resource type="PackedScene" uid="uid://cchf2jr3d13xj" path="res://scenes/systems/MusicSystem.tscn" id="9_r1r5g"]
 [ext_resource type="ArrayOccluder3D" uid="uid://c6fnidkmdcr07" path="res://occluders/Level1.occ" id="10_74xf0"]
@@ -14,7 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://k32oq3ivgjxf" path="res://scenes/miscellaneous/Checkpoint.tscn" id="12_clpmb"]
 [ext_resource type="Material" uid="uid://bi2l1p46blr1g" path="res://materials/grey1.tres" id="12_wrl4e"]
 [ext_resource type="PackedScene" uid="uid://ia1adrmqd0lf" path="res://scenes/components/utility/LockOnComponent.tscn" id="13_x5cut"]
-[ext_resource type="Script" path="res://scripts/systems/void_death_system.gd" id="14_1aqi0"]
 [ext_resource type="PackedScene" uid="uid://biuqyf53m0ive" path="res://scenes/systems/VoidArea.tscn" id="15_yey3c"]
 [ext_resource type="Script" path="res://scripts/systems/enemy_section.gd" id="16_fqjbt"]
 [ext_resource type="PackedScene" uid="uid://dmtsn22tgr3b1" path="res://scenes/entities/enemies/Swordsman.tscn" id="17_85uvr"]
@@ -86,7 +86,7 @@ backstab_system = NodePath("BackstabSystem")
 dizzy_system = NodePath("DizzySystem")
 checkpoint_system = NodePath("CheckpointSystem")
 music_system = NodePath("MusicSystem")
-void_death_system = NodePath("Level1/VoidDeathSystem")
+void_death_system = NodePath("VoidDeathSystem")
 
 [node name="CameraController" parent="." instance=ExtResource("2_ebvse")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.6934, 0)
@@ -105,6 +105,8 @@ script = ExtResource("5_lt6ye")
 script = ExtResource("6_yqv35")
 
 [node name="LockOnSystem" parent="." instance=ExtResource("7_j3kdn")]
+
+[node name="VoidDeathSystem" parent="." instance=ExtResource("8_m1wb1")]
 
 [node name="CheckpointSystem" parent="." node_paths=PackedStringArray("level", "initial_checkpoint") instance=ExtResource("8_sw1gf")]
 level = NodePath("../Level1")
@@ -203,16 +205,15 @@ skeleton = NodePath("../../../Checkpoint5")
 [node name="MeshInstance3D" parent="Level1/Environment/NavigationRegion3D/Checkpoints/Checkpoint6" index="1"]
 skeleton = NodePath("../../Checkpoint5")
 
-[node name="VoidDeathSystem" type="Node3D" parent="Level1"]
-script = ExtResource("14_1aqi0")
+[node name="VoidColliders" type="Node3D" parent="Level1"]
 
-[node name="VoidArea" parent="Level1/VoidDeathSystem" instance=ExtResource("15_yey3c")]
+[node name="VoidArea" parent="Level1/VoidColliders" instance=ExtResource("15_yey3c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
 
-[node name="VoidArea2" parent="Level1/VoidDeathSystem" instance=ExtResource("15_yey3c")]
+[node name="VoidArea2" parent="Level1/VoidColliders" instance=ExtResource("15_yey3c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92.9684, 5, -47.4593)
 
-[node name="CollisionShape3D" parent="Level1/VoidDeathSystem/VoidArea2" index="0"]
+[node name="CollisionShape3D" parent="Level1/VoidColliders/VoidArea2" index="0"]
 transform = Transform3D(0.337407, 0, -0.941359, 0, 1, 0, 0.941359, 0, 0.337407, -16.8022, 0, -12.7856)
 shape = SubResource("BoxShape3D_xwvw0")
 
@@ -554,7 +555,7 @@ shape = SubResource("BoxShape3D_eddj4")
 [editable path="Level1/Environment/NavigationRegion3D/level1"]
 [editable path="Level1/Environment/NavigationRegion3D/Checkpoints/Checkpoint5"]
 [editable path="Level1/Environment/NavigationRegion3D/Checkpoints/Checkpoint6"]
-[editable path="Level1/VoidDeathSystem/VoidArea2"]
+[editable path="Level1/VoidColliders/VoidArea2"]
 [editable path="Level2/Environment/NavigationRegion3D/level2"]
 [editable path="Level2/VoidColliders/VoidArea"]
 [editable path="Level2/VoidColliders/VoidArea2"]

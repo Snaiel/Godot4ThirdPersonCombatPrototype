@@ -3,7 +3,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_vdqph"]
 size = Vector3(150, 1, 150)
 
-[node name="VoidArea" type="Area3D"]
+[node name="VoidArea" type="Area3D" groups=["void_area"]]
 collision_mask = 10
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
