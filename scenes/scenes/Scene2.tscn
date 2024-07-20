@@ -71,12 +71,6 @@ polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Arr
 geometry_parsed_geometry_type = 1
 region_merge_size = 30.0
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_akfcq"]
-size = Vector3(89.5908, 1, 193.188)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_eddj4"]
-size = Vector3(136.163, 1, 193.188)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_pe25b"]
 size = Vector3(67.5359, 500, 83.4856)
 
@@ -85,6 +79,12 @@ size = Vector3(93.4712, 500, 99.914)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5nirt"]
 size = Vector3(100.682, 500, 91.2832)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_akfcq"]
+size = Vector3(89.5908, 1, 193.188)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eddj4"]
+size = Vector3(136.163, 1, 193.188)
 
 [node name="Scene2" type="Node3D" node_paths=PackedStringArray("player", "user_interface", "camera_controller", "lock_on_system", "backstab_system", "dizzy_system", "checkpoint_system", "music_system", "void_death_system")]
 script = ExtResource("1_e4p23")
@@ -235,6 +235,7 @@ script = ExtResource("16_fqjbt")
 
 [node name="AreaCollider" type="CollisionShape3D" parent="Level1/Enemies/Section"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.0151, 0, -46.8021)
+visible = false
 shape = SubResource("BoxShape3D_d3a26")
 
 [node name="Enemies" type="Node3D" parent="Level1/Enemies/Section"]
@@ -267,14 +268,17 @@ script = ExtResource("16_fqjbt")
 
 [node name="AreaCollider" type="CollisionShape3D" parent="Level1/Enemies/Section2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -7)
+visible = false
 shape = SubResource("BoxShape3D_h06qn")
 
 [node name="AreaCollider2" type="CollisionShape3D" parent="Level1/Enemies/Section2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, -27)
+visible = false
 shape = SubResource("BoxShape3D_6nb2v")
 
 [node name="AreaCollider3" type="CollisionShape3D" parent="Level1/Enemies/Section2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 41)
+visible = false
 shape = SubResource("BoxShape3D_8u0tp")
 
 [node name="Enemies" type="Node3D" parent="Level1/Enemies/Section2"]
@@ -314,6 +318,7 @@ script = ExtResource("16_fqjbt")
 
 [node name="AreaCollider" type="CollisionShape3D" parent="Level1/Enemies/Section3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7)
+visible = false
 shape = SubResource("BoxShape3D_tj07f")
 
 [node name="Enemies" type="Node3D" parent="Level1/Enemies/Section3"]
@@ -544,6 +549,65 @@ surface_material_override/0 = ExtResource("21_jgiix")
 [node name="Cube_003" parent="Level2/Environment/NavigationRegion3D/level2" index="63"]
 surface_material_override/0 = ExtResource("22_s8p5f")
 
+[node name="Checkpoints" type="Node3D" parent="Level2/Environment/NavigationRegion3D"]
+
+[node name="Checkpoint" parent="Level2/Environment/NavigationRegion3D/Checkpoints" instance=ExtResource("12_clpmb")]
+transform = Transform3D(0.746754, 0, 0.6651, 0, 1, 0, -0.6651, 0, 0.746754, -18.5118, 16.0878, 88.3071)
+
+[node name="RespawnPoint" parent="Level2/Environment/NavigationRegion3D/Checkpoints/Checkpoint" index="0"]
+transform = Transform3D(-0.967294, 0, 0.253657, 0, 1, 0, -0.253657, 0, -0.967294, 1.50274, -0.367655, -0.552582)
+
+[node name="Checkpoint2" parent="Level2/Environment/NavigationRegion3D/Checkpoints" instance=ExtResource("12_clpmb")]
+transform = Transform3D(0.746754, 0, 0.6651, 0, 1, 0, -0.6651, 0, 0.746754, -57.0992, 17.0359, 110.121)
+
+[node name="RespawnPoint" parent="Level2/Environment/NavigationRegion3D/Checkpoints/Checkpoint2" index="0"]
+transform = Transform3D(-0.967294, 0, 0.253657, 0, 1, 0, -0.253657, 0, -0.967294, 1.50274, -0.367655, -0.552582)
+
+[node name="MeshInstance3D" parent="Level2/Environment/NavigationRegion3D/Checkpoints/Checkpoint2/RespawnPoint" index="0"]
+transform = Transform3D(-0.615373, 0.394118, -0.682632, 0, 0.866025, 0.5, 0.788236, 0.307686, -0.532928, -0.167225, 0.451712, -0.791565)
+
+[node name="Checkpoint3" parent="Level2/Environment/NavigationRegion3D/Checkpoints" instance=ExtResource("12_clpmb")]
+transform = Transform3D(0.746754, 0, 0.6651, 0, 1, 0, -0.6651, 0, 0.746754, -163.664, 25.4416, 49.5953)
+
+[node name="RespawnPoint" parent="Level2/Environment/NavigationRegion3D/Checkpoints/Checkpoint3" index="0"]
+transform = Transform3D(-0.967294, 0, 0.253657, 0, 1, 0, -0.253657, 0, -0.967294, 1.50274, -0.367655, -0.552582)
+
+[node name="MeshInstance3D" parent="Level2/Environment/NavigationRegion3D/Checkpoints/Checkpoint3/RespawnPoint" index="0"]
+transform = Transform3D(-0.838709, 0.27229, -0.47162, 4.99369e-09, 0.866025, 0.5, 0.54458, 0.419354, -0.726342, 1.70531, 0.451712, -2.2872)
+
+[node name="Enemies" type="Node3D" parent="Level2"]
+
+[node name="Section1" parent="Level2/Enemies" instance=ExtResource("25_7opv3")]
+transform = Transform3D(0.919623, 0, -0.392803, 0, 1, 0, 0.392803, 0, 0.919623, 10.1663, 0, 37.9078)
+
+[node name="AreaCollider" parent="Level2/Enemies/Section1" index="0"]
+transform = Transform3D(0.990054, 0, 0.140623, 0, 1, 0, -0.140623, 0, 0.990054, 7.97047, 0, 17.3518)
+visible = false
+
+[node name="Section2" parent="Level2/Enemies" instance=ExtResource("25_7opv3")]
+transform = Transform3D(0.919623, 0, -0.392803, 0, 1, 0, 0.392803, 0, 0.919623, -42.5184, 0, 78.9883)
+
+[node name="AreaCollider" parent="Level2/Enemies/Section2" index="0"]
+transform = Transform3D(0.629666, 0, 0.776864, 0, 1, 0, -0.776864, 0, 0.629666, -6.35876, 0, 11.0974)
+visible = false
+shape = SubResource("BoxShape3D_pe25b")
+
+[node name="Section3" parent="Level2/Enemies" instance=ExtResource("25_7opv3")]
+transform = Transform3D(0.919623, 0, -0.392803, 0, 1, 0, 0.392803, 0, 0.919623, -80.6162, 0, 99.1345)
+
+[node name="AreaCollider" parent="Level2/Enemies/Section3" index="0"]
+transform = Transform3D(0.990423, 0, 0.138068, 0, 1, 0, -0.138068, 0, 0.990423, -14.928, 0, -7.506)
+visible = false
+shape = SubResource("BoxShape3D_7crfn")
+
+[node name="Section4" parent="Level2/Enemies" instance=ExtResource("25_7opv3")]
+transform = Transform3D(0.919623, 0, -0.392803, 0, 1, 0, 0.392803, 0, 0.919623, -148.653, 0, 73.6203)
+
+[node name="AreaCollider" parent="Level2/Enemies/Section4" index="0"]
+transform = Transform3D(0.990063, 0, 0.140625, 0, 1, 0, -0.140625, 0, 0.990063, 6.68057, 0, 5.59087)
+visible = false
+shape = SubResource("BoxShape3D_5nirt")
+
 [node name="VoidColliders" type="Node3D" parent="Level2"]
 
 [node name="VoidArea" parent="Level2/VoidColliders" instance=ExtResource("15_yey3c")]
@@ -560,43 +624,17 @@ transform = Transform3D(0.245443, 0, -0.969411, 0, 1, 0, 0.969411, 0, 0.245443, 
 transform = Transform3D(0.918318, 0, -0.395833, 0, 1, 0, 0.395833, 0, 0.918318, -37.0644, 0, 26.6946)
 shape = SubResource("BoxShape3D_eddj4")
 
-[node name="Enemies" type="Node3D" parent="Level2"]
-
-[node name="Section1" parent="Level2/Enemies" instance=ExtResource("25_7opv3")]
-transform = Transform3D(0.919623, 0, -0.392803, 0, 1, 0, 0.392803, 0, 0.919623, 10.1663, 0, 37.9078)
-
-[node name="AreaCollider" parent="Level2/Enemies/Section1" index="0"]
-transform = Transform3D(0.990054, 0, 0.140623, 0, 1, 0, -0.140623, 0, 0.990054, 7.97047, 0, 17.3518)
-
-[node name="Section2" parent="Level2/Enemies" instance=ExtResource("25_7opv3")]
-transform = Transform3D(0.919623, 0, -0.392803, 0, 1, 0, 0.392803, 0, 0.919623, -42.5184, 0, 78.9883)
-
-[node name="AreaCollider" parent="Level2/Enemies/Section2" index="0"]
-transform = Transform3D(0.629666, 0, 0.776864, 0, 1, 0, -0.776864, 0, 0.629666, -6.35876, 0, 11.0974)
-shape = SubResource("BoxShape3D_pe25b")
-
-[node name="Section3" parent="Level2/Enemies" instance=ExtResource("25_7opv3")]
-transform = Transform3D(0.919623, 0, -0.392803, 0, 1, 0, 0.392803, 0, 0.919623, -80.6162, 0, 99.1345)
-
-[node name="AreaCollider" parent="Level2/Enemies/Section3" index="0"]
-transform = Transform3D(0.990423, 0, 0.138068, 0, 1, 0, -0.138068, 0, 0.990423, -14.928, 0, -7.506)
-shape = SubResource("BoxShape3D_7crfn")
-
-[node name="Section4" parent="Level2/Enemies" instance=ExtResource("25_7opv3")]
-transform = Transform3D(0.919623, 0, -0.392803, 0, 1, 0, 0.392803, 0, 0.919623, -148.653, 0, 73.6203)
-
-[node name="AreaCollider" parent="Level2/Enemies/Section4" index="0"]
-transform = Transform3D(0.990063, 0, 0.140625, 0, 1, 0, -0.140625, 0, 0.990063, 6.68057, 0, 5.59087)
-shape = SubResource("BoxShape3D_5nirt")
-
 [editable path="Level1/Environment/NavigationRegion3D/level1"]
 [editable path="Level1/Environment/NavigationRegion3D/Checkpoints/Checkpoint5"]
 [editable path="Level1/Environment/NavigationRegion3D/Checkpoints/Checkpoint6"]
 [editable path="Level1/VoidColliders/VoidArea2"]
 [editable path="Level2/Environment/NavigationRegion3D/level2"]
-[editable path="Level2/VoidColliders/VoidArea"]
-[editable path="Level2/VoidColliders/VoidArea2"]
+[editable path="Level2/Environment/NavigationRegion3D/Checkpoints/Checkpoint"]
+[editable path="Level2/Environment/NavigationRegion3D/Checkpoints/Checkpoint2"]
+[editable path="Level2/Environment/NavigationRegion3D/Checkpoints/Checkpoint3"]
 [editable path="Level2/Enemies/Section1"]
 [editable path="Level2/Enemies/Section2"]
 [editable path="Level2/Enemies/Section3"]
 [editable path="Level2/Enemies/Section4"]
+[editable path="Level2/VoidColliders/VoidArea"]
+[editable path="Level2/VoidColliders/VoidArea2"]
