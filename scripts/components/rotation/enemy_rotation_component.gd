@@ -6,6 +6,7 @@ extends RotationComponent
 @export var locomotion_component: LocomotionComponent
 @export var blackboard: Blackboard
 @export var agent: NavigationAgent3D
+@export var use_agent_path: bool = true
 
 var enemy: Enemy
 
@@ -37,7 +38,7 @@ func _physics_process(delta: float) -> void:
 		# get the angle towards the lock on target and
 		# smoothyl rotate the player towards it
 		var _next_location: Vector3
-		if blackboard.get_value("agent_target_reachable"):
+		if use_agent_path and blackboard.get_value("agent_target_reachable"):
 			_next_location = agent.get_next_path_position()
 		else:
 			_next_location = enemy.target.global_position

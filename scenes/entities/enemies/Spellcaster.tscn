@@ -487,6 +487,9 @@ action_name = "Energy Beam"
 has_copy = true
 anim_tree = NodePath("../../../AnimationTree")
 
+[node name="RotationComponent" parent="Rotation" index="0"]
+use_agent_path = false
+
 [node name="NonMeleeComponent" type="Node" parent="Abilities" index="0" node_paths=PackedStringArray("instability_component", "blackboard", "non_melee_animations", "locomotion_component")]
 script = ExtResource("5_vtwji")
 instability_component = NodePath("../../Wellbeing/InstabilityComponent")
