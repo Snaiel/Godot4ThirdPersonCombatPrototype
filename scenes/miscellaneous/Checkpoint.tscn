@@ -133,7 +133,7 @@ light_color = Color(0.352941, 0.701961, 0.792157, 1)
 light_energy = 3.0
 light_size = 1.0
 distance_fade_enabled = true
-distance_fade_begin = 20.0
+distance_fade_begin = 50.0
 omni_range = 6.0
 
 [node name="CheckpointParticles" type="GPUParticles3D" parent="."]
