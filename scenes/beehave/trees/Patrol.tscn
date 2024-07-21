@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ca5elfnoopl6y"]
+[gd_scene load_steps=15 format=3 uid="uid://ca5elfnoopl6y"]
 
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="1_kbvsw"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_compare.gd" id="2_o4bkt"]
@@ -11,8 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cg1kloq5w8ssv" path="res://scenes/beehave/set_actions/SetHeadRotationEnabledFalse.tscn" id="9_8tmly"]
 [ext_resource type="PackedScene" uid="uid://b2vrwljrc7cpp" path="res://scenes/beehave/set_actions/SetLockedOnTrue.tscn" id="10_rrtek"]
 [ext_resource type="PackedScene" uid="uid://ynuik1v6nsyt" path="res://scenes/beehave/set_actions/SetCanMoveTrue.tscn" id="11_y0dn0"]
-[ext_resource type="PackedScene" uid="uid://g2idcje0d0ll" path="res://scenes/beehave/animations/SetAnimMoveSpeed.tscn" id="12_m8yw3"]
-[ext_resource type="PackedScene" uid="uid://bqi2hrppoou6q" path="res://scenes/beehave/set_actions/SetRootMotionFalse.tscn" id="13_n30kk"]
+[ext_resource type="PackedScene" uid="uid://cerhh2ei5vqf4" path="res://scenes/beehave/set_actions/SetRootMotionTrue.tscn" id="13_25apf"]
 [ext_resource type="Script" path="res://scripts/beehave/patrol_move_speed.gd" id="14_irdp8"]
 [ext_resource type="PackedScene" uid="uid://ppcsagqgu032" path="res://scenes/beehave/inputs/InputForwards.tscn" id="15_y1jtp"]
 
@@ -63,11 +62,7 @@ wait_id = 22789821
 
 [node name="SetCanMoveTrue" parent="PatrolSelector/Move" instance=ExtResource("11_y0dn0")]
 
-[node name="SetAnimMoveSpeed" parent="PatrolSelector/Move" instance=ExtResource("12_m8yw3")]
-value = "0.6"
-
-[node name="SetRootMotionFalse" parent="PatrolSelector/Move" instance=ExtResource("13_n30kk")]
-root_motion = true
+[node name="SetRootMotionTrue" parent="PatrolSelector/Move" instance=ExtResource("13_25apf")]
 
 [node name="SetPatrolMoveSpeed" type="Node" parent="PatrolSelector/Move"]
 script = ExtResource("14_irdp8")

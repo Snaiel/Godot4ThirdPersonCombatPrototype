@@ -14,7 +14,7 @@ var _previously_enabled_hint: bool
 
 @onready var respawn_point: Node3D = $RespawnPoint
 
-@onready var _area: Area3D = $Area3D
+@onready var _area: Area3D = $Area
 @onready var _recovery_particles: GPUParticles3D = $RecoveryParticles
 @onready var _recovery_audio: AudioStreamPlayer3D = $AudioRecover
 

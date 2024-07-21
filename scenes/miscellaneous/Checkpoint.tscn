@@ -42,6 +42,7 @@ initial_velocity_min = 0.1
 initial_velocity_max = 0.5
 gravity = Vector3(0, 0, 0)
 scale_min = 0.5
+scale_max = 2.0
 scale_curve = SubResource("CurveTexture_hld0h")
 color = Color(0.121569, 0.537255, 0.717647, 1)
 hue_variation_min = -0.1
@@ -103,39 +104,38 @@ script = ExtResource("1_oer0l")
 [node name="RespawnPoint" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.05145, -0.367655, 0.819638)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RespawnPoint"]
+[node name="Pointer" type="MeshInstance3D" parent="RespawnPoint"]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0.451712, -0.206719)
 mesh = SubResource("CapsuleMesh_2fhdd")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Mesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("CylinderMesh_5621l")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="Collider" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_sra6k")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+[node name="Collider2" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.300549, 0)
 shape = SubResource("CapsuleShape3D_aiul3")
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
+[node name="Sprite" type="Sprite3D" parent="."]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.809058, 0)
 cast_shadow = 0
-visibility_range_end = 15.0
+visibility_range_end = 30.0
 visibility_range_end_margin = 5.0
 visibility_range_fade_mode = 1
-modulate = Color(0.0784314, 0.654902, 0.854902, 1)
 billboard = 1
 texture = ExtResource("1_duys1")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
+[node name="Light" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.835, 0)
 light_color = Color(0.352941, 0.701961, 0.792157, 1)
-light_energy = 5.0
+light_energy = 12.0
 light_volumetric_fog_energy = 2.0
 light_size = 1.0
 distance_fade_enabled = true
 distance_fade_begin = 50.0
-omni_range = 6.0
+omni_range = 10.0
 
 [node name="CheckpointParticles" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.273792, 0)
@@ -165,8 +165,8 @@ draw_pass_1 = SubResource("SphereMesh_wi6pq")
 stream = ExtResource("3_l5o21")
 volume_db = -15.0
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area" type="Area3D" parent="."]
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="Collider" type="CollisionShape3D" parent="Area"]
 shape = SubResource("SphereShape3D_84yr2")

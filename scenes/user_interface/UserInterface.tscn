@@ -105,7 +105,6 @@ mouse_filter = 1
 script = ExtResource("1_fei3a")
 
 [node name="FPSCounter" type="Label" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.04

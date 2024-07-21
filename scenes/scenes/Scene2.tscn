@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://cd738rigq1w2v"]
+[gd_scene load_steps=60 format=3 uid="uid://cd738rigq1w2v"]
 
 [ext_resource type="Script" path="res://scripts/systems/level.gd" id="1_e4p23"]
 [ext_resource type="PackedScene" uid="uid://cy5wvw01aul4m" path="res://scenes/systems/CameraController.tscn" id="2_ebvse"]
@@ -47,9 +47,9 @@ sky_material = SubResource("ProceduralSkyMaterial_wqkpv")
 background_mode = 2
 sky = SubResource("Sky_qudfu")
 tonemap_mode = 2
-fog_light_color = Color(0.183105, 0.294189, 0.46875, 1)
+fog_light_color = Color(0.153489, 0.252053, 0.406953, 1)
 fog_height_density = 0.1
-volumetric_fog_albedo = Color(0.535156, 0.716736, 1, 1)
+volumetric_fog_albedo = Color(0.542969, 0.657227, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hx60w"]
 size = Vector3(128.079, 1, 150)
@@ -60,6 +60,13 @@ size = Vector3(172.195, 1, 99.2267)
 [sub_resource type="BoxShape3D" id="BoxShape3D_d3a26"]
 size = Vector3(70, 500, 130)
 
+[sub_resource type="Curve3D" id="Curve3D_xuf5h"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -1.98589, 1.19209e-06, 2.52423, -7.79499, 0, -0.206768, 7.79499, 0, 0.206768, 1.65844, 4.76837e-07, -4.06021),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_h06qn"]
 size = Vector3(50, 500, 80)
 
@@ -69,8 +76,36 @@ size = Vector3(20, 500, 40)
 [sub_resource type="BoxShape3D" id="BoxShape3D_8u0tp"]
 size = Vector3(20, 500, 40)
 
+[sub_resource type="Curve3D" id="Curve3D_gv36s"]
+_data = {
+"points": PackedVector3Array(-0.472515, 0, 1.19518, 0.472515, 0, -1.19518, 4.55838, 0, 3.72453, 0.38913, 0, 0.583702, -0.38913, 0, -0.583702, 4.72515, 0, 0.277946, 0.250156, 0, 1.00063, -0.250156, 0, -1.00063, 2.91848, 0, -2.36258, 1.72329, 0, 1.55652, -1.72329, 0, -1.55652, 3.50217, 0, -5.94814, 0.972824, 0, -0.250153, -0.972824, 0, 0.250153, -0.750465, 0, -6.05932, 0.138977, 0, -1.1396, -0.138977, 0, 1.1396, -4.16925, 0, -4.22485, -0.138977, 0, -1.33416, 0.138977, 0, 1.33416, -4.03028, 0, -1.08401, -0.416927, 0, -0.778259, 0.416927, 0, 0.778259, -1.58432, 0, 0.639282, -1.02842, 0, -1.02842, 1.02842, 0, 1.02842, -1.77888, 0, 4.25264, -1.08401, 0, 0.305748, 1.08401, 0, -0.305748, 1.77888, 0, 5.42003, -0.194565, 0, 0.528107, 0.194565, 0, -0.528107, 4.41941, 0, 4.05807),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 11
+
+[sub_resource type="Curve3D" id="Curve3D_u7u52"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -1.98482, 1.90735e-06, 5.4693, 0, 0, 0, 0, 0, 0, -2.07304, 0, -8.24805),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_tj07f"]
 size = Vector3(100, 500, 80)
+
+[sub_resource type="Curve3D" id="Curve3D_kback"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -3.9614, 1.90735e-06, 12.2958, -0.188751, 0, 1.62956, 0.188751, 0, -1.62956, -3.75561, 1.90735e-06, 4.78454, -0.87999, 4.3869e-05, 1.20371, 0.87999, -4.3869e-05, -1.20371, 1.16064, -0.0317383, -5.23287, -0.451366, -5.91278e-05, 0.973438, 0.451366, 5.91278e-05, -0.973438, 5.0932, -1.03705, -9.3404, -1.60795, -5.14984e-05, -0.0138512, 1.60795, 5.14984e-05, 0.0138512, 8.57375, -1.08215, -12.9184, -0.946243, -5.34058e-05, -0.858095, 0.946243, 5.34058e-05, 0.858095, 14.4051, -1.06709, -11.2025, 0, 0, 0, 0, 0, 0, 13.4276, -1.11213, -8.12404),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 7
+
+[sub_resource type="Curve3D" id="Curve3D_l2du8"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 9.83592, -1.27105, -7.16184, 1.51007, 5.34058e-05, -1.00062, -1.51007, -5.34058e-05, 1.00062, 7.55516, -1.271, -3.90982, 1.084, 0, -2.69612, -1.084, 0, 2.69612, 1.05112, -0.11145, -0.379847, 0.760803, 0, -1.1091, -0.760803, 0, 1.1091, -1.17249, 1.90735e-06, 4.70665, 0.113205, 0, -1.78524, -0.113205, 0, 1.78524, -6.42252, 1.90735e-06, 9.3111, 0.449463, 0, -1.30753, -0.449463, 0, 1.30753, -6.3408, 1.90735e-06, 14.623, 0, 0, 0, 0, 0, 0, -7.39324, 1.90735e-06, 13.68),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 7
 
 [sub_resource type="Curve3D" id="Curve3D_k0rjm"]
 _data = {
@@ -142,7 +177,7 @@ running_spin_speed = 4.0
 [node name="UserInterface" parent="." instance=ExtResource("3_im4q1")]
 
 [node name="Player" parent="." instance=ExtResource("4_km71j")]
-transform = Transform3D(-0.992461, 0, 0.122562, 0, 1, 0, -0.122562, 0, -0.992461, 2.05847, 48.7802, -2.67296)
+transform = Transform3D(-0.992461, 0, 0.122562, 0, 1, 0, -0.122562, 0, -0.992461, 112.428, 48.7802, -0.265244)
 
 [node name="BackstabSystem" type="Node3D" parent="."]
 script = ExtResource("5_lt6ye")
@@ -329,12 +364,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.687, 22.891, -40.6253)
 [node name="RespawnPoint" parent="Level1/Environment/NavigationRegion3D/Checkpoints/Checkpoint6" index="0"]
 transform = Transform3D(-0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, -0.965926, 0.323036, -0.367657, -1.73576)
 
-[node name="MeshInstance3D" parent="Level1/Environment/NavigationRegion3D/Checkpoints/Checkpoint6/RespawnPoint" index="0"]
-skeleton = NodePath("../../../Checkpoint5")
-
-[node name="MeshInstance3D" parent="Level1/Environment/NavigationRegion3D/Checkpoints/Checkpoint6" index="1"]
-skeleton = NodePath("../../Checkpoint5")
-
 [node name="Lights" type="Node3D" parent="Level1/Environment/NavigationRegion3D"]
 
 [node name="LightPost" parent="Level1/Environment/NavigationRegion3D/Lights" instance=ExtResource("26_0mnik")]
@@ -353,7 +382,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.28182, 3.00012, -49.0916)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.8762, 1.99988, -47.0443)
 
 [node name="LightPost6" parent="Level1/Environment/NavigationRegion3D/Lights" instance=ExtResource("26_0mnik")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.4115, 3.00024, -47.0981)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.7649, 3.00024, -40.4941)
 
 [node name="LightPost7" parent="Level1/Environment/NavigationRegion3D/Lights" instance=ExtResource("26_0mnik")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.4132, 5.00024, -72.4428)
@@ -433,22 +462,35 @@ shape = SubResource("BoxShape3D_d3a26")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.23702, 4, -38.7607)
 
 [node name="Enemy2" parent="Level1/Enemies/Section/Enemies" instance=ExtResource("17_85uvr")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.4699, 3, -51.3653)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.98423, 3, -50.4824)
 
 [node name="Enemy3" parent="Level1/Enemies/Section/Enemies" instance=ExtResource("17_85uvr")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -21.2474, 2, -49.3642)
 
-[node name="Enemy4" parent="Level1/Enemies/Section/Enemies" instance=ExtResource("17_85uvr")]
-transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -34.2802, 3, -45.0181)
-
-[node name="Enemy5" parent="Level1/Enemies/Section/Enemies" instance=ExtResource("17_85uvr")]
-transform = Transform3D(-0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, -0.258819, -38.9477, 3, -51.9869)
+[node name="Enemy5" parent="Level1/Enemies/Section/Enemies" node_paths=PackedStringArray("patrol") instance=ExtResource("17_85uvr")]
+transform = Transform3D(-0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, -0.258819, -41.3379, 3, -53.2454)
+patrol = NodePath("../../Patrols/PatrolPath/PatrolInstance")
 
 [node name="Enemy7" parent="Level1/Enemies/Section/Enemies" instance=ExtResource("17_85uvr")]
 transform = Transform3D(-1, 0, -1.19209e-07, 0, 1, 0, 1.19209e-07, 0, -1, -38.287, 5, -70.7605)
 
 [node name="Enemy8" parent="Level1/Enemies/Section/Enemies" instance=ExtResource("17_85uvr")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.97595, 6, -69.7785)
+
+[node name="Zombie" parent="Level1/Enemies/Section/Enemies" instance=ExtResource("28_6cnyh")]
+transform = Transform3D(0.978296, 0, 0.207212, 0, 1, 0, -0.207212, 0, 0.978296, -31.677, 3, -45.6593)
+
+[node name="Patrols" type="Node3D" parent="Level1/Enemies/Section"]
+
+[node name="PatrolPath" parent="Level1/Enemies/Section/Patrols" instance=ExtResource("33_nn4rv")]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -38.1262, 3, -53.7088)
+curve = SubResource("Curve3D_xuf5h")
+
+[node name="PatrolInstance" parent="Level1/Enemies/Section/Patrols/PatrolPath" index="0"]
+transform = Transform3D(0.998368, 5.21181e-08, 0.0566318, -5.82542e-08, 1, 1.06721e-07, -0.0566318, -1.09852e-07, 0.998368, -3.08285, 8.43446e-07, -0.761536)
+progress = 3.49314
+patrol_type = 1
+stationary_time = 4.0
 
 [node name="Section2" type="Area3D" parent="Level1/Enemies"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43, 0, -76)
@@ -485,20 +527,38 @@ transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 
 [node name="Enemy4" parent="Level1/Enemies/Section2/Enemies" instance=ExtResource("17_85uvr")]
 transform = Transform3D(1.19209e-07, 0, -1, 0, 1, 0, 1, 0, 1.19209e-07, 8.52125, 2, 14.27)
 
-[node name="Enemy5" parent="Level1/Enemies/Section2/Enemies" instance=ExtResource("17_85uvr")]
-transform = Transform3D(1, 0, 1.62921e-07, 0, 1, 0, -1.62921e-07, 0, 1, 2.52125, 5, 24.27)
-
 [node name="Enemy6" parent="Level1/Enemies/Section2/Enemies" instance=ExtResource("17_85uvr")]
 transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 10.0213, 5, 30.136)
 
 [node name="Enemy7" parent="Level1/Enemies/Section2/Enemies" instance=ExtResource("17_85uvr")]
 transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -7.2274, 9, 4.01166)
 
-[node name="Enemy8" parent="Level1/Enemies/Section2/Enemies" instance=ExtResource("17_85uvr")]
+[node name="Enemy8" parent="Level1/Enemies/Section2/Enemies" node_paths=PackedStringArray("patrol") instance=ExtResource("17_85uvr")]
 transform = Transform3D(-0.707106, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707106, -1.86137, 9, -3.28257)
+patrol = NodePath("../../Patrols/PatrolPath2/PatrolInstance")
 
 [node name="Enemy9" parent="Level1/Enemies/Section2/Enemies" instance=ExtResource("17_85uvr")]
 transform = Transform3D(0.707106, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707106, -13.8822, 8, 21.4662)
+
+[node name="Spellcaster" parent="Level1/Enemies/Section2/Enemies" instance=ExtResource("29_xlmhl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.42315, 5, 23.9175)
+
+[node name="Patrols" type="Node3D" parent="Level1/Enemies/Section2"]
+
+[node name="PatrolPath2" parent="Level1/Enemies/Section2/Patrols" instance=ExtResource("33_nn4rv")]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -4.20326, 22, -16.2134)
+curve = SubResource("Curve3D_gv36s")
+
+[node name="PatrolInstance" parent="Level1/Enemies/Section2/Patrols/PatrolPath2" index="0"]
+transform = Transform3D(0.929935, 0, -0.36765, 0, 1, 0, 0.36765, 0, 0.929935, 4.55838, 0, 3.72453)
+
+[node name="PatrolPath3" parent="Level1/Enemies/Section2/Patrols" instance=ExtResource("33_nn4rv")]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -10.1096, 20.9999, 4.19963)
+curve = SubResource("Curve3D_u7u52")
+
+[node name="PatrolInstance" parent="Level1/Enemies/Section2/Patrols/PatrolPath3" index="0"]
+transform = Transform3D(0.999952, -8.94137e-10, 0.00643045, -5.55097e-17, 1, 1.3904e-07, -0.00643045, -1.39041e-07, 0.999952, -1.98482, 1.90735e-06, 5.4693)
+patrol_type = 1
 
 [node name="Section3" type="Area3D" parent="Level1/Enemies"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76, 13, -33)
@@ -514,16 +574,35 @@ shape = SubResource("BoxShape3D_tj07f")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 4, -4)
 
 [node name="Enemy" parent="Level1/Enemies/Section3/Enemies" instance=ExtResource("17_85uvr")]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -5.29289, 1, -18.2929)
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -4.75447, 1, -19.3517)
 
-[node name="Enemy2" parent="Level1/Enemies/Section3/Enemies" instance=ExtResource("17_85uvr")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 11.2635, 0, 7.16295)
+[node name="Enemy2" parent="Level1/Enemies/Section3/Enemies" node_paths=PackedStringArray("patrol") instance=ExtResource("17_85uvr")]
+transform = Transform3D(0.84815, 0, 0.529756, 0, 1, 0, -0.529756, 0, 0.84815, 10.1724, 0, 12.4199)
+patrol = NodePath("../../Patrols/PatrolPath5/PatrolInstance")
 
 [node name="Enemy3" parent="Level1/Enemies/Section3/Enemies" instance=ExtResource("17_85uvr")]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 4.17117, 0, 15.1339)
+transform = Transform3D(-0.989757, 0, 0.142767, 0, 1, 0, -0.142767, 0, -0.989757, -7.83891, -0.491444, -8.61465)
 
-[node name="Enemy4" parent="Level1/Enemies/Section3/Enemies" instance=ExtResource("17_85uvr")]
-transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 58.7528, -5, 22.4458)
+[node name="Zombie2" parent="Level1/Enemies/Section3/Enemies" instance=ExtResource("28_6cnyh")]
+transform = Transform3D(0.359525, 0, -0.933136, 0, 1, 0, 0.933136, 0, 0.359525, 3.22626, -0.00372696, 15.0113)
+
+[node name="Patrols" type="Node3D" parent="Level1/Enemies/Section3"]
+
+[node name="PatrolPath4" parent="Level1/Enemies/Section3/Patrols" instance=ExtResource("33_nn4rv")]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -26.0266, 3.00427, 0.544666)
+curve = SubResource("Curve3D_kback")
+
+[node name="PatrolInstance" parent="Level1/Enemies/Section3/Patrols/PatrolPath4" index="0"]
+transform = Transform3D(0.999598, 0, -0.0273864, 0, 1, 0, 0.0273864, 0, 0.999598, -3.9614, 1.90735e-06, 12.2958)
+patrol_type = 0
+
+[node name="PatrolPath5" parent="Level1/Enemies/Section3/Patrols" instance=ExtResource("33_nn4rv")]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -22.3523, 3.00317, 0.76107)
+curve = SubResource("Curve3D_l2du8")
+
+[node name="PatrolInstance" parent="Level1/Enemies/Section3/Patrols/PatrolPath5" index="0"]
+transform = Transform3D(-0.818696, 7.72021e-06, 0.57418, 0, 1, -1.34449e-05, -0.57418, -1.10079e-05, -0.818696, 9.83592, -1.27105, -7.16184)
+patrol_type = 0
 
 [node name="Level2" type="Node3D" parent="."]
 transform = Transform3D(0.918743, 0, 0.394856, 0, 1, 0, -0.394856, 0, 0.918743, 105.5, 3.83045, -21)
@@ -752,20 +831,14 @@ transform = Transform3D(0.746754, 0, 0.6651, 0, 1, 0, -0.6651, 0, 0.746754, -57.
 [node name="RespawnPoint" parent="Level2/Environment/NavigationRegion3D/Checkpoints/Checkpoint2" index="0"]
 transform = Transform3D(-0.967294, 0, 0.253657, 0, 1, 0, -0.253657, 0, -0.967294, 1.50274, -0.367655, -0.552582)
 
-[node name="MeshInstance3D" parent="Level2/Environment/NavigationRegion3D/Checkpoints/Checkpoint2/RespawnPoint" index="0"]
-transform = Transform3D(-0.615373, 0.394118, -0.682632, 0, 0.866025, 0.5, 0.788236, 0.307686, -0.532928, -0.167225, 0.451712, -0.791565)
-
 [node name="Checkpoint3" parent="Level2/Environment/NavigationRegion3D/Checkpoints" instance=ExtResource("12_clpmb")]
 transform = Transform3D(0.746754, 0, 0.6651, 0, 1, 0, -0.6651, 0, 0.746754, -163.664, 25.4416, 49.5953)
 
 [node name="RespawnPoint" parent="Level2/Environment/NavigationRegion3D/Checkpoints/Checkpoint3" index="0"]
 transform = Transform3D(-0.967294, 0, 0.253657, 0, 1, 0, -0.253657, 0, -0.967294, 1.50274, -0.367655, -0.552582)
 
-[node name="MeshInstance3D" parent="Level2/Environment/NavigationRegion3D/Checkpoints/Checkpoint3/RespawnPoint" index="0"]
-transform = Transform3D(-0.838709, 0.27229, -0.47162, 4.99369e-09, 0.866025, 0.5, 0.54458, 0.419354, -0.726342, 1.70531, 0.451712, -2.2872)
-
 [node name="Checkpoint4" parent="Level2/Environment/NavigationRegion3D/Checkpoints" instance=ExtResource("12_clpmb")]
-transform = Transform3D(0.918743, 0, -0.394856, 0, 1, 0, 0.394856, 0, 0.918743, 24.0071, 8.77339, 2.84187)
+transform = Transform3D(-0.928641, 0, 0.370979, 0, 1, 0, -0.370979, 0, -0.928641, 24.0071, 8.77339, 2.84187)
 
 [node name="Lights" type="Node3D" parent="Level2/Environment/NavigationRegion3D"]
 
@@ -877,11 +950,11 @@ transform = Transform3D(0.999997, 1.95272e-10, 0.00223365, 0, -1, 8.74228e-08, 0
 curve = SubResource("Curve3D_k0rjm")
 
 [node name="PatrolInstance" parent="Level2/Enemies/Section1/Patrols/PatrolPath" index="0"]
-transform = Transform3D(0.999955, -0.000353168, -0.00594109, -2.9103e-11, 0.998238, -0.0593371, 0.00595157, 0.0593376, 0.998194, -2.8545, -0.217763, -1.43186)
+transform = Transform3D(0.999955, -0.000353127, -0.00594041, -4.36546e-11, 0.998238, -0.0593372, 0.00595088, 0.0593377, 0.998195, -2.8545, -0.217763, -1.43186)
 h_offset = 0.5
 
 [node name="PatrolInstance2" parent="Level2/Enemies/Section1/Patrols/PatrolPath" instance=ExtResource("34_v3sil")]
-transform = Transform3D(0.999955, -0.000353168, -0.00594109, -2.9103e-11, 0.998238, -0.0593372, 0.00595157, 0.0593376, 0.998194, -3.85448, -0.217763, -1.43782)
+transform = Transform3D(0.999955, -0.000353127, -0.00594041, -4.36546e-11, 0.998238, -0.0593372, 0.00595088, 0.0593377, 0.998195, -3.85448, -0.217763, -1.43782)
 h_offset = -0.5
 initial_delay = 1.0
 
@@ -890,7 +963,7 @@ transform = Transform3D(0.999997, 1.95272e-10, 0.00223365, 0, -1, 8.74228e-08, 0
 curve = SubResource("Curve3D_djk2n")
 
 [node name="PatrolInstance" parent="Level2/Enemies/Section1/Patrols/PatrolPath2" index="0"]
-transform = Transform3D(-0.901254, -0.0268909, -0.432393, -9.31297e-10, 0.998072, -0.0620675, 0.433228, -0.0559416, -0.899516, -6.56863, -0.614233, -9.49697)
+transform = Transform3D(-0.901254, -0.0268908, -0.432393, -9.31297e-10, 0.998072, -0.0620674, 0.433228, -0.0559416, -0.899516, -6.56863, -0.614233, -9.49697)
 patrol_type = 1
 
 [node name="Section2" parent="Level2/Enemies" instance=ExtResource("25_7opv3")]
@@ -1008,7 +1081,7 @@ transform = Transform3D(0.999997, 1.95272e-10, 0.00223365, 0, -1, 8.74228e-08, 0
 curve = SubResource("Curve3D_rph8f")
 
 [node name="PatrolInstance" parent="Level2/Enemies/Section4/Patrols/PatrolPath2" index="0"]
-transform = Transform3D(-0.282951, 0, -0.959106, 0, 1, 0, 0.959106, 0, -0.282951, -4.79201, -5.34058e-05, 4.71471)
+transform = Transform3D(-0.28295, 0, -0.959106, 0, 1, 0, 0.959106, 0, -0.28295, -4.79201, -5.34058e-05, 4.71471)
 
 [node name="VoidColliders" type="Node3D" parent="Level2"]
 
@@ -1026,11 +1099,19 @@ transform = Transform3D(0.245443, 0, -0.969411, 0, 1, 0, 0.969411, 0, 0.245443, 
 transform = Transform3D(0.918318, 0, -0.395833, 0, 1, 0, 0.395833, 0, 0.918318, -37.0644, 0, 26.6946)
 shape = SubResource("BoxShape3D_eddj4")
 
+[node name="HybridEnemy" parent="." instance=ExtResource("30_kdrsj")]
+transform = Transform3D(0.235685, 0, 0.97183, 0, 1, 0, -0.97183, 0, 0.235685, 113.492, 12.1002, -17.2749)
+
 [editable path="Level1/Environment/NavigationRegion3D/level1"]
 [editable path="Level1/Environment/NavigationRegion3D/Checkpoints/Checkpoint5"]
 [editable path="Level1/Environment/NavigationRegion3D/Checkpoints/Checkpoint6"]
 [editable path="Level1/VoidColliders/VoidArea"]
 [editable path="Level1/VoidColliders/VoidArea2"]
+[editable path="Level1/Enemies/Section/Patrols/PatrolPath"]
+[editable path="Level1/Enemies/Section2/Patrols/PatrolPath2"]
+[editable path="Level1/Enemies/Section2/Patrols/PatrolPath3"]
+[editable path="Level1/Enemies/Section3/Patrols/PatrolPath4"]
+[editable path="Level1/Enemies/Section3/Patrols/PatrolPath5"]
 [editable path="Level2/Environment/NavigationRegion3D/level2"]
 [editable path="Level2/Environment/NavigationRegion3D/Checkpoints/Checkpoint"]
 [editable path="Level2/Environment/NavigationRegion3D/Checkpoints/Checkpoint2"]
