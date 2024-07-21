@@ -4,7 +4,9 @@ extends Node
 
 @export var debug: bool = false
 
+var context: LocomotionComponent
 
-func handle_movement(_delta: float, _context: LocomotionComponent) -> void:
+
+func handle_movement(_delta: float) -> void:
 	# this gets overridden 
 	pass

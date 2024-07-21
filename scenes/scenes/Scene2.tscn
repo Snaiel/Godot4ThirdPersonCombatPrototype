@@ -177,7 +177,7 @@ running_spin_speed = 4.0
 [node name="UserInterface" parent="." instance=ExtResource("3_im4q1")]
 
 [node name="Player" parent="." instance=ExtResource("4_km71j")]
-transform = Transform3D(-0.992461, 0, 0.122562, 0, 1, 0, -0.122562, 0, -0.992461, 112.428, 48.7802, -0.265244)
+transform = Transform3D(-0.992461, 0, 0.122562, 0, 1, 0, -0.122562, 0, -0.992461, -46.9671, 48.7802, -52.3272)
 
 [node name="BackstabSystem" type="Node3D" parent="."]
 script = ExtResource("5_lt6ye")
@@ -487,7 +487,7 @@ transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -38.12
 curve = SubResource("Curve3D_xuf5h")
 
 [node name="PatrolInstance" parent="Level1/Enemies/Section/Patrols/PatrolPath" index="0"]
-transform = Transform3D(0.998368, 5.21181e-08, 0.0566318, -5.82542e-08, 1, 1.06721e-07, -0.0566318, -1.09852e-07, 0.998368, -3.08285, 8.43446e-07, -0.761536)
+transform = Transform3D(0.998368, 5.2118e-08, 0.056631, -5.8254e-08, 1, 1.06721e-07, -0.056631, -1.09851e-07, 0.998368, -3.08286, 8.43444e-07, -0.761535)
 progress = 3.49314
 patrol_type = 1
 stationary_time = 4.0
@@ -557,7 +557,7 @@ transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -10.10
 curve = SubResource("Curve3D_u7u52")
 
 [node name="PatrolInstance" parent="Level1/Enemies/Section2/Patrols/PatrolPath3" index="0"]
-transform = Transform3D(0.999952, -8.94137e-10, 0.00643045, -5.55097e-17, 1, 1.3904e-07, -0.00643045, -1.39041e-07, 0.999952, -1.98482, 1.90735e-06, 5.4693)
+transform = Transform3D(0.999952, -8.94209e-10, 0.00643096, -5.55096e-17, 1, 1.3904e-07, -0.00643096, -1.39041e-07, 0.999952, -1.98482, 1.90735e-06, 5.4693)
 patrol_type = 1
 
 [node name="Section3" type="Area3D" parent="Level1/Enemies"]
@@ -593,7 +593,7 @@ transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -26.02
 curve = SubResource("Curve3D_kback")
 
 [node name="PatrolInstance" parent="Level1/Enemies/Section3/Patrols/PatrolPath4" index="0"]
-transform = Transform3D(0.999598, 0, -0.0273864, 0, 1, 0, 0.0273864, 0, 0.999598, -3.9614, 1.90735e-06, 12.2958)
+transform = Transform3D(0.999598, 0, -0.0273865, 0, 1, 0, 0.0273865, 0, 0.999598, -3.9614, 1.90735e-06, 12.2958)
 patrol_type = 0
 
 [node name="PatrolPath5" parent="Level1/Enemies/Section3/Patrols" instance=ExtResource("33_nn4rv")]
@@ -601,7 +601,7 @@ transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -22.35
 curve = SubResource("Curve3D_l2du8")
 
 [node name="PatrolInstance" parent="Level1/Enemies/Section3/Patrols/PatrolPath5" index="0"]
-transform = Transform3D(-0.818696, 7.72021e-06, 0.57418, 0, 1, -1.34449e-05, -0.57418, -1.10079e-05, -0.818696, 9.83592, -1.27105, -7.16184)
+transform = Transform3D(-0.818695, 7.22047e-06, 0.574181, -6.82103e-13, 1, -1.25746e-05, -0.574181, -1.02953e-05, -0.818695, 9.83592, -1.27105, -7.16184)
 patrol_type = 0
 
 [node name="Level2" type="Node3D" parent="."]

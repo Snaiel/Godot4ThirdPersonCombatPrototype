@@ -36,14 +36,18 @@ var _secondary_movement_timer: Timer
 func _ready() -> void:
 	speed = default_speed
 	
-	_secondary_movement_timer = Timer.new()
-	_secondary_movement_timer.timeout.connect(reset_secondary_movement)
-	add_child(_secondary_movement_timer)
+	for child in get_children():
+		var strat: LocomotionStrategy = child
+		strat.context = self
 	
 	if strategies.has(default_strategy):
 		active_strategy = get_node(strategies[default_strategy])
 	elif strategies.size() > 0:
 		active_strategy = get_node(strategies.values()[0])
+	
+	_secondary_movement_timer = Timer.new()
+	_secondary_movement_timer.timeout.connect(reset_secondary_movement)
+	add_child(_secondary_movement_timer)
 
 
 func _physics_process(delta):
@@ -55,7 +59,7 @@ func _physics_process(delta):
 	
 	if not enabled: return
 	
-	active_strategy.handle_movement(delta, self)
+	active_strategy.handle_movement(delta)
 	handle_secondary_movement(delta)
 	
 	if not can_move and \

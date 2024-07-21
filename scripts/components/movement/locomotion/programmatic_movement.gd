@@ -5,7 +5,7 @@ extends LocomotionStrategy
 @export var rotation_component: RotationComponent
 
 
-func handle_movement(_delta: float, context: LocomotionComponent) -> void:
+func handle_movement(_delta: float) -> void:
 	
 	if not context.can_move: return
 	
