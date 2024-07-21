@@ -36,12 +36,11 @@ func handle_interaction(incoming_damage_source: DamageSource) -> bool:
 		incoming_damage_source.damage_attributes.knockback,
 		incoming_damage_source.entity.global_position
 	)
-	notice_component.transition_to_aggro()
 	
 	var rng: float = RandomNumberGenerator.new().randf() * _total_weight
 	
 	if blackboard.get_value("notice_state") != "aggro" or \
-	blackboard.get_value("dizzy", false):
+	blackboard.get_value("dizzy"):
 		rng = 0.0
 	
 	var which_outcome: int = 0
@@ -55,5 +54,7 @@ func handle_interaction(incoming_damage_source: DamageSource) -> bool:
 	
 	var handler: InteractionHandler = get_child(which_outcome)
 	handler.handle_interaction(incoming_damage_source) 
+	
+	notice_component.transition_to_aggro()
 	
 	return true
