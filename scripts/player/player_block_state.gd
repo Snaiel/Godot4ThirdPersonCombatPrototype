@@ -87,8 +87,10 @@ func process_player() -> void:
 func process_movement_animations() -> void:
 	var locked_on: bool = player.lock_on_target != null
 	player.character.idle_animations.active = locked_on
-	player.character.movement_animations.dir = \
-		player.input_direction if locked_on else Vector3.FORWARD
+	var dir: Vector3 = player.input_direction
+	if not locked_on and dir.length() > 0.05:
+		dir = Vector3.FORWARD
+	player.character.movement_animations.dir = dir
 	player.character.movement_animations.set_state("walk")
 	movement_animations.speed = 0.5
 
