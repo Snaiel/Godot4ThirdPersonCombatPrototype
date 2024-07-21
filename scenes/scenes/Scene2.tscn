@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://cd738rigq1w2v"]
+[gd_scene load_steps=55 format=3 uid="uid://cd738rigq1w2v"]
 
 [ext_resource type="Script" path="res://scripts/systems/level.gd" id="1_e4p23"]
 [ext_resource type="PackedScene" uid="uid://cy5wvw01aul4m" path="res://scenes/systems/CameraController.tscn" id="2_ebvse"]
@@ -50,6 +50,9 @@ tonemap_mode = 2
 fog_light_color = Color(0.183105, 0.294189, 0.46875, 1)
 fog_height_density = 0.1
 volumetric_fog_albedo = Color(0.535156, 0.716736, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hx60w"]
+size = Vector3(128.079, 1, 150)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xwvw0"]
 size = Vector3(172.195, 1, 99.2267)
@@ -200,10 +203,10 @@ surface_material_override/0 = ExtResource("12_wrl4e")
 material_override = ExtResource("22_s8p5f")
 
 [node name="CSGCombiner3D2_003_001" parent="Level1/Environment/NavigationRegion3D/level1" index="6"]
-material_override = ExtResource("23_e4en7")
+material_override = ExtResource("21_jgiix")
 
 [node name="CSGCombiner3D2_003_002" parent="Level1/Environment/NavigationRegion3D/level1" index="7"]
-material_override = ExtResource("23_e4en7")
+material_override = ExtResource("21_jgiix")
 
 [node name="CSGCombiner3D2_003_003" parent="Level1/Environment/NavigationRegion3D/level1" index="8"]
 material_override = ExtResource("22_s8p5f")
@@ -400,7 +403,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.4343, 18, -66.5348)
 [node name="VoidColliders" type="Node3D" parent="Level1"]
 
 [node name="VoidArea" parent="Level1/VoidColliders" instance=ExtResource("15_yey3c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, -36.0664)
+
+[node name="CollisionShape3D" parent="Level1/VoidColliders/VoidArea" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9604, 0, 0)
+shape = SubResource("BoxShape3D_hx60w")
 
 [node name="VoidArea2" parent="Level1/VoidColliders" instance=ExtResource("15_yey3c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92.9684, 5, -47.4593)
@@ -1022,6 +1029,7 @@ shape = SubResource("BoxShape3D_eddj4")
 [editable path="Level1/Environment/NavigationRegion3D/level1"]
 [editable path="Level1/Environment/NavigationRegion3D/Checkpoints/Checkpoint5"]
 [editable path="Level1/Environment/NavigationRegion3D/Checkpoints/Checkpoint6"]
+[editable path="Level1/VoidColliders/VoidArea"]
 [editable path="Level1/VoidColliders/VoidArea2"]
 [editable path="Level2/Environment/NavigationRegion3D/level2"]
 [editable path="Level2/Environment/NavigationRegion3D/Checkpoints/Checkpoint"]
