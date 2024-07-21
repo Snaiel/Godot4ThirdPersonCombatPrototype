@@ -14,6 +14,7 @@ func enter() -> void:
 	player.melee_component.interrupt_attack()
 	player.dodge_component.intent_to_dodge = true
 	player.hitbox_component.enabled = false
+	player.locomotion_component.speed = 5
 
 
 func process_player() -> void:
