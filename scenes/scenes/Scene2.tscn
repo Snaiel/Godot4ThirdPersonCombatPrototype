@@ -139,7 +139,7 @@ running_spin_speed = 4.0
 [node name="UserInterface" parent="." instance=ExtResource("3_im4q1")]
 
 [node name="Player" parent="." instance=ExtResource("4_km71j")]
-transform = Transform3D(-0.992461, 0, 0.122562, 0, 1, 0, -0.122562, 0, -0.992461, 20.3688, 48.7802, 123.408)
+transform = Transform3D(-0.992461, 0, 0.122562, 0, 1, 0, -0.122562, 0, -0.992461, 127.369, 48.7802, -21.0921)
 
 [node name="BackstabSystem" type="Node3D" parent="."]
 script = ExtResource("5_lt6ye")
@@ -609,6 +609,9 @@ transform = Transform3D(-0.967294, 0, 0.253657, 0, 1, 0, -0.253657, 0, -0.967294
 
 [node name="MeshInstance3D" parent="Level2/Environment/NavigationRegion3D/Checkpoints/Checkpoint3/RespawnPoint" index="0"]
 transform = Transform3D(-0.838709, 0.27229, -0.47162, 4.99369e-09, 0.866025, 0.5, 0.54458, 0.419354, -0.726342, 1.70531, 0.451712, -2.2872)
+
+[node name="Checkpoint4" parent="Level2/Environment/NavigationRegion3D/Checkpoints" instance=ExtResource("12_clpmb")]
+transform = Transform3D(0.918743, 0, -0.394856, 0, 1, 0, 0.394856, 0, 0.918743, 24.0071, 8.77339, 2.84187)
 
 [node name="Lights" type="Node3D" parent="Level2/Environment/NavigationRegion3D"]
 
