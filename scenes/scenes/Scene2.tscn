@@ -180,43 +180,19 @@ navigation_mesh = ExtResource("13_fswrv")
 
 [node name="level1" parent="Level1/Environment/NavigationRegion3D" instance=ExtResource("11_d4bpw")]
 
-[node name="CSGCombiner3D2" parent="Level1/Environment/NavigationRegion3D/level1" index="0"]
+[node name="CSGCombiner3D2_001" parent="Level1/Environment/NavigationRegion3D/level1" index="0"]
 surface_material_override/0 = ExtResource("12_wrl4e")
 
-[node name="CSGCombiner3D2_001" parent="Level1/Environment/NavigationRegion3D/level1" index="1"]
+[node name="CSGCombiner3D2_003" parent="Level1/Environment/NavigationRegion3D/level1" index="1"]
 surface_material_override/0 = ExtResource("12_wrl4e")
 
-[node name="CSGCombiner3D2_002" parent="Level1/Environment/NavigationRegion3D/level1" index="2"]
+[node name="CSGCombiner3D2_007" parent="Level1/Environment/NavigationRegion3D/level1" index="2"]
 surface_material_override/0 = ExtResource("12_wrl4e")
 
-[node name="CSGCombiner3D2_003" parent="Level1/Environment/NavigationRegion3D/level1" index="3"]
+[node name="CSGCombiner3D2_008" parent="Level1/Environment/NavigationRegion3D/level1" index="3"]
 surface_material_override/0 = ExtResource("12_wrl4e")
 
-[node name="CSGCombiner3D2_004" parent="Level1/Environment/NavigationRegion3D/level1" index="4"]
-surface_material_override/0 = ExtResource("12_wrl4e")
-
-[node name="CSGCombiner3D2_005" parent="Level1/Environment/NavigationRegion3D/level1" index="5"]
-surface_material_override/0 = ExtResource("12_wrl4e")
-
-[node name="CSGCombiner3D2_006" parent="Level1/Environment/NavigationRegion3D/level1" index="6"]
-surface_material_override/0 = ExtResource("12_wrl4e")
-
-[node name="CSGCombiner3D2_007" parent="Level1/Environment/NavigationRegion3D/level1" index="7"]
-surface_material_override/0 = ExtResource("12_wrl4e")
-
-[node name="CSGCombiner3D2_008" parent="Level1/Environment/NavigationRegion3D/level1" index="8"]
-surface_material_override/0 = ExtResource("12_wrl4e")
-
-[node name="CSGCombiner3D2_009" parent="Level1/Environment/NavigationRegion3D/level1" index="9"]
-surface_material_override/0 = ExtResource("12_wrl4e")
-
-[node name="CSGCombiner3D2_010" parent="Level1/Environment/NavigationRegion3D/level1" index="10"]
-surface_material_override/0 = ExtResource("12_wrl4e")
-
-[node name="CSGCombiner3D2_011" parent="Level1/Environment/NavigationRegion3D/level1" index="11"]
-surface_material_override/0 = ExtResource("12_wrl4e")
-
-[node name="CSGCombiner3D2_012" parent="Level1/Environment/NavigationRegion3D/level1" index="12"]
+[node name="CSGCombiner3D2_012" parent="Level1/Environment/NavigationRegion3D/level1" index="4"]
 surface_material_override/0 = ExtResource("12_wrl4e")
 
 [node name="Checkpoints" type="Node3D" parent="Level1/Environment/NavigationRegion3D"]
