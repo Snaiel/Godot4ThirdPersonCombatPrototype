@@ -230,13 +230,13 @@ material_override = ExtResource("20_hslmi")
 material_override = ExtResource("20_hslmi")
 
 [node name="CSGCombiner3D2_008_001" parent="Level1/Environment/NavigationRegion3D/level1" index="16"]
-material_override = ExtResource("20_hslmi")
+material_override = ExtResource("22_s8p5f")
 
 [node name="CSGCombiner3D2_008_002" parent="Level1/Environment/NavigationRegion3D/level1" index="17"]
 material_override = ExtResource("21_jgiix")
 
 [node name="CSGCombiner3D2_008_003" parent="Level1/Environment/NavigationRegion3D/level1" index="18"]
-material_override = ExtResource("12_wrl4e")
+material_override = ExtResource("20_hslmi")
 
 [node name="CSGCombiner3D2_009_001" parent="Level1/Environment/NavigationRegion3D/level1" index="19"]
 material_override = ExtResource("23_e4en7")
@@ -298,6 +298,9 @@ material_override = ExtResource("12_wrl4e")
 [node name="CSGCombiner3D2_009_010" parent="Level1/Environment/NavigationRegion3D/level1" index="38"]
 material_override = ExtResource("21_jgiix")
 
+[node name="CSGCombiner3D2_012_011" parent="Level1/Environment/NavigationRegion3D/level1" index="39"]
+material_override = ExtResource("21_jgiix")
+
 [node name="Checkpoints" type="Node3D" parent="Level1/Environment/NavigationRegion3D"]
 
 [node name="Checkpoint" parent="Level1/Environment/NavigationRegion3D/Checkpoints" instance=ExtResource("12_clpmb")]
@@ -328,6 +331,71 @@ skeleton = NodePath("../../../Checkpoint5")
 
 [node name="MeshInstance3D" parent="Level1/Environment/NavigationRegion3D/Checkpoints/Checkpoint6" index="1"]
 skeleton = NodePath("../../Checkpoint5")
+
+[node name="Lights" type="Node3D" parent="Level1/Environment/NavigationRegion3D"]
+
+[node name="LightPost" parent="Level1/Environment/NavigationRegion3D/Lights" instance=ExtResource("26_0mnik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.50753, 1, -8.5328)
+
+[node name="LightPost2" parent="Level1/Environment/NavigationRegion3D/Lights" instance=ExtResource("26_0mnik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.40186, 1, -8.56592)
+
+[node name="LightPost3" parent="Level1/Environment/NavigationRegion3D/Lights" instance=ExtResource("26_0mnik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0411904, 4, -40.1333)
+
+[node name="LightPost4" parent="Level1/Environment/NavigationRegion3D/Lights" instance=ExtResource("26_0mnik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.28182, 3.00012, -49.0916)
+
+[node name="LightPost5" parent="Level1/Environment/NavigationRegion3D/Lights" instance=ExtResource("26_0mnik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.8762, 1.99988, -47.0443)
+
+[node name="LightPost6" parent="Level1/Environment/NavigationRegion3D/Lights" instance=ExtResource("26_0mnik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.4115, 3.00024, -47.0981)
+
+[node name="LightPost7" parent="Level1/Environment/NavigationRegion3D/Lights" instance=ExtResource("26_0mnik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.4132, 5.00024, -72.4428)
+
+[node name="LightPost8" parent="Level1/Environment/NavigationRegion3D/Lights" instance=ExtResource("26_0mnik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.56129, 7.5, -82.5471)
+
+[node name="LightPost9" parent="Level1/Environment/NavigationRegion3D/Lights" instance=ExtResource("26_0mnik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.4036, 11.0001, -114.603)
+
+[node name="LightPost10" parent="Level1/Environment/NavigationRegion3D/Lights" instance=ExtResource("26_0mnik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.2204, 14.9999, -91.5865)
+
+[node name="LightPost11" parent="Level1/Environment/NavigationRegion3D/Lights" instance=ExtResource("26_0mnik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.5576, 15, -81.582)
+
+[node name="LightPost12" parent="Level1/Environment/NavigationRegion3D/Lights" instance=ExtResource("26_0mnik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.3878, 21, -61.556)
+
+[node name="LightPost13" parent="Level1/Environment/NavigationRegion3D/Lights" instance=ExtResource("26_0mnik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.0201, 22, -84.8052)
+
+[node name="LightPost14" parent="Level1/Environment/NavigationRegion3D/Lights" instance=ExtResource("26_0mnik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.3258, 21, -48.5045)
+
+[node name="LightPost15" parent="Level1/Environment/NavigationRegion3D/Lights" instance=ExtResource("26_0mnik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68.2695, 16.9996, -28.6165)
+
+[node name="LightPost16" parent="Level1/Environment/NavigationRegion3D/Lights" instance=ExtResource("26_0mnik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68.4896, 17, -22.595)
+
+[node name="LightPost17" parent="Level1/Environment/NavigationRegion3D/Lights" instance=ExtResource("26_0mnik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92.8461, 16.9867, -22.1352)
+
+[node name="LightPost18" parent="Level1/Environment/NavigationRegion3D/Lights" instance=ExtResource("26_0mnik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 116.209, 12, -8.98166)
+
+[node name="LightPost19" parent="Level1/Environment/NavigationRegion3D/Lights" instance=ExtResource("26_0mnik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 109.03, 12, -27.7552)
+
+[node name="LightPost20" parent="Level1/Environment/NavigationRegion3D/Lights" instance=ExtResource("26_0mnik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.7237, 16.0047, -29.2678)
+
+[node name="LightPost21" parent="Level1/Environment/NavigationRegion3D/Lights" instance=ExtResource("26_0mnik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.4343, 18, -66.5348)
 
 [node name="VoidColliders" type="Node3D" parent="Level1"]
 
