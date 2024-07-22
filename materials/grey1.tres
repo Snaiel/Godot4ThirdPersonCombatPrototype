@@ -2,3 +2,4 @@
 
 [resource]
 albedo_color = Color(0.180005, 0.180005, 0.180005, 1)
+metallic_specular = 0.3
