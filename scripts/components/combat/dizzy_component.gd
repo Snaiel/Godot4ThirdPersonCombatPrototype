@@ -71,7 +71,7 @@ func _ready():
 	
 	global_position = attachment_point.global_position
 	
-	dizzy_stars.visible = false
+	dizzy_stars.enabled = false
 	_default_dizzy_sfx_volume = dizzy_stars_sfx.volume_db
 
 
@@ -107,7 +107,7 @@ func _on_instability_component_full_instability():
 	dizzy_system.readied_finisher = instability_component\
 		.source_causes_readied_finisher
 	
-	dizzy_stars.visible = true
+	dizzy_stars.enabled = true
 	dizzy_hit_sfx.play()
 	if _dizzy_sfx_tween: _dizzy_sfx_tween.kill()
 	dizzy_stars_sfx.volume_db = _default_dizzy_sfx_volume
@@ -189,7 +189,7 @@ func _back_to_normal() -> void:
 
 
 func _stop_dizzy_stars() -> void:
-	dizzy_stars.visible = false
+	dizzy_stars.enabled = false
 	_dizzy_sfx_tween = create_tween()
 	_dizzy_sfx_tween.tween_property(
 		dizzy_stars_sfx,

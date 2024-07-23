@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://cd738rigq1w2v"]
+[gd_scene load_steps=64 format=3 uid="uid://cd738rigq1w2v"]
 
 [ext_resource type="Script" path="res://scripts/systems/level.gd" id="1_e4p23"]
 [ext_resource type="PackedScene" uid="uid://cy5wvw01aul4m" path="res://scenes/systems/CameraController.tscn" id="2_ebvse"]
@@ -58,7 +58,7 @@ size = Vector3(128.079, 1, 150)
 size = Vector3(172.195, 1, 99.2267)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_d3a26"]
-size = Vector3(70, 500, 130)
+size = Vector3(70.1628, 500, 130)
 
 [sub_resource type="Curve3D" id="Curve3D_xuf5h"]
 _data = {
@@ -74,7 +74,7 @@ size = Vector3(50, 500, 80)
 size = Vector3(20, 500, 40)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8u0tp"]
-size = Vector3(20, 500, 40)
+size = Vector3(31.9658, 500, 40)
 
 [sub_resource type="Curve3D" id="Curve3D_gv36s"]
 _data = {
@@ -107,6 +107,15 @@ _data = {
 }
 point_count = 7
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_1hvp4"]
+size = Vector3(46.3036, 500, 96.3912)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pe25b"]
+size = Vector3(16.1565, 500, 82.6228)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n277v"]
+size = Vector3(26.1287, 500, 39.4089)
+
 [sub_resource type="Curve3D" id="Curve3D_k0rjm"]
 _data = {
 "points": PackedVector3Array(0, 0, 0, 0, 0, 0, -3.35449, -0.217763, -1.43484, 0, 0, 0, 0, 0, 0, -3.31946, 0.132144, -7.32112, -3.97438, 2.76566e-05, 0.0403271, 3.97438, -2.76566e-05, -0.0403271, 0.216797, 1.00266, -12.9044, 0, 0, 0, 0, 0, 0, 3.50806, 0.31225, -8.19164, 0, 0, 0, 0, 0, 0, 3.59058, -0.418473, 3.55567, 3.90887, 0, 0.739365, -3.90887, 0, -0.739365, -0.333252, -0.0853262, 8.04189, 0, 0, 0, 0, 0, 0, -3.45947, -0.394275, 2.77936, 0, 0, 0, 0, 0, 0, -3.26233, -0.19805, -0.897337),
@@ -121,8 +130,11 @@ _data = {
 }
 point_count = 4
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_pe25b"]
-size = Vector3(67.5359, 500, 83.4856)
+[sub_resource type="BoxShape3D" id="BoxShape3D_0omao"]
+size = Vector3(38.7177, 500, 39.4089)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a6c3k"]
+size = Vector3(7.58372, 500, 30.5168)
 
 [sub_resource type="Curve3D" id="Curve3D_cskke"]
 _data = {
@@ -132,10 +144,10 @@ _data = {
 point_count = 11
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7crfn"]
-size = Vector3(93.4712, 500, 99.914)
+size = Vector3(73.3889, 500, 65.2573)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5nirt"]
-size = Vector3(100.682, 500, 91.2832)
+size = Vector3(74.2073, 500, 91.2832)
 
 [sub_resource type="Curve3D" id="Curve3D_spjee"]
 _data = {
@@ -177,7 +189,7 @@ running_spin_speed = 4.0
 [node name="UserInterface" parent="." instance=ExtResource("3_im4q1")]
 
 [node name="Player" parent="." instance=ExtResource("4_km71j")]
-transform = Transform3D(-0.992461, 0, 0.122562, 0, 1, 0, -0.122562, 0, -0.992461, 130.974, 21.343, -24.6287)
+transform = Transform3D(0.948002, 0, 0.318264, 0, 1, 0, -0.318264, 0, 0.948002, 4.54216, 0.988717, 4.6102)
 
 [node name="BackstabSystem" type="Node3D" parent="."]
 script = ExtResource("5_lt6ye")
@@ -475,8 +487,7 @@ collision_mask = 2
 script = ExtResource("16_fqjbt")
 
 [node name="AreaCollider" type="CollisionShape3D" parent="Level1/Enemies/Section"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.0151, 0, -46.8021)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.9337, 0, -46.8021)
 shape = SubResource("BoxShape3D_d3a26")
 
 [node name="Enemies" type="Node3D" parent="Level1/Enemies/Section"]
@@ -529,7 +540,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, -27)
 shape = SubResource("BoxShape3D_6nb2v")
 
 [node name="AreaCollider3" type="CollisionShape3D" parent="Level1/Enemies/Section2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 41)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.9829, 0, 41)
 shape = SubResource("BoxShape3D_8u0tp")
 
 [node name="Enemies" type="Node3D" parent="Level1/Enemies/Section2"]
@@ -641,203 +652,203 @@ navigation_mesh = ExtResource("22_vin2b")
 [node name="level2" parent="Level2/Environment/NavigationRegion3D" instance=ExtResource("19_bfis0")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 
-[node name="1" parent="Level2/Environment/NavigationRegion3D/level2" index="1"]
+[node name="1" parent="Level2/Environment/NavigationRegion3D/level2" index="0"]
 surface_material_override/0 = ExtResource("12_wrl4e")
 
-[node name="Cube-col_002" parent="Level2/Environment/NavigationRegion3D/level2" index="2"]
+[node name="Cube-col_002" parent="Level2/Environment/NavigationRegion3D/level2" index="1"]
 transform = Transform3D(4.51852, 0, -1.57067, 0, 6.82466, 0, 1.99344, 0, 3.56022, 75.2424, 15.7552, 19.0217)
 surface_material_override/0 = ExtResource("20_hslmi")
 
-[node name="Cube-col_003" parent="Level2/Environment/NavigationRegion3D/level2" index="3"]
+[node name="Cube-col_003" parent="Level2/Environment/NavigationRegion3D/level2" index="2"]
 surface_material_override/0 = ExtResource("20_hslmi")
 
-[node name="2" parent="Level2/Environment/NavigationRegion3D/level2" index="4"]
+[node name="2" parent="Level2/Environment/NavigationRegion3D/level2" index="3"]
 surface_material_override/0 = ExtResource("12_wrl4e")
 
-[node name="Cube_005" parent="Level2/Environment/NavigationRegion3D/level2" index="5"]
+[node name="Cube_005" parent="Level2/Environment/NavigationRegion3D/level2" index="4"]
 transform = Transform3D(4.08406, 0, -5.42138, 0, 28.3732, 0, 5.42138, 0, 4.08406, 102.277, 18.8833, 6.09283)
 surface_material_override/0 = ExtResource("20_hslmi")
 
-[node name="Cube_002-col" parent="Level2/Environment/NavigationRegion3D/level2" index="6"]
+[node name="Cube_002-col" parent="Level2/Environment/NavigationRegion3D/level2" index="5"]
 surface_material_override/0 = ExtResource("20_hslmi")
 
-[node name="Cube_003-col" parent="Level2/Environment/NavigationRegion3D/level2" index="7"]
+[node name="Cube_003-col" parent="Level2/Environment/NavigationRegion3D/level2" index="6"]
 surface_material_override/0 = ExtResource("20_hslmi")
 
-[node name="Cube_004-col" parent="Level2/Environment/NavigationRegion3D/level2" index="8"]
+[node name="Cube_004-col" parent="Level2/Environment/NavigationRegion3D/level2" index="7"]
 surface_material_override/0 = ExtResource("20_hslmi")
 
-[node name="Cube_005-col" parent="Level2/Environment/NavigationRegion3D/level2" index="9"]
+[node name="Cube_005-col" parent="Level2/Environment/NavigationRegion3D/level2" index="8"]
 surface_material_override/0 = ExtResource("20_hslmi")
 
-[node name="Cube_006" parent="Level2/Environment/NavigationRegion3D/level2" index="10"]
+[node name="Cube_006" parent="Level2/Environment/NavigationRegion3D/level2" index="9"]
 surface_material_override/0 = ExtResource("20_hslmi")
 
-[node name="Cube_007" parent="Level2/Environment/NavigationRegion3D/level2" index="11"]
+[node name="Cube_007" parent="Level2/Environment/NavigationRegion3D/level2" index="10"]
 surface_material_override/0 = ExtResource("20_hslmi")
 
-[node name="Cube_009" parent="Level2/Environment/NavigationRegion3D/level2" index="12"]
+[node name="Cube_009" parent="Level2/Environment/NavigationRegion3D/level2" index="11"]
 surface_material_override/0 = ExtResource("20_hslmi")
 
-[node name="Cube_001" parent="Level2/Environment/NavigationRegion3D/level2" index="13"]
+[node name="Cube_001" parent="Level2/Environment/NavigationRegion3D/level2" index="12"]
 surface_material_override/0 = ExtResource("21_jgiix")
 
-[node name="3" parent="Level2/Environment/NavigationRegion3D/level2" index="14"]
+[node name="3" parent="Level2/Environment/NavigationRegion3D/level2" index="13"]
 surface_material_override/0 = ExtResource("12_wrl4e")
 
-[node name="Cube_010_002" parent="Level2/Environment/NavigationRegion3D/level2" index="15"]
+[node name="Cube_010_002" parent="Level2/Environment/NavigationRegion3D/level2" index="14"]
 surface_material_override/0 = ExtResource("23_e4en7")
 
-[node name="Cube_010_003" parent="Level2/Environment/NavigationRegion3D/level2" index="16"]
+[node name="Cube_010_003" parent="Level2/Environment/NavigationRegion3D/level2" index="15"]
 surface_material_override/0 = ExtResource("23_e4en7")
 
-[node name="Cube_010_004" parent="Level2/Environment/NavigationRegion3D/level2" index="17"]
+[node name="Cube_010_004" parent="Level2/Environment/NavigationRegion3D/level2" index="16"]
 surface_material_override/0 = ExtResource("22_s8p5f")
 
-[node name="Cube_010_005" parent="Level2/Environment/NavigationRegion3D/level2" index="18"]
+[node name="Cube_010_005" parent="Level2/Environment/NavigationRegion3D/level2" index="17"]
 surface_material_override/0 = ExtResource("22_s8p5f")
 
-[node name="Cube_010_006" parent="Level2/Environment/NavigationRegion3D/level2" index="19"]
+[node name="Cube_010_006" parent="Level2/Environment/NavigationRegion3D/level2" index="18"]
 surface_material_override/0 = ExtResource("23_e4en7")
 
-[node name="Cube_010_007" parent="Level2/Environment/NavigationRegion3D/level2" index="20"]
+[node name="Cube_010_007" parent="Level2/Environment/NavigationRegion3D/level2" index="19"]
 surface_material_override/0 = ExtResource("23_e4en7")
 
-[node name="Cube_010_001" parent="Level2/Environment/NavigationRegion3D/level2" index="21"]
+[node name="Cube_010_001" parent="Level2/Environment/NavigationRegion3D/level2" index="20"]
 surface_material_override/0 = ExtResource("23_e4en7")
 
-[node name="4" parent="Level2/Environment/NavigationRegion3D/level2" index="22"]
+[node name="4" parent="Level2/Environment/NavigationRegion3D/level2" index="21"]
 surface_material_override/0 = ExtResource("12_wrl4e")
 
-[node name="Cube_014" parent="Level2/Environment/NavigationRegion3D/level2" index="23"]
+[node name="Cube_014" parent="Level2/Environment/NavigationRegion3D/level2" index="22"]
 surface_material_override/0 = ExtResource("20_hslmi")
 
-[node name="Cube_015" parent="Level2/Environment/NavigationRegion3D/level2" index="24"]
+[node name="Cube_015" parent="Level2/Environment/NavigationRegion3D/level2" index="23"]
 surface_material_override/0 = ExtResource("20_hslmi")
 
-[node name="Cube_016" parent="Level2/Environment/NavigationRegion3D/level2" index="25"]
+[node name="Cube_016" parent="Level2/Environment/NavigationRegion3D/level2" index="24"]
 surface_material_override/0 = ExtResource("22_s8p5f")
 
-[node name="Cube_017" parent="Level2/Environment/NavigationRegion3D/level2" index="26"]
+[node name="Cube_017" parent="Level2/Environment/NavigationRegion3D/level2" index="25"]
 surface_material_override/0 = ExtResource("22_s8p5f")
 
-[node name="Cube_018" parent="Level2/Environment/NavigationRegion3D/level2" index="27"]
+[node name="Cube_018" parent="Level2/Environment/NavigationRegion3D/level2" index="26"]
 transform = Transform3D(1.21421, 0, 1.11128, 0, 15.8719, 0, -5.41063, 0, 0.249385, 107.212, 6.50082, 86.1082)
 surface_material_override/0 = ExtResource("22_s8p5f")
 
-[node name="Cube_019" parent="Level2/Environment/NavigationRegion3D/level2" index="28"]
+[node name="Cube_019" parent="Level2/Environment/NavigationRegion3D/level2" index="27"]
 transform = Transform3D(1.21421, 0, 1.11128, 0, 15.8719, 0, -5.41063, 0, 0.249385, 94.4814, 6.50082, 91.0628)
 surface_material_override/0 = ExtResource("22_s8p5f")
 
-[node name="Cube_020" parent="Level2/Environment/NavigationRegion3D/level2" index="29"]
+[node name="Cube_020" parent="Level2/Environment/NavigationRegion3D/level2" index="28"]
 transform = Transform3D(1.02123, 0, 1.11944, 0, 15.8719, 0, -5.45035, 0, 0.209747, 98.4447, 6.50082, 76.2249)
 surface_material_override/0 = ExtResource("22_s8p5f")
 
-[node name="Cube_021" parent="Level2/Environment/NavigationRegion3D/level2" index="30"]
+[node name="Cube_021" parent="Level2/Environment/NavigationRegion3D/level2" index="29"]
 surface_material_override/0 = ExtResource("22_s8p5f")
 
-[node name="Cube_022" parent="Level2/Environment/NavigationRegion3D/level2" index="31"]
+[node name="Cube_022" parent="Level2/Environment/NavigationRegion3D/level2" index="30"]
 transform = Transform3D(1.21421, 0, 1.11128, 0, 15.8719, 0, -5.41063, 0, 0.249385, 101.824, 6.50082, 108.23)
 surface_material_override/0 = ExtResource("22_s8p5f")
 
-[node name="Cube_023" parent="Level2/Environment/NavigationRegion3D/level2" index="32"]
+[node name="Cube_023" parent="Level2/Environment/NavigationRegion3D/level2" index="31"]
 transform = Transform3D(5.12401, 0, 2.58986, 0, 15.8719, 0, -19.8587, 0, 0.668245, 69.2958, 6.50082, 98.8752)
 surface_material_override/0 = ExtResource("20_hslmi")
 
-[node name="Cube_024" parent="Level2/Environment/NavigationRegion3D/level2" index="33"]
+[node name="Cube_024" parent="Level2/Environment/NavigationRegion3D/level2" index="32"]
 transform = Transform3D(-16.4239, 0, 0.59223, 0, 15.8719, 0, -3.90244, 0, -2.49248, 80.6338, 6.50082, 116.889)
 surface_material_override/0 = ExtResource("20_hslmi")
 
-[node name="Cube_025" parent="Level2/Environment/NavigationRegion3D/level2" index="34"]
+[node name="Cube_025" parent="Level2/Environment/NavigationRegion3D/level2" index="33"]
 surface_material_override/0 = ExtResource("20_hslmi")
 
-[node name="Cube_026" parent="Level2/Environment/NavigationRegion3D/level2" index="35"]
+[node name="Cube_026" parent="Level2/Environment/NavigationRegion3D/level2" index="34"]
 surface_material_override/0 = ExtResource("20_hslmi")
 
-[node name="Cube_027" parent="Level2/Environment/NavigationRegion3D/level2" index="36"]
+[node name="Cube_027" parent="Level2/Environment/NavigationRegion3D/level2" index="35"]
 transform = Transform3D(6.39555, 0, -2.27329, 0, 28.3732, 0, 2.27329, 0, 6.39555, 63.4735, 18.8833, 82.6054)
 surface_material_override/0 = ExtResource("21_jgiix")
 
-[node name="Cube_033" parent="Level2/Environment/NavigationRegion3D/level2" index="37"]
+[node name="Cube_033" parent="Level2/Environment/NavigationRegion3D/level2" index="36"]
 surface_material_override/0 = ExtResource("21_jgiix")
 
-[node name="Cube_002" parent="Level2/Environment/NavigationRegion3D/level2" index="39"]
+[node name="Cube_002" parent="Level2/Environment/NavigationRegion3D/level2" index="38"]
 surface_material_override/0 = ExtResource("20_hslmi")
 
-[node name="Cube_008" parent="Level2/Environment/NavigationRegion3D/level2" index="40"]
+[node name="Cube_008" parent="Level2/Environment/NavigationRegion3D/level2" index="39"]
 surface_material_override/0 = ExtResource("20_hslmi")
 
-[node name="Cube_011" parent="Level2/Environment/NavigationRegion3D/level2" index="41"]
+[node name="Cube_011" parent="Level2/Environment/NavigationRegion3D/level2" index="40"]
 surface_material_override/0 = ExtResource("20_hslmi")
 
-[node name="Cube_012" parent="Level2/Environment/NavigationRegion3D/level2" index="42"]
+[node name="Cube_012" parent="Level2/Environment/NavigationRegion3D/level2" index="41"]
 surface_material_override/0 = ExtResource("20_hslmi")
 
-[node name="Cube_013" parent="Level2/Environment/NavigationRegion3D/level2" index="43"]
+[node name="Cube_013" parent="Level2/Environment/NavigationRegion3D/level2" index="42"]
 surface_material_override/0 = ExtResource("20_hslmi")
 
-[node name="Cube_010_008" parent="Level2/Environment/NavigationRegion3D/level2" index="44"]
+[node name="Cube_010_008" parent="Level2/Environment/NavigationRegion3D/level2" index="43"]
 surface_material_override/0 = ExtResource("23_e4en7")
 
-[node name="Cube_010_009" parent="Level2/Environment/NavigationRegion3D/level2" index="45"]
+[node name="Cube_010_009" parent="Level2/Environment/NavigationRegion3D/level2" index="44"]
 surface_material_override/0 = ExtResource("23_e4en7")
 
-[node name="Cube_010_010" parent="Level2/Environment/NavigationRegion3D/level2" index="46"]
+[node name="Cube_010_010" parent="Level2/Environment/NavigationRegion3D/level2" index="45"]
 surface_material_override/0 = ExtResource("23_e4en7")
 
-[node name="Cube_010_011" parent="Level2/Environment/NavigationRegion3D/level2" index="47"]
+[node name="Cube_010_011" parent="Level2/Environment/NavigationRegion3D/level2" index="46"]
 surface_material_override/0 = ExtResource("23_e4en7")
 
-[node name="Cube_010_012" parent="Level2/Environment/NavigationRegion3D/level2" index="48"]
+[node name="Cube_010_012" parent="Level2/Environment/NavigationRegion3D/level2" index="47"]
 surface_material_override/0 = ExtResource("23_e4en7")
 
-[node name="Cube_010_013" parent="Level2/Environment/NavigationRegion3D/level2" index="49"]
+[node name="Cube_010_013" parent="Level2/Environment/NavigationRegion3D/level2" index="48"]
 surface_material_override/0 = ExtResource("23_e4en7")
 
-[node name="Cube_010_014" parent="Level2/Environment/NavigationRegion3D/level2" index="50"]
+[node name="Cube_010_014" parent="Level2/Environment/NavigationRegion3D/level2" index="49"]
 surface_material_override/0 = ExtResource("23_e4en7")
 
-[node name="Cube_010_015" parent="Level2/Environment/NavigationRegion3D/level2" index="51"]
+[node name="Cube_010_015" parent="Level2/Environment/NavigationRegion3D/level2" index="50"]
 surface_material_override/0 = ExtResource("23_e4en7")
 
-[node name="Cube_010_016" parent="Level2/Environment/NavigationRegion3D/level2" index="52"]
+[node name="Cube_010_016" parent="Level2/Environment/NavigationRegion3D/level2" index="51"]
 surface_material_override/0 = ExtResource("23_e4en7")
 
-[node name="Cube_010_017" parent="Level2/Environment/NavigationRegion3D/level2" index="53"]
+[node name="Cube_010_017" parent="Level2/Environment/NavigationRegion3D/level2" index="52"]
 surface_material_override/0 = ExtResource("23_e4en7")
 
-[node name="Cube_010_018" parent="Level2/Environment/NavigationRegion3D/level2" index="54"]
+[node name="Cube_010_018" parent="Level2/Environment/NavigationRegion3D/level2" index="53"]
 surface_material_override/0 = ExtResource("23_e4en7")
 
-[node name="5" parent="Level2/Environment/NavigationRegion3D/level2" index="55"]
+[node name="5" parent="Level2/Environment/NavigationRegion3D/level2" index="54"]
 surface_material_override/0 = ExtResource("12_wrl4e")
 
-[node name="Cube_028" parent="Level2/Environment/NavigationRegion3D/level2" index="56"]
+[node name="Cube_028" parent="Level2/Environment/NavigationRegion3D/level2" index="55"]
 surface_material_override/0 = ExtResource("20_hslmi")
 
-[node name="Cube_029" parent="Level2/Environment/NavigationRegion3D/level2" index="57"]
+[node name="Cube_029" parent="Level2/Environment/NavigationRegion3D/level2" index="56"]
 transform = Transform3D(14.8798, 0, 2.058, 0, 15.8719, 0, -10.4099, 0, 2.94167, 53.7443, 6.50082, 141.313)
 surface_material_override/0 = ExtResource("20_hslmi")
 
-[node name="Cube_031" parent="Level2/Environment/NavigationRegion3D/level2" index="58"]
+[node name="Cube_031" parent="Level2/Environment/NavigationRegion3D/level2" index="57"]
 surface_material_override/0 = ExtResource("22_s8p5f")
 
-[node name="Cube_030" parent="Level2/Environment/NavigationRegion3D/level2" index="59"]
+[node name="Cube_030" parent="Level2/Environment/NavigationRegion3D/level2" index="58"]
 surface_material_override/0 = ExtResource("20_hslmi")
 
-[node name="Cube_032" parent="Level2/Environment/NavigationRegion3D/level2" index="60"]
+[node name="Cube_032" parent="Level2/Environment/NavigationRegion3D/level2" index="59"]
 surface_material_override/0 = ExtResource("21_jgiix")
 
-[node name="Cube_001_001" parent="Level2/Environment/NavigationRegion3D/level2" index="61"]
+[node name="Cube_001_001" parent="Level2/Environment/NavigationRegion3D/level2" index="60"]
 surface_material_override/0 = ExtResource("20_hslmi")
 
 [node name="CollisionShape3D" parent="Level2/Environment/NavigationRegion3D/level2/Cube_001_001/StaticBody3D" index="0"]
 transform = Transform3D(1, 0, -1.49012e-08, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
-[node name="Cube_002_001" parent="Level2/Environment/NavigationRegion3D/level2" index="62"]
+[node name="Cube_002_001" parent="Level2/Environment/NavigationRegion3D/level2" index="61"]
 surface_material_override/0 = ExtResource("21_jgiix")
 
-[node name="Cube_003" parent="Level2/Environment/NavigationRegion3D/level2" index="63"]
+[node name="Cube_003" parent="Level2/Environment/NavigationRegion3D/level2" index="62"]
 surface_material_override/0 = ExtResource("22_s8p5f")
 
 [node name="Checkpoints" type="Node3D" parent="Level2/Environment/NavigationRegion3D"]
@@ -937,7 +948,23 @@ transform = Transform3D(0.918743, 0, -0.394856, 0, 1, 0, 0.394856, 0, 0.918743, 
 transform = Transform3D(0.919623, 0, -0.392803, 0, 1, 0, 0.392803, 0, 0.919623, 10.1663, 0, 37.9078)
 
 [node name="AreaCollider" parent="Level2/Enemies/Section1" index="0"]
-transform = Transform3D(0.990054, 0, 0.140623, 0, 1, 0, -0.140623, 0, 0.990054, 7.97047, 0, 17.3518)
+transform = Transform3D(0.999912, 0, 0.012548, 0, 1, 0, -0.012548, 0, 0.999912, 21.6894, 0, 17.1796)
+visible = false
+
+[node name="AreaCollider2" type="CollisionShape3D" parent="Level2/Enemies/Section1"]
+transform = Transform3D(0.985541, 0, 0.169382, 0, 1, 0, -0.169382, 0, 0.985541, -10.3705, 0, 50.547)
+visible = false
+shape = SubResource("BoxShape3D_1hvp4")
+
+[node name="AreaCollider3" type="CollisionShape3D" parent="Level2/Enemies/Section1"]
+transform = Transform3D(0.0420288, 0, 0.999116, 0, 1, 0, -0.999116, 0, 0.0420288, -32.0734, 0, 56.3179)
+visible = false
+shape = SubResource("BoxShape3D_pe25b")
+
+[node name="AreaCollider4" type="CollisionShape3D" parent="Level2/Enemies/Section1"]
+transform = Transform3D(0.524129, 0, 0.851637, 0, 1, 0, -0.851637, 0, 0.524129, -35.2437, 0, 47.1893)
+visible = false
+shape = SubResource("BoxShape3D_n277v")
 
 [node name="Swordsman" parent="Level2/Enemies/Section1/Enemies" index="0" node_paths=PackedStringArray("patrol") instance=ExtResource("17_85uvr")]
 transform = Transform3D(0.999997, 0, -0.00223392, 0, 1, 0, 0.00223392, 0, 0.999997, -2.89424, 10.878, 2.72279)
@@ -993,9 +1020,24 @@ patrol_type = 1
 transform = Transform3D(0.919623, 0, -0.392803, 0, 1, 0, 0.392803, 0, 0.919623, -42.5184, 0, 78.9883)
 
 [node name="AreaCollider" parent="Level2/Enemies/Section2" index="0"]
-transform = Transform3D(0.629666, 0, 0.776864, 0, 1, 0, -0.776864, 0, 0.629666, -6.35876, 0, 11.0974)
+transform = Transform3D(0.0420288, 0, 0.999116, 0, 1, 0, -0.999116, 0, 0.0420288, 1.03532, 0, -1.46072)
 visible = false
 shape = SubResource("BoxShape3D_pe25b")
+
+[node name="AreaCollider2" type="CollisionShape3D" parent="Level2/Enemies/Section2"]
+transform = Transform3D(0.524129, 0, 0.851637, 0, 1, 0, -0.851637, 0, 0.524129, -4.71231, 0, -11.5162)
+visible = false
+shape = SubResource("BoxShape3D_n277v")
+
+[node name="AreaCollider3" type="CollisionShape3D" parent="Level2/Enemies/Section2"]
+transform = Transform3D(0.983516, 0, 0.180816, 0, 1, 0, -0.180816, 0, 0.983516, 21.7185, 0, 20.299)
+visible = false
+shape = SubResource("BoxShape3D_0omao")
+
+[node name="AreaCollider4" type="CollisionShape3D" parent="Level2/Enemies/Section2"]
+transform = Transform3D(0.998284, 0, 0.0584054, 0, 1, 0, -0.0584054, 0, 0.998284, -31.8992, 0, 17.4479)
+visible = false
+shape = SubResource("BoxShape3D_a6c3k")
 
 [node name="Spellcaster2" parent="Level2/Enemies/Section2/Enemies" index="0" instance=ExtResource("29_xlmhl")]
 transform = Transform3D(0.393525, 0, -0.919314, 0, 1, 0, 0.919314, 0, 0.393525, -15.2147, 14.4748, -2.69911)
@@ -1035,8 +1077,7 @@ transform = Transform3D(0.500817, 0, -0.865522, 0, 1, 0, 0.865522, 0, 0.500817, 
 transform = Transform3D(0.919623, 0, -0.392803, 0, 1, 0, 0.392803, 0, 0.919623, -80.6162, 0, 99.1345)
 
 [node name="AreaCollider" parent="Level2/Enemies/Section3" index="0"]
-transform = Transform3D(0.990423, 0, 0.138068, 0, 1, 0, -0.138068, 0, 0.990423, -14.928, 0, -7.506)
-visible = false
+transform = Transform3D(0.990409, 0, 0.138067, 0, 1, 0, -0.138067, 0, 0.990409, -4.25003, 0, 8.81905)
 shape = SubResource("BoxShape3D_7crfn")
 
 [node name="Zombie4" parent="Level2/Enemies/Section3/Enemies" index="0" instance=ExtResource("28_6cnyh")]
@@ -1064,13 +1105,11 @@ transform = Transform3D(0.690958, 0, -0.722895, 0, 1, 0, 0.722895, 0, 0.690958, 
 transform = Transform3D(0.919623, 0, -0.392803, 0, 1, 0, 0.392803, 0, 0.919623, -148.653, 0, 73.6203)
 
 [node name="AreaCollider" parent="Level2/Enemies/Section4" index="0"]
-transform = Transform3D(0.990063, 0, 0.140625, 0, 1, 0, -0.140625, 0, 0.990063, 6.68057, 0, 5.59087)
-visible = false
+transform = Transform3D(0.990059, 0, 0.140625, 0, 1, 0, -0.140625, 0, 0.990059, -6.42522, 0, 7.45238)
 shape = SubResource("BoxShape3D_5nirt")
 
-[node name="HybridEnemy" parent="Level2/Enemies/Section4/Enemies" index="0" node_paths=PackedStringArray("patrol") instance=ExtResource("30_kdrsj")]
+[node name="HybridEnemy" parent="Level2/Enemies/Section4/Enemies" index="0" instance=ExtResource("30_kdrsj")]
 transform = Transform3D(-0.737725, 0, -0.675101, 0, 1, 0, 0.675101, 0, -0.737725, -6.8135, 23.0058, -2.07288)
-patrol = NodePath("../../Patrols/PatrolPath2/PatrolInstance")
 
 [node name="Spellcaster3" parent="Level2/Enemies/Section4/Enemies" index="1" instance=ExtResource("29_xlmhl")]
 transform = Transform3D(-0.381958, 0, -0.92418, 0, 1, 0, 0.92418, 0, -0.381958, -5.06239, 23.0058, 7.59924)
@@ -1078,8 +1117,9 @@ transform = Transform3D(-0.381958, 0, -0.92418, 0, 1, 0, 0.92418, 0, -0.381958, 
 [node name="Spellcaster4" parent="Level2/Enemies/Section4/Enemies" index="2" instance=ExtResource("29_xlmhl")]
 transform = Transform3D(-0.999612, 0, -0.027852, 0, 1, 0, 0.027852, 0, -0.999612, 1.49143, 27.1109, -9.61065)
 
-[node name="Swordsman13" parent="Level2/Enemies/Section4/Enemies" index="3" instance=ExtResource("17_85uvr")]
+[node name="Swordsman13" parent="Level2/Enemies/Section4/Enemies" index="3" node_paths=PackedStringArray("patrol") instance=ExtResource("17_85uvr")]
 transform = Transform3D(0.892169, 0, 0.451703, 0, 1, 0, -0.451703, 0, 0.892169, 7.91617, 23.0058, 14.4947)
+patrol = NodePath("../../Patrols/PatrolPath2/PatrolInstance")
 
 [node name="Zombie8" parent="Level2/Enemies/Section4/Enemies" index="4" instance=ExtResource("28_6cnyh")]
 transform = Transform3D(-0.998557, 0, -0.0536956, 0, 1, 0, 0.0536956, 0, -0.998557, 15.8508, 25.3408, 4.78542)

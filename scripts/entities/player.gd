@@ -63,8 +63,7 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	#prints(locomotion_component.speed)
-	
+
 	## State Machine
 	state_machine.process_player_state_machine()
 	state_machine.process_movement_animations_state_machine()

@@ -8,6 +8,7 @@ signal move(flag: bool)
 enum PatrolType {LINEAR, OSCILLATE, CIRCUIT}
 
 
+@export var show_mesh: bool = false
 @export var patrol_type: PatrolType
 @export var patrol: bool = true
 @export var speed: float = 3.0
@@ -22,6 +23,8 @@ var _stationary_timer: Timer
 
 
 func _ready():
+	$Mesh.visible = show_mesh
+	
 	if patrol_type != PatrolType.CIRCUIT:
 		loop = false
 	

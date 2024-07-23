@@ -137,7 +137,7 @@ exit={
 
 [network]
 
-limits/debugger/max_queued_messages=4096
+limits/debugger/max_queued_messages=8192
 
 [rendering]
 

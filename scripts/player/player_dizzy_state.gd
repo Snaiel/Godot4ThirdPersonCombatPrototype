@@ -56,7 +56,7 @@ func _ready():
 	)
 	add_child(_timer)
 	
-	dizzy_stars.visible = false
+	dizzy_stars.enabled = false
 	_default_dizzy_sfx_volume = dizzy_sfx.volume_db
 
 
@@ -72,7 +72,7 @@ func enter() -> void:
 	if parent_state.previous_state is PlayerBlockState:
 		_skip_damage = true
 	
-	dizzy_stars.visible = true
+	dizzy_stars.enabled = true
 	
 	dizzy_hit_sfx.play()
 	if _dizzy_sfx_tween: _dizzy_sfx_tween.kill()
@@ -100,7 +100,7 @@ func exit() -> void:
 	Globals.user_interface.hud.instability_bar.reset()
 	Globals.user_interface.hud.instability_bar.hide_bar()
 	
-	dizzy_stars.visible = false
+	dizzy_stars.enabled = false
 	_dizzy_sfx_tween = create_tween()
 	_dizzy_sfx_tween.tween_property(
 		dizzy_sfx,
