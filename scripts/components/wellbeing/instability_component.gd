@@ -25,24 +25,27 @@ signal full_instability
 
 @export_category("Instability Reduction")
 @export var can_reduce_instability: bool = true
-@export var reduction_pause_length: float = 2.0
-@export var reduction_rate: float = 1
+
+var reduction_rate: float
+var reduce_instability: bool = false
 
 var full_instability_from_parry: bool = false
 var source_causes_readied_finisher: bool = true
 
+var _default_reduction_rate: float = 0.05
 var _instability_reduction_pause_timer: Timer
-var _reduce_instability: bool = false
+var _reduction_pause_length: float = 5.0
 
 
-func _ready():
+func _ready() -> void:
+	reduction_rate = _default_reduction_rate
+	
 	_instability_reduction_pause_timer = Timer.new()
-	_instability_reduction_pause_timer.wait_time = reduction_pause_length
+	_instability_reduction_pause_timer.wait_time = _reduction_pause_length
 	_instability_reduction_pause_timer.autostart = false
 	_instability_reduction_pause_timer.one_shot = true
 	_instability_reduction_pause_timer.timeout.connect(
-		func():
-			_reduce_instability = true
+		func(): reduce_instability = true
 	)
 	add_child(_instability_reduction_pause_timer)
 	
@@ -54,9 +57,9 @@ func _ready():
 		)
 
 
-func _physics_process(_delta):
-	if _reduce_instability and can_reduce_instability:
-		instability -= reduction_rate * _delta
+func _physics_process(delta: float) -> void:
+	if reduce_instability and can_reduce_instability:
+		instability -= reduction_rate * max_instability * delta
 
 
 func increment_instability(
@@ -73,7 +76,7 @@ func increment_instability(
 	
 	instability += value
 	
-	_reduce_instability = false
+	reduce_instability = false
 	_instability_reduction_pause_timer.stop()
 	
 	instability_increased.emit()
@@ -88,12 +91,16 @@ func increment_instability(
 
 
 func come_out_of_full_instability(multiplier: float) -> void:
-	_reduce_instability = true
+	reduce_instability = true
 	instability = instability * multiplier
 
 
 func is_full_instability() -> bool:
 	return instability >= max_instability
+
+
+func reset_reduction_rate() -> void:
+	reduction_rate = _default_reduction_rate
 
 
 ## This entity got parried by another entity

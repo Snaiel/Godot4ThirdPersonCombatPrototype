@@ -978,9 +978,10 @@ block_state = NodePath("../Block")
 dizzy_finisher_state = NodePath("../DizzyFinisher")
 player = NodePath("../..")
 
-[node name="Block" type="Node" parent="StateMachine" node_paths=PackedStringArray("parry_state", "attack_state", "movement_animations", "blocking_sfx", "block_sfx", "player")]
+[node name="Block" type="Node" parent="StateMachine" node_paths=PackedStringArray("parry_state", "dodge_state", "attack_state", "movement_animations", "blocking_sfx", "block_sfx", "player")]
 script = ExtResource("9_t1v34")
 parry_state = NodePath("../Parry")
+dodge_state = NodePath("../Dodge")
 attack_state = NodePath("../Attack")
 movement_animations = NodePath("../../Character/Animations/Movement")
 blocking_sfx = NodePath("../../Character/Audio/Blocking")
@@ -1142,8 +1143,6 @@ weapons = [NodePath("../../Character/Armature_004/GeneralSkeleton/Sword")]
 max_from_parried = false
 max_from_parrying = false
 max_instability = 100.0
-reduction_pause_length = 5.0
-reduction_rate = 5.0
 
 [node name="HealthComponent" parent="Wellbeing" instance=ExtResource("75_ofv26")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)

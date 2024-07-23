@@ -3,16 +3,16 @@ extends PlayerStateMachine
 
 
 @export var parry_state: PlayerParryState
+@export var dodge_state: PlayerDodgeState
 @export var attack_state: PlayerAttackState
-@export var reduce_instability_rate: float = 0.8
 @export var movement_animations: MovementAnimations
 
 @export var blocking_sfx: AudioStreamPlayer
 @export var block_sfx: AudioStreamPlayer3D
 
-var _can_reduce_instability: bool = true
+var _reduction_rate: float = 0.2
 var _pause_before_reducing_instability_timer: Timer
-var _pause_before_reducing_instability_length: float = 2.0
+var _pause_before_reducing_instability_length: float = 3.0
 
 var _prev_anim_walk_speed: float
 
@@ -27,7 +27,8 @@ func _ready():
 	_pause_before_reducing_instability_timer.one_shot = true
 	_pause_before_reducing_instability_timer.timeout.connect(
 		func():
-			_can_reduce_instability = true
+			player.instability_component.reduce_instability = true
+			player.instability_component.reduction_rate = _reduction_rate
 	)
 	add_child(_pause_before_reducing_instability_timer)
 	
@@ -40,10 +41,10 @@ func _ready():
 				incoming_damage_source.entity.global_position
 			)
 			
-			_can_reduce_instability = false
 			_pause_before_reducing_instability_timer.start()
 			
 			player.shield_component.blocked()
+			player.instability_component.reset_reduction_rate()
 			player.instability_component.increment_instability(
 				incoming_damage_source.damage_attributes.block_instability
 			)
@@ -56,8 +57,6 @@ func _ready():
 func enter() -> void:
 	player.shield_component.blocking = true
 	player.melee_component.interrupt_attack()
-	
-	_can_reduce_instability = false
 	_pause_before_reducing_instability_timer.start()
 	
 	_prev_anim_walk_speed = movement_animations.speed
@@ -73,6 +72,10 @@ func process_player() -> void:
 	if not Input.is_action_pressed("block") and \
 	not player.parry_component.is_spamming():
 		parent_state.transition_to_default_state()
+		return
+	
+	if Input.is_action_just_pressed("run"):
+		parent_state.change_state(dodge_state)
 		return
 	
 	if Input.is_action_just_pressed("attack"):
@@ -97,6 +100,7 @@ func process_movement_animations() -> void:
 
 func exit() -> void:
 	_pause_before_reducing_instability_timer.stop()
+	player.instability_component.reset_reduction_rate()
 	player.shield_component.blocking = false
 	blocking_sfx.stop()
 	movement_animations.speed = _prev_anim_walk_speed
