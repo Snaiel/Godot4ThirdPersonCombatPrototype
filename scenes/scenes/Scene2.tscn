@@ -177,7 +177,7 @@ running_spin_speed = 4.0
 [node name="UserInterface" parent="." instance=ExtResource("3_im4q1")]
 
 [node name="Player" parent="." instance=ExtResource("4_km71j")]
-transform = Transform3D(-0.992461, 0, 0.122562, 0, 1, 0, -0.122562, 0, -0.992461, 1.17237, 10.6077, -5.97066)
+transform = Transform3D(-0.992461, 0, 0.122562, 0, 1, 0, -0.122562, 0, -0.992461, 130.974, 21.343, -24.6287)
 
 [node name="BackstabSystem" type="Node3D" parent="."]
 script = ExtResource("5_lt6ye")
@@ -338,6 +338,30 @@ material_override = ExtResource("21_jgiix")
 
 [node name="CSGCombiner3D2_012_011" parent="Level1/Environment/NavigationRegion3D/level1" index="39"]
 material_override = ExtResource("21_jgiix")
+
+[node name="Cube" parent="Level1/Environment/NavigationRegion3D/level1" index="40"]
+material_override = ExtResource("21_jgiix")
+
+[node name="Cube_001" parent="Level1/Environment/NavigationRegion3D/level1" index="41"]
+material_override = ExtResource("20_hslmi")
+
+[node name="Cube_002" parent="Level1/Environment/NavigationRegion3D/level1" index="42"]
+material_override = ExtResource("21_jgiix")
+
+[node name="Cube_003" parent="Level1/Environment/NavigationRegion3D/level1" index="43"]
+material_override = ExtResource("22_s8p5f")
+
+[node name="Cube_004" parent="Level1/Environment/NavigationRegion3D/level1" index="44"]
+material_override = ExtResource("12_wrl4e")
+
+[node name="Cube_005" parent="Level1/Environment/NavigationRegion3D/level1" index="45"]
+material_override = ExtResource("21_jgiix")
+
+[node name="Cube_006" parent="Level1/Environment/NavigationRegion3D/level1" index="46"]
+material_override = ExtResource("21_jgiix")
+
+[node name="Cube_007" parent="Level1/Environment/NavigationRegion3D/level1" index="47"]
+material_override = ExtResource("22_s8p5f")
 
 [node name="Checkpoints" type="Node3D" parent="Level1/Environment/NavigationRegion3D"]
 
@@ -580,8 +604,9 @@ transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 
 transform = Transform3D(0.84815, 0, 0.529756, 0, 1, 0, -0.529756, 0, 0.84815, 10.1724, 0, 12.4199)
 patrol = NodePath("../../Patrols/PatrolPath5/PatrolInstance")
 
-[node name="Enemy3" parent="Level1/Enemies/Section3/Enemies" instance=ExtResource("17_85uvr")]
+[node name="Enemy3" parent="Level1/Enemies/Section3/Enemies" node_paths=PackedStringArray("patrol") instance=ExtResource("17_85uvr")]
 transform = Transform3D(-0.989757, 0, 0.142767, 0, 1, 0, -0.142767, 0, -0.989757, -7.83891, -0.491444, -8.61465)
+patrol = NodePath("../../Patrols/PatrolPath4/PatrolInstance")
 
 [node name="Zombie2" parent="Level1/Enemies/Section3/Enemies" instance=ExtResource("28_6cnyh")]
 transform = Transform3D(0.359525, 0, -0.933136, 0, 1, 0, 0.933136, 0, 0.359525, 3.22626, -0.00372696, 15.0113)
