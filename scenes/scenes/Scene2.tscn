@@ -91,7 +91,7 @@ _data = {
 point_count = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tj07f"]
-size = Vector3(100, 500, 80)
+size = Vector3(122.832, 500, 80)
 
 [sub_resource type="Curve3D" id="Curve3D_kback"]
 _data = {
@@ -189,12 +189,11 @@ script = ExtResource("6_yqv35")
 
 [node name="VoidDeathSystem" parent="." instance=ExtResource("8_m1wb1")]
 
-[node name="CheckpointSystem" parent="." node_paths=PackedStringArray("level", "initial_checkpoint") instance=ExtResource("8_sw1gf")]
-level = NodePath("../Level1")
+[node name="CheckpointSystem" parent="." node_paths=PackedStringArray("levels", "initial_checkpoint") instance=ExtResource("8_sw1gf")]
+levels = [NodePath("../Level1"), NodePath("../Level2")]
 initial_checkpoint = NodePath("../Level1/Environment/NavigationRegion3D/Checkpoints/Checkpoint")
 
 [node name="MusicSystem" parent="." instance=ExtResource("9_r1r5g")]
-enabled = false
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_xfaio")
@@ -523,17 +522,14 @@ script = ExtResource("16_fqjbt")
 
 [node name="AreaCollider" type="CollisionShape3D" parent="Level1/Enemies/Section2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -7)
-visible = false
 shape = SubResource("BoxShape3D_h06qn")
 
 [node name="AreaCollider2" type="CollisionShape3D" parent="Level1/Enemies/Section2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, -27)
-visible = false
 shape = SubResource("BoxShape3D_6nb2v")
 
 [node name="AreaCollider3" type="CollisionShape3D" parent="Level1/Enemies/Section2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 41)
-visible = false
 shape = SubResource("BoxShape3D_8u0tp")
 
 [node name="Enemies" type="Node3D" parent="Level1/Enemies/Section2"]
@@ -590,8 +586,7 @@ collision_mask = 2
 script = ExtResource("16_fqjbt")
 
 [node name="AreaCollider" type="CollisionShape3D" parent="Level1/Enemies/Section3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.416, 0, -7)
 shape = SubResource("BoxShape3D_tj07f")
 
 [node name="Enemies" type="Node3D" parent="Level1/Enemies/Section3"]
@@ -610,6 +605,9 @@ patrol = NodePath("../../Patrols/PatrolPath4/PatrolInstance")
 
 [node name="Zombie2" parent="Level1/Enemies/Section3/Enemies" instance=ExtResource("28_6cnyh")]
 transform = Transform3D(0.359525, 0, -0.933136, 0, 1, 0, 0.933136, 0, 0.359525, 3.22626, -0.00372696, 15.0113)
+
+[node name="HybridEnemy" parent="Level1/Enemies/Section3/Enemies" instance=ExtResource("30_kdrsj")]
+transform = Transform3D(0.235685, 0, 0.97183, 0, 1, 0, -0.97183, 0, 0.235685, 59.492, -4.8998, 19.7251)
 
 [node name="Patrols" type="Node3D" parent="Level1/Enemies/Section3"]
 
@@ -1123,9 +1121,6 @@ transform = Transform3D(0.245443, 0, -0.969411, 0, 1, 0, 0.969411, 0, 0.245443, 
 [node name="CollisionShape3D" parent="Level2/VoidColliders/VoidArea2" index="0"]
 transform = Transform3D(0.918318, 0, -0.395833, 0, 1, 0, 0.395833, 0, 0.918318, -37.0644, 0, 26.6946)
 shape = SubResource("BoxShape3D_eddj4")
-
-[node name="HybridEnemy" parent="." instance=ExtResource("30_kdrsj")]
-transform = Transform3D(0.235685, 0, 0.97183, 0, 1, 0, -0.97183, 0, 0.235685, 113.492, 12.1002, -17.2749)
 
 [editable path="Level1/Environment/NavigationRegion3D/level1"]
 [editable path="Level1/Environment/NavigationRegion3D/Checkpoints/Checkpoint5"]

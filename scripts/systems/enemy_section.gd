@@ -13,7 +13,9 @@ func _ready():
 		func(_body: Node3D):
 			print("Player entered enemy section: " + name)
 			add_child(enemies)
-			Globals.checkpoint_system.set_enemies_chldren_owner()
+			Globals.checkpoint_system.set_node_owner_to_enemies(
+				enemies, enemies
+			)
 	)
 
 	body_exited.connect(
