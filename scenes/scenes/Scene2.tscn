@@ -568,8 +568,9 @@ transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -7.2274,
 transform = Transform3D(-0.707106, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707106, -1.86137, 9, -3.28257)
 patrol = NodePath("../../Patrols/PatrolPath2/PatrolInstance")
 
-[node name="Enemy9" parent="Level1/Enemies/Section2/Enemies" instance=ExtResource("17_85uvr")]
+[node name="Enemy9" parent="Level1/Enemies/Section2/Enemies" node_paths=PackedStringArray("patrol") instance=ExtResource("17_85uvr")]
 transform = Transform3D(0.707106, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707106, -13.8822, 8, 21.4662)
+patrol = NodePath("../../Patrols/PatrolPath3/PatrolInstance")
 
 [node name="Spellcaster" parent="Level1/Enemies/Section2/Enemies" instance=ExtResource("29_xlmhl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.42315, 5, 23.9175)
@@ -951,21 +952,6 @@ transform = Transform3D(0.919623, 0, -0.392803, 0, 1, 0, 0.392803, 0, 0.919623, 
 transform = Transform3D(0.999912, 0, 0.012548, 0, 1, 0, -0.012548, 0, 0.999912, 21.6894, 0, 17.1796)
 visible = false
 
-[node name="AreaCollider2" type="CollisionShape3D" parent="Level2/Enemies/Section1"]
-transform = Transform3D(0.985541, 0, 0.169382, 0, 1, 0, -0.169382, 0, 0.985541, -10.3705, 0, 50.547)
-visible = false
-shape = SubResource("BoxShape3D_1hvp4")
-
-[node name="AreaCollider3" type="CollisionShape3D" parent="Level2/Enemies/Section1"]
-transform = Transform3D(0.0420288, 0, 0.999116, 0, 1, 0, -0.999116, 0, 0.0420288, -32.0734, 0, 56.3179)
-visible = false
-shape = SubResource("BoxShape3D_pe25b")
-
-[node name="AreaCollider4" type="CollisionShape3D" parent="Level2/Enemies/Section1"]
-transform = Transform3D(0.524129, 0, 0.851637, 0, 1, 0, -0.851637, 0, 0.524129, -35.2437, 0, 47.1893)
-visible = false
-shape = SubResource("BoxShape3D_n277v")
-
 [node name="Swordsman" parent="Level2/Enemies/Section1/Enemies" index="0" node_paths=PackedStringArray("patrol") instance=ExtResource("17_85uvr")]
 transform = Transform3D(0.999997, 0, -0.00223392, 0, 1, 0, 0.00223392, 0, 0.999997, -2.89424, 10.878, 2.72279)
 patrol = NodePath("../../Patrols/PatrolPath/PatrolInstance2")
@@ -992,6 +978,21 @@ transform = Transform3D(0.312717, 0, -0.949847, 0, 1, 0, 0.949847, 0, 0.312717, 
 [node name="Swordsman5" parent="Level2/Enemies/Section1/Enemies" index="7" node_paths=PackedStringArray("patrol") instance=ExtResource("17_85uvr")]
 transform = Transform3D(0.984362, 0, -0.176157, 0, 1, 0, 0.176157, 0, 0.984362, -15.0802, 16.3355, 82.9834)
 patrol = NodePath("../../Patrols/PatrolPath2/PatrolInstance")
+
+[node name="AreaCollider2" type="CollisionShape3D" parent="Level2/Enemies/Section1"]
+transform = Transform3D(0.985541, 0, 0.169382, 0, 1, 0, -0.169382, 0, 0.985541, -10.3705, 0, 50.547)
+visible = false
+shape = SubResource("BoxShape3D_1hvp4")
+
+[node name="AreaCollider3" type="CollisionShape3D" parent="Level2/Enemies/Section1"]
+transform = Transform3D(0.0420288, 0, 0.999116, 0, 1, 0, -0.999116, 0, 0.0420288, -32.0734, 0, 56.3179)
+visible = false
+shape = SubResource("BoxShape3D_pe25b")
+
+[node name="AreaCollider4" type="CollisionShape3D" parent="Level2/Enemies/Section1"]
+transform = Transform3D(0.524129, 0, 0.851637, 0, 1, 0, -0.851637, 0, 0.524129, -35.2437, 0, 47.1893)
+visible = false
+shape = SubResource("BoxShape3D_n277v")
 
 [node name="Patrols" type="Node3D" parent="Level2/Enemies/Section1"]
 
@@ -1024,21 +1025,6 @@ transform = Transform3D(0.0420288, 0, 0.999116, 0, 1, 0, -0.999116, 0, 0.0420288
 visible = false
 shape = SubResource("BoxShape3D_pe25b")
 
-[node name="AreaCollider2" type="CollisionShape3D" parent="Level2/Enemies/Section2"]
-transform = Transform3D(0.524129, 0, 0.851637, 0, 1, 0, -0.851637, 0, 0.524129, -4.71231, 0, -11.5162)
-visible = false
-shape = SubResource("BoxShape3D_n277v")
-
-[node name="AreaCollider3" type="CollisionShape3D" parent="Level2/Enemies/Section2"]
-transform = Transform3D(0.983516, 0, 0.180816, 0, 1, 0, -0.180816, 0, 0.983516, 21.7185, 0, 20.299)
-visible = false
-shape = SubResource("BoxShape3D_0omao")
-
-[node name="AreaCollider4" type="CollisionShape3D" parent="Level2/Enemies/Section2"]
-transform = Transform3D(0.998284, 0, 0.0584054, 0, 1, 0, -0.0584054, 0, 0.998284, -31.8992, 0, 17.4479)
-visible = false
-shape = SubResource("BoxShape3D_a6c3k")
-
 [node name="Spellcaster2" parent="Level2/Enemies/Section2/Enemies" index="0" instance=ExtResource("29_xlmhl")]
 transform = Transform3D(0.393525, 0, -0.919314, 0, 1, 0, 0.919314, 0, 0.393525, -15.2147, 14.4748, -2.69911)
 
@@ -1063,6 +1049,21 @@ transform = Transform3D(0.543687, 0, -0.839288, 0, 1, 0, 0.839288, 0, 0.543687, 
 
 [node name="Zombie" parent="Level2/Enemies/Section2/Enemies" index="7" instance=ExtResource("28_6cnyh")]
 transform = Transform3D(0.17693, 0, -0.984223, 0, 1, 0, 0.984223, 0, 0.17693, 2.22441, 11.0399, -4.97527)
+
+[node name="AreaCollider2" type="CollisionShape3D" parent="Level2/Enemies/Section2"]
+transform = Transform3D(0.524129, 0, 0.851637, 0, 1, 0, -0.851637, 0, 0.524129, -4.71231, 0, -11.5162)
+visible = false
+shape = SubResource("BoxShape3D_n277v")
+
+[node name="AreaCollider3" type="CollisionShape3D" parent="Level2/Enemies/Section2"]
+transform = Transform3D(0.983516, 0, 0.180816, 0, 1, 0, -0.180816, 0, 0.983516, 21.7185, 0, 20.299)
+visible = false
+shape = SubResource("BoxShape3D_0omao")
+
+[node name="AreaCollider4" type="CollisionShape3D" parent="Level2/Enemies/Section2"]
+transform = Transform3D(0.998284, 0, 0.0584054, 0, 1, 0, -0.0584054, 0, 0.998284, -31.8992, 0, 17.4479)
+visible = false
+shape = SubResource("BoxShape3D_a6c3k")
 
 [node name="Patrols" type="Node3D" parent="Level2/Enemies/Section2"]
 
