@@ -11,18 +11,16 @@ extends ActionLeaf
 func tick(_actor: Node, blackboard: Blackboard) -> int:
 	if blackboard.get_value("patrol_dist") == null: return SUCCESS
 	
-	var patrol_anim_speed: float = lerp(
+	var patrol_anim_speed: float = clamp(
+		remap(
+			blackboard.get_value("patrol_dist"),
+			min_dist,
+			max_dist,
+			min_speed,
+			max_speed
+		),
 		min_speed,
-		max_speed,
-		clamp(
-			inverse_lerp(
-				min_dist,
-				max_dist,
-				blackboard.get_value("patrol_dist")
-			),
-			0.0,
-			1.0
-		)
+		max_speed
 	)
 	
 	blackboard.set_value("anim_move_speed", patrol_anim_speed)

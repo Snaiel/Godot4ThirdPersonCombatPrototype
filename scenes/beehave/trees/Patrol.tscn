@@ -64,7 +64,7 @@ wait_id = 22789821
 
 [node name="SetRootMotionTrue" parent="PatrolSelector/Move" instance=ExtResource("13_25apf")]
 
-[node name="SetPatrolMoveSpeed" type="Node" parent="PatrolSelector/Move"]
+[node name="PatrolMoveSpeed" type="Node" parent="PatrolSelector/Move"]
 script = ExtResource("14_irdp8")
 min_speed = 0.2
 max_speed = 1.0
