@@ -1,6 +1,10 @@
 # Godot4ThirdPersonCombatPrototype
 
-A base project for third person combat. Contains a simple setup for player movement and camera controls with lock on.
+
+https://github.com/user-attachments/assets/a080634b-b9f3-4a6d-abf5-c0003fe16b34
+
+
+A base project for third person combat. Feature-filled setup with core systems implemented for player character, combat, and enemies.
 
 # Downloading the Project
 
