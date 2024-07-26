@@ -25,16 +25,10 @@ func play_attack():
 
 func _play_attack(copy: bool = false):
 	var prefix = "parameters/%s%s/%s " % [
-			_attack_name, " Copy" if copy else "", _attack_name
-		]
-	anim_tree.set(
-		prefix + "Trim/seek_request",
-		 trim
-	)
-	anim_tree.set(
-		prefix + "Speed/scale",
-		 animation_speed
-	)
+		_attack_name, " Copy" if copy else "", _attack_name
+	]
+	anim_tree.set(prefix + "Trim/seek_request", trim)
+	anim_tree.set(prefix + "Speed/scale", animation_speed)
 	anim_tree.set(
 		"parameters/Melee Attack/transition_request",
 		 _attack_name.to_snake_case() + ("_copy" if copy else "")

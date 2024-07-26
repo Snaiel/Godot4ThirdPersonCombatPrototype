@@ -5,24 +5,30 @@ extends BaseAnimations
 signal dizzy_finisher_finished
 
 
-# flag that dictates whether to play the finisher anim
-var _blend_dizzy_finisher: bool = false
-
 # signifies that the character is in the process
 # of performing the finisher on the dizzy victim
 var attacking: bool = false
 
+# flag that dictates whether to play the finisher anim
+var _blend_dizzy_finisher: bool = false
+var _blend: float = 0.0
+
 
 func _physics_process(_delta):
+	if BaseAnimations.should_return_blend(_blend_dizzy_finisher, _blend): return
+	
 	var blend = anim_tree.get(&"parameters/Dizzy Finisher/blend_amount")
 	if blend == null: return
+	
+	_blend = move_toward(
+		float(blend),
+		1.0 if _blend_dizzy_finisher else 0.0,
+		0.1
+	)
+	
 	anim_tree.set(
 		&"parameters/Dizzy Finisher/blend_amount",
-		move_toward(
-			float(blend),
-			1.0 if _blend_dizzy_finisher else 0.0,
-			0.1
-		)
+		_blend
 	)
 
 

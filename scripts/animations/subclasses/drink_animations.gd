@@ -7,19 +7,26 @@ signal finished
 signal interupted
 
 
-var _blend_drinking: bool = false
 var _interupted: bool = false
+var _blend_drinking: bool = false
+var _blend: float = 0.0
+
 
 func _physics_process(_delta):
+	if BaseAnimations.should_return_blend(_blend_drinking, _blend): return
+	
 	var blend = anim_tree.get(&"parameters/Drink/blend_amount")
 	if blend == null: return
+	
+	_blend = lerp(
+		float(blend),
+		1.0 if _blend_drinking else 0.0,
+		0.05
+	)
+	
 	anim_tree.set(
 		&"parameters/Drink/blend_amount",
-		lerp(
-			float(blend),
-			1.0 if _blend_drinking else 0.0,
-			0.05
-		)
+		_blend
 	)
 
 

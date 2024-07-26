@@ -15,33 +15,45 @@ var _ignore_method_calls: bool = false
 var _can_emit_sat_down: bool = false
 var _can_emit_finished: bool = false
 
+var _sitting_blend: float = 0.0
+var _sit_or_stand_blend: float = 0.0
+
 
 func _physics_process(_delta):
-	var sitting_blend = anim_tree.get(&"parameters/Sit/blend_amount")
-	if sitting_blend == null: return
-	anim_tree.set(
-		&"parameters/Sit/blend_amount",
-		lerp(
+	if not BaseAnimations.should_return_blend(_active, _sitting_blend):
+		var sitting_blend = anim_tree.get(&"parameters/Sit/blend_amount")
+		if sitting_blend == null: return
+		
+		_sitting_blend = lerp(
 			float(sitting_blend),
 			1.0 if _active else 0.0,
 			0.02 if _active else 0.08
 		)
-	)
+		
+		anim_tree.set(
+			&"parameters/Sit/blend_amount",
+			_sitting_blend
+		)
 	
-	var sit_or_stand_blend = anim_tree.get(
-		&"parameters/Sit or Stand/blend_amount"
-	)
-	if sit_or_stand_blend == null: return
-	anim_tree.set(
-		&"parameters/Sit or Stand/blend_amount",
-		lerp(
+	
+	
+	if not BaseAnimations.should_return_blend(_transitioning, _sit_or_stand_blend):
+		var sit_or_stand_blend = anim_tree.get(&"parameters/Sit or Stand/blend_amount")
+		if sit_or_stand_blend == null: return
+		
+		_sit_or_stand_blend = lerp(
 			float(sit_or_stand_blend),
 			1.0 if _transitioning else 0.0,
 			0.02
 		)
-	)
+		
+		anim_tree.set(
+			&"parameters/Sit or Stand/blend_amount",
+			_sit_or_stand_blend
+		)
 	
-	if float(sit_or_stand_blend) < 0.1 and _active:
+	
+	if float(_sit_or_stand_blend) < 0.1 and _active:
 		sitting_idle = true
 		if _can_emit_sat_down:
 			_can_emit_sat_down = false
@@ -49,7 +61,7 @@ func _physics_process(_delta):
 	else:
 		sitting_idle = false
 	
-	if float(sitting_blend) < 0.1 and _can_emit_finished:
+	if float(_sitting_blend) < 0.1 and _can_emit_finished:
 		_can_emit_finished = false
 		finished.emit()
 
