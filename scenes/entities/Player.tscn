@@ -653,11 +653,11 @@ surface_material_override/0 = ExtResource("4_vmu5i")
 surface_material_override/0 = ExtResource("4_ysu0o")
 
 [node name="Sword" parent="Character/Armature_004/GeneralSkeleton" index="2" node_paths=PackedStringArray("entity") instance=ExtResource("6_61m17")]
-transform = Transform3D(0.528835, -5.95786e-05, 0.848725, 0.30639, -0.932552, -0.190975, 0.791492, 0.361035, -0.493148, -0.294571, 0.875564, 0.164004)
+transform = Transform3D(0.528834, -5.90859e-05, 0.848725, 0.306389, -0.932553, -0.190974, 0.791492, 0.361034, -0.493148, -0.294571, 0.875563, 0.164004)
 entity = NodePath("../../../..")
 
 [node name="LockOnAttachment" type="BoneAttachment3D" parent="Character/Armature_004/GeneralSkeleton" index="3"]
-transform = Transform3D(0.996583, -0.0401053, -0.0722028, 0.0228043, 0.973824, -0.226156, 0.0793828, 0.223737, 0.971411, -0.000312313, 1.33714, 0.0520582)
+transform = Transform3D(0.996583, -0.0401052, -0.0722027, 0.0228043, 0.973824, -0.226156, 0.0793827, 0.223737, 0.971411, -0.000312326, 1.33714, 0.0520582)
 bone_name = "UpperChest"
 bone_idx = 4
 
@@ -674,7 +674,7 @@ script = ExtResource("8_fgt07")
 enabled = false
 
 [node name="HeadAttachment" type="BoneAttachment3D" parent="Character/Armature_004/GeneralSkeleton" index="4"]
-transform = Transform3D(0.999132, -0.000613454, 0.0416435, 0.00726353, 0.987134, -0.159729, -0.0410097, 0.159893, 0.986282, -0.0117, 1.57563, 0.146324)
+transform = Transform3D(0.999132, -0.000613376, 0.0416435, 0.00726347, 0.987134, -0.159729, -0.0410098, 0.159893, 0.986282, -0.0117, 1.57563, 0.146324)
 bone_name = "Head"
 bone_idx = 6
 
@@ -764,7 +764,9 @@ parameters/Idle/current_index = -1
 "parameters/Jump 1/Jump Trim/seek_request" = -1.0
 "parameters/Jump 2/Jump Speed/scale" = 1.0
 "parameters/Jump 2/Jump Trim/seek_request" = -1.0
-"parameters/Jump Handler/blend_amount" = 0.0
+"parameters/Jump Handler/current_state" = ""
+"parameters/Jump Handler/transition_request" = ""
+"parameters/Jump Handler/current_index" = -1
 "parameters/Jump and Fall Blend/blend_amount" = 0.0
 "parameters/Kneel to Stand Speed/scale" = 1.0
 "parameters/Kneel to Stand Trim/seek_request" = -1.0

@@ -370,7 +370,14 @@ graph_offset = Vector2(-467, -73)
 "nodes/Jump Trim/position" = Vector2(-100, 160)
 node_connections = [&"Jump Speed", 0, &"Jump Trim", &"Jump Trim", 0, &"Jump Animation", &"output", 0, &"Jump Speed"]
 
-[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_nxeha"]
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_br3cs"]
+xfade_time = 0.2
+input_0/name = "jump_1"
+input_0/auto_advance = false
+input_0/reset = true
+input_1/name = "jump_2"
+input_1/auto_advance = false
+input_1/reset = true
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_tbxkj"]
 
@@ -547,7 +554,7 @@ sync = true
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_1bqjp"]
 
 [resource]
-graph_offset = Vector2(464.95, 588.718)
+graph_offset = Vector2(-547.977, 208.359)
 "nodes/Attack Forward Thrust/node" = SubResource("AnimationNodeBlendTree_ws83a")
 "nodes/Attack Forward Thrust/position" = Vector2(540, 1520)
 "nodes/Attack Inward Slash/node" = SubResource("AnimationNodeBlendTree_kb1f6")
@@ -646,8 +653,8 @@ nodes/Idle/position = Vector2(-2140, -560)
 "nodes/Jump 1/position" = Vector2(-440, 440)
 "nodes/Jump 2/node" = SubResource("AnimationNodeBlendTree_6g7ih")
 "nodes/Jump 2/position" = Vector2(-440, 580)
-"nodes/Jump Handler/node" = SubResource("AnimationNodeBlend2_nxeha")
-"nodes/Jump Handler/position" = Vector2(-140, 460)
+"nodes/Jump Handler/node" = SubResource("AnimationNodeTransition_br3cs")
+"nodes/Jump Handler/position" = Vector2(-83.5748, 496.495)
 "nodes/Jump and Fall Blend/node" = SubResource("AnimationNodeBlend2_tbxkj")
 "nodes/Jump and Fall Blend/position" = Vector2(220, 540)
 "nodes/Kneel to Stand Animation/node" = SubResource("AnimationNodeAnimation_q2sun")
