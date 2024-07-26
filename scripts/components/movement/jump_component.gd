@@ -16,12 +16,13 @@ signal just_landed
 @export var jump_sfx: AudioStreamPlayer3D
 @export var land_sfx: AudioStreamPlayer3D
 
-var actually_jump: bool = false
 var jumping: bool = false
+var about_to_land: bool = false
 
 var _can_emit_just_landed: bool = true
 
-@onready var _jump_raycast: RayCast3D = $JumpRaycast
+@onready var _pivot: Node3D = $Pivot
+@onready var _jump_raycast: RayCast3D = $Pivot/JumpRaycast
 
 
 func _ready():
@@ -30,8 +31,15 @@ func _ready():
 
 
 func _process(_delta: float) -> void:
-	
-	animations.jump_animations.about_to_land = _jump_raycast.is_colliding()
+	# align y axis to vector
+	# https://kidscancode.org/godot_recipes/3.x/3d/3d_align_surface/
+	var t: Transform3D = _pivot.global_transform
+	if entity.velocity.length() > 0:
+		var direction = entity.velocity.normalized()
+		t.basis.y = -direction
+		t.basis.x = t.basis.z.cross(direction)
+		t.basis = t.basis.orthonormalized()
+		_pivot.global_transform = t
 	
 	# if the player just walks off a platform, play the fall animation
 	if not jumping: 
@@ -42,11 +50,15 @@ func _process(_delta: float) -> void:
 		else:
 			animations.jump_animations.fade_out()
 	
-	# Check if we're about to land on the floor
-	if not entity.is_on_floor() and \
+	about_to_land = not entity.is_on_floor() and \
 		entity.velocity.y < -0.2 and \
-		_jump_raycast.is_colliding():
+		_jump_raycast.is_colliding() and \
+		_jump_raycast.get_collision_normal().dot(Vector3.UP) > 0.7
 	
+	animations.jump_animations.about_to_land = about_to_land
+	
+	# Check if we're about to land on the floor
+	if about_to_land:
 		animations.jump_animations.jump_landing()
 	
 	# Check if we just landed on the floor
@@ -56,22 +68,7 @@ func _process(_delta: float) -> void:
 		animations.jump_animations.fade_out()
 		just_landed.emit()
 		land_sfx.play()
-	
-	# actually_jump is true when the jump animation reaches the point
-	# where the animations actually jumps. When this happens,
-	# apply the jumping force
-	if actually_jump:
-		actually_jump = false
-		locomotion_component.desired_velocity.y = jump_strength
-		locomotion_component.vertical_movement = true
-		
-		# wait before setting flag because just_landed
-		# gets emitted while it is still on the ground.
-		var timer: SceneTreeTimer = get_tree().create_timer(0.05)
-		timer.timeout.connect(
-			func():
-				_can_emit_just_landed = true
-		)
+
 
 
 func start_jump() -> void:
@@ -81,8 +78,18 @@ func start_jump() -> void:
 
 ## the point in the animation where they lift off of the ground 
 func _jump() -> void:
-	actually_jump = true
 	jump_sfx.play()
+	
+	locomotion_component.desired_velocity.y = jump_strength
+	locomotion_component.vertical_movement = true
+	
+	# wait before setting flag because just_landed
+	# gets emitted while it is still on the ground.
+	var timer: SceneTreeTimer = get_tree().create_timer(0.05)
+	timer.timeout.connect(
+		func():
+			_can_emit_just_landed = true
+	)
 
 
 ## assumes we are now not doing any vertical movement

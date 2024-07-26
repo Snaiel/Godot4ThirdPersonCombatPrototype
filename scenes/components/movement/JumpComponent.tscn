@@ -5,5 +5,7 @@
 [node name="JumpComponent" type="Node3D"]
 script = ExtResource("1_1x202")
 
-[node name="JumpRaycast" type="RayCast3D" parent="."]
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="JumpRaycast" type="RayCast3D" parent="Pivot"]
 target_position = Vector3(0, -2, 0)
