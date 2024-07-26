@@ -2,7 +2,7 @@ class_name InwardMeleeAttack
 extends MeleeAttack
 
 
-@export var trim: float = 0.0
+@export var trim: float = 0.3
 @export var speed: float = 1.5
 
 
@@ -32,44 +32,35 @@ func play_attack():
 func play_legs() -> void:
 	anim_tree.set(&"parameters/Attack Inward Slash/Walk Forwards Speed/scale", 0.8)
 	anim_tree.set(&"parameters/Attack Inward Slash Copy/Walk Forwards Speed/scale", 0.8)
-
-
-func perform_legs_transition():
-	var blend = anim_tree.get(&"parameters/Attack Inward Slash/Inward Slash and Walk Blend/blend_amount")
-	if blend == null: return
-	anim_tree.set(
-		&"parameters/Attack Inward Slash/Inward Slash and Walk Blend/blend_amount",
-		lerp(
-			float(blend), 
-			1.0, 
+	
+	var params: Array[String] = [
+		"parameters/Attack Inward Slash/Inward Slash and Walk Blend/blend_amount",
+		"parameters/Attack Inward Slash Copy/Inward Slash and Walk Blend/blend_amount"
+	]
+	
+	for param in params:
+		create_tween().tween_property(
+			anim_tree,
+			param,
+			1.0,
 			0.3
 		)
-	)
-	blend = anim_tree.get(&"parameters/Attack Inward Slash Copy/Inward Slash and Walk Blend/blend_amount")
-	anim_tree.set(
-		&"parameters/Attack Inward Slash Copy/Inward Slash and Walk Blend/blend_amount",
-		lerp(
-			float(blend), 
-			1.0, 
-			0.3
-		)
-	)
 
 
 func end_legs_transition():
 	var scale = anim_tree.get(&"parameters/Attack Inward Slash/Walk Forwards Speed/scale")
+	
 	if scale == null: return
-	anim_tree.set(&"parameters/Attack Inward Slash/Walk Forwards Speed/scale",
-		lerp(
-			float(scale), 
-			0.05, 
-			0.3
+	
+	var params: Array[String] = [
+		"parameters/Attack Inward Slash/Walk Forwards Speed/scale",
+		"parameters/Attack Inward Slash Copy/Walk Forwards Speed/scale"
+	]
+	
+	for param in params:
+		create_tween().tween_property(
+			anim_tree,
+			param,
+			0.05,
+			0.2
 		)
-	)
-	anim_tree.set(&"parameters/Attack Inward Slash Copy/Walk Forwards Speed/scale",
-		lerp(
-			float(scale), 
-			0.05, 
-			0.3
-		)
-	)

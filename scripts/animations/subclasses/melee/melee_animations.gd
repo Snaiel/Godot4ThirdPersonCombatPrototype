@@ -32,12 +32,7 @@ var _can_play_animation: bool = true
 # the attacking animatino
 var _intend_to_stop_attacking: bool = true
 
-# A flag for whether to start transitioning
-# the blend of the legs with the attack
-# animation if it's 1, to slow down the
-# legs animation to come to a stop when
-# it's -1, and to do nothing when it's 0
-var _transition_legs: int = 0
+var _blend: float
 
 
 func _ready() -> void:
@@ -51,27 +46,26 @@ func _physics_process(_delta: float) -> void:
 	if debug:
 		pass
 	
-	if _transition_legs  == 1:
-		attacks[_level].perform_legs_transition()
-	elif _transition_legs == -1:
-		attacks[_level].end_legs_transition()
-	
 	if _can_play_animation and _intent_to_attack:
-		_transition_legs = 0
-		attacks[_level].play_attack()
-		damage_attributes.emit(attacks[_level].damage_attributes)
 		_can_play_animation = false
 		_intent_to_attack = false
+		attacks[_level].play_attack()
+		damage_attributes.emit(attacks[_level].damage_attributes)
+	
+	if BaseAnimations.should_return_blend(attacking, _blend): return
 	
 	var blend = anim_tree.get(&"parameters/Melee/blend_amount")
 	if blend == null: return
+	
+	_blend = lerp(
+		float(blend), 
+		1.0 if attacking else 0.0, 
+		0.15
+	)
+	
 	anim_tree.set(
 		&"parameters/Melee/blend_amount",
-		lerp(
-			float(blend), 
-			1.0 if attacking else 0.0, 
-			0.15
-		)
+		_blend
 	)
 
 
@@ -100,7 +94,6 @@ func receive_secondary_movement() -> void:
 
 
 func receive_play_legs() -> void:
-	_transition_legs = 1
 	attacks[_level].play_legs()
 
 
@@ -108,8 +101,8 @@ func receive_stop_legs(which_attack: StringName) -> void:
 	# having a check for the level originating from the animation
 	# against the current attack _level to see whether
 	# to actually transition out of the current animation's legs
-	if which_attack == attacks[_level].attack_name:
-		_transition_legs = -1
+	if which_attack != attacks[_level].attack_name: return
+	attacks[_level].end_legs_transition()
 
 
 func receive_can_damage(weapon_names: Array = []) -> void:

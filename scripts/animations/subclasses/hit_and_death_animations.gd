@@ -20,6 +20,8 @@ signal hit_finished
 var _death: bool = false
 var _blend_death: bool = false
 
+var _blend: float = 0.0
+
 var _hit_timer: Timer
 
 var _can_emit_hit_finished: bool = false
@@ -41,16 +43,20 @@ func _physics_process(_delta) -> void:
 	if _death:
 		_blend_death = true
 	
+	if BaseAnimations.should_return_blend(_blend_death, _blend): return
+	
 	var blend = anim_tree.get(&"parameters/Death/blend_amount")
 	if blend == null: return
 	
+	_blend = lerp(
+		float(blend),
+		1.0 if _blend_death else 0.0,
+		0.2 if _blend_death else 0.05
+	)
+	
 	anim_tree.set(
 		&"parameters/Death/blend_amount",
-		lerp(
-			float(blend),
-			1.0 if _blend_death else 0.0,
-			0.2 if _blend_death else 0.05
-		)
+		_blend
 	)
 	
 	if _can_emit_hit_finished and float(blend) < 0.1:

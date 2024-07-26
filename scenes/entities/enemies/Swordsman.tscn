@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://dmtsn22tgr3b1"]
+[gd_scene load_steps=57 format=3 uid="uid://dmtsn22tgr3b1"]
 
 [ext_resource type="PackedScene" uid="uid://b34rhh2gbadoy" path="res://scenes/entities/BaseEnemy.tscn" id="1_mc312"]
 [ext_resource type="Shader" path="res://shaders/fade.gdshader" id="2_433ld"]
@@ -9,8 +9,6 @@
 [ext_resource type="Script" path="res://scripts/animations/subclasses/melee/attacks/inward_slash.gd" id="5_pfmts"]
 [ext_resource type="AnimationLibrary" uid="uid://c6e3lwlt6ukuj" path="res://animations/movement_animations_1/movement_animations_1.blend" id="5_tf3g0"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/melee/attacks/outward_slash.gd" id="6_8p66y"]
-[ext_resource type="Script" path="res://scripts/animations/subclasses/melee/attacks/thrust.gd" id="7_tdawo"]
-[ext_resource type="Script" path="res://scripts/animations/subclasses/melee/attacks/quick_slash.gd" id="8_yh5sq"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/block_animations.gd" id="9_5b35b"]
 [ext_resource type="Script" path="res://scripts/animations/subclasses/parry_animations.gd" id="10_ud5j4"]
 [ext_resource type="AudioStream" uid="uid://bju8g4kcmxeps" path="res://audio/weapon_swing.wav" id="11_ildyy"]
@@ -469,15 +467,25 @@ stream_0/weight = 1.0
 
 [node name="GeneralSkeleton" parent="Character/Armature_004" index="0"]
 bones/0/position = Vector3(-0.00158165, 2.41693e-10, 0.00202747)
-bones/12/rotation = Quaternion(-2.98023e-08, 2.98023e-08, 2.98023e-08, 1)
-bones/16/rotation = Quaternion(-2.98023e-08, 2.98023e-08, 2.98023e-08, 1)
-bones/20/rotation = Quaternion(-2.98023e-08, 2.98023e-08, 2.98023e-08, 1)
-bones/24/rotation = Quaternion(-2.98023e-08, 2.98023e-08, 2.98023e-08, 1)
-bones/36/rotation = Quaternion(-2.98023e-08, -2.98023e-08, -2.98023e-08, 1)
-bones/40/rotation = Quaternion(-4.47035e-08, 0, -4.47035e-08, 1)
-bones/44/rotation = Quaternion(-4.47035e-08, 0, -4.47035e-08, 1)
-bones/48/rotation = Quaternion(-4.47035e-08, 0, -4.47035e-08, 1)
-bones/52/rotation = Quaternion(-4.47035e-08, 0, -4.47035e-08, 1)
+bones/8/rotation = Quaternion(0.500032, 0.499969, 0.500032, -0.499968)
+bones/10/rotation = Quaternion(-4.21468e-08, -0.707107, 0, 0.707107)
+bones/11/rotation = Quaternion(-7.10043e-09, 0.707107, -7.10043e-09, 0.707107)
+bones/12/rotation = Quaternion(-0.0916109, 0.0960743, -0.0539683, 0.989679)
+bones/13/rotation = Quaternion(-0.214187, 0.673887, 0.214187, 0.673887)
+bones/14/rotation = Quaternion(-4.47035e-08, 2.98023e-08, 4.44089e-16, 1)
+bones/16/rotation = Quaternion(0.255734, -0.0158478, 0.030775, 0.966127)
+bones/20/rotation = Quaternion(0.260783, -0.00603721, -0.00891706, 0.965338)
+bones/24/rotation = Quaternion(0.281692, -0.00498191, -0.0169056, 0.959343)
+bones/34/rotation = Quaternion(-4.21468e-08, 0.707107, 0, 0.707107)
+bones/35/rotation = Quaternion(-2.81893e-08, -0.707107, -1.39575e-08, 0.707107)
+bones/36/rotation = Quaternion(0.178976, -0.098394, 0.059281, 0.977124)
+bones/37/rotation = Quaternion(-0.214187, -0.673887, -0.214187, 0.673887)
+bones/40/rotation = Quaternion(0.576473, -0.00316178, 0.0747119, 0.813688)
+bones/44/rotation = Quaternion(0.590048, 5.37187e-05, 0.0718343, 0.804166)
+bones/48/rotation = Quaternion(0.590849, 0.00424349, 0.0662239, 0.804048)
+bones/52/rotation = Quaternion(0.557745, 0.00959263, 0.0536825, 0.828219)
+bones/58/rotation = Quaternion(-1.20905e-09, 0.707107, -0.707107, 2.41295e-09)
+bones/63/rotation = Quaternion(1.60006e-09, 0.707107, -0.707107, -3.75576e-10)
 
 [node name="Alpha_Surface" parent="Character/Armature_004/GeneralSkeleton" index="1"]
 surface_material_override/0 = SubResource("ShaderMaterial_yud2m")
@@ -558,15 +566,7 @@ anim_tree = NodePath("../../../AnimationTree")
 
 [node name="Outward" type="Node" parent="Character/Animations/Melee" index="1" node_paths=PackedStringArray("anim_tree")]
 script = ExtResource("6_8p66y")
-trim = 0.2
-anim_tree = NodePath("../../../AnimationTree")
-
-[node name="Thrust" type="Node" parent="Character/Animations/Melee" index="2" node_paths=PackedStringArray("anim_tree")]
-script = ExtResource("7_tdawo")
-anim_tree = NodePath("../../../AnimationTree")
-
-[node name="QuickSlash" type="Node" parent="Character/Animations/Melee" index="3" node_paths=PackedStringArray("anim_tree")]
-script = ExtResource("8_yh5sq")
+trim = 0.6
 anim_tree = NodePath("../../../AnimationTree")
 
 [node name="Block" type="Node" parent="Character/Animations" index="4" node_paths=PackedStringArray("anim_tree")]
