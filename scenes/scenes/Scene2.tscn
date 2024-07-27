@@ -48,8 +48,10 @@ sky_material = SubResource("ProceduralSkyMaterial_wqkpv")
 background_mode = 2
 sky = SubResource("Sky_qudfu")
 tonemap_mode = 2
+fog_enabled = true
 fog_light_color = Color(0.153489, 0.252053, 0.406953, 1)
 fog_height_density = 0.1
+volumetric_fog_enabled = true
 volumetric_fog_albedo = Color(0.542969, 0.657227, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hx60w"]

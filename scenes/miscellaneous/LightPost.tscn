@@ -24,6 +24,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.10841, 0)
 light_color = Color(1, 0.636292, 0.210938, 1)
 light_energy = 5.0
 light_volumetric_fog_energy = 0.0
+light_bake_mode = 1
 shadow_opacity = 0.4
 distance_fade_enabled = true
 distance_fade_begin = 30.0
