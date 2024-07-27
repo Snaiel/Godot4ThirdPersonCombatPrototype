@@ -32,8 +32,7 @@ func enter() -> void:
 
 func process_player() -> void:
 	player.set_rotation_target_to_lock_on_target()
-	player.rotation_component.rotate_towards_target = \
-		player.lock_on_target != null
+	player.set_rotate_towards_target_if_lock_on_target()
 
 
 func process_movement_animations() -> void:

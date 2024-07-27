@@ -20,13 +20,6 @@ func enter() -> void:
 
 
 func process_player() -> void:
-	var victim: = Globals.backstab_system.backstab_victim
-	if victim:
-		player.rotation_component.target = victim
-	else:
-		player.set_rotation_target_to_lock_on_target()
-	
-	
 	if Input.is_action_just_pressed("run"):
 		main_state.change_state(dodge_state)
 		return
@@ -48,9 +41,16 @@ func process_player() -> void:
 		main_state.change_state(block_state)
 		return
 	
-	
 	if not Globals.backstab_system.backstab_victim:
 		main_state.transition_to_default_state()
+	
+	var victim: = Globals.backstab_system.backstab_victim
+	if victim:
+		player.rotation_component.target = victim
+	else:
+		player.set_rotation_target_to_lock_on_target()
+	
+	player.set_rotate_towards_target_if_lock_on_target()
 
 
 func process_movement_animations() -> void:

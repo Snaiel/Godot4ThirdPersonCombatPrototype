@@ -42,8 +42,7 @@ func process_player() -> void:
 	
 	player.set_rotation_target_to_lock_on_target()
 	
-	if parent_state.previous_state is PlayerRunState or \
-	not player.lock_on_target:
-		player.rotation_component.rotate_towards_target = false
-	else:
-		player.rotation_component.rotate_towards_target = true
+	player.rotation_component.rotate_towards_target = false if (
+		parent_state.previous_state is PlayerRunState or \
+		not player.lock_on_target
+	) else true

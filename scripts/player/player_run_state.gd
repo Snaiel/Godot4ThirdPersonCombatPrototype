@@ -78,10 +78,9 @@ func process_player() -> void:
 	
 	player.set_rotation_target_to_lock_on_target()
 	
-	if player.lock_on_target and player.input_direction.z <= 0:
-		player.rotation_component.rotate_towards_target = true
-	else:
-		player.rotation_component.rotate_towards_target = false
+	player.rotation_component.rotate_towards_target = true if (
+		player.lock_on_target and player.input_direction.z <= 0
+	) else false
 
 
 func process_movement_animations() -> void:

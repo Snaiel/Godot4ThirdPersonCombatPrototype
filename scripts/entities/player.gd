@@ -110,6 +110,11 @@ func set_rotation_target_to_lock_on_target() -> void:
 	rotation_component.target = lock_on_target
 
 
+func set_rotate_towards_target_if_lock_on_target() -> void:
+	rotation_component.rotate_towards_target = \
+		true if lock_on_target else false
+
+
 func process_default_movement_animations() -> void:
 	var dir: Vector3 = input_direction
 	var idle_active: bool = lock_on_target != null
