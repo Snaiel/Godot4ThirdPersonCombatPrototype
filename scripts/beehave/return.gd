@@ -16,7 +16,7 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 	
 	if _done: return SUCCESS
 	
-	if not _turning_back and dist_original > 0.3:
+	if not _turning_back and dist_original > 0.6:
 		blackboard.set_value(
 			"agent_target_position",
 			blackboard.get_value("original_position")
