@@ -189,7 +189,7 @@ running_spin_speed = 4.0
 [node name="UserInterface" parent="." instance=ExtResource("3_im4q1")]
 
 [node name="Player" parent="." instance=ExtResource("4_km71j")]
-transform = Transform3D(0.948002, 0, 0.318264, 0, 1, 0, -0.318264, 0, 0.948002, 2.7937, 50.2442, -85.5267)
+transform = Transform3D(0.948002, 0, 0.318264, 0, 1, 0, -0.318264, 0, 0.948002, -6.86328, 50.2443, -73.8618)
 
 [node name="BackstabSystem" type="Node3D" parent="."]
 script = ExtResource("5_lt6ye")
@@ -510,6 +510,7 @@ transform = Transform3D(-1, 0, -1.19209e-07, 0, 1, 0, 1.19209e-07, 0, -1, -38.28
 
 [node name="Enemy8" parent="Level1/Enemies/Section/Enemies" instance=ExtResource("17_85uvr")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.97595, 6, -69.7785)
+debug = true
 
 [node name="Zombie" parent="Level1/Enemies/Section/Enemies" instance=ExtResource("28_6cnyh")]
 transform = Transform3D(0.978296, 0, 0.207212, 0, 1, 0, -0.207212, 0, 0.978296, -31.677, 3, -45.6593)
@@ -551,7 +552,6 @@ transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -12, -2, -
 
 [node name="Enemy2" parent="Level1/Enemies/Section2/Enemies" instance=ExtResource("17_85uvr")]
 transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 3.1387, 1, -9.75496)
-debug = true
 
 [node name="Enemy3" parent="Level1/Enemies/Section2/Enemies" instance=ExtResource("17_85uvr")]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 7.39993, 2, -1.57927)

@@ -789,22 +789,25 @@ script = ExtResource("23_mp67g")
 
 [node name="IsTargetReachableFalse" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Unreachable" index="0"]
 script = ExtResource("26_t4uqh")
-left_operand = "get_value(\"target_reachable\")"
+left_operand = "get_value(\"agent_target_reachable\")"
 right_operand = "false"
 
 [node name="SequenceComposite" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Unreachable" index="1"]
 script = ExtResource("23_mp67g")
 
-[node name="WalkSpeed" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Unreachable/SequenceComposite" index="0" instance=ExtResource("35_jegxc")]
+[node name="SetAnimMoveSpeed" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Unreachable/SequenceComposite" index="0" instance=ExtResource("44_kjwu4")]
+value = "0.5"
 
-[node name="Strafe" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Unreachable/SequenceComposite" index="1"]
+[node name="WalkSpeed" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Unreachable/SequenceComposite" index="1" instance=ExtResource("35_jegxc")]
+
+[node name="Strafe" type="Node" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Unreachable/SequenceComposite" index="2"]
 script = ExtResource("29_bqatd")
 
 [node name="InputLeft" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Unreachable/SequenceComposite/Strafe" index="0" instance=ExtResource("36_kdqi7")]
 
 [node name="InputRight" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Unreachable/SequenceComposite/Strafe" index="1" instance=ExtResource("37_vq7xc")]
 
-[node name="Wait" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Unreachable/SequenceComposite" index="2" instance=ExtResource("38_s64ne")]
+[node name="Wait" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Unreachable/SequenceComposite" index="3" instance=ExtResource("38_s64ne")]
 time = 2.0
 reset_wait_after = true
 wait_id = 16142381

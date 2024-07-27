@@ -102,7 +102,8 @@ func _physics_process(_delta: float) -> void:
 	if debug:
 		prints(
 			locomotion_component.active_strategy,
-			locomotion_component.speed
+			locomotion_component.speed,
+			movement_animations.speed
 		)
 	
 	if is_dead: return
