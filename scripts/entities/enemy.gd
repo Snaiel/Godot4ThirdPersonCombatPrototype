@@ -79,7 +79,10 @@ func _ready() -> void:
 			var old_strat: LocomotionStrategy = locomotion_component\
 				.active_strategy
 			saved_locomotion_stragey = old_strat.strategy_name
-			if old_strat is RootMotionLocomotionStrategy:
+			if old_strat is RootMotionLocomotionStrategy and \
+			blackboard.get_value(
+				"input_direction", Vector3.ZERO
+			).length() > 0.1:
 				blackboard.set_value(
 					"move_speed",
 					old_strat.root_motion_speed

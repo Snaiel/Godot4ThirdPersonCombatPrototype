@@ -551,6 +551,7 @@ transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -12, -2, -
 
 [node name="Enemy2" parent="Level1/Enemies/Section2/Enemies" instance=ExtResource("17_85uvr")]
 transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 3.1387, 1, -9.75496)
+debug = true
 
 [node name="Enemy3" parent="Level1/Enemies/Section2/Enemies" instance=ExtResource("17_85uvr")]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 7.39993, 2, -1.57927)
@@ -566,7 +567,6 @@ transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -7.2274,
 
 [node name="Enemy8" parent="Level1/Enemies/Section2/Enemies" node_paths=PackedStringArray("patrol") instance=ExtResource("17_85uvr")]
 transform = Transform3D(-0.707106, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707106, -1.86137, 9, -3.28257)
-debug = true
 patrol = NodePath("../../Patrols/PatrolPath2/PatrolInstance")
 
 [node name="Enemy9" parent="Level1/Enemies/Section2/Enemies" node_paths=PackedStringArray("patrol") instance=ExtResource("17_85uvr")]
