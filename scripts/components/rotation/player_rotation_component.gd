@@ -32,8 +32,6 @@ func _physics_process(delta: float) -> void:
 	
 	move_direction = _input_direction.normalized()
 	
-	prints(rotate_towards_target, target)
-	
 	if rotate_towards_target and target:
 		_freelook_turn = false
 		

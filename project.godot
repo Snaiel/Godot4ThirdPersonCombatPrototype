@@ -142,8 +142,10 @@ limits/debugger/max_queued_messages=8192
 
 [rendering]
 
+occlusion_culling/bvh_build_quality=0
 lights_and_shadows/directional_shadow/soft_shadow_filter_quality=0
 lights_and_shadows/positional_shadow/soft_shadow_filter_quality=0
 driver/depth_prepass/enable=false
-anti_aliasing/quality/msaa_2d=3
+occlusion_culling/occlusion_rays_per_thread=128
+environment/volumetric_fog/use_filter=0
 occlusion_culling/use_occlusion_culling=true
