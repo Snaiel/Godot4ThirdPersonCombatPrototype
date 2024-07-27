@@ -4,7 +4,7 @@ extends Node
 
 @export var debug: bool = false
 @export var enabled: bool = true
-@export var can_change_state: bool = false
+@export var can_change_state: bool = true
 
 @export var entity: CharacterBody3D
 
