@@ -94,11 +94,11 @@ func physics_process(delta) -> void:
 				.process_alpha(0.0)
 	
 	if not notice_component.inside_outer_threshold():
-		prints(
-			_can_start_aggro_timer,
-			_aggro_timer.time_left,
-			_check_to_leave_aggro
-		)
+		#prints(
+			#_can_start_aggro_timer,
+			#_aggro_timer.time_left,
+			#_check_to_leave_aggro
+		#)
 		if _check_to_leave_aggro:
 			notice_component.change_state(idle_state)
 		elif _can_start_aggro_timer:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://cd738rigq1w2v"]
+[gd_scene load_steps=65 format=3 uid="uid://cd738rigq1w2v"]
 
 [ext_resource type="Script" path="res://scripts/systems/level.gd" id="1_e4p23"]
 [ext_resource type="PackedScene" uid="uid://cy5wvw01aul4m" path="res://scenes/systems/CameraController.tscn" id="2_ebvse"]
@@ -13,6 +13,7 @@
 [ext_resource type="ArrayOccluder3D" uid="uid://c6fnidkmdcr07" path="res://levels/level1/Level1Occluder.occ" id="10_74xf0"]
 [ext_resource type="PackedScene" uid="uid://dsubhagnir7ns" path="res://levels/level1/level1.blend" id="11_d4bpw"]
 [ext_resource type="Script" path="res://scripts/systems/world_environment.gd" id="11_vj8k8"]
+[ext_resource type="LightmapGIData" uid="uid://cysn4sfexxdfx" path="res://lightmaps/Scene2.lmbake" id="12_2poft"]
 [ext_resource type="PackedScene" uid="uid://k32oq3ivgjxf" path="res://scenes/miscellaneous/Checkpoint.tscn" id="12_clpmb"]
 [ext_resource type="Material" uid="uid://bi2l1p46blr1g" path="res://materials/grey1.tres" id="12_wrl4e"]
 [ext_resource type="NavigationMesh" uid="uid://dpoe5063jwo6m" path="res://levels/level1/Level1NavMesh.tres" id="13_fswrv"]
@@ -144,10 +145,10 @@ _data = {
 point_count = 11
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7crfn"]
-size = Vector3(73.3889, 500, 65.2573)
+size = Vector3(84.5984, 500, 65.2573)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5nirt"]
-size = Vector3(74.2073, 500, 91.2832)
+size = Vector3(81.5225, 500, 91.2832)
 
 [sub_resource type="Curve3D" id="Curve3D_spjee"]
 _data = {
@@ -189,7 +190,7 @@ running_spin_speed = 4.0
 [node name="UserInterface" parent="." instance=ExtResource("3_im4q1")]
 
 [node name="Player" parent="." instance=ExtResource("4_km71j")]
-transform = Transform3D(0.948002, 0, 0.318264, 0, 1, 0, -0.318264, 0, 0.948002, 29.8582, 23.6639, -103.739)
+transform = Transform3D(0.948002, 0, 0.318264, 0, 1, 0, -0.318264, 0, 0.948002, 29.4354, 31.9013, -99.3605)
 
 [node name="BackstabSystem" type="Node3D" parent="."]
 script = ExtResource("5_lt6ye")
@@ -216,6 +217,9 @@ enable_fog = true
 transform = Transform3D(0.819796, 0.154633, 0.551382, -0.555326, 0.449744, 0.699531, -0.13981, -0.87967, 0.45457, 0, 17.9363, 0)
 light_color = Color(1, 0.980804, 0.855469, 1)
 shadow_enabled = true
+
+[node name="LightmapGI" type="LightmapGI" parent="."]
+light_data = ExtResource("12_2poft")
 
 [node name="Level1" type="Node3D" parent="."]
 
@@ -1001,11 +1005,11 @@ transform = Transform3D(0.999997, 1.95272e-10, 0.00223365, 0, -1, 8.74228e-08, 0
 curve = SubResource("Curve3D_k0rjm")
 
 [node name="PatrolInstance" parent="Level2/Enemies/Section1/Patrols/PatrolPath" index="0"]
-transform = Transform3D(0.999955, -0.000353127, -0.00594041, -4.36546e-11, 0.998238, -0.0593372, 0.00595088, 0.0593377, 0.998195, -2.8545, -0.217763, -1.43186)
+transform = Transform3D(0.999955, -0.000353127, -0.00594041, -4.36546e-11, 0.998238, -0.0593373, 0.00595088, 0.0593377, 0.998196, -2.8545, -0.217763, -1.43186)
 h_offset = 0.5
 
 [node name="PatrolInstance2" parent="Level2/Enemies/Section1/Patrols/PatrolPath" instance=ExtResource("34_v3sil")]
-transform = Transform3D(0.999955, -0.000353127, -0.00594041, -4.36546e-11, 0.998238, -0.0593372, 0.00595088, 0.0593377, 0.998195, -3.85448, -0.217763, -1.43782)
+transform = Transform3D(0.999955, -0.000353127, -0.00594041, -4.36546e-11, 0.998238, -0.0593373, 0.00595088, 0.0593377, 0.998196, -3.85448, -0.217763, -1.43782)
 h_offset = -0.5
 initial_delay = 1.0
 
@@ -1078,7 +1082,7 @@ transform = Transform3D(0.500817, 0, -0.865522, 0, 1, 0, 0.865522, 0, 0.500817, 
 transform = Transform3D(0.919623, 0, -0.392803, 0, 1, 0, 0.392803, 0, 0.919623, -80.6162, 0, 99.1345)
 
 [node name="AreaCollider" parent="Level2/Enemies/Section3" index="0"]
-transform = Transform3D(0.990409, 0, 0.138067, 0, 1, 0, -0.138067, 0, 0.990409, -4.25003, 0, 8.81905)
+transform = Transform3D(0.990392, 0, 0.138066, 0, 1, 0, -0.138066, 0, 0.990392, -9.80112, 0, 9.59289)
 shape = SubResource("BoxShape3D_7crfn")
 
 [node name="Zombie4" parent="Level2/Enemies/Section3/Enemies" index="0" instance=ExtResource("28_6cnyh")]
@@ -1106,7 +1110,7 @@ transform = Transform3D(0.690958, 0, -0.722895, 0, 1, 0, 0.722895, 0, 0.690958, 
 transform = Transform3D(0.919623, 0, -0.392803, 0, 1, 0, 0.392803, 0, 0.919623, -148.653, 0, 73.6203)
 
 [node name="AreaCollider" parent="Level2/Enemies/Section4" index="0"]
-transform = Transform3D(0.990059, 0, 0.140625, 0, 1, 0, -0.140625, 0, 0.990059, -6.42522, 0, 7.45238)
+transform = Transform3D(0.990047, 0, 0.140626, 0, 1, 0, -0.140626, 0, 0.990047, -2.80399, 0, 6.93804)
 shape = SubResource("BoxShape3D_5nirt")
 
 [node name="HybridEnemy" parent="Level2/Enemies/Section4/Enemies" index="0" instance=ExtResource("30_kdrsj")]
