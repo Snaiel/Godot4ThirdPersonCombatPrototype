@@ -190,7 +190,7 @@ running_spin_speed = 4.0
 [node name="UserInterface" parent="." instance=ExtResource("3_im4q1")]
 
 [node name="Player" parent="." instance=ExtResource("4_km71j")]
-transform = Transform3D(0.948002, 0, 0.318264, 0, 1, 0, -0.318264, 0, 0.948002, 29.4354, 31.9013, -99.3605)
+transform = Transform3D(0.948002, 0, 0.318264, 0, 1, 0, -0.318264, 0, 0.948002, 4.92422, 31.9013, 5.17277)
 
 [node name="BackstabSystem" type="Node3D" parent="."]
 script = ExtResource("5_lt6ye")

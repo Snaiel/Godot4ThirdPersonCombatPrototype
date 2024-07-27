@@ -18,7 +18,7 @@ extends Node
 @export_category("Wellbeing Widget")
 @export var wellbeing_widget_scene: PackedScene
 
-var _well_being_widget: WellbeingWidget
+var _wellbeing_widget: WellbeingWidget
 var _health_bar: NPCHealthBar
 var _instability_bar: NPCInstabilityBar
 
@@ -38,10 +38,10 @@ func _ready():
 	instability_component.can_reduce_instability = wellbeing_stats\
 		.can_reduce_instability
 	
-	_well_being_widget = wellbeing_widget_scene.instantiate()
-	Globals.user_interface.hud.wellbeing_widgets.add_child(_well_being_widget)
+	_wellbeing_widget = wellbeing_widget_scene.instantiate()
+	Globals.user_interface.hud.wellbeing_widgets.add_child(_wellbeing_widget)
 	
-	_health_bar = _well_being_widget.health_bar
+	_health_bar = _wellbeing_widget.health_bar
 	_health_bar.default_health = health_component.max_health
 	_health_bar.current_health = health_component.health
 	_health_bar.default_health = health_component.max_health
@@ -53,7 +53,7 @@ func _ready():
 	)
 	_default_health_bar_y_pos = _health_bar.position.y
 	
-	_instability_bar = _well_being_widget.instability_bar
+	_instability_bar = _wellbeing_widget.instability_bar
 	_instability_bar.max_instability = instability_component.max_instability
 	_instability_bar.current_instability = instability_component.instability
 	instability_component.instability_increased.connect(
@@ -101,8 +101,12 @@ func _process(_delta):
 	if not _camera.is_position_in_frustum(hud_info.global_position):
 		_visible = false
 	
-	_well_being_widget.visible = _visible
+	_wellbeing_widget.visible = _visible
 	
-	_well_being_widget.position = _camera.unproject_position(
+	_wellbeing_widget.position = _camera.unproject_position(
 		hud_info.global_position
 	)
+
+
+func hide_wellbeing_widget() -> void:
+	_wellbeing_widget.visible = false

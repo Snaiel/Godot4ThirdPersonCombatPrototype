@@ -19,6 +19,7 @@ signal dead
 @onready var rotation_component: RotationComponent = $Rotation/RotationComponent
 @onready var head_rotation_component: HeadRotationComponent = $Rotation/HeadRotationComponent
 
+@onready var wellbeing_component: WellbeingComponent = $Wellbeing/WellbeingComponent
 @onready var health_component: HealthComponent = $Wellbeing/HealthComponent
 @onready var instability_component: InstabilityComponent = $Wellbeing/InstabilityComponent
 
@@ -48,6 +49,11 @@ func _enter_tree():
 	if beehave_tree == null:
 		beehave_tree = get_node("BeehaveTree")
 	beehave_tree.name = beehave_name
+
+
+func _exit_tree():
+	notice_component.hide_notice_triangles()
+	wellbeing_component.hide_wellbeing_widget()
 
 
 func _ready() -> void:
