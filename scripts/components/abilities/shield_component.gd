@@ -8,6 +8,9 @@ extends Node3D
 @export var entity: CharacterBody3D
 @export var locomotion_component: LocomotionComponent
 
+# used for the Globals.resources key
+@export var animation_resource_key: String = "ShieldAnimation"
+
 @export_category("Blocking")
 @export var block_animations: BlockAnimations
 @export var walk_speed_while_blocking: float = 0.8
@@ -40,18 +43,31 @@ func _ready():
 	
 	opacity = 0
 	
-	_animation_library = animation_player.get_animation_library(&"")
-	_animation_library = _animation_library.duplicate()
-	animation_player.remove_animation_library(&"")
-	animation_player.add_animation_library(&"", _animation_library)
+	var _duplicate_animation = func(animation_name: StringName) -> Animation:
+		var animation = animation_player.get_animation(animation_name)
+		animation = animation.duplicate()
+		_animation_library.remove_animation(animation_name)
+		_animation_library.add_animation(animation_name, animation)
+		return animation
 	
-	_duplicate_animation(&"RESET").track_set_key_value(0, 0, color)
-	_duplicate_animation(&"parried").track_set_key_value(1, 0, color)
-	var blocked_anim = _duplicate_animation(&"blocked")
-	blocked_anim.track_set_key_value(1, 0, color)
-	blocked_anim.track_set_key_value(1, 3, color)
-	
-	#prints(_animation_library, blocked_anim)
+	if Globals.resources.has(animation_resource_key):
+		_animation_library = Globals.resources[animation_resource_key]
+		animation_player.remove_animation_library(&"")
+		animation_player.add_animation_library(&"", _animation_library)
+	else:
+		_animation_library = animation_player.get_animation_library(&"")
+		_animation_library = _animation_library.duplicate()
+		
+		animation_player.remove_animation_library(&"")
+		animation_player.add_animation_library(&"", _animation_library)
+		
+		_duplicate_animation.call(&"RESET").track_set_key_value(0, 0, color)
+		_duplicate_animation.call(&"parried").track_set_key_value(1, 0, color)
+		var blocked_anim = _duplicate_animation.call(&"blocked")
+		blocked_anim.track_set_key_value(1, 0, color)
+		blocked_anim.track_set_key_value(1, 3, color)
+		
+		Globals.resources[animation_resource_key] = _animation_library
 
 
 func _physics_process(_delta: float) -> void:
@@ -102,11 +118,3 @@ func blocked() -> void:
 	add_child(particles)
 	particles.finished.connect(particles.queue_free)
 	particles.restart()
-
-
-func _duplicate_animation(animation_name: StringName) -> Animation:
-	var animation = animation_player.get_animation(animation_name)
-	animation = animation.duplicate()
-	_animation_library.remove_animation(animation_name)
-	_animation_library.add_animation(animation_name, animation)
-	return animation

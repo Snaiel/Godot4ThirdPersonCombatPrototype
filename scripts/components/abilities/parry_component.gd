@@ -11,6 +11,8 @@ signal parried_incoming_hit(incoming_damage_source: DamageSource)
 	"res://scenes/particles/ParryParticles.tscn"
 )
 @export var parry_particles_colour: Color
+# The key used in the Globals.resources dictionary
+@export var parry_particles_resource_key = "ParryParticles"
 
 var in_parry_window: bool = false:
 	set = set_in_parry_window
@@ -39,6 +41,7 @@ func _ready() -> void:
 	
 	
 	_parry_particles = parry_particles_scene.instantiate()
+	
 	# this is ridiculous. you need to do duplicate the various
 	# attributes so that they aren't shared across instances.
 	#
@@ -47,15 +50,30 @@ func _ready() -> void:
 	#
 	# relevent github issue:
 	# https://github.com/godotengine/godot/issues/74918
-	_parry_particles.process_material = _parry_particles.process_material.duplicate()
-	_parry_particles.process_material.color_ramp = _parry_particles.process_material.color_ramp.duplicate()
-	_parry_particles.process_material.color_ramp.gradient = _parry_particles.process_material.color_ramp.gradient.duplicate()
-	_parry_particles.process_material.color_ramp.gradient.set_color(
-		1, 
-		parry_particles_colour
-	)
-	#add_child(_parry_particles)
 	
+	if Globals.resources.has(parry_particles_resource_key):
+		_parry_particles.process_material = Globals.resources[
+			parry_particles_resource_key
+		]
+	else:
+		var process_material = _parry_particles\
+			.process_material\
+			.duplicate()
+		process_material.color_ramp = _parry_particles\
+			.process_material\
+			.color_ramp\
+			.duplicate()
+		process_material.color_ramp.gradient = _parry_particles\
+			.process_material\
+			.color_ramp\
+			.gradient\
+			.duplicate()
+		process_material.color_ramp.gradient.set_color(
+			1, 
+			parry_particles_colour
+		)
+		_parry_particles.process_material = process_material
+		Globals.resources[parry_particles_resource_key] = process_material
 	
 	_parry_timer = Timer.new()
 	_parry_timer.wait_time = _parry_interval[_parry_index]

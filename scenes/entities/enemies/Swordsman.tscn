@@ -619,6 +619,7 @@ weapons = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
 entity = NodePath("../..")
 locomotion_component = NodePath("../../LocomotionComponent")
+animation_resource_key = "SwordsmanShieldAnimation"
 block_animations = NodePath("../../Character/Animations/Block")
 color = Color(0.8, 0.133333, 0.133333, 1)
 
@@ -628,6 +629,7 @@ script = ExtResource("17_oabxi")
 hitbox_component = NodePath("../../HitboxComponent")
 shield_component = NodePath("../ShieldComponent")
 parry_particles_colour = Color(0.439216, 0.0392157, 0.0392157, 1)
+parry_particles_resource_key = "SwordsmanParryParticles"
 
 [node name="Outcomes" parent="Combat/InteractionComponent" index="2"]
 outcome_weights = Array[float]([0.4, 0.4, 0.2])

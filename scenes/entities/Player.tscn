@@ -1176,6 +1176,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, -0.08)
 debug = true
 entity = NodePath("../..")
 locomotion_component = NodePath("../../Movement/LocomotionComponent")
+animation_resource_key = "PlayerShieldAnimation"
 block_animations = NodePath("../../Character/Animations/Block")
 
 [node name="ParryComponent" parent="Combat" node_paths=PackedStringArray("hitbox_component", "shield_component") instance=ExtResource("79_4iupg")]
@@ -1183,6 +1184,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 hitbox_component = NodePath("../../HitboxComponent")
 shield_component = NodePath("../ShieldComponent")
 parry_particles_colour = Color(0.027451, 0.278431, 0.427451, 1)
+parry_particles_resource_key = "PlayerParryParticles"
 
 [node name="HealthChargeComponent" parent="." node_paths=PackedStringArray("entity", "drink_animations", "health_component") instance=ExtResource("80_ipdct")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.27364, 0)

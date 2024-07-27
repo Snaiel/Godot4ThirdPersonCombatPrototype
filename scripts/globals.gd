@@ -11,3 +11,5 @@ var void_death_system: VoidDeathSystem
 
 var user_interface: UserInterface
 var debug_label: Label
+
+var resources: Dictionary
