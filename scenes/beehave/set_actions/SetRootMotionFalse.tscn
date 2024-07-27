@@ -1,6 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://bqi2hrppoou6q"]
 
-[ext_resource type="Script" path="res://scripts/beehave/set_root_motion.gd" id="1_p2l1g"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_set.gd" id="1_v05f4"]
 
 [node name="SetRootMotionFalse" type="Node"]
-script = ExtResource("1_p2l1g")
+script = ExtResource("1_v05f4")
+key = "\"locomotion_strategy\""
+value = "\"programmatic\""

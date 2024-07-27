@@ -134,6 +134,9 @@ func _physics_process(_delta: float) -> void:
 		"move_speed",
 		locomotion_component.default_speed
 	)
+	locomotion_component.set_active_strategy(
+		blackboard.get_value("locomotion_strategy", "root_motion")
+	)
 	
 	## Rotation Component
 	rotation_component.rotate_towards_target = blackboard.get_value(
