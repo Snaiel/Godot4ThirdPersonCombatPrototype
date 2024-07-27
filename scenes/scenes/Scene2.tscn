@@ -58,7 +58,7 @@ size = Vector3(128.079, 1, 150)
 size = Vector3(172.195, 1, 99.2267)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_d3a26"]
-size = Vector3(70.1628, 500, 130)
+size = Vector3(70.6451, 500, 130)
 
 [sub_resource type="Curve3D" id="Curve3D_xuf5h"]
 _data = {
@@ -91,7 +91,7 @@ _data = {
 point_count = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tj07f"]
-size = Vector3(122.832, 500, 80)
+size = Vector3(122.832, 500, 87.4185)
 
 [sub_resource type="Curve3D" id="Curve3D_kback"]
 _data = {
@@ -189,7 +189,7 @@ running_spin_speed = 4.0
 [node name="UserInterface" parent="." instance=ExtResource("3_im4q1")]
 
 [node name="Player" parent="." instance=ExtResource("4_km71j")]
-transform = Transform3D(0.948002, 0, 0.318264, 0, 1, 0, -0.318264, 0, 0.948002, -6.86328, 50.2443, -73.8618)
+transform = Transform3D(0.948002, 0, 0.318264, 0, 1, 0, -0.318264, 0, 0.948002, 29.8582, 23.6639, -103.739)
 
 [node name="BackstabSystem" type="Node3D" parent="."]
 script = ExtResource("5_lt6ye")
@@ -487,7 +487,7 @@ collision_mask = 2
 script = ExtResource("16_fqjbt")
 
 [node name="AreaCollider" type="CollisionShape3D" parent="Level1/Enemies/Section"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.9337, 0, -46.8021)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.6925, 0, -46.8021)
 shape = SubResource("BoxShape3D_d3a26")
 
 [node name="Enemies" type="Node3D" parent="Level1/Enemies/Section"]
@@ -510,7 +510,6 @@ transform = Transform3D(-1, 0, -1.19209e-07, 0, 1, 0, 1.19209e-07, 0, -1, -38.28
 
 [node name="Enemy8" parent="Level1/Enemies/Section/Enemies" instance=ExtResource("17_85uvr")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.97595, 6, -69.7785)
-debug = true
 
 [node name="Zombie" parent="Level1/Enemies/Section/Enemies" instance=ExtResource("28_6cnyh")]
 transform = Transform3D(0.978296, 0, 0.207212, 0, 1, 0, -0.207212, 0, 0.978296, -31.677, 3, -45.6593)
@@ -599,7 +598,7 @@ collision_mask = 2
 script = ExtResource("16_fqjbt")
 
 [node name="AreaCollider" type="CollisionShape3D" parent="Level1/Enemies/Section3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.416, 0, -7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.416, 0, -10.7092)
 shape = SubResource("BoxShape3D_tj07f")
 
 [node name="Enemies" type="Node3D" parent="Level1/Enemies/Section3"]
