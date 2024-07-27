@@ -246,3 +246,9 @@ func _on_health_component_zero_health() -> void:
 	
 	if blackboard.get_value("notice_state") == "aggro":
 		Globals.music_system.fade_to_idle()
+	
+	character.can_set_anim_tree_active = false
+	
+	get_tree().create_timer(5.0).timeout.connect(
+		func(): character.anim_tree.active = false
+	)

@@ -4,6 +4,8 @@ extends Node3D
 
 @export var debug: bool = false
 @export var active: bool = true
+@export var visibility_notifier: VisibleOnScreenNotifier3D
+@export var can_set_anim_tree_active: bool = true
 
 var _recipients: Dictionary
 
@@ -14,13 +16,27 @@ var _recipients: Dictionary
 
 func _ready() -> void:
 	anim_tree.active = active
+	
 	_add_base_recipient(animations)
 	_add_base_recipient(audio)
+	
 	if debug:
 		for i in _recipients:
 			print(i)
 		for i in anim_tree.get_property_list():
 			print(i)
+	
+	if visibility_notifier:
+		visibility_notifier.screen_entered.connect(
+			func():
+				if not can_set_anim_tree_active: return
+				anim_tree.active = true
+		)
+		visibility_notifier.screen_exited.connect(
+			func():
+				if not can_set_anim_tree_active: return
+				anim_tree.active = false
+		)
 
 
 #func _process(delta):

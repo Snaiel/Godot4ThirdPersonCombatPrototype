@@ -17,7 +17,7 @@ func _ready():
 				enemies, enemies
 			)
 	)
-
+	
 	body_exited.connect(
 		func(_body: Node3D):
 			print("Player left enemy section: " + name)

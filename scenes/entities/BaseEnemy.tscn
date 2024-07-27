@@ -458,9 +458,10 @@ collision_layer = 8
 collision_mask = 11
 script = ExtResource("1_3repp")
 
-[node name="Character" parent="." instance=ExtResource("2_7fohg")]
+[node name="Character" parent="." node_paths=PackedStringArray("visibility_notifier") instance=ExtResource("2_7fohg")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 script = ExtResource("3_0u5vg")
+visibility_notifier = NodePath("../Utility/VisibilityNotifier")
 
 [node name="GeneralSkeleton" parent="Character/Armature_004" index="0"]
 bones/1/rotation = Quaternion(0, 2.2904e-14, -6.7831e-14, 1)
@@ -800,6 +801,9 @@ health_component = NodePath("../../Wellbeing/HealthComponent")
 
 [node name="HUDInfoPos" type="Node3D" parent="Utility"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9, 0)
+
+[node name="VisibilityNotifier" type="VisibleOnScreenNotifier3D" parent="Utility"]
+aabb = AABB(-0.5, 0, -0.5, 1, 2, 1)
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("44_8bm11")
