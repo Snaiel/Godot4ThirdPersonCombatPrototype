@@ -52,9 +52,9 @@ func _physics_process(_delta: float) -> void:
 		
 		anim_tree.set(param, _blend)
 	
-	
 	var new_dir = Vector2(dir.x, dir.z)
 	if new_dir.is_equal_approx(_input_dir): return
+	if _blend < 0.01: return
 	
 	# smoother transition if going to zero
 	_input_dir = _input_dir.lerp(

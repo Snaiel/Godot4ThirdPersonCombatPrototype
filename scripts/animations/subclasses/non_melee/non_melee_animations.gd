@@ -31,6 +31,8 @@ var _can_play_animation: bool = true
 # the active animation
 var _intend_to_stop_performing: bool = true
 
+var _blend: float = 0.0
+
 
 func _ready() -> void:
 	anim_tree.set(&"parameters/Non Melee/blend_amount", 0.0)
@@ -43,20 +45,24 @@ func _physics_process(_delta: float) -> void:
 		pass
 	
 	if _can_play_animation and _intent_to_perform:
-		
-		actions[_level].play_animation()
 		_can_play_animation = false
 		_intent_to_perform = false
+		actions[_level].play_animation()
+	
+	if BaseAnimations.should_return_blend(active, _blend): return
 	
 	var blend = anim_tree.get(&"parameters/Non Melee/blend_amount")
 	if blend == null: return
+	
+	_blend = lerp(
+		float(blend), 
+		1.0 if active else 0.0,
+		0.15
+	)
+	
 	anim_tree.set(
 		&"parameters/Non Melee/blend_amount",
-		lerp(
-			float(blend), 
-			1.0 if active else 0.0,
-			0.15
-		)
+		_blend
 	)
 
 

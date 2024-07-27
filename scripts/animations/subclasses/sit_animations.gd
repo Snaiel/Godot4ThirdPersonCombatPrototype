@@ -35,8 +35,6 @@ func _physics_process(_delta):
 			_sitting_blend
 		)
 	
-	
-	
 	if not BaseAnimations.should_return_blend(_transitioning, _sit_or_stand_blend):
 		var sit_or_stand_blend = anim_tree.get(&"parameters/Sit or Stand/blend_amount")
 		if sit_or_stand_blend == null: return
@@ -51,7 +49,6 @@ func _physics_process(_delta):
 			&"parameters/Sit or Stand/blend_amount",
 			_sit_or_stand_blend
 		)
-	
 	
 	if float(_sit_or_stand_blend) < 0.1 and _active:
 		sitting_idle = true

@@ -3,6 +3,7 @@ extends Node3D
 
 
 @export var debug: bool = false
+@export var active: bool = true
 
 var _recipients: Dictionary
 
@@ -12,7 +13,7 @@ var _recipients: Dictionary
 
 
 func _ready() -> void:
-	anim_tree.active = true
+	anim_tree.active = active
 	_add_base_recipient(animations)
 	_add_base_recipient(audio)
 	if debug:

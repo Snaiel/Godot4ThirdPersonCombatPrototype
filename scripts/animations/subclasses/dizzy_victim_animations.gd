@@ -26,18 +26,25 @@ var _ignore_receive_kneel: bool = false
 # and the dizzy animation will not be played.
 var _ignore_finish_standing_up: bool = false
 
+var _blend: float = 0.0
+
 
 func _physics_process(_delta):
 	# this is if the character has become a dizzy victim
+	if BaseAnimations.should_return_blend(_blend_dizzy, _blend): return
+	
 	var blend = anim_tree.get(&"parameters/Dizzy/blend_amount")
 	if blend == null: return
+	
+	_blend = move_toward(
+		float(blend),
+		1.0 if _blend_dizzy else 0.0,
+		0.2 if _blend_dizzy else 0.1
+	)
+	
 	anim_tree.set(
 		&"parameters/Dizzy/blend_amount",
-		move_toward(
-			float(blend),
-			1.0 if _blend_dizzy else 0.0,
-			0.2 if _blend_dizzy else 0.1
-		)
+		_blend
 	)
 
 
