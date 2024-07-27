@@ -4,6 +4,7 @@ extends Node
 
 @export var debug: bool = false
 @export var enabled: bool = true
+@export var can_change_state: bool = false
 
 @export var entity: CharacterBody3D
 
@@ -77,7 +78,9 @@ func _physics_process(delta):
 	entity.move_and_slide()
 
 
-func set_active_strategy(strategy: StringName):
+func set_active_strategy(strategy: String):
+	if active_strategy.strategy_name == strategy: return
+	if not can_change_state: return
 	if strategies.has(strategy):
 		active_strategy = get_node(strategies[strategy])
 

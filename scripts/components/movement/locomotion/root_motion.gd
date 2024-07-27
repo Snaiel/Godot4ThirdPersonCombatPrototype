@@ -11,6 +11,10 @@ var root_motion_speed: float
 var _v: Vector3
 
 
+func _ready():
+	strategy_name = "root_motion"
+
+
 func _process(delta: float) -> void:
 	if context.active_strategy != self: return
 	_v = (

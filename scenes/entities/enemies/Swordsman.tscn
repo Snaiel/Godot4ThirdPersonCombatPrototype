@@ -597,6 +597,9 @@ max_distance = 20.0
 [node name="LocomotionComponent" parent="." index="4"]
 default_strategy = "root_motion"
 
+[node name="RootMotion" parent="LocomotionComponent" index="1"]
+debug = null
+
 [node name="InstabilityComponent" parent="Wellbeing" index="2" node_paths=PackedStringArray("weapons")]
 weapons = [NodePath("../../Character/Armature_004/GeneralSkeleton/Sword")]
 

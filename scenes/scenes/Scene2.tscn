@@ -189,7 +189,7 @@ running_spin_speed = 4.0
 [node name="UserInterface" parent="." instance=ExtResource("3_im4q1")]
 
 [node name="Player" parent="." instance=ExtResource("4_km71j")]
-transform = Transform3D(0.948002, 0, 0.318264, 0, 1, 0, -0.318264, 0, 0.948002, 10.2809, 50.2442, -87.99)
+transform = Transform3D(0.948002, 0, 0.318264, 0, 1, 0, -0.318264, 0, 0.948002, 38.7809, 50.2442, -104.49)
 
 [node name="BackstabSystem" type="Node3D" parent="."]
 script = ExtResource("5_lt6ye")
@@ -566,6 +566,7 @@ transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -7.2274,
 
 [node name="Enemy8" parent="Level1/Enemies/Section2/Enemies" node_paths=PackedStringArray("patrol") instance=ExtResource("17_85uvr")]
 transform = Transform3D(-0.707106, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707106, -1.86137, 9, -3.28257)
+debug = true
 patrol = NodePath("../../Patrols/PatrolPath2/PatrolInstance")
 
 [node name="Enemy9" parent="Level1/Enemies/Section2/Enemies" node_paths=PackedStringArray("patrol") instance=ExtResource("17_85uvr")]

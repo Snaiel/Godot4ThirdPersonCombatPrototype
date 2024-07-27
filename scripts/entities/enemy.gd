@@ -28,6 +28,8 @@ signal dead
 @onready var dizzy_victim_animations: DizzyVictimAnimations = $Character/Animations/DizzyVictim
 @onready var hit_and_death_animations: HitAndDeathAnimations = $Character/Animations/HitAndDeath
 
+@onready var visibility_notifier: VisibleOnScreenNotifier3D = $Utility/VisibilityNotifier
+
 var beehave_tree: BeehaveTree
 @onready var blackboard: Blackboard = $Blackboard
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent
@@ -36,6 +38,8 @@ var is_dead: bool = false
 
 var target: Node3D
 var original_position: Vector3
+
+var saved_locomotion_stragey: String
 
 
 func _enter_tree():
@@ -65,6 +69,25 @@ func _ready() -> void:
 	blackboard.set_value("can_attack", true)
 	blackboard.set_value("dead", false)
 	
+	visibility_notifier.screen_entered.connect(
+		func():
+			locomotion_component.can_change_state = true
+			locomotion_component.set_active_strategy(saved_locomotion_stragey)
+	)
+	visibility_notifier.screen_exited.connect(
+		func():
+			var old_strat: LocomotionStrategy = locomotion_component\
+				.active_strategy
+			saved_locomotion_stragey = old_strat.strategy_name
+			if old_strat is RootMotionLocomotionStrategy:
+				blackboard.set_value(
+					"move_speed",
+					old_strat.root_motion_speed
+				)
+			locomotion_component.set_active_strategy("programmatic")
+			locomotion_component.can_change_state = false
+	)
+	
 	print(name)
 
 
@@ -73,11 +96,11 @@ func _physics_process(_delta: float) -> void:
 	blackboard.set_value("debug", debug)
 	navigation_agent.debug_enabled = debug
 	
-	#if debug:
-		#prints(
-			#locomotion_component.active_strategy,
-			#locomotion_component.can_move
-		#)
+	if debug:
+		prints(
+			locomotion_component.active_strategy,
+			locomotion_component.speed
+		)
 	
 	if is_dead: return
 	

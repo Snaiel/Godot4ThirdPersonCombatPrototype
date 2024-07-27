@@ -4,6 +4,7 @@ extends Node
 
 @export var debug: bool = false
 
+var strategy_name: String
 var context: LocomotionComponent
 
 
