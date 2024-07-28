@@ -3,7 +3,6 @@ extends Node3D
 
 
 @export var debug: bool = false
-@export var active: bool = true
 @export var visibility_notifier: VisibleOnScreenNotifier3D
 @export var can_set_anim_tree_active: bool = true
 
@@ -15,7 +14,7 @@ var _recipients: Dictionary
 
 
 func _ready() -> void:
-	anim_tree.active = active
+	anim_tree.active = true
 	
 	_add_base_recipient(animations)
 	_add_base_recipient(audio)
@@ -37,12 +36,6 @@ func _ready() -> void:
 				if not can_set_anim_tree_active: return
 				anim_tree.active = false
 		)
-
-
-#func _process(delta):
-	#if debug: prints(
-		#anim_tree.get(&"parameters/Jog Animation/time")
-	#)
 
 
 func execute(target: String, method: StringName, args) -> void:

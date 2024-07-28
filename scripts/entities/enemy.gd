@@ -97,6 +97,10 @@ func _ready() -> void:
 			locomotion_component.can_change_state = false
 	)
 	
+	character.anim_tree.active = false
+	locomotion_component.set_active_strategy("programmatic")
+	locomotion_component.can_change_state = false
+	
 	print(name)
 
 
@@ -109,6 +113,7 @@ func _physics_process(_delta: float) -> void:
 		prints(
 			locomotion_component.active_strategy,
 			locomotion_component.speed,
+			locomotion_component.active_strategy.root_motion_speed if locomotion_component.active_strategy is RootMotionLocomotionStrategy else null,
 			movement_animations.speed
 		)
 	
