@@ -922,7 +922,7 @@ value = "true"
 [node name="Wait" parent="BeehaveTree/SelectorComposite/Aggro/AggroTarget/StayOrChase/Investigate/InvestigateLastPosition/MoveToTarget" index="3"]
 wait_id = 82140480
 
-[node name="Patrol" parent="BeehaveTree/SelectorComposite" index="5" instance=ExtResource("51_p7nxy")]
+[node name="Patrol" parent="BeehaveTree/SelectorComposite" index="4" instance=ExtResource("51_p7nxy")]
 
 [node name="Return" type="Node" parent="BeehaveTree/SelectorComposite/Idle" index="0"]
 script = ExtResource("51_tcvky")

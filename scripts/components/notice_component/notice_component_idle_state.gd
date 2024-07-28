@@ -40,4 +40,4 @@ func physics_process(_delta) -> void:
 
 
 func exit() -> void:
-	pass
+	notice_component.blackboard.set_value("idle", false)

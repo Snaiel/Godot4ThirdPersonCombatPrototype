@@ -73,7 +73,6 @@ func _ready() -> void:
 	
 	blackboard.set_value("move_speed", 3)
 	blackboard.set_value("can_attack", true)
-	blackboard.set_value("dead", false)
 	
 	visibility_notifier.screen_entered.connect(
 		func():
@@ -110,15 +109,19 @@ func _physics_process(_delta: float) -> void:
 	blackboard.set_value("debug", debug)
 	navigation_agent.debug_enabled = debug
 	
-	if debug:
-		prints(
-			locomotion_component.active_strategy,
-			locomotion_component.speed,
-			locomotion_component.active_strategy.root_motion_speed if locomotion_component.active_strategy is RootMotionLocomotionStrategy else null,
-			movement_animations.speed
-		)
+	#if debug:
+		#prints(
+			#blackboard.get_value("idle")
+		#)
 	
 	if is_dead: return
+	
+	if blackboard.get_value("idle") and \
+	blackboard.get_value("notice_state") == "idle":
+		if beehave_tree.enabled: beehave_tree.disable()
+		return
+	elif not beehave_tree.enabled:
+		beehave_tree.enable()
 	
 	## Target
 	_set_target_values()
@@ -272,8 +275,9 @@ func _on_health_component_zero_health() -> void:
 	
 	disable_mode = CollisionObject3D.DISABLE_MODE_MAKE_STATIC
 	
-	blackboard.set_value("dead", true)
+	blackboard.set_value("input_direction", Vector3.ZERO)
 	beehave_tree.interrupt()
+	beehave_tree.disable()
 	
 	collision_layer = 0
 	collision_mask = 1

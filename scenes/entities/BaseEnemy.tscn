@@ -48,7 +48,6 @@
 [ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="44_8bm11"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="45_bps7c"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="46_nh0cs"]
-[ext_resource type="PackedScene" uid="uid://q4ffp4qtwtt4" path="res://scenes/beehave/compare_actions/IsDeadTrue.tscn" id="47_05vq7"]
 [ext_resource type="PackedScene" uid="uid://5653b3wcf25p" path="res://scenes/beehave/inputs/InputNone.tscn" id="48_dmpm8"]
 [ext_resource type="PackedScene" uid="uid://dka5as0tjf4rh" path="res://scenes/beehave/set_actions/SetRotateTowardsTargetFalse.tscn" id="49_yd2bh"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_compare.gd" id="51_8wu7b"]
@@ -64,6 +63,7 @@
 [ext_resource type="PackedScene" uid="uid://nc8fs0at3l7x" path="res://scenes/beehave/set_actions/SetLockedOnFalse.tscn" id="61_83aik"]
 [ext_resource type="PackedScene" uid="uid://t7wqbcml070v" path="res://scenes/beehave/set_actions/SetLookedAroundFalse.tscn" id="62_j2icg"]
 [ext_resource type="Script" path="res://addons/beehave/blackboard.gd" id="63_w5xlb"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_set.gd" id="64_mrdja"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nqjgg"]
 render_priority = 0
@@ -813,13 +813,6 @@ actor = NodePath("..")
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]
 script = ExtResource("45_bps7c")
 
-[node name="Dead" type="Node" parent="BeehaveTree/SelectorComposite"]
-script = ExtResource("46_nh0cs")
-
-[node name="IsDeadTrue" parent="BeehaveTree/SelectorComposite/Dead" instance=ExtResource("47_05vq7")]
-
-[node name="InputNone" parent="BeehaveTree/SelectorComposite/Dead" instance=ExtResource("48_dmpm8")]
-
 [node name="Dizzy" type="Node" parent="BeehaveTree/SelectorComposite"]
 script = ExtResource("46_nh0cs")
 
@@ -888,6 +881,11 @@ script = ExtResource("46_nh0cs")
 [node name="SetRotateTowardsTargetFalse" parent="BeehaveTree/SelectorComposite/Idle" instance=ExtResource("49_yd2bh")]
 
 [node name="SetLookedAroundFalse" parent="BeehaveTree/SelectorComposite/Idle" instance=ExtResource("62_j2icg")]
+
+[node name="SetIdleTrue" type="Node" parent="BeehaveTree/SelectorComposite/Idle"]
+script = ExtResource("64_mrdja")
+key = "\"idle\""
+value = "true"
 
 [node name="Blackboard" type="Node" parent="."]
 script = ExtResource("63_w5xlb")

@@ -1001,11 +1001,11 @@ transform = Transform3D(0.999997, 1.95272e-10, 0.00223365, 0, -1, 8.74228e-08, 0
 curve = SubResource("Curve3D_k0rjm")
 
 [node name="PatrolInstance" parent="Level2/Enemies/Section1/Patrols/PatrolPath" index="0"]
-transform = Transform3D(0.999955, -0.000353127, -0.00594041, -4.36546e-11, 0.998238, -0.0593373, 0.00595088, 0.0593377, 0.998196, -2.8545, -0.217763, -1.43186)
+transform = Transform3D(0.999955, -0.000353127, -0.00594042, -4.36546e-11, 0.998238, -0.0593373, 0.00595088, 0.0593377, 0.998196, -2.8545, -0.217763, -1.43186)
 h_offset = 0.5
 
 [node name="PatrolInstance2" parent="Level2/Enemies/Section1/Patrols/PatrolPath" instance=ExtResource("34_v3sil")]
-transform = Transform3D(0.999955, -0.000353127, -0.00594041, -4.36546e-11, 0.998238, -0.0593373, 0.00595088, 0.0593377, 0.998196, -3.85448, -0.217763, -1.43782)
+transform = Transform3D(0.999955, -0.000353127, -0.00594042, -4.36546e-11, 0.998238, -0.0593373, 0.00595088, 0.0593377, 0.998196, -3.85448, -0.217763, -1.43782)
 h_offset = -0.5
 initial_delay = 1.0
 
@@ -1141,7 +1141,8 @@ transform = Transform3D(0.999997, 1.95272e-10, 0.00223365, 0, -1, 8.74228e-08, 0
 curve = SubResource("Curve3D_rph8f")
 
 [node name="PatrolInstance" parent="Level2/Enemies/Section4/Patrols/PatrolPath2" index="0"]
-transform = Transform3D(-0.28295, 0, -0.959106, 0, 1, 0, 0.959106, 0, -0.28295, -4.79201, -5.34058e-05, 4.71471)
+transform = Transform3D(0.524237, 0, 0.85154, 0, 1, 0, -0.85154, 0, 0.524237, 6.50872, -5.34058e-05, -6.47911)
+progress = 21.9635
 
 [node name="VoidColliders" type="Node3D" parent="Level2"]
 
