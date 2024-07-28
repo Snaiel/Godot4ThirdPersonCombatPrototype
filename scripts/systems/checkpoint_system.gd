@@ -35,7 +35,7 @@ func _ready():
 		var packed_enemies = PackedScene.new()
 		_packed_enemies.append(packed_enemies)
 		packed_enemies.pack(enemies)
-
+	
 	checkpoint_interface.perform_recovery.connect(
 		_recover
 	)
@@ -93,6 +93,10 @@ func _recover() -> void:
 	Globals.camera_controller.reset()
 	
 	for enemies in _enemies:
+		for child in enemies.get_children():
+			if not child is EnemySection: continue
+			var section: EnemySection = child
+			section.free_enemies()
 		enemies.queue_free()
 	
 	Globals.user_interface.hud.clear_enemy_hud_elements()

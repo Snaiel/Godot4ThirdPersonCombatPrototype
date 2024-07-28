@@ -7,6 +7,8 @@ enum NodeOperation {ADD, REMOVE, NONE}
 @onready var enemies: Node3D = $Enemies
 @onready var patrols: Node3D
 
+var queued_for_deletion: bool = false
+
 var enemy_nodes: Array[Node]
 var current_operation: NodeOperation = NodeOperation.NONE
 
@@ -42,7 +44,7 @@ func _process(delta: float) -> void:
 			current_operation = NodeOperation.NONE
 			Globals.checkpoint_system.set_node_owner_to_enemies(
 				enemies, enemies
-				)
+			)
 	elif current_operation == NodeOperation.REMOVE:
 		if enemies.get_child_count() > 0:
 			var child = enemies.get_child(0)
@@ -54,14 +56,23 @@ func _process(delta: float) -> void:
 
 
 func _notification(what: int) -> void:
-	if what == NOTIFICATION_PREDELETE:
-		print("DELETE")
-		for node in enemies.get_children():
-			var enemy: Enemy = node
-			BeehaveDebuggerMessages.unregister_tree(enemy.beehave_tree.get_instance_id())
+	if what != NOTIFICATION_PREDELETE: return
+	prints("Unregistering beehave trees in", self)
+	for node in enemies.get_children():
+		var enemy: Enemy = node
+		BeehaveDebuggerMessages.unregister_tree(
+			enemy.beehave_tree.get_instance_id()
+		)
+
+
+func free_enemies() -> void:
+	queued_for_deletion = true
+	for enemy in enemy_nodes:
+		enemy.queue_free()
 
 
 func _add_enemies() -> void:
+	if queued_for_deletion: return
 	print("Player entered enemy section: " + name)
 	current_operation = NodeOperation.ADD
 	_timer = _time_gap
@@ -69,16 +80,15 @@ func _add_enemies() -> void:
 
 
 func _remove_enemies() -> void:
+	if queued_for_deletion: return
 	print("Player left enemy section: " + name)
+	if enemies.get_child_count(): enemy_nodes = enemies.get_children()
 	current_operation = NodeOperation.REMOVE
 	_timer = _time_gap
-	enemy_nodes = enemies.get_children()
 	_set_patrols_enabled(false)
 
 
 func _set_patrols_enabled(enabled: bool) -> void:
 	if not patrols: return
-	if enabled:
-		patrols.process_mode = Node.PROCESS_MODE_INHERIT
-	else:
-		patrols.process_mode = Node.PROCESS_MODE_DISABLED
+	patrols.process_mode = Node.PROCESS_MODE_INHERIT if enabled \
+		else Node.PROCESS_MODE_DISABLED
