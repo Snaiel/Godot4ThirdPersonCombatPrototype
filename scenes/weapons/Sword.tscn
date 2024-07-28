@@ -18,9 +18,9 @@ shader_parameter/roughness = 1.0
 shader_parameter/normal_strength = 1.0
 shader_parameter/alpha_clip = 0.0
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_cds6g"]
-height = 1.0
-radius = 0.02
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ae4jg"]
+radius = 0.08
+height = 1.1
 
 [node name="Sword" type="BoneAttachment3D"]
 transform = Transform3D(0, -1, 0, 0, 0, -1, 1, 0, 0, -0.734268, 1.43559, -0.0641424)
@@ -41,4 +41,4 @@ collision_mask = 8
 
 [node name="Collider" type="CollisionShape3D" parent="Area"]
 transform = Transform3D(-0.891466, -0.453088, -3.91619e-05, 0.453088, -0.891466, -0.000158824, 3.70497e-05, -0.00015933, 1, 0.168411, 0.443186, 0.0233156)
-shape = SubResource("CylinderShape3D_cds6g")
+shape = SubResource("CapsuleShape3D_ae4jg")
