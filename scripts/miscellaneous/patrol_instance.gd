@@ -11,7 +11,7 @@ enum PatrolType {LINEAR, OSCILLATE, CIRCUIT}
 @export var show_mesh: bool = false
 @export var patrol_type: PatrolType
 @export var patrol: bool = true
-@export var speed: float = 3.0
+@export var speed: float = 1.0
 @export var stationary_time: float = 8.0
 @export var initial_delay: float = 0.0
 

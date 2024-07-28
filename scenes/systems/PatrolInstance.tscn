@@ -9,7 +9,6 @@ size = Vector3(0.5, 0.5, 0.5)
 transform = Transform3D(-0.22069, 1.41275e-08, 0.975316, -1.77631e-15, 1, -1.44842e-08, -0.975316, -3.1967e-09, -0.22069, 3.80775, -1.42455e-05, 6.11599)
 script = ExtResource("1_ry5na")
 patrol_type = 2
-speed = 1.0
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_ukey6")

@@ -66,9 +66,5 @@ wait_id = 22789821
 
 [node name="PatrolMoveSpeed" type="Node" parent="PatrolSelector/Move"]
 script = ExtResource("14_irdp8")
-min_speed = 0.2
-max_speed = 1.0
-min_dist = 0.3
-max_dist = 2.0
 
 [node name="InputForwards" parent="PatrolSelector/Move" instance=ExtResource("15_y1jtp")]
