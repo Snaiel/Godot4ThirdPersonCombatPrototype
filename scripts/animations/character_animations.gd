@@ -10,10 +10,12 @@ var _recipients: Dictionary
 
 @onready var animations: Node = $Animations
 @onready var audio: Node = $Audio
+@onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var anim_tree: AnimationTree = $AnimationTree
 
 
 func _ready() -> void:
+	anim_player.active = true
 	anim_tree.active = true
 	
 	_add_base_recipient(animations)
@@ -29,11 +31,13 @@ func _ready() -> void:
 		visibility_notifier.screen_entered.connect(
 			func():
 				if not can_set_anim_tree_active: return
+				anim_player.active = true
 				anim_tree.active = true
 		)
 		visibility_notifier.screen_exited.connect(
 			func():
 				if not can_set_anim_tree_active: return
+				anim_player.active = false
 				anim_tree.active = false
 		)
 

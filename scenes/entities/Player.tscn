@@ -828,8 +828,9 @@ anim_tree = NodePath("../../../AnimationTree")
 script = ExtResource("17_blp7m")
 anim_tree = NodePath("../../../AnimationTree")
 
-[node name="Block" type="Node" parent="Character/Animations" node_paths=PackedStringArray("anim_tree")]
+[node name="Block" type="Node" parent="Character/Animations" node_paths=PackedStringArray("shield_component", "anim_tree")]
 script = ExtResource("19_q25x1")
+shield_component = NodePath("../../../Combat/ShieldComponent")
 anim_tree = NodePath("../../AnimationTree")
 
 [node name="Parry" type="Node" parent="Character/Animations" node_paths=PackedStringArray("anim_tree")]
@@ -1171,13 +1172,12 @@ weapons = {
 "right_hand": NodePath("../../Character/Armature_004/GeneralSkeleton/Sword")
 }
 
-[node name="ShieldComponent" parent="Combat" node_paths=PackedStringArray("entity", "locomotion_component", "block_animations") instance=ExtResource("78_gb0qq")]
+[node name="ShieldComponent" parent="Combat" node_paths=PackedStringArray("entity", "locomotion_component") instance=ExtResource("78_gb0qq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, -0.08)
 debug = true
 entity = NodePath("../..")
 locomotion_component = NodePath("../../Movement/LocomotionComponent")
 animation_resource_key = "PlayerShieldAnimation"
-block_animations = NodePath("../../Character/Animations/Block")
 
 [node name="ParryComponent" parent="Combat" node_paths=PackedStringArray("hitbox_component", "shield_component") instance=ExtResource("79_4iupg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

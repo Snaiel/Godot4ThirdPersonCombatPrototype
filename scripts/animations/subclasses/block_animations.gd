@@ -2,6 +2,8 @@ class_name BlockAnimations
 extends BaseAnimations
 
 
+@export var shield_component: ShieldComponent
+
 var _blend: float = 0.0
 
 
@@ -10,7 +12,9 @@ func _ready() -> void:
 	anim_tree.set(&"parameters/Block Speed/scale", 0.0)
 
 
-func process_block(blocking: bool) -> void:
+func _physics_process(_delta: float) -> void:
+	var blocking = shield_component.blocking
+	
 	if BaseAnimations.should_return_blend(blocking, _blend): return
 	
 	var blend = anim_tree.get(&"parameters/Block/blend_amount")

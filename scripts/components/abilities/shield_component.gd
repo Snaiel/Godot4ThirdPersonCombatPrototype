@@ -12,17 +12,33 @@ extends Node3D
 @export var animation_resource_key: String = "ShieldAnimation"
 
 @export_category("Blocking")
-@export var block_animations: BlockAnimations
 @export var walk_speed_while_blocking: float = 0.8
 @export var block_particles_scene: PackedScene = preload(
 	"res://scenes/particles/BlockParticles.tscn"
 )
 
 @export_category("Shader")
-@export var color: Color = Color.WHITE
-@export_range(0, 1.0) var default_opacity: float = 0.2
+@export var color: Color = Color.WHITE:
+	set(value):
+		if value == color: return
+		color = value
+		if not mesh: return
+		_update_shield_color(color)
+		
+@export_range(0, 1.0) var default_opacity: float = 0.2:
+	set(value):
+		if value == default_opacity: return
+		default_opacity = value
+		if not mesh: return
+		_update_shield_opacity(default_opacity)
 
-var opacity: float = 0.0
+var opacity: float = 0.0:
+	set(value):
+		if value == opacity: return
+		opacity = value
+		if not mesh: return
+		_update_shield_opacity(opacity)
+		
 var animating_opacity: bool = false
 var blocking: bool = false:
 	set(value):
@@ -41,7 +57,14 @@ func _ready():
 	_particles = block_particles_scene.instantiate()
 	light.light_energy = 0
 	
-	opacity = 0
+	_update_shield_opacity(0.0)
+	
+	animation_player.active = false
+	animation_player.animation_finished.connect(
+		func(_anim_name: String):
+			animation_player.active = false
+			_update_shield_color(color)
+	)
 	
 	var _duplicate_animation = func(animation_name: StringName) -> Animation:
 		var animation = animation_player.get_animation(animation_name)
@@ -72,25 +95,8 @@ func _ready():
 
 func _physics_process(_delta: float) -> void:
 	
-	mesh.get_surface_override_material(0).set(
-		"shader_parameter/emission_color",
-		color
-	)
-	
-	mesh.set_instance_shader_parameter(
-		"opacity",
-		default_opacity
-	)
-	
 	if Engine.is_editor_hint(): return
 	
-	mesh.set_instance_shader_parameter(
-		"opacity",
-		opacity
-	)
-	
-	block_animations.process_block(blocking)
-
 	if animating_opacity: return
 	
 	if blocking:
@@ -109,12 +115,31 @@ func _physics_process(_delta: float) -> void:
 		)
 
 
+func play_animation(anim_name: StringName) -> void:
+	animation_player.active = true
+	animation_player.play(anim_name)
+
+
 func blocked() -> void:
 	if animation_player.current_animation != "blocked":
 		print("BLOCKED")
 		blocking = true
-		animation_player.play("blocked")
+		play_animation(&"blocked")
 	var particles: GPUParticles3D = _particles.duplicate()
 	add_child(particles)
 	particles.finished.connect(particles.queue_free)
 	particles.restart()
+
+
+func _update_shield_color(_color: Color) -> void:
+	mesh.get_surface_override_material(0).set(
+		"shader_parameter/emission_color",
+		_color
+	)
+
+
+func _update_shield_opacity(_opacity: float) -> void:
+	mesh.set_instance_shader_parameter(
+		"opacity",
+		_opacity
+	)

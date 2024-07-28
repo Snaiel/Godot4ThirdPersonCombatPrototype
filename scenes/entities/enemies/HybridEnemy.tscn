@@ -573,8 +573,9 @@ anim_tree = NodePath("../../../AnimationTree")
 script = ExtResource("9_nducf")
 anim_tree = NodePath("../../../AnimationTree")
 
-[node name="Block" type="Node" parent="Character/Animations" index="4" node_paths=PackedStringArray("anim_tree")]
+[node name="Block" type="Node" parent="Character/Animations" index="4" node_paths=PackedStringArray("shield_component", "anim_tree")]
 script = ExtResource("10_ylhi5")
+shield_component = NodePath("../../../Abilities/ShieldComponent")
 anim_tree = NodePath("../../AnimationTree")
 
 [node name="Parry" type="Node" parent="Character/Animations" index="5" node_paths=PackedStringArray("anim_tree")]
@@ -649,12 +650,11 @@ weapons = {
 "right_hand": NodePath("../../Character/Armature_004/GeneralSkeleton/Sword")
 }
 
-[node name="ShieldComponent" parent="Abilities" index="1" node_paths=PackedStringArray("entity", "locomotion_component", "block_animations") instance=ExtResource("17_yertk")]
+[node name="ShieldComponent" parent="Abilities" index="1" node_paths=PackedStringArray("entity", "locomotion_component") instance=ExtResource("17_yertk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
 entity = NodePath("../..")
 locomotion_component = NodePath("../../LocomotionComponent")
 animation_resource_key = "HybridShieldAnimation"
-block_animations = NodePath("../../Character/Animations/Block")
 color = Color(0.976471, 0.639216, 0.109804, 1)
 
 [node name="ParryComponent" type="Node3D" parent="Abilities" index="2" node_paths=PackedStringArray("hitbox_component")]

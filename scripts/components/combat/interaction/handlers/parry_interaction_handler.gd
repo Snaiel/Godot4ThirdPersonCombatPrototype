@@ -18,7 +18,7 @@ func handle_interaction(incoming_damage_source: DamageSource) -> bool:
 	parry_component.in_parry_window = true
 	parry_component.play_parry_particles()
 	parry_animations.parry()
-	shield_component.animation_player.play("parried")
+	shield_component.play_animation(&"parried")
 	instability_component.process_parry(
 		incoming_damage_source.damage_attributes.parry_instability
 	)

@@ -33,6 +33,11 @@ func _ready():
 		func(): hide_bar()
 	)
 	add_child(_disappear_pause_timer)
+	
+	_anim_player.active = false
+	_anim_player.animation_finished.connect(
+		func(_anim_name: String): _anim_player.active = false
+	)
 
 
 func _process(_delta):
@@ -59,12 +64,15 @@ func _process(_delta):
 
 
 func play_max_instability() -> void:
-	_anim_player.play("max_instability")
+	_anim_player.active = true
+	_anim_player.play(&"max_instability")
 
 
 func reset() -> void:
-	_anim_player.play("RESET")
+	_anim_player.active = true
+	_anim_player.play(&"RESET")
 
 
 func hide_bar() -> void:
 	visible = false
+

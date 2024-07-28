@@ -97,6 +97,7 @@ func _ready() -> void:
 			locomotion_component.can_change_state = false
 	)
 	
+	character.anim_player.active = false
 	character.anim_tree.active = false
 	locomotion_component.set_active_strategy("programmatic")
 	locomotion_component.can_change_state = false

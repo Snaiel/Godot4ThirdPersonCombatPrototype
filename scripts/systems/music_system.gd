@@ -19,6 +19,16 @@ var _counter: int = 0:
 
 func _ready():
 	if enabled: idle_song.play()
+	
+	anim.active = false
+	anim.animation_finished.connect(
+		func(_anim_name: String): anim.active = false
+	)
+
+
+func play_animation(anim_name: StringName) -> void:
+	anim.active = true
+	anim.play(anim_name)
 
 
 func fade_to_active() -> void:
@@ -28,35 +38,36 @@ func fade_to_active() -> void:
 	if not idle_music: return
 	
 	idle_music = false
-	anim.play("FadeToActive")
+	play_animation(&"FadeToActive")
 
 
 func fade_to_idle() -> void:
 	_counter -= 1
 	
-	if idle_music:
-		return
-	
-	if _counter != 0:
-		return
+	if not enabled: return
+	if idle_music: return
+	if _counter != 0: return
 	
 	force_fade_to_idle()
 
 
 func force_fade_to_idle() -> void:
+	if not enabled: return
 	idle_music = true
-	anim.play("FadeToIdle")
+	play_animation(&"FadeToIdle")
 
 
 func fade_out() -> void:
+	if not enabled: return
+	
 	if idle_music:
-		anim.play("IdleFadeOut")
+		play_animation(&"IdleFadeOut")
 	else:
-		anim.play("ActiveFadeOut")
+		play_animation(&"ActiveFadeOut")
 	
 	idle_music = true
 	_counter = 0
 
 
 func reset() -> void:
-	anim.play("RESET")
+	play_animation(&"RESET")
