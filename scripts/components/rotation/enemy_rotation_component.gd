@@ -10,6 +10,10 @@ extends RotationComponent
 
 var enemy: Enemy
 
+var _saved_agent_next_path_position: Vector3 = Vector3.ZERO
+var _frames_between_agent_call: int = 20
+var _frames_since_last_call: int
+
 
 func _ready() -> void:
 	enemy = entity as Enemy
@@ -17,6 +21,9 @@ func _ready() -> void:
 		Vector3.UP,
 		entity.rotation.y
 	).normalized()
+	
+	_frames_since_last_call = RandomNumberGenerator.new()\
+		.randi_range(0, _frames_between_agent_call)
 
 
 func _physics_process(delta: float) -> void:
@@ -35,25 +42,29 @@ func _physics_process(delta: float) -> void:
 		pass
 	
 	if rotate_towards_target:
-		# get the angle towards the lock on target and
-		# smoothyl rotate the player towards it
+		# get the angle towards the target and smoothly rotate towards it
+		
+		if _frames_since_last_call <= 0:
+			if use_agent_path: _saved_agent_next_path_position = \
+				agent.get_next_path_position()
+			_frames_since_last_call = _frames_between_agent_call
+		_frames_since_last_call -= 1
+		
 		var _next_location: Vector3
+		
 		if use_agent_path and blackboard.get_value("agent_target_reachable"):
-			_next_location = agent.get_next_path_position()
+			_next_location = _saved_agent_next_path_position
 		else:
 			_next_location = enemy.target.global_position
+		
 		looking_direction = entity.global_position.direction_to(_next_location)
 		target_look = atan2(-looking_direction.x, -looking_direction.z)
 		
 		var rotation_difference: float = abs(entity.rotation.y - target_look)
 		
-		# This makes the rotation smoother when the player is locked
-		# on and transitions from sprinting to walking
+		# smooth rotation of larger difference
 		var rotation_weight: float
-		if rotation_difference < 0.05:
-			rotation_weight = 0.2
-		else:
-			rotation_weight = 0.1
+		rotation_weight = 0.2 if rotation_difference < 0.05 else 0.1
 		
 		entity.rotation.y = lerp_angle(
 			entity.rotation.y,
@@ -91,3 +102,11 @@ func _physics_process(delta: float) -> void:
 		)
 		
 		move_direction = Vector3.ZERO
+
+
+func set_rotate_towards_target(value: bool) -> void:
+	if value == rotate_towards_target: return
+	if rotate_towards_target == false and value == true and use_agent_path:
+		_saved_agent_next_path_position = agent.get_next_path_position()
+		_frames_since_last_call = _frames_between_agent_call
+	rotate_towards_target = value

@@ -42,6 +42,9 @@ var original_position: Vector3
 
 var saved_locomotion_stragey: String
 
+var _frames_between_agent_call: int = 20
+var _frames_since_last_call: int
+
 
 func _enter_tree():
 	var path_names: PackedStringArray = str(get_path()).split("/")
@@ -101,6 +104,9 @@ func _ready() -> void:
 	locomotion_component.set_active_strategy("programmatic")
 	locomotion_component.can_change_state = false
 	
+	_frames_since_last_call = RandomNumberGenerator.new()\
+		.randi_range(1, _frames_between_agent_call)
+	
 	print(name)
 
 
@@ -128,6 +134,10 @@ func _physics_process(_delta: float) -> void:
 	
 	## Navigation Agent
 	_set_agent_values()
+	if _frames_since_last_call <= 0:
+		_set_agent_target_reachable()
+		_frames_since_last_call = _frames_between_agent_call
+	_frames_since_last_call -= 1
 	
 	blackboard.set_value(
 		"dist_original_position",
@@ -209,6 +219,7 @@ func switch_target(player: bool) -> void:
 		target = Globals.player as Node3D
 	_set_target_values()
 	_set_agent_values()
+	call_deferred("_set_agent_target_reachable")
 
 
 func _set_target_values() -> void:
@@ -231,7 +242,6 @@ func _set_agent_values() -> void:
 		"agent_target_dist",
 		navigation_agent.distance_to_target()
 	)
-	call_deferred("_set_agent_target_reachable")
 	if blackboard.get_value("investigate_last_agent_position"):
 		blackboard.set_value("can_set_investigate_last_agent_position", false)
 		blackboard.set_value("investigate_last_agent_position", false)
@@ -249,7 +259,6 @@ func _set_agent_values() -> void:
 
 
 func _set_agent_target_reachable():
-	await get_tree().physics_frame
 	blackboard.set_value(
 		"agent_target_reachable",
 		navigation_agent.is_target_reachable()
