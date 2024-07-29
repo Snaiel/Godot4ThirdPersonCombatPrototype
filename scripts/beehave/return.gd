@@ -33,9 +33,9 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 				Vector3.FORWARD.rotated(
 					Vector3.UP,
 					blackboard.get_value("original_rotation")
-				)
+				) * 2
 		)
-		get_tree().create_timer(0.25).timeout.connect(
+		get_tree().create_timer(0.5).timeout.connect(
 			func():
 				blackboard.set_value("input_direction", Vector3.ZERO)
 				_done = true

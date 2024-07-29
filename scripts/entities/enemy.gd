@@ -36,6 +36,7 @@ var beehave_tree: BeehaveTree
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent
 
 var is_dead: bool = false
+var is_idle: bool = false
 
 var target: Node3D
 var original_position: Vector3
@@ -44,6 +45,8 @@ var saved_locomotion_stragey: String
 
 var _frames_between_agent_call: int = 20
 var _frames_since_last_call: int
+
+var _idle_timer: Timer
 
 
 func _enter_tree():
@@ -107,6 +110,15 @@ func _ready() -> void:
 	_frames_since_last_call = RandomNumberGenerator.new()\
 		.randi_range(1, _frames_between_agent_call)
 	
+	_idle_timer = Timer.new()
+	_idle_timer.autostart = false
+	_idle_timer.one_shot = true
+	_idle_timer.wait_time = 5.0
+	_idle_timer.timeout.connect(
+		func(): is_idle = true
+	)
+	add_child(_idle_timer)
+	
 	print(name)
 
 
@@ -115,15 +127,23 @@ func _physics_process(_delta: float) -> void:
 	blackboard.set_value("debug", debug)
 	navigation_agent.debug_enabled = debug
 	
-	#if debug:
-		#prints(
-			#blackboard.get_value("idle")
-		#)
+	if debug:
+		prints(
+			blackboard.get_value("idle"),
+			locomotion_component.active_strategy,
+			blackboard.get_value("anim_move_speed")
+		)
 	
 	if is_dead: return
 	
-	if blackboard.get_value("idle") and \
-	blackboard.get_value("notice_state") == "idle":
+	if blackboard.get_value("idle"):
+		if blackboard.get_value("notice_state") == "idle" and \
+		not is_idle and _idle_timer.is_stopped():
+			_idle_timer.start()
+	else:
+		is_idle = false
+	
+	if is_idle:
 		if beehave_tree.enabled: beehave_tree.disable()
 		return
 	elif not beehave_tree.enabled:

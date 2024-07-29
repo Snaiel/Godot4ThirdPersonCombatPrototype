@@ -136,6 +136,8 @@ func change_state(new_state: NoticeComponentState) -> void:
 		new_state_string = "aggro"
 	
 	blackboard.set_value("notice_state", new_state_string)
+	if not new_state is NoticeComponentIdleState:
+		blackboard.set_value("idle", false)
 
 
 func inside_inner_threshold() -> bool:
