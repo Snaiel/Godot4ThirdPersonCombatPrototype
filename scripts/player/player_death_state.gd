@@ -52,6 +52,8 @@ func enter() -> void:
 	player.set_rotation_target_to_lock_on_target()
 	player.rotation_component.rotate_towards_target = false
 	
+	player.combat_tracking_component.reset()
+
 	Globals.music_system.fade_out()
 	
 	if player.instability_component.is_full_instability():

@@ -18,6 +18,7 @@ extends CharacterBody3D
 @export var parry_component: ParryComponent
 @export var fade_component: FadeComponent
 @export var health_charge_component: HealthChargeComponent
+var combat_tracking_component: CombatTrackingComponent = CombatTrackingComponent.new()
 
 @export_category("Character")
 @export var weapon: DamageSource
@@ -31,6 +32,8 @@ var last_input_on_ground: Vector3 = Vector3.ZERO
 
 var lock_on_target: LockOnComponent = null
 var locked_on_turning_in_place: bool = false
+
+
 
 @onready var drink_state: PlayerDrinkState = $StateMachine/Drink
 @onready var checkpoint_state: PlayerCheckpointState = $StateMachine/Checkpoint

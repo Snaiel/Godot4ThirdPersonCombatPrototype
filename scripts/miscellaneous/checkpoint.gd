@@ -21,10 +21,11 @@ var _previously_enabled_hint: bool
 @onready var _player: Player = Globals.player
 @onready var _checkpoint_system: CheckpointSystem = Globals.checkpoint_system
 
+@onready var _ctc : CombatTrackingComponent = Globals.player.combat_tracking_component
+
 
 func _ready() -> void:
 	respawn_point.visible = false
-	
 	_area.body_entered.connect(
 		func(_body: Node3D):
 			_player_inside = true
@@ -42,19 +43,21 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	
-	_player_angle = rad_to_deg(
-		Vector3.FORWARD.rotated(Vector3.UP, _player.global_rotation.y)\
-		.angle_to(_player.global_position.direction_to(global_position))
-	)
-	
+	if _ctc.is_in_combat():
+		return
+
 	if _can_set_current_checkpoint:
 		_can_set_current_checkpoint = false
 		if _player_inside:
 			_checkpoint_system.current_checkpoint = self
 	
-	if not _player_inside: return
+	if not _player_inside or not _player.health_component.is_alive(): 
+		return
 	
+	_player_angle = rad_to_deg(
+		Vector3.FORWARD.rotated(Vector3.UP, _player.global_rotation.y)\
+		.angle_to(_player.global_position.direction_to(global_position))
+	)
 	if _player_angle < max_angle and \
 	not _previously_enabled_hint and \
 	_player.is_on_floor() and \

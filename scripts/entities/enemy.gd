@@ -48,6 +48,7 @@ var _frames_since_last_call: int
 
 var _idle_timer: Timer
 
+@onready var _ctc : CombatTrackingComponent = Globals.player.combat_tracking_component
 
 func _enter_tree():
 	var path_names: PackedStringArray = str(get_path()).split("/")
@@ -233,10 +234,17 @@ func _physics_process(_delta: float) -> void:
 
 
 func switch_target(player: bool) -> void:
-	if patrol and not player:
-		target = patrol as Node3D
-	else:
+	if player:
+		if debug: print("Switching to player")
 		target = Globals.player as Node3D
+		_ctc.add_enemy_in_combat(self)
+	elif patrol:
+		if debug: print("Switching to patrol")
+		target = patrol as Node3D
+		_ctc.remove_enemy_in_combat(self)
+	else:
+		if debug: print("Switching to original position")
+		_ctc.remove_enemy_in_combat(self)
 	_set_target_values()
 	_set_agent_values()
 	call_deferred("_set_agent_target_reachable")
@@ -321,7 +329,9 @@ func _on_health_component_zero_health() -> void:
 	
 	if blackboard.get_value("notice_state") == "aggro":
 		Globals.music_system.fade_to_idle()
-	
+
+	if _ctc: _ctc.remove_enemy_in_combat(self)
+
 	character.can_set_anim_tree_active = false
 	
 	get_tree().create_timer(5.0).timeout.connect(
