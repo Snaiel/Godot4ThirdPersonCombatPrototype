@@ -235,8 +235,10 @@ func _physics_process(_delta: float) -> void:
 func switch_target(player: bool) -> void:
 	if patrol and not player:
 		target = patrol as Node3D
+		Globals.player.remove_enemy_in_combat_with(self)
 	else:
 		target = Globals.player as Node3D
+		Globals.player.add_enemy_in_combat_with(self)
 	_set_target_values()
 	_set_agent_values()
 	call_deferred("_set_agent_target_reachable")
@@ -321,7 +323,9 @@ func _on_health_component_zero_health() -> void:
 	
 	if blackboard.get_value("notice_state") == "aggro":
 		Globals.music_system.fade_to_idle()
-	
+
+	Globals.player.remove_enemy_in_combat_with(self)
+
 	character.can_set_anim_tree_active = false
 	
 	get_tree().create_timer(5.0).timeout.connect(

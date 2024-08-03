@@ -32,6 +32,8 @@ var last_input_on_ground: Vector3 = Vector3.ZERO
 var lock_on_target: LockOnComponent = null
 var locked_on_turning_in_place: bool = false
 
+@onready var enemies_in_combat_with: Array[Enemy] = []
+
 @onready var drink_state: PlayerDrinkState = $StateMachine/Drink
 @onready var checkpoint_state: PlayerCheckpointState = $StateMachine/Checkpoint
 
@@ -131,3 +133,18 @@ func process_default_movement_animations() -> void:
 
 func _on_lock_on_system_lock_on(target: LockOnComponent) -> void:
 	lock_on_target = target
+
+func add_enemy_in_combat_with(enemy: Enemy) -> void:
+	if enemies_in_combat_with.find(enemy) == -1:
+		print("Adding enemy in combat with")
+		enemies_in_combat_with.append(enemy)
+		print(enemies_in_combat_with)
+
+func remove_enemy_in_combat_with(enemy: Enemy) -> void:
+	var index: int = enemies_in_combat_with.find(enemy)
+	if index != -1:
+		print("Removing enemy in combat with")
+		enemies_in_combat_with.remove_at(index)
+
+func is_in_combat() -> bool:
+	return enemies_in_combat_with.size() > 0
