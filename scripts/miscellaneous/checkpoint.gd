@@ -21,10 +21,11 @@ var _previously_enabled_hint: bool
 @onready var _player: Player = Globals.player
 @onready var _checkpoint_system: CheckpointSystem = Globals.checkpoint_system
 
+@onready var _ctc : CombatTrackingComponent = Globals.player.combat_tracking_component
+
 
 func _ready() -> void:
 	respawn_point.visible = false
-	
 	_area.body_entered.connect(
 		func(_body: Node3D):
 			_player_inside = true
@@ -42,7 +43,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if _player.is_in_combat():
+	if _ctc.is_in_combat():
 		return
 
 	if _can_set_current_checkpoint:
