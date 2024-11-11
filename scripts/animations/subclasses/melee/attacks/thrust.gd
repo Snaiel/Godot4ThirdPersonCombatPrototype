@@ -22,4 +22,3 @@ func perform_legs_transition():
 
 func end_legs_transition():
 	pass
-

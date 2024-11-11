@@ -8,7 +8,7 @@ A base project for third person combat. Feature-filled setup with core systems i
 
 # Downloading the Project
 
-**Using Godot 4.2.2**
+**Using Godot 4.3**
 
 You must have Blender installed and have Blender imports (https://docs.godotengine.org/en/stable/tutorials/assets_pipeline/importing_scenes.html#importing-blend-files-directly-within-godot) configured in your Godot editor. If not, you will get an error saying `Scene file 'Main.tcsn' appears to be invalid/corrupt` or `Error while loading file 'Main.tcsn'` caused by the broken dependencies from the blender files not being imported. Please have a look at https://github.com/Snaiel/Godot4ThirdPersonCombatPrototype/issues/3.
 

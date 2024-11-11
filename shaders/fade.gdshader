@@ -5,7 +5,7 @@ render_mode blend_mix,depth_draw_opaque,cull_disabled,diffuse_burley,specular_sc
 uniform sampler2D texture_albedo : source_color;
 uniform sampler2D texture_masks : hint_default_white;
 uniform sampler2D texture_normal : hint_normal;
- 
+
 // Parameters
 uniform vec4 albedo : source_color;
 uniform float specular = 0.5;
@@ -17,11 +17,11 @@ uniform float alpha_clip: hint_range(0,1) = 0.0;
 instance uniform float opacity: hint_range(0,1) = 1.0;
 
 void fragment() {
-	
+
 	vec4 albedo_tex = texture(texture_albedo, UV);
     vec4 masks_tex = texture(texture_masks, UV);
     float alpha = albedo_tex.a;
-        
+
     ALBEDO = albedo.rgb * albedo_tex.rgb;
     METALLIC = metallic * masks_tex.r;
     ROUGHNESS = roughness * masks_tex.g;
@@ -32,7 +32,7 @@ void fragment() {
     int y = int(FRAGCOORD.y) % 4;
     int index = x + y * 4;
     float limit = 0.0;
- 
+
     if (x < 8) {
         if (index == 0) limit = 0.0625;
         if (index == 1) limit = 0.5625;
@@ -51,7 +51,7 @@ void fragment() {
         if (index == 14) limit = 0.875;
         if (index == 15) limit = 0.375;
     }
-	
+
     if (opacity < limit || opacity < alpha_clip)
         discard;
 }

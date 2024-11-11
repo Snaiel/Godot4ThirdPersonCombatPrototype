@@ -75,4 +75,3 @@ func reset() -> void:
 
 func hide_bar() -> void:
 	visible = false
-

@@ -473,63 +473,50 @@ _data = {
 playback_mode = 1
 streams_count = 3
 stream_0/stream = ExtResource("26_48vfb")
-stream_0/weight = 1.0
 stream_1/stream = ExtResource("27_fiigk")
-stream_1/weight = 1.0
 stream_2/stream = ExtResource("28_lhu6a")
-stream_2/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_t5gax"]
 streams_count = 1
 stream_0/stream = ExtResource("30_kft4w")
-stream_0/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_51do2"]
 streams_count = 1
 stream_0/stream = ExtResource("31_wdlko")
-stream_0/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_7h5t2"]
 streams_count = 1
 stream_0/stream = ExtResource("32_rx7lg")
-stream_0/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xl62o"]
 streams_count = 1
 stream_0/stream = ExtResource("33_ww8fg")
-stream_0/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_h62w3"]
 streams_count = 1
 stream_0/stream = ExtResource("34_meu86")
-stream_0/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_av8eh"]
 streams_count = 1
 stream_0/stream = ExtResource("36_uev41")
-stream_0/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gv0on"]
 random_pitch = 1.2
 streams_count = 1
 stream_0/stream = ExtResource("37_x5xuy")
-stream_0/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_yfngd"]
 streams_count = 1
 stream_0/stream = ExtResource("38_wp7hd")
-stream_0/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_paxil"]
 streams_count = 1
 stream_0/stream = ExtResource("39_itg1c")
-stream_0/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tuk54"]
 random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("30_8nr2i")
-stream_0/weight = 1.0
 
 [sub_resource type="Resource" id="Resource_0tfmq"]
 script = ExtResource("54_3jeuy")

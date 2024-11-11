@@ -231,9 +231,11 @@ animation = &"combat_animations_1/Death Backstab"
 [sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_vq7r5"]
 input_0/name = "death_1"
 input_0/auto_advance = false
+input_0/break_loop_at_end = false
 input_0/reset = true
 input_1/name = "death_2"
 input_1/auto_advance = false
+input_1/break_loop_at_end = false
 input_1/reset = true
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_3rnpj"]
@@ -255,9 +257,11 @@ animation = &"combat_animations_1/Upward Thrust"
 [sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_oldk3"]
 input_0/name = "from_parry"
 input_0/auto_advance = false
+input_0/break_loop_at_end = false
 input_0/reset = true
 input_1/name = "from_damage"
 input_1/auto_advance = false
+input_1/break_loop_at_end = false
 input_1/reset = true
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_vbytd"]
@@ -266,12 +270,15 @@ input_1/reset = true
 xfade_time = 0.3
 input_0/name = "to_kneel"
 input_0/auto_advance = false
+input_0/break_loop_at_end = false
 input_0/reset = true
 input_1/name = "kneel"
 input_1/auto_advance = false
+input_1/break_loop_at_end = false
 input_1/reset = true
 input_2/name = "to_stand"
 input_2/auto_advance = false
+input_2/break_loop_at_end = false
 input_2/reset = true
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y1xna"]
@@ -287,9 +294,11 @@ animation = &"combat_animations_1/Death Kneeling"
 [sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_ijofm"]
 input_0/name = "from_parry"
 input_0/auto_advance = false
+input_0/break_loop_at_end = false
 input_0/reset = true
 input_1/name = "from_damage"
 input_1/auto_advance = false
+input_1/break_loop_at_end = false
 input_1/reset = true
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_myeho"]
@@ -326,9 +335,11 @@ animation = &"movement_animations_1/Idle Inactive"
 xfade_time = 0.2
 input_0/name = "inactive"
 input_0/auto_advance = false
+input_0/break_loop_at_end = false
 input_0/reset = true
 input_1/name = "active"
 input_1/auto_advance = false
+input_1/break_loop_at_end = false
 input_1/reset = true
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s6br3"]
@@ -374,9 +385,11 @@ node_connections = [&"Jump Speed", 0, &"Jump Trim", &"Jump Trim", 0, &"Jump Anim
 xfade_time = 0.2
 input_0/name = "jump_1"
 input_0/auto_advance = false
+input_0/break_loop_at_end = false
 input_0/reset = true
 input_1/name = "jump_2"
 input_1/auto_advance = false
+input_1/break_loop_at_end = false
 input_1/reset = true
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_tbxkj"]
@@ -398,21 +411,27 @@ xfade_time = 0.2
 allow_transition_to_self = true
 input_0/name = "inward_slash"
 input_0/auto_advance = false
+input_0/break_loop_at_end = false
 input_0/reset = true
 input_1/name = "inward_slash_copy"
 input_1/auto_advance = false
+input_1/break_loop_at_end = false
 input_1/reset = true
 input_2/name = "outward_slash"
 input_2/auto_advance = false
+input_2/break_loop_at_end = false
 input_2/reset = true
 input_3/name = "outward_slash_copy"
 input_3/auto_advance = false
+input_3/break_loop_at_end = false
 input_3/reset = true
 input_4/name = "thrust"
 input_4/auto_advance = false
+input_4/break_loop_at_end = false
 input_4/reset = true
 input_5/name = "quick_slash"
 input_5/auto_advance = false
+input_5/break_loop_at_end = false
 input_5/reset = true
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_vrma0"]
@@ -422,12 +441,15 @@ sync = true
 xfade_time = 0.2
 input_0/name = "walk"
 input_0/auto_advance = false
+input_0/break_loop_at_end = false
 input_0/reset = true
 input_1/name = "jog"
 input_1/auto_advance = false
+input_1/break_loop_at_end = false
 input_1/reset = true
 input_2/name = "run"
 input_2/auto_advance = false
+input_2/break_loop_at_end = false
 input_2/reset = true
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_gmfu8"]
