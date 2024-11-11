@@ -62,7 +62,7 @@ func process_movement_animations() -> void:
 	if _locked_on_turning_in_place:
 		_animation_input_dir = Vector3.FORWARD
 	
-	player.character.idle_animations.active = true
+	player.character.idle_animations.active = player.lock_on_target != null
 	player.character.movement_animations.dir = _animation_input_dir
 
 
