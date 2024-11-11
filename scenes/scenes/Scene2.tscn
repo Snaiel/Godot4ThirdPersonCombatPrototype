@@ -188,9 +188,10 @@ not_running_spin_speed = 3.5
 running_spin_speed = 4.0
 
 [node name="UserInterface" parent="." instance=ExtResource("3_im4q1")]
+visible = false
 
 [node name="Player" parent="." instance=ExtResource("4_km71j")]
-transform = Transform3D(0.984829, 0, 0.173527, 0, 1, 0, -0.173527, 0, 0.984829, 5.64447, 1.07036, 5.04116)
+transform = Transform3D(0.624971, 0, 0.780648, 0, 1, 0, -0.780648, 0, 0.624971, 13.5473, 27.0643, 122.933)
 
 [node name="BackstabSystem" type="Node3D" parent="."]
 script = ExtResource("5_lt6ye")
@@ -1112,20 +1113,19 @@ transform = Transform3D(0.990062, 0, 0.140628, 0, 1, 0, -0.140628, 0, 0.990062, 
 shape = SubResource("BoxShape3D_5nirt")
 
 [node name="HybridEnemy" parent="Level2/Enemies/Section4/Enemies" index="0" instance=ExtResource("30_kdrsj")]
-transform = Transform3D(-0.737725, 0, -0.675101, 0, 1, 0, 0.675101, 0, -0.737725, -6.8135, 23.0058, -2.07288)
+transform = Transform3D(-0.548497, 0, -0.836152, 0, 1, 0, 0.836152, 0, -0.548497, 11.7472, 23.0058, 12.3336)
 
 [node name="Spellcaster3" parent="Level2/Enemies/Section4/Enemies" index="1" instance=ExtResource("29_xlmhl")]
-transform = Transform3D(-0.381958, 0, -0.92418, 0, 1, 0, 0.92418, 0, -0.381958, -5.06239, 23.0058, 7.59924)
+transform = Transform3D(-0.381958, 0, -0.92418, 0, 1, 0, 0.92418, 0, -0.381958, 9.40041, 23.0058, 17.269)
 
 [node name="Spellcaster4" parent="Level2/Enemies/Section4/Enemies" index="2" instance=ExtResource("29_xlmhl")]
 transform = Transform3D(-0.999612, 0, -0.027852, 0, 1, 0, 0.027852, 0, -0.999612, 1.49143, 27.1109, -9.61065)
 
-[node name="Swordsman13" parent="Level2/Enemies/Section4/Enemies" index="3" node_paths=PackedStringArray("patrol") instance=ExtResource("17_85uvr")]
-transform = Transform3D(0.892169, 0, 0.451703, 0, 1, 0, -0.451703, 0, 0.892169, 7.91617, 23.0058, 14.4947)
-patrol = NodePath("../../Patrols/PatrolPath2/PatrolInstance")
+[node name="Swordsman13" parent="Level2/Enemies/Section4/Enemies" index="3" instance=ExtResource("17_85uvr")]
+transform = Transform3D(-0.2124, 0, -0.977183, 0, 1, 0, 0.977183, 0, -0.2124, 11.1115, 23.0058, 16.5203)
 
 [node name="Zombie8" parent="Level2/Enemies/Section4/Enemies" index="4" instance=ExtResource("28_6cnyh")]
-transform = Transform3D(-0.17358, 0, 0.98482, 0, 1, 0, -0.98482, 0, -0.17358, 10.3302, 25.3408, -5.13048)
+transform = Transform3D(-0.733943, 0, -0.679211, 0, 1, 0, 0.679211, 0, -0.733943, 14.4503, 23.1307, 12.2735)
 
 [node name="Swordsman14" parent="Level2/Enemies/Section4/Enemies" index="5" node_paths=PackedStringArray("patrol") instance=ExtResource("17_85uvr")]
 transform = Transform3D(-0.846295, 0, 0.532713, 0, 1, 0, -0.532713, 0, -0.846295, 12.0197, 25.3408, 2.68394)
