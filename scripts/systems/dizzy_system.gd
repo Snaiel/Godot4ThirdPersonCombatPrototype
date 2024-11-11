@@ -2,6 +2,7 @@ class_name DizzySystem
 extends Node3D
 
 
+@warning_ignore("unused_signal")
 signal dizzy_victim_killed
 
 

@@ -2,6 +2,7 @@ class_name InteractionHandler
 extends Node
 
 
+@warning_ignore("unused_signal")
 signal interaction
 
 
